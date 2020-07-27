@@ -5,7 +5,7 @@
 npm install  
 npm install oc-ng-common-service-0.0.1.tgz
 ng build oc-ng-common-component
-npm run ng-common-component
+npm run oc-ng-common-component
 npm install ./dist/oc-ng-common-component/oc-ng-common-component-0.0.1.tgz
 npm run storybook 
 

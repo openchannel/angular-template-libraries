@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "ng-common-component": "cd dist/oc-ng-common-component/ && npm pack"
+    "oc-ng-common-component": "cd dist/oc-ng-common-component/ && npm pack"
   },
   "private": true,
   "dependencies": {

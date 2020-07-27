@@ -1,0 +1,1 @@
+import '!style-loader!css-loader!sass-loader!../projects/oc-ng-common-component/assets/styles/styles.scss';
