@@ -1,4 +1,4 @@
-<div class="row text-center">
+<!-- <div class="row text-center">
     <div class="col-md-12" *ngIf="getStartedType==='home'; else searchGetStarted;">
         <img [src]="getStartedImage" *ngIf="getStartedImage && getStartedImage.trim().length>0">
         <h4>{{getStartedHeader}}</h4>
@@ -13,4 +13,20 @@
             </oc-button>
         </div>
     </ng-template>
+</div> -->
+
+<div class="row">
+    <div class="col-md-auto">
+        <img src="https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download" alt="featured-logo">
+    </div>
+    <div class="col-md">
+        <h1>
+            List Your App in our App Store
+        </h1>
+        <p>
+            Register as an app developer and submit your app easily with our App Store Developer Portal
+        </p>
+        <oc-button [text]="getStartedButtonText" type="primary" (click)="listAppGetStarted()" class="mt-2 mb-3">
+        </oc-button>
+    </div>
 </div>
