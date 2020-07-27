@@ -37,6 +37,8 @@ import { OcMenuGridComponent } from './oc-menu-grid/oc-menu-grid.component';
 import { OcAppGalaryComponent } from './oc-app-galary/oc-app-galary.component';
 import { OcAppListGridComponent } from './oc-app-list-grid/oc-app-list-grid.component';
 import { OcRecommendedAppsComponent } from './oc-recommended-apps/oc-recommended-apps.component';
+import { OcOverallRatingComponent } from './oc-overall-rating/oc-overall-rating.component';
+import { OcAppCardComponent } from './oc-app-card/oc-app-card.component';
 
 
 @NgModule({
@@ -72,7 +74,9 @@ import { OcRecommendedAppsComponent } from './oc-recommended-apps/oc-recommended
     OcAppGetStartedComponent,
     OcAppGalaryComponent,
     OcAppListGridComponent,
-    OcRecommendedAppsComponent
+    OcRecommendedAppsComponent,
+    OcOverallRatingComponent,
+    OcAppCardComponent
   ],
 
   imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule],

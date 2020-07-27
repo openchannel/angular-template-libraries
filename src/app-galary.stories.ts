@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/angular';
 import { withA11y } from '@storybook/addon-a11y';
-import { OcCommonLibModule, OcAppGalaryComponent, OcAppCategoriesComponent } from 'projects/oc-ng-common-component/src/public-api';
+import { OcCommonLibModule, OcAppGalaryComponent } from 'projects/oc-ng-common-component/src/public-api';
 import { BasicAppDetails } from 'oc-ng-common-service';
 
 const modules = {
