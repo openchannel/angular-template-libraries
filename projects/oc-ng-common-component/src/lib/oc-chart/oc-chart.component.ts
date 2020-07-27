@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { Chart } from 'chart.js';
 
 @Component({
   selector: 'oc-chart',
   templateUrl: './oc-chart.component.html',
-  styleUrls: ['./oc-chart.component.scss']
+  styleUrls: ['./oc-chart.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class OcChartComponent implements AfterViewInit {
 
@@ -122,6 +123,10 @@ export class OcChartComponent implements AfterViewInit {
         }
       }
     });
+  }
+
+  getValue(label: string) {
+    return label;
   }
 
 
