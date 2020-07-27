@@ -2,7 +2,7 @@
 
 npm install  
 ng build oc-ng-common-service
-npm run ng-common-service
+npm run oc-ng-common-service
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
