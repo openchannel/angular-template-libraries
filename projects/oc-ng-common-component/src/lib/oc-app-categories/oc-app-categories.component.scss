@@ -1,0 +1,26 @@
+@import "../../../assets/styles/theme.scss";
+.category-card {
+  background-image: url("https://drive.google.com/u/0/uc?id=1UMmg66jwVemAqyUA17TlXWDe1K3Pmux8&export=download");
+  width: 350px;
+  height: 192px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 53px;
+  position: relative;
+  text-align: center;
+  color: $primary;
+  img{
+    max-height: 52px;
+  }
+}
+
+.content-centered {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  color: $primary;
+  font-family: "Rubik-Medium";
+  margin-top: 16px;
+  transform: translate(-50%, -50%);
+}

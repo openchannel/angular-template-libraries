@@ -1,0 +1,33 @@
+@import "../../../assets/styles/theme.scss";
+.btn{
+  font-size: 14px;
+  padding: 10px 20px;
+  min-width: 160px;
+  min-height: 52px;
+  border-radius: 4px;
+  font-weight: 300;
+  font-family: "Rubik-Medium";
+}
+.btn:focus{
+  box-shadow: none !important;
+}
+.btn:disabled{
+  opacity: 0.35;
+}
+.btn-primary{
+  background-color: $primary !important;
+  border-color: $primary !important;
+}
+.btn-secondary{
+  background-color: white !important;
+  border-color: $info !important;
+  color: $secondary !important;
+}
+.btn-link{
+  color: $primary !important;
+  text-align: left;
+  text-decoration: none;
+}
+.btn-link:hover {
+  text-decoration: none;
+}

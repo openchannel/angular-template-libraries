@@ -1,0 +1,12 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/oc-ng-common-component",
+  "assets": [
+    "assets/styles/*.*",
+    "assets/fonts/*.*",
+    "assets/img/*.*"
+  ],
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  }
+}

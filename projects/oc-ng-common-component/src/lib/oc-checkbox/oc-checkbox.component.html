@@ -1,0 +1,6 @@
+<!-- <input type="checkbox"> -->
+<div class="custom-control custom-checkbox">
+    <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="isChecked"
+    class="form-control" (ngModelChange)="changeModelVal()"  class="custom-control-input" id="customCheck" name="example1">
+    <label class="custom-control-label" for="customCheck"></label>
+</div>

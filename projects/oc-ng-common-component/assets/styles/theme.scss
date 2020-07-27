@@ -1,0 +1,32 @@
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+@import "~bootstrap/scss/_mixins";
+@import "~bootstrap/scss/_root";
+
+$body-color: #333333; //this is the text color
+$primary: #537cfd;
+$secondary: #727272;
+
+$danger: #ff6262;
+$info: #c9d5ea;
+$spacer: 1rem;
+$spacers: (
+  1: (
+    $spacer * 0.5
+  ),
+  2: $spacer,
+  3: (
+    $spacer * 1.5
+  ),
+  4: (
+    $spacer * 2
+  ),
+  5: (
+    $spacer * 2.5
+  ),
+  6: (
+    $spacer * 3
+  )
+);
+
+

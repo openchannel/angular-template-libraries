@@ -1,0 +1,39 @@
+<form novalidate #loginForm="ngForm">
+    <div class="card oc-card-with-border">
+        <div class="card-body">
+            <div class="text-center">
+                <h4>Log In</h4>
+                <oc-label [text]="getValue('Log in into your account')" class="mb-3"></oc-label>
+            </div>
+            <div class="form-group">
+                <oc-label [text]="getValue('Email')"></oc-label>
+                <oc-input emailValidator [(modelName)]="loginModel.email" name="email" #email=ngModel
+                    [ngModel]="loginModel.email" ngDefaultControl required="true"></oc-input>
+                <oc-error [control]="email"> </oc-error>
+            </div>
+            <div class="form-group mb-2">
+                <oc-label [text]="getValue('Password')"></oc-label>
+                <oc-password whiteSpaceValidator [(modelName)]="loginModel.password" class="mb-2" name="password"
+                    #password=ngModel [ngModel]="loginModel.password" ngDefaultControl required="true"></oc-password>
+                <oc-error [control]="password"></oc-error>
+            </div>
+            <div class="form-group row">
+                <div class="col-md">
+                    <oc-checkbox [(isChecked)]="loginModel.isChecked"></oc-checkbox>
+                    <oc-label [text]="getValue(' Remember Me ')" class="label-s"></oc-label>
+                </div>
+                <div class="col-md-auto">
+                    <a href={{forgotPwdUrl}} class="font-s font-med"> Forgot password? </a>
+                </div>
+            </div>
+            <oc-button [text]="getValue('Log In')" [disabled]="!loginModel.isChecked ? true : false"
+                (click)="submitForm(loginForm)" [type]="getValue('primary')" class="btn-block mt-5 mb-3">
+            </oc-button>
+            <div class="text-center">
+                <oc-label [text]="getValue('Dont have an account yet?')"></oc-label>
+                <a href={{signupUrl}} class="font-m font-med"> Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+</form>

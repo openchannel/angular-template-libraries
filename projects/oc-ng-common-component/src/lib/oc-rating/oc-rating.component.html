@@ -1,0 +1,14 @@
+<div *ngIf="type === 'single-star'">
+    <img src="https://drive.google.com/file/d/1E21gkMtuvYleU1SD8h2RUEVhmw2PE4k8/view?usp=sharing">
+    <span>{{rating}} ({{reviewCount}})</span>
+</div>
+
+<div *ngIf="type === 'multi-star'">
+    <ng-template #t let-fill="fill">
+        <span class="star" [class.full]="fill === 100">
+            <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+        </span>
+    </ng-template>
+
+    <ngb-rating [(rate)]="rating" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+</div>

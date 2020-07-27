@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md">
+        <h4>{{appGalaryTitle}}</h4>
+        <span class="text-secondary font-m">{{appGalaryDescription}}</span>
+    </div>
+    <div class="col-md-auto" *ngIf="seeAllUrl && seeAllUrl.length > 0">
+        <a [href]="seeAllUrl">
+            <span class="text-primary font-m font-med pr-1">See All</span>
+            <img src="https://drive.google.com/u/0/uc?id=1slezM1BqinfgM0LVImYPB2Ljx9G5y7Q5&export=download" alt="icon">
+        </a>
+    </div>
+</div>
+<div class="row mx-0 mt-5" *ngIf="appsArr && appsArr.length > 0; else emptyData">
+    <div class="col-md-auto card app-card" *ngFor="let app of appsArr;">
+        <div class="row mx-0">
+            <div class="col-md-auto pl-0">
+                <img [src]="app.appLogoUrl"
+                    alt="app-icon">
+            </div>
+            <div class="col-md px-0">
+                <p class="mb-1 font-med">{{app.appName}}</p>
+                <span class="app-price">{{app.appPrice}}</span>
+                <oc-rating [rating]="app.rating" type="single-star" [reviewCount]="app.reviewCount"></oc-rating>
+                <p class="text-secondary font-m mb-0">{{app.appDescription}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #emptyData>
+    <div class="row mx-0 mt-5">
+        <span class="col-md-12">
+            <h5>{{noAppMessage}}</h5>
+        </span>
+    </div>
+</ng-template>

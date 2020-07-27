@@ -1,0 +1,22 @@
+<table>
+    <thead>
+        <tr>
+
+            <td>App Name</td>
+            <td>Summary</td>
+            <td>Data Added</td>
+            <td>Status</td>
+            <td>Menu</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let app of appList">
+            <td>{{app.logoUrl}}</td>
+            <td>{{app.appName}}</td>
+            <td>{{app.summary}}</td>
+            <td>{{app.date}}</td>
+            <td>{{app.status}}</td>
+        </tr>
+    </tbody>
+
+</table>

@@ -1,0 +1,16 @@
+<div class="row text-center">
+    <div class="col-md-12" *ngIf="getStartedType==='home'; else searchGetStarted;">
+        <img [src]="getStartedImage" *ngIf="getStartedImage && getStartedImage.trim().length>0">
+        <h4>{{getStartedHeader}}</h4>
+        <oc-label [text]="getStartedDescription" class="label-m" *ngIf="getStartedDescription && getStartedDescription.trim().length > 0 "></oc-label>
+        <oc-button [text]="getStartedButtonText" type="primary" (click)="listAppGetStarted()" class="mt-5 mb-3">
+        </oc-button>
+    </div>
+    <ng-template #searchGetStarted>
+        <div class="col-md-12" >
+            <h4>{{getStartedHeader}}</h4>
+            <oc-button [text]="getStartedButtonText" type="primary" (click)="listAppGetStarted()" class="mt-5 mb-3">
+            </oc-button>
+        </div>
+    </ng-template>
+</div>

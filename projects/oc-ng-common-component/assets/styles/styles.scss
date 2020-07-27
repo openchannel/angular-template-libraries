@@ -1,0 +1,135 @@
+
+@import "./theme.scss";
+@import "~bootstrap/scss/bootstrap";
+
+
+@font-face {
+  font-family: "Rubik-Black";
+  font-weight: normal;
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-Black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Rubik-BlackItalic";
+  font-weight: normal;
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-BlackItalic.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Rubik-Bold";
+  font-weight: normal;
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Rubik-BoldItalic";
+  font-weight: normal;
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-BoldItalic.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: "Rubik-Italic";
+  font-weight: normal;
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-Italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Rubik-Light";
+  font-weight: normal;
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Rubik-LightItalic";
+  font-weight: normal;
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-LightItalic.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: "Rubik-Medium";
+  font-weight: normal;
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Rubik-MediumItalic";
+  font-weight: normal;
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-MediumItalic.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: "Rubik Regular";
+  font-weight: normal;
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-Regular.ttf") format("truetype");
+}
+
+.font-light {
+  font-family: "Rubik-Light";
+}
+.font-reg {
+  font-family: "Rubik Regular";
+}
+.font-med {
+  font-family: "Rubik-Medium";
+}
+.font-bold {
+  font-family: "Rubik-Bold";
+}
+.font-s {
+  font-size: 12px;
+}
+.font-m {
+  font-size: 14px;
+}
+
+* {
+  font-family: "Rubik Regular";
+  font-size: 16px;
+  font-weight: normal;
+  color: $body-color;
+}
+
+a {
+  color: $primary;
+}
+a:hover {
+  color: $primary;
+  text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Rubik-Medium";
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.form-control {
+  border: 1px solid $info;
+  border-radius: 4px;
+  height: 46px;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+.form-control:focus {
+  box-shadow: none;
+  border: 1px solid $primary;
+}
+.form-control::placeholder {
+  opacity: 0.5;
+}
+.invalid-feedback {
+  color: $danger;
+  font-size: 12px;
+  display: block;
+  margin-top: 6px;
+}
+
+.card.oc-card-with-border {
+  margin: auto;
+  max-width: 410px;
+  border: 1px solid $info;
+  border-radius: 4px;
+  margin: auto;
+  .card-body {
+    padding: 40px 30px;
+    font-size: 14px;
+  }
+}

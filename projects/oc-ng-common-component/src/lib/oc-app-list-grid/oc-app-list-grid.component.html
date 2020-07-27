@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-12" *ngIf="appList && appList.length>0; else emptyList">
+        <div class="mb-3" *ngFor="let app of appList">
+            <img [src]="app.appLogoUrl">
+            <h5>{{app.appName}}</h5>
+            <span class="app-price">{{app.appPrice}}</span>
+            <oc-rating [rating]="app.rating" type="single-star" [reviewCount]="app.reviewCount"></oc-rating>
+            <a href="#" (click)="viewDetails(app)" class="float-right">
+                <img src="https://drive.google.com/u/0/uc?id=1slezM1BqinfgM0LVImYPB2Ljx9G5y7Q5&export=download" alt="icon">
+            </a>
+        </div>
+    </div>
+    <ng-template #emptyList>
+        <div class="row mx-0 mt-5">
+            <span class="col-md-12">
+                <h5>{{noAppMessage}}</h5>
+            </span>
+        </div>
+    </ng-template>
+</div>

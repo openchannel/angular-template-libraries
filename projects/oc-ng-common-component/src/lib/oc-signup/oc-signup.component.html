@@ -1,0 +1,51 @@
+<form novalidate #signupform="ngForm">
+    <div class="card oc-card-with-border">
+        <div class="card-body">
+            <!-- <a href="/"> -->
+            <img class="img-fluid logo-head" src="{{imagePath}}" alt="logo" />
+            <!-- </a> -->
+            <div class="text-center">
+                <h4>Sign Up</h4>
+                <oc-label [text]="getValue('Enter your account details below')" class="mb-3"></oc-label>
+            </div>
+            <div class="form-group">
+                <oc-label [text]="getValue('Name')"></oc-label>
+                <oc-input whiteSpaceValidator [(modelName)]="signupModel.uname" name="uname" #uname=ngModel
+                    [ngModel]="signupModel.uname" ngDefaultControl required="true"></oc-input>
+                <oc-error [control]="uname"> </oc-error>
+            </div>
+            <div class="form-group">
+                <oc-label [text]="getValue('Company')"></oc-label>
+                <oc-input whiteSpaceValidator [(modelName)]="signupModel.company" name="cname" #cname=ngModel
+                    [ngModel]="signupModel.company" ngDefaultControl required="true"></oc-input>
+                <oc-error [control]="cname"> </oc-error>
+            </div>
+            <div class="form-group">
+                <oc-label [text]="getValue('Email')"></oc-label>
+                <oc-input emailValidator [(modelName)]="signupModel.email" name="company" #email=ngModel
+                    [ngModel]="signupModel.email" ngDefaultControl required="true"></oc-input>
+                <oc-error [control]="email"> </oc-error>
+            </div>
+            <div class="form-group mb-2">
+                <oc-label [text]="getValue('Password')"></oc-label>
+                <oc-password [(modelName)]="signupModel.password" class="mb-2" name="password" #pwd=ngModel
+                    [ngModel]="signupModel.password" ngDefaultControl required="true"></oc-password>
+                <oc-error [control]="pwd"> </oc-error>
+            </div>
+            <div class="form-group">
+                <oc-checkbox [(isChecked)]="signupModel.isChecked"></oc-checkbox>
+                <oc-label [text]="getValue(' I agree to ')" class="label-s"></oc-label>
+                <a href={{termsUrl}} target="_blank" class="font-s"> Terms of Service </a>
+                <oc-label [text]="getValue(' and ')" class="label-s"></oc-label>
+                <a href={{policyUrl}} target="_blank" class="font-s"> Data Processing Policy</a>
+            </div>
+            <oc-button [text]="getValue('Sign Up')" [disabled]="!signupModel.isChecked ? true : false"
+                [type]="getValue('primary')" (click)="submitForm(signupform)" class="btn-block mt-5 mb-3">
+            </oc-button>
+            <div class="text-center">
+                <oc-label [text]="getValue('Already have an account? ')"></oc-label>
+                <a href={{loginUrl}} class="font-m font-med"> Log In</a>
+            </div>
+        </div>
+    </div>
+</form>
