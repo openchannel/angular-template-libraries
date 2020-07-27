@@ -26,6 +26,7 @@ export * from './lib/oc-app-list-grid/oc-app-list-grid.component'
 export * from './lib/oc-error/oc-error.component';
 export * from './lib/oc-recommended-apps/oc-recommended-apps.component';
 export * from './lib/oc-overall-rating/oc-overall-rating.component';
+export * from './lib/oc-review-list/oc-review-list.component';
 
 //validators 
 export * from './lib/validators/white-space-validator';

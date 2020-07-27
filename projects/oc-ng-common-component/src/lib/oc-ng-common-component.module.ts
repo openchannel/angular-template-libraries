@@ -40,6 +40,7 @@ import { OcRecommendedAppsComponent } from './oc-recommended-apps/oc-recommended
 import { OcOverallRatingComponent } from './oc-overall-rating/oc-overall-rating.component';
 import { OcAppCardComponent } from './oc-app-card/oc-app-card.component';
 import { OcDialogComponent } from './oc-dialog/oc-dialog.component';
+import { OcReviewListComponent } from './oc-review-list/oc-review-list.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { OcDialogComponent } from './oc-dialog/oc-dialog.component';
     OcRecommendedAppsComponent,
     OcOverallRatingComponent,
     OcAppCardComponent,
-    OcDialogComponent
+    OcDialogComponent,
+    OcReviewListComponent
   ],
 
   imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule],
