@@ -14,5 +14,6 @@ export * from './lib/model/login';
 export * from './lib/model/featured-app-model';
 export * from './lib/model/app-category-model';
 export * from './lib/model/basic-app-model';
+export * from './lib/model/overall-rating-summary-model'
 
 export * from './lib/model/app-list';
