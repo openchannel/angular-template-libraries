@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-3">
+        <div>
+            <h1 style="display:inline">{{allReviewSummary.overallRating}}</h1>
+            <h5 style="display:inline">/5.0</h5>
+            <h5 class="float-right">{{overallReviewLabel}}</h5>
+        </div>
+        <span>
+            <oc-label text="Based on" class="label-s"></oc-label>
+            <span class="label-blue"> {{allReviewSummary.reviewCount}} reviews</span>
+        </span>
+
+        <div class="col-md-12">
+            <oc-rating type="multi-star" rating="5" ></oc-rating>
+            <span class="float-right">{{allReviewSummary.fiveStarCount}}/{{allReviewSummary.reviewCount}}</span>
+            <p><ngb-progressbar type="primary" [value]="(allReviewSummary.fiveStarCount/allReviewSummary.reviewCount)*100"></ngb-progressbar></p>
+        </div>
+        <div class="col-md-12">
+            <oc-rating type="multi-star" rating="4" ></oc-rating>
+            <span class="float-right">{{allReviewSummary.fourStarCount}}/{{allReviewSummary.reviewCount}}</span>
+            <p><ngb-progressbar type="primary" [value]="(allReviewSummary.fourStarCount/allReviewSummary.reviewCount)*100"></ngb-progressbar></p>
+        </div>
+        <div class="col-md-12">
+            <oc-rating type="multi-star" rating="3" ></oc-rating>
+            <span class="float-right">{{allReviewSummary.threeStarCount}}/{{allReviewSummary.reviewCount}}</span>
+            <p><ngb-progressbar type="primary" [value]="(allReviewSummary.threeStarCount/allReviewSummary.reviewCount)*100"></ngb-progressbar></p>
+        </div>
+        <div class="col-md-12">
+            <oc-rating type="multi-star" rating="2" ></oc-rating>
+            <span class="float-right">{{allReviewSummary.twoStarCount}}/{{allReviewSummary.reviewCount}}</span>
+            <p><ngb-progressbar type="primary" [value]="(allReviewSummary.twoStarCount/allReviewSummary.reviewCount)*100"></ngb-progressbar></p>
+        </div>
+        <div class="col-md-12">
+            <oc-rating type="multi-star" rating="1" ></oc-rating>
+            <span class="float-right">{{allReviewSummary.oneStarCount}}/{{allReviewSummary.reviewCount}}</span>
+            <p><ngb-progressbar type="primary" [value]="(allReviewSummary.oneStarCount/allReviewSummary.reviewCount)*100"></ngb-progressbar></p>
+        </div>
+
+    </div>
+</div>
