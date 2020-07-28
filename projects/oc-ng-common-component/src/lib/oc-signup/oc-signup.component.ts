@@ -14,6 +14,7 @@ export class OcSignupComponent implements OnInit {
   @Input() loginUrl;
   @Input() termsUrl;
   @Input() policyUrl;
+  @Input() companyLogoUrl;
 
   @Output() submit = new EventEmitter<any>();
 
@@ -36,12 +37,12 @@ export class OcSignupComponent implements OnInit {
   // }
 
   submitForm(form) {
-      if (!form.valid) {
-        form.control.markAllAsTouched();
-        return;
-      }
-      this.submit.emit(true);
-   
+    if (!form.valid) {
+      form.control.markAllAsTouched();
+      return;
+    }
+    this.submit.emit(true);
+
 
   }
 
