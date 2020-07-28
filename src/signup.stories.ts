@@ -26,7 +26,8 @@ storiesOf('Signup', module)
         props: {
             signupModel: signupEmpty,
             submit: action('clicked event'),
-            loginUrl: "login"
+            loginUrl: "login",
+            companyLogoUrl: "https://drive.google.com/u/0/uc?id=12raSQ51BZQqMVy_ZVgXk71xHS6a6pb1e&export=download"
         },
         moduleMetadata: modules
     })).add('With Errors', () => ({
@@ -34,7 +35,8 @@ storiesOf('Signup', module)
         props: {
             signupModel: signupEmpty,
             submit: action('clicked event'),
-            loginUrl: "login"
+            loginUrl: "login",
+            companyLogoUrl: "https://drive.google.com/u/0/uc?id=12raSQ51BZQqMVy_ZVgXk71xHS6a6pb1e&export=download"
         },
         moduleMetadata: modules
     })).add('Filled', () => ({
@@ -44,7 +46,8 @@ storiesOf('Signup', module)
         props: {
             signupModel: signupFilled,
             submit: action('clicked event'),
-            loginUrl: "login"
+            loginUrl: "login",
+            companyLogoUrl: "https://drive.google.com/u/0/uc?id=12raSQ51BZQqMVy_ZVgXk71xHS6a6pb1e&export=download"
         },
         moduleMetadata: modules
     }));
