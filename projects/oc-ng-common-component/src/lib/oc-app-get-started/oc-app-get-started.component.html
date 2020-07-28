@@ -15,18 +15,30 @@
     </ng-template>
 </div> -->
 
-<div class="row">
-    <div class="col-md-auto">
+<div class="row" *ngIf="getStartedType == 'home'">
+    <div class="col-md-auto pr-0">
         <img src="https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download" alt="featured-logo">
     </div>
-    <div class="col-md">
+    <div class="col-md-6 pl-0">
         <h1>
             List Your App in our App Store
         </h1>
-        <p>
+        <p class="font-m text-secondary w-75 my-2">
             Register as an app developer and submit your app easily with our App Store Developer Portal
         </p>
-        <oc-button [text]="getStartedButtonText" type="primary" (click)="listAppGetStarted()" class="mt-2 mb-3">
+        <oc-button [text]="getStartedButtonText" type="primary" (click)="listAppGetStarted()">
+        </oc-button>
+    </div>
+</div>
+<div class="row text-center" *ngIf="getStartedType == 'search'">
+    <div class="col-md-12">
+        <h1>
+            List Your App in our App Store
+        </h1>
+    </div>
+
+    <div class="col-md-3 mt-5 px-5 mx-auto">
+        <oc-button class="btn-block" [text]="getStartedButtonText" type="primary" (click)="listAppGetStarted()">
         </oc-button>
     </div>
 </div>

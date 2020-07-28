@@ -1,0 +1,25 @@
+@import "../../../assets/styles/theme.scss";
+.card.app-list-card {
+  border: 1px solid rgba(201, 213, 234, 0.5);
+  padding: 16px 23px 16px 16px;
+  margin-bottom: 16px;
+  line-height: 1;
+  border-radius: 4px;
+  .img-fluid {
+    min-width: 44px;
+    max-width: 44px;
+  }
+  .app-price {
+    font-size: 14px;
+    font-family: "Rubik-Medium";
+    display: inline-block;
+    color: $primary;
+    margin-bottom: 8px;
+    width: 130px;
+  }
+  .icon-arrow {
+    position: absolute;
+    right: 24px;
+    top: 34px;
+  }
+}
