@@ -41,6 +41,7 @@ import { OcOverallRatingComponent } from './oc-overall-rating/oc-overall-rating.
 import { OcAppCardComponent } from './oc-app-card/oc-app-card.component';
 import { OcDialogComponent } from './oc-dialog/oc-dialog.component';
 import { OcReviewListComponent } from './oc-review-list/oc-review-list.component';
+import { OcSelectExpandableComponent } from './oc-select-expandable/oc-select-expandable.component';
 
 
 @NgModule({
@@ -80,13 +81,11 @@ import { OcReviewListComponent } from './oc-review-list/oc-review-list.component
     OcOverallRatingComponent,
     OcAppCardComponent,
     OcDialogComponent,
-    OcReviewListComponent
+    OcReviewListComponent,
+    OcSelectExpandableComponent
   ],
 
   imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
     OcButtonComponent,
@@ -118,7 +117,8 @@ import { OcReviewListComponent } from './oc-review-list/oc-review-list.component
     OcMenuGridComponent,
     OcAppGetStartedComponent,
     OcAppGalaryComponent,
-    OcDialogComponent
+    OcDialogComponent,
+    OcSelectExpandableComponent
   ]
 })
 export class OcCommonLibModule { }

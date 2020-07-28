@@ -48,3 +48,4 @@ export * from './lib/oc-app-get-started/oc-app-get-started.component';
 export * from './lib/oc-app-galary/oc-app-galary.component';
 
 export * from './lib/oc-dialog/oc-dialog.component';
+export * from './lib/oc-select-expandable/oc-select-expandable.component';
