@@ -134,3 +134,21 @@ h1,h2,h3,h4,h5,h6 {
   }
 }
 
+.sidebar {
+  min-width: 255px;
+  background-color: #f4f7fc;
+  border-radius: 4px;
+  h6 {
+    padding: 16px 0;
+    font-family: "Rubik-Medium";
+    display: inline-block;
+    line-height: 18px;
+    margin-bottom: 0;
+  }
+  span {
+    padding: 14px 0;
+    font-size: 14px;
+    display: inline-block;
+    line-height: 18px;
+  }
+}

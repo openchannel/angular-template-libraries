@@ -1,23 +1,18 @@
 @import "../../../assets/styles/theme.scss";
-span{
-    font-size: 14px;
-    color: $secondary;
-    font-family: "Rubik-Medium";
-    padding-left: 4px;
+span {
+  color: $secondary;
 }
-
 .star {
-    position: relative;
-    display: inline-block;
-    font-size: 3rem;
-    color: #d3d3d3;
-  }
-  .full {
-    color: red;
-  }
-  .half {
-    position: absolute;
-    display: inline-block;
-    overflow: hidden;
-    color: red;
-  }
+  position: relative;
+  color: rgba(114, 114, 114, 0.4);
+}
+.full {
+  color: #ffc820;
+}
+.half {
+  position: absolute;
+  overflow: hidden;
+  color: #ffc820;
+  bottom: -2px;
+  left: 0px;
+}
