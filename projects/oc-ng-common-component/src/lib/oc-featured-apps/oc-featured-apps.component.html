@@ -7,7 +7,7 @@
     <div class="col-md-auto" *ngFor="let app of data;">
         <div class="featured-card card">
             <div class="card-body">
-                <img src="https://drive.google.com/u/0/uc?id=1KkktV_kYp0KfG1TtfNO2XHM2_OU_hi-K&export=download" alt="featured-logo">
+                <img src="{{app.logoUrl}}" alt="featured-logo">
                 <h5>{{app.appName}}</h5>
                 <span>{{app.appDescription}}</span>
             </div>
