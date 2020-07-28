@@ -42,6 +42,7 @@ import { OcAppCardComponent } from './oc-app-card/oc-app-card.component';
 import { OcDialogComponent } from './oc-dialog/oc-dialog.component';
 import { OcReviewListComponent } from './oc-review-list/oc-review-list.component';
 import { OcSelectExpandableComponent } from './oc-select-expandable/oc-select-expandable.component';
+import { OcFileUploadComponent } from './oc-file-upload/oc-file-upload.component';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { OcSelectExpandableComponent } from './oc-select-expandable/oc-select-ex
     OcAppCardComponent,
     OcDialogComponent,
     OcReviewListComponent,
-    OcSelectExpandableComponent
+    OcSelectExpandableComponent,
+    OcFileUploadComponent
   ],
 
   imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule],
