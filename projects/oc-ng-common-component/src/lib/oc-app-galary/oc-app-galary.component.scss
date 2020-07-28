@@ -1,21 +1,2 @@
 @import "../../../assets/styles/theme.scss";
-.card.app-card{
-  border: none;
-  padding-right: 0;
-  padding-left: 0;
-  margin-bottom: 40px;
-  min-width: 350px;
-  max-width: 350px;
-  img {
-    min-width: 44px;
-    max-width: 44px;
-  }
-  .app-price {
-    font-size: 14px;
-    font-family: "Rubik-Medium";
-    display: inline-block;
-    color: $primary;
-    margin-bottom: 8px;
-    width: 130px;
-  }
-}
+
