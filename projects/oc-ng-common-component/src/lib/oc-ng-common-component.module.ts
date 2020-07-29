@@ -120,7 +120,9 @@ import { OcFileUploadComponent } from './oc-file-upload/oc-file-upload.component
     OcAppGetStartedComponent,
     OcAppGalaryComponent,
     OcDialogComponent,
-    OcSelectExpandableComponent
+    OcSelectExpandableComponent,
+    OcFileUploadComponent,
+    OcAppListGridComponent
   ]
 })
 export class OcCommonLibModule { }
