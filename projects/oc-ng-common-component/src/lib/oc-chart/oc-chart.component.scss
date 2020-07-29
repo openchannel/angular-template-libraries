@@ -1,3 +1,10 @@
+@import "../../../assets/styles/theme.scss";
+.card.chart-card{
+  border: 1px solid #c9d5ea;
+  border-radius: 4px;
+  padding: 40px;
+}
+
 .canvas-chart{
   min-height: 250px !important;
 }

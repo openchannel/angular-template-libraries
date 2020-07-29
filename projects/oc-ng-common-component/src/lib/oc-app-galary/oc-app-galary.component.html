@@ -10,7 +10,7 @@
         </a>
     </div>
 </div>
-<div class="row mx-0 mt-5" *ngIf="appsArr && appsArr.length > 0; else emptyData">
+<div class="row pt-5" *ngIf="appsArr && appsArr.length > 0; else emptyData">
     <div *ngFor="let app of appsArr;">
         <oc-app-card [app]="app"></oc-app-card>
     </div>

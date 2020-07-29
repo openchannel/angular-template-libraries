@@ -1,7 +1,8 @@
 @import "../../../assets/styles/theme.scss";
 .featured-card.card {
   border-radius: 4px;
-  //   border: none;
+  border: 1px solid white;
+  margin-bottom: 68px;
   min-height: 330px;
   max-height: 330px;
   min-width: 255px;
@@ -29,5 +30,5 @@
   }
 }
 .featured-card.card:hover {
-    border: 1px solid $primary;
+  border: 1px solid $primary;
 }
