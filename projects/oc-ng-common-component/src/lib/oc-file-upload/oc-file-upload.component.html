@@ -1,112 +1,127 @@
-<div class="container without-files" *ngIf="(!files || files.length == 0) ;else fileList" fileDragDrop (fileDropped)="onFileDropped($event,cropperModal)">
-    <input type="file" #fileDropRef id="fileDropRef" 
-        [multiple]="isMultiFile" 
-        [accept]="getAcceptTypes()"
-        (change)="fileBrowseHandler($event,cropperModal)"/>
-    <div >
-        <h5>{{fileUploadText}}</h5>
-        <h5>or<span class="blue-label"> Browse file</span></h5>
-    </div>
+<div class="file-container without-files" *ngIf="(!files || files.length == 0) ;else fileList" fileDragDrop
+  (fileDropped)="onFileDropped($event,cropperModal)">
+  <img src="https://drive.google.com/u/0/uc?id=1pXQMAQPexAIcNZPeLkqDjlfeR5uBVYAy&export=download" class="mb-2"
+    alt="upload-icon">
+  <input type="file" #fileDropRef id="fileDropRef" [multiple]="isMultiFile" [accept]="getAcceptTypes()"
+    (change)="fileBrowseHandler($event,cropperModal)" />
+  <div>
+    <span class="d-block text-secondary font-m">{{fileUploadText}}</span>
+    <span class="text-secondary font-m">or</span> <a href="" class="font-m font-bold"> Browse file</a>
+  </div>
 </div>
+
 <ng-template #fileList>
-    <div class="container">
-        <div class="col-md-12">
-            <h5 style="display: inline;">My Attachments</h5>
-            <a href="#" *ngIf="isMultiFile || (!files || files.length == 0)">
-                <input type="file"  
-                [accept]="acceptType" #fileUploadRefid (change)="fileBrowseHandler($event,cropperModal)"
-                
-                />
-                <h5 class="blue-label float-right" style="display: inline;">Browse file</h5>
-            </a>
-        </div>
-        <div class="files-list col-md-12" style="overflow-y: auto;">
-            <div class="single-file" *ngFor="let file of files; let i = index">
-                <div class="file-icon" style="width: 50px">
-                    <img [src]="getFileIcon(file)" style="max-width: 40px;">
-                </div>
-                <div class="info">
-                    <h4 class="name">
-                        {{ file?.fileName }}
-                    </h4>
-                    <oc-label text="{{file?.fileUploadProgress < 100 ? 'Uploading' : 'Complete'}}" class="label-s"></oc-label>
-                    <p class="size">
-                        <!-- {{ file?.size | fileSize }} - {{ fileDetail.uploadDate | date: 'dd MMM yyyy' }} -->
-                    </p>
-                    <p><ngb-progressbar type="primary" *ngIf="file?.fileUploadProgress < 100" [value]="file?.fileUploadProgress"></ngb-progressbar></p>
-                </div>
-                <div class="delete" (click)="deleteFile(i)">
-                    <span>X</span>
-                </div>
-                <hr>
-            </div>
-        </div>
+  <div class="file-container">
+    <div class="row">
+      <div class="col-md">
+        <p class="mb-3 font-med font-m">My Attachments</p>
+      </div>
+      <div class="col-md-auto">
+        <img src="https://drive.google.com/u/0/uc?id=1pXQMAQPexAIcNZPeLkqDjlfeR5uBVYAy&export=download" class="upload-s"
+          alt="upload-icon">
+        <a href="#" class="font-m font-bold ">
+          <input type="file" [accept]="acceptType" #fileUploadRefid (change)="fileBrowseHandler($event,cropperModal)" />
+          Browse file
+        </a>
+        <!-- <a href="#" *ngIf="isMultiFile || (!files || files.length == 0)">
+          <input type="file" [accept]="acceptType" #fileUploadRefid (change)="fileBrowseHandler($event,cropperModal)" />
+          <h5 class="blue-label float-right" style="display: inline;">Browse file</h5>
+        </a> -->
+      </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-auto pr-0">
+        <img src="https://drive.google.com/u/0/uc?id=1vDDzbS--o_UIgXFE_LmMfVmSAKuprCyb&export=download" alt="app-icon">
+      </div>
+      <div class="col-md-auto ml-n1">
+        <span class="font-med font-m d-block">Logo.png</span>
+        <span class="text-secondary font-s">Complete</span>
+      </div>
+      <div class="col-md text-right pt-3">
+        <img src="https://drive.google.com/u/0/uc?id=1DeW0iFllXvbd_PoWcU8sWodzkoSZuG67&export=download"
+          alt="close-icon">
+      </div>
+      <div class="col-12 pt-2">
+        <ngb-progressbar type="primary" *ngIf="file?.fileUploadProgress < 100" [value]="file?.fileUploadProgress">
+        </ngb-progressbar>
+      </div>
+      <!-- <div class="single-file" *ngFor="let file of files; let i = index">
+        <div class="file-icon" style="width: 50px">
+          <img [src]="getFileIcon(file)" style="max-width: 40px;">
+        </div>
+        <div class="info">
+          <h4 class="name">
+            {{ file?.fileName }}
+          </h4>
+          <oc-label text="{{file?.fileUploadProgress < 100 ? 'Uploading' : 'Complete'}}" class="label-s"></oc-label>
+          <p class="size">
+            {{ file?.size | fileSize }} - {{ fileDetail.uploadDate | date: 'dd MMM yyyy' }}
+          </p>
+          <p>
+            <ngb-progressbar type="primary" *ngIf="file?.fileUploadProgress < 100" [value]="file?.fileUploadProgress">
+            </ngb-progressbar>
+          </p>
+        </div>
+        <div class="delete" (click)="deleteFile(i)">
+          <span>X</span>
+        </div>
+        <hr>
+      </div> -->
+    </div>
+  </div>
 </ng-template>
 
 
 <!--cropper modal for bulk edit-->
 <ng-template #cropperModal let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title">Edit Image</h4>
-      <button type="button" class="close" aria-describedby="modal-title" (click)="d('Cross click'); resetSelection()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body d-flex flex-column">
-      <div class="file-cropper-body w-100 d-flex flex-column">
-        <image-cropper
-          [imageChangedEvent]="browsedFileEvent"
-          [maintainAspectRatio]="maintainAspectRatio"
-          [aspectRatio]="aspectRatio"
-          [resizeToWidth]="resizeToWidth"
-          [resizeToHeight]="resizeToHeight"
-          format="png"
-          (imageCropped)="imageCropped($event)"
-          (imageLoaded)="imageLoaded()"
-          (cropperReady)="cropperReady()"
-          (loadImageFailed)="loadImageFailed()"
-          [transform]="transform"
-          style="padding: 0px;"
-        >
-        </image-cropper>
-          <!-- [resizeToWidth]="resizeToWidth"
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Image</h4>
+    <button type="button" class="close" aria-describedby="modal-title" (click)="d('Cross click'); resetSelection()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body d-flex flex-column">
+    <div class="file-cropper-body w-100 d-flex flex-column">
+      <image-cropper [imageChangedEvent]="browsedFileEvent" [maintainAspectRatio]="maintainAspectRatio"
+        [aspectRatio]="aspectRatio" [resizeToWidth]="resizeToWidth" [resizeToHeight]="resizeToHeight" format="png"
+        (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
+        (loadImageFailed)="loadImageFailed()" [transform]="transform" style="padding: 0px;">
+      </image-cropper>
+      <!-- [resizeToWidth]="resizeToWidth"
           [resizeToHeight]="resizeToHeight" -->
-          
-        <div class="w-100 my-2 text-center" *ngIf="hasImageLoadError">
-          {{ imageLoadErrorMessage }}
-        </div>
-        <div *ngIf="uploadImageInProcess" class="fileUploader-new">
-          <div class="controls upload-progress">
-					  <div class="row">
-						<div class="col">
-						  <div class="">
+
+      <div class="w-100 my-2 text-center" *ngIf="hasImageLoadError">
+        {{ imageLoadErrorMessage }}
+      </div>
+      <div *ngIf="uploadImageInProcess" class="fileUploader-new">
+        <div class="controls upload-progress">
+          <div class="row">
+            <div class="col">
+              <div class="">
                 {{fileName}}
-						  </div>
-						  <div class="progress">
-							<div
-							  class="progress-bar"
-                role="progressbar"
-                [style.width.%]="[loaderValue]"
-							  aria-valuenow="[loaderValue]"
-							  aria-valuemin="0"
-							  aria-valuemax="100"
-							></div>
-						  </div>
-						</div>
-					  </div>
-					</div>
-        </div>
-        <div class="modal-footer">
-          <div style="padding-top: 15px;padding-right: 15px;">
-            <a class="cursor-pointer" (click)="zoomIn()" style="padding-right: 15px;"><i class="fa fa-search-plus"></i></a>
-            <a class="cursor-pointer" (click)="zoomOut()"><i class="fa fa-search-minus"></i></a>
+              </div>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" [style.width.%]="[loaderValue]"
+                  aria-valuenow="[loaderValue]" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
           </div>
-          <button type="button" class="btn btn pr-2 pt-3 btn-white" [disabled]="uploadImageInProcess" (click)="d('Cross click'); resetSelection()">Close</button>
-          <button type="button" class="btn btn-primary" [disabled]="hasImageLoadError || uploadImageInProcess" (click)="uploadImageFile();" 
-          [ngClass]="{'process': uploadImageInProcess }">{{ uploadImageInProcess ? '':'Upload'}}</button>
         </div>
       </div>
+      <div class="modal-footer">
+        <div style="padding-top: 15px;padding-right: 15px;">
+          <a class="cursor-pointer" (click)="zoomIn()" style="padding-right: 15px;"><i
+              class="fa fa-search-plus"></i></a>
+          <a class="cursor-pointer" (click)="zoomOut()"><i class="fa fa-search-minus"></i></a>
+        </div>
+        <button type="button" class="btn btn pr-2 pt-3 btn-white" [disabled]="uploadImageInProcess"
+          (click)="d('Cross click'); resetSelection()">Close</button>
+        <button type="button" class="btn btn-primary" [disabled]="hasImageLoadError || uploadImageInProcess"
+          (click)="uploadImageFile();"
+          [ngClass]="{'process': uploadImageInProcess }">{{ uploadImageInProcess ? '':'Upload'}}</button>
+      </div>
     </div>
-  </ng-template>
-  <!--end cropper modal for bulk edit-->
+  </div>
+</ng-template>
+<!--end cropper modal for bulk edit-->
