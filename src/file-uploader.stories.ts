@@ -2,6 +2,8 @@ import { storiesOf } from '@storybook/angular';
 import { withA11y } from '@storybook/addon-a11y';
 import { OcCommonLibModule, OcFileUploadComponent } from 'projects/oc-ng-common-component/src/public-api';
 import { FileDetails } from 'oc-ng-common-service';
+import { action } from '@storybook/addon-actions';
+import { OCComponentConstants } from 'projects/oc-ng-common-component/src/lib/model/oc-constants';
 
 const modules = {
     imports: [OcCommonLibModule]
@@ -30,31 +32,35 @@ file4.fileUploadTime=1595942005169;
 
 storiesOf('File Uploader', module)
     .addDecorator(withA11y)
-    .add('Single File Empty', () => ({
+    .add('Single Private File', () => ({
         component: OcFileUploadComponent,
         moduleMetadata: modules,
         props:{
+            fileUpload:action('fileUpload'),
+            fileType : OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_FILE
+        }
+    })).add('Single Private image', () => ({
+        component: OcFileUploadComponent,
+        moduleMetadata: modules,
+        props:{
+            fileUpload:action('fileUpload'),
+            fileType : OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_IMAGE
         }
     })).add('Single File With Data', () => ({
         component: OcFileUploadComponent,
         moduleMetadata: modules,
         props:{
             files:[file2],
+            fileType : OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_FILE,
             defaultFileIcon:'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png'
         }
-    })).add('Multi File Empty', () => ({
-        component: OcFileUploadComponent,
-        moduleMetadata: modules,
-        props:{
-            isMultiFile:true,
-            defaultFileIcon:'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png'
-        }
-    })).add('Multi File With Data', () => ({
+    })).add('Multi Public Image With Data', () => ({
         component: OcFileUploadComponent,
         moduleMetadata: modules,
         props:{
             isMultiFile:true,
             files:[file1,file2,file3,file4],
+            fileType : OCComponentConstants.FILE_TYPES.MULTI_PUBLIC_IMAGE,
             defaultFileIcon:'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png'
         }
     }));

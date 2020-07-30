@@ -43,7 +43,7 @@ import { OcDialogComponent } from './oc-dialog/oc-dialog.component';
 import { OcReviewListComponent } from './oc-review-list/oc-review-list.component';
 import { OcSelectExpandableComponent } from './oc-select-expandable/oc-select-expandable.component';
 import { OcFileUploadComponent } from './oc-file-upload/oc-file-upload.component';
-
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -87,7 +87,7 @@ import { OcFileUploadComponent } from './oc-file-upload/oc-file-upload.component
     OcFileUploadComponent
   ],
 
-  imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule],
+  imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule,ImageCropperModule],
   exports: [OcCommonLibComponent,
     OcInputComponent,
     OcButtonComponent,
