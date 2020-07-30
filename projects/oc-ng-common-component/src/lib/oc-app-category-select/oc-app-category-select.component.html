@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="col-md-12">
+            <oc-select [defaultBlankValue]='defaultBlankValue' 
+                [selectValArr]='predefinedValArr' style="display: inline;"
+                (selectionChange)='onSelectionChange($event)'
+                ></oc-select> 
+            <oc-button [text]='addButtonLable' type= 'secondary' style="display: inline;" (click) = 'addCategory()'></oc-button>
+        </div>
+        <div class="col-md-12" *ngIf="selectedValuesArr && selectedValuesArr.length>0">
+            <label *ngFor='let selectedVal of selectedValuesArr'>{{selectedVal}} </label>
+        </div>
+    </div>
+
+</div>

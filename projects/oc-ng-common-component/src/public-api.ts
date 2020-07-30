@@ -28,6 +28,7 @@ export * from './lib/oc-recommended-apps/oc-recommended-apps.component';
 export * from './lib/oc-overall-rating/oc-overall-rating.component';
 export * from './lib/oc-review-list/oc-review-list.component';
 export * from './lib/oc-file-upload/oc-file-upload.component';
+export * from './lib/oc-app-category-select/oc-app-category-select.component';
 
 //validators 
 export * from './lib/validators/white-space-validator';

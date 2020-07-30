@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'oc-select',
@@ -9,7 +9,15 @@ export class OcSelectComponent implements OnInit {
 
   constructor() { }
 
+  @Input() selectValArr;
+
+  @Input() defaultBlankValue="Select";
+
+  @Output() selectionChange= new EventEmitter();
   ngOnInit(): void {
   }
 
+  onSelectionChange($event){
+    this.selectionChange.emit($event);
+  }
 }

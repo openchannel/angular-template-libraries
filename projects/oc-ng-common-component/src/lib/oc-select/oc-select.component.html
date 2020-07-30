@@ -1,6 +1,6 @@
 <select required class="form-control select-control pl-0" name="delServiceOption"
-    placeholder="Please select a application">
-    <option selected>Assembly</option>
-    <option>Communication</option>
+    placeholder="Please select a application" (change)='onSelectionChange($event)'>
+    <option selected value="">{{defaultBlankValue}}</option>
+    <option *ngFor="let val of selectValArr;" >{{val}}</option>
 
 </select>
