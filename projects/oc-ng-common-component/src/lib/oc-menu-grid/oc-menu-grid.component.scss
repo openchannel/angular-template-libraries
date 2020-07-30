@@ -2,6 +2,10 @@
 .table {
   border: 1px solid #c9d5ea;
   border-radius: 4px;
+  width: 1110px;
+  vertical-align: middle;
+  background-color: white;
+  margin-bottom: 116px;
   thead {
     th {
       font-size: 14px;
@@ -12,12 +16,22 @@
       padding: 1.5rem 2.5rem;
       width: 325px;
     }
+    th.summary {
+      width: 368px;
+    }
+    th.data,
+    .status {
+      width: 160px;
+    }
   }
   td {
     padding: 1rem 0;
   }
   td:first-child {
     padding: 1rem 2.5rem;
+  }
+  td:last-child {
+    max-width: 100px;
   }
   span {
     color: $secondary;
@@ -26,5 +40,17 @@
   small {
     color: $secondary;
     font-size: 12px;
+  }
+  .icon-dots{
+    padding: 19px;
+    border: 1px solid $info;
+    border-radius: 4px;
+  }
+  .icon-down{
+    padding-left: 8px;
+  }
+  .icon-up{
+    padding-right: 8px;
+    transform: rotate(180deg);
   }
 }

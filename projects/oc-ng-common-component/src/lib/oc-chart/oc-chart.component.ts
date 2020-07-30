@@ -4,8 +4,8 @@ import { Chart } from 'chart.js';
 @Component({
   selector: 'oc-chart',
   templateUrl: './oc-chart.component.html',
-  styleUrls: ['./oc-chart.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  styleUrls: ['./oc-chart.component.scss']
+  //encapsulation: ViewEncapsulation.ShadowDom
 })
 export class OcChartComponent implements AfterViewInit {
 

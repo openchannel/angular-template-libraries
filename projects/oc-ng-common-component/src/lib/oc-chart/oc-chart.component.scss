@@ -1,11 +1,25 @@
 @import "../../../assets/styles/theme.scss";
-.card.chart-card{
-  border: 1px solid #c9d5ea;
+.chart-card {
+  border: 1px solid $info;
   border-radius: 4px;
   padding: 40px;
+  margin: 0;
+  background-color: white;
+  .sec-download {
+    width: 245px;
+    padding: 0;
+    img {
+      margin-top: 48px;
+      margin-bottom: 16px;
+    }
+    h4 {
+      padding-bottom: 47px;
+      border-bottom: 1px solid rgba(201, 213, 234, 0.5);
+      margin-bottom: 16px;
+    }
+    span {
+      color: #74787e;
+      font-size: 14px;
+    }
+  }
 }
-
-.canvas-chart{
-  min-height: 250px !important;
-}
-
