@@ -1,8 +1,19 @@
 # OcCommonService
 
+
+## Create Global link
+cd dist/oc-ng-common-service
+npm link
+(output :abc -> <absolute path to common service project dist>)
+
+## Run Project
+ng build oc-ng-common-service --watch
+
+## Packege Project
 npm install  
 ng build oc-ng-common-service
 npm run oc-ng-common-service
+
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
