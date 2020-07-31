@@ -7,24 +7,25 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class OcAppCategorySelectComponent implements OnInit {
 
-  constructor() { }
+  
 
   @Input() predefinedValArr;
 
-  @Output() predefinedValCahnge = new EventEmitter();
+  @Output() categoryCahnge = new EventEmitter<any>();
 
   @Input() defaultBlankValue='Select Cateory';
 
   @Input() addButtonLable = '+ Add Category'
 
-  @Input() selectedValuesArr: string[]=[];
-
-  @Output() selectedValuesArrChange = new EventEmitter();
+  @Input() selectedValuesArr;
 
   @Output() selectionChange = new EventEmitter();
 
   
   currentSelectedVal='';
+
+  constructor() { }
+  
   ngOnInit(): void {
   
   }
@@ -42,8 +43,7 @@ export class OcAppCategorySelectComponent implements OnInit {
       }
       this.selectedValuesArr.push(this.currentSelectedVal);
       this.currentSelectedVal=''
-      this.predefinedValCahnge.emit();
-      this.selectedValuesArrChange.emit();
+      this.categoryCahnge.emit({predefinedArr: this.predefinedValArr, selectedValArr: this.selectedValuesArr});
       // this.addNewCategory.emit(this.currentSelectedVal);
     }
   }
@@ -51,7 +51,6 @@ export class OcAppCategorySelectComponent implements OnInit {
   removeCategory(catgoryToBeReoved, idx){
     this.predefinedValArr.push(catgoryToBeReoved);
     this.selectedValuesArr.splice(idx,1);
-    this.predefinedValCahnge.emit();
-    this.selectedValuesArrChange.emit();
+    this.categoryCahnge.emit({predefinedArr: this.predefinedValArr, selectedValArr: this.selectedValuesArr});
   }
 }
