@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { SignUp } from 'oc-ng-common-service';
+import { SellerSignup } from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-signup',
@@ -10,7 +10,7 @@ import { SignUp } from 'oc-ng-common-service';
 export class OcSignupComponent implements OnInit {
   imagePath: any;
 
-  @Input() signupModel = new SignUp();
+  @Input() signupModel = new SellerSignup();
   @Input() loginUrl;
   @Input() termsUrl;
   @Input() policyUrl;
