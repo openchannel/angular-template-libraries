@@ -43,7 +43,7 @@
           alt="close-icon">
       </div>
       <div class="col-12 pt-2">
-        <ngb-progressbar type="primary" *ngIf="file?.fileUploadProgress < 100" [value]="file?.fileUploadProgress">
+        <ngb-progressbar class="file-upload-progress" type="primary" *ngIf="file?.fileUploadProgress < 100" [value]="file?.fileUploadProgress">
         </ngb-progressbar>
       </div>
       <!-- <div class="single-file" *ngFor="let file of files; let i = index">
