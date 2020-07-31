@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { HttpRequestService } from './UserService/http-request-services';
+import { HttpRequestService } from './service/http-request-services';
 
 
 @NgModule({
