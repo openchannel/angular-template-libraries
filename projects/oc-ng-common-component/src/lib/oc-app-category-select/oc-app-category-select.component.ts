@@ -47,4 +47,11 @@ export class OcAppCategorySelectComponent implements OnInit {
       // this.addNewCategory.emit(this.currentSelectedVal);
     }
   }
+
+  removeCategory(catgoryToBeReoved, idx){
+    this.predefinedValArr.push(catgoryToBeReoved);
+    this.selectedValuesArr.splice(idx,1);
+    this.predefinedValCahnge.emit();
+    this.selectedValuesArrChange.emit();
+  }
 }

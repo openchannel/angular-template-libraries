@@ -124,7 +124,8 @@ import { OcAppCategorySelectComponent } from './oc-app-category-select/oc-app-ca
     OcDialogComponent,
     OcSelectExpandableComponent,
     OcFileUploadComponent,
-    OcAppListGridComponent
+    OcAppListGridComponent,
+    OcAppCategorySelectComponent
   ]
 })
 export class OcCommonLibModule { }
