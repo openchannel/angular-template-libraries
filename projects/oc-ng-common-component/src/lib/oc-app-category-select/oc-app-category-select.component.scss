@@ -1,20 +1,16 @@
-.add-category {
-  padding: 12px 24px;
-  border: 1px solid #c9d5ea;
-  border-radius: 4px;
-  display: inline-block;
+.selected-label {
+  padding: 8px 12px;
   font-size: 14px;
-  font-family: "Rubik-Medium";
+  background-color: #f4f7fc;
+  border-radius: 4px;
+  margin-top: 8px;
+  margin-right: 8px;
+  display: inline-block;
+  line-height: 1;
+  height: 36px;
+  img {
+    width: 16px;
+    height: 16px;
+  }
 }
-.selected-label{
-    padding: 8px 12px;
-    font-size: 14px;
-    background-color:#f4f7fc;
-    border-radius: 4px;
-    margin-top: 8px;
-    display: inline-block;
-    img{
-        width: 16px;
-        height: 16px;
-    }
-}
+

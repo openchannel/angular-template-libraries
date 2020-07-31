@@ -1,13 +1,25 @@
 # OcAngularTemplate
 
-## setup & run
+## Create Global link
+cd dist/oc-ng-common-component
+npm link
+(output :abc -> <absolute path to common component project dist>)
 
+## Link oc-ng-common-service
+npm install file:<absolute path to common service project dist/oc-ng-common-service>
+
+## Run Project
+ng build oc-ng-common-component --watch
+
+
+## Run storybook
+npm run storybook 
+
+## Packege Project
 npm install  
-npm install oc-ng-common-service-0.0.1.tgz
 ng build oc-ng-common-component
 npm run oc-ng-common-component
-npm install ./dist/oc-ng-common-component/oc-ng-common-component-0.0.1.tgz
-npm run storybook 
+
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
