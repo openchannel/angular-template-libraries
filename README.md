@@ -6,7 +6,7 @@ npm link
 (output :abc -> <absolute path to common component project dist>)
 
 ## Link oc-ng-common-service
-npm install file:<absolute path to common service project dist>
+npm install file:<absolute path to common service project dist/oc-ng-common-service>
 
 ## Run Project
 ng build oc-ng-common-component --watch
