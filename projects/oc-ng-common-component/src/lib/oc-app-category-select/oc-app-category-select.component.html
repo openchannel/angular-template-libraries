@@ -1,15 +1,21 @@
 <div class="row">
     <div class="col-md-6">
-        <div class="col-md-12">
-            <oc-select [defaultBlankValue]='defaultBlankValue' 
-                [selectValArr]='predefinedValArr' style="display: inline;"
-                (selectionChange)='onSelectionChange($event)'
-                ></oc-select> 
-            <oc-button [text]='addButtonLable' type= 'secondary' style="display: inline;" (click) = 'addCategory()'></oc-button>
-        </div>
-        <div class="col-md-12" *ngIf="selectedValuesArr && selectedValuesArr.length>0">
-            <label *ngFor='let selectedVal of selectedValuesArr'>{{selectedVal}} </label>
-        </div>
+        <oc-select [defaultBlankValue]='defaultBlankValue' [selectValArr]='predefinedValArr' style="display: inline;"
+            (selectionChange)='onSelectionChange($event)'></oc-select>
     </div>
-
+    <div class="col-md-3 pl-0 pr-1">
+        <span class="add-category">
+            <img src="https://drive.google.com/u/0/uc?id=1ISG4afo0ho7k8ExvykfKbEvVSYjRBBse&export=download" class="pr-2"
+                alt="add-icon">Add Category
+        </span>
+        <!-- <oc-button [text]='addButtonLable' type='secondary' style="display: inline;" (click)='addCategory()'>
+        </oc-button> -->
+    </div>
+    <div class="col-md-12" *ngIf="selectedValuesArr && selectedValuesArr.length>0">
+        <span class="selected-label">Communication
+            <img src="https://drive.google.com/u/0/uc?id=1DeW0iFllXvbd_PoWcU8sWodzkoSZuG67&export=download" class="pl-1"
+                alt="close-icon">
+        </span>
+        <!-- <label *ngFor='let selectedVal of selectedValuesArr'>{{selectedVal}} </label> -->
+    </div>
 </div>

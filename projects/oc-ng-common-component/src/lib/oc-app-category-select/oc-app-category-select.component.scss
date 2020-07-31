@@ -1,0 +1,20 @@
+.add-category {
+  padding: 12px 24px;
+  border: 1px solid #c9d5ea;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 14px;
+  font-family: "Rubik-Medium";
+}
+.selected-label{
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color:#f4f7fc;
+    border-radius: 4px;
+    margin-top: 8px;
+    display: inline-block;
+    img{
+        width: 16px;
+        height: 16px;
+    }
+}
