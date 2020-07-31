@@ -27,8 +27,8 @@ file4.fileName = "Product_backside_image.png";
 file4.fileUploadProgress=100;
 file4.fileIconUrl="https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png"
 file4.fileUrl="https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png";
-file4.fileSize=2048000;
-file4.fileUploadTime=1595942005169;
+file4.size=2048000;
+file4.uploadDate=1595942005169;
 
 storiesOf('File Uploader', module)
     .addDecorator(withA11y)

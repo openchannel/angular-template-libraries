@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, OnDestroy, Renderer2 } from '@angular/core';
-import { FileDetails } from 'oc-ng-common-service';
+import { FileDetails,FileUploadDownloadService } from 'oc-ng-common-service';
 import { OCComponentConstants } from '../model/oc-constants';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ImageTransform, ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'oc-file-upload',
@@ -15,7 +16,9 @@ export class OcFileUploadComponent implements OnInit,OnDestroy {
   fileInputVar: ElementRef<any>;
   cropperModalRef: any;
 
-  @Input() files: FileDetails[] = [];
+  isUploadInProcess=false;
+
+  @Input() fileDetailArr: FileDetails[] = [];
 
   @Input() fileUploadText = "Drag & drop file here";
 
@@ -70,11 +73,13 @@ acceptType;
   @Output()
   imageFileUrlChange = new EventEmitter<any>();
 
+  uploadFileReq=null;
 
 //////////////////
 
 
-  constructor(private modalService: NgbModal){}
+  constructor(private modalService: NgbModal,
+    private uploadFileService: FileUploadDownloadService){}
 
   ngOnInit(): void {
   }
@@ -97,9 +102,39 @@ acceptType;
     // this.fileInputVar.nativeElement.change();
   }
 
-  uploadFile(files){
-    this.fileUpload.emit(files);
+  uploadFile(file){
+    this.isUploadInProcess=true;
+    let lastFileDetail = new FileDetails();
+    this.fileDetailArr.push(lastFileDetail);
+    // this.fileUpload.emit(files);
+    let formData: FormData = new FormData();
+    formData.append('file', file);
+    this.uploadFileReq = this.uploadFileService.uploadToOpenchannel(formData,this.isFileTypePrivate()).subscribe((event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
+        } else if (event.type == HttpEventType.ResponseHeader) {
+          lastFileDetail.fileUploadProgress = 97;
+        } else if (event.type == HttpEventType.DownloadProgress) {
+          lastFileDetail.fileUploadProgress = 99;
+        } else if (event instanceof HttpResponse) {
+          lastFileDetail = JSON.parse(JSON.stringify(event));
+          lastFileDetail.fileUploadProgress=100;
+          lastFileDetail.fileIconUrl= this.defaultFileIcon;
+          this.isUploadInProcess = false;
+          this.uploadFileReq =null;
+          this.resetSelection();
+        }
+      },
+      (err) => {
+        this.isUploadInProcess = false;
+        this.resetSelection();
+      },
+      ()=>{
+        this.isUploadInProcess = false;
+        this.resetSelection();
+      });
   }
+
   /**
    * handle file from browsing
    */
@@ -135,7 +170,7 @@ acceptType;
    * @param index (File index)
    */
   deleteFile(index: number) {
-    this.files.splice(index, 1);
+    this.fileDetailArr.splice(index, 1);
   }
 
   /**
@@ -165,7 +200,7 @@ acceptType;
   prepareFilesList(files: Array<any>) {
     for (const item of files) {
       item.progress = 0;
-      this.files.push(item);
+      this.fileDetailArr.push(item);
     }
     // this.uploadFilesSimulator(0);
   }
@@ -198,6 +233,15 @@ acceptType;
     return false;
   }
 
+  isFileTypePrivate(){
+    if(this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PRIVATE_FILE ||
+      this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PRIVATE_IMAGE ||
+      this.fileType === OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_FILE ||
+      this.fileType === OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_IMAGE){
+        return true;
+      }
+    return false;
+  }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
     this.croppedFileObj = base64ToFile(event.base64);
@@ -248,6 +292,8 @@ acceptType;
     }
 
     uploadImageFile(){
-      this.fileUpload.emit();
+      // this.fileUpload.emit();
+      let fileToUpload = this.croppedFileObj;
+      this.uploadFile(fileToUpload);
     }
 }

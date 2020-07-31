@@ -1,4 +1,4 @@
-<div class="file-container without-files" *ngIf="(!files || files.length == 0) ;else fileList" fileDragDrop
+<div class="file-container without-files" *ngIf="(!fileDetailArr || fileDetailArr.length == 0) ;else fileList" fileDragDrop
   (fileDropped)="onFileDropped($event,cropperModal)">
   <img src="https://drive.google.com/u/0/uc?id=1pXQMAQPexAIcNZPeLkqDjlfeR5uBVYAy&export=download" class="mb-2"
     alt="upload-icon">
@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div class="row" *ngFor="let file of files; let i = index" >
+    <div class="row" *ngFor="let file of fileDetailArr; let i = index" >
       <div class="col-md-auto pr-0">
         <img src="https://drive.google.com/u/0/uc?id=1vDDzbS--o_UIgXFE_LmMfVmSAKuprCyb&export=download" alt="app-icon">
       </div>
