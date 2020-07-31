@@ -12,10 +12,16 @@ const modules = {
 let signupEmpty = new SellerSignup();
 
 let signupFilled = new SellerSignup();
-signupFilled.developerAccount.name = "zinal";
-signupFilled.developer.name = "Tenup"
-signupFilled.developerAccount.email = "zmehta@gmail.com"
-signupFilled.extra.password = "Tenup123#"
+if(signupFilled.developerAccount){
+    signupFilled.developerAccount.name = "zinal";
+    signupFilled.developerAccount.email = "zmehta@gmail.com"
+}
+if(signupFilled.developer){
+    signupFilled.developer.name = "Tenup"
+}
+if(signupFilled.extra){
+    signupFilled.extra.password = "Tenup123#"
+}
 signupFilled.isChecked = true;
 
 
