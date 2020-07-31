@@ -1,12 +1,11 @@
-
 @import "./theme.scss";
 @import "~bootstrap/scss/bootstrap";
-
 
 @font-face {
   font-family: "Rubik-Black";
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-Black.ttf") format("truetype");
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-Black.ttf")
+    format("truetype");
 }
 
 @font-face {
@@ -19,7 +18,8 @@
 @font-face {
   font-family: "Rubik-Bold";
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-Bold.ttf") format("truetype");
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-Bold.ttf")
+    format("truetype");
 }
 @font-face {
   font-family: "Rubik-BoldItalic";
@@ -30,12 +30,14 @@
 @font-face {
   font-family: "Rubik-Italic";
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-Italic.ttf") format("truetype");
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-Italic.ttf")
+    format("truetype");
 }
 @font-face {
   font-family: "Rubik-Light";
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-Light.ttf") format("truetype");
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-Light.ttf")
+    format("truetype");
 }
 @font-face {
   font-family: "Rubik-LightItalic";
@@ -46,7 +48,8 @@
 @font-face {
   font-family: "Rubik-Medium";
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-Medium.ttf") format("truetype");
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-Medium.ttf")
+    format("truetype");
 }
 @font-face {
   font-family: "Rubik-MediumItalic";
@@ -57,7 +60,8 @@
 @font-face {
   font-family: "Rubik Regular";
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-Regular.ttf") format("truetype");
+  src: url("~oc-ng-common-component/assets/fonts/Rubik-Regular.ttf")
+    format("truetype");
 }
 
 .font-light {
@@ -94,7 +98,12 @@ a:hover {
   text-decoration: none;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Rubik-Medium";
 }
 
@@ -156,8 +165,8 @@ h1,h2,h3,h4,h5,h6 {
     line-height: 18px;
   }
 }
-.file-upload-progress{
-  .progress{
+.file-upload-progress {
+  .progress {
     height: 1px;
   }
 }
