@@ -1,10 +1,23 @@
-label{
-    font-size: 14px;
-    margin-bottom: 8px;
+label {
+  font-size: 14px;
+  margin-bottom: 8px;
 }
-.label-s{
-    font-size:12px;
+.label-s {
+  font-size: 12px;
 }
-.label-l{
-    font-size:16px;
+.label-l {
+  font-size: 16px;
+}
+
+// Modal CSS
+.card.card-modal {
+    width: 730px;
+    height: 406px;
+    .card-body{
+        padding: 1.50rem;
+    }
+  img {
+    height: 16px;
+    width: 16px;
+  }
 }
