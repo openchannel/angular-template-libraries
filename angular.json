@@ -48,5 +48,8 @@
       }
     }
   },
-  "defaultProject": "oc-ng-common-component"
+  "defaultProject": "oc-ng-common-component",
+  "cli": {
+    "analytics": false
+  }
 }
