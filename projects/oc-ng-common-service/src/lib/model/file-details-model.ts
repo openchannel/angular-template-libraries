@@ -2,8 +2,12 @@ export class FileDetails{
     fileId: string;
     fileUrl: string;
     fileName: string;
-    fileSize: number;
-    fileUploadTime: number;
+    size: number;
+    uploadDate: number;
     fileUploadProgress: number;
     fileIconUrl: string;
+    contentType: string;
+    isPrivate:boolean;
+    mimeCheck: string;
+    virusScan: any;
 }

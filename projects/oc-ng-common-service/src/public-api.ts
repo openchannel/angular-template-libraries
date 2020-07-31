@@ -18,3 +18,5 @@ export * from './lib/model/oc-review-details-model'
 export * from './lib/model/file-details-model'
 
 export * from './lib/model/app-list';
+
+export * from './lib/service/file-upload-download.service'
