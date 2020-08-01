@@ -2,18 +2,19 @@ import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { OcCommonLibModule, OcLoginComponent } from 'projects/oc-ng-common-component/src/public-api';
 import { withA11y } from '@storybook/addon-a11y';
 import { action } from '@storybook/addon-actions';
-import { Login } from 'oc-ng-common-service';
+import { SellerSignin } from 'oc-ng-common-service';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
     imports: [OcCommonLibModule]
 };
 
-let loginEmpty = new Login();
+let loginEmpty = new SellerSignin();
 
-let loginfilled = new Login();
+let loginfilled = new SellerSignin();
 loginfilled.email = "zmehta@gmail.com"
 loginfilled.password = "Tenup123#"
+loginfilled.grant_type = "password"
 loginfilled.isChecked = true;
 
 storiesOf('Login', module)
