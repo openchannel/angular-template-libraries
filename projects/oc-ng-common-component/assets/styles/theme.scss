@@ -1,8 +1,3 @@
-@import "~bootstrap/scss/_functions";
-@import "~bootstrap/scss/_variables";
-@import "~bootstrap/scss/_mixins";
-@import "~bootstrap/scss/_root";
-
 $body-color: #333333; //this is the text color
 $primary: #537cfd;
 $secondary: #727272;
@@ -36,4 +31,4 @@ $spacers: (
   )
 );
 
-
+@import "~bootstrap/scss/bootstrap-reboot";

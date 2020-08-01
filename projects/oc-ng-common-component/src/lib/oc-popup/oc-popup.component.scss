@@ -1,0 +1,41 @@
+// .confirmation-model-title{
+//     font-family: CentraleSans-Bold;
+//     color: #212121 !important;   
+// }
+
+// .confirmation-model-body{
+//     .text-primary{
+//         font-family: CentraleSans-Bold;
+//         color: #212121 !important;   
+//     }
+    
+
+// }
+// .close{
+//     font-size: 25px;
+// }
+
+//     .btn-link{
+//         color: #dc3545;
+//         text-align: left;
+//         text-decoration: none;
+//       }
+
+
+// Modal CSS
+@import "../../../assets/styles/theme.scss";
+.card.card-modal {
+    width: 730px;
+    height: 406px;
+    .card-body{
+        padding: 1.50rem;
+        text-align: center;
+    }
+  img {
+    height: 16px;
+    width: 16px;
+  }
+}
+.sec-divider{
+  border-top: 1px solid $info;
+}
