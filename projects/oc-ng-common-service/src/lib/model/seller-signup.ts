@@ -1,15 +1,7 @@
-export class SellerSignup {
-    developer : {
-        name : string
-    }
-    developerAccount : {
-        name : string,
-        email : string
-    }
-    extra : {
-        password : string
-    }
-    isChecked : boolean;
-    
-
+export class SellerSignup { 
+    uname: string;
+    company: string;
+    password: string;
+    email: string;
+    isChecked: boolean;
 }
