@@ -11,8 +11,19 @@ export class SellerService {
 
   constructor(private httpRequest: HttpRequestService) { }
 
+  /**
+   * This service is responsible for seller signup feature.
+   * @param sellerSigupModel 
+   */
   signup(sellerSigupModel: any) {
     return this.httpRequest.post(this.url + '/register', sellerSigupModel);
   }
-  
+
+  /**
+   * This service is responsible for seller password reset feature.
+   * @param email 
+   */
+  resetForgotPassword(email:string){
+    return this.httpRequest.post(this.url + '/password-reset-link/' + email, null);
+  }  
 }

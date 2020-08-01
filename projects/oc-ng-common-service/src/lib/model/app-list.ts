@@ -1,11 +1,12 @@
-export class Applications {
-    id: string;
-    appName: string;
-    logoUrl: string;
-    date: string;
-    summary: string;
-    version: string;
-    status: string;
+export class Application {
+    // id: string;
+    // appName: string;
+    // logoUrl: string;
+    // date: string;
+    // summary: string;
+    // version: string;
+    // status: string;
     menus: string[];
-    subAppList: Applications[];
+    appList: [];
+    // subAppList: Application[];
 }
