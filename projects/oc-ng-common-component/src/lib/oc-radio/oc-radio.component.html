@@ -1,4 +1,5 @@
 <div class="custom-control custom-radio">
-    <input type="radio" class="custom-control-input" id="customRadio" name="example1">
-    <label class="custom-control-label" for="customRadio"></label>
+    <input type="radio" class="custom-control-input" id="customRadio{{name}}" [value]="value" name="name"
+        [(ngModel)]="value" (click)="changeTo()">
+    <label class="custom-control-label" for="{{name}}">{{text}}</label>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Applications } from 'oc-ng-common-service';
+import { Application } from 'oc-ng-common-service'
 
 @Component({
   selector: 'oc-menu-grid',
@@ -8,7 +8,7 @@ import { Applications } from 'oc-ng-common-service';
 })
 export class OcMenuGridComponent implements OnInit {
 
-  @Input() appList: Applications[];
+  @Input() appList: Application;
 
   constructor() { }
 
