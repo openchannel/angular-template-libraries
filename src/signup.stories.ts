@@ -12,18 +12,10 @@ const modules = {
 let signupEmpty = new SellerSignup();
 
 let signupFilled = new SellerSignup();
-if(signupFilled.developerAccount){
-    signupFilled.developerAccount.name = "zinal";
-    signupFilled.developerAccount.email = "zmehta@gmail.com"
-}
-if(signupFilled.developer){
-    signupFilled.developer.name = "Tenup"
-}
-if(signupFilled.extra){
-    signupFilled.extra.password = "Tenup123#"
-}
-signupFilled.isChecked = true;
-
+signupFilled.uname = "zinal";
+signupFilled.company = "Tenup"
+signupFilled.email = "zmehta@gmail.com"
+signupFilled.password = "Tenup123#"
 
 storiesOf('SellerSignup', module)
     .addDecorator(withA11y)

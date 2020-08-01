@@ -1,3 +1,4 @@
+
 <form novalidate #signupform="ngForm">
     <div class="card oc-card-with-border">
         <div class="card-body">
@@ -15,27 +16,27 @@
             </div>
             <div class="form-group">
                 <oc-label [text]="getValue('Name')"></oc-label>
-                <oc-input whiteSpaceValidator [(modelName)]="signupModel.developerAccount.name" name="sname" #sname=ngModel
-                    [ngModel]="signupModel.developerAccount.name" ngDefaultControl required="true"></oc-input>
-                <oc-error [control]="sname"> </oc-error>
+                <oc-input whiteSpaceValidator [(modelName)]="signupModel.uname" name="uname" #uname=ngModel
+                [ngModel]="signupModel.uname" ngDefaultControl required="true"></oc-input>
+            <oc-error [control]="uname"> </oc-error>
             </div>
             <div class="form-group">
                 <oc-label [text]="getValue('Company')"></oc-label>
-                <oc-input whiteSpaceValidator [(modelName)]="signupModel.developer.name" name="cname" #cname=ngModel
-                    [ngModel]="signupModel.developer.name" ngDefaultControl required="true"></oc-input>
-                <oc-error [control]="cname"> </oc-error>
+                <oc-input whiteSpaceValidator [(modelName)]="signupModel.company" name="company" #company=ngModel
+                [ngModel]="signupModel.company" ngDefaultControl required="true"></oc-input>
+                <oc-error [control]="company"> </oc-error>
             </div>
             <div class="form-group">
                 <oc-label [text]="getValue('Email')"></oc-label>
-                <oc-input emailValidator [(modelName)]="signupModel.developerAccount.email" name="email" #email=ngModel
-                    [ngModel]="signupModel.developerAccount.email" ngDefaultControl required="true"></oc-input>
+                <oc-input emailValidator [(modelName)]="signupModel.email" name="email" #email=ngModel
+                [ngModel]="signupModel.email" ngDefaultControl required="true"></oc-input>
                 <oc-error [control]="email"> </oc-error>
             </div>
             <div class="form-group mb-2">
                 <oc-label [text]="getValue('Password')"></oc-label>
-                <oc-password [(modelName)]="signupModel.extra.password" class="mb-2" name="password" #pwd=ngModel
-                    [ngModel]="signupModel.extra.password" ngDefaultControl required="true"></oc-password>
-                <oc-error [control]="pwd"> </oc-error>
+                <oc-password [(modelName)]="signupModel.password" class="mb-2" name="password" #password=ngModel
+                [ngModel]="signupModel.password" ngDefaultControl required="true"></oc-password>
+                <oc-error [control]="password"> </oc-error>
             </div>
             <div class="form-group">
                 <oc-checkbox [(isChecked)]="signupModel.isChecked"></oc-checkbox>
