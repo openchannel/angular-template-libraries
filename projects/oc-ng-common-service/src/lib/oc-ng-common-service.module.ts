@@ -1,7 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpRequestService } from './service/http-request-services';
-import { HttpConfigInterceptor } from './interceptors/httpconfig.interceptor';
 
 
 @NgModule({
@@ -16,7 +15,7 @@ export class OcCommonServiceModule {
     return {
       ngModule: OcCommonServiceModule,
       providers: [
-        HttpRequestService, { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
+        HttpRequestService,
         {
           provide: 'environment', // you can also use InjectionToken
           useValue: environment
