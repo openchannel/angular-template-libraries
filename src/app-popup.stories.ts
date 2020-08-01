@@ -16,19 +16,9 @@ storiesOf('Popup', module)
         props: {
             title: 'Warning',
             type: 'secondary',
-            //cancelButtonText: 'Cancel',
+            cancelButtonText: 'Cancel',
             confirmButtonText: 'Confirm',
-            text: 'An alert Automatically comes with a confirm button,whether you provide the onConfirm callback or not.',
-            textVariable: ''
-          }
-    })).add('Empty', () => ({
-        component: OcPopupComponent,
-        props: {
-            title: 'Title',
-            type: 'secondary',
-            //cancelButtonText: 'Cancel',
-            confirmButtonText: 'Confirm',
-            text: 'write message........',
+            text: 'An alert Automatically comes with a confirm button',
             textVariable: ''
           }
     }));

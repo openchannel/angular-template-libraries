@@ -1,18 +1,28 @@
-<div class="card oc-card-with-border" style="    max-width: 485px;">
-<div class="modal-header pl-4">
-    <h4 class="modal-title confirmation-model-title" id="modal-title"> {{ title }}</h4>
-   
-    <button type="button" class="close" aria-describedby="modal-title" (click)="dismiss()">
-      <span aria-hidden="true" class="close-button">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body confirmation-model-body pl-4 pt-4 mt-1">
-    <!-- <p>{{ text }} <span class="text-primary"> {{ textVariable ? textVariable : '' }} </span> ?</p> -->
-    <p [innerHTML]="text + ' ' + textVariable"></p>
-  </div>
-  <div class="modal-footer">
-    <!-- <button type="button" class="btn btn pr-2 pt-3 btn-white" (click)="cancel()">{{ cancelButtonText }}</button> -->
-    <button type="button" class="btn btn-link" (click)="confirm()" [ngClass]="{'process': inProcess }"
-      [disabled]="inProcess">{{ inProcess ? '' : confirmButtonText }}</button>
-  </div>
+
+<div class="card card-modal">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 text-right mb-3">
+                <img src="https://drive.google.com/u/0/uc?id=1DeW0iFllXvbd_PoWcU8sWodzkoSZuG67&export=download"
+                    alt="close-icon">
+            </div>
+            <div class="col-md-12 text-center">
+                <h1>{{text}}</h1>
+            </div>
+            <div class="col-md-12 my-3">
+                <button type="button" class="btn btn-primary" text="">{{confirmButtonText}}</button>
+            </div>
+            <div class="col-md sec-divider ml-8"></div>
+            <div class="col-md-auto">
+                <span class="font-m text-info d-block mt-n1">OR</span>
+            </div>
+            <div class="col-md sec-divider mr-8"></div>
+            <div class="col-md-12 mt-2">
+                <span class="font-m text-secondary">You can keep this app as draft</span>
+            </div>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-link" text="">{{cancelButtonText}}</button>
+            </div>
+        </div>
+    </div>
 </div>

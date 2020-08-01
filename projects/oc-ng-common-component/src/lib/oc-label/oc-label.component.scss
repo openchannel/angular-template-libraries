@@ -10,19 +10,3 @@ label {
   font-size: 16px;
 }
 
-// Modal CSS
-.card.card-modal {
-    width: 730px;
-    height: 406px;
-    .card-body{
-        padding: 1.50rem;
-        text-align: center;
-    }
-  img {
-    height: 16px;
-    width: 16px;
-  }
-}
-.sec-divider{
-  border-top: 1px solid $info;
-}
