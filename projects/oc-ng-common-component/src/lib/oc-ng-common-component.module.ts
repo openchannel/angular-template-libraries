@@ -2,7 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { OcCommonLibComponent } from './oc-ng-common-component.component';
 import { OcButtonComponent } from './oc-button/oc-button.component';
 import { OcInputComponent } from './oc-input/oc-input.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { OcLabelComponent } from './oc-label/oc-label.component';
@@ -45,6 +45,7 @@ import { OcSelectExpandableComponent } from './oc-select-expandable/oc-select-ex
 import { OcFileUploadComponent } from './oc-file-upload/oc-file-upload.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { OcAppCategorySelectComponent } from './oc-app-category-select/oc-app-category-select.component';
+import { OcPopupComponent } from './oc-popup/oc-popup.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -86,7 +87,8 @@ import { OcAppCategorySelectComponent } from './oc-app-category-select/oc-app-ca
     OcReviewListComponent,
     OcSelectExpandableComponent,
     OcFileUploadComponent,
-    OcAppCategorySelectComponent
+    OcAppCategorySelectComponent,
+    OcPopupComponent
   ],
 
   imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule,ImageCropperModule],
@@ -125,7 +127,8 @@ import { OcAppCategorySelectComponent } from './oc-app-category-select/oc-app-ca
     OcSelectExpandableComponent,
     OcFileUploadComponent,
     OcAppListGridComponent,
-    OcAppCategorySelectComponent
+    OcAppCategorySelectComponent,
+    OcPopupComponent
   ]
 })
 export class OcCommonLibModule { }
