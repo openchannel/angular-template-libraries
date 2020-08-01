@@ -1,8 +1,8 @@
 export class SellerAppCustomDataModel{
-    category:string[];
+    category:string[]=[];
     website__url: string;
     video__url: string;
     summary: string;
     icon: string;
-    product__images: string[];
+    product__images: string[]=[];
 }
