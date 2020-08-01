@@ -16,5 +16,6 @@ export * from './lib/model/basic-app-model';
 export * from './lib/model/overall-rating-summary-model'
 export * from './lib/model/oc-review-details-model'
 export * from './lib/model/file-details-model'
+export * from './lib/service/seller.service';
 
 export * from './lib/model/app-list';
