@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Login } from 'oc-ng-common-service';
+import { SellerSignin } from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-forgot-password',
@@ -7,10 +7,13 @@ import { Login } from 'oc-ng-common-service';
   styleUrls: ['./oc-forgot-password.component.scss']
 })
 export class OcForgotPasswordComponent implements OnInit {
-  @Input() loginModel = new Login();
+  @Input() loginModel = new SellerSignin();
 
   @Input() loginUrl;
   @Input() signupUrl;
+  @Input() companayLogoUrl;
+  @Input() forgotPasswordDoneUrl;
+  @Input() ForgotPwdPageState;
 
   @Output() submit = new EventEmitter<any>();
   constructor() { }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Login } from 'oc-ng-common-service';
+import { SellerSignin } from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-login',
@@ -7,7 +7,7 @@ import { Login } from 'oc-ng-common-service';
   styleUrls: ['./oc-login.component.scss']
 })
 export class OcLoginComponent implements OnInit {
-  @Input() loginModel = new Login();
+  @Input() loginModel = new SellerSignin();
 
   @Input() forgotPwdUrl;
   @Input() signupUrl;

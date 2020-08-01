@@ -18,6 +18,7 @@ export class OcChartComponent implements AfterViewInit {
   @Input() count;
   @Input() downloadUrl;
 
+
   chart: any;
 
   constructor() {
@@ -38,37 +39,6 @@ export class OcChartComponent implements AfterViewInit {
   }
 
   getChart() {
-    // this.context.font = "30px Arial";
-    // this.context.textBaseline = 'middle';
-    // this.context.textAlign = 'center';
-
-    // const x = (this.myCanvas.nativeElement as HTMLCanvasElement).width / 2;
-    // const y = (this.myCanvas.nativeElement as HTMLCanvasElement).height / 2;
-    // this.context.fillText("@realappie", x, y);
-
-    // let chart = new Chart(this.context, {
-    //   type: 'line',
-    //   data: {
-    //     datasets: [{
-    //       label: 'First dataset',
-    //       data: [0, 20, 40, 50]
-    //     }],
-    //     labels: ['January', 'February', 'March', 'April']
-    //   },
-    //   options: {
-    //     scales: {
-    //       yAxes: [{
-    //         ticks: {
-    //           suggestedMin: 50,
-    //           suggestedMax: 100
-    //         }
-    //       }]
-    //     }
-    //   }
-    // });
-
-    console.log(this.dataSets);
-    console.log(this.labels);
 
     this.chart = new Chart(this.context, {
       type: 'line',

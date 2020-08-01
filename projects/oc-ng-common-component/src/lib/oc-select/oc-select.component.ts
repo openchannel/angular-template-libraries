@@ -11,13 +11,16 @@ export class OcSelectComponent implements OnInit {
 
   @Input() selectValArr: string[]=[];
 
-  @Input() defaultBlankValue="Select";
+  @Input() defaultBlankValue = "Select";
 
-  @Output() selectionChange= new EventEmitter();
+  @Output() valueChange = new EventEmitter();
+
+  @Input() value;
+
   ngOnInit(): void {
   }
 
-  onSelectionChange($event){
-    this.selectionChange.emit($event);
+  onSelectionChange($event) {
+    this.valueChange.emit($event);
   }
 }
