@@ -59,9 +59,6 @@ acceptType;
   cancelPopup = new EventEmitter<any>();
 
   @Input()
-  isMultiImage: boolean;
-
-  @Input()
   imageFileObj: any;
 
   @Input()
@@ -108,7 +105,7 @@ acceptType;
     this.fileDetailArr.push(lastFileDetail);
     // this.fileUpload.emit(files);
     let formData: FormData = new FormData();
-    formData.append('file', file);
+    formData.append('file', file,this.fileName);
     this.uploadFileReq = this.uploadFileService.uploadToOpenchannel(formData,this.isFileTypePrivate()).subscribe((event: any) => {
         if (event.type === HttpEventType.UploadProgress) {
           lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
@@ -117,9 +114,10 @@ acceptType;
         } else if (event.type == HttpEventType.DownloadProgress) {
           lastFileDetail.fileUploadProgress = 99;
         } else if (event instanceof HttpResponse) {
-          lastFileDetail = JSON.parse(JSON.stringify(event));
+          lastFileDetail = this.convertFileUploadResToFileDetails(event);
           lastFileDetail.fileUploadProgress=100;
           lastFileDetail.fileIconUrl= this.defaultFileIcon;
+          this.fileDetailArr[this.fileDetailArr.length-1]=lastFileDetail;
           this.isUploadInProcess = false;
           this.uploadFileReq =null;
           this.resetSelection();
@@ -133,8 +131,27 @@ acceptType;
         this.isUploadInProcess = false;
         this.resetSelection();
       });
+      this.modalService.dismissAll();
   }
 
+  /**
+   * This method is used to convert uploaded file response to fileDetails.
+   * 
+   * @param fileUploadRes 
+   */
+  convertFileUploadResToFileDetails(fileUploadRes){
+    let fileDetails = new FileDetails();
+    fileDetails.uploadDate=fileUploadRes.body.uploadDate;
+    fileDetails.fileId =fileUploadRes.body.fileId;
+    fileDetails.fileName =fileUploadRes.body.name;
+    fileDetails.contentType = fileUploadRes.body.contentType;
+    fileDetails.size = fileUploadRes.body.size;
+    fileDetails.isPrivate = fileUploadRes.body.isPrivate;
+    fileDetails.mimeCheck = fileUploadRes.body.mimeCheck;
+    fileDetails.fileUrl = fileUploadRes.body.fileUrl;
+    fileDetails.isError = fileUploadRes.body.isError;
+    return fileDetails;
+  }
   /**
    * handle file from browsing
    */
@@ -242,6 +259,17 @@ acceptType;
       }
     return false;
   }
+
+  isMultiFileSupport(){
+    if(this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PRIVATE_FILE ||
+      this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PRIVATE_IMAGE ||
+      this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PUBLIC_FILE ||
+      this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PUBLIC_IMAGE){
+        return true;
+      }
+    return false;
+  }
+
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
     this.croppedFileObj = base64ToFile(event.base64);
@@ -295,5 +323,13 @@ acceptType;
       // this.fileUpload.emit();
       let fileToUpload = this.croppedFileObj;
       this.uploadFile(fileToUpload);
+    }
+
+    cancelUploading(idx){
+      if(this.isUploadInProcess && this.uploadFileReq){
+        this.uploadFileReq.unsubscribe();
+      }
+      this.uploadFileReq=null;
+      this.fileDetailArr.splice(idx,1);
     }
 }

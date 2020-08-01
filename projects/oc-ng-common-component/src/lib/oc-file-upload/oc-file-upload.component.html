@@ -2,7 +2,7 @@
   (fileDropped)="onFileDropped($event,cropperModal)">
   <img src="https://drive.google.com/u/0/uc?id=1pXQMAQPexAIcNZPeLkqDjlfeR5uBVYAy&export=download" class="mb-2"
     alt="upload-icon">
-  <input type="file" #fileDropRef id="fileDropRef" [multiple]="isMultiFile" [accept]="getAcceptTypes()"
+  <input type="file" #fileDropRef id="fileDropRef" [accept]="getAcceptTypes()"
     (change)="fileBrowseHandler($event,cropperModal)" />
   <div>
     <span class="d-block text-secondary font-m">{{fileUploadText}}</span>
@@ -16,7 +16,7 @@
       <div class="col-md">
         <p class="mb-3 font-med font-m">My Attachments</p>
       </div>
-      <div class="col-md-auto">
+      <div class="col-md-auto" *ngIf="isMultiFileSupport()">
         <img src="https://drive.google.com/u/0/uc?id=1pXQMAQPexAIcNZPeLkqDjlfeR5uBVYAy&export=download" class="upload-s"
           alt="upload-icon">
         <a href="#" class="font-m font-bold ">
@@ -32,15 +32,17 @@
 
     <div class="row" *ngFor="let file of fileDetailArr; let i = index" >
       <div class="col-md-auto pr-0">
-        <img src="https://drive.google.com/u/0/uc?id=1vDDzbS--o_UIgXFE_LmMfVmSAKuprCyb&export=download" alt="app-icon">
+        <img [src]="defaultFileIcon" alt="app-icon">
       </div>
       <div class="col-md-auto ml-n1">
-        <span class="font-med font-m d-block">Logo.png</span>
-        <span class="text-secondary font-s">Complete</span>
+        <span class="font-med font-m d-block">{{file.fileName}}</span>
+        <span class="text-secondary font-s">{{file.fileUploadProgress===100 ? "Complete" : "Uploading"}}</span>
       </div>
       <div class="col-md text-right pt-3">
-        <img src="https://drive.google.com/u/0/uc?id=1DeW0iFllXvbd_PoWcU8sWodzkoSZuG67&export=download"
+        <a (click)="cancelUploading(i)">
+          <img src="https://drive.google.com/u/0/uc?id=1DeW0iFllXvbd_PoWcU8sWodzkoSZuG67&export=download"
           alt="close-icon">
+        </a>
       </div>
       <div class="col-12 pt-2 mb-2">
         <ngb-progressbar class="file-upload-progress" type="primary" *ngIf="file?.fileUploadProgress < 100" [value]="file?.fileUploadProgress">
