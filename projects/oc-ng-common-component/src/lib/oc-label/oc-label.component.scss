@@ -1,3 +1,4 @@
+@import "../../../assets/styles/theme.scss";
 label {
   font-size: 14px;
   margin-bottom: 8px;
@@ -15,9 +16,13 @@ label {
     height: 406px;
     .card-body{
         padding: 1.50rem;
+        text-align: center;
     }
   img {
     height: 16px;
     width: 16px;
   }
+}
+.sec-divider{
+  border-top: 1px solid $info;
 }
