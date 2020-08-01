@@ -10,8 +10,8 @@ import { FileDetails } from '../model/file-details-model';
 })
 export class FileUploadDownloadService {
 
-  private tokenUrl = 'guest/file-upload-token';
-  private downloadFileUrl = '/user/download-file';
+  private tokenUrl = 'api/v1/guest/file-upload-token';
+  private downloadFileUrl = 'api/v1/user/download-file';
 
   constructor(private httpRequest: HttpRequestService,private http: HttpClient, @Inject('environment') private environment) { }
 
@@ -28,8 +28,8 @@ export class FileUploadDownloadService {
     if (isPrivate !== null) {
       query = `?isPrivate=${isPrivate}`;
     }
-    let openchannelUrl = this.environment.openchannelUrl+this.environment.openchannelUrl.endsWith('/')?'':'/'
-                +"/v2/files";
+    let openchannelUrl = this.environment.openchannelUrl+(this.environment.openchannelUrl.endsWith('/')?'':'/')
+                +"v2/files";
     let options = {
       headers: new HttpHeaders({ 'Upload-Token': `${token}`}),
       reportProgress: true
@@ -39,8 +39,7 @@ export class FileUploadDownloadService {
   }
   
   getToken(){
-    let tokenUrl = this.environment.apiUrl+this.tokenUrl;
-    return this.httpRequest.get(tokenUrl);
+    return this.httpRequest.get(this.tokenUrl);
   }
 
   downloadFileDetails(fileId): Observable<FileDetails>{

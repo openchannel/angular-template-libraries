@@ -10,4 +10,5 @@ export class FileDetails{
     isPrivate:boolean;
     mimeCheck: string;
     virusScan: any;
+    isError: boolean;
 }
