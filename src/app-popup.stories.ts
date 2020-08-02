@@ -19,6 +19,7 @@ storiesOf('Popup', module)
             cancelButtonText: 'Cancel',
             confirmButtonText: 'Confirm',
             text: 'An alert Automatically comes with a confirm button',
+            informationalText:'You can keep the changes as draft',
             textVariable: ''
           }
     }));

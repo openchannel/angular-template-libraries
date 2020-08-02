@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -14,9 +14,11 @@ export class OcPopupComponent implements OnInit {
   @Input() textVariable: string;
   @Input() cancelButtonText: string;
   @Input() confirmButtonText: string;
+  @Input() informationalText: string;
   inProcess: boolean;
   confirmCallback: any;
   cancelCallback: any;
+  closeCallBack: any;
 
   constructor(public dailog: NgbModal) { }
 
@@ -24,8 +26,7 @@ export class OcPopupComponent implements OnInit {
   }
 
   dismiss() {
-    //alert("close");
-    this.dailog.dismissAll();
+    this.closeCallBack('cancel');
   }
 
   cancel() {

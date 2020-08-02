@@ -31,13 +31,13 @@ export class OcAppCategorySelectComponent implements OnInit {
   }
 
   onSelectionChange($event){
-    this.currentSelectedVal=$event.target.value;
+    this.currentSelectedVal=$event;
     this.selectionChange.emit($event);
   }
 
   addCategory(){
     if(this.currentSelectedVal && this.currentSelectedVal.trim().length>0){
-      var index = this.predefinedValArr.indexOf(this.currentSelectedVal);
+      var index = this.predefinedValArr.map(val => val.value).indexOf(this.currentSelectedVal);
       if (index !== -1) {
         this.predefinedValArr.splice(index, 1);
       }
@@ -49,7 +49,7 @@ export class OcAppCategorySelectComponent implements OnInit {
   }
 
   removeCategory(catgoryToBeReoved, idx){
-    this.predefinedValArr.push(catgoryToBeReoved);
+    this.predefinedValArr.push({key: catgoryToBeReoved,value: catgoryToBeReoved});
     this.selectedValuesArr.splice(idx,1);
     this.categoryCahnge.emit({predefinedArr: this.predefinedValArr, selectedValArr: this.selectedValuesArr});
   }

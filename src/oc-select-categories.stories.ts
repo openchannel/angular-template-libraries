@@ -13,7 +13,8 @@ storiesOf('Select App Categories', module)
         component: OcAppCategorySelectComponent,
         moduleMetadata: modules,
         props:{
-            predefinedValArr:['Category1','Category2','Category3'],
+            predefinedValArr:[{key : "cat1", value : "cat1"},{key : "cat2",value :"cat2"},{key : "cat3",value :"cat3"}],
+            selectedValuesArr:[],
             predefinedValCahnge: action('Predefined Removed'),
             selectedValuesArrChange: action('Category Added')
         }

@@ -9,7 +9,7 @@ export class OcSelectComponent implements OnInit {
 
   constructor() { }
 
-  @Input() selectValArr: string[]=[];
+  @Input() selectValArr =[];
 
   @Input() defaultBlankValue = "Select";
 

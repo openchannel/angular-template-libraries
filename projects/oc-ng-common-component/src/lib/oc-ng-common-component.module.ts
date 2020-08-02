@@ -128,7 +128,11 @@ import { OcPopupComponent } from './oc-popup/oc-popup.component';
     OcFileUploadComponent,
     OcAppListGridComponent,
     OcAppCategorySelectComponent,
-    OcPopupComponent
+    OcPopupComponent,
+    NgbModule
+  ],
+  providers: [
+    NgbActiveModal,
   ]
 })
 export class OcCommonLibModule { }
