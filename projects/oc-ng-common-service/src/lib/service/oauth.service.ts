@@ -8,18 +8,19 @@ import { HttpParams } from '@angular/common/http';
 })
 export class OauthService {
 
-  private url = 'api/v1/oauth/token';
+  private url = 'oauth/token';
 
   constructor(private httpRequest: HttpRequestService) { }
 
   signIn(body: any): Observable<any> {
     const pbody = new HttpParams()
-      .set('username', btoa(body.username))
+      .set('username', btoa(body.email))
       .set('password', body.password)
       .set('grant_type', 'password');
   
+
     const headers = {
-      Authorization: 'Basic ' + btoa(body.client_id + ':' + body.client_secret),
+      Authorization: 'Basic ' + btoa(body.clientId + ':' + body.clientSecret),
       'Content-type': 'application/x-www-form-urlencoded'
     };
   
