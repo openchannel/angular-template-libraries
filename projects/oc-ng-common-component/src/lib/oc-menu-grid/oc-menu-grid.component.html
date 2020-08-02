@@ -2,23 +2,23 @@
     <thead>
         <tr>
             <th>App Name
-                <img src="https://drive.google.com/u/0/uc?id=1ZJAWQ81ifxE0G7weZ-OOYsmGUIXCYEHM&export=download"
-                    class="icon-down" alt="icon">
+                <!-- <img src="https://drive.google.com/u/0/uc?id=1ZJAWQ81ifxE0G7weZ-OOYsmGUIXCYEHM&export=download"
+                    class="icon-down" alt="icon"> -->
             </th>
             <th class="summary">Summary</th>
             <th class="data">Data Added
-                <img src="https://drive.google.com/u/0/uc?id=1ZJAWQ81ifxE0G7weZ-OOYsmGUIXCYEHM&export=download"
-                    class="icon-down" alt="icon">
+                <!-- <img src="https://drive.google.com/u/0/uc?id=1ZJAWQ81ifxE0G7weZ-OOYsmGUIXCYEHM&export=download"
+                    class="icon-down" alt="icon"> -->
             </th>
             <th class="status">Status
-                <img src="https://drive.google.com/u/0/uc?id=1ZJAWQ81ifxE0G7weZ-OOYsmGUIXCYEHM&export=download"
-                    class="icon-down" alt="icon">
+                <!-- <img src="https://drive.google.com/u/0/uc?id=1ZJAWQ81ifxE0G7weZ-OOYsmGUIXCYEHM&export=download"
+                    class="icon-down" alt="icon"> -->
             </th>
             <th> </th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let app of appList.appList">
+        <tr *ngFor="let app of appList.list">
             <td>
                 <div class="row">
                     <div class="col-md-auto">
@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-md pl-0">
                         <h6 class="mb-0">{{app.name}} </h6>
-                        <small>v 1.15.0</small>
+                        <small>v {{app.version}}</small>
                     </div>
                 </div>
             </td>
@@ -34,10 +34,10 @@
                 <span [innerHTML]="app.customData.summary"></span>
             </td>
             <td>
-                <span>{{app.created | date:'dd/mm/yyyy'}}</span>
+                <span>{{app.created | date:'M/d/yyyy'}}</span>
             </td>
             <td>
-                <span class="font-med text-primary">{{app.status.value}}</span>
+                <span class="font-med text-primary">{{app.prettyStatus}}</span>
             </td>
             <td>
                 <img src="https://drive.google.com/u/0/uc?id=1QcMnnVKz5HPm0unraWhXsu_Nm9_f9QI_&export=download"

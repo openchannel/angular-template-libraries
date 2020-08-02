@@ -39,11 +39,10 @@ export class OcSignupComponent implements OnInit {
   submitForm(form) {
     if (!form.valid) {
       form.control.markAllAsTouched();
-      return;
+      this.submit.emit(false);
+      return false;
     }
-    this.submit.emit(true);
-
-
+    this.submit.emit(true);  
+    return false;    
   }
-
 }
