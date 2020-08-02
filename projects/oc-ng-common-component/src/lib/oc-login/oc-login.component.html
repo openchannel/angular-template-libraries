@@ -27,7 +27,7 @@
                 </div>
             </div>
             <oc-button [text]="getValue('Log In')"
-                (click)="submitForm(loginForm)" [type]="getValue('primary')" class="btn-block mt-5 mb-3">
+                (click)="submitForm(loginForm)" [type]="getValue('primary')" class="btn-block mt-5 mb-3" [disabled]="!loginForm.valid">
             </oc-button>
             <div class="text-center">
                 <oc-label [text]="getValue('Dont have an account yet?')"></oc-label>
