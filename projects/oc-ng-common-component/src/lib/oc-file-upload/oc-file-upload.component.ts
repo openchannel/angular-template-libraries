@@ -238,6 +238,8 @@ acceptType;
     if (this.fileInputVar) {
       this.fileInputVar.nativeElement.value = '';
     }
+    this.imageLoadErrorMessage = '';
+    this.hasImageLoadError = false;
   }
 
   isFileTypeImage(){
@@ -327,6 +329,7 @@ acceptType;
 
     cancelUploading(idx){
       if(this.isUploadInProcess && this.uploadFileReq){
+        console.log("Trying to unsubscribe....");
         this.uploadFileReq.unsubscribe();
       }
       this.uploadFileReq=null;
