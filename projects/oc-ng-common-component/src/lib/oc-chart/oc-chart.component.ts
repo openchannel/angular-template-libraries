@@ -47,11 +47,11 @@ export class OcChartComponent implements AfterViewInit {
         datasets: [{
           label: '',
           data: this.dataSets,
-          backgroundColor: 'rgba(20,116,164 ,0.1)',
-          borderColor: 'rgba(20,116,164 ,1)',
-          borderWidth: 2.3,
-          pointBackgroundColor: 'rgba(20,116,164 ,1)',
-          pointBorderColor: 'rgba(20,116,164 ,1)',
+          // backgroundColor: 'rgba(240, 247, 255, 0.25)',
+          backgroundColor: 'rgba(83,124,253,0.1)',
+          borderColor: 'rgb(83,124,253)',
+          borderWidth: 1.8,
+          pointBorderColor: 'rgb(83,124,253)',
         }]
       },
       options: {

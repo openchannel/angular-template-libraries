@@ -31,7 +31,7 @@
                 </div>
             </td>
             <td>
-                <span [innerHTML]="app.customData.summary"></span>
+                <span [innerHTML]="app.customData.summary | safehtml"></span>
             </td>
             <td>
                 <span>{{app.created | date:'M/d/yyyy'}}</span>
