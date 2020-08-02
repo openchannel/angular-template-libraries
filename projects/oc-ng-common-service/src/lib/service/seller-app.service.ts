@@ -21,6 +21,6 @@ export class SellerAppService {
   }
 
   getApps(): Observable<any> {
-    return this.httpRequest.get(this.url, 'false');
+    return this.httpRequest.get(this.url, 'true');
 }
 }

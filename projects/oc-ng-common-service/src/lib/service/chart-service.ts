@@ -12,7 +12,7 @@ export class ChartService {
     constructor(private httpRequest: HttpRequestService) { }
 
     getStats(object): Observable<any> {
-        return this.httpRequest.get(this.url, 'false', object);
+        return this.httpRequest.get(this.url, 'true', object);
     }
 
 
