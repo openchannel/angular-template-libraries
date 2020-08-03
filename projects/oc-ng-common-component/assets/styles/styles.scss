@@ -209,3 +209,22 @@ h6 {
   text-decoration: none;
 }
 /** End buttons **/
+
+/** input password **/
+
+.toggle_password{  
+  float: right;
+  margin-top: -31px;
+  margin-right: 16px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  background: url(assets/img/password-hide.svg) center center no-repeat;
+  height: 16px;
+  width: 16px;
+}
+.toggle_password.fa-eye-slash{
+  background: url(assets/img/password-show.svg) center center no-repeat;
+}
+
+/** input password **/
