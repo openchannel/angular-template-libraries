@@ -17,7 +17,7 @@
             <div class="form-group">
                 <oc-label [text]="getValue('Name')"></oc-label>
                 <oc-input whiteSpaceValidator [(modelName)]="signupModel.uname" name="uname" #uname=ngModel
-                [ngModel]="signupModel.uname" ngDefaultControl required="true"></oc-input>
+                [ngModel]="signupModel.uname" ngDefaultControl required="true" [autoFocus]="true"></oc-input>
             <oc-error [control]="uname"> </oc-error>
             </div>
             <div class="form-group">
@@ -45,8 +45,8 @@
                 <oc-label [text]="getValue(' and ')" class="label-s"></oc-label>
                 <a href={{policyUrl}} target="_blank" class="font-s"> Data Processing Policy</a>
             </div>
-            <oc-button [text]="getValue('Sign Up')" [disabled]="!signupModel.isChecked ? true : false"
-                [type]="getValue('primary')" (click)="submitForm(signupform)" class="btn-block mt-5 mb-3">
+            <oc-button [text]="getValue('Sign Up')" [disabled]="!signupModel.isChecked || !signupform.valid || process"
+                [type]="getValue('primary')" [process]="process" (click)="submitForm(signupform)" class="btn-block mt-5 mb-3">
             </oc-button>
             <div class="text-center">
                 <oc-label [text]="getValue('Already have an account? ')"></oc-label>

@@ -17,7 +17,10 @@
     </form>
   </div> -->
 
-<button *ngIf="type === 'primary'" class="btn btn-primary {{class}}" [disabled]="disabled">{{text}}</button>
+<button *ngIf="type === 'primary'" class="btn btn-primary {{class}}" [disabled]="disabled">
+  <span [hidden]="!process" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  {{text}}
+</button>
 <button *ngIf="type === 'secondary'" class="btn btn-secondary {{class}}" [disabled]="disabled">{{text}}</button>
 <button *ngIf="type === 'link'" class="btn btn-link" [disabled]="disabled">{{text}}</button>
 <!-- <a *ngIf="type==='link'">{{text}}</a> -->

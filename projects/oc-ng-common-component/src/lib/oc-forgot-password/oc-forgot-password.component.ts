@@ -14,7 +14,8 @@ export class OcForgotPasswordComponent implements OnInit {
   @Input() companayLogoUrl;
   @Input() forgotPasswordDoneUrl;
   @Input() ForgotPwdPageState;
-
+  @Input() companyLogoUrl;
+  @Input() process;
   @Output() submit = new EventEmitter<any>();
   constructor() { }
 

@@ -11,6 +11,8 @@ export class OcLoginComponent implements OnInit {
 
   @Input() forgotPwdUrl;
   @Input() signupUrl;
+  @Input() companyLogoUrl;
+  @Input() process;
 
   @Output() submit = new EventEmitter<any>();
   constructor() { }

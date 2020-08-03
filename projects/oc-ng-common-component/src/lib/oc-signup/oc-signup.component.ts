@@ -15,6 +15,7 @@ export class OcSignupComponent implements OnInit {
   @Input() termsUrl;
   @Input() policyUrl;
   @Input() companyLogoUrl;
+  @Input() process;
 
   @Output() submit = new EventEmitter<any>();
 
