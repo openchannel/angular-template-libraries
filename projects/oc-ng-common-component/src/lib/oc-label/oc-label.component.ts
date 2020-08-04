@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class OcLabelComponent implements OnInit {
   @Input() text;
   @Input() class;
-
+  @Input() required;
   constructor() { }
 
   ngOnInit(): void {
