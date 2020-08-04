@@ -82,7 +82,9 @@
 .font-m {
   font-size: 14px;
 }
-
+.font-l {
+  font-size: 18px;
+}
 * {
   font-family: "Rubik Regular";
   font-size: 16px;
@@ -162,10 +164,16 @@ h6 {
     margin-bottom: 0;
   }
   span {
-    padding: 14px 0;
+    // padding: 14px 0;
     font-size: 14px;
-    display: inline-block;
+    // display: inline-block;
     line-height: 18px;
+  }
+  .nav {
+    .nav-item {
+      padding: 11px 0;
+      display: inline-block;
+    }
   }
 }
 .file-upload-progress {
