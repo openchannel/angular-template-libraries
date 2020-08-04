@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, AfterViewInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -39,7 +39,9 @@ export class OcChartComponent implements AfterViewInit {
   }
 
   getChart() {
-
+    var gradient = this.context.createLinearGradient(0, 0, 0, 400)
+    gradient.addColorStop(0, 'rgba(240, 247, 255, 0.25)')
+    
     this.chart = new Chart(this.context, {
       type: 'line',
       data: {
@@ -48,7 +50,8 @@ export class OcChartComponent implements AfterViewInit {
           label: '',
           data: this.dataSets,
           // backgroundColor: 'rgba(240, 247, 255, 0.25)',
-          backgroundColor: 'rgba(83,124,253,0.1)',
+
+          backgroundColor: gradient,
           borderColor: 'rgb(83,124,253)',
           borderWidth: 1.8,
           pointBorderColor: 'rgb(83,124,253)',
