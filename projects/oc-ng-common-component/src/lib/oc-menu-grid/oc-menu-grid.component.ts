@@ -10,6 +10,8 @@ export class OcMenuGridComponent implements OnInit {
 
   @Input() appList: SellerAppsWrapper;
 
+  @Input() menuUrl;
+
   constructor() { }
 
   ngOnInit(): void {

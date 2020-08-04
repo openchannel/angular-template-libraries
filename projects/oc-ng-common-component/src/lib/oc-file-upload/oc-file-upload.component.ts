@@ -29,6 +29,7 @@ export class OcFileUploadComponent implements OnInit,OnDestroy {
   @Input() defaultFileIcon = '';
 
   @Input() fileType: string;
+  @Input() uploadIconUrl;
 
 /////////////////Image
 isImageCropped = false;
