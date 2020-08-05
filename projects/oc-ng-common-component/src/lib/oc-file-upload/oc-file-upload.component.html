@@ -1,6 +1,6 @@
 <div class="file-container without-files" *ngIf="(!fileDetailArr || fileDetailArr.length == 0) ;else fileList" fileDragDrop
   (fileDropped)="onFileDropped($event,cropperModal)">
-  <img src="https://drive.google.com/u/0/uc?id=1pXQMAQPexAIcNZPeLkqDjlfeR5uBVYAy&export=download" class="mb-2"
+  <img [src]="uploadIconUrl" class="mb-2"
     alt="upload-icon">
   <input type="file" #fileDropRef id="fileDropRef" [accept]="getAcceptTypes()"
     (change)="fileBrowseHandler($event,cropperModal)" />
@@ -17,7 +17,7 @@
         <p class="mb-3 font-med font-m">My Attachments</p>
       </div>
       <div class="col-md-auto" *ngIf="isMultiFileSupport()">
-        <img src="https://drive.google.com/u/0/uc?id=1pXQMAQPexAIcNZPeLkqDjlfeR5uBVYAy&export=download" class="upload-s"
+        <img [src]="uploadIconUrl" class="upload-s"
           alt="upload-icon">
         <a href="#" class="font-m font-bold ">
           <input type="file" [accept]="acceptType" #fileUploadRefid (change)="fileBrowseHandler($event,cropperModal)" />
