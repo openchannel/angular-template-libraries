@@ -182,6 +182,10 @@ h6 {
   }
 }
 
+.company-logo{
+  width: 159px;
+}
+
 /** buttons **/
 .btn{
   font-size: 14px;
@@ -219,6 +223,21 @@ h6 {
 /** End buttons **/
 
 /** input password **/
+
+oc-input, oc-password, oc-app-category-select{
+    &.ng-invalid{
+      input.ng-touched, select.ng-touched{
+        border-color: $danger;
+      }
+    }
+    &.ng-invalid{
+      &.ng-touched{
+        input, select{
+        border-color: $danger;
+      }
+    }
+  }
+}
 
 .toggle_password{  
   float: right;
