@@ -9,11 +9,18 @@ export class OcInputComponent implements OnInit {
 
   @Input() modelName;
   @Input() autoFocus;
-
+  @Input() autocomplete;
+  
   @Output() modelNameChange = new EventEmitter<any>();
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef) { 
+
+  }
 
   ngOnInit(): void {
+
+    if(this.autocomplete){
+      this.el.nativeElement.children[0].autocomplete = this.autocomplete;  
+    }    
   }
 
   ngAfterViewInit() {

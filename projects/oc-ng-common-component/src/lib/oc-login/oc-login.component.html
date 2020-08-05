@@ -14,13 +14,13 @@
             <div class="form-group">
                 <oc-label [text]="getValue('Email')"></oc-label>
                 <oc-input emailValidator [(modelName)]="loginModel.email" name="email" #email=ngModel
-                    [ngModel]="loginModel.email" ngDefaultControl required="true" [autoFocus]="true"></oc-input>
+                    [ngModel]="loginModel.email" ngDefaultControl required="true" [autoFocus]="true" [autocomplete]="'off'"></oc-input>
                 <oc-error [control]="email"> </oc-error>
             </div>
             <div class="form-group mb-2">
                 <oc-label [text]="getValue('Password')"></oc-label>
                 <oc-password whiteSpaceValidator [(modelName)]="loginModel.password" class="mb-2" name="password"
-                    #password=ngModel [ngModel]="loginModel.password" ngDefaultControl required="true"></oc-password>
+                    #password=ngModel [ngModel]="loginModel.password" ngDefaultControl required="true" [autocomplete]="'off'"></oc-password>
                 <oc-error [control]="password"></oc-error>
             </div>
             <div class="form-group row">
