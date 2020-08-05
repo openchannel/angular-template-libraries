@@ -103,6 +103,7 @@ acceptType;
   uploadFile(file){
     this.isUploadInProcess=true;
     let lastFileDetail = new FileDetails();
+    lastFileDetail.fileName=this.fileName;
     this.fileDetailArr.push(lastFileDetail);
     // this.fileUpload.emit(files);
     let formData: FormData = new FormData();
