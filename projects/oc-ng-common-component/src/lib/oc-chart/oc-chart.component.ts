@@ -39,10 +39,9 @@ export class OcChartComponent implements AfterViewInit {
   }
 
   getChart() {
-    var gradientFill = this.context.createLinearGradient(0, 0, 0, 450);
-    gradientFill.addColorStop(0, 'rgba(240, 247, 255, 0.6)');
-    gradientFill.addColorStop(0.6, 'rgba(240, 247, 255, 0.25)');
-    gradientFill.addColorStop(1, 'rgba(240, 247, 255, 0)');
+    var gradientFill = this.context.createLinearGradient(0, 0, 0, 170);
+    gradientFill.addColorStop(0, '#e7eef7');
+    gradientFill.addColorStop(1, 'rgba(240, 247, 255, 0.25)');
 
     this.chart = new Chart(this.context, {
       type: 'line',
@@ -71,7 +70,7 @@ export class OcChartComponent implements AfterViewInit {
           enabled: true
           // backgroundColor: '#ffff',
           // callbacks: {
-           
+
           //   labelColor: function (tooltipItem, chart) {
           //     return {
           //       label: tooltipItem.label
