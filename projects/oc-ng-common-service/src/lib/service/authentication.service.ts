@@ -24,12 +24,14 @@ export class AuthenticationService {
     /**
     * This method is responsible for save user profile information. 
     */
-   saveUserprofileInformation(){
+   saveUserprofileInformation(callBack){
     this.sellerService.getUserProfileDetails().subscribe(res => {
         if (res) {
           localStorage.setItem("email",res.email);
         }
-        this.router.navigateByUrl("/app-developer");
+        if(callBack){
+          callBack();
+        }
     });
  }
 
