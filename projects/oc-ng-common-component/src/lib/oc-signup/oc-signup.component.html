@@ -1,5 +1,5 @@
 
-<form novalidate #signupform="ngForm">
+<form novalidate #signupform="ngForm" *ngIf="!showSignupFeedbackPage">
     <div class="card oc-card-with-border">
         <div class="card-body">
             <!-- <a href="/"> -->
@@ -51,6 +51,34 @@
             <div class="text-center">
                 <oc-label [text]="getValue('Already have an account? ')"></oc-label>
                 <a href={{loginUrl}} class="font-m font-med"> Log In</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<form novalidate #forgotPwdForm="ngForm" *ngIf="showSignupFeedbackPage">
+    <div class="card oc-card-with-border">
+        <div class="card-body">
+            <div class="text-center">
+                <!-- <img class="img-fluid mb-4" src="{{companyLogoUrl}}" alt="logo" /> -->
+                <img class="img-fluid mb-4"
+                    src="{{companyLogoUrl}}"
+                    alt="logo">
+            </div>
+            <div class="text-center">
+                <img src="{{forgotPasswordDoneUrl}}"
+                class="mb-3" alt="dropdown-icon">
+                <h4>Done!</h4>
+                <oc-label [text]="'A link has been sent to your inbox.'" ></oc-label>
+            </div>
+            <oc-button [text]="getValue('Go back to Log In')" [disabled]="false"
+                [type]="getValue('primary')" class="btn-block my-5">
+            </oc-button>
+            <div class="text-center">
+                <oc-label [text]="getValue(' Dont have an account yet? ')"></oc-label>
+                <a href={{signupUrl}} class="font-m font-med"> Sign Up</a>
             </div>
         </div>
     </div>
