@@ -1,4 +1,5 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ElementRef } from '@angular/core';
+import { NgModel, DefaultValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'oc-password',
@@ -9,17 +10,23 @@ export class OcPasswordComponent implements OnInit {
 
   @Input() modelName;
   @Input() focus;
+  @Input() autocomplete;
 
   @Output() modelNameChange = new EventEmitter<any>();
-  constructor() { }
+  constructor(private el: ElementRef,private control:NgModel) {  }
 
   ngOnInit(): void {
-
+    if(this.autocomplete){
+      this.el.nativeElement.children[0].autocomplete = this.autocomplete;  
+    }    
   }
 
   changeModelVal() {
     this.modelNameChange.emit(this.modelName);
   }
 
+  onblur(){
+    (this.control.valueAccessor as DefaultValueAccessor).onTouched();
+  }
 
 }

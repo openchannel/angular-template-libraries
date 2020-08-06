@@ -20,6 +20,8 @@ export class OcPopupComponent implements OnInit {
   cancelCallback: any;
   closeCallBack: any;
 
+  @Input() closeIconUrl;
+
   constructor(public dailog: NgbModal) { }
 
   ngOnInit(): void {

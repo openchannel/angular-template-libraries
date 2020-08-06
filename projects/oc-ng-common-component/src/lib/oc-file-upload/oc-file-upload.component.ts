@@ -29,6 +29,7 @@ export class OcFileUploadComponent implements OnInit,OnDestroy {
   @Input() defaultFileIcon = '';
 
   @Input() fileType: string;
+  @Input() uploadIconUrl;
 
 /////////////////Image
 isImageCropped = false;
@@ -102,35 +103,40 @@ acceptType;
   uploadFile(file){
     this.isUploadInProcess=true;
     let lastFileDetail = new FileDetails();
+    lastFileDetail.fileName=this.fileName;
     this.fileDetailArr.push(lastFileDetail);
     // this.fileUpload.emit(files);
     let formData: FormData = new FormData();
     formData.append('file', file,this.fileName);
-    this.uploadFileReq = this.uploadFileService.uploadToOpenchannel(formData,this.isFileTypePrivate()).subscribe((event: any) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
-        } else if (event.type == HttpEventType.ResponseHeader) {
-          lastFileDetail.fileUploadProgress = 97;
-        } else if (event.type == HttpEventType.DownloadProgress) {
-          lastFileDetail.fileUploadProgress = 99;
-        } else if (event instanceof HttpResponse) {
-          lastFileDetail = this.convertFileUploadResToFileDetails(event);
-          lastFileDetail.fileUploadProgress=100;
-          lastFileDetail.fileIconUrl= this.defaultFileIcon;
-          this.fileDetailArr[this.fileDetailArr.length-1]=lastFileDetail;
+    this.uploadFileReq = this.uploadFileService.getToken().subscribe((resToken) => {
+      let token = resToken['token'];
+      this.uploadFileReq = this.uploadFileService.prepareUploadReq(token,formData,this.isFileTypePrivate()).subscribe((event: any) => {
+          if (event.type === HttpEventType.UploadProgress) {
+            lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
+          } else if (event.type == HttpEventType.ResponseHeader) {
+            lastFileDetail.fileUploadProgress = 97;
+          } else if (event.type == HttpEventType.DownloadProgress) {
+            lastFileDetail.fileUploadProgress = 99;
+          } else if (event instanceof HttpResponse) {
+            lastFileDetail = this.convertFileUploadResToFileDetails(event);
+            lastFileDetail.fileUploadProgress=100;
+            lastFileDetail.fileIconUrl= this.defaultFileIcon;
+            this.fileDetailArr[this.fileDetailArr.length-1]=lastFileDetail;
+            this.isUploadInProcess = false;
+            this.uploadFileReq =null;
+            this.resetSelection();
+          }
+        },
+        (err) => {
           this.isUploadInProcess = false;
-          this.uploadFileReq =null;
           this.resetSelection();
-        }
-      },
-      (err) => {
-        this.isUploadInProcess = false;
-        this.resetSelection();
-      },
-      ()=>{
-        this.isUploadInProcess = false;
-        this.resetSelection();
-      });
+        },
+        ()=>{
+          this.isUploadInProcess = false;
+          this.resetSelection();
+        });
+    });
+
       this.modalService.dismissAll();
   }
 

@@ -22,7 +22,7 @@
             <td>
                 <div class="row">
                     <div class="col-md-auto">
-                        <img class="app-icon" [src]="app.customData.icon" alt="app-icon">
+                        <img class="app-icon" [src]="app.customData.icon" alt="">
                     </div>
                     <div class="col-md pl-0">
                         <h6 class="mb-0">{{app.name}} </h6>
@@ -40,7 +40,7 @@
                 <span class="font-med text-primary">{{app.prettyStatus}}</span>
             </td>
             <td>
-                <img src="https://drive.google.com/u/0/uc?id=1QcMnnVKz5HPm0unraWhXsu_Nm9_f9QI_&export=download"
+                <img [src]="menuUrl"
                     class="icon-dots" alt="more-icon">
             </td>
         </tr>

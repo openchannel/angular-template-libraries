@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { NgModel, DefaultValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'oc-input',
@@ -9,11 +10,18 @@ export class OcInputComponent implements OnInit {
 
   @Input() modelName;
   @Input() autoFocus;
-
+  @Input() autocomplete;
+  
   @Output() modelNameChange = new EventEmitter<any>();
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef,private control:NgModel) { 
+
+  }
 
   ngOnInit(): void {
+
+    if(this.autocomplete){
+      this.el.nativeElement.children[0].autocomplete = this.autocomplete;  
+    }    
   }
 
   ngAfterViewInit() {
@@ -21,6 +29,10 @@ export class OcInputComponent implements OnInit {
     if(this.autoFocus){
       setTimeout(() => this.el.nativeElement.children[0].focus(), 0);
     }
+  }
+
+  onblur(){
+    (this.control.valueAccessor as DefaultValueAccessor).onTouched();
   }
 
   changeModelVal() {

@@ -1,12 +1,12 @@
 <div class="file-container without-files" *ngIf="(!fileDetailArr || fileDetailArr.length == 0) ;else fileList" fileDragDrop
   (fileDropped)="onFileDropped($event,cropperModal)">
-  <img src="https://drive.google.com/u/0/uc?id=1pXQMAQPexAIcNZPeLkqDjlfeR5uBVYAy&export=download" class="mb-2"
+  <img [src]="uploadIconUrl" class="mb-2"
     alt="upload-icon">
   <input type="file" #fileDropRef id="fileDropRef" [accept]="getAcceptTypes()"
-    (change)="fileBrowseHandler($event,cropperModal)" />
+    (change)="fileBrowseHandler($event,cropperModal)" style="display: none;"/>
   <div>
     <span class="d-block text-secondary font-m">{{fileUploadText}}</span>
-    <span class="text-secondary font-m">or</span> <a href="" class="font-m font-bold"> Browse file</a>
+    <span class="text-secondary font-m">or</span> <a class="font-m font-bold browse-file"  (click)="fileDropRef.click()"> Browse File</a>
   </div>
 </div>
 
@@ -17,11 +17,11 @@
         <p class="mb-3 font-med font-m">My Attachments</p>
       </div>
       <div class="col-md-auto" *ngIf="isMultiFileSupport()">
-        <img src="https://drive.google.com/u/0/uc?id=1pXQMAQPexAIcNZPeLkqDjlfeR5uBVYAy&export=download" class="upload-s"
+        <img [src]="uploadIconUrl" class="upload-s"
           alt="upload-icon">
-        <a href="#" class="font-m font-bold ">
-          <input type="file" [accept]="acceptType" #fileUploadRefid (change)="fileBrowseHandler($event,cropperModal)" />
-          Browse file
+        <a class="font-m font-bold browse-file" (click)="fileUploadRefid.click()">
+          <input type="file" [accept]="getAcceptTypes()" #fileUploadRefid (change)="fileBrowseHandler($event,cropperModal)" style="display: none;"/>
+          Browse File
         </a>
         <!-- <a href="#" *ngIf="isMultiFile || (!files || files.length == 0)">
           <input type="file" [accept]="acceptType" #fileUploadRefid (change)="fileBrowseHandler($event,cropperModal)" />
@@ -39,7 +39,7 @@
         <span class="text-secondary font-s">{{file.fileUploadProgress===100 ? "Complete" : "Uploading"}}</span>
       </div>
       <div class="col-md text-right pt-3">
-        <a (click)="cancelUploading(i)">
+        <a (click)="cancelUploading(i)" class="cursor-pointer">
           <img src="assets/img/close-icon.svg"
           alt="close-icon">
         </a>
