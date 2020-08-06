@@ -263,7 +263,10 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
     }
     this.imageLoadErrorMessage = '';
     this.hasImageLoadError = false;
-
+    if (this.fileDetailArr.length < 1) {
+      this.customMsg = true;
+      this.customMsgChange.emit(this.customMsg);
+    }
 
   }
 
