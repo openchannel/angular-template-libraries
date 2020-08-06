@@ -10,6 +10,7 @@ export * from './lib/oc-ng-common-service.module';
 export * from './lib/service/http-request-services';
 export * from './lib/model/seller-signup';
 export * from './lib/model/seller-signin';
+export * from './lib/model/seller-activation';
 export * from './lib/model/featured-app-model';
 export * from './lib/model/app-category-model';
 export * from './lib/model/basic-app-model';
