@@ -11,6 +11,7 @@ export class OcPasswordComponent implements OnInit {
   @Input() modelName;
   @Input() focus;
   @Input() autocomplete;
+  @Input() placeholder;
 
   @Output() modelNameChange = new EventEmitter<any>();
   constructor(private el: ElementRef,private control:NgModel) {  }
