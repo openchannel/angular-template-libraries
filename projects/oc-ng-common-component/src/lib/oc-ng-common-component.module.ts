@@ -47,6 +47,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { OcAppCategorySelectComponent } from './oc-app-category-select/oc-app-category-select.component';
 import { OcPopupComponent } from './oc-popup/oc-popup.component';
 import { SafehtmlPipe } from './safehtml.pipe';
+import { OcActivationComponent } from './oc-activation/oc-activation.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -90,7 +91,8 @@ import { SafehtmlPipe } from './safehtml.pipe';
     OcFileUploadComponent,
     OcAppCategorySelectComponent,
     OcPopupComponent,
-    SafehtmlPipe
+    SafehtmlPipe,
+    OcActivationComponent
   ],
 
   imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule,ImageCropperModule],
@@ -101,6 +103,7 @@ import { SafehtmlPipe } from './safehtml.pipe';
     OcCheckboxComponent,
     OcRadioComponent,
     OcSignupComponent,
+    OcActivationComponent,
     OcPasswordComponent
     , OcLoginComponent,
     EmailValidatorDirective,

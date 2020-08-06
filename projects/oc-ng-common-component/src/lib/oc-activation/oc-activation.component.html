@@ -1,0 +1,48 @@
+
+<form novalidate #activationForm="ngForm">
+    <div class="card oc-card-with-border">
+        <div class="card-body">
+            <!-- <a href="/"> -->
+            <div class="text-center">
+                <!-- <img class="img-fluid mb-4" src="{{companyLogoUrl}}" alt="logo" /> -->
+                <img class="img-fluid mb-4"
+                    src="{{companyLogoUrl}}"
+                    alt="logo">
+            </div>
+            <!-- </a> -->
+            <div class="text-center">
+                <h4>Activate Account</h4>
+                <oc-label [text]="getValue('Check your inbox for the activation code')" class="mb-3"></oc-label>
+            </div>
+            <div class="form-group">
+                <oc-label [text]="getValue('Email')"></oc-label>
+                <oc-input emailValidator [(modelName)]="activationModel.email" name="email" #email=ngModel
+                [ngModel]="activationModel.email" ngDefaultControl required="true"></oc-input>
+                <oc-error [control]="email"> </oc-error>
+            </div>
+            <div class="form-group mb-2">
+                <oc-label [text]="getValue('Password')"></oc-label>
+                <oc-password [(modelName)]="activationModel.password" class="mb-2" name="password" #password=ngModel
+                [ngModel]="activationModel.password" ngDefaultControl required="true"></oc-password>
+                <oc-error [control]="password"> </oc-error>
+            </div>
+            <div class="form-group">
+                <oc-label [text]="getValue('Activation Code')"></oc-label>
+                <oc-input [(modelName)]="activationModel.code" name="code" #code=ngModel aria-autocomplete="off" 
+                [ngModel]="activationModel.code" ngDefaultControl required="true"></oc-input>
+                <oc-error [control]="code"> </oc-error>
+            </div> 
+            <oc-button [text]="getValue('Activate')"
+                [type]="getValue('primary')" (click)="submitForm(activationForm)" class="btn-block mt-5 mb-3" [process]="process" [disabled]="process || !activationForm.valid">
+            </oc-button>
+            <div class="text-center">
+                <oc-label [text]="getValue('Didn’t get the activation code?')"></oc-label>
+                <a href={{activationUrl}} class="font-m font-med"> Resend it </a>
+            </div>    
+            <div class="text-center">
+                <oc-label [text]="getValue('Dont have an account yet?')"></oc-label>
+                <a href={{signupUrl}} class="font-m font-med"> Sign Up </a>
+            </div>
+        </div>
+    </div>
+</form>
