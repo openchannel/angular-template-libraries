@@ -11,6 +11,7 @@ export class OcMenuGridComponent implements OnInit {
   @Input() appList: SellerAppsWrapper;
 
   @Input() menuUrl;
+  @Input() sortIcon;
 
   constructor() { }
 
