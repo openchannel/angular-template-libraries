@@ -2,17 +2,17 @@
     <thead>
         <tr>
             <th>App Name
-                <!-- <img src="https://drive.google.com/u/0/uc?id=1ZJAWQ81ifxE0G7weZ-OOYsmGUIXCYEHM&export=download"
-                    class="icon-down" alt="icon"> -->
+                <img [src]="sortIcon"
+                    class="icon-down" alt="icon">
             </th>
             <th class="summary">Summary</th>
             <th class="data">Data Added
-                <!-- <img src="https://drive.google.com/u/0/uc?id=1ZJAWQ81ifxE0G7weZ-OOYsmGUIXCYEHM&export=download"
-                    class="icon-down" alt="icon"> -->
+                <img [src]="sortIcon"
+                    class="icon-down" alt="icon">
             </th>
             <th class="status">Status
-                <!-- <img src="https://drive.google.com/u/0/uc?id=1ZJAWQ81ifxE0G7weZ-OOYsmGUIXCYEHM&export=download"
-                    class="icon-down" alt="icon"> -->
+                <img [src]="sortIcon"
+                    class="icon-down" alt="icon">
             </th>
             <th> </th>
         </tr>
@@ -22,7 +22,7 @@
             <td>
                 <div class="row">
                     <div class="col-md-auto">
-                        <img class="app-icon" [src]="app.customData.icon" alt="app-icon">
+                        <img class="app-icon" [src]="app.customData.icon" alt="">
                     </div>
                     <div class="col-md pl-0">
                         <h6 class="mb-0">{{app.name}} </h6>
@@ -31,7 +31,7 @@
                 </div>
             </td>
             <td>
-                <span [innerHTML]="app.customData.summary | safehtml"></span>
+                <span [innerHTML]="(app.customData && app.customData.summary) ? (app.customData.summary | safehtml) : ''"></span>
             </td>
             <td>
                 <span>{{app.created | date:'M/d/yyyy'}}</span>
@@ -40,7 +40,7 @@
                 <span class="font-med text-primary">{{app.prettyStatus}}</span>
             </td>
             <td>
-                <img src="https://drive.google.com/u/0/uc?id=1QcMnnVKz5HPm0unraWhXsu_Nm9_f9QI_&export=download"
+                <img [src]="menuUrl"
                     class="icon-dots" alt="more-icon">
             </td>
         </tr>

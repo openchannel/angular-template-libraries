@@ -5,7 +5,7 @@
             <!-- <a href="/"> -->
             <div class="text-center">
                 <!-- <img class="img-fluid mb-4" src="{{companyLogoUrl}}" alt="logo" /> -->
-                <img class="img-fluid mb-4"
+                <img class="img-fluid mb-4 company-logo"
                     src="{{companyLogoUrl}}"
                     alt="logo">
             </div>
@@ -17,33 +17,33 @@
             <div class="form-group">
                 <oc-label [text]="getValue('Name')"></oc-label>
                 <oc-input whiteSpaceValidator [(modelName)]="signupModel.uname" name="uname" #uname=ngModel
-                [ngModel]="signupModel.uname" ngDefaultControl required="true" [autoFocus]="true"></oc-input>
+                [ngModel]="signupModel.uname" ngDefaultControl required="true" [autoFocus]="true" [placeholder]="'Name'" [autocomplete]="'off'"></oc-input>
             <oc-error [control]="uname"> </oc-error>
             </div>
             <div class="form-group">
                 <oc-label [text]="getValue('Company')"></oc-label>
                 <oc-input whiteSpaceValidator [(modelName)]="signupModel.company" name="company" #company=ngModel
-                [ngModel]="signupModel.company" ngDefaultControl required="true"></oc-input>
+                [ngModel]="signupModel.company" ngDefaultControl required="true" [placeholder]="'Company'" [autocomplete]="'off'"></oc-input>
                 <oc-error [control]="company"> </oc-error>
             </div>
             <div class="form-group">
                 <oc-label [text]="getValue('Email')"></oc-label>
                 <oc-input emailValidator [(modelName)]="signupModel.email" name="email" #email=ngModel
-                [ngModel]="signupModel.email" ngDefaultControl required="true"></oc-input>
+                [ngModel]="signupModel.email" ngDefaultControl required="true" [placeholder]="'Email'" [autocomplete]="'off'"></oc-input>
                 <oc-error [control]="email"> </oc-error>
             </div>
             <div class="form-group mb-2">
                 <oc-label [text]="getValue('Password')"></oc-label>
                 <oc-password [(modelName)]="signupModel.password" class="mb-2" name="password" #password=ngModel
-                [ngModel]="signupModel.password" ngDefaultControl required="true"></oc-password>
+                [ngModel]="signupModel.password" ngDefaultControl required="true" [placeholder]="'Password'" [autocomplete]="'off'"></oc-password>
                 <oc-error [control]="password"> </oc-error>
             </div>
             <div class="form-group">
                 <oc-checkbox [(isChecked)]="signupModel.isChecked"></oc-checkbox>
                 <oc-label [text]="getValue(' I agree to ')" class="label-s"></oc-label>
-                <a href={{termsUrl}} target="_blank" class="font-s"> Terms of Service </a>
+                <a href={{termsUrl}} target="_blank" class="font-s"><b> Terms of Service </b></a>
                 <oc-label [text]="getValue(' and ')" class="label-s"></oc-label>
-                <a href={{policyUrl}} target="_blank" class="font-s"> Data Processing Policy</a>
+                <a href={{policyUrl}} target="_blank" class="font-s"><b> Data Processing Policy</b></a>
             </div>
             <oc-button [text]="getValue('Sign Up')" [disabled]="!signupModel.isChecked || !signupform.valid || process"
                 [type]="getValue('primary')" [process]="process" (click)="submitForm(signupform)" class="btn-block mt-5 mb-3">

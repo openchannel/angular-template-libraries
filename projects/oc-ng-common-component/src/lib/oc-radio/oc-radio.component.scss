@@ -1,3 +1,12 @@
-.custom-control{
-    display: inline;
+.custom-control {
+  display: inline;
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+  background-image: url("https://drive.google.com/u/0/uc?id=1tzb0mBxkJIjPb9_NdcfmS0A1mGuz1pB5&export=download");
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: #537cfd;
+    background-color: #ffffff;
 }

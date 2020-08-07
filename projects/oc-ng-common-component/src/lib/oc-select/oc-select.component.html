@@ -1,5 +1,5 @@
-<select required class="form-control select-control pl-0" name="delServiceOption"
-    placeholder="Please select a application" [(ngModel)]="value" (ngModelChange)="onSelectionChange($event)">
+<select required class="form-control select-control selectpicker" name="delServiceOption"
+    placeholder="Please select a application" (blur)="onblur()" [(ngModel)]="value" (ngModelChange)="onSelectionChange($event)">
     <!-- <option selected value="">{{defaultBlankValue}}</option> -->
     <option *ngFor="let val of selectValArr;" [value]="val.value">{{val.key}}</option>
 

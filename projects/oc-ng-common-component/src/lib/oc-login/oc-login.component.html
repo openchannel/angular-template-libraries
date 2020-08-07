@@ -3,7 +3,7 @@
         <div class="card-body">
             <div class="text-center">
                 <!-- <img class="img-fluid mb-4" src="{{companyLogoUrl}}" alt="logo" /> -->
-                <img class="img-fluid mb-4"
+                <img class="img-fluid mb-4 company-logo"
                     src="{{companyLogoUrl}}"
                     alt="logo">
             </div>
@@ -14,13 +14,13 @@
             <div class="form-group">
                 <oc-label [text]="getValue('Email')"></oc-label>
                 <oc-input emailValidator [(modelName)]="loginModel.email" name="email" #email=ngModel
-                    [ngModel]="loginModel.email" ngDefaultControl required="true" [autoFocus]="true"></oc-input>
+                    [ngModel]="loginModel.email" ngDefaultControl required="true" [autoFocus]="true" [autocomplete]="'off'" [placeholder]="'Email'"></oc-input>
                 <oc-error [control]="email"> </oc-error>
             </div>
             <div class="form-group mb-2">
                 <oc-label [text]="getValue('Password')"></oc-label>
                 <oc-password whiteSpaceValidator [(modelName)]="loginModel.password" class="mb-2" name="password"
-                    #password=ngModel [ngModel]="loginModel.password" ngDefaultControl required="true"></oc-password>
+                    #password=ngModel [ngModel]="loginModel.password" ngDefaultControl required="true" [autocomplete]="'off'" [placeholder]="'Password'"></oc-password>
                 <oc-error [control]="password"></oc-error>
             </div>
             <div class="form-group row">
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <oc-button [text]="getValue('Log In')"
-                (click)="submitForm(loginForm)" [type]="getValue('primary')" class="btn-block mt-5 mb-3" [disabled]="process || !loginForm.valid"
+                (click)="submitForm(loginForm)" [type]="getValue('primary')" class="btn-block mt-4 mb-3" [disabled]="process || !loginForm.valid"
                 [process]="process">
             </oc-button>
             <div class="text-center">

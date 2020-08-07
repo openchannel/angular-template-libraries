@@ -82,11 +82,17 @@
 .font-m {
   font-size: 14px;
 }
-
+.font-l {
+  font-size: 18px;
+}
+h1{
+  font-size: 38px;
+}
 * {
   font-family: "Rubik Regular";
   font-size: 16px;
   font-weight: normal;
+  // line-height: 16px;
 }
 
 a {
@@ -97,6 +103,9 @@ a {
   }  
   &:focus {
     outline:none
+  }
+  b{
+    font-size: inherit;
   }
 }
 
@@ -130,6 +139,7 @@ h6 {
 }
 .form-control::placeholder {
   opacity: 0.5;
+  color: $body-color;
 }
 .invalid-feedback {
   color: $danger;
@@ -146,7 +156,9 @@ h6 {
   margin: auto;
   .card-body {
     padding: 40px 30px;
+    padding-bottom: 32px;
     font-size: 14px;
+    line-height: 16px;
   }
 }
 
@@ -162,16 +174,26 @@ h6 {
     margin-bottom: 0;
   }
   span {
-    padding: 14px 0;
+    // padding: 14px 0;
     font-size: 14px;
-    display: inline-block;
+    // display: inline-block;
     line-height: 18px;
+  }
+  .nav {
+    .nav-item {
+      padding: 11px 0;
+      display: inline-block;
+    }
   }
 }
 .file-upload-progress {
   .progress {
     height: 1px;
   }
+}
+
+.company-logo{
+  width: 159px;
 }
 
 /** buttons **/
@@ -212,6 +234,21 @@ h6 {
 
 /** input password **/
 
+oc-input, oc-password, oc-app-category-select{
+    &.ng-invalid{
+      input.ng-touched, select.ng-touched{
+        border-color: $danger;
+      }
+    }
+    &.ng-invalid{
+      &.ng-touched{
+        input, select{
+        border-color: $danger;
+      }
+    }
+  }
+}
+
 .toggle_password{  
   float: right;
   margin-top: -31px;
@@ -219,12 +256,13 @@ h6 {
   font-size: 16px;
   cursor: pointer;
   position: relative;
-  background: url(assets/img/password-hide.svg) center center no-repeat;
+  background: url(~oc-ng-common-component/assets/img/password-hide.svg) center center no-repeat;
   height: 16px;
   width: 16px;
 }
 .toggle_password.fa-eye-slash{
-  background: url(assets/img/password-show.svg) center center no-repeat;
+  background: url(~oc-ng-common-component/assets/img/password-show.svg) center center no-repeat;
 }
 
 /** input password **/
+
