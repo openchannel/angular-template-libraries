@@ -1,3 +1,16 @@
 <div class="col-md-12">
-    <!-- <img [src] -->
+    <img [src]="appStatus.appLogoUrl">
+    <h5>{{appStatus.appName}}</h5>
+    <div class="col-md-12" > 
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        <span>{{appStatus.appSavedDate |date : 'd/MM/yyyy'}}</span>
+        <span class="pl-2">{{appStatus.appStatus}}</span>
+    </div>
+    <div class="col-md-12">
+        <oc-label [text]="appStatus.appDescription" class="col-md-12 label-l pl-0"></oc-label>
+    </div>
+    <hr>
+    <div class="col-md-12" *ngIf="appStatus.appCategory">
+        <span class="selected-label" *ngFor="let category of appStatus.appCategory">{{category}}</span>
+    </div>
 </div>
