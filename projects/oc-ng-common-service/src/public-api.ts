@@ -14,6 +14,7 @@ export * from './lib/model/seller-activation';
 export * from './lib/model/featured-app-model';
 export * from './lib/model/app-category-model';
 export * from './lib/model/basic-app-model';
+export * from './lib/model/app-status-details-model';
 export * from './lib/model/seller-app-custom-data-model';
 export * from './lib/model/seller-app-details-model';
 export * from './lib/model/overall-rating-summary-model';
@@ -33,3 +34,5 @@ export * from './lib/service/chart-service';
 
 export * from './lib/service/oauth.service';
 export * from './lib/model/seller-app-list';
+
+export * from './lib/service/common-service';
