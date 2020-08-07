@@ -3,7 +3,7 @@
   <img [src]="uploadIconUrl" class="mb-2"
     alt="upload-icon">
   <input type="file" #fileDropRef id="fileDropRef" [accept]="getAcceptTypes()"
-    (change)="fileBrowseHandler($event,cropperModal)"/>
+    (change)="fileBrowseHandler($event,cropperModal)" class="cursor-pointer"/>
   <div>
     <span class="d-block text-secondary font-m">{{fileUploadText}}</span>
     <span class="text-secondary font-m">or</span> <a class="font-m font-bold browse-file"  (click)="fileDropRef.click()" > Browse File</a>

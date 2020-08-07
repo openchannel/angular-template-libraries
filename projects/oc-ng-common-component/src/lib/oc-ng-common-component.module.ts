@@ -48,6 +48,7 @@ import { OcAppCategorySelectComponent } from './oc-app-category-select/oc-app-ca
 import { OcPopupComponent } from './oc-popup/oc-popup.component';
 import { SafehtmlPipe } from './safehtml.pipe';
 import { CompareDirective } from './validators/compare-passsword-validator.directive';
+import { OcAppStatusDetailsComponent } from './oc-app-status-details/oc-app-status-details.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -92,7 +93,8 @@ import { CompareDirective } from './validators/compare-passsword-validator.direc
     OcAppCategorySelectComponent,
     OcPopupComponent,
     SafehtmlPipe,
-    CompareDirective
+    CompareDirective,
+    OcAppStatusDetailsComponent
   ],
 
   imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule,ImageCropperModule],
@@ -134,7 +136,8 @@ import { CompareDirective } from './validators/compare-passsword-validator.direc
     OcAppCategorySelectComponent,
     OcPopupComponent,
     NgbModule,
-    CompareDirective
+    CompareDirective,
+    OcAppStatusDetailsComponent
   ],
   providers: [
     NgbActiveModal,
