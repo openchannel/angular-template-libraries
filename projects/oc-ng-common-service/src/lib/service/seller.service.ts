@@ -31,7 +31,15 @@ export class SellerService {
   /**
    * This method is responsible for fetching user profile information.
    */
-  getUserProfileDetails(): Observable<any> {
-    return this.httpRequest.get(this.url+'/profile');
+  getUserProfileDetails(loader?: string): Observable<any> {
+    return this.httpRequest.get(this.url+'/profile',loader);
+  }
+
+  updateProfileDetails(reqBody:any, loader? :string):Observable<any> {
+    return this.httpRequest.post(this.url+'/profile',reqBody,loader);
+  }
+
+  changePassword(reqBody:any, loader? :string):Observable<any>{
+    return this.httpRequest.post(this.url+'/change-password',reqBody,loader);
   }
 }
