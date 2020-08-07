@@ -263,6 +263,16 @@ oc-input, oc-password, oc-app-category-select{
 .toggle_password.fa-eye-slash{
   background: url(~oc-ng-common-component/assets/img/password-show.svg) center center no-repeat;
 }
-
 /** input password **/
+/** input radio **/
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+  background-image: url("~oc-ng-common-component/assets/img/radio.svg");
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: $primary;
+    background-color: #ffffff;
+}
+/** input radio **/
 

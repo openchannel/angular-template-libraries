@@ -44,6 +44,11 @@
                     class="icon-dots" alt="more-icon">
             </td>
         </tr>
+        <tr *ngIf="!appList || appList.list.length == 0">
+            <td colspan="5" class="text-center">
+                <span> No Applications Found</span>
+            </td>
+        </tr>
 
     </tbody>
 </table>
