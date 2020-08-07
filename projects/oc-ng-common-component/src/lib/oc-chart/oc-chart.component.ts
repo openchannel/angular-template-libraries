@@ -39,9 +39,10 @@ export class OcChartComponent implements AfterViewInit {
   }
 
   getChart() {
-    var gradient = this.context.createLinearGradient(0, 0, 0, 400)
-    gradient.addColorStop(0, 'rgba(240, 247, 255, 0.25)')
-    
+    var gradientFill = this.context.createLinearGradient(0, 0, 0, 170);
+    gradientFill.addColorStop(0, '#e7eef7');
+    gradientFill.addColorStop(1, 'rgba(240, 247, 255, 0.25)');
+
     this.chart = new Chart(this.context, {
       type: 'line',
       data: {
@@ -51,18 +52,42 @@ export class OcChartComponent implements AfterViewInit {
           data: this.dataSets,
           // backgroundColor: 'rgba(240, 247, 255, 0.25)',
 
-          backgroundColor: gradient,
-          borderColor: 'rgb(83,124,253)',
-          borderWidth: 1.8,
+          backgroundColor: gradientFill,
+          borderColor: 'rgba(83, 124, 253, 1)',
+          lineTension: 0,
+          borderWidth: 1.7,
           pointBorderColor: 'rgb(83,124,253)',
+          pointHoverBackgroundColor: 'rgba(250, 251, 255, 1)',
         }]
       },
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         legend: {
           display: false
         },
         tooltips: {
           enabled: true
+          // backgroundColor: '#ffff',
+          // callbacks: {
+
+          //   labelColor: function (tooltipItem, chart) {
+          //     return {
+          //       label: tooltipItem.label
+          //     };
+          //   },
+          //   labelTextColor: function (tooltipItem, chart) {
+          //     return '#333333';
+          //   }
+          // }
+        },
+        elements: {
+          point: {
+            radius: 0
+          },
+          line: {
+            tension: 0, // 0 disables bezier curves
+          }
         },
         scales: {
           xAxes: [{

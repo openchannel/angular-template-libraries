@@ -103,6 +103,9 @@ a {
   &:focus {
     outline:none
   }
+  b{
+    font-size: inherit;
+  }
 }
 
 
@@ -135,6 +138,7 @@ h6 {
 }
 .form-control::placeholder {
   opacity: 0.5;
+  color: $body-color;
 }
 .invalid-feedback {
   color: $danger;
@@ -151,6 +155,7 @@ h6 {
   margin: auto;
   .card-body {
     padding: 40px 30px;
+    padding-bottom: 32px;
     font-size: 14px;
   }
 }
@@ -249,12 +254,12 @@ oc-input, oc-password, oc-app-category-select{
   font-size: 16px;
   cursor: pointer;
   position: relative;
-  background: url(assets/img/password-hide.svg) center center no-repeat;
+  background: url(~oc-ng-common-component/assets/img/password-hide.svg) center center no-repeat;
   height: 16px;
   width: 16px;
 }
 .toggle_password.fa-eye-slash{
-  background: url(assets/img/password-show.svg) center center no-repeat;
+  background: url(~oc-ng-common-component/assets/img/password-show.svg) center center no-repeat;
 }
 
 /** input password **/

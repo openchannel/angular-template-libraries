@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { NgModel, DefaultValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'oc-select',
@@ -7,9 +8,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class OcSelectComponent implements OnInit {
 
-  constructor() { }
+  constructor(private control: NgModel) { }
 
-  @Input() selectValArr =[];
+  @Input() selectValArr = [];
 
   @Input() defaultBlankValue = "Select";
 
@@ -22,5 +23,9 @@ export class OcSelectComponent implements OnInit {
 
   onSelectionChange($event) {
     this.valueChange.emit($event);
+  }
+
+  onblur() {
+    (this.control.valueAccessor as DefaultValueAccessor).onTouched();
   }
 }
