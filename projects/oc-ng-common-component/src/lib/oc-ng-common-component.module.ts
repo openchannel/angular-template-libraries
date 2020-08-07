@@ -47,6 +47,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { OcAppCategorySelectComponent } from './oc-app-category-select/oc-app-category-select.component';
 import { OcPopupComponent } from './oc-popup/oc-popup.component';
 import { SafehtmlPipe } from './safehtml.pipe';
+import { CompareDirective } from './validators/compare-passsword-validator.directive';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -90,7 +91,8 @@ import { SafehtmlPipe } from './safehtml.pipe';
     OcFileUploadComponent,
     OcAppCategorySelectComponent,
     OcPopupComponent,
-    SafehtmlPipe
+    SafehtmlPipe,
+    CompareDirective
   ],
 
   imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule,ImageCropperModule],
@@ -131,7 +133,8 @@ import { SafehtmlPipe } from './safehtml.pipe';
     OcAppListGridComponent,
     OcAppCategorySelectComponent,
     OcPopupComponent,
-    NgbModule
+    NgbModule,
+    CompareDirective
   ],
   providers: [
     NgbActiveModal,

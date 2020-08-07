@@ -42,6 +42,7 @@ export * from './lib/validators/image-file-validator.directive';
 export * from './lib/validators/password-toggle.directive';
 export * from './lib/validators/phone-number-validator.directive';
 export * from './lib/validators/website-validator.directive';
+export * from './lib/validators/compare-passsword-validator.directive';
 
 //chart components
 export * from './lib/oc-chart/oc-chart.component';
