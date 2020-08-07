@@ -1,12 +1,12 @@
-<div class="file-container without-files" *ngIf="(!fileDetailArr || fileDetailArr.length == 0) ;else fileList" fileDragDrop
+<div class="file-container without-files"  *ngIf="(!fileDetailArr || fileDetailArr.length == 0) ;else fileList" fileDragDrop
   (fileDropped)="onFileDropped($event,cropperModal)">
   <img [src]="uploadIconUrl" class="mb-2"
     alt="upload-icon">
   <input type="file" #fileDropRef id="fileDropRef" [accept]="getAcceptTypes()"
-    (change)="fileBrowseHandler($event,cropperModal)" style="display: none;"/>
+    (change)="fileBrowseHandler($event,cropperModal)"/>
   <div>
     <span class="d-block text-secondary font-m">{{fileUploadText}}</span>
-    <span class="text-secondary font-m">or</span> <a class="font-m font-bold browse-file"  (click)="fileDropRef.click()"> Browse File</a>
+    <span class="text-secondary font-m">or</span> <a class="font-m font-bold browse-file"  (click)="fileDropRef.click()" > Browse File</a>
   </div>
 </div>
 
@@ -32,7 +32,7 @@
 
     <div class="row" *ngFor="let file of fileDetailArr; let i = index" >
       <div class="col-md-auto pr-0">
-        <img [src]="defaultFileIcon" alt="app-icon">
+        <img [src]="getUrl(file.fileUploadProgress)" alt="app-icon">
       </div>
       <div class="col-md-auto ml-n1">
         <span class="font-med font-m d-block">{{file.fileName}}</span>

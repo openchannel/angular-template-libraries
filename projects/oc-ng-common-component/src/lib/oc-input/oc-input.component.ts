@@ -11,28 +11,28 @@ export class OcInputComponent implements OnInit {
   @Input() modelName;
   @Input() autoFocus;
   @Input() autocomplete;
-  @Input() placeholder;
-  
+  @Input() placeholder = '';
+
   @Output() modelNameChange = new EventEmitter<any>();
-  constructor(private el: ElementRef,private control:NgModel) { 
+  constructor(private el: ElementRef, private control: NgModel) {
 
   }
 
   ngOnInit(): void {
 
-    if(this.autocomplete){
-      this.el.nativeElement.children[0].autocomplete = this.autocomplete;  
-    }    
+    if (this.autocomplete) {
+      this.el.nativeElement.children[0].autocomplete = this.autocomplete;
+    }
   }
 
   ngAfterViewInit() {
     console.log("ngAfterViewInit invoked");
-    if(this.autoFocus){
+    if (this.autoFocus) {
       setTimeout(() => this.el.nativeElement.children[0].focus(), 0);
     }
   }
 
-  onblur(){
+  onblur() {
     (this.control.valueAccessor as DefaultValueAccessor).onTouched();
   }
 
