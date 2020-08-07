@@ -29,7 +29,8 @@ export class OcErrorComponent implements OnInit {
     'appExpiredDateValidator': () => 'Please fill valid current or future date',
     'whiteSpaceValidator': () => 'Please fill valid value',
     'domainValidator': () => 'Please enter a valid domain',
-    'phoneNumberValidator': (params) => params.message
+    'phoneNumberValidator': (params) => params.message,
+    'confirmPassword': () => 'Confirm password does not match to new password'
   };
 
   @Input()
