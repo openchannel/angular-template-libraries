@@ -1,6 +1,6 @@
 <div class="card card-modal">
     <div class="card-body">
-        <div class="row">
+        <div class="row" *ngIf="type === 'newApp'">
             <div class="col-12 text-right mb-3">
                 <a class="cursor-pointer" (click)="dismiss()">
                     <img [src]="closeIconUrl" alt="close-icon">
@@ -21,8 +21,34 @@
                 <span class="font-m text-secondary">{{informationalText}}</span>
             </div>
             <div class="col-md-12">
-                <oc-button [type]="'link'" [text]="cancelButtonText" (click)="cancel();" class="text-center"></oc-button>
+                <oc-button [type]="'link'" [text]="cancelButtonText" (click)="cancel();" class="text-center">
+                </oc-button>
+            </div>
+
+        </div>
+
+        <div class="row" *ngIf="type === 'confirm'">
+            <div class="col-12 text-right mb-3">
+                <a class="cursor-pointer" (click)="dismiss()">
+                    <img [src]="closeIconUrl" alt="close-icon">
+                </a>
+            </div>
+            <div class="col-md-12 text-center">
+                <h1 [innerHTML]="text"></h1>
+            </div>
+
+            <div class="col-md-12 mt-2">
+                <span class="font-m text-secondary">{{informationalText}}</span>
+            </div>
+
+            <div class="col-md-auto my-3" *ngIf="type === 'confirm'">
+                <oc-button [type]="'secondary'" (click)="cancel()" [text]="cancelButtonText">
+                </oc-button>
+                <oc-button [type]="'primary'" [disabled]="inProcess" [process]="inProcess" (click)="confirm()"
+                    [text]="confirmButtonText">
+                </oc-button>
             </div>
         </div>
+
     </div>
 </div>

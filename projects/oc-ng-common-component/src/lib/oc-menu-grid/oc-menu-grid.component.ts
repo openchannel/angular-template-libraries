@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SellerAppsWrapper } from 'oc-ng-common-service'
 
 @Component({
@@ -15,9 +15,20 @@ export class OcMenuGridComponent implements OnInit {
   @Input() editIcon;
   @Input() publishIcon;
 
+  @Output() menuClicked = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  action(menu, app) {
+    let menuItems = {
+      menu: menu,
+      appId: app.appId,
+      version: app.version
+    }
+    this.menuClicked.emit(menuItems);
   }
 
 }
