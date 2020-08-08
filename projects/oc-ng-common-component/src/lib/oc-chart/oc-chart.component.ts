@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, AfterViewInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, AfterViewInit, ViewEncapsulation, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Chart, ChartOptions } from 'chart.js';
 
 
@@ -41,6 +41,10 @@ export class OcChartComponent implements AfterViewInit {
     }
     this.context = this.myCanvas.nativeElement.getContext('2d');
     this.getChart();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.ngAfterViewInit();    
   }
 
   getChart() {
