@@ -63,7 +63,8 @@ const app1 = {
     }
   };
 
-  const app2 = {
+
+  const app3 = {
       "allow": {
         
       },
@@ -117,15 +118,74 @@ const app1 = {
         "value": "inDevelopment"
       }
     };
+
+    const app2 = {
+        "allow": {
+          
+        },
+        "parent": {
+          
+        },
+        "isLatestVersion": true,
+        "access": [
+          
+        ],
+        "created": 1596121825148,
+        "customData": {
+          "summary": "",
+          "website-url": null,
+          "product-images": null,
+          "icon": "//d3grfap2l5ikgv.cloudfront.net/5f20f7ff579d1a20c527d847/public/5f255ab1ec4ad046ff9edaa2.png",
+          "category": [
+            "Cat1"
+          ],
+          "video-url": null
+        },
+        "type": "default",
+        "restrict": {
+          
+        },
+        "version": 1,
+        "prettyStatus": "In Development",
+        "lastUpdated": 1596283571928,
+        "isLive": false,
+        "developerId": "3dcfdd48ed6b4f9d8b6a3e23deb36249",
+        "appId": "5f22e2e1ec4ad046ff9e5968",
+        "name": "SecondApp",
+        "attributes": {
+          
+        },
+        "model": [
+          {
+            "license": "single",
+            "modelId": "5f22e2e1ec4ad046ff9e5967",
+            "price": 0,
+            "currency": "USD",
+            "type": "free",
+            "trial": 0
+          }
+        ],
+        "safeName": [
+          "secondapp"
+        ],
+        "status": {
+          "lastUpdated": 1596121825153,
+          "value": "inDevelopment"
+        }
+      };
+
+
     sellerAppsWrapper.list = [];
-    sellerAppsWrapper.list = [app1,app2];
+    sellerAppsWrapper.list = [app1,app2, app3];
 
 storiesOf('App Data Grid', module)
     .addDecorator(withA11y)
     .add('App grid', () => ({
         component: OcMenuGridComponent,
         props: {
-            appList: sellerAppsWrapper
+            appList: sellerAppsWrapper,
+            menuUrl: "http://localhost:4200/assets/img/dots-hr-icon.svg",
+            sortIcon: "http://localhost:4200/assets/img/dropdown-icon.svg"
         },
         moduleMetadata: modules
     }));
