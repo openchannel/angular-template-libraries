@@ -2,17 +2,14 @@
     <thead>
         <tr>
             <th>App Name
-                <img [src]="sortIcon"
-                    class="icon-down" alt="icon">
+                <img [src]="sortIcon" class="icon-down" alt="icon">
             </th>
             <th class="summary">Summary</th>
             <th class="data">Data Added
-                <img [src]="sortIcon"
-                    class="icon-down" alt="icon">
+                <img [src]="sortIcon" class="icon-down" alt="icon">
             </th>
             <th class="status">Status
-                <img [src]="sortIcon"
-                    class="icon-down" alt="icon">
+                <img [src]="sortIcon" class="icon-down" alt="icon">
             </th>
             <th> </th>
         </tr>
@@ -31,7 +28,8 @@
                 </div>
             </td>
             <td>
-                <span [innerHTML]="(app.customData && app.customData.summary) ? (app.customData.summary | safehtml) : ''"></span>
+                <span
+                    [innerHTML]="(app.customData && app.customData.summary) ? (app.customData.summary | safehtml) : ''"></span>
             </td>
             <td>
                 <span>{{app.created | date:'M/d/yyyy'}}</span>
@@ -40,8 +38,31 @@
                 <span class="font-med text-primary">{{app.prettyStatus}}</span>
             </td>
             <td>
-                <img [src]="menuUrl"
-                    class="icon-dots" alt="more-icon">
+                <div class="text-right ellipsis cursor-pointer">
+                    <div ngbDropdown placement="bottom-right">
+                        <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
+                        <div ngbDropdownMenu>
+                            <div *ngIf="app.prettyStatus === 'Approved'"> <img [src]="editIcon"> <button
+                                    ngbDropdownItem>
+                                    Suspend
+                                </button>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                            <div> <img [src]="publishIcon"> <button ngbDropdownItem>
+                                    Publish
+                                </button>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                            <img [src]="editIcon"><button ngbDropdownItem>
+                                Edit
+                            </button>
+                            <div class="dropdown-divider"></div>
+                            <img [src]="editIcon"> <button ngbDropdownItem>
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </td>
         </tr>
         <tr *ngIf="!appList || appList.list.length == 0">
