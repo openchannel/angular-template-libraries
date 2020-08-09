@@ -46,7 +46,8 @@ import { OcFileUploadComponent } from './oc-file-upload/oc-file-upload.component
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { OcAppCategorySelectComponent } from './oc-app-category-select/oc-app-category-select.component';
 import { OcPopupComponent } from './oc-popup/oc-popup.component';
-import { SafehtmlPipe } from './safehtml.pipe';
+import { SafehtmlPipe } from './pipe/safehtml.pipe';
+import { RemoveHtmlTagsPipe} from "./pipe/remove-html-tags.pipe"
 import { CompareDirective } from './validators/compare-passsword-validator.directive';
 import { OcAppStatusDetailsComponent } from './oc-app-status-details/oc-app-status-details.component';
 
@@ -93,6 +94,7 @@ import { OcAppStatusDetailsComponent } from './oc-app-status-details/oc-app-stat
     OcAppCategorySelectComponent,
     OcPopupComponent,
     SafehtmlPipe,
+    RemoveHtmlTagsPipe,
     CompareDirective,
     OcAppStatusDetailsComponent
   ],

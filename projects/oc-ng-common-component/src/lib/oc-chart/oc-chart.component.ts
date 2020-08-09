@@ -132,6 +132,8 @@ export class OcChartComponent implements AfterViewInit {
             },
             ticks: {
               autoSkip: false,
+              padding: 24,
+              fontColor: '#727272',
               // maxRotation: 30,
               // minRotation: 30,
               callback(value: any, index, values) {     
@@ -144,11 +146,15 @@ export class OcChartComponent implements AfterViewInit {
           }],
           yAxes: [{
             gridLines: {
-              drawBorder: false,
+              drawBorder: false,              
+              color: 'rgba(201, 213, 234, 0.4)',
+              zeroLineColor: 'rgba(201, 213, 234, 0.4)'
             },
             ticks: {
               min: 0,
+              padding: 20,
               beginAtZero: true,
+              fontColor: '#727272',
               callback(value: any, index, values) {
                 if (value > 999) {
                   const val = (value / 1000) + 'k';
