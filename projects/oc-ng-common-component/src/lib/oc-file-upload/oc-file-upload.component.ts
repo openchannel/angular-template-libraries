@@ -41,6 +41,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   @Input() iconMsg;
   @Output() iconMsgChange = new EventEmitter<boolean>();
 
+
   /////////////////Image
   isImageCropped = false;
   croppedImage: any = '';
@@ -369,11 +370,11 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
 
   }
 
-  getUrl(progressVal) {
-    if (progressVal === 100) {
-      return this.completeIconUrl;
+  getUrl(file) {
+    if (file.fileUploadProgress === 100) {
+      return file.fileUrl;
     } else {
-      return this.uploadingIconUrl;
+      return this.defaultFileIcon;
     }
   }
 

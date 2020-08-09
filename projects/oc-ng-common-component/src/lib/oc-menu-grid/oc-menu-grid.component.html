@@ -105,7 +105,7 @@
                 <span> No Applications Found</span>
             </td>
         </tr>
-        <tr>
+        <tr *ngIf="appList?.list.length > 0">
             <td colspan="5" class="text-center pb-5">
                 <span></span>
             </td>

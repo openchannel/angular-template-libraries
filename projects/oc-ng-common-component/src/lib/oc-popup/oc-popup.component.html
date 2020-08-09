@@ -10,7 +10,7 @@
                 <h1 [innerHTML]="text"></h1>
             </div>
             <div class="col-md-12 my-3">
-                <oc-button [type]="'primary'" (click)="confirm()" [text]="confirmButtonText"></oc-button>
+                <oc-button [type]="'primary'" (click)="confirm()" [text]="confirmButtonText" [process]="inProcess" [disabled]="inProcess"></oc-button>
             </div>
             <div class="col-md sec-divider ml-8"></div>
             <div class="col-md-auto">
@@ -21,7 +21,7 @@
                 <span class="font-m text-secondary">{{informationalText}}</span>
             </div>
             <div class="col-md-12">
-                <oc-button [type]="'link'" [text]="cancelButtonText" (click)="cancel();" class="text-center">
+                <oc-button [type]="'link'" [text]="cancelButtonText" (click)="cancel();" [class]="'text-center'">
                 </oc-button>
             </div>
 
