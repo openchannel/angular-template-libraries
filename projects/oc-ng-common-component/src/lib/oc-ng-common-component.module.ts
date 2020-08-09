@@ -49,6 +49,7 @@ import { SafehtmlPipe } from './pipe/safehtml.pipe';
 import { RemoveHtmlTagsPipe} from "./pipe/remove-html-tags.pipe"
 import { CompareDirective } from './validators/compare-passsword-validator.directive';
 import { OcAppStatusDetailsComponent } from './oc-app-status-details/oc-app-status-details.component';
+import { OcErrorService } from './oc-error/oc-error-service';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
