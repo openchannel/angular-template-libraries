@@ -21,10 +21,14 @@ export class OcPopupComponent implements OnInit {
   closeCallBack: any;
 
   @Input() closeIconUrl;
+  @Input() type;
+
+  @Input() isProcess;
 
   constructor(public dailog: NgbModal) { }
 
   ngOnInit(): void {
+    console.log(this.type);
   }
 
   dismiss() {
@@ -40,7 +44,7 @@ export class OcPopupComponent implements OnInit {
   confirm() {
     this.inProcess = true;
     this.confirmCallback('confirm');
-    
+
   }
 
 

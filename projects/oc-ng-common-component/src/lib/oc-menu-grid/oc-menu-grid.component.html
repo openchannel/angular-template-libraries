@@ -43,21 +43,21 @@
                         <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
                         <div ngbDropdownMenu>
                             <div *ngIf="app.prettyStatus === 'Approved'"> <img [src]="editIcon"> <button
-                                    ngbDropdownItem>
+                                    (click)="action('suspend' , app)" ngbDropdownItem>
                                     Suspend
                                 </button>
                                 <div class="dropdown-divider"></div>
                             </div>
-                            <div> <img [src]="publishIcon"> <button ngbDropdownItem>
+                            <div> <img [src]="publishIcon"> <button (click)="action('publish' , app)" ngbDropdownItem>
                                     Publish
                                 </button>
                                 <div class="dropdown-divider"></div>
                             </div>
-                            <img [src]="editIcon"><button ngbDropdownItem>
+                            <img [src]="editIcon"><button (click)="action('edit' , app)" ngbDropdownItem>
                                 Edit
                             </button>
                             <div class="dropdown-divider"></div>
-                            <img [src]="editIcon"> <button ngbDropdownItem>
+                            <img [src]="editIcon"> <button (click)="action('delete' , app)" ngbDropdownItem>
                                 Delete
                             </button>
                         </div>
