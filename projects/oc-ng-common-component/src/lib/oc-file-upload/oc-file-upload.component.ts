@@ -95,6 +95,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
     private uploadFileService: FileUploadDownloadService) { }
 
   ngOnInit(): void {
+    console.log("component.ocFileUpload.ts : "+this.fileDetailArr);
   }
 
 
@@ -118,7 +119,10 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   uploadFile(file) {
     this.isUploadInProcess = true;
     let lastFileDetail = new FileDetails();
-    lastFileDetail.fileName = this.fileName;
+    lastFileDetail.name = this.fileName;
+    if(!this.fileDetailArr){
+      this.fileDetailArr=[];
+    }
     this.fileDetailArr.push(lastFileDetail);
     // this.fileUpload.emit(files);
     let formData: FormData = new FormData();
@@ -164,7 +168,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
     let fileDetails = new FileDetails();
     fileDetails.uploadDate = fileUploadRes.body.uploadDate;
     fileDetails.fileId = fileUploadRes.body.fileId;
-    fileDetails.fileName = fileUploadRes.body.name;
+    fileDetails.name = fileUploadRes.body.name;
     fileDetails.contentType = fileUploadRes.body.contentType;
     fileDetails.size = fileUploadRes.body.size;
     fileDetails.isPrivate = fileUploadRes.body.isPrivate;
@@ -263,7 +267,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
     }
     this.imageLoadErrorMessage = '';
     this.hasImageLoadError = false;
-    if (this.fileDetailArr.length < 1) {
+    if (this.fileDetailArr && this.fileDetailArr.length < 1) {
       this.customMsg = true;
       this.customMsgChange.emit(this.customMsg);
     }
@@ -370,7 +374,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   }
 
   getUrl(progressVal) {
-    if (progressVal === 100) {
+    if (!progressVal || progressVal === 100) {
       return this.completeIconUrl;
     } else {
       return this.uploadingIconUrl;

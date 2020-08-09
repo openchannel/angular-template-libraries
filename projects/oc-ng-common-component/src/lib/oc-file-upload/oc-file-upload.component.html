@@ -31,21 +31,21 @@
     </div>
 
     <div class="row" *ngFor="let file of fileDetailArr; let i = index" >
-      <div class="col-md-auto pr-0">
+      <div class="col-md-auto pr-0" *ngIf="file">
         <img [src]="getUrl(file.fileUploadProgress)" alt="app-icon">
       </div>
-      <div class="col-md-auto ml-n1">
-        <span class="font-med font-m d-block">{{file.fileName}}</span>
+      <div class="col-md-auto ml-n1" *ngIf="file">
+        <span class="font-med font-m d-block">{{file.name}}</span>
         <span class="text-secondary font-s">{{file.fileUploadProgress===100 ? "Complete" : "Uploading"}}</span>
       </div>
-      <div class="col-md text-right pt-3">
+      <div class="col-md text-right pt-3" *ngIf="file">
         <a (click)="cancelUploading(i)" class="cursor-pointer">
           <img src="assets/img/close-icon.svg"
           alt="close-icon">
         </a>
       </div>
-      <div class="col-12 pt-2 mb-2">
-        <ngb-progressbar class="file-upload-progress" type="primary" *ngIf="file?.fileUploadProgress < 100" [value]="file?.fileUploadProgress">
+      <div class="col-12 pt-2 mb-2" *ngIf="file">
+        <ngb-progressbar class="file-upload-progress" type="primary" *ngIf="file?.fileUploadProgress &lt; 100" [value]="file?.fileUploadProgress">
         </ngb-progressbar>
       </div>
       <!-- <div class="single-file" *ngFor="let file of files; let i = index">
@@ -54,7 +54,7 @@
         </div>
         <div class="info">
           <h4 class="name">
-            {{ file?.fileName }}
+            {{ file?.name }}
           </h4>
           <oc-label text="{{file?.fileUploadProgress < 100 ? 'Uploading' : 'Complete'}}" class="label-s"></oc-label>
           <p class="size">

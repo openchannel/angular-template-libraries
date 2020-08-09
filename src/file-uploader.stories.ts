@@ -10,20 +10,20 @@ const modules = {
 };
 
 const file1 = new FileDetails()
-file1.fileName = 'Product_image.png';
+file1.name = 'Product_image.png';
 file1.fileUploadProgress=0;
 
 
 const file2 = new FileDetails();
-file2.fileName = 'Product_image.png';
+file2.name = 'Product_image.png';
 file2.fileUploadProgress=50;
 
 const file3 = new FileDetails();
-file3.fileName = 'Product_side_image.png';
+file3.name = 'Product_side_image.png';
 file3.fileUploadProgress=75;
 
 const file4 = new FileDetails();
-file4.fileName = "Product_backside_image.png";
+file4.name = "Product_backside_image.png";
 file4.fileUploadProgress=100;
 file4.fileIconUrl="https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png"
 file4.fileUrl="https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png";
