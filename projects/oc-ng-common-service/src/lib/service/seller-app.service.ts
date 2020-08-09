@@ -22,5 +22,9 @@ export class SellerAppService {
 
   getApps(): Observable<any> {
     return this.httpRequest.get(this.url, 'true');
-}
+  }
+
+  getAppById(appId,loader?): Observable<any>{
+    return this.httpRequest.get(this.url+"/by-id/"+appId,loader);
+  }
 }
