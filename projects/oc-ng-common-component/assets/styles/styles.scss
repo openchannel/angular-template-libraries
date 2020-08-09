@@ -266,8 +266,19 @@ oc-input, oc-password, oc-app-category-select{
 /** input password **/
 /** input radio **/
 
+.custom-radio .custom-control-input ~ .custom-control-label{
+  font-size: 14px;
+  line-height: 28px;
+  padding-left:4px;
+}
+
+.custom-radio .custom-control-input ~ .custom-control-label::after,
+.custom-radio .custom-control-input ~ .custom-control-label::before {
+  top: 0.35rem;
+}
+
 .custom-radio .custom-control-input:checked ~ .custom-control-label::after {
-  background-image: url("~oc-ng-common-component/assets/img/radio.svg");
+  background-image: url("/assets/img/radio.svg");
 }
 .custom-control-input:checked ~ .custom-control-label::before {
     color: #fff;
