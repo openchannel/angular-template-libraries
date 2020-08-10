@@ -63,7 +63,7 @@
         <div class="card-body">
             <div class="text-center">
                 <!-- <img class="img-fluid mb-4" src="{{companyLogoUrl}}" alt="logo" /> -->
-                <img class="img-fluid mb-4"
+                <img class="img-fluid mb-4 company-logo"
                     src="{{companyLogoUrl}}"
                     alt="logo">
             </div>
@@ -71,10 +71,10 @@
                 <img src="{{forgotPasswordDoneUrl}}"
                 class="mb-3" alt="dropdown-icon">
                 <h4>Done!</h4>
-                <oc-label [text]="'A link has been sent to your inbox.'" ></oc-label>
+                <oc-label [text]="'An activation link has been sent to your inbox.'" ></oc-label>
             </div>
-            <oc-button [text]="getValue('Go back to Log In')" [disabled]="false"
-                [type]="getValue('primary')" class="btn-block my-5">
+            <oc-button [text]="getValue('Activate')" [disabled]="false"
+                [type]="getValue('primary')" class="btn-block my-5" (click)="goToActivationPage()">
             </oc-button>
             <div class="text-center">
                 <oc-label [text]="getValue(' Dont have an account yet? ')"></oc-label>
