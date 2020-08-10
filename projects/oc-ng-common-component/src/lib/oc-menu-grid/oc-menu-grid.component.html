@@ -15,88 +15,118 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let app of appList.list">
-            <td>
-                <div class="row">
-                    <div class="col-md-auto">
-                        <img class="app-icon" [src]="app.customData.icon" alt="">
-                    </div>
-                    <div class="col-md pl-0">
-                        <h6 class="mb-0">{{app.name}} </h6>
-                        <small>v {{app.version}}</small>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <span>
-                    {{app.customData && app.customData.summary ? (app.customData.summary | removeHtmlTags) : '' }}</span>
-            </td>
-            <td>
-                <span>{{app.created | date:'M/d/yyyy'}}</span>
-            </td>
-            <td>
-                <span class="font-med text-primary">{{app.prettyStatus}}</span>
-            </td>
-            <td>
-                <div class="text-right ellipsis cursor-pointer mr-5">
-                    <div ngbDropdown placement="bottom-right">
-                        <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
-                        <div ngbDropdownMenu>
-                            <div *ngIf="app.prettyStatus === 'Approved'"> <img [src]="editIcon"> <button
-                                    (click)="action('suspend' , app)" ngbDropdownItem>
-                                    Suspend
-                                </button>
-                            </div>
-                            <div> <button (click)="action('publish' , app)" ngbDropdownItem>
-                                    <img [src]="publishIcon" class="pr-1">Publish
-                                </button>
-                            </div>
-                            <button (click)="action('edit' , app)" ngbDropdownItem>
-                                <img [src]="editIcon" class="pr-1"> Edit
-                            </button>
-                            <button (click)="action('delete' , app)" ngbDropdownItem>
-                                <img [src]="editIcon" class="pr-1"> Delete
-                            </button>
+        <ng-template ngFor let-app [ngForOf]="appList.list">
+            <tr>
+                <td>
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <img class="app-icon" [src]="app.customData.icon" alt="">
+                        </div>
+                        <div class="col-md pl-0">
+                            <h6 class="mb-0">{{app.name}} </h6>
+                            <small>v {{app.version}}</small>
                         </div>
                     </div>
-                </div>
-            </td>
-        </tr>
-        <!-- TO BE UNCOMMENTED TO IMPLIMENT APP VERSIONS 
-        
-            <tr>
-            <td>
-                <div class="row">
-                    <div class="col-md-auto">
-                        <img src="https://drive.google.com/u/0/uc?id=1TApj85rZBbl-lOaWyekF--MGsEpXaTBK&export=downloa"
-                            class="px-3" alt="icon">
-                        <img src="http://d3grfap2l5ikgv.cloudfront.net/5f20f7ff579d1a20c527d847/public/5f255ab1ec4ad046ff9edaa2.png"
-                            class="app-icon" alt="">
+                </td>
+                <td>
+                    <span>
+                        {{app.customData && app.customData.summary ? (app.customData.summary | removeHtmlTags) : '' }}</span>
+                </td>
+                <td>
+                    <span>{{app.created | date:'M/d/yyyy'}}</span>
+                </td>
+                <td>
+                    <span class="font-med text-primary">{{app.prettyStatus}}</span>
+                </td>
+                <td>
+                    <div class="text-right ellipsis cursor-pointer mr-5">
+                        <div ngbDropdown placement="bottom-right">
+                            <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
+                            <div ngbDropdownMenu>
+                                <div *ngIf="app.prettyStatus === 'Approved'">
+                                    <button (click)="action('suspend' , app)" ngbDropdownItem>
+                                        <img [src]="editIcon" class="pr-1"> Suspend
+                                    </button>
+                                </div>
+                                <div *ngIf="app.prettyStatus != 'Approved' && app.prettyStatus != 'Suspended'"> <button
+                                        (click)="action('publish' , app)" ngbDropdownItem>
+                                        <img [src]="publishIcon" class="pr-1">Publish
+                                    </button>
+                                </div>
+                                <button (click)="action('edit' , app)" ngbDropdownItem>
+                                    <img [src]="editIcon" class="pr-1"> Edit
+                                </button>
+                                <button (click)="action('delete' , app)" ngbDropdownItem>
+                                    <img [src]="editIcon" class="pr-1"> Delete
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md pl-0">
-                        <h6 class="mb-0">App name</h6>
-                        <small>v 2.0.0</small>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <span>
-                    With this Application you can collaborate with teammates at any time
-                </span>
-            </td>
-            <td>
-                <span>4/15/2020</span>
-            </td>
-            <td>
-                <span class="font-med text-primary">Draft</span>
-            </td>
-            <td>
-                <img src="http://localhost:4200/assets/img/dots-hr-icon.svg" class="icon-dots" alt="icon">
-            </td>
-        </tr>
-        
-        TO BE UNCOMMENTED TO IMPLIMENT APP VERSIONS -->
+                    <div></div>
 
+
+                </td>
+
+                <!-- <div *ngIf="app.childs && app.childs.length > 0">
+      
+        </div> -->
+            </tr>
+            <tr *ngFor="let child of app.childs">
+                <td>
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <img src="https://drive.google.com/u/0/uc?id=1TApj85rZBbl-lOaWyekF--MGsEpXaTBK&export=downloa"
+                                class="px-3" alt="icon">
+                            <img [src]="child.customData.icon" alt="" class="app-icon" alt="">
+                        </div>
+                        <div class="col-md pl-0">
+                            <h6 class="mb-0">{{child.name}} </h6>
+                            <small>v {{child.version}}</small>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <span>
+                        {{child.customData && child.customData.summary ? (child.customData.summary | removeHtmlTags) : '' }}
+                    </span>
+                </td>
+                <td>
+                    <span>{{child.created | date:'M/d/yyyy'}}</span>
+                </td>
+                <td>
+                    <span class="font-med text-primary"> <span
+                            class="font-med text-primary">{{child.prettyStatus}}</span>
+                    </span>
+                </td>
+                <td>
+                    <div class="text-right ellipsis cursor-pointer mr-5">
+                        <div ngbDropdown placement="bottom-right">
+                            <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
+                            <div ngbDropdownMenu>
+                                <div *ngIf="child.prettyStatus === 'Approved'">
+
+                                    <button (click)="action('suspend' , child)" ngbDropdownItem>
+                                        <img [src]="editIcon" class="pr-1">Suspend
+                                    </button>
+                                </div>
+                                <div
+                                    *ngIf="child.prettyStatus != 'Approved' && child.prettyStatus != 'Suspended' && app.prettyStatus != 'Suspended'">
+                                    <button (click)="action('publish' , child)" ngbDropdownItem>
+                                        <img [src]="publishIcon" class="pr-1">Publish
+                                    </button>
+                                </div>
+                                <button (click)="action('edit' , child)" ngbDropdownItem>
+                                    <img [src]="editIcon" class="pr-1"> Edit
+                                </button>
+                                <button (click)="action('delete' , child)" ngbDropdownItem>
+                                    <img [src]="editIcon" class="pr-1"> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
         <tr *ngIf="!appList || appList.list.length == 0">
             <td colspan="5" class="text-center">
                 <span> No Applications Found</span>
