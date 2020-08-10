@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SellerSignin } from '../model/seller-signin';
 import { SellerService } from './seller.service';
-import { Router } from '@angular/router';
 
 
 
@@ -10,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
-  constructor(private sellerService: SellerService,private router : Router) { }
+  constructor(private sellerService: SellerService) { }
 
   saveUserAfterLoginSuccess(res,signin:SellerSignin){
     localStorage.setItem("access_token",res.access_token);
@@ -24,13 +23,20 @@ export class AuthenticationService {
     /**
     * This method is responsible for save user profile information. 
     */
-   saveUserprofileInformation(){
+   saveUserprofileInformation(successCallback?,errorCallback?){
     this.sellerService.getUserProfileDetails().subscribe(res => {
         if (res) {
           localStorage.setItem("email",res.email);
         }
-        this.router.navigateByUrl("/app-developer");
+        if(successCallback){
+          successCallback();
+        }            
+    },
+    res => {
+      if(errorCallback){
+        errorCallback();        
+      }
     });
- }
+  }
 
 }
