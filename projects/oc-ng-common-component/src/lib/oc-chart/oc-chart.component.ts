@@ -39,8 +39,10 @@ export class OcChartComponent implements AfterViewInit {
     if (typeof this.chart !== 'undefined') {
       this.chart.destroy();
     }
-    this.context = this.myCanvas.nativeElement.getContext('2d');
-    this.getChart();
+    if(this.myCanvas){
+      this.context = this.myCanvas.nativeElement.getContext('2d');
+      this.getChart();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
