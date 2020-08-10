@@ -23,7 +23,9 @@ export class AuthenticationService {
     /**
     * This method is responsible for save user profile information. 
     */
+
    saveUserprofileInformation(successCallback?,errorCallback?){
+
     this.sellerService.getUserProfileDetails().subscribe(res => {
         if (res) {
           localStorage.setItem("email",res.email);
@@ -38,5 +40,4 @@ export class AuthenticationService {
       }
     });
   }
-
 }

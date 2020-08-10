@@ -34,4 +34,12 @@ export class SellerService {
   getUserProfileDetails(): Observable<any> {
     return this.httpRequest.get(this.url+'/profile');
   }
+
+  /**
+   * This method is responsible for submit seller activation form.
+   * @param activationModel 
+   */ 
+  emailVerification(activationModel:any): Observable<any>  {
+    return this.httpRequest.post(this.url + '/verify-email', activationModel);
+  }
 }
