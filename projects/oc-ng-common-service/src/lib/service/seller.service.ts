@@ -42,4 +42,12 @@ export class SellerService {
   changePassword(reqBody:any, loader? :string):Observable<any>{
     return this.httpRequest.post(this.url+'/change-password',reqBody,loader);
   }
+
+  /**
+   * This method is responsible for submit seller activation form.
+   * @param activationModel 
+   */ 
+  emailVerification(activationModel:any): Observable<any>  {
+    return this.httpRequest.post(this.url + '/verify-email', activationModel);
+  }
 }
