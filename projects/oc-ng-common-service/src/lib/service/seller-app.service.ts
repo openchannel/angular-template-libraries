@@ -7,17 +7,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SellerAppService {
-  
+
   private url = 'api/v1/apps';
 
   constructor(private httpRequest: HttpRequestService) { }
 
-  saveApplication(appDetails: SellerAppDetailsModel){
+  saveApplication(appDetails: SellerAppDetailsModel) {
     return this.httpRequest.post(this.url, appDetails);
   }
 
-  submitApplication(appDetails: SellerAppDetailsModel){
-    return this.httpRequest.post(this.url+"/submit", appDetails);
+  submitApplication(appDetails: SellerAppDetailsModel) {
+    return this.httpRequest.post(this.url + "/submit", appDetails);
   }
 
   getApps(): Observable<any> {
@@ -26,5 +26,17 @@ export class SellerAppService {
 
   getAppById(appId,loader?): Observable<any>{
     return this.httpRequest.get(this.url+"/by-id/"+appId,loader);
+  }
+  
+  deleteApp(appId): Observable<any> {
+    return this.httpRequest.delete(this.url + '/' + appId);
+  }
+
+  publishApp(obj): Observable<any> {
+    return this.httpRequest.post(this.url + '/publish', obj);
+  }
+
+  suspendApp(obj): Observable<any> {
+    return this.httpRequest.post(this.url + '/suspend', obj);
   }
 }

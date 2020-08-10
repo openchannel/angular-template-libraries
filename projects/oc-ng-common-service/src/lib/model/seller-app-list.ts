@@ -1,4 +1,4 @@
 export class SellerAppsWrapper {
     menus: string[];
-    list: [];
+    list: any[];
 }
