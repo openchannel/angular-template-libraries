@@ -32,5 +32,15 @@ export class OcLoginComponent implements OnInit {
     this.submit.emit(true);
   }
 
+  onchange(form){
+    //console.log("This is test");
+    if(form.form.controls.email.errors && form.form.controls.email.errors.serverErrorValidator){
+      form.form.controls.email.setErrors(null);
+    }
+    if(form.form.controls.password.errors && form.form.controls.password.errors.serverErrorValidator){
+      form.form.controls.password.setErrors(null);
+    }
+    //form.form.controls.email.errors = {};
+  }
 }
 

@@ -53,11 +53,13 @@ export class OcErrorComponent implements OnInit {
     if (this.errorService.serverErrorList && this.errorService.serverErrorList.length && typeof this.errorService.serverErrorList == 'object') {
       const error = this.errorService.serverErrorList.find(message => message.field === this.field)        
       if(error){
-        // clear error from service as we have fetched it
-        this.errorService.clearError(error);
-        // create error validation object an pass it to control
-        const errors = { 'serverErrorValidator': error };
-        setTimeout(() => (this.control as NgModel).control.setErrors(errors));              
+        setTimeout(() => {
+            // clear error from service as we have fetched it
+            this.errorService.clearError(error);
+            // create error validation object an pass it to control
+            const errors = { 'serverErrorValidator': error };
+            (this.control as NgModel).control.setErrors(errors);
+        });              
         return true;             
       }        
     }
@@ -66,6 +68,10 @@ export class OcErrorComponent implements OnInit {
   }
 
   listOfErrors(): string[] {
+    if(!this.control.errors){
+      return [];
+    }
+    
     return Object.keys(this.control.errors)
       .map(field => this.getMessage(field, this.control.errors[field]));
   }
