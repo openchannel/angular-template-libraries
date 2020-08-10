@@ -18,13 +18,13 @@
                 <oc-label [text]="getValue('Name')"></oc-label>
                 <oc-input whiteSpaceValidator [(modelName)]="signupModel.uname" name="uname" #uname=ngModel
                 [ngModel]="signupModel.uname" ngDefaultControl required="true" [autoFocus]="true" [placeholder]="'Name'" [autocomplete]="'off'"></oc-input>
-            <oc-error [control]="uname"> </oc-error>
+            <oc-error [control]="uname" [field]="'developerAccount.name'"> </oc-error>
             </div>
             <div class="form-group">
                 <oc-label [text]="getValue('Company')"></oc-label>
                 <oc-input whiteSpaceValidator [(modelName)]="signupModel.company" name="company" #company=ngModel
                 [ngModel]="signupModel.company" ngDefaultControl required="true" [placeholder]="'Company'" [autocomplete]="'off'"></oc-input>
-                <oc-error [control]="company"> </oc-error>
+                <oc-error [control]="company" [field]="'developer.name'"> </oc-error>
             </div>
             <div class="form-group">
                 <oc-label [text]="getValue('Email')"></oc-label>
@@ -36,7 +36,7 @@
                 <oc-label [text]="getValue('Password')"></oc-label>
                 <oc-password [(modelName)]="signupModel.password" class="mb-2" name="password" #password=ngModel
                 [ngModel]="signupModel.password" ngDefaultControl required="true" [placeholder]="'Password'" [autocomplete]="'off'"></oc-password>
-                <oc-error [control]="password"> </oc-error>
+                <oc-error [control]="password" [field]="'extra.password'"> </oc-error>
             </div>
             <div class="form-group">
                 <oc-checkbox [(isChecked)]="signupModel.isChecked"></oc-checkbox>
