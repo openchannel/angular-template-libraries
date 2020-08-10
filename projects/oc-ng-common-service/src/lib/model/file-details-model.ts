@@ -1,7 +1,7 @@
 export class FileDetails{
     fileId: string;
     fileUrl: string;
-    fileName: string;
+    name: string;
     size: number;
     uploadDate: number;
     fileUploadProgress: number;
