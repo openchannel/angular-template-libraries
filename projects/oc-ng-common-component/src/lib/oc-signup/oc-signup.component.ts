@@ -12,11 +12,14 @@ export class OcSignupComponent implements OnInit {
 
   @Input() signupModel = new SellerSignup();
   @Input() loginUrl;
+  @Input() signupUrl;
   @Input() termsUrl;
   @Input() policyUrl;
   @Input() companyLogoUrl;
   @Input() process;
-
+  @Input() forgotPasswordDoneUrl;
+  @Input() showSignupFeedbackPage;
+ 
   @Output() submit = new EventEmitter<any>();
 
   constructor() { }
