@@ -186,6 +186,13 @@ h6 {
     }
   }
 }
+.file-upload-progress[type="primary"]{
+  .progress {
+    height: 4px;
+    background-color: #c9d5ea;
+  }
+}
+
 .file-upload-progress {
   .progress {
     height: 1px;
@@ -266,8 +273,19 @@ oc-input, oc-password, oc-app-category-select{
 /** input password **/
 /** input radio **/
 
+.custom-radio .custom-control-input ~ .custom-control-label{
+  font-size: 14px;
+  line-height: 28px;
+  padding-left:4px;
+}
+
+.custom-radio .custom-control-input ~ .custom-control-label::after,
+.custom-radio .custom-control-input ~ .custom-control-label::before {
+  top: 0.35rem;
+}
+
 .custom-radio .custom-control-input:checked ~ .custom-control-label::after {
-  background-image: url("~oc-ng-common-component/assets/img/radio.svg");
+  background-image: url("/assets/img/radio.svg");
 }
 .custom-control-input:checked ~ .custom-control-label::before {
     color: #fff;
@@ -276,3 +294,17 @@ oc-input, oc-password, oc-app-category-select{
 }
 /** input radio **/
 
+/** input select **/
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Some browsers will not display the caret when using calc, so we put the fallback first */ 
+  background: url(~oc-ng-common-component/assets/img/dropdown-icon.svg) white no-repeat 98.5%; /* !important used for overriding all other customisations */
+  background: url(~oc-ng-common-component/assets/img/dropdown-icon.svg) white no-repeat calc(100% - 16px); /* Better placement regardless of input width */
+}
+/*For IE*/
+select::-ms-expand { display: none; }
+
+/** input select **/

@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { AbstractControlDirective, AbstractControl } from '@angular/forms';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { AbstractControlDirective, AbstractControl, NgModel } from '@angular/forms';
+import { OcErrorService } from './oc-error-service';
 
 @Component({
   selector: 'oc-error',
@@ -8,7 +9,7 @@ import { AbstractControlDirective, AbstractControl } from '@angular/forms';
 })
 export class OcErrorComponent implements OnInit {
 
-  constructor() { }
+  constructor(public errorService: OcErrorService) { }
 
   ngOnInit(): void {
   }
@@ -30,16 +31,38 @@ export class OcErrorComponent implements OnInit {
     'whiteSpaceValidator': () => 'Please fill valid value',
     'domainValidator': () => 'Please enter a valid domain',
     'phoneNumberValidator': (params) => params.message,
-    'confirmPassword': () => 'Confirm password does not match to new password'
+    'confirmPassword': () => 'Confirm password does not match to new password',
+    'serverErrorValidator': (params) => params.message
   };
 
   @Input()
-  private control: AbstractControlDirective | AbstractControl;
+  private control: AbstractControlDirective | AbstractControl | NgModel;
+
+  // server error field name
+  @Input() 
+  private field: String;
 
   shouldShowErrors(): boolean {
-    return this.control &&
-      this.control.errors &&
-      (this.control.dirty || this.control.touched);
+
+    //client side error validators check
+    if(this.control && this.control.errors && (this.control.dirty || this.control.touched)){
+      return true;
+    }
+    
+    //server side error validators check
+    if (this.errorService.serverErrorList && this.errorService.serverErrorList.length && typeof this.errorService.serverErrorList == 'object') {
+      const error = this.errorService.serverErrorList.find(message => message.field === this.field)        
+      if(error){
+        // clear error from service as we have fetched it
+        this.errorService.clearError(error);
+        // create error validation object an pass it to control
+        const errors = { 'serverErrorValidator': error };
+        setTimeout(() => (this.control as NgModel).control.setErrors(errors));              
+        return true;             
+      }        
+    }
+    // no error
+    return false;
   }
 
   listOfErrors(): string[] {

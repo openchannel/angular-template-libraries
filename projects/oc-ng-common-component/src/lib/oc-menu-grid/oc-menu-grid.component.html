@@ -1,20 +1,17 @@
 <table class="table">
     <thead>
         <tr>
-            <th>App Name
-                <img [src]="sortIcon"
-                    class="icon-down" alt="icon">
+            <th width="35%">App Name
+                <img [src]="sortIcon" class="icon-down" alt="icon">
             </th>
-            <th class="summary">Summary</th>
-            <th class="data">Data Added
-                <img [src]="sortIcon"
-                    class="icon-down" alt="icon">
+            <th width="40%" class="summary">Summary</th>
+            <th width="10%" class="data">Data Added
+                <img [src]="sortIcon" class="icon-down" alt="icon">
             </th>
-            <th class="status">Status
-                <img [src]="sortIcon"
-                    class="icon-down" alt="icon">
+            <th width="10%" class="status">Status
+                <img [src]="sortIcon" class="icon-down" alt="icon">
             </th>
-            <th> </th>
+            <th width="10%"> </th>
         </tr>
     </thead>
     <tbody>
@@ -31,7 +28,8 @@
                 </div>
             </td>
             <td>
-                <span [innerHTML]="(app.customData && app.customData.summary) ? (app.customData.summary | safehtml) : ''"></span>
+                <span>
+                    {{app.customData && app.customData.summary ? (app.customData.summary | removeHtmlTags) : '' }}</span>
             </td>
             <td>
                 <span>{{app.created | date:'M/d/yyyy'}}</span>
@@ -40,15 +38,77 @@
                 <span class="font-med text-primary">{{app.prettyStatus}}</span>
             </td>
             <td>
-                <img [src]="menuUrl"
-                    class="icon-dots" alt="more-icon">
+                <div class="text-right ellipsis cursor-pointer mr-5">
+                    <div ngbDropdown placement="bottom-right">
+                        <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
+                        <div ngbDropdownMenu>
+                            <div *ngIf="app.prettyStatus === 'Approved'"> <img [src]="editIcon"> <button
+                                    (click)="action('suspend' , app)" ngbDropdownItem>
+                                    Suspend
+                                </button>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                            <div> <img [src]="publishIcon"> <button (click)="action('publish' , app)" ngbDropdownItem>
+                                    Publish
+                                </button>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                            <img [src]="editIcon"><button (click)="action('edit' , app)" ngbDropdownItem>
+                                Edit
+                            </button>
+                            <div class="dropdown-divider"></div>
+                            <img [src]="editIcon"> <button (click)="action('delete' , app)" ngbDropdownItem>
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>        
             </td>
         </tr>
+        <!-- TO BE UNCOMMENTED TO IMPLIMENT APP VERSIONS 
+        
+            <tr>
+            <td>
+                <div class="row">
+                    <div class="col-md-auto">
+                        <img src="https://drive.google.com/u/0/uc?id=1TApj85rZBbl-lOaWyekF--MGsEpXaTBK&export=downloa"
+                            class="px-3" alt="icon">
+                        <img src="http://d3grfap2l5ikgv.cloudfront.net/5f20f7ff579d1a20c527d847/public/5f255ab1ec4ad046ff9edaa2.png"
+                            class="app-icon" alt="">
+                    </div>
+                    <div class="col-md pl-0">
+                        <h6 class="mb-0">App name</h6>
+                        <small>v 2.0.0</small>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <span>
+                    With this Application you can collaborate with teammates at any time
+                </span>
+            </td>
+            <td>
+                <span>4/15/2020</span>
+            </td>
+            <td>
+                <span class="font-med text-primary">Draft</span>
+            </td>
+            <td>
+                <img src="http://localhost:4200/assets/img/dots-hr-icon.svg" class="icon-dots" alt="icon">
+            </td>
+        </tr>
+        
+        TO BE UNCOMMENTED TO IMPLIMENT APP VERSIONS -->
+
         <tr *ngIf="!appList || appList.list.length == 0">
             <td colspan="5" class="text-center">
                 <span> No Applications Found</span>
             </td>
         </tr>
-
+        <tr *ngIf="appList?.list.length > 0">
+            <td colspan="5" class="text-center pb-5">
+                <span></span>
+            </td>
+        </tr>
     </tbody>
 </table>

@@ -7,6 +7,9 @@ $info: #c9d5ea;
 $light: #f4f7fc;
 $spacer: 1rem;
 $spacers: (
+  0_5: (
+    $spacer * 0.25
+  ),
   1: (
     $spacer * 0.5
   ),
@@ -30,5 +33,10 @@ $spacers: (
     $spacer * 5
   )
 );
+
+/* Variable for Image cropper*/
+:root{
+  --cropper-outline-color: rgba(0, 0, 0, 0.5);
+}
 
 @import "~bootstrap/scss/bootstrap-reboot";

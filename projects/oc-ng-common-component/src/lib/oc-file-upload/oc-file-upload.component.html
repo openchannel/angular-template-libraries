@@ -4,7 +4,7 @@
     alt="upload-icon">
   <input type="file" #fileDropRef id="fileDropRef" [accept]="getAcceptTypes()"
     (change)="fileBrowseHandler($event,cropperModal)" class="cursor-pointer"/>
-  <div>
+  <div class="placeholder-text-container">
     <span class="d-block text-secondary font-m">{{fileUploadText}}</span>
     <span class="text-secondary font-m">or</span> <a class="font-m font-bold browse-file"  (click)="fileDropRef.click()" > Browse File</a>
   </div>
@@ -31,8 +31,8 @@
     </div>
 
     <div class="row" *ngFor="let file of fileDetailArr; let i = index" >
-      <div class="col-md-auto pr-0" *ngIf="file">
-        <img [src]="getUrl(file.fileUploadProgress)" alt="app-icon">
+      <div class="col-md-auto pr-0">
+        <img [src]="getUrl(file)" alt="app-icon" [ngClass]="file?.fileUploadProgress===100 ? 'app-icon':'default-icon'">
       </div>
       <div class="col-md-auto ml-n1" *ngIf="file">
         <span class="font-med font-m d-block">{{file.name}}</span>
@@ -44,7 +44,9 @@
           alt="close-icon">
         </a>
       </div>
-      <div class="col-12 pt-2 mb-2" *ngIf="file">
+      <div class="col-12 pt-1 mb-2 progressbar-wrapper">
+        <ngb-progressbar class="file-upload-progress" type="info" *ngIf="file?.fileUploadProgress == 100" [value]="file?.fileUploadProgress">
+        </ngb-progressbar>
         <ngb-progressbar class="file-upload-progress" type="primary" *ngIf="file?.fileUploadProgress &lt; 100" [value]="file?.fileUploadProgress">
         </ngb-progressbar>
       </div>
@@ -77,11 +79,11 @@
 
 <!--cropper modal for bulk edit-->
 <ng-template #cropperModal let-c="close" let-d="dismiss">
-  <div class="modal-header">
+  <div class="modal-header pb-0">
     <h4 class="modal-title">Edit Image</h4>
-    <button type="button" class="close" aria-describedby="modal-title" (click)="d('Cross click'); resetSelection()">
+    <a class="close cursor-pointer" aria-describedby="modal-title" (click)="d('Cross click'); resetSelection()">
       <span aria-hidden="true">&times;</span>
-    </button>
+    </a>
   </div>
   <div class="modal-body d-flex flex-column">
     <div class="file-cropper-body w-100 d-flex flex-column">
@@ -111,17 +113,19 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer pr-0 pb-0">
         <div style="padding-top: 15px;padding-right: 15px;">
           <a class="cursor-pointer" (click)="zoomIn()" style="padding-right: 15px;"><i
               class="fa fa-search-plus"></i></a>
           <a class="cursor-pointer" (click)="zoomOut()"><i class="fa fa-search-minus"></i></a>
         </div>
-        <button type="button" class="btn btn pr-2 pt-3 btn-white" [disabled]="uploadImageInProcess"
-          (click)="d('Cross click'); resetSelection()">Close</button>
-        <button type="button" class="btn btn-primary" [disabled]="hasImageLoadError || uploadImageInProcess"
+        <oc-button type="secondary" [disabled]="uploadImageInProcess"
+          (click)="d('Cross click'); resetSelection()" [text]="'Close'"></oc-button>
+        <oc-button type="primary" [disabled]="hasImageLoadError || uploadImageInProcess"
           (click)="uploadImageFile();"
-          [ngClass]="{'process': uploadImageInProcess }">{{ uploadImageInProcess ? '':'Upload'}}</button>
+          [disabled]="uploadImageInProcess"
+          [process]="uploadImageInProcess" [text]="'Upload'"
+          ></oc-button>
       </div>
     </div>
   </div>

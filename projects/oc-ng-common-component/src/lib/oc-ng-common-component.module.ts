@@ -39,16 +39,17 @@ import { OcAppListGridComponent } from './oc-app-list-grid/oc-app-list-grid.comp
 import { OcRecommendedAppsComponent } from './oc-recommended-apps/oc-recommended-apps.component';
 import { OcOverallRatingComponent } from './oc-overall-rating/oc-overall-rating.component';
 import { OcAppCardComponent } from './oc-app-card/oc-app-card.component';
-import { OcDialogComponent } from './oc-dialog/oc-dialog.component';
 import { OcReviewListComponent } from './oc-review-list/oc-review-list.component';
 import { OcSelectExpandableComponent } from './oc-select-expandable/oc-select-expandable.component';
 import { OcFileUploadComponent } from './oc-file-upload/oc-file-upload.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { OcAppCategorySelectComponent } from './oc-app-category-select/oc-app-category-select.component';
 import { OcPopupComponent } from './oc-popup/oc-popup.component';
-import { SafehtmlPipe } from './safehtml.pipe';
+import { SafehtmlPipe } from './pipe/safehtml.pipe';
+import { RemoveHtmlTagsPipe} from "./pipe/remove-html-tags.pipe"
 import { CompareDirective } from './validators/compare-passsword-validator.directive';
 import { OcAppStatusDetailsComponent } from './oc-app-status-details/oc-app-status-details.component';
+import { OcErrorService } from './oc-error/oc-error-service';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -86,18 +87,18 @@ import { OcAppStatusDetailsComponent } from './oc-app-status-details/oc-app-stat
     OcRecommendedAppsComponent,
     OcOverallRatingComponent,
     OcAppCardComponent,
-    OcDialogComponent,
     OcReviewListComponent,
     OcSelectExpandableComponent,
     OcFileUploadComponent,
     OcAppCategorySelectComponent,
     OcPopupComponent,
     SafehtmlPipe,
+    RemoveHtmlTagsPipe,
     CompareDirective,
     OcAppStatusDetailsComponent
   ],
 
-  imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule,ImageCropperModule],
+  imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule, ImageCropperModule],
   exports: [OcCommonLibComponent,
     OcInputComponent,
     OcButtonComponent,
@@ -129,7 +130,6 @@ import { OcAppStatusDetailsComponent } from './oc-app-status-details/oc-app-stat
     OcMenuGridComponent,
     OcAppGetStartedComponent,
     OcAppGalaryComponent,
-    OcDialogComponent,
     OcSelectExpandableComponent,
     OcFileUploadComponent,
     OcAppListGridComponent,

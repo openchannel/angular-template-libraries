@@ -28,6 +28,9 @@
     margin-bottom: 3px;
     margin-right: 8px;
   }
+  .placeholder-text-container{
+    line-height: 1.2;
+  }
 }
 
 .fileover {
@@ -92,3 +95,19 @@
   color: #537cfd !important;
   cursor: pointer;
 }
+
+.progressbar-wrapper{
+  min-height: 0.5em;
+  max-height: 0.5em;
+}
+
+.app-icon{
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+.default-icon{
+  padding-right: 8px;
+}
+
+
