@@ -301,8 +301,8 @@ select {
   -moz-appearance: none;
   appearance: none;
   /* Some browsers will not display the caret when using calc, so we put the fallback first */ 
-  background: url(assets/img/dropdown-icon.svg) white no-repeat 98.5%; /* !important used for overriding all other customisations */
-  background: url(assets/img/dropdown-icon.svg) white no-repeat calc(100% - 16px); /* Better placement regardless of input width */
+  background: url(~oc-ng-common-component/assets/img/dropdown-icon.svg) white no-repeat 98.5%; /* !important used for overriding all other customisations */
+  background: url(~oc-ng-common-component/assets/img/dropdown-icon.svg) white no-repeat calc(100% - 16px); /* Better placement regardless of input width */
 }
 /*For IE*/
 select::-ms-expand { display: none; }
