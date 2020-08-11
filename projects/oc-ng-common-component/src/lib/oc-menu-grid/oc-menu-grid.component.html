@@ -1,21 +1,24 @@
 <table class="table">
     <thead>
         <tr>
-            <th width="35%">App Name
+            <th></th>
+            <th class="name">App Name
                 <img [src]="sortIcon" class="icon-down" alt="icon">
             </th>
-            <th width="40%" class="summary">Summary</th>
-            <th width="10%" class="data">Data Added
+            <th class="summary">Summary</th>
+            <th class="data">Data Added
                 <img [src]="sortIcon" class="icon-down" alt="icon">
             </th>
-            <th width="10%" class="status">Status
+            <th class="status">Status
                 <img [src]="sortIcon" class="icon-down" alt="icon">
             </th>
-            <th width="10%"> </th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let app of appList.list">
+            <td class="col-blank"></td>
             <td>
                 <div class="row">
                     <div class="col-md-auto">
@@ -38,7 +41,7 @@
                 <span class="font-med text-primary">{{app.prettyStatus}}</span>
             </td>
             <td>
-                <div class="text-right ellipsis cursor-pointer mr-5">
+                <div class="text-right ellipsis cursor-pointer">
                     <div ngbDropdown placement="bottom-right">
                         <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
                         <div ngbDropdownMenu>
@@ -61,6 +64,7 @@
                     </div>
                 </div>
             </td>
+            <td class="col-blank"></td>
         </tr>
         <!-- TO BE UNCOMMENTED TO IMPLIMENT APP VERSIONS 
         
@@ -98,12 +102,12 @@
         TO BE UNCOMMENTED TO IMPLIMENT APP VERSIONS -->
 
         <tr *ngIf="!appList || appList.list.length == 0">
-            <td colspan="5" class="text-center">
+            <td colspan="7" class="text-center">
                 <span> No Applications Found</span>
             </td>
         </tr>
         <tr *ngIf="appList?.list.length > 0">
-            <td colspan="5" class="text-center pb-5">
+            <td colspan="7" class="text-center pb-5">
                 <span></span>
             </td>
         </tr>
