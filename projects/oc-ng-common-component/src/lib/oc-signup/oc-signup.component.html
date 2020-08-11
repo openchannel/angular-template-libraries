@@ -1,5 +1,5 @@
 
-<form novalidate #signupform="ngForm">
+<form novalidate #signupform="ngForm" *ngIf="!showSignupFeedbackPage">
     <div class="card oc-card-with-border">
         <div class="card-body">
             <!-- <a href="/"> -->
@@ -18,13 +18,13 @@
                 <oc-label [text]="getValue('Name')"></oc-label>
                 <oc-input whiteSpaceValidator [(modelName)]="signupModel.uname" name="uname" #uname=ngModel
                 [ngModel]="signupModel.uname" ngDefaultControl required="true" [autoFocus]="true" [placeholder]="'Name'" [autocomplete]="'off'"></oc-input>
-            <oc-error [control]="uname"> </oc-error>
+            <oc-error [control]="uname" [field]="'developerAccount.name'"> </oc-error>
             </div>
             <div class="form-group">
                 <oc-label [text]="getValue('Company')"></oc-label>
                 <oc-input whiteSpaceValidator [(modelName)]="signupModel.company" name="company" #company=ngModel
                 [ngModel]="signupModel.company" ngDefaultControl required="true" [placeholder]="'Company'" [autocomplete]="'off'"></oc-input>
-                <oc-error [control]="company"> </oc-error>
+                <oc-error [control]="company" [field]="'developer.name'"> </oc-error>
             </div>
             <div class="form-group">
                 <oc-label [text]="getValue('Email')"></oc-label>
@@ -36,7 +36,7 @@
                 <oc-label [text]="getValue('Password')"></oc-label>
                 <oc-password [(modelName)]="signupModel.password" class="mb-2" name="password" #password=ngModel
                 [ngModel]="signupModel.password" ngDefaultControl required="true" [placeholder]="'Password'" [autocomplete]="'off'"></oc-password>
-                <oc-error [control]="password"> </oc-error>
+                <oc-error [control]="password" [field]="'extra.password'"> </oc-error>
             </div>
             <div class="form-group">
                 <oc-checkbox [(isChecked)]="signupModel.isChecked"></oc-checkbox>
@@ -51,6 +51,34 @@
             <div class="text-center">
                 <oc-label [text]="getValue('Already have an account? ')"></oc-label>
                 <a href={{loginUrl}} class="font-m font-med"> Log In</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<form novalidate #forgotPwdForm="ngForm" *ngIf="showSignupFeedbackPage">
+    <div class="card oc-card-with-border">
+        <div class="card-body">
+            <div class="text-center">
+                <!-- <img class="img-fluid mb-4" src="{{companyLogoUrl}}" alt="logo" /> -->
+                <img class="img-fluid mb-4 company-logo"
+                    src="{{companyLogoUrl}}"
+                    alt="logo">
+            </div>
+            <div class="text-center">
+                <img src="{{forgotPasswordDoneUrl}}"
+                class="mb-3" alt="dropdown-icon">
+                <h4>Done!</h4>
+                <oc-label [text]="'An activation link has been sent to your inbox.'" ></oc-label>
+            </div>
+            <oc-button [text]="getValue('Activate')" [disabled]="false"
+                [type]="getValue('primary')" class="btn-block my-5" (click)="goToActivationPage()">
+            </oc-button>
+            <div class="text-center">
+                <oc-label [text]="getValue(' Dont have an account yet? ')"></oc-label>
+                <a href={{signupUrl}} class="font-m font-med"> Sign Up</a>
             </div>
         </div>
     </div>

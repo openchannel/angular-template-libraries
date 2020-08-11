@@ -17,13 +17,16 @@
     </form>
   </div> -->
 
-<button *ngIf="type === 'primary'" class="btn btn-primary {{class}}" [disabled]="disabled">
+<button *ngIf="type === 'primary'" class="btn btn-primary {{class}}" [disabled]="disabled" style="{{style}}">
   <span [hidden]="!process" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
   {{text}}
 </button>
-<button *ngIf="type === 'secondary'" class="btn btn-secondary {{class}}" [disabled]="disabled">  
+<button *ngIf="type === 'secondary'" class="btn btn-secondary {{class}}" [disabled]="disabled" style="{{style}}">  
   <span [hidden]="!process" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
   {{text}}
 </button>
-<button *ngIf="type === 'link'" class="btn btn-link {{class}}" [disabled]="disabled">{{text}}</button>
+<button *ngIf="type === 'link'" class="btn btn-link {{class}}" [disabled]="disabled" style="{{style}}">
+  <span [hidden]="!process" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  {{text}}
+</button>
 <!-- <a *ngIf="type==='link'">{{text}}</a> -->

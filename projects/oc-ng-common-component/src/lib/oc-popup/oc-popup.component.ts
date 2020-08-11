@@ -16,6 +16,7 @@ export class OcPopupComponent implements OnInit {
   @Input() confirmButtonText: string;
   @Input() informationalText: string;
   inProcess: boolean;
+  inProcess2: boolean;
   confirmCallback: any;
   cancelCallback: any;
   closeCallBack: any;

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { SellerSignup } from 'oc-ng-common-service';
-
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'oc-signup',
   templateUrl: './oc-signup.component.html',
@@ -12,14 +12,18 @@ export class OcSignupComponent implements OnInit {
 
   @Input() signupModel = new SellerSignup();
   @Input() loginUrl;
+  @Input() activationUrl;
+  @Input() signupUrl;
   @Input() termsUrl;
   @Input() policyUrl;
   @Input() companyLogoUrl;
   @Input() process;
-
+  @Input() forgotPasswordDoneUrl;
+  @Input() showSignupFeedbackPage;
+ 
   @Output() submit = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
 
@@ -45,5 +49,9 @@ export class OcSignupComponent implements OnInit {
     }
     this.submit.emit(true);  
     return false;    
+  }
+
+  goToActivationPage(){
+    this.router.navigateByUrl(this.activationUrl);
   }
 }
