@@ -6,10 +6,12 @@
   vertical-align: middle;
   background-color: white;
   margin-bottom: 116px;
+  border-collapse: inherit;
   thead {
     th {
       font-size: 14px;
       border-bottom: 1px solid #c9d5ea;
+      border-top: 1px solid #c9d5ea;
       padding: 1.5rem 0;
       vertical-align: middle;
     }
@@ -28,9 +30,16 @@
       width: 160px;
     }
   }
+    tr:first-child {
+      th, td{
+        border-top: none;
+
+      }
+    }
   td {
     padding: 1rem 0;
     vertical-align: middle;
+    border-top: 1px solid #c9d5ea;
   }
   td.col-blank {
     // padding: 1rem 2.5rem;
