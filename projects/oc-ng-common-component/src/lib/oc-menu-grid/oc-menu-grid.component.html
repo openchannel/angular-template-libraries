@@ -45,8 +45,8 @@
                     <div ngbDropdown placement="bottom-right">
                         <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
                         <div ngbDropdownMenu>
-                            <div *ngIf="app.prettyStatus === 'Approved'"> <img [src]="editIcon"> <button
-                                    (click)="action('suspend' , app)" ngbDropdownItem>
+                            <div *ngIf="app.prettyStatus === 'Approved'"> <button (click)="action('suspend' , app)"
+                                    ngbDropdownItem><img [src]="editIcon">
                                     Suspend
                                 </button>
                             </div>
