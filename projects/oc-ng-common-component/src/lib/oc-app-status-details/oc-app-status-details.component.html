@@ -19,20 +19,20 @@
 
 <div class="row">
     <div class="col-md-12">
-        <img src="https://drive.google.com/u/0/uc?id=1tWbZ9VinxwsIR6pUaectMqBzmnzyjNfY&export=download" class="app-icon-lg" alt="logo">
-        <h4>App Name</h4>
+        <img [src]="appStatus.appLogoUrl" class="app-icon-lg" alt="logo">
+        <h4>{{appStatus.appName}}</h4>
     </div>
     <div class="col-md-12">
         <img src="https://drive.google.com/u/0/uc?id=1C0dG_EsjgXCpX83wnk-WBCUFqZSPSbVw&export=download" class="cal-icon" alt="cal">
-        <span class="font-m">2/22/2019</span>
-        <span class="pl-3 text-primary font-m font-med">Draft</span>
+        <span class="font-m"> {{appStatus.appSavedDate |date : 'M/d/yyyy'}}</span>
+        <span class="pl-3 text-primary font-m font-med">{{appStatus.appStatus}}</span>
     </div>
     <div class="col-md-12 mt-1 mb-2">
-        <span>Collaborate with teammates anytime, anywhere.</span>
+        <span>{{appStatus.appDescription}}</span>
     </div>
     <div class="col-md-12 divider"></div>
-    <div class="col-md-12 mt-1">
-        <span class="selected-label" >Communication</span>
+    <div class="col-md-12 mt-1" *ngIf="appStatus.appCategory">
+        <span class="selected-label" *ngFor="let category of appStatus.appCategory" >{{category}}</span>
     </div>
 
 </div>
