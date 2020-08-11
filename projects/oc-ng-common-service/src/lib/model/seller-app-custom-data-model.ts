@@ -5,6 +5,7 @@ export class SellerAppCustomDataModel{
     website__url: string;
     video__url: string;
     summary: string;
+    summary__plain__text: string;
     icon: string;
     icon__file:FileDetails[]=[];
     product__images: string[]=[];
