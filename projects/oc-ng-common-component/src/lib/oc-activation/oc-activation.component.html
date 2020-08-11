@@ -18,19 +18,19 @@
                 <oc-label [text]="getValue('Email')"></oc-label>
                 <oc-input emailValidator [(modelName)]="activationModel.email" name="email" #email=ngModel
                 [ngModel]="activationModel.email" ngDefaultControl required="true" [placeholder]="'Email'"></oc-input>
-                <oc-error [control]="email"> </oc-error>
+                <oc-error [control]="email" [field]="'email'"> </oc-error>
             </div>
-            <div class="form-group mb-2">
+            <div class="form-group">
                 <oc-label [text]="getValue('Password')"></oc-label>
                 <oc-password [(modelName)]="activationModel.password" class="mb-2" name="password" #password=ngModel
                 [ngModel]="activationModel.password" ngDefaultControl required="true" [placeholder]="'Password'"></oc-password>
-                <oc-error [control]="password"> </oc-error>
+                <oc-error [control]="password" [field]="'password'"> </oc-error>
             </div>
             <div class="form-group">
                 <oc-label [text]="getValue('Activation Code')"></oc-label>
                 <oc-input [(modelName)]="activationModel.code" name="code" #code=ngModel aria-autocomplete="off" 
                 [ngModel]="activationModel.code" ngDefaultControl required="true" [placeholder]="'Activation Code'"></oc-input>
-                <oc-error [control]="code"> </oc-error>
+                <oc-error [control]="code" [field]="'code'"> </oc-error>
             </div> 
             <oc-button [text]="getValue('Activate')"
                 [type]="getValue('primary')" (click)="submitForm(activationForm)" class="btn-block mt-5 mb-5" [process]="process" [disabled]="process || !activationForm.valid">

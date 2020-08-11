@@ -22,6 +22,8 @@ export class OcChartComponent implements AfterViewInit {
   @Input() count;
   @Input() downloadUrl;
   @Input() name;
+  // change in value of this invokes ngOnChanges
+  @Input() random;
 
   chart: any;
 
@@ -32,10 +34,6 @@ export class OcChartComponent implements AfterViewInit {
 
   
   ngAfterViewInit(): void {
-    if (typeof this.chart !== 'undefined') {
-      this.chart.destroy();
-    }
-
     if (typeof this.chart !== 'undefined') {
       this.chart.destroy();
     }
@@ -139,7 +137,7 @@ export class OcChartComponent implements AfterViewInit {
               // maxRotation: 30,
               // minRotation: 30,
               callback(value: any, index, values) {     
-                if(this.chart.name == 'month'){
+                if(value.length == 8){
                   return value.substring(0,3);
                 } 
                 return value;
