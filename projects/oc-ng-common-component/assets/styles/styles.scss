@@ -238,7 +238,9 @@ h6 {
   text-decoration: none;
 }
 /** End buttons **/
-
+.divider{
+  border-top: 1px solid $info;
+}
 /** input password **/
 
 oc-input, oc-password, oc-app-category-select{

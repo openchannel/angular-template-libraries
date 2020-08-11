@@ -10,7 +10,8 @@
                 <h1 [innerHTML]="text"></h1>
             </div>
             <div class="col-md-12 my-3">
-                <oc-button [type]="'primary'" (click)="confirm()" [text]="confirmButtonText" [process]="inProcess" [disabled]="inProcess"></oc-button>
+                <oc-button [type]="'primary'" (click)="confirm()" [text]="confirmButtonText" [process]="inProcess"
+                    [disabled]="inProcess"></oc-button>
             </div>
             <div class="col-md sec-divider ml-8"></div>
             <div class="col-md-auto">
@@ -24,7 +25,6 @@
                 <oc-button [type]="'link'" [text]="cancelButtonText" (click)="cancel();" [class]="'text-center'">
                 </oc-button>
             </div>
-
         </div>
 
         <div class="row" *ngIf="type === 'confirm'">
@@ -37,12 +37,12 @@
                 <h1 [innerHTML]="text"></h1>
             </div>
 
-            <div class="col-md-12 mt-2">
+            <div class="col-md-12 mt-3">
                 <span class="font-m text-secondary">{{informationalText}}</span>
             </div>
 
-            <div class="col-md-auto my-3" *ngIf="type === 'confirm'">
-                <oc-button [type]="'secondary'" (click)="cancel()" [text]="cancelButtonText">
+            <div class="col-md-auto mx-auto mt-4 mb-5" *ngIf="type === 'confirm'">
+                <oc-button [type]="'secondary'" (click)="cancel()" [text]="cancelButtonText" class="mr-2">
                 </oc-button>
                 <oc-button [type]="'primary'" [disabled]="inProcess" [process]="inProcess" (click)="confirm()"
                     [text]="confirmButtonText">
