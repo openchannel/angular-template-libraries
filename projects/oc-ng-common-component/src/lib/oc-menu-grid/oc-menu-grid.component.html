@@ -31,8 +31,7 @@
                 </div>
             </td>
             <td>
-                <span>
-                    {{app.customData && app.customData.summary ? (app.customData.summary | removeHtmlTags) : '' }}</span>
+                <span>{{app.customData && app.customData['summary-plain-text']}}</span>
             </td>
             <td>
                 <span>{{app.created | date:'M/d/yyyy'}}</span>
