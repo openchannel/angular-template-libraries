@@ -40,7 +40,19 @@
     padding: 1rem 0;
     vertical-align: middle;
     border-top: 1px solid #c9d5ea;
+
+    .summary-text{
+          -webkit-line-clamp: 2;
+          height: 40px;
+          overflow: hidden;
+          word-break: break-word;
+          text-overflow: ellipsis;
+          display: -webkit-box;        
+          -webkit-box-orient: vertical;
+          padding-right: 8px;
+    }
   }
+
   td.col-blank {
     // padding: 1rem 2.5rem;
     width: 2.5rem;
