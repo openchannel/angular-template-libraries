@@ -24,8 +24,8 @@ export class SellerAppService {
     return this.httpRequest.get(this.url, 'true');
   }
 
-  getAppById(appId,loader?): Observable<any>{
-    return this.httpRequest.get(this.url+"/by-id/"+appId,loader);
+  getAppById(appId,parentOrChild='parent',loader?): Observable<any>{
+    return this.httpRequest.get(this.url+"/by-id/"+appId+"?parentOrChild="+parentOrChild,loader);
   }
   
   deleteApp(appId): Observable<any> {
