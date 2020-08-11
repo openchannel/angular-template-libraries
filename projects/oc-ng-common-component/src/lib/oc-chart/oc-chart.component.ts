@@ -20,8 +20,10 @@ export class OcChartComponent implements AfterViewInit {
   @Input() labels: string[] = [];
   @Input() dataSets: number[] = [];
   @Input() count;
+  @Input() countText;
   @Input() downloadUrl;
   @Input() name;
+  
   // change in value of this invokes ngOnChanges
   @Input() random;
 
