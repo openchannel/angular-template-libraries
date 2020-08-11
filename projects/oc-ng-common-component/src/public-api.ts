@@ -40,12 +40,17 @@ export * from './lib/validators/email-validator.directive';
 export * from './lib/validators/autofocus.directive';
 export * from './lib/validators/domain-validator.directive';
 export * from './lib/validators/drag-drop.directive';
-export * from './lib/validators/file-size.pipe';
 export * from './lib/validators/image-file-validator.directive';
 export * from './lib/validators/password-toggle.directive';
 export * from './lib/validators/phone-number-validator.directive';
 export * from './lib/validators/website-validator.directive';
 export * from './lib/validators/compare-passsword-validator.directive';
+
+
+//pipe
+export * from './lib/validators/file-size.pipe';
+export * from './lib/pipe/camelcase.pipe';
+export * from './lib/pipe/ellipsis.pipe';
 
 //chart components
 export * from './lib/oc-chart/oc-chart.component';
