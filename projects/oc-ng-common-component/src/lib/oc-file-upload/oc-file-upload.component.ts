@@ -382,4 +382,20 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
     }
   }
 
+  downloadFile(file: FileDetails){
+    if(file && file.fileUploadProgress && file.fileUploadProgress==100){
+      if(this.isFileTypePrivate()){
+        this.uploadFileService.downloadFileDetails(file.fileId).subscribe((res)=>{
+          if (res && res.fileUrl) {
+            window.open(res.fileUrl, "_blank");
+          }
+        });
+      }else{
+        if (file && file.fileUrl) {
+          window.open(file.fileUrl, "_blank");
+        }
+      }
+    }
+  }
+
 }

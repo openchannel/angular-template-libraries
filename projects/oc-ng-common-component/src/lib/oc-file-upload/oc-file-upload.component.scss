@@ -1,6 +1,6 @@
 @import "../../../assets/styles/theme.scss";
 .file-container {
-  width: 540px;
+  min-width: 540px;
   min-height: 248px;
   border: 1px solid $info;
   border-radius: 4px;

@@ -20,8 +20,12 @@ export class OcChartComponent implements AfterViewInit {
   @Input() labels: string[] = [];
   @Input() dataSets: number[] = [];
   @Input() count;
+  @Input() countText;
   @Input() downloadUrl;
   @Input() name;
+  
+  // change in value of this invokes ngOnChanges
+  @Input() random;
 
   chart: any;
 
@@ -35,12 +39,10 @@ export class OcChartComponent implements AfterViewInit {
     if (typeof this.chart !== 'undefined') {
       this.chart.destroy();
     }
-
-    if (typeof this.chart !== 'undefined') {
-      this.chart.destroy();
+    if(this.myCanvas){
+      this.context = this.myCanvas.nativeElement.getContext('2d');
+      this.getChart();
     }
-    this.context = this.myCanvas.nativeElement.getContext('2d');
-    this.getChart();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -137,7 +139,7 @@ export class OcChartComponent implements AfterViewInit {
               // maxRotation: 30,
               // minRotation: 30,
               callback(value: any, index, values) {     
-                if(this.chart.name == 'month'){
+                if(value.length == 8){
                   return value.substring(0,3);
                 } 
                 return value;

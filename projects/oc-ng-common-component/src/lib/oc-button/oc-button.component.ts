@@ -10,6 +10,7 @@ export class OcButtonComponent implements OnInit {
   @Input() disabled: boolean;
   @Input() type : string;
   @Input() class : string;
+  @Input() style : string;
   @Input() process : string;
   constructor() { }
 
