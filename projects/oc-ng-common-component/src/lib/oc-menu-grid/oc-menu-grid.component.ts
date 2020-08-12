@@ -17,6 +17,8 @@ export class OcMenuGridComponent implements OnInit {
 
   @Output() menuClicked = new EventEmitter<any>();
 
+  childExist:boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
