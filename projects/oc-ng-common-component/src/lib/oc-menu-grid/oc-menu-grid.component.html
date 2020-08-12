@@ -51,8 +51,9 @@
                                         <img [src]="editIcon" class="pr-1"> Suspend
                                     </button>
                                 </div>
-                                <div *ngIf="app.prettyStatus != 'Approved' && app.prettyStatus != 'Suspended'"> <button
-                                        (click)="action('publish' , app)" ngbDropdownItem>
+                                <div
+                                    *ngIf="app.prettyStatus != 'Approved' && app.prettyStatus != 'Suspended' &&  app.prettyStatus != 'In Development'">
+                                    <button (click)="action('publish' , app)" ngbDropdownItem>
                                         <img [src]="publishIcon" class="pr-1">Publish
                                     </button>
                                 </div>
@@ -109,7 +110,7 @@
                                     </button>
                                 </div>
                                 <div
-                                    *ngIf="child.prettyStatus != 'Approved' && child.prettyStatus != 'Suspended' && app.prettyStatus != 'Suspended'">
+                                    *ngIf="child.prettyStatus != 'Approved' && child.prettyStatus != 'Suspended' && child.prettyStatus != 'In Development' && app.prettyStatus != 'Suspended'">
                                     <button (click)="action('publish' , child)" ngbDropdownItem>
                                         <img [src]="publishIcon" class="pr-1">Publish
                                     </button>
