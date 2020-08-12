@@ -56,3 +56,6 @@ export * from './lib/oc-app-galary/oc-app-galary.component';
 
 export * from './lib/oc-select-expandable/oc-select-expandable.component';
 export * from './lib/oc-popup/dialog.service';
+
+export * from './lib/oc-textarea/oc-textarea.component';
+export * from './lib/oc-number/oc-number.component';

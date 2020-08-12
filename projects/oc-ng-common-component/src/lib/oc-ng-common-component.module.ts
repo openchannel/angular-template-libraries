@@ -46,11 +46,13 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { OcAppCategorySelectComponent } from './oc-app-category-select/oc-app-category-select.component';
 import { OcPopupComponent } from './oc-popup/oc-popup.component';
 import { SafehtmlPipe } from './pipe/safehtml.pipe';
-import { RemoveHtmlTagsPipe} from "./pipe/remove-html-tags.pipe"
+import { RemoveHtmlTagsPipe } from "./pipe/remove-html-tags.pipe"
 import { OcActivationComponent } from './oc-activation/oc-activation.component';
 import { CompareDirective } from './validators/compare-passsword-validator.directive';
 import { OcAppStatusDetailsComponent } from './oc-app-status-details/oc-app-status-details.component';
 import { OcErrorService } from './oc-error/oc-error-service';
+import { OcTextareaComponent } from './oc-textarea/oc-textarea.component';
+import { OcNumberComponent } from './oc-number/oc-number.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -98,7 +100,9 @@ import { OcErrorService } from './oc-error/oc-error-service';
     CompareDirective,
     OcAppStatusDetailsComponent,
     OcActivationComponent,
-    CompareDirective
+    CompareDirective,
+    OcTextareaComponent,
+    OcNumberComponent
   ],
 
   imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule, ImageCropperModule],
@@ -141,7 +145,9 @@ import { OcErrorService } from './oc-error/oc-error-service';
     OcPopupComponent,
     NgbModule,
     CompareDirective,
-    OcAppStatusDetailsComponent
+    OcAppStatusDetailsComponent,
+    OcTextareaComponent,
+    OcNumberComponent
   ],
   providers: [
     NgbActiveModal,
