@@ -67,4 +67,24 @@ export class DialogService {
     }
     return modalRef;
   }
+
+  showAgreementPopup(component: Component, title: string, text: string,
+    closeButtonText: string, cancelCallback?){
+    const modalRef = this.modalService.open(component, { size: 'md submit-app' + ' submit-app', backdrop: 'static' });
+    modalRef.componentInstance.title = title;
+    modalRef.componentInstance.text = text;
+    modalRef.componentInstance.closeButtonText = closeButtonText;
+    modalRef.componentInstance.closeIconUrl = "assets/img/close-icon.svg";
+    if (cancelCallback) {
+      modalRef.componentInstance.cancelCallback = cancelCallback;
+    } else {
+      modalRef.componentInstance.cancelCallback = function () {
+        modalRef.close(false);
+      }
+    }
+    modalRef.componentInstance.closeCallBack = function () {
+      modalRef.close(false);
+    }
+    return modalRef;
+  }
 }

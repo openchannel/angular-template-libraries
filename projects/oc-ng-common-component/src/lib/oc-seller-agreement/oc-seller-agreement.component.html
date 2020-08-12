@@ -3,12 +3,12 @@
     <div class="modal-header pl-4">
         <h4 class="modal-title confirmation-model-title" id="modal-title"> {{ title }}</h4>
        
-        <button type="button" class="close" aria-describedby="modal-title" (click)="dismiss()">
+        <a class="close cursor-pointer" aria-describedby="modal-title" (click)="dismiss()">
           <span aria-hidden="true" class="close-button">&times;</span>
-        </button>
+        </a>
       </div>
       <div class="modal-body confirmation-model-body pl-4 pt-4 mt-1 custom-scrollbar-css">
-        <p [innerHTML]="text + ' ' + textVariable"></p>
+        <p > {{text}}</p>
       </div>
       <div class="modal-footer">
        

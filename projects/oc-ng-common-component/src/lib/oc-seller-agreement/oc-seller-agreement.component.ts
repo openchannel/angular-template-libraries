@@ -7,13 +7,10 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./oc-seller-agreement.component.scss']
 })
 export class OcSellerAgreementComponent implements OnInit {
-  @Input() title: string;
-  @Input() text: string;
-  @Input() textVariable: string;
-  @Input() cancelButtonText: string;
-  @Input() confirmButtonText: string;
-  @Input() closeButtonText: string;
-  @Input() informationalText: string;
+  title: string;
+  text: string;
+  closeButtonText: string;
+
   inProcess: boolean;
   confirmCallback: any;
   cancelCallback: any;
@@ -23,7 +20,7 @@ export class OcSellerAgreementComponent implements OnInit {
   closeResult = '';
   title1 = 'appBootstrap';
 
-  @Input() closeIconUrl;
+  closeIconUrl;
   constructor(public dialog: NgbModal,
     private modalService: NgbModal) { }
 
