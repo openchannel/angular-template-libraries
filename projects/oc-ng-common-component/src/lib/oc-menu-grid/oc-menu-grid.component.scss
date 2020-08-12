@@ -6,18 +6,22 @@
   vertical-align: middle;
   background-color: white;
   margin-bottom: 116px;
+  border-spacing: 0;
+  border-collapse: inherit;
   thead {
     th {
       font-size: 14px;
       border-bottom: 1px solid #c9d5ea;
+      border-top: 1px solid #c9d5ea;
       padding: 1.5rem 0;
       vertical-align: middle;
     }
-    th:first-child, th:last-child {
+    th:first-child,
+    th:last-child {
       // padding: 1.5rem 2.5rem;
       width: 2.5rem;
     }
-    th.name{
+    th.name {
       width: 285px;
     }
     th.summary {
@@ -28,10 +32,32 @@
       width: 160px;
     }
   }
+  tr:first-child {
+    th,
+    td {
+      border-top: none;
+    }
+  }
+  td:last-child {
+    border-top: 1px solid #c9d5ea;
+  }
   td {
     padding: 1rem 0;
     vertical-align: middle;
+    border-top: 1px solid rgba(201, 213, 234, 0.5);
+
+    .summary-text {
+      -webkit-line-clamp: 2;
+      height: 40px;
+      overflow: hidden;
+      word-break: break-word;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      padding-right: 8px;
+    }
   }
+
   td.col-blank {
     // padding: 1rem 2.5rem;
     width: 2.5rem;

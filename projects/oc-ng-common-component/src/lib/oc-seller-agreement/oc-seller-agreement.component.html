@@ -1,0 +1,63 @@
+
+<div class="card oc-card-with-border" style="max-width: 500px;">
+    <div class="modal-header pl-4">
+        <h4 class="modal-title confirmation-model-title" id="modal-title"> {{ title }}</h4>
+       
+        <a class="close cursor-pointer" aria-describedby="modal-title" (click)="dismiss()">
+          <span aria-hidden="true" class="close-button">&times;</span>
+        </a>
+      </div>
+      <div class="modal-body confirmation-model-body pl-4 pt-4 mt-1 custom-scrollbar-css">
+        <p > {{text}}</p>
+      </div>
+      <div class="modal-footer">
+       
+        <button type="button" class="btn btn-primary" (click)="close()" [ngClass]="{'process': inProcess }"
+          [disabled]="inProcess">{{ inProcess ? '' : closeButtonText }}</button>
+      </div>  
+    </div>
+
+    <!-- <ng-template #mymodal let-modal>
+      <div class="card oc-card-with-border" style="max-width: 500px;">
+      <div class="modal-header pl-4">
+          <h4 class="modal-title confirmation-model-title" id="modal-title"> {{ title }}</h4>
+
+          <button type="button" class="close" aria-describedby="modal-title" (click)="dismiss()">
+              <span aria-hidden="true" class="close-button">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body confirmation-model-body pl-4 pt-4 mt-1 custom-scrollbar-css ">
+          <p [innerHTML]="text + ' ' + textVariable"></p>
+      </div>
+      <div class="modal-footer">
+
+          <button type="button" class="btn btn-primary" (click)="close()" [ngClass]="{'process': inProcess }"
+              [disabled]="inProcess">{{ inProcess ? '' : closeButtonText }}</button>
+      </div>
+</div>
+</ng-template> -->
+
+<!-- <h1>Angular 8 Bootstrap Modal Popup Example</h1>
+   
+<button class="btn btn-lg btn-outline-primary" (click)="openModel(mymodal)">Open My Modal</button>
+
+
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    This is example from ItSolutionStuff.com
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+  </div>
+</ng-template> -->
+
+
+<!-- <button type="button" class="btn btn-primary" (click)="openModel(mymodal)" [ngClass]="{'process': inProcess }"
+[disabled]="inProcess">{{ inProcess ? '' : closeButtonText }}</button> -->

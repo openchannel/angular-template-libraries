@@ -5,9 +5,7 @@
             <!-- <a href="/"> -->
             <div class="text-center">
                 <!-- <img class="img-fluid mb-4" src="{{companyLogoUrl}}" alt="logo" /> -->
-                <img class="img-fluid mb-4 company-logo"
-                    src="{{companyLogoUrl}}"
-                    alt="logo">
+                <img class="img-fluid mb-4 company-logo" src="{{companyLogoUrl}}" alt="logo">
             </div>
             <!-- </a> -->
             <div class="text-center">
@@ -38,20 +36,25 @@
                 [ngModel]="signupModel.password" ngDefaultControl required="true" [placeholder]="'Password'" [autocomplete]="'off'"></oc-password>
                 <oc-error [control]="password" [field]="'extra.password'"> </oc-error>
             </div>
+
             <div class="form-group">
                 <oc-checkbox [(isChecked)]="signupModel.isChecked"></oc-checkbox>
                 <oc-label [text]="getValue(' I agree to ')" class="label-s"></oc-label>
-                <a href={{termsUrl}} target="_blank" class="font-s"><b> Terms of Service </b></a>
+                <a href={{termsUrl}} target="_blank" class="font-s"> Terms of Service </a>
                 <oc-label [text]="getValue(' and ')" class="label-s"></oc-label>
-                <a href={{policyUrl}} target="_blank" class="font-s"><b> Data Processing Policy</b></a>
+                <a class="font-s fontstyle" (click)="openSellerAgreementDetails()"><b> Data Processing
+                        Policy</b></a>
             </div>
             <oc-button [text]="getValue('Sign Up')" [disabled]="!signupModel.isChecked || !signupform.valid || process"
-                [type]="getValue('primary')" [process]="process" (click)="submitForm(signupform)" class="btn-block mt-5 mb-3">
+                [type]="getValue('primary')" [process]="process" (click)="submitForm(signupform)"
+                class="btn-block mt-5 mb-3">
             </oc-button>
             <div class="text-center">
                 <oc-label [text]="getValue('Already have an account? ')"></oc-label>
                 <a href={{loginUrl}} class="font-m font-med"> Log In</a>
             </div>
+
+
         </div>
     </div>
 </form>

@@ -35,7 +35,7 @@
         <img [src]="getUrl(file)" alt="app-icon" [ngClass]="file?.fileUploadProgress===100 ? 'app-icon':'default-icon'">
       </div>
       <div class="col-md-auto ml-n1" *ngIf="file">
-        <span class="font-med font-m d-block">{{file.name}}</span>
+        <a (click)="downloadFile(file)" class="cursor-pointer"><span class="font-med font-m d-block"> {{file.name}}</span></a>
         <span class="text-secondary font-s">{{file.fileUploadProgress===100 ? "Complete" : "Uploading"}}</span>
       </div>
       <div class="col-md text-right pt-3" *ngIf="file">
