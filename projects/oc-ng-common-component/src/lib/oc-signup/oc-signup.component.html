@@ -36,30 +36,13 @@
                 [ngModel]="signupModel.password" ngDefaultControl required="true" [placeholder]="'Password'" [autocomplete]="'off'"></oc-password>
                 <oc-error [control]="password" [field]="'extra.password'"> </oc-error>
             </div>
-            
-            <ng-template #longContent let-modal>
-                <div class="card oc-card-with-border" style="max-width: 500px;">
-                <div class="modal-header">
-                  <h4 class="modal-title">{{title}}</h4>
-                  <button type="button" class="close" aria-describedby="modal-title" (click)="modal.close('Close click')">
-                    <span aria-hidden="true" class="close-button">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body custom-scrollbar-css">
-                    <p [innerHTML]="text + ' ' + textVariable"></p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" (click)="modal.close('Close click')">{{closeButtonText}}</button>
-                </div>
-                </div>
-              </ng-template>
-              
+
             <div class="form-group">
                 <oc-checkbox [(isChecked)]="signupModel.isChecked"></oc-checkbox>
                 <oc-label [text]="getValue(' I agree to ')" class="label-s"></oc-label>
                 <a href={{termsUrl}} target="_blank" class="font-s"> Terms of Service </a>
                 <oc-label [text]="getValue(' and ')" class="label-s"></oc-label>
-                <a class="font-s fontstyle" (click)="openModel(longContent)"><b> Data Processing
+                <a class="font-s fontstyle" (click)="openSellerAgreementDetails()"><b> Data Processing
                         Policy</b></a>
             </div>
             <oc-button [text]="getValue('Sign Up')" [disabled]="!signupModel.isChecked || !signupform.valid || process"

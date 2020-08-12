@@ -7,9 +7,9 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./oc-seller-agreement.component.scss']
 })
 export class OcSellerAgreementComponent implements OnInit {
-  title: string;
-  text: string;
-  closeButtonText: string;
+  @Input() title: string;
+  @Input() text: string;
+  @Input() closeButtonText: string;
 
   inProcess: boolean;
   confirmCallback: any;
