@@ -53,6 +53,7 @@ import { OcActivationComponent } from './oc-activation/oc-activation.component';
 import { CompareDirective } from './validators/compare-passsword-validator.directive';
 import { OcAppStatusDetailsComponent } from './oc-app-status-details/oc-app-status-details.component';
 import { OcErrorService } from './oc-error/oc-error-service';
+import { OcSellerAgreementComponent } from './oc-seller-agreement/oc-seller-agreement.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -102,7 +103,8 @@ import { OcErrorService } from './oc-error/oc-error-service';
     CompareDirective,
     OcAppStatusDetailsComponent,
     OcActivationComponent,
-    CompareDirective
+    CompareDirective,
+    OcSellerAgreementComponent
   ],
 
   imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule, ImageCropperModule],
@@ -147,10 +149,15 @@ import { OcErrorService } from './oc-error/oc-error-service';
     OcPopupComponent,
     NgbModule,
     CompareDirective,
-    OcAppStatusDetailsComponent
+    OcAppStatusDetailsComponent,
+    OcSellerAgreementComponent
   ],
   providers: [
     NgbActiveModal,
+  ],
+  entryComponents: [
+    OcSellerAgreementComponent
   ]
+  
 })
 export class OcCommonLibModule { }

@@ -2,6 +2,9 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { SellerSignup } from 'oc-ng-common-service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { OcSellerAgreementComponent } from '../../public-api';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'oc-signup',
   templateUrl: './oc-signup.component.html',
@@ -9,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class OcSignupComponent implements OnInit {
   imagePath: any;
+  closeResult = '';
 
   @Input() signupModel = new SellerSignup();
   @Input() loginUrl;
@@ -20,10 +24,20 @@ export class OcSignupComponent implements OnInit {
   @Input() process;
   @Input() forgotPasswordDoneUrl;
   @Input() showSignupFeedbackPage;
+  @Input() title: string;
+  @Input() text: string;
+  @Input() textVariable: string;
+  @Input() cancelButtonText: string;
+  @Input() confirmButtonText: string;
+  @Input() closeButtonText: string;
  
   @Output() submit = new EventEmitter<any>();
 
-  constructor(private router: Router) { }
+
+  constructor(public dialog: NgbModal,
+    private modalService: NgbModal,
+    private router: Router) { }
+
 
   ngOnInit(): void {
 
@@ -54,4 +68,7 @@ export class OcSignupComponent implements OnInit {
   goToActivationPage(){
     this.router.navigateByUrl(this.activationUrl);
   }
+  openModel(longContent) {
+    this.modalService.open(longContent, { scrollable: true });
+}
 }

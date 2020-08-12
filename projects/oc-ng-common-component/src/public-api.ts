@@ -33,6 +33,7 @@ export * from './lib/oc-app-category-select/oc-app-category-select.component';
 export * from './lib/oc-popup/oc-popup.component';
 export * from './lib/oc-app-status-details/oc-app-status-details.component';
 export * from './lib/oc-activation/oc-activation.component';
+export * from './lib/oc-seller-agreement/oc-seller-agreement.component';
 
 //validators 
 export * from './lib/validators/white-space-validator';
