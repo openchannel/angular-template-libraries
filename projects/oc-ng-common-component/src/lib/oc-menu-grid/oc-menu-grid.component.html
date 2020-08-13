@@ -1,7 +1,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th></th>
+            <th class="placeholder"></th>
             <th class="name">App Name
                 <img [src]="sortIcon" class="icon-down" alt="icon">
             </th>
@@ -12,8 +12,8 @@
             <th class="status">Status
                 <img [src]="sortIcon" class="icon-down" alt="icon">
             </th>
-            <th></th>
-            <th></th>
+            <th class="action"></th>
+            <th class="placeholder"></th>
         </tr>
     </thead>
     <tbody>
@@ -75,7 +75,7 @@
                 <td>
                     <div class="row">
                         <div class="col-md-auto">
-                            <img src="https://drive.google.com/u/0/uc?id=1TApj85rZBbl-lOaWyekF--MGsEpXaTBK&export=downloa"
+                            <img src="assets/img/line-arrow-down.svg"
                                 class="px-3" alt="icon">
                             <img [src]="child.customData.icon" alt="" class="app-icon" alt="">
                         </div>
@@ -99,7 +99,7 @@
                     </span>
                 </td>
                 <td>
-                    <div class="text-right ellipsis cursor-pointer mr-5">
+                    <div class="text-right ellipsis cursor-pointer">
                         <div ngbDropdown placement="bottom-right">
                             <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
                             <div ngbDropdownMenu>

@@ -22,14 +22,19 @@
       width: 2.5rem;
     }
     th.name {
-      width: 285px;
+      width: 26%;
     }
     th.summary {
-      width: 368px;
+      width: 33%;
     }
-    th.data,
-    .status {
-      width: 160px;
+    th.data{
+      width: 14%;
+    }
+    td.status {
+      width: 9%;
+    }
+    th.action{
+      width: 10%;
     }
   }
   tr:first-child {
@@ -56,6 +61,7 @@
       -webkit-box-orient: vertical;
       padding-right: 8px;
     }
+
   }
 
   td.col-blank {

@@ -182,9 +182,16 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
    * handle file from browsing
    */
   fileBrowseHandler(event, content?) {
+
+
+    if(!event?.target?.files[0]?.name){
+      return;
+    }
+
     if (this.isFileTypeImage()) {
       this.browsedFileEvent = event;
       this.fileName = event?.target?.files[0]?.name;
+
       this.fileName = this.fileName ? this.fileName : event?.dataTransfer?.files[0]?.name;
 
       this.isImageCropped = true;

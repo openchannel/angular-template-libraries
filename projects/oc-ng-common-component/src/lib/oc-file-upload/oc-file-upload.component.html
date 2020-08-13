@@ -19,8 +19,8 @@
       <div class="col-md-auto" *ngIf="isMultiFileSupport()">
         <img [src]="uploadIconUrl" class="upload-s"
           alt="upload-icon">
-        <a class="font-m font-bold browse-file" (click)="fileUploadRefid.click()">
-          <input type="file" [accept]="getAcceptTypes()" #fileUploadRefid (change)="fileBrowseHandler($event,cropperModal)" style="display: none;"/>
+        <a class="font-m font-bold browse-file" (click)="fileDropRef.click()">
+          <input type="file" [accept]="getAcceptTypes()" #fileDropRef (change)="fileBrowseHandler($event,cropperModal)" style="display: none;"/>
           Browse File
         </a>
         <!-- <a href="#" *ngIf="isMultiFile || (!files || files.length == 0)">
