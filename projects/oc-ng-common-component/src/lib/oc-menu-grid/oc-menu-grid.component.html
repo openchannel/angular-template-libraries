@@ -42,30 +42,7 @@
                     <span class="font-med text-primary">{{app.prettyStatus}}</span>
                 </td>
                 <td>
-                    <div class="text-right ellipsis cursor-pointer">
-                        <div ngbDropdown placement="bottom-right">
-                            <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
-                            <div ngbDropdownMenu>
-                                <div *ngIf="app.prettyStatus === 'Approved'">
-                                    <button (click)="action('suspend' , app)" ngbDropdownItem>
-                                        <img [src]="editIcon" class="pr-1"> Suspend
-                                    </button>
-                                </div>
-                                <div
-                                    *ngIf="app.prettyStatus != 'Approved' && app.prettyStatus != 'Suspended' &&  app.prettyStatus != 'In Development'">
-                                    <button (click)="action('publish' , app)" ngbDropdownItem>
-                                        <img [src]="publishIcon" class="pr-1">Publish
-                                    </button>
-                                </div>
-                                <button (click)="action('edit' , app)" ngbDropdownItem>
-                                    <img [src]="editIcon" class="pr-1"> Edit
-                                </button>
-                                <button (click)="action('delete' , app)" ngbDropdownItem>
-                                    <img [src]="editIcon" class="pr-1"> Delete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <ng-container [ngTemplateOutlet]="appMenuTemplate" [ngTemplateOutletContext]="{ $implicit: app }"></ng-container>
 
                 </td>
                 <td class="col-blank"></td>
@@ -99,31 +76,7 @@
                     </span>
                 </td>
                 <td>
-                    <div class="text-right ellipsis cursor-pointer">
-                        <div ngbDropdown placement="bottom-right">
-                            <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
-                            <div ngbDropdownMenu>
-                                <div *ngIf="child.prettyStatus === 'Approved'">
-
-                                    <button (click)="action('suspend' , child)" ngbDropdownItem>
-                                        <img [src]="editIcon" class="pr-1">Suspend
-                                    </button>
-                                </div>
-                                <div
-                                    *ngIf="child.prettyStatus != 'Approved' && child.prettyStatus != 'Suspended' && child.prettyStatus != 'In Development' && app.prettyStatus != 'Suspended'">
-                                    <button (click)="action('publish' , child)" ngbDropdownItem>
-                                        <img [src]="publishIcon" class="pr-1">Publish
-                                    </button>
-                                </div>
-                                <button (click)="action('edit' , child)" ngbDropdownItem>
-                                    <img [src]="editIcon" class="pr-1"> Edit
-                                </button>
-                                <button (click)="action('delete' , child)" ngbDropdownItem>
-                                    <img [src]="editIcon" class="pr-1"> Delete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <ng-container [ngTemplateOutlet]="appMenuTemplate" [ngTemplateOutletContext]="{ $implicit: child }"></ng-container>
                 </td>
                 <td class="col-blank"></td>
             </tr>
@@ -140,3 +93,29 @@
         </tr>
     </tbody>
 </table>
+
+<ng-template #appMenuTemplate let-app>
+    <div class="text-right ellipsis cursor-pointer">
+        <div ngbDropdown placement="bottom-right">
+            <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
+            <div ngbDropdownMenu>
+                <div *ngIf="app.prettyStatus == 'In Review' || app.prettyStatus == 'Pending'">
+                    <button (click)="action('publish' , app)" ngbDropdownItem>
+                        <img [src]="publishIcon" class="pr-1">Submit
+                    </button>
+                </div>
+                <button (click)="action('edit' , app)" ngbDropdownItem *ngIf="app.prettyStatus != 'In Review'">
+                    <img [src]="editIcon" class="pr-1"> Edit
+                </button>
+                <button (click)="action('delete' , app)" ngbDropdownItem>
+                    <img [src]="editIcon" class="pr-1"> Delete
+                </button>
+                <div *ngIf="app.prettyStatus === 'Approved'">
+                    <button (click)="action('suspend' , app)" ngbDropdownItem>
+                        <img [src]="editIcon" class="pr-1"> Suspend
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </ng-template>
