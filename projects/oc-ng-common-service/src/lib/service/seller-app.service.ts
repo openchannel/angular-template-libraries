@@ -24,15 +24,15 @@ export class SellerAppService {
     return this.httpRequest.get(this.url, loader);
   }
 
-  getAppById(appId,parentOrChild='parent',loader?): Observable<any>{
-    return this.httpRequest.get(this.url+"/by-id/"+appId+"?parentOrChild="+parentOrChild,loader);
+  getAppById(appId,appVersion,loader?): Observable<any>{
+    return this.httpRequest.get(this.url+"/by-id/"+appId+"/"+appVersion,loader);
   }
   
-  deleteApp(appId): Observable<any> {
-    return this.httpRequest.delete(this.url + '/' + appId);
+  deleteApp(appId,appVersion): Observable<any> {
+    return this.httpRequest.delete(this.url + '/' + appId + "/"+ appVersion);
   }
 
-  publishApp(obj): Observable<any> {
+  submitApp(obj): Observable<any> {
     return this.httpRequest.post(this.url + '/publish', obj);
   }
 
