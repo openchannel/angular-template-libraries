@@ -99,12 +99,12 @@
         <div ngbDropdown placement="bottom-right">
             <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
             <div ngbDropdownMenu>
-                <div *ngIf="app.prettyStatus == 'Pending'">
+                <div *ngIf="app.prettyStatus == 'In Review' || app.prettyStatus == 'Pending'">
                     <button (click)="action('submit' , app)" ngbDropdownItem>
                         <img [src]="publishIcon" class="pr-1">Submit
                     </button>
                 </div>
-                <button (click)="action('edit' , app)" ngbDropdownItem *ngIf="app.prettyStatus != 'In Review'">
+                <button (click)="action('edit' , app)" ngbDropdownItem *ngIf="app.prettyStatus != 'In Review' && app.prettyStatus != 'Rejected'">
                     <img [src]="editIcon" class="pr-1"> Edit
                 </button>
                 <button (click)="action('delete' , app)" ngbDropdownItem>
