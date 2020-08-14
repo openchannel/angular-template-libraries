@@ -28,7 +28,8 @@ export class OcMenuGridComponent implements OnInit {
     let menuItems = {
       menu: menu,
       appId: app.appId,
-      version: app.version
+      version: app.version,
+      hasChild: app.childs ? true : false
     }
     this.menuClicked.emit(menuItems);
   }

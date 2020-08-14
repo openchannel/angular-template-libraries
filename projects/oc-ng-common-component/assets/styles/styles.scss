@@ -251,12 +251,20 @@ oc-input, oc-password, oc-app-category-select , oc-select{
     }
     &.ng-invalid{
       &.ng-touched{
-        input, select,textarea{
+        input, select, button.ng-invalid , textarea{
         border-color: $danger;
       }
     }
   }
 }
+button{
+  &.ng-invalid{
+    &.ng-touched{
+      border-color: $danger;
+    }
+  }
+}
+
 
 .toggle_password{  
   float: right;

@@ -40,9 +40,9 @@
             <div class="form-group">
                 <oc-checkbox [(isChecked)]="signupModel.isChecked"></oc-checkbox>
                 <oc-label [text]="getValue(' I agree to ')" class="label-s"></oc-label>
-                <a href={{termsUrl}} target="_blank" class="font-s"> Terms of Service </a>
-                <oc-label [text]="getValue(' and ')" class="label-s"></oc-label>
-                <a class="font-s fontstyle" (click)="openSellerAgreementDetails()"><b> Data Processing
+                <a (click)="openSellerAgreementDetails()" class="font-s fontstyle"><b> Terms of Service </b></a>
+                <oc-label [text]="getValue(' and ')" class="label-s "></oc-label>
+                <a class="font-s fontstyle" (click)="openDataProcessingPolicy()"><b> Data Processing
                         Policy</b></a>
             </div>
             <oc-button [text]="getValue('Sign Up')" [disabled]="!signupModel.isChecked || !signupform.valid || process"
