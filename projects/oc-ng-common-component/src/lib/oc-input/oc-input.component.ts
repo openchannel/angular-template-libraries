@@ -14,6 +14,7 @@ export class OcInputComponent implements OnInit {
   @Input() placeholder = '';
 
   @Output() modelNameChange = new EventEmitter<any>();
+  @Input() disabled = false;
   constructor(private el: ElementRef, private control: NgModel) {
 
   }

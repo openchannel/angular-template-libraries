@@ -18,6 +18,9 @@ export class OcSelectComponent implements OnInit {
 
   @Input() value;
 
+  @Input() stringVal = false;
+  @Input() disabled = false;
+
   ngOnInit(): void {
   }
 
