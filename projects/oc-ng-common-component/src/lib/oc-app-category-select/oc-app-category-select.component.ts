@@ -15,7 +15,7 @@ export class OcAppCategorySelectComponent implements OnInit {
 
   @Input() defaultBlankValue='Select Cateory';
 
-  @Input() addButtonLable
+  @Input() addButtonLable = 'Add Category';
 
   @Input() selectedValuesArr;
 
