@@ -99,7 +99,7 @@
         <div ngbDropdown placement="bottom-right">
             <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
             <div ngbDropdownMenu>
-                <div *ngIf="app.prettyStatus == 'Draft' || app.prettyStatus == 'Pending'">
+                <div *ngIf="app.prettyStatus == 'Pending'">
                     <button (click)="action('submit' , app)" ngbDropdownItem>
                         <img [src]="publishIcon" class="pr-1">Submit
                     </button>
