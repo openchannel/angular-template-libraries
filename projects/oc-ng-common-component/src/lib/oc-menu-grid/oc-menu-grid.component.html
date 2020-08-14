@@ -63,8 +63,8 @@
                     </div>
                 </td>
                 <td>
-                    <span>
-                        {{child.customData && child.customData.summary ? (child.customData.summary | removeHtmlTags) : '' }}
+                    <span class="summary-text">
+                        {{child.customData['summary-plain-text'] != 'undefined' ? child.customData['summary-plain-text']:''}}
                     </span>
                 </td>
                 <td>

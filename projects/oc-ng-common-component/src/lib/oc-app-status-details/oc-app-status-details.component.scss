@@ -13,3 +13,15 @@
   max-width: 255px;
   margin-bottom: 24px;
 }
+
+.app-summary-text{
+  line-height: 1.25;
+  overflow: hidden;
+  -webkit-line-clamp: 6;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;      
+  display: -webkit-box;
+  word-break: break-word; 
+}
+
+//  height: 152px;

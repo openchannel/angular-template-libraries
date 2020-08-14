@@ -1,6 +1,6 @@
 <div class="card card-modal">
     <div class="card-body">
-        <div class="row" *ngIf="type === 'newApp'">
+        <div class="row" *ngIf="type === 'newApp' || type === 'newAppPending'">
             <div class="col-12 text-right mb-2">
                 <a class="cursor-pointer" (click)="dismiss()">
                     <img [src]="closeIconUrl" alt="close-icon">
@@ -13,15 +13,15 @@
                 <oc-button [type]="'primary'" (click)="confirm()" [text]="'Submit'" [process]="inProcess" 
                 [disabled]="inProcess" [style]="'width:255px;'"></oc-button>    
             </div>
-            <div class="col-md sec-divider ml-8"></div>
-            <div class="col-md-auto">
+            <div class="col-md sec-divider ml-8" *ngIf="type === 'newApp'"></div>
+            <div class="col-md-auto"  *ngIf="type === 'newApp'">
                 <span class="font-m text-info d-block mt-n1">OR</span>
             </div>
-            <div class="col-md sec-divider mr-8"></div>
-            <div class="col-md-12 mt-1">
+            <div class="col-md sec-divider mr-8" *ngIf="type === 'newApp'"></div>
+            <div class="col-md-12 mt-1"  *ngIf="type === 'newApp'">
                 <span class="font-m text-secondary">{{informationalText}}</span>
             </div>
-            <div class="col-md-12 mb-2">
+            <div class="col-md-12 mb-2"  *ngIf="type === 'newApp'">
                 <oc-button [type]="'link'" [text]="cancelButtonText" (click)="cancel();" [class]="'text-center'" [process]="inProcess2">
                 </oc-button>
             </div>
