@@ -20,8 +20,8 @@ export class SellerAppService {
     return this.httpRequest.post(this.url + "/submit", appDetails);
   }
 
-  getApps(): Observable<any> {
-    return this.httpRequest.get(this.url, 'true');
+  getApps(loader:string): Observable<any> {
+    return this.httpRequest.get(this.url, loader);
   }
 
   getAppById(appId,parentOrChild='parent',loader?): Observable<any>{
