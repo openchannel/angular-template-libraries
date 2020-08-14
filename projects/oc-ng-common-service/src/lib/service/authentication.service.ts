@@ -40,4 +40,12 @@ export class AuthenticationService {
       }
     });
   }
+
+  isLoggedInUser(){
+    if(localStorage.getItem("access_token")){
+      return true;
+    }
+    return false;
+  }  
+
 }
