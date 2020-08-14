@@ -100,7 +100,7 @@
             <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
             <div ngbDropdownMenu>
                 <div *ngIf="app.prettyStatus == 'In Review' || app.prettyStatus == 'Pending'">
-                    <button (click)="action('publish' , app)" ngbDropdownItem>
+                    <button (click)="action('submit' , app)" ngbDropdownItem>
                         <img [src]="publishIcon" class="pr-1">Submit
                     </button>
                 </div>
