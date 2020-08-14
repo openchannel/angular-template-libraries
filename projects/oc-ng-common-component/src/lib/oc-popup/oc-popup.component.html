@@ -28,7 +28,7 @@
         </div>
 
         <div class="row" *ngIf="type === 'confirm'">
-            <div class="col-12 text-right mb-3">
+            <div class="col-12 text-right mb-2">
                 <a class="cursor-pointer" (click)="dismiss()">
                     <img [src]="closeIconUrl" alt="close-icon">
                 </a>
@@ -37,7 +37,7 @@
                 <h1 [innerHTML]="text"></h1>
             </div>
 
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12 mt-2">
                 <span class="font-m text-secondary">{{informationalText}}</span>
             </div>
 

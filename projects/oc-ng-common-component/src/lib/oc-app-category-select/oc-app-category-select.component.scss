@@ -22,3 +22,23 @@
   display: inline-block;
   height: 46px;
 }
+
+.dropdown-toggle{
+  text-align: left;
+}
+.dropdown-toggle::after{  
+  float: right; 
+  margin-top: 1px;
+}
+.dropdown-toggle.selected::after{  
+  margin-top: 8px;
+} 
+.dropdown-menu{
+  .dropdown-item{
+    border-bottom:0px;
+    padding: 8px 12px;
+  }
+
+}
+
+

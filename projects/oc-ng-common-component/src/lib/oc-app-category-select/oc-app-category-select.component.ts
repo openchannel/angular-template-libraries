@@ -17,7 +17,7 @@ export class OcAppCategorySelectComponent implements OnInit {
 
   @Input() addButtonLable = 'Add Category'
 
-  @Input() selectedValuesArr;
+  @Input() ngModel;
 
   @Output() selectionChange = new EventEmitter();
 
@@ -25,7 +25,7 @@ export class OcAppCategorySelectComponent implements OnInit {
   @Input() addIconUrl;
   @Input() closeIconUrl;
   
-  currentSelectedVal='';
+  currentSelectedOption = {key:'', value:''};
 
   constructor() { }
   
@@ -34,26 +34,26 @@ export class OcAppCategorySelectComponent implements OnInit {
   }
 
   onSelectionChange($event){
-    this.currentSelectedVal=$event;
+    this.currentSelectedOption=$event;
     this.selectionChange.emit($event);
   }
 
   addCategory(){
-    if(this.currentSelectedVal && this.currentSelectedVal.trim().length>0){
-      var index = this.predefinedValArr.map(val => val.value).indexOf(this.currentSelectedVal);
+    if(this.currentSelectedOption && this.currentSelectedOption.key){
+      var index = this.predefinedValArr.map(val => val.value).indexOf(this.currentSelectedOption.value);
       if (index !== -1) {
         this.predefinedValArr.splice(index, 1);
       }
-      this.selectedValuesArr.push(this.currentSelectedVal);
-      this.currentSelectedVal=''
-      this.categoryCahnge.emit({predefinedArr: this.predefinedValArr, selectedValArr: this.selectedValuesArr});
+      this.ngModel.push(this.currentSelectedOption.value);
+      this.currentSelectedOption= {key:'', value:''};
+      this.categoryCahnge.emit({predefinedArr: this.predefinedValArr, selectedValArr: this.ngModel});
       // this.addNewCategory.emit(this.currentSelectedVal);
     }
   }
 
   removeCategory(catgoryToBeReoved, idx){
     this.predefinedValArr.push({key: catgoryToBeReoved,value: catgoryToBeReoved});
-    this.selectedValuesArr.splice(idx,1);
-    this.categoryCahnge.emit({predefinedArr: this.predefinedValArr, selectedValArr: this.selectedValuesArr});
+    this.ngModel.splice(idx,1);
+    this.categoryCahnge.emit({predefinedArr: this.predefinedValArr, selectedValArr: this.ngModel});
   }
 }
