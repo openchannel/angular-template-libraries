@@ -59,6 +59,7 @@ export class OcErrorComponent implements OnInit {
             // create error validation object an pass it to control
             const errors = { 'serverErrorValidator': error };
             (this.control as NgModel).control.setErrors(errors);
+            (this.control as NgModel).control.markAsTouched();
         });              
         return true;             
       }        

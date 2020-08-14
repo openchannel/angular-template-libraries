@@ -20,17 +20,19 @@
 <div class="row">
     <div class="col-md-12">
         <img [src]="appStatus.appLogoUrl" class="app-icon-lg" alt="logo">
-        <h4>{{appStatus.appName}}</h4>
+        <h4 class="mb-0_5">{{appStatus.appName}}</h4>
     </div>
     <div class="col-md-12">
-        <img src="https://drive.google.com/u/0/uc?id=1C0dG_EsjgXCpX83wnk-WBCUFqZSPSbVw&export=download" class="cal-icon" alt="cal">
+        <img src="https://drive.google.com/u/0/uc?id=1C0dG_EsjgXCpX83wnk-WBCUFqZSPSbVw&export=download" class="cal-icon" alt="cal" style="margin-bottom: 1px;">
         <span class="font-m"> {{appStatus.appSavedDate |date : 'M/d/yyyy'}}</span>
         <span class="pl-3 text-primary font-m font-med">{{appStatus.appStatus}}</span>
     </div>
-    <div class="col-md-12 mt-1 mb-2">
+    <div class="col-md-12 mt-0_5 mb-2" style="line-height: 1.25;">
         <span>{{appStatus.appDescription}}</span>
     </div>
-    <div class="col-md-12 divider"></div>
+    <div class="col-md-12">
+        <div class="divider"></div>
+    </div>
     <div class="col-md-12 mt-1" *ngIf="appStatus.appCategory">
         <span class="selected-label" *ngFor="let category of appStatus.appCategory" >{{category}}</span>
     </div>
