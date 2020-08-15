@@ -1,14 +1,13 @@
 
-<div class="card oc-card-with-border" style="max-width: 500px;">
+<div class="card oc-card-with-border seller-agreement" style="min-width: 600px;max-width: 600px;">
     <div class="modal-header pl-4">
-        <h4 class="modal-title confirmation-model-title" id="modal-title"> {{ title }}</h4>
+        <h4 class="modal-title" id="modal-title"> {{ title }}</h4>
        
         <a class="close cursor-pointer" aria-describedby="modal-title" (click)="dismiss()">
           <span aria-hidden="true" class="close-button">&times;</span>
         </a>
       </div>
-      <div class="modal-body confirmation-model-body pl-4 pt-4 mt-1 custom-scrollbar-css">
-        <p > {{text}}</p>
+      <div class="modal-body confirmation-model-body pl-4 pt-1 custom-scrollbar-css" [innerHTML]="text" >
       </div>
       <div class="modal-footer">
        
