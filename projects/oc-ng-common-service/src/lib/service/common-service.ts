@@ -48,6 +48,21 @@ export class CommonService {
         }
     }
 
+    scrollToField({ field, adjustSize }: { field: string; adjustSize: number; }) {
+
+        const docs = document.getElementsByName(field);
+        const documentYAxis = document.body.getBoundingClientRect().y;
+        const invalidElementYAxis = docs.item(0).getBoundingClientRect().y;
+        const yAxisDifference = invalidElementYAxis - documentYAxis;
+        // window.scrollTo(0, (yAxisDifference-adjustSize));
+        window.scroll({
+            top: (yAxisDifference - adjustSize),
+            left: 0,
+            behavior: 'smooth'
+        });                        
+    }
+
+
     /**
      * This method is responsible for copy the text to clipboard as per param.
      * @param textToCopy 
