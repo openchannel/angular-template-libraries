@@ -1,15 +1,13 @@
 <select *ngIf="!stringVal" required class="form-control select-control selectpicker" name="delServiceOption"
     placeholder="Please select a application" (blur)="onblur()" [(ngModel)]="value" [disabled]="disabled"
     (ngModelChange)="onSelectionChange($event)">
-    <!-- <option selected value="">{{defaultBlankValue}}</option> -->
+    <option selected value="" disabled selected>{{defaultBlankValue}}</option>
     <option *ngFor="let val of selectValArr;" [value]="val.value">{{val.key}}</option>
-
 </select>
 
 <select *ngIf="stringVal" required class="form-control select-control selectpicker" name="delServiceOption"
     placeholder="Please select a application" (blur)="onblur()" [(ngModel)]="value" [disabled]="disabled"
     (ngModelChange)="onSelectionChange($event)">
-    <option selected value=null>{{defaultBlankValue}}</option>
+    <option selected value=null disabled selected>{{defaultBlankValue}}</option>
     <option *ngFor="let val of selectValArr;" [value]="val">{{val}}</option>
-
 </select>

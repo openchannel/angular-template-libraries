@@ -137,10 +137,12 @@ h6 {
   box-shadow: none;
   border: 1px solid $primary;
 }
+
 .form-control::placeholder {
   opacity: 0.5;
   color: $body-color;
 }
+
 .invalid-feedback {
   color: $danger;
   font-size: 12px;
@@ -257,7 +259,8 @@ oc-input, oc-password, oc-app-category-select , oc-select{
     }
   }
 }
-button{
+
+button, input{
   &.ng-invalid{
     &.ng-touched{
       border-color: $danger;
