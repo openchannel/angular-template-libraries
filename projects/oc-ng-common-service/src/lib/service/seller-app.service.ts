@@ -12,11 +12,11 @@ export class SellerAppService {
 
   constructor(private httpRequest: HttpRequestService) { }
 
-  saveApplication(appDetails: SellerAppDetailsModel) {
+  saveApplication(appDetails) {
     return this.httpRequest.post(this.url, appDetails);
   }
 
-  submitApplication(appDetails: SellerAppDetailsModel) {
+  submitApplication(appDetails) {
     return this.httpRequest.post(this.url + "/submit", appDetails);
   }
 
