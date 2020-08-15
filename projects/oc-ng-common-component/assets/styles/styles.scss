@@ -243,15 +243,15 @@ h6 {
 }
 /** input password **/
 
-oc-input, oc-password, oc-app-category-select{
+oc-input, oc-password, oc-app-category-select , oc-select{
     &.ng-invalid{
-      input.ng-touched, select.ng-touched{
+      input.ng-touched, select.ng-touched , textarea.ng-touched{
         border-color: $danger;
       }
     }
     &.ng-invalid{
       &.ng-touched{
-        input, select, button.ng-invalid{
+        input, select, button.ng-invalid , textarea{
         border-color: $danger;
       }
     }

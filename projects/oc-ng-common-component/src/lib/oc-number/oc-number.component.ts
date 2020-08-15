@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ElementRef, Input } from '@angular/core';
 import { NgModel, DefaultValueAccessor } from '@angular/forms';
 
 @Component({
-  selector: 'oc-input',
-  templateUrl: './oc-input.component.html',
-  styleUrls: ['./oc-input.component.scss']
+  selector: 'oc-number',
+  templateUrl: './oc-number.component.html',
+  styleUrls: ['./oc-number.component.scss']
 })
-export class OcInputComponent implements OnInit {
+export class OcNumberComponent implements OnInit {
 
   @Input() modelName;
   @Input() autoFocus;
