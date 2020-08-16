@@ -19,7 +19,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <img [src]="appStatus.appLogoUrl" class="app-icon-lg" alt="logo">
+        <img *ngIf="appStatus.appLogoUrl" [src]="appStatus.appLogoUrl" class="app-icon-lg" alt="logo">
         <h4 class="mb-0_5">{{appStatus.appName}}</h4>
     </div>
     <div class="col-md-12">
