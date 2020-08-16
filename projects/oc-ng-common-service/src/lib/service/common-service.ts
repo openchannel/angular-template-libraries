@@ -30,7 +30,7 @@ export class CommonService {
             // Dont use foreach loop because you cant break it.
             for (const key in form.controls) {
                 if (form.controls.hasOwnProperty(key)) {
-                    if (!form.controls[key].valid) {
+                    if (!form.controls[key].valid && form.controls[key].touched) {
                         const docs = document.getElementsByName(key);
                         const documentYAxis = document.body.getBoundingClientRect().y;
                         const invalidElementYAxis = docs.item(0).getBoundingClientRect().y;
