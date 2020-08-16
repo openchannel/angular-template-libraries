@@ -32,7 +32,7 @@
 
     <div class="row" *ngFor="let file of fileDetailArr; let i = index" >
       <div class="col-md-auto pr-0">
-        <img [src]="getUrl(file)" alt="app-icon" [ngClass]="file?.fileUploadProgress===100 ? 'app-icon':'default-icon'">
+        <img [src]="getUrl(file)" alt="app-icon" [ngClass]="getFileIconClass(file)">
       </div>
       <div class="col-md-auto ml-n1" *ngIf="file">
         <a (click)="downloadFile(file)" class="cursor-pointer"><span class="font-med font-m d-block"> {{file.name}}</span></a>

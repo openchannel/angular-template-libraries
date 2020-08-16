@@ -213,6 +213,8 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
           }
         );
     } else {
+      this.fileName = event?.target?.files[0]?.name;
+      this.fileName = this.fileName ? this.fileName : event?.dataTransfer?.files[0]?.name;
       this.uploadFile(event.target.files[0])
     }
   }
@@ -312,6 +314,16 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
     return false;
   }
 
+  isFileTypeNotImage() {
+    if (this.fileType === OCComponentConstants.FILE_TYPES.SINGLE_PUBLIC_FILE ||
+      this.fileType === OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_FILE ||
+      this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PUBLIC_FILE ||
+      this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PRIVATE_FILE) {
+      return true;
+    }
+    return false;
+  }
+
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
     this.croppedFileObj = base64ToFile(event.base64);
@@ -382,11 +394,22 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   }
 
   getUrl(file) {
+    // for non image file upload always show default file upload icon
+    if(this.isFileTypeNotImage()){
+      return this.defaultFileIcon;
+    }
     if (file.fileUploadProgress === 100) {
       return file.fileUrl;
     } else {
       return this.defaultFileIcon;
     }
+  }
+
+  getFileIconClass(file){
+    if(this.isFileTypeNotImage()){
+      return 'default-icon'
+    }
+    return file?.fileUploadProgress===100 ? 'app-icon':'default-icon';
   }
 
   downloadFile(file: FileDetails){
