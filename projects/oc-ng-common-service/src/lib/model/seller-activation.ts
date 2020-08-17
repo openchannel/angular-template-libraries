@@ -3,3 +3,9 @@ export class SellerActivation {
     email: string;
     code: string;
 }
+
+export class SellerResetPassword{
+    newPassword: string;
+    email: string;
+    code: string;
+}
