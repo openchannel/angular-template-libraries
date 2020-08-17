@@ -56,6 +56,7 @@ import { OcErrorService } from './oc-error/oc-error-service';
 import { OcTextareaComponent } from './oc-textarea/oc-textarea.component';
 import { OcNumberComponent } from './oc-number/oc-number.component';
 import { OcSellerAgreementComponent } from './oc-seller-agreement/oc-seller-agreement.component';
+import { OcResetPasswordComponent } from './oc-reset-password/oc-reset-password.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -108,7 +109,8 @@ import { OcSellerAgreementComponent } from './oc-seller-agreement/oc-seller-agre
     CompareDirective,
     OcTextareaComponent,
     OcNumberComponent,
-    OcSellerAgreementComponent
+    OcSellerAgreementComponent,
+    OcResetPasswordComponent
   ],
 
   imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule, ImageCropperModule],
@@ -156,7 +158,8 @@ import { OcSellerAgreementComponent } from './oc-seller-agreement/oc-seller-agre
     OcAppStatusDetailsComponent,
     OcTextareaComponent,
     OcNumberComponent,
-    OcSellerAgreementComponent
+    OcSellerAgreementComponent,
+    OcResetPasswordComponent
   ],
   providers: [
     NgbActiveModal,
