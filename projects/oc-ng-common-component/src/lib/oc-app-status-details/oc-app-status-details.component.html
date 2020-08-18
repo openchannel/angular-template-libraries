@@ -25,7 +25,7 @@
     <div class="col-md-12">
         <img src="/assets/img/calendar.svg" class="cal-icon" alt="cal" style="margin-bottom: 1px;">
         <span class="font-m"> {{appStatus.appSavedDate | date : 'M/d/yyyy'}}</span>
-        <span *ngIf="appStatus.appStatusReason" data-placement="left"
+        <span *ngIf="appStatus.appStatusReason" placement="bottom"
             class="cursor-pointer pl-3 text-primary font-m font-med" [ngbPopover]="popContent"
             popoverClass="popover shadow-sm bg-white rounded" triggers="hover"
             popoverTitle="Status Change Reason">{{appStatus.appStatus}}</span>
