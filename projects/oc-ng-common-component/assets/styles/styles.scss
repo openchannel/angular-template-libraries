@@ -321,3 +321,46 @@ select {
 select::-ms-expand { display: none; }
 
 /** input select **/
+
+.menu-edit{
+  background: url(~oc-ng-common-component/assets/img/edit_icon.svg) left center no-repeat;
+  background-position: 15px;
+}
+.menu-edit:hover{
+  background: url(~oc-ng-common-component/assets/img/edit_icon_h.svg) left center no-repeat;
+  background-position: 15px;
+}
+.menu-del{
+  background: url(~oc-ng-common-component/assets/img/delete.svg) left center no-repeat;
+  background-position: 15px;
+}
+.menu-del:hover{
+  background: url(~oc-ng-common-component/assets/img/delete_h.svg) left center no-repeat;
+  background-position: 15px;
+}
+
+.menu-suspend{
+  background: url(~oc-ng-common-component/assets/img/suspend_icon.svg) left center no-repeat;
+  background-position: 15px;
+}
+.menu-suspend:hover{
+  background: url(~oc-ng-common-component/assets/img/suspend_icon_h.svg) left center no-repeat;
+  background-position: 15px;
+}
+.menu-unsuspend{
+  background: url(~oc-ng-common-component/assets/img/suspend_icon.svg) left center no-repeat;
+  background-position: 15px;
+}
+.menu-unsuspend:hover{
+  background: url(~oc-ng-common-component/assets/img/suspend_icon_h.svg) left center no-repeat;
+  background-position: 15px;
+}
+
+.menu-submit{
+  background: url(~oc-ng-common-component/assets/img/submit_icon.svg) left center no-repeat;
+  background-position: 15px;
+}
+.menu-submit:hover{
+  background: url(~oc-ng-common-component/assets/img/submit_icon_h.svg) left center no-repeat;
+  background-position: 15px;
+}

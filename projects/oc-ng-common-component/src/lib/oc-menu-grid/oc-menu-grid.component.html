@@ -122,27 +122,27 @@
         <div ngbDropdown placement="bottom-right">
             <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
             <div ngbDropdownMenu>
-                <button
+                <button class="menu menu-submit"
                     *ngIf="app.prettyStatus != 'In Review' && app.prettyStatus != 'Approved' && app.prettyStatus != 'Suspended' && app.prettyStatus != 'Draft' && app.prettyStatus != 'Rejected'"
                     (click)="action('submit' , app)" ngbDropdownItem>
-                    <img [src]="submitIcon" class="pr-1">Submit
+                    Submit
                 </button>
-                <button (click)="action('edit' , app)" ngbDropdownItem>
-                    <img [src]="editIcon" class="pr-1"> Edit
+                <button class="menu menu-edit" (click)="action('edit' , app)" ngbDropdownItem>
+                     Edit
                 </button>
-                <button (click)="action('delete' , app)" ngbDropdownItem>
-                    <img [src]="deleteIcon" class="pr-1"> Delete
+                <button class="menu menu-del" (click)="action('delete' , app)" ngbDropdownItem>
+                    Delete
                 </button>
 
                 <div *ngIf="app.prettyStatus === 'Approved'">
-                    <button (click)="action('suspend' , app)" ngbDropdownItem>
-                        <img [src]="suspendIcon" class="pr-1"> Suspend
+                    <button class="menu menu-suspend"  (click)="action('suspend' , app)" ngbDropdownItem>
+                        Suspend
                     </button>
                 </div>
 
                 <div *ngIf="app.prettyStatus === 'Suspended'">
-                    <button (click)="action('unsuspend' , app)" ngbDropdownItem>
-                        <img [src]="suspendIcon" class="pr-1"> Unsuspend
+                    <button class="menu menu-unsuspend" (click)="action('unsuspend' , app)" ngbDropdownItem>
+                        Unsuspend
                     </button>
                 </div>
             </div>
