@@ -42,7 +42,7 @@
 
                 <td>
                     <small *ngIf="app.prettyStatusReason"><span class="cursor-pointer font-med text-primary"
-                            [ngbPopover]="popContent" data-placement="left"
+                            [ngbPopover]="popContent" placement="bottom"
                             popoverClass="popover shadow-sm bg-white rounded" triggers="hover"
                             popoverTitle="Status Change Reason">{{app.prettyStatus}}</span>
 
@@ -85,7 +85,7 @@
                 </td>
                 <td>
                     <small *ngIf="child.prettyStatusReason"><span class="cursor-pointer font-med text-primary"
-                            [ngbPopover]="popContent" data-placement="left"
+                            [ngbPopover]="popContent" placement="bottom"
                             popoverClass="popover shadow-sm bg-white rounded" triggers="hover"
                             popoverTitle="Status Change Reason">{{child.prettyStatus}}</span>
 
