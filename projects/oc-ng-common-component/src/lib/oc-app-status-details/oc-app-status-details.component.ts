@@ -8,10 +8,12 @@ import { AppStatusDetails } from 'oc-ng-common-service';
 })
 export class OcAppStatusDetailsComponent implements OnInit {
 
-  @Input() appStatus : AppStatusDetails= new AppStatusDetails();
+  @Input() appStatus: AppStatusDetails = new AppStatusDetails();
   constructor() { }
 
   ngOnInit(): void {
+
+    console.log('app status details ', this.appStatus)
   }
 
 }

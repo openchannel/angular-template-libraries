@@ -25,7 +25,15 @@
     <div class="col-md-12">
         <img src="/assets/img/calendar.svg" class="cal-icon" alt="cal" style="margin-bottom: 1px;">
         <span class="font-m"> {{appStatus.appSavedDate | date : 'M/d/yyyy'}}</span>
-        <span class="pl-3 text-primary font-m font-med">{{appStatus.appStatus}}</span>
+        <span *ngIf="appStatus.appStatusReason" class="cursor-pointer pl-3 text-primary font-m font-med"
+            [ngbPopover]="popContent" popoverClass="popover shadow-sm bg-white rounded" triggers="hover"
+            placement="right" popoverTitle="Status Change Reason">{{appStatus.appStatus}}</span>
+        <ng-template #popContent>
+            {{ appStatus.appStatusReason }}
+        </ng-template>
+
+        <span *ngIf="!appStatus.appStatusReason"
+            class="cursor-pointer pl-3 text-primary font-m font-med">{{appStatus.appStatus}}</span>
     </div>
     <div class="col-md-12 mt-0_5 mb-2 app-summary-text">
         {{appStatus.appDescription != 'undefined' ? appStatus.appDescription : '' }}
@@ -34,7 +42,7 @@
         <div class="divider"></div>
     </div>
     <div class="col-md-12 mt-1" *ngIf="appStatus.appCategory">
-        <span class="selected-label" *ngFor="let category of appStatus.appCategory" >{{category}}</span>
+        <span class="selected-label" *ngFor="let category of appStatus.appCategory">{{category}}</span>
     </div>
 
 </div>

@@ -12,12 +12,15 @@ export class OcMenuGridComponent implements OnInit {
 
   @Input() menuUrl;
   @Input() sortIcon;
-  @Input() editIcon;
-  @Input() publishIcon;
+  editIcon = "assets/img/edit_icon.svg";
+
+  submitIcon = "assets/img/submit_icon.svg";
+  deleteIcon = "assets/img/delete.svg";
+  suspendIcon = "assets/img/suspend_icon.svg";
 
   @Output() menuClicked = new EventEmitter<any>();
 
-  childExist:boolean = false;
+  childExist: boolean = false;
 
   constructor() { }
 
