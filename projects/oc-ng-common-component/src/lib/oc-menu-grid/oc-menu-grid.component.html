@@ -22,11 +22,11 @@
                 <td class="col-blank"></td>
                 <td>
                     <div class="row">
-                        <div class="col-md-auto">
+                        <div class="col-md-auto cursor-pointer" (click)="action('edit' , app)">
                             <img class="app-icon" [src]="app.customData.icon" alt="">
                         </div>
                         <div class="col-md pl-0">
-                            <h6 class="mb-0">{{app.name}} </h6>
+                            <h6 class="mb-0 cursor-pointer" (click)="action('edit' , app)">{{app.name}} </h6>
                             <small> v {{app.version}}</small>
 
                         </div>
