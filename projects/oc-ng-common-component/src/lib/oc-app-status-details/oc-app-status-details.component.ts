@@ -13,7 +13,6 @@ export class OcAppStatusDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log('app status details ', this.appStatus)
   }
 
 }
