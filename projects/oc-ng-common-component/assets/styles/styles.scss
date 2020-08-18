@@ -364,3 +364,11 @@ select::-ms-expand { display: none; }
   background: url(~oc-ng-common-component/assets/img/submit_icon_h.svg) left center no-repeat;
   background-position: 15px;
 }
+
+.popover{
+  color: $body-color;
+  .popover-body{
+    font-size: 14px;   
+  }
+}
+
