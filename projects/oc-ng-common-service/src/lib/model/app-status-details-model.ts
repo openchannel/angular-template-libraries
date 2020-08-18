@@ -1,8 +1,9 @@
-export class AppStatusDetails{
-    appLogoUrl:string;
+export class AppStatusDetails {
+    appLogoUrl: string;
     appName: string;
     appDescription: string;
     appSavedDate: number;
-    appStatus:string;
+    appStatus: string;
     appCategory: string[];
+    appStatusReason: string;
 }

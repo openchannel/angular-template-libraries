@@ -20,16 +20,16 @@ export class SellerAppService {
     return this.httpRequest.post(this.url + "/submit", appDetails);
   }
 
-  getApps(loader:string): Observable<any> {
+  getApps(loader: string): Observable<any> {
     return this.httpRequest.get(this.url, loader);
   }
 
-  getAppById(appId,appVersion,loader?): Observable<any>{
-    return this.httpRequest.get(this.url+"/by-id/"+appId+"/"+appVersion,loader);
+  getAppById(appId, appVersion, loader?): Observable<any> {
+    return this.httpRequest.get(this.url + "/by-id/" + appId + "/" + appVersion, loader);
   }
-  
-  deleteApp(appId,appVersion): Observable<any> {
-    return this.httpRequest.delete(this.url + '/' + appId + "/"+ appVersion);
+
+  deleteApp(appId, appVersion): Observable<any> {
+    return this.httpRequest.delete(this.url + '/' + appId + "/" + appVersion);
   }
 
   submitApp(obj): Observable<any> {
@@ -38,5 +38,9 @@ export class SellerAppService {
 
   suspendApp(obj): Observable<any> {
     return this.httpRequest.post(this.url + '/suspend', obj);
+  }
+
+  unsuspendApp(obj): Observable<any> {
+    return this.httpRequest.post(this.url + '/unsuspend', obj);
   }
 }
