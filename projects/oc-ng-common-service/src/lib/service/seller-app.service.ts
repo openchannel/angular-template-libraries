@@ -36,11 +36,11 @@ export class SellerAppService {
     return this.httpRequest.post(this.url + '/publish', obj);
   }
 
-  suspendApp(obj): Observable<any> {
-    return this.httpRequest.post(this.url + '/suspend', obj);
+  suspendApp(obj, loader?): Observable<any> {
+    return this.httpRequest.post(this.url + '/suspend', obj, loader);
   }
 
-  unsuspendApp(obj): Observable<any> {
-    return this.httpRequest.post(this.url + '/unsuspend', obj);
+  unsuspendApp(obj, loader?): Observable<any> {
+    return this.httpRequest.post(this.url + '/unsuspend', obj, loader);
   }
 }
