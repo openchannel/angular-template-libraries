@@ -123,7 +123,7 @@
             <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
             <div ngbDropdownMenu>
                 <button class="menu menu-submit"
-                    *ngIf="app.prettyStatus != 'In Review' && app.prettyStatus != 'Approved' && app.prettyStatus != 'Suspended' && app.prettyStatus != 'Draft' && app.prettyStatus != 'Rejected'"
+                    *ngIf="app.prettyStatus != 'In Review' && app.prettyStatus != 'Approved' && app.prettyStatus != 'Suspended' && app.prettyStatus != 'Rejected'"
                     (click)="action('submit' , app)" ngbDropdownItem>
                     Submit
                 </button>
