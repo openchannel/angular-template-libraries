@@ -12,13 +12,20 @@ export class OcMenuGridComponent implements OnInit {
 
   @Input() menuUrl;
   @Input() sortIcon;
+
+  @Input() pageSize;
   editIcon = "assets/img/edit_icon.svg";
 
   submitIcon = "assets/img/submit_icon.svg";
   deleteIcon = "assets/img/delete.svg";
   suspendIcon = "assets/img/suspend_icon.svg";
 
+  sortBy :'name'|'date'|'status' = 'name';
+  sortOrder: '1'|'-1' = '1';
+  pageNumber=1;
+
   @Output() menuClicked = new EventEmitter<any>();
+  @Output() orderedApps = new EventEmitter<any>();
 
   childExist: boolean = false;
 
@@ -36,5 +43,27 @@ export class OcMenuGridComponent implements OnInit {
     }
     this.menuClicked.emit(menuItems);
   }
+  sortAppsBy(sortBy){
+    if(this.sortBy !== sortBy){
+      this.sortBy=sortBy;
+      this.sortOrder = '1';
+    }else{
+      this.sortOrder= this.sortOrder == '1' ? "-1" : "1";
+    }
+    let orderedOptions ={
+      sortBy:this.sortBy,
+      sortOrder:this.sortOrder,
+      pageNumber:this.pageNumber
+    }
+    this.orderedApps.emit(orderedOptions);
+  }
 
+  updatePage(pageNumber){
+    let orderedOptions ={
+      sortBy:this.sortBy,
+      sortOrder:this.sortOrder,
+      "pageNumber":pageNumber
+    }
+    this.orderedApps.emit(orderedOptions);
+  }
 }
