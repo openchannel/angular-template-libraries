@@ -2,20 +2,20 @@
     <thead>
         <tr>
             <th class="placeholder"></th>
-            <th class="name">App Name
-                <a (click)="sortAppsBy('name')" class="cursor-pointer">
-                    <img [src]="sortIcon" class="icon-down" alt="icon" [ngClass]="{'upside-down': sortBy=='name' && sortOrder=='-1'}" >
+            <th class="name">
+                <a (click)="sortAppsBy('name')" class="cursor-pointer">App Name
+                    <img *ngIf="sortBy=='name'" [src]="sortIcon" class="icon-down" alt="icon" [ngClass]="{'upside-down': sortBy=='name' && sortOrder=='-1'}" >
                 </a>
             </th>
             <th class="summary">Summary</th>
-            <th class="data">Data Added
-                <a (click)="sortAppsBy('date')" class="cursor-pointer">
-                    <img [src]="sortIcon" class="icon-down" alt="icon" [ngClass]="{'upside-down': sortBy=='date' && sortOrder=='-1'}">
+            <th class="data">
+                <a (click)="sortAppsBy('date')" class="cursor-pointer">Data Added
+                    <img *ngIf="sortBy=='date'" [src]="sortIcon" class="icon-down" alt="icon" [ngClass]="{'upside-down': sortBy=='date' && sortOrder=='-1'}">
                 </a>
             </th>
-            <th class="status">Status
-                <a (click)="sortAppsBy('status')" class="cursor-pointer">
-                    <img [src]="sortIcon" class="icon-down" alt="icon" [ngClass]="{'upside-down': sortBy=='status' && sortOrder=='-1'}">
+            <th class="status">
+                <a (click)="sortAppsBy('status')" class="cursor-pointer">Status
+                    <img *ngIf="sortBy=='status'" [src]="sortIcon" class="icon-down" alt="icon" [ngClass]="{'upside-down': sortBy=='status' && sortOrder=='-1'}">
                 </a>
             </th>
             <th class="action"></th>
@@ -115,12 +115,12 @@
                 <span> No Applications Found</span>
             </td>
         </tr>
-        <!-- <tr *ngIf="appList?.list.length > 0">
+        <tr *ngIf="appList?.list.length > 0 && !pageSize">
             <td colspan="7" class="text-center pb-5">
                 <span></span>
             </td>
-        </tr> -->
-        <tr>
+        </tr>
+        <tr *ngIf="pageSize">
             <td colspan="7">
                 <div class="col-md-12 pr-5">
                     <ngb-pagination class="d-flex justify-content-end" [pageSize]="pageSize" [collectionSize]="appList.count" [page]="appList.pageNumber" (pageChange)="updatePage($event)"  [maxSize]="appList.pages" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
