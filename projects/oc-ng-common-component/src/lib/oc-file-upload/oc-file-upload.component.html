@@ -115,9 +115,10 @@
       </div>
       <div class="modal-footer pr-0 pb-0">
         <div style="padding-top: 15px;padding-right: 15px;">
-          <a class="cursor-pointer" (click)="zoomIn()" style="padding-right: 15px;"><i
-              class="fa fa-search-plus"></i></a>
-          <a class="cursor-pointer" (click)="zoomOut()"><i class="fa fa-search-minus"></i></a>
+          <a class="cursor-pointer" (click)="zoomIn()" style="padding-right: 15px;">
+            <button>+</button></a>
+          <a class="cursor-pointer" (click)="zoomOut()" style="padding-right: 15px;">
+            <button>-</button></a>
         </div>
         <oc-button type="secondary" [disabled]="uploadImageInProcess"
           (click)="d('Cross click'); resetSelection()" [text]="'Close'"></oc-button>
