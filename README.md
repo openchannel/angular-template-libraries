@@ -1,6 +1,7 @@
 # OcAngularTemplate
 
 ## Create Global link
+mkdir -p dist/oc-ng-common-component
 cd dist/oc-ng-common-component
 npm link
 (output :abc -> <absolute path to common component project dist>)
