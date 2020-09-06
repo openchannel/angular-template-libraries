@@ -12,7 +12,7 @@ export class OcAppCategorySelectComponent implements OnInit {
 
   @Output() categoryCahnge = new EventEmitter<any>();
 
-  @Input() defaultBlankValue = 'Select Cateory';
+  @Input() defaultBlankValue = 'Select Category';
 
   @Input() addButtonLable = 'Add Category';
 
@@ -40,7 +40,7 @@ export class OcAppCategorySelectComponent implements OnInit {
 
   addCategory() {
     if (this.currentSelectedOption && this.currentSelectedOption.key) {
-      var index = this.predefinedValArr.map(val => val.value).indexOf(this.currentSelectedOption.value);
+      const index = this.predefinedValArr.map(val => val.value).indexOf(this.currentSelectedOption.value);
       if (index !== -1) {
         this.predefinedValArr.splice(index, 1);
       }
@@ -50,12 +50,11 @@ export class OcAppCategorySelectComponent implements OnInit {
         predefinedArr: this.predefinedValArr,
         selectedValArr: this.ngModel
       });
-      // this.addNewCategory.emit(this.currentSelectedVal);
     }
   }
 
-  removeCategory(catgoryToBeReoved, idx) {
-    this.predefinedValArr.push({key: catgoryToBeReoved, value: catgoryToBeReoved});
+  removeCategory(categoryToBeResolved, idx) {
+    this.predefinedValArr.push({key: categoryToBeResolved, value: categoryToBeResolved});
     this.ngModel.splice(idx, 1);
     this.categoryCahnge.emit({predefinedArr: this.predefinedValArr, selectedValArr: this.ngModel});
   }

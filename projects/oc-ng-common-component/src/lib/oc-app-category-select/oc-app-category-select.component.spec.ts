@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import '@angular/localize/init';
 
 import {OcAppCategorySelectComponent} from './oc-app-category-select.component';
 
