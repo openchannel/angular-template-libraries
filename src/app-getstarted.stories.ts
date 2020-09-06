@@ -4,6 +4,7 @@ import {action} from '@storybook/addon-actions';
 import {
   OcCommonLibModule
 } from 'projects/oc-ng-common-component/src/public-api';
+import {linkTo} from "@storybook/addon-links";
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
@@ -25,7 +26,6 @@ const GetStartedComponent = (args: OcAppGetStartedComponent) => ({
 });
 
 
-
 export const DefaultHomPage = GetStartedComponent.bind({})
 
 DefaultHomPage.args = {
@@ -34,5 +34,5 @@ DefaultHomPage.args = {
   getStartedDescription: 'Register as an app developer and submit your app easily with our App Store Developer Portal',
   getStartedButtonText: 'Get Started As An App Developer',
   getStartedType: 'home',
-  getStarted: action('clicked event')
+  getStarted: linkTo('SellerActivation', 'Empty')
 }
