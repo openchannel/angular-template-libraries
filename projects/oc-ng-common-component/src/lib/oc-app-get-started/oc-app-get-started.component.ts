@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'oc-app-get-started',
@@ -7,24 +7,25 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 })
 export class OcAppGetStartedComponent implements OnInit {
 
-  @Input() getStartedImage='';
+  @Input() getStartedImage: string = '';
 
-  @Input() getStartedHeader='';
+  @Input() getStartedHeader: string = '';
 
-  @Input() getStartedDescription='';
+  @Input() getStartedDescription: string = '';
 
-  @Input() getStartedButtonText='';
+  @Input() getStartedButtonText: string = '';
 
   @Output() getStarted = new EventEmitter<any>();
 
-  @Input() getStartedType :'home' | 'search' = 'home';
-  
-  constructor() { }
+  @Input() getStartedType: 'home' | 'search' = 'home';
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
-  listAppGetStarted(){
+  listAppGetStarted() {
     this.getStarted.emit();
   }
 }

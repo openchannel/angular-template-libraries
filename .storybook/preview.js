@@ -3,3 +3,7 @@ import '!style-loader!css-loader!sass-loader!../projects/oc-ng-common-component/
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import docJson from '../documentation.json';
 setCompodocJson(docJson);
+
+export const parameters = {
+  controls: { expanded: true },
+};
