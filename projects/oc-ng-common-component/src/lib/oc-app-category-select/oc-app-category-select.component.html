@@ -1,7 +1,5 @@
 <div class="row">
     <div class="col-md">
-        <!-- <oc-select [defaultBlankValue]='defaultBlankValue' [selectValArr]='predefinedValArr' style="display: inline;"
-            (valueChange)='onSelectionChange($event)'></oc-select> -->
         <div class="d-inline-block w-100 " ngbDropdown>
             <button [ngClass]="{'selected':currentSelectedOption.value, 'ng-invalid':!ngModel.length}" class="w-100 form-control" id="dropdownBasic1"
                     ngbDropdownToggle
@@ -19,8 +17,6 @@
                      class="pr-2">{{addButtonLable}}
             </span>
         </a>
-        <!-- <oc-button [text]='addButtonLable' type='secondary' style="display: inline;" (click)='addCategory()'>
-        </oc-button> -->
     </div>
     <div *ngIf="ngModel && ngModel.length>0" class="col-md-12">
         <span *ngFor='let selectedVal of ngModel; index as i;' class="selected-label">{{selectedVal}}
@@ -29,6 +25,5 @@
                      alt="close-icon" class="pl-1">
             </a>
         </span>
-        <!-- <label *ngFor='let selectedVal of selectedValuesArr'>{{selectedVal}} </label> -->
     </div>
 </div>
