@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcAppGetStartedComponent } from './oc-app-get-started.component';
+import {OcAppGetStartedComponent} from './oc-app-get-started.component';
 
 describe('OcAppGetStartedComponent', () => {
   let component: OcAppGetStartedComponent;
@@ -8,9 +8,9 @@ describe('OcAppGetStartedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcAppGetStartedComponent ]
+      declarations: [OcAppGetStartedComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

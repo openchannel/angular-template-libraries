@@ -3,11 +3,11 @@
         <h4 class="mb-3">{{label}}</h4>
     </div>
 </div>
-<div class="row" *ngIf="data && data.length > 0; else emptyData">
-    <div class="col-md-auto" *ngFor="let app of data;">
+<div *ngIf="data && data.length > 0; else emptyData" class="row">
+    <div *ngFor="let app of data;" class="col-md-auto">
         <div class="featured-card card">
             <div class="card-body">
-                <img src="{{app.logoUrl}}" alt="featured-logo">
+                <img alt="featured-logo" src="{{app.logoUrl}}">
                 <h5>{{app.appName}}</h5>
                 <span>{{app.appDescription}}</span>
             </div>

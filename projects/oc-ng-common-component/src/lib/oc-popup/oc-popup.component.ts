@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {Component, Input, OnInit} from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -26,7 +26,8 @@ export class OcPopupComponent implements OnInit {
 
   @Input() isProcess;
 
-  constructor(public dailog: NgbModal) { }
+  constructor(public dailog: NgbModal) {
+  }
 
   ngOnInit(): void {
     console.log(this.type);

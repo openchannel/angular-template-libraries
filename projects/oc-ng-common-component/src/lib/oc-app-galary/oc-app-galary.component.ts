@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { BasicAppDetails } from 'oc-ng-common-service';
+import {Component, Input, OnInit} from '@angular/core';
+import {BasicAppDetails} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-app-galary',
@@ -8,7 +8,7 @@ import { BasicAppDetails } from 'oc-ng-common-service';
 })
 export class OcAppGalaryComponent implements OnInit {
 
-  @Input() appsArr : BasicAppDetails[] =[]; 
+  @Input() appsArr: BasicAppDetails[] = [];
 
   @Input() noAppMessage: string = '';
 
@@ -19,8 +19,8 @@ export class OcAppGalaryComponent implements OnInit {
   @Input() appGalaryDescription: string;
 
 
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

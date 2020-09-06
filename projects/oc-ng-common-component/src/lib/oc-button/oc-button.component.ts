@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'oc-button',
@@ -8,11 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class OcButtonComponent implements OnInit {
   @Input() text: string;
   @Input() disabled: boolean;
-  @Input() type : string;
-  @Input() class : string;
-  @Input() style : string;
-  @Input() process : string;
-  constructor() { }
+  @Input() type: string;
+  @Input() class: string;
+  @Input() style: string;
+  @Input() process: string;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

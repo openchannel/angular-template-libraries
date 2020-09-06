@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FeaturedApp } from 'oc-ng-common-service';
+import {Component, Input, OnInit} from '@angular/core';
+import {FeaturedApp} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-featured-apps',
@@ -7,13 +7,15 @@ import { FeaturedApp } from 'oc-ng-common-service';
   styleUrls: ['./oc-featured-apps.component.scss']
 })
 export class OcFeaturedAppsComponent implements OnInit {
-  
+
   @Input() data: FeaturedApp[] = [];
 
   @Input() label;
 
   @Input() emptyDataMessage: string;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcRadioComponent } from './oc-radio.component';
+import {OcRadioComponent} from './oc-radio.component';
 
 describe('OcRadioComponent', () => {
   let component: OcRadioComponent;
@@ -8,9 +8,9 @@ describe('OcRadioComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcRadioComponent ]
+      declarations: [OcRadioComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

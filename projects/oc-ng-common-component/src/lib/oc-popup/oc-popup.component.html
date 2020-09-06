@@ -1,8 +1,8 @@
 <div class="card card-modal">
     <div class="card-body">
-        <div class="row" *ngIf="type === 'newApp' || type === 'newAppPending'">
+        <div *ngIf="type === 'newApp' || type === 'newAppPending'" class="row">
             <div class="col-12 text-right mb-2">
-                <a class="cursor-pointer" (click)="dismiss()">
+                <a (click)="dismiss()" class="cursor-pointer">
                     <img [src]="closeIconUrl" alt="close-icon">
                 </a>
             </div>
@@ -10,26 +10,27 @@
                 <h1 [innerHTML]="text"></h1>
             </div>
             <div class="col-md-12 mb-4 mt-2">
-                <oc-button [type]="'primary'" (click)="confirm()" [text]="'Submit'" [process]="inProcess" 
-                [disabled]="inProcess" [style]="'width:255px;'"></oc-button>    
+                <oc-button (click)="confirm()" [disabled]="inProcess" [process]="inProcess" [style]="'width:255px;'"
+                           [text]="'Submit'" [type]="'primary'"></oc-button>
             </div>
-            <div class="col-md sec-divider ml-8" *ngIf="type === 'newApp'"></div>
-            <div class="col-md-auto"  *ngIf="type === 'newApp'">
+            <div *ngIf="type === 'newApp'" class="col-md sec-divider ml-8"></div>
+            <div *ngIf="type === 'newApp'" class="col-md-auto">
                 <span class="font-m text-info d-block mt-n1">OR</span>
             </div>
-            <div class="col-md sec-divider mr-8" *ngIf="type === 'newApp'"></div>
-            <div class="col-md-12 mt-1"  *ngIf="type === 'newApp'">
+            <div *ngIf="type === 'newApp'" class="col-md sec-divider mr-8"></div>
+            <div *ngIf="type === 'newApp'" class="col-md-12 mt-1">
                 <span class="font-m text-secondary">{{informationalText}}</span>
             </div>
-            <div class="col-md-12 mb-2"  *ngIf="type === 'newApp'">
-                <oc-button [type]="'link'" [text]="cancelButtonText" (click)="cancel();" [class]="'text-center'" [process]="inProcess2">
+            <div *ngIf="type === 'newApp'" class="col-md-12 mb-2">
+                <oc-button (click)="cancel();" [class]="'text-center'" [process]="inProcess2" [text]="cancelButtonText"
+                           [type]="'link'">
                 </oc-button>
             </div>
         </div>
 
-        <div class="row" *ngIf="type === 'confirm'">
+        <div *ngIf="type === 'confirm'" class="row">
             <div class="col-12 text-right mb-2">
-                <a class="cursor-pointer" (click)="dismiss()">
+                <a (click)="dismiss()" class="cursor-pointer">
                     <img [src]="closeIconUrl" alt="close-icon">
                 </a>
             </div>
@@ -41,11 +42,11 @@
                 <span class="font-m text-secondary">{{informationalText}}</span>
             </div>
 
-            <div class="col-md-auto mx-auto mt-4 mb-5" *ngIf="type === 'confirm'">
-                <oc-button [type]="'secondary'" (click)="cancel()" [text]="cancelButtonText" class="mr-2">
+            <div *ngIf="type === 'confirm'" class="col-md-auto mx-auto mt-4 mb-5">
+                <oc-button (click)="cancel()" [text]="cancelButtonText" [type]="'secondary'" class="mr-2">
                 </oc-button>
-                <oc-button [type]="'primary'" [disabled]="inProcess" [process]="inProcess" (click)="confirm()"
-                    [text]="confirmButtonText">
+                <oc-button (click)="confirm()" [disabled]="inProcess" [process]="inProcess" [text]="confirmButtonText"
+                           [type]="'primary'">
                 </oc-button>
             </div>
         </div>

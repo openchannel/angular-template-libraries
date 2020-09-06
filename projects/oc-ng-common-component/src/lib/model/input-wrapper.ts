@@ -1,1 +1,2 @@
-export class InputWrapper { }
+export class InputWrapper {
+}

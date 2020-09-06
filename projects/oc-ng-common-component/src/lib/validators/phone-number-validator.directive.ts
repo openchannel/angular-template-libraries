@@ -1,9 +1,9 @@
-import { Directive } from '@angular/core';
-import { NG_VALIDATORS, Validator, FormControl, ValidationErrors } from '@angular/forms';
+import {Directive} from '@angular/core';
+import {FormControl, NG_VALIDATORS, ValidationErrors, Validator} from '@angular/forms';
 
 @Directive({
   selector: '[phoneNumberValidator]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: PhoneNumberValidatorDirective, multi: true }]
+  providers: [{provide: NG_VALIDATORS, useExisting: PhoneNumberValidatorDirective, multi: true}]
 })
 export class PhoneNumberValidatorDirective implements Validator {
 

@@ -17,16 +17,16 @@
     </form>
   </div> -->
 
-<button *ngIf="type === 'primary'" class="btn btn-primary {{class}}" [disabled]="disabled" style="{{style}}">
-  <span [hidden]="!process" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-  {{text}}
+<button *ngIf="type === 'primary'" [disabled]="disabled" class="btn btn-primary {{class}}" style="{{style}}">
+    <span [hidden]="!process" aria-hidden="true" class="spinner-border spinner-border-sm" role="status"></span>
+    {{text}}
 </button>
-<button *ngIf="type === 'secondary'" class="btn btn-secondary {{class}}" [disabled]="disabled" style="{{style}}">  
-  <span [hidden]="!process" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-  {{text}}
+<button *ngIf="type === 'secondary'" [disabled]="disabled" class="btn btn-secondary {{class}}" style="{{style}}">
+    <span [hidden]="!process" aria-hidden="true" class="spinner-border spinner-border-sm" role="status"></span>
+    {{text}}
 </button>
-<button *ngIf="type === 'link'" class="btn btn-link {{class}}" [disabled]="disabled" style="{{style}}">
-  <span [hidden]="!process" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-  {{text}}
+<button *ngIf="type === 'link'" [disabled]="disabled" class="btn btn-link {{class}}" style="{{style}}">
+    <span [hidden]="!process" aria-hidden="true" class="spinner-border spinner-border-sm" role="status"></span>
+    {{text}}
 </button>
 <!-- <a *ngIf="type==='link'">{{text}}</a> -->

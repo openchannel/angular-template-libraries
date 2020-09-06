@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'oc-label',
@@ -9,7 +9,9 @@ export class OcLabelComponent implements OnInit {
   @Input() text;
   @Input() class;
   @Input() required;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcAppCardComponent } from './oc-app-card.component';
+import {OcAppCardComponent} from './oc-app-card.component';
 
 describe('OcAppCardComponent', () => {
   let component: OcAppCardComponent;
@@ -8,9 +8,9 @@ describe('OcAppCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcAppCardComponent ]
+      declarations: [OcAppCardComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

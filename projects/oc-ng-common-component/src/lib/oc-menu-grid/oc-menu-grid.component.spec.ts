@@ -1,5 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { OcMenuGridComponent } from './oc-menu-grid.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {OcMenuGridComponent} from './oc-menu-grid.component';
 
 
 describe('OcMenuGridComponent', () => {

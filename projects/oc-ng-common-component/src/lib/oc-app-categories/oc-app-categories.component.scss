@@ -1,4 +1,5 @@
 @import "../../../assets/styles/theme.scss";
+
 .category-card {
   background-image: url("https://drive.google.com/u/0/uc?id=1UMmg66jwVemAqyUA17TlXWDe1K3Pmux8&export=download");
   width: 350px;
@@ -10,7 +11,8 @@
   position: relative;
   text-align: center;
   color: $primary;
-  img{
+  
+  img {
     max-height: 52px;
   }
 }

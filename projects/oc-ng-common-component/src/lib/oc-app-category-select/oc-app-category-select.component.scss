@@ -8,10 +8,12 @@
   display: inline-block;
   line-height: 1.25;
   height: 34px;
+  
   img {
     width: 18px;
   }
 }
+
 .add-category {
   font-size: 14px;
   font-family: Rubik-Medium;
@@ -22,22 +24,25 @@
   height: 46px;
 }
 
-.dropdown-toggle{
+.dropdown-toggle {
   text-align: left;
 }
-.dropdown-toggle::after{  
-  float: right; 
+
+.dropdown-toggle::after {
+  float: right;
   margin-top: 1px;
 }
-.dropdown-toggle.selected::after{  
+
+.dropdown-toggle.selected::after {
   margin-top: 8px;
-} 
-.dropdown-menu{
-  .dropdown-item{
-    border-bottom:0px;
+}
+
+.dropdown-menu {
+  .dropdown-item {
+    border-bottom: 0px;
     padding: 8px 12px;
   }
-
+  
 }
 
 

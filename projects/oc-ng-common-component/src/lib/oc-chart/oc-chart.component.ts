@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, AfterViewInit, ViewEncapsulation, Output, EventEmitter, SimpleChanges } from '@angular/core';
-import { Chart, ChartOptions } from 'chart.js';
+import {AfterViewInit, Component, ElementRef, Input, SimpleChanges, ViewChild} from '@angular/core';
+import {Chart} from 'chart.js';
 
 
 const chartPoint = new Image()
@@ -23,7 +23,7 @@ export class OcChartComponent implements AfterViewInit {
   @Input() countText;
   @Input() downloadUrl;
   @Input() name;
-  
+
   // change in value of this invokes ngOnChanges
   @Input() random;
 
@@ -34,19 +34,19 @@ export class OcChartComponent implements AfterViewInit {
     // this.dataSets = [];
   }
 
-  
+
   ngAfterViewInit(): void {
     if (typeof this.chart !== 'undefined') {
       this.chart.destroy();
     }
-    if(this.myCanvas){
+    if (this.myCanvas) {
       this.context = this.myCanvas.nativeElement.getContext('2d');
       this.getChart();
     }
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.ngAfterViewInit();    
+    this.ngAfterViewInit();
   }
 
   getChart() {
@@ -55,7 +55,7 @@ export class OcChartComponent implements AfterViewInit {
     gradientFill.addColorStop(1, 'rgba(240, 247, 255, 0.25)');
 
     this.chart = new Chart(this.context, {
-      type: 'line',      
+      type: 'line',
       data: {
         labels: this.labels,
         datasets: [{
@@ -65,7 +65,7 @@ export class OcChartComponent implements AfterViewInit {
           backgroundColor: gradientFill,
           borderColor: 'rgba(83, 124, 253, 1)',
           lineTension: 0,
-           borderWidth: 1.7
+          borderWidth: 1.7
         }]
       },
       options: {
@@ -75,19 +75,19 @@ export class OcChartComponent implements AfterViewInit {
           display: false
         },
         hover: {
-          onHover: function(e, data) {
-             if((<any>this).tooltip._active && (<any>this).tooltip._active.length > 0){
+          onHover: function (e, data) {
+            if ((<any>this).tooltip._active && (<any>this).tooltip._active.length > 0) {
               //console.log("on hover:" + (<any>this).tooltip._active.length);
               let chartPointArray = new Array((<any>this).tooltip._active[0]._index);
               chartPointArray.push(chartPoint);
-              this.data.datasets[0].pointStyle= chartPointArray;
+              this.data.datasets[0].pointStyle = chartPointArray;
               this.update();
-             }             
+            }
           }
-       },
+        },
         tooltips: {
           enabled: true,
-          intersect:false,
+          intersect: false,
           position: 'nearest',
           //mode: 'nearest',
           backgroundColor: '#FFF',
@@ -96,20 +96,20 @@ export class OcChartComponent implements AfterViewInit {
           bodyFontColor: '#727272',
           borderColor: '#c9d5ea',
           borderWidth: 1,
-          titleMarginBottom:6,
+          titleMarginBottom: 6,
           bodyFontSize: 12,
-          xPadding:12,
-          yPadding:12,
+          xPadding: 12,
+          yPadding: 12,
           caretPadding: 20,
           displayColors: false,
-          titleAlign:'center',
-          bodyAlign:'center',
+          titleAlign: 'center',
+          bodyAlign: 'center',
           callbacks: {
-            title:function(tooltipItem, data) {
-              
+            title: function (tooltipItem, data) {
+
               return "  " + tooltipItem[0].value + "  ";
             },
-            label: function(tooltipItem, data) {
+            label: function (tooltipItem, data) {
               //data.datasets[0].pointStyle = chartPoint;
               //this.chart.update();
               var label = data.datasets[tooltipItem.datasetIndex].label || '';
@@ -138,17 +138,17 @@ export class OcChartComponent implements AfterViewInit {
               fontColor: '#727272',
               // maxRotation: 30,
               // minRotation: 30,
-              callback(value: any, index, values) {     
-                if(value.length == 8){
-                  return value.substring(0,3);
-                } 
+              callback(value: any, index, values) {
+                if (value.length == 8) {
+                  return value.substring(0, 3);
+                }
                 return value;
               }
             }
           }],
           yAxes: [{
             gridLines: {
-              drawBorder: false,              
+              drawBorder: false,
               color: 'rgba(201, 213, 234, 0.4)',
               zeroLineColor: 'rgba(201, 213, 234, 0.4)'
             },

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcSellerAgreementComponent } from './oc-seller-agreement.component';
+import {OcSellerAgreementComponent} from './oc-seller-agreement.component';
 
 describe('OcSellerAgreementComponent', () => {
   let component: OcSellerAgreementComponent;
@@ -8,9 +8,9 @@ describe('OcSellerAgreementComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcSellerAgreementComponent ]
+      declarations: [OcSellerAgreementComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

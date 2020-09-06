@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcCommonLibComponent } from './oc-ng-common-component.component';
+import {OcCommonLibComponent} from './oc-ng-common-component.component';
 
 describe('OcCommonLibComponent', () => {
   let component: OcCommonLibComponent;
@@ -8,9 +8,9 @@ describe('OcCommonLibComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcCommonLibComponent ]
+      declarations: [OcCommonLibComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

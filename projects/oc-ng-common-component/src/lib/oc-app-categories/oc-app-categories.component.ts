@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { AppCategoryDetail } from 'oc-ng-common-service';
+import {Component, Input, OnInit} from '@angular/core';
+import {AppCategoryDetail} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-app-categories',
@@ -13,8 +13,9 @@ export class OcAppCategoriesComponent implements OnInit {
   @Input() categoryHeaderTitle = '';
 
   @Input() noDataMsg = '';
-  
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcSelectExpandableComponent } from './oc-select-expandable.component';
+import {OcSelectExpandableComponent} from './oc-select-expandable.component';
 
 describe('OcSelectExpandableComponent', () => {
   let component: OcSelectExpandableComponent;
@@ -8,9 +8,9 @@ describe('OcSelectExpandableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcSelectExpandableComponent ]
+      declarations: [OcSelectExpandableComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

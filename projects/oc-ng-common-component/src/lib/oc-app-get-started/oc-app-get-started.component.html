@@ -1,6 +1,7 @@
-<div class="row" *ngIf="getStartedType == 'home'">
+<div *ngIf="getStartedType == 'home'" class="row">
     <div class="col-md-auto pr-0">
-        <img src="https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download" alt="featured-logo">
+        <img alt="featured-logo"
+             src="https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download">
     </div>
     <div class="col-md pl-0">
         <h1>
@@ -9,11 +10,11 @@
         <p class="font-m text-secondary w-75 my-2">
             Register as an app developer and submit your app easily with our App Store Developer Portal
         </p>
-        <oc-button [text]="getStartedButtonText" type="primary" (click)="listAppGetStarted()">
+        <oc-button (click)="listAppGetStarted()" [text]="getStartedButtonText" type="primary">
         </oc-button>
     </div>
 </div>
-<div class="row text-center" *ngIf="getStartedType == 'search'">
+<div *ngIf="getStartedType == 'search'" class="row text-center">
     <div class="col-md-12">
         <h1>
             List Your App in our App Store
@@ -21,7 +22,7 @@
     </div>
 
     <div class="col-md-3 mt-5 px-5 mx-auto">
-        <oc-button class="btn-block" [text]="getStartedButtonText" type="primary" (click)="listAppGetStarted()">
+        <oc-button (click)="listAppGetStarted()" [text]="getStartedButtonText" class="btn-block" type="primary">
         </oc-button>
     </div>
 </div>
