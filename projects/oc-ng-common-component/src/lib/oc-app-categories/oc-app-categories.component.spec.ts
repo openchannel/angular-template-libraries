@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcAppCategoriesComponent } from './oc-app-categories.component';
+import {OcAppCategoriesComponent} from './oc-app-categories.component';
 
 describe('OcAppCategoriesComponent', () => {
   let component: OcAppCategoriesComponent;
@@ -8,9 +8,9 @@ describe('OcAppCategoriesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcAppCategoriesComponent ]
+      declarations: [OcAppCategoriesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

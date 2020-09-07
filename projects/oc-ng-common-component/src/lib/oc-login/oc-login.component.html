@@ -1,11 +1,11 @@
-<form novalidate #loginForm="ngForm">
+<form #loginForm="ngForm" novalidate>
     <div class="card oc-card-with-border">
         <div class="card-body">
             <div class="text-center">
                 <!-- <img class="img-fluid mb-4" src="{{companyLogoUrl}}" alt="logo" /> -->
-                <img class="img-fluid mb-4 company-logo"
-                    src="{{companyLogoUrl}}"
-                    alt="logo">
+                <img alt="logo"
+                     class="img-fluid mb-4 company-logo"
+                     src="{{companyLogoUrl}}">
             </div>
             <div class="text-center">
                 <h4>Log In</h4>
@@ -13,16 +13,18 @@
             </div>
             <div class="form-group">
                 <oc-label [text]="getValue('Email')"></oc-label>
-                <oc-input emailValidator [(modelName)]="loginModel.email" name="email" #email=ngModel
-                    [ngModel]="loginModel.email" ngDefaultControl required="true"
-                    [autocomplete]="'off'" [placeholder]="'Email'" (modelNameChange)="onchange(loginForm)"></oc-input>
-                <oc-error [control]="email" [field]="'email'"> </oc-error>
+                <oc-input #email=ngModel (modelNameChange)="onchange(loginForm)" [(modelName)]="loginModel.email" [autocomplete]="'off'"
+                          [ngModel]="loginModel.email" [placeholder]="'Email'" emailValidator
+                          name="email" ngDefaultControl
+                          required="true"></oc-input>
+                <oc-error [control]="email" [field]="'email'"></oc-error>
             </div>
             <div class="form-group mb-2">
                 <oc-label [text]="getValue('Password')"></oc-label>
-                <oc-password whiteSpaceValidator [(modelName)]="loginModel.password" class="mb-2" name="password"
-                    #password=ngModel [ngModel]="loginModel.password" ngDefaultControl required="true" [autocomplete]="'off'" 
-                    [placeholder]="'Password'" (modelNameChange)="onchange(loginForm)"></oc-password>
+                <oc-password #password=ngModel (modelNameChange)="onchange(loginForm)" [(modelName)]="loginModel.password" [autocomplete]="'off'"
+                             [ngModel]="loginModel.password" [placeholder]="'Password'" class="mb-2" name="password"
+                             ngDefaultControl
+                             required="true" whiteSpaceValidator></oc-password>
                 <oc-error [control]="password" [field]="'password'"></oc-error>
             </div>
             <div class="form-group row">
@@ -31,16 +33,17 @@
                     <oc-label [text]="getValue(' Remember Me ')" class="label-s"></oc-label>
                 </div>
                 <div class="col-md-auto">
-                    <a href={{forgotPwdUrl}} class="font-s font-med"> Forgot password? </a>
+                    <a class="font-s font-med" href={{forgotPwdUrl}}> Forgot password? </a>
                 </div>
             </div>
-            <oc-button [text]="getValue('Log In')"
-                (click)="submitForm(loginForm)" [type]="getValue('primary')" class="btn-block mt-4 mb-3" [disabled]="process || !loginForm.valid"
-                [process]="process">
+            <oc-button (click)="submitForm(loginForm)"
+                       [disabled]="process || !loginForm.valid" [process]="process" [text]="getValue('Log In')"
+                       [type]="getValue('primary')"
+                       class="btn-block mt-4 mb-3">
             </oc-button>
             <div class="text-center">
                 <oc-label [text]="getValue('Dont have an account yet?')"></oc-label>
-                <a href={{signupUrl}} class="font-m font-med"> Sign Up</a>
+                <a class="font-m font-med" href={{signupUrl}}> Sign Up</a>
             </div>
         </div>
     </div>

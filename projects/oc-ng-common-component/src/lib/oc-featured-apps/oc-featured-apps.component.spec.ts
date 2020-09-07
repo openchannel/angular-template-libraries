@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcFeaturedAppsComponent } from './oc-featured-apps.component';
+import {OcFeaturedAppsComponent} from './oc-featured-apps.component';
 
 describe('OcFeaturedAppsComponent', () => {
   let component: OcFeaturedAppsComponent;
@@ -8,9 +8,9 @@ describe('OcFeaturedAppsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcFeaturedAppsComponent ]
+      declarations: [OcFeaturedAppsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

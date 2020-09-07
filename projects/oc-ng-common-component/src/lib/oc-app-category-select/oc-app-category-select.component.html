@@ -1,33 +1,29 @@
 <div class="row">
     <div class="col-md">
-        <!-- <oc-select [defaultBlankValue]='defaultBlankValue' [selectValArr]='predefinedValArr' style="display: inline;"
-            (valueChange)='onSelectionChange($event)'></oc-select> -->
-            <div ngbDropdown class="d-inline-block w-100 ">
-                <button class="w-100 form-control" id="dropdownBasic1" ngbDropdownToggle
-                [ngClass]="{'selected':currentSelectedOption.value, 'ng-invalid':!ngModel.length}"
-                > {{currentSelectedOption.value}}</button>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="w-100">
-                  <button ngbDropdownItem *ngFor='let option of predefinedValArr; index as i;' (click)="onSelectionChange(option)">{{option.value}}</button>
-                </div>
-              </div>
+        <div class="d-inline-block w-100 " ngbDropdown>
+            <button [ngClass]="{'selected':currentSelectedOption.value, 'ng-invalid':!ngModel.length}" class="w-100 form-control" id="dropdownBasic1"
+                    ngbDropdownToggle
+            > {{currentSelectedOption.value}}</button>
+            <div aria-labelledby="dropdownBasic1" class="w-100" ngbDropdownMenu>
+                <button (click)="onSelectionChange(option)" *ngFor='let option of predefinedValArr; index as i;'
+                        ngbDropdownItem>{{option.value}}</button>
+            </div>
+        </div>
     </div>
     <div class="col-md-auto pl-0 pr-1 cursor-pointer">
-        <a  (click)='addCategory()'>
+        <a (click)='addCategory()'>
             <span class="add-category">
-                <img [src]="addIconUrl" class="pr-2"
-                alt="add-icon">{{addButtonLable}}
+                <img [src]="addIconUrl" alt="add-icon"
+                     class="pr-2">{{addButtonLable}}
             </span>
         </a>
-        <!-- <oc-button [text]='addButtonLable' type='secondary' style="display: inline;" (click)='addCategory()'>
-        </oc-button> -->
     </div>
-    <div class="col-md-12" *ngIf="ngModel && ngModel.length>0">
-        <span class="selected-label" *ngFor='let selectedVal of ngModel; index as i;'>{{selectedVal}}
+    <div *ngIf="ngModel && ngModel.length>0" class="col-md-12">
+        <span *ngFor='let selectedVal of ngModel; index as i;' class="selected-label">{{selectedVal}}
             <a (click)='removeCategory(selectedVal,i)' class="cursor-pointer">
                 <img [src]="closeIconUrl"
-                    class="pl-1" alt="close-icon">
+                     alt="close-icon" class="pl-1">
             </a>
         </span>
-        <!-- <label *ngFor='let selectedVal of selectedValuesArr'>{{selectedVal}} </label> -->
     </div>
 </div>

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcTextSearhComponent } from './oc-text-searh.component';
+import {OcTextSearhComponent} from './oc-text-searh.component';
 
 describe('OcTextSearhComponent', () => {
   let component: OcTextSearhComponent;
@@ -8,9 +8,9 @@ describe('OcTextSearhComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcTextSearhComponent ]
+      declarations: [OcTextSearhComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

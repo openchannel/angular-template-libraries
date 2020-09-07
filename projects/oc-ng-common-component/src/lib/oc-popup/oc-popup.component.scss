@@ -8,7 +8,6 @@
 //         font-family: CentraleSans-Bold;
 //         color: #212121 !important;   
 //     }
-    
 
 // }
 // .close{
@@ -21,21 +20,23 @@
 //         text-decoration: none;
 //       }
 
-
 // Modal CSS
 @import "../../../assets/styles/theme.scss";
+
 .card.card-modal {
-    // width: 730px;
-    // height: 406px;
-    .card-body{
-        padding: 1.50rem;
-        text-align: center;
-    }
+  // width: 730px;
+  // height: 406px;
+  .card-body {
+    padding: 1.50rem;
+    text-align: center;
+  }
+  
   img {
     height: 16px;
     width: 16px;
   }
 }
-.sec-divider{
+
+.sec-divider {
   border-top: 1px solid $info;
 }

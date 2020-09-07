@@ -4,13 +4,14 @@
         <h1>{{categoryHeaderTitle}}</h1>
     </div>
 </div>
-<div class="row" *ngIf="data && data.length > 0; else emptyData">
-    <div class="col-md-auto"  *ngFor="let appCategory of data;index as i;">
+<div *ngIf="data && data.length > 0; else emptyData" class="row">
+    <div *ngFor="let appCategory of data;index as i;" class="col-md-auto">
         <div class="category-card card-{{i}}">
-            <img src="https://drive.google.com/u/0/uc?id=1b0lLlbQrVS0Lc-hey6KC6YCZkJrn07Qe&export=download" alt="category-icon">
+            <img alt="category-icon"
+                 src="https://drive.google.com/u/0/uc?id=1b0lLlbQrVS0Lc-hey6KC6YCZkJrn07Qe&export=download">
             <div class="content-centered">All Apps</div>
         </div>
-        
+
         <!-- <div [class]="appCategory.categoryCardClass">
             <img [src]="appCategory.categoryLogo" alt="category-icon">
             <div class="content-centered">{{appCategory.categoryName}}</div>

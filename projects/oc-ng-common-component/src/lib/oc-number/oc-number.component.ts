@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, ElementRef, Input } from '@angular/core';
-import { NgModel, DefaultValueAccessor } from '@angular/forms';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {DefaultValueAccessor, NgModel} from '@angular/forms';
 
 @Component({
   selector: 'oc-number',
@@ -15,6 +15,7 @@ export class OcNumberComponent implements OnInit {
 
   @Output() modelNameChange = new EventEmitter<any>();
   @Input() disabled = false;
+
   constructor(private el: ElementRef, private control: NgModel) {
 
   }

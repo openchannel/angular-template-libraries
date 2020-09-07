@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { SellerSignin } from 'oc-ng-common-service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {SellerSignin} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-login',
@@ -15,7 +15,9 @@ export class OcLoginComponent implements OnInit {
   @Input() process;
 
   @Output() submit = new EventEmitter<any>();
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
@@ -32,11 +34,11 @@ export class OcLoginComponent implements OnInit {
     this.submit.emit(true);
   }
 
-  onchange(form){
-    if(form.form.controls.email.errors && form.form.controls.email.errors.serverErrorValidator){
+  onchange(form) {
+    if (form.form.controls.email.errors && form.form.controls.email.errors.serverErrorValidator) {
       form.form.controls.email.setErrors(null);
     }
-    if(form.form.controls.password.errors && form.form.controls.password.errors.serverErrorValidator){
+    if (form.form.controls.password.errors && form.form.controls.password.errors.serverErrorValidator) {
       form.form.controls.password.setErrors(null);
     }
   }

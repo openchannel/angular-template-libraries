@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { SellerSignin } from 'oc-ng-common-service';
-import { Router } from '@angular/router';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {SellerSignin} from 'oc-ng-common-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'oc-forgot-password',
@@ -18,7 +18,9 @@ export class OcForgotPasswordComponent implements OnInit {
   @Input() companyLogoUrl;
   @Input() process;
   @Output() submit = new EventEmitter<any>();
-  constructor(private router: Router) { }
+
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
   }
@@ -35,7 +37,7 @@ export class OcForgotPasswordComponent implements OnInit {
     this.submit.emit(true);
   }
 
-  goBackToLogin(){
+  goBackToLogin() {
     this.router.navigateByUrl(this.loginUrl);
   }
 

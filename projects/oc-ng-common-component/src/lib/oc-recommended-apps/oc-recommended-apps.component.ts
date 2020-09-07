@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BasicAppDetails} from 'oc-ng-common-service';
 
 @Component({
@@ -7,14 +7,15 @@ import {BasicAppDetails} from 'oc-ng-common-service';
   styleUrls: ['./oc-recommended-apps.component.scss']
 })
 export class OcRecommendedAppsComponent implements OnInit {
-  
-  @Input() appList : BasicAppDetails[] =[]; 
+
+  @Input() appList: BasicAppDetails[] = [];
 
   @Input() noAppMessage: string = '';
 
   @Input() recommendedAppTitle: string;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

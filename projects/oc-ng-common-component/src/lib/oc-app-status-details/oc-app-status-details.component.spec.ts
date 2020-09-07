@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcAppStatusDetailsComponent } from './oc-app-status-details.component';
+import {OcAppStatusDetailsComponent} from './oc-app-status-details.component';
 
 describe('OcAppBasicDetailsComponent', () => {
   let component: OcAppStatusDetailsComponent;
@@ -8,9 +8,9 @@ describe('OcAppBasicDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcAppStatusDetailsComponent ]
+      declarations: [OcAppStatusDetailsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

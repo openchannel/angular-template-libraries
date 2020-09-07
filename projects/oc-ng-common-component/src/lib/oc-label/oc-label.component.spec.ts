@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcLabelComponent } from './oc-label.component';
+import {OcLabelComponent} from './oc-label.component';
 
 describe('OcLabelComponent', () => {
   let component: OcLabelComponent;
@@ -8,9 +8,9 @@ describe('OcLabelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcLabelComponent ]
+      declarations: [OcLabelComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

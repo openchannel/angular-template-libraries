@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcBoxGridComponent } from './oc-box-grid.component';
+import {OcBoxGridComponent} from './oc-box-grid.component';
 
 describe('OcBoxGridComponent', () => {
   let component: OcBoxGridComponent;
@@ -8,9 +8,9 @@ describe('OcBoxGridComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcBoxGridComponent ]
+      declarations: [OcBoxGridComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

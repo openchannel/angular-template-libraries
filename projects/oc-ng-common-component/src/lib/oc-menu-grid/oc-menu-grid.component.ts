@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { SellerAppsWrapper } from 'oc-ng-common-service'
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {SellerAppsWrapper} from 'oc-ng-common-service'
 
 @Component({
   selector: 'oc-menu-grid',
@@ -12,28 +12,30 @@ export class OcMenuGridComponent implements OnInit {
 
   @Input() menuUrl;
   @Input() sortIcon;
-  editIcon = "assets/img/edit_icon.svg";
+  editIcon = 'assets/img/edit_icon.svg';
 
-  submitIcon = "assets/img/submit_icon.svg";
-  deleteIcon = "assets/img/delete.svg";
-  suspendIcon = "assets/img/suspend_icon.svg";
+  submitIcon = 'assets/img/submit_icon.svg';
+  deleteIcon = 'assets/img/delete.svg';
+  suspendIcon = 'assets/img/suspend_icon.svg';
 
   @Output() menuClicked = new EventEmitter<any>();
 
   childExist: boolean = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
   action(menu, app) {
-    let menuItems = {
+    const menuItems = {
       menu: menu,
       appId: app.appId,
       version: app.version,
-      hasChild: app.childs ? true : false
-    }
+      hasChild: !!app.childs
+    };
+
     this.menuClicked.emit(menuItems);
   }
 

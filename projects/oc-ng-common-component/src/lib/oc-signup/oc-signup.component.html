@@ -1,11 +1,10 @@
-
-<form novalidate #signupform="ngForm" *ngIf="!showSignupFeedbackPage">
+<form #signupform="ngForm" *ngIf="!showSignupFeedbackPage" novalidate>
     <div class="card oc-card-with-border">
         <div class="card-body">
             <!-- <a href="/"> -->
             <div class="text-center">
                 <!-- <img class="img-fluid mb-4" src="{{companyLogoUrl}}" alt="logo" /> -->
-                <img class="img-fluid mb-4 company-logo" src="{{companyLogoUrl}}" alt="logo">
+                <img alt="logo" class="img-fluid mb-4 company-logo" src="{{companyLogoUrl}}">
             </div>
             <!-- </a> -->
             <div class="text-center">
@@ -14,43 +13,47 @@
             </div>
             <div class="form-group">
                 <oc-label [text]="getValue('Name')"></oc-label>
-                <oc-input whiteSpaceValidator [(modelName)]="signupModel.uname" name="uname" #uname=ngModel
-                [ngModel]="signupModel.uname" ngDefaultControl required="true" [placeholder]="'Name'" [autocomplete]="'off'"></oc-input>
-            <oc-error [control]="uname" [field]="'developerAccount.name'"> </oc-error>
+                <oc-input #uname=ngModel [(modelName)]="signupModel.uname" [autocomplete]="'off'" [ngModel]="signupModel.uname"
+                          [placeholder]="'Name'" name="uname" ngDefaultControl required="true"
+                          whiteSpaceValidator></oc-input>
+                <oc-error [control]="uname" [field]="'developerAccount.name'"></oc-error>
             </div>
             <div class="form-group">
                 <oc-label [text]="getValue('Company')"></oc-label>
-                <oc-input whiteSpaceValidator [(modelName)]="signupModel.company" name="company" #company=ngModel
-                [ngModel]="signupModel.company" ngDefaultControl required="true" [placeholder]="'Company'" [autocomplete]="'off'"></oc-input>
-                <oc-error [control]="company" [field]="'developer.name'"> </oc-error>
+                <oc-input #company=ngModel [(modelName)]="signupModel.company" [autocomplete]="'off'" [ngModel]="signupModel.company"
+                          [placeholder]="'Company'" name="company" ngDefaultControl required="true"
+                          whiteSpaceValidator></oc-input>
+                <oc-error [control]="company" [field]="'developer.name'"></oc-error>
             </div>
             <div class="form-group">
                 <oc-label [text]="getValue('Email')"></oc-label>
-                <oc-input emailValidator [(modelName)]="signupModel.email" name="email" #email=ngModel
-                [ngModel]="signupModel.email" ngDefaultControl required="true" [placeholder]="'Email'" [autocomplete]="'off'"></oc-input>
-                <oc-error [control]="email" [field]="'developerAccount.email'"> </oc-error>
+                <oc-input #email=ngModel [(modelName)]="signupModel.email" [autocomplete]="'off'" [ngModel]="signupModel.email"
+                          [placeholder]="'Email'" emailValidator name="email" ngDefaultControl
+                          required="true"></oc-input>
+                <oc-error [control]="email" [field]="'developerAccount.email'"></oc-error>
             </div>
             <div class="form-group mb-2">
                 <oc-label [text]="getValue('Password')"></oc-label>
-                <oc-password [(modelName)]="signupModel.password" class="mb-2" name="password" #password=ngModel
-                [ngModel]="signupModel.password" ngDefaultControl required="true" [placeholder]="'Password'" [autocomplete]="'off'"></oc-password>
-                <oc-error [control]="password" [field]="'extra.password'"> </oc-error>
+                <oc-password #password=ngModel [(modelName)]="signupModel.password" [autocomplete]="'off'" [ngModel]="signupModel.password"
+                             [placeholder]="'Password'" class="mb-2" name="password"
+                             ngDefaultControl required="true"></oc-password>
+                <oc-error [control]="password" [field]="'extra.password'"></oc-error>
             </div>
 
             <div class="form-group">
                 <oc-checkbox [(isChecked)]="signupModel.isChecked"></oc-checkbox>
                 <oc-label [text]="getValue(' I agree to ')" class="label-s"></oc-label>
-                <a href={{termsUrl}} target="_blank" class="font-s"><b> Terms of Service </b></a>
+                <a class="font-s" href={{termsUrl}} target="_blank"><b> Terms of Service </b></a>
                 <oc-label [text]="getValue(' and ')" class="label-s"></oc-label>
-                <a href={{policyUrl}} target="_blank" class="font-s"><b> Data Processing Policy</b></a>
+                <a class="font-s" href={{policyUrl}} target="_blank"><b> Data Processing Policy</b></a>
             </div>
-            <oc-button [text]="getValue('Sign Up')" [disabled]="!signupModel.isChecked || !signupform.valid || process"
-                [type]="getValue('primary')" [process]="process" (click)="submitForm(signupform)"
-                class="btn-block mt-5 mb-3">
+            <oc-button (click)="submitForm(signupform)" [disabled]="!signupModel.isChecked || !signupform.valid || process"
+                       [process]="process" [text]="getValue('Sign Up')" [type]="getValue('primary')"
+                       class="btn-block mt-5 mb-3">
             </oc-button>
             <div class="text-center">
                 <oc-label [text]="getValue('Already have an account? ')"></oc-label>
-                <a href={{loginUrl}} class="font-m font-med"> Log In</a>
+                <a class="font-m font-med" href={{loginUrl}}> Log In</a>
             </div>
 
 
@@ -59,28 +62,27 @@
 </form>
 
 
-
-<form novalidate #forgotPwdForm="ngForm" *ngIf="showSignupFeedbackPage">
+<form #forgotPwdForm="ngForm" *ngIf="showSignupFeedbackPage" novalidate>
     <div class="card oc-card-with-border">
         <div class="card-body">
             <div class="text-center">
                 <!-- <img class="img-fluid mb-4" src="{{companyLogoUrl}}" alt="logo" /> -->
-                <img class="img-fluid mb-4 company-logo"
-                    src="{{companyLogoUrl}}"
-                    alt="logo">
+                <img alt="logo"
+                     class="img-fluid mb-4 company-logo"
+                     src="{{companyLogoUrl}}">
             </div>
             <div class="text-center">
-                <img src="{{forgotPasswordDoneUrl}}"
-                class="mb-3" alt="dropdown-icon">
+                <img alt="dropdown-icon"
+                     class="mb-3" src="{{forgotPasswordDoneUrl}}">
                 <h4>Done!</h4>
-                <oc-label [text]="'An activation link has been sent to your inbox.'" ></oc-label>
+                <oc-label [text]="'An activation link has been sent to your inbox.'"></oc-label>
             </div>
-            <oc-button [text]="getValue('Activate')" [disabled]="false"
-                [type]="getValue('primary')" class="btn-block my-5" (click)="goToActivationPage()">
+            <oc-button (click)="goToActivationPage()" [disabled]="false"
+                       [text]="getValue('Activate')" [type]="getValue('primary')" class="btn-block my-5">
             </oc-button>
             <div class="text-center">
                 <oc-label [text]="getValue(' Dont have an account yet? ')"></oc-label>
-                <a href={{signupUrl}} class="font-m font-med"> Sign Up</a>
+                <a class="font-m font-med" href={{signupUrl}}> Sign Up</a>
             </div>
         </div>
     </div>

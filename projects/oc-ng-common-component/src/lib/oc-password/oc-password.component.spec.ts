@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcPasswordComponent } from './oc-password.component';
+import {OcPasswordComponent} from './oc-password.component';
+import {FormsModule, NgModel} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
 
 describe('OcPasswordComponent', () => {
   let component: OcPasswordComponent;
@@ -8,9 +11,11 @@ describe('OcPasswordComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcPasswordComponent ]
+      providers: [NgModel],
+      imports: [FormsModule, CommonModule, BrowserModule],
+      declarations: [OcPasswordComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

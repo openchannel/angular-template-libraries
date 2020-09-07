@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcInputComponent } from './oc-input.component';
+import {OcInputComponent} from './oc-input.component';
 
 describe('OcInputComponent', () => {
   let component: OcInputComponent;
@@ -8,9 +8,9 @@ describe('OcInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcInputComponent ]
+      declarations: [OcInputComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

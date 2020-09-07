@@ -1,21 +1,22 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class OcErrorService {
-    serverErrorList = [];
-    constructor() {
-    }
+  serverErrorList = [];
 
-    setServerErrorList(messages) {
-        this.serverErrorList = messages;
-    }
+  constructor() {
+  }
 
-    clearError(error){
-        this.serverErrorList = this.serverErrorList.filter(function(error, index){
-                return error.field != error.field
-        });
-    }
+  setServerErrorList(messages) {
+    this.serverErrorList = messages;
+  }
+
+  clearError(error) {
+    this.serverErrorList = this.serverErrorList.filter(function (error, index) {
+      return error.field != error.field
+    });
+  }
 
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { NgModel, DefaultValueAccessor } from '@angular/forms';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {DefaultValueAccessor, NgModel} from '@angular/forms';
 
 @Component({
   selector: 'oc-select',
@@ -8,18 +8,15 @@ import { NgModel, DefaultValueAccessor } from '@angular/forms';
 })
 export class OcSelectComponent implements OnInit {
 
-  constructor(private control: NgModel) { }
-
   @Input() selectValArr = [];
-
   @Input() defaultBlankValue = "Select";
-
   @Output() valueChange = new EventEmitter();
-
   @Input() value;
-
   @Input() stringVal = false;
   @Input() disabled = false;
+
+  constructor(private control: NgModel) {
+  }
 
   ngOnInit(): void {
   }

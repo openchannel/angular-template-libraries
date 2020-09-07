@@ -3,7 +3,7 @@
         <h1>{{recommendedAppTitle}}</h1>
     </div>
 </div>
-<div class="row mx-0 mt-5" *ngIf="appList && appList.length > 0; else emptyData">
+<div *ngIf="appList && appList.length > 0; else emptyData" class="row mx-0 mt-5">
     <div *ngFor="let app of appList;">
         <oc-app-card [app]="app"></oc-app-card>
     </div>

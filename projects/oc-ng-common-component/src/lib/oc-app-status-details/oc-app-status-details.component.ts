@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { AppStatusDetails } from 'oc-ng-common-service';
+import {Component, Input, OnInit} from '@angular/core';
+import {AppStatusDetails} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-app-status-details',
@@ -9,7 +9,9 @@ import { AppStatusDetails } from 'oc-ng-common-service';
 export class OcAppStatusDetailsComponent implements OnInit {
 
   @Input() appStatus: AppStatusDetails = new AppStatusDetails();
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
 
