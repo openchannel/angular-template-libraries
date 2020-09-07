@@ -1,59 +1,62 @@
-.confirmation-model-title{
+.confirmation-model-title {
+  font-family: CentraleSans-Bold;
+  color: #212121 !important;
+  font-weight: bold;
+}
+
+.confirmation-model-body {
+  margin-right: 10px;
+  
+  .text-primary {
     font-family: CentraleSans-Bold;
-    color: #212121 !important; 
-    font-weight: bold;  
+    color: #212121 !important;
+  }
+  
+  
 }
 
-.confirmation-model-body{
-    margin-right: 10px;
-    .text-primary{
-        font-family: CentraleSans-Bold;
-        color: #212121 !important;   
-    }
-    
-
-}
-.close-button{
-    font-size: 32px;
-    color: grey;
+.close-button {
+  font-size: 32px;
+  color: grey;
 }
 
-.modal-title{
+.modal-title {
   margin-top: 40px;
 }
-.modal-header{
-    border-bottom: 0px solid #dee2e6;
+
+.modal-header {
+  border-bottom: 0px solid #dee2e6;
 }
 
-.modal-footer{
-    border-top: 0px solid #dee2e6;
+.modal-footer {
+  border-top: 0px solid #dee2e6;
 }
-  // scrollbar
 
-  .custom-scrollbar-css {
-    height: 60vh;
-  }
-  
-  
-  /* Custom Scrollbar using CSS */
-  .custom-scrollbar-css {
-    overflow-y: scroll;
-  }
-  
-  /* scrollbar width */
-  .custom-scrollbar-css::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  /* scrollbar track */
-  .custom-scrollbar-css::-webkit-scrollbar-track {
-    background: #eee;
-  }
-  
-  /* scrollbar handle */
-  .custom-scrollbar-css::-webkit-scrollbar-thumb {
-    border-radius: 1rem;
-    background-color:lightgray;
-    //background-image: linear-gradient(to top, #00d2ff 0%, #3a7bd5 100%);
-  }
-  
+// scrollbar
+
+.custom-scrollbar-css {
+  height: 60vh;
+}
+
+
+/* Custom Scrollbar using CSS */
+.custom-scrollbar-css {
+  overflow-y: scroll;
+}
+
+/* scrollbar width */
+.custom-scrollbar-css::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* scrollbar track */
+.custom-scrollbar-css::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+/* scrollbar handle */
+.custom-scrollbar-css::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: lightgray;
+  //background-image: linear-gradient(to top, #00d2ff 0%, #3a7bd5 100%);
+}

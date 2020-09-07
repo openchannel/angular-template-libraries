@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { SellerActivation } from 'oc-ng-common-service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {SellerActivation} from 'oc-ng-common-service';
 
 
 @Component({
@@ -10,20 +9,20 @@ import { SellerActivation } from 'oc-ng-common-service';
 })
 export class OcActivationComponent implements OnInit {
 
-  constructor() { }
-
   @Input() activationUrl;
   @Input() signupUrl;
   @Input() companyLogoUrl;
   @Input() process;
   @Input() activationModel = new SellerActivation();
-
   @Output() submit = new EventEmitter<any>();
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
-  
+
   getValue(label: string) {
     return label;
   }
@@ -34,14 +33,15 @@ export class OcActivationComponent implements OnInit {
       this.submit.emit(false);
       return false;
     }
-    this.submit.emit(true);  
-    return false;    
+    this.submit.emit(true);
+    return false;
   }
-  onchange(form){
-    if(form.form.controls.email.errors && form.form.controls.email.errors.serverErrorValidator){
+
+  onchange(form) {
+    if (form.form.controls.email.errors && form.form.controls.email.errors.serverErrorValidator) {
       form.form.controls.email.setErrors(null);
     }
-    if(form.form.controls.password.errors && form.form.controls.password.errors.serverErrorValidator){
+    if (form.form.controls.password.errors && form.form.controls.password.errors.serverErrorValidator) {
       form.form.controls.password.setErrors(null);
     }
   }

@@ -1,1 +1,2 @@
-<input type="text" whiteSpaceValidator [(ngModel)]="modelName" (ngModelChange)="changeModelVal()" [placeholder]="placeholder" [disabled]="disabled" class="form-control" (blur)="onblur()">
+<input (blur)="onblur()" (ngModelChange)="changeModelVal()" [(ngModel)]="modelName" [disabled]="disabled"
+       [placeholder]="placeholder" class="form-control" type="text" whiteSpaceValidator>

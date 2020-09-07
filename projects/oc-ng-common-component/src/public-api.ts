@@ -2,8 +2,6 @@
  * Public API Surface of oc-ng-common-component
  */
 
-import { from } from 'rxjs';
-
 export * from './lib/oc-ng-common-component.component';
 export * from './lib/oc-ng-common-component.module';
 export * from './lib/oc-input/oc-input.component';
@@ -22,7 +20,7 @@ export * from './lib/oc-featured-apps/oc-featured-apps.component';
 export * from './lib/oc-app-categories/oc-app-categories.component';
 export * from './lib/oc-forgot-password/oc-forgot-password.component';
 export * from './lib/oc-text-searh/oc-text-searh.component';
-export * from './lib/oc-app-list-grid/oc-app-list-grid.component'
+export * from './lib/oc-app-list-grid/oc-app-list-grid.component';
 export * from './lib/oc-error/oc-error.component';
 export * from './lib/oc-error/oc-error-service';
 export * from './lib/oc-recommended-apps/oc-recommended-apps.component';
@@ -36,7 +34,7 @@ export * from './lib/oc-activation/oc-activation.component';
 export * from './lib/oc-seller-agreement/oc-seller-agreement.component';
 export * from './lib/oc-reset-password/oc-reset-password.component';
 
-//validators 
+// validators
 export * from './lib/validators/white-space-validator';
 export * from './lib/validators/email-validator.directive';
 export * from './lib/validators/autofocus.directive';
@@ -49,12 +47,12 @@ export * from './lib/validators/website-validator.directive';
 export * from './lib/validators/compare-passsword-validator.directive';
 
 
-//pipe
+// pipe
 export * from './lib/validators/file-size.pipe';
 export * from './lib/pipe/camelcase.pipe';
 export * from './lib/pipe/ellipsis.pipe';
 
-//chart components
+// chart components
 export * from './lib/oc-chart/oc-chart.component';
 export * from './lib/oc-menu-grid/oc-menu-grid.component';
 

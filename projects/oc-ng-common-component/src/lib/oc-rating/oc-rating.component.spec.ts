@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcRatingComponent } from './oc-rating.component';
+import {OcRatingComponent} from './oc-rating.component';
 
 describe('OcRatingComponent', () => {
   let component: OcRatingComponent;
@@ -8,9 +8,9 @@ describe('OcRatingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcRatingComponent ]
+      declarations: [OcRatingComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

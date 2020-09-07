@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcErrorComponent } from './oc-error.component';
+import {OcErrorComponent} from './oc-error.component';
 
 describe('OcErrorComponent', () => {
   let component: OcErrorComponent;
@@ -8,9 +8,9 @@ describe('OcErrorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcErrorComponent ]
+      declarations: [OcErrorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

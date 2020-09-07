@@ -1,14 +1,18 @@
 @import "../../../assets/styles/theme.scss";
+
 span {
   color: $secondary;
 }
+
 .star {
   position: relative;
   color: rgba(114, 114, 114, 0.4);
 }
+
 .full {
   color: #ffc820;
 }
+
 .half {
   position: absolute;
   overflow: hidden;
@@ -16,7 +20,8 @@ span {
   bottom: -2px;
   left: 0px;
 }
-img{
+
+img {
   margin-top: -4px;
   padding-right: 4px;
 }

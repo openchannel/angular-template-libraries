@@ -19,22 +19,22 @@
 
 <div class="row">
     <div class="col-md-12">
-        <img *ngIf="appStatus.appLogoUrl" [src]="appStatus.appLogoUrl" class="app-icon-lg" alt="logo">
+        <img *ngIf="appStatus.appLogoUrl" [src]="appStatus.appLogoUrl" alt="logo" class="app-icon-lg">
         <h4 class="mb-0_5">{{appStatus.appName}}</h4>
     </div>
     <div class="col-md-12">
-        <img src="/assets/img/calendar.svg" class="cal-icon" alt="cal" style="margin-bottom: 1px;">
+        <img alt="cal" class="cal-icon" src="/assets/img/calendar.svg" style="margin-bottom: 1px;">
         <span class="font-m"> {{appStatus.appSavedDate | date : 'M/d/yyyy'}}</span>
-        <span *ngIf="appStatus.appStatusReason" placement="bottom"
-            class="cursor-pointer pl-3 text-primary font-m font-med" [ngbPopover]="popContent"
-            popoverClass="popover shadow-sm bg-white rounded" triggers="hover"
-            popoverTitle="Status Change Reason">{{appStatus.appStatus}}</span>
+        <span *ngIf="appStatus.appStatusReason" [ngbPopover]="popContent"
+              class="cursor-pointer pl-3 text-primary font-m font-med" placement="bottom"
+              popoverClass="popover shadow-sm bg-white rounded" popoverTitle="Status Change Reason"
+              triggers="hover">{{appStatus.appStatus}}</span>
         <ng-template #popContent>
             {{ appStatus.appStatusReason }}
         </ng-template>
 
         <span *ngIf="!appStatus.appStatusReason"
-            class="cursor-pointer pl-3 text-primary font-m font-med">{{appStatus.appStatus}}</span>
+              class="cursor-pointer pl-3 text-primary font-m font-med">{{appStatus.appStatus}}</span>
     </div>
     <div class="col-md-12 mt-0_5 mb-2 app-summary-text">
         {{appStatus.appDescription != 'undefined' ? appStatus.appDescription : '' }}
@@ -42,8 +42,8 @@
     <div class="col-md-12">
         <div class="divider"></div>
     </div>
-    <div class="col-md-12 mt-1" *ngIf="appStatus.appCategory">
-        <span class="selected-label" *ngFor="let category of appStatus.appCategory">{{category}}</span>
+    <div *ngIf="appStatus.appCategory" class="col-md-12 mt-1">
+        <span *ngFor="let category of appStatus.appCategory" class="selected-label">{{category}}</span>
     </div>
 
 </div>

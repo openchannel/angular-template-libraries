@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import {Component, Input, OnInit} from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'oc-seller-agreement',
@@ -21,8 +21,10 @@ export class OcSellerAgreementComponent implements OnInit {
   title1 = 'appBootstrap';
 
   closeIconUrl;
+
   constructor(public dialog: NgbModal,
-    private modalService: NgbModal) { }
+              private modalService: NgbModal) {
+  }
 
   ngOnInit(): void {
   }
@@ -39,15 +41,15 @@ export class OcSellerAgreementComponent implements OnInit {
 
   confirm() {
     this.inProcess = true;
-    this.confirmCallback('confirm'); 
+    this.confirmCallback('confirm');
   }
 
   close() {
     this.inProcess = true;
-    this.closeCallBack('close'); 
+    this.closeCallBack('close');
   }
 
-  
+
   //  openModel(content) {
   // //   console.log(content);
   // //   this.cropperModalRef = this.modalService
@@ -66,7 +68,7 @@ export class OcSellerAgreementComponent implements OnInit {
   //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
   //   });
   // }
-  
+
   // private getDismissReason(reason: any): string {
   //   if (reason === ModalDismissReasons.ESC) {
   //     return 'by pressing ESC';

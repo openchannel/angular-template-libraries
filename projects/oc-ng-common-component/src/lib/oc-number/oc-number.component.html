@@ -1,2 +1,2 @@
-<input type="number" class="form-control" [(ngModel)]="modelName" (ngModelChange)="changeModelVal()"
-    [placeholder]="placeholder" [disabled]="disabled" class="form-control" (blur)="onblur()">
+<input (blur)="onblur()" (ngModelChange)="changeModelVal()" [(ngModel)]="modelName" [disabled]="disabled"
+       [placeholder]="placeholder" class="form-control" class="form-control" type="number">

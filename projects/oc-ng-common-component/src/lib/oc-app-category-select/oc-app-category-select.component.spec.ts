@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import '@angular/localize/init';
 
-import { OcAppCategorySelectComponent } from './oc-app-category-select.component';
+import {OcAppCategorySelectComponent} from './oc-app-category-select.component';
 
 describe('OcAppCategorySelectComponent', () => {
   let component: OcAppCategorySelectComponent;
@@ -8,9 +9,9 @@ describe('OcAppCategorySelectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcAppCategorySelectComponent ]
+      declarations: [OcAppCategorySelectComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

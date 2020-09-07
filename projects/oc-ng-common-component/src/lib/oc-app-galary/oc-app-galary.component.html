@@ -3,14 +3,14 @@
         <h4>{{appGalaryTitle}}</h4>
         <span class="text-secondary font-m">{{appGalaryDescription}}</span>
     </div>
-    <div class="col-md-auto" *ngIf="seeAllUrl && seeAllUrl.length > 0">
+    <div *ngIf="seeAllUrl && seeAllUrl.length > 0" class="col-md-auto">
         <a [href]="seeAllUrl">
             <span class="text-primary font-m font-med pr-1">See All</span>
-            <img src="https://drive.google.com/u/0/uc?id=1slezM1BqinfgM0LVImYPB2Ljx9G5y7Q5&export=download" alt="icon">
+            <img alt="icon" src="https://drive.google.com/u/0/uc?id=1slezM1BqinfgM0LVImYPB2Ljx9G5y7Q5&export=download">
         </a>
     </div>
 </div>
-<div class="row pt-5" *ngIf="appsArr && appsArr.length > 0; else emptyData">
+<div *ngIf="appsArr && appsArr.length > 0; else emptyData" class="row pt-5">
     <div *ngFor="let app of appsArr;">
         <oc-app-card [app]="app"></oc-app-card>
     </div>

@@ -1,4 +1,5 @@
 @import "../../../assets/styles/theme.scss";
+
 .file-container {
   min-width: 540px;
   min-height: 248px;
@@ -16,19 +17,20 @@
     top: 0;
     left: 0;
   }
-
+  
   h3 {
     font-size: 20px;
     font-weight: 600;
     color: #38424c;
   }
-
-  .upload-s{
+  
+  .upload-s {
     width: 24px;
     margin-bottom: 3px;
     margin-right: 8px;
   }
-  .placeholder-text-container{
+  
+  .placeholder-text-container {
     line-height: 1.2;
   }
 }
@@ -40,7 +42,7 @@
 
 .files-list {
   margin-top: 1.5rem;
-
+  
   .single-file {
     display: flex;
     padding: 0.5rem;
@@ -48,24 +50,24 @@
     align-items: center;
     border: dashed 1px #979797;
     margin-bottom: 1rem;
-
+    
     .delete {
       display: flex;
       margin-left: 0.5rem;
       cursor: pointer;
       align-self: flex-end;
     }
-
+    
     display: flex;
     flex-grow: 1;
-
+    
     .name {
       font-size: 14px;
       font-weight: 500;
       color: #353f4a;
       margin: 0;
     }
-
+    
     .size {
       font-size: 12px;
       font-weight: 500;
@@ -73,7 +75,7 @@
       margin: 0;
       margin-bottom: 0.25rem;
     }
-
+    
     .info {
       width: 100%;
     }
@@ -91,22 +93,23 @@
   text-align: center;
 }
 
-.browse-file{
+.browse-file {
   color: #537cfd !important;
   cursor: pointer;
 }
 
-.progressbar-wrapper{
+.progressbar-wrapper {
   min-height: 0.5em;
   max-height: 0.5em;
 }
 
-.app-icon{
+.app-icon {
   width: 40px;
   height: 40px;
   object-fit: cover;
 }
-.default-icon{
+
+.default-icon {
   padding-right: 8px;
 }
 

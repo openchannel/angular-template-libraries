@@ -34,9 +34,17 @@ $spacers: (
   )
 );
 
+@mixin root-prop($prop: null, $value: null) {
+  @if ($prop and $value) {
+    #{$prop}: $value;
+  }
+}
+
 /* Variable for Image cropper*/
 :root{
-  --cropper-outline-color: rgba(0, 0, 0, 0.5);
+  @include root-prop(--root-prop, rgba(0, 0, 0, 0.5));
 }
+
+
 
 @import "~bootstrap/scss/bootstrap-reboot";

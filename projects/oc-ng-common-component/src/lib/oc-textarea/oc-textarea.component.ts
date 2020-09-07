@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'oc-textarea',
@@ -9,7 +9,8 @@ export class OcTextareaComponent implements OnInit {
 
   @Input() placeholder;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

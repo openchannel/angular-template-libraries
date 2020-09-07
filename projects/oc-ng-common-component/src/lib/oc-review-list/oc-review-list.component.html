@@ -1,17 +1,18 @@
 <div class="row">
     <div class="col-md-12">
         <h1 style="display: inline;">{{reviewListTitle}}</h1>
-        <oc-button text="Write a Review" type="primary" (click)="writeReview()" class="float-right"  style="display: inline;">
+        <oc-button (click)="writeReview()" class="float-right" style="display: inline;" text="Write a Review"
+                   type="primary">
         </oc-button>
     </div>
     <div class="col-md-12">
         <span class="drop-down">Sort by Recent</span>
         <span class="drop-down">Show All Ratings</span>
     </div>
-    <div class="cold-md-12" *ngIf="reviewsList && reviewsList.length>0 ; else emptyList">
-        <div class="col-md-12" *ngFor="let review of reviewsList">
+    <div *ngIf="reviewsList && reviewsList.length>0 ; else emptyList" class="cold-md-12">
+        <div *ngFor="let review of reviewsList" class="col-md-12">
             <h6>{{review.reviewOwnerName}}</h6>
-            <oc-rating [rating]="review.rating" type="multi-star" ></oc-rating>
+            <oc-rating [rating]="review.rating" type="multi-star"></oc-rating>
             <oc-label [text]="review.review" class="label-s"></oc-label>
             <hr/>
         </div>

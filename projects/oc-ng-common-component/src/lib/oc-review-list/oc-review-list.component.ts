@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { OCReviewDetails } from 'oc-ng-common-service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {OCReviewDetails} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-review-list',
@@ -8,32 +8,33 @@ import { OCReviewDetails } from 'oc-ng-common-service';
 })
 export class OcReviewListComponent implements OnInit {
 
-  @Input() reviewsList :OCReviewDetails[] = [];
+  @Input() reviewsList: OCReviewDetails[] = [];
 
   @Input() reviewListTitle = 'Most recent reviews';
 
   @Input() totalReview: number;
 
-  @Input() maxReviewDisplay=3;
+  @Input() maxReviewDisplay = 3;
 
-  @Input() canWriteReview=false;
-  
-  @Input() noReviewMessage='There is no review for this app.';
+  @Input() canWriteReview = false;
+
+  @Input() noReviewMessage = 'There is no review for this app.';
 
   @Output() writeAReview = new EventEmitter<any>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.setReviewsDisplayList();
   }
 
-  writeReview(){
+  writeReview() {
     this.writeAReview.emit();
   }
 
-  setReviewsDisplayList(){
-    if(this.reviewsList && this.reviewsList.length> this.maxReviewDisplay){
+  setReviewsDisplayList() {
+    if (this.reviewsList && this.reviewsList.length > this.maxReviewDisplay) {
       this.reviewsList.splice(this.maxReviewDisplay);
     }
   }

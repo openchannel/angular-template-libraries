@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'oc-radio',
@@ -16,6 +16,7 @@ export class OcRadioComponent implements OnInit {
 
 
   @Output() modelTextChange = new EventEmitter<any>();
+
   constructor() {
 
   }

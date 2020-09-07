@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcFileUploadComponent } from './oc-file-upload.component';
+import {OcFileUploadComponent} from './oc-file-upload.component';
+import {FormsModule, NgModel} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
 
 describe('OcFileUploadComponent', () => {
   let component: OcFileUploadComponent;
@@ -8,9 +11,11 @@ describe('OcFileUploadComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcFileUploadComponent ]
+      declarations: [OcFileUploadComponent],
+      providers: [NgModel],
+      imports: [FormsModule, CommonModule, BrowserModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
