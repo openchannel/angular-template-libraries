@@ -103,6 +103,41 @@
             <!-- [resizeToWidth]="resizeToWidth"
                 [resizeToHeight]="resizeToHeight" -->
 
+      <div class="w-100 my-2 text-center" *ngIf="hasImageLoadError">
+        {{ imageLoadErrorMessage }}
+      </div>
+      <div *ngIf="uploadImageInProcess" class="fileUploader-new">
+        <div class="controls upload-progress">
+          <div class="row">
+            <div class="col">
+              <div class="">
+                {{fileName}}
+              </div>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" [style.width.%]="[loaderValue]"
+                  aria-valuenow="[loaderValue]" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer pr-0 pb-0">
+        <div>
+          <a class="cursor-pointer" (click)="zoomIn()" style="padding-right: 15px;">
+            <img src="assets/img/zoom-in.svg" style="width: 24px;"></a>
+          <a class="cursor-pointer" (click)="zoomOut()" style="padding-right: 15px;">
+            <img src="assets/img/zoom-out.svg" style="width: 24px;"></a>
+        </div>
+        <oc-button type="secondary" [disabled]="uploadImageInProcess"
+          (click)="d('Cross click'); resetSelection()" [text]="'Close'"></oc-button>
+        <oc-button type="primary" [disabled]="hasImageLoadError || uploadImageInProcess"
+          (click)="uploadImageFile();"
+          [disabled]="uploadImageInProcess"
+          [process]="uploadImageInProcess" [text]="'Upload'"
+          ></oc-button>
+      </div>
+    </div>
+  </div>
             <div *ngIf="hasImageLoadError" class="w-100 my-2 text-center">
                 {{ imageLoadErrorMessage }}
             </div>
