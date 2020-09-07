@@ -1,6 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {OcSelectComponent} from './oc-select.component';
+import {FormsModule, NgModel} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
 
 describe('OcSelectComponent', () => {
   let component: OcSelectComponent;
@@ -8,7 +11,9 @@ describe('OcSelectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [OcSelectComponent]
+      declarations: [OcSelectComponent],
+      providers: [NgModel],
+      imports: [FormsModule, CommonModule, BrowserModule]
     })
       .compileComponents();
   }));

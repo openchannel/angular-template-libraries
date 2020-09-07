@@ -1,6 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {OcLoginComponent} from './oc-login.component';
+import {FormsModule, NgModel} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
 
 describe('OcLoginComponent', () => {
   let component: OcLoginComponent;
@@ -8,7 +11,9 @@ describe('OcLoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [OcLoginComponent]
+      declarations: [OcLoginComponent],
+      providers: [NgModel],
+      imports: [FormsModule, CommonModule, BrowserModule]
     })
       .compileComponents();
   }));
