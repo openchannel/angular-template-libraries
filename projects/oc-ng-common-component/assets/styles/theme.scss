@@ -1,10 +1,11 @@
-$body-color: #333333; //this is the text color
-$primary: #537cfd;
-$secondary: #727272;
+$body-color: #333333 !default; //this is the text color
+$primary: #537cfd !default;
+$secondary: #727272 !default;
 
-$danger: #ff6262;
-$info: #c9d5ea;
-$light: #f4f7fc;
+$danger: #ff6262 !default;
+$info: #c9d5ea !default;
+$light: #f4f7fc !default;
+
 $spacer: 1rem;
 $spacers: (
   0_5: (
