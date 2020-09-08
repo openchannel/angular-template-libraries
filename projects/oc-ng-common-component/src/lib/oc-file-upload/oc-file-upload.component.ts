@@ -97,6 +97,12 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
 
   @Input() uploadingIconUrl;
 
+  @Input() closeIconUrl = 'assets/img/close-icon.svg';
+  @Input() zoomInIconUrl = 'assets/img/zoom-in.svg';
+  @Input() zoomOutIconUrl = 'assets/img/zoom-out.svg';
+
+  @Input() hash: 'SHA-256' | 'MD5' | 'SHA-1'; // todo use in request
+
   //////////////////
 
 
