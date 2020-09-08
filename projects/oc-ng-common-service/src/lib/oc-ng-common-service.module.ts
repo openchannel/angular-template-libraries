@@ -1,11 +1,12 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { HttpRequestService } from './service/http-request-services';
+import {ModuleWithProviders, NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpRequestService} from './service/http-request-services';
 
 
 @NgModule({
   declarations: [],
-  imports: [HttpClientModule
+  imports: [
+    HttpClientModule
   ],
   exports: []
 })

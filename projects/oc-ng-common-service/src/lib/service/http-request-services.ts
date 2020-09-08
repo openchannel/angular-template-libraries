@@ -8,10 +8,6 @@ import { Observable } from 'rxjs';
 export class HttpRequestService {
 
     constructor(private http: HttpClient, @Inject('environment') private environment) {
-
-        console.log("environment ", this.environment);
-        console.log("api url ", this.environment.apiUrl);
-
     }
     showLoader: string = '';
     options = {

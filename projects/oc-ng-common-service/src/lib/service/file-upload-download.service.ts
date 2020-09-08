@@ -13,7 +13,7 @@ export class FileUploadDownloadService {
   private tokenUrl = 'api/v1/guest/file-upload-token';
   private downloadFileUrl = 'api/v1/user/download-file';
 
-  constructor(private httpRequest: HttpRequestService,private http: HttpClient, @Inject('environment') private environment) { }
+  constructor(private httpRequest: HttpRequestService, private http: HttpClient, @Inject('environment') private environment) { }
 
   uploadToOpenchannel(file: FormData, isPrivate=true): Observable<any>{
     let tokenRes = this.getToken().pipe(map(res => {
@@ -37,7 +37,7 @@ export class FileUploadDownloadService {
       const req = new HttpRequest('POST', `${openchannelUrl}${query}`, file, options);
     return this.http.request(req);
   }
-  
+
   getToken(){
     return this.httpRequest.get(this.tokenUrl);
   }

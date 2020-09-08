@@ -2,13 +2,16 @@
   "name": "oc-ng-common-service",
   "version": "0.0.1",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "ng": "./node_modules/.bin/ng",
+    "start": "./node_modules/.bin/ng serve",
+    "build": "./node_modules/.bin/ng build",
+    "build-prod": "./node_modules/.bin/ng build --prod",
+    "test": "./node_modules/.bin/ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "oc-ng-common-service": "cd dist/oc-ng-common-service/ && npm pack"
+    "csslint": "./node_modules/.bin/ng lint",
+    "e2e": "./node_modules/.bin/ng e2e",
+    "oc-ng-common-service": "cd dist/oc-ng-common-service/ && npm pack",
+    "pack": "npm run build && npm run oc-ng-common-service"
   },
   "private": true,
   "dependencies": {

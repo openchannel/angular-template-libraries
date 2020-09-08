@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpRequestService } from './http-request-services';
-import { SellerAppDetailsModel } from '../model/seller-app-details-model';
 import { Observable } from 'rxjs';
 
 @Injectable({
