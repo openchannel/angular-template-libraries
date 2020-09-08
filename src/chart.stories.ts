@@ -1,9 +1,5 @@
 import {storiesOf} from '@storybook/angular';
-import {
-  OcAppListGridComponent,
-  OcChartComponent,
-  OcCommonLibModule
-} from 'projects/oc-ng-common-component/src/public-api';
+import {OcChartComponent, OcCommonLibModule} from 'projects/oc-ng-common-component/src/public-api';
 import {withA11y} from '@storybook/addon-a11y';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */

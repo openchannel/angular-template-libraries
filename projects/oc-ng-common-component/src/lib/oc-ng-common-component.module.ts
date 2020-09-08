@@ -46,9 +46,9 @@ import {ImageCropperModule} from 'ngx-image-cropper';
 import {OcAppCategorySelectComponent} from './oc-app-category-select/oc-app-category-select.component';
 import {OcPopupComponent} from './oc-popup/oc-popup.component';
 import {SafehtmlPipe} from './pipe/safehtml.pipe';
-import {RemoveHtmlTagsPipe} from "./pipe/remove-html-tags.pipe";
-import {CamelcasePipe} from "./pipe/camelcase.pipe"
-import {EllipsisPipe} from "./pipe/ellipsis.pipe"
+import {RemoveHtmlTagsPipe} from './pipe/remove-html-tags.pipe';
+import {CamelcasePipe} from './pipe/camelcase.pipe';
+import {EllipsisPipe} from './pipe/ellipsis.pipe';
 import {OcActivationComponent} from './oc-activation/oc-activation.component';
 import {CompareDirective} from './validators/compare-passsword-validator.directive';
 import {OcAppStatusDetailsComponent} from './oc-app-status-details/oc-app-status-details.component';
@@ -112,7 +112,12 @@ import {OcResetPasswordComponent} from './oc-reset-password/oc-reset-password.co
     OcResetPasswordComponent
   ],
 
-  imports: [NgbModule, CommonModule, BrowserModule, FormsModule, OcCommonServiceModule, ImageCropperModule],
+  imports: [NgbModule,
+    CommonModule,
+    BrowserModule,
+    FormsModule,
+    OcCommonServiceModule,
+    ImageCropperModule],
   exports: [OcCommonLibComponent,
     OcInputComponent,
     OcButtonComponent,
