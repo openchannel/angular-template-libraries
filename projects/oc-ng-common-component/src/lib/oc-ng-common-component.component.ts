@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'oc-ng-common-component',
@@ -9,12 +9,9 @@ import {Component, OnInit} from '@angular/core';
   `,
   styles: []
 })
-export class OcCommonLibComponent implements OnInit {
+export class OcCommonLibComponent {
 
   constructor() {
-  }
-
-  ngOnInit(): void {
   }
 
 }

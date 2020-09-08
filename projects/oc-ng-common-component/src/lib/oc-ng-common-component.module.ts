@@ -19,7 +19,6 @@ import {OcTextSearhComponent} from './oc-text-searh/oc-text-searh.component';
 import {OcForgotPasswordComponent} from './oc-forgot-password/oc-forgot-password.component';
 import {FormsModule} from '@angular/forms';
 import {OcErrorComponent} from './oc-error/oc-error.component';
-import {OcCommonServiceModule} from 'oc-ng-common-service';
 import {EmailValidatorDirective} from './validators/email-validator.directive';
 import {WhiteSpaceValidatorDirective} from './validators/white-space-validator';
 import {OcAppCategoriesComponent} from './oc-app-categories/oc-app-categories.component';
@@ -112,13 +111,15 @@ import {OcResetPasswordComponent} from './oc-reset-password/oc-reset-password.co
     OcResetPasswordComponent
   ],
 
-  imports: [NgbModule,
+  imports: [
+    NgbModule,
     CommonModule,
     BrowserModule,
     FormsModule,
-    OcCommonServiceModule,
-    ImageCropperModule],
-  exports: [OcCommonLibComponent,
+    ImageCropperModule
+  ],
+  exports: [
+    OcCommonLibComponent,
     OcInputComponent,
     OcButtonComponent,
     OcLabelComponent,
@@ -126,8 +127,8 @@ import {OcResetPasswordComponent} from './oc-reset-password/oc-reset-password.co
     OcRadioComponent,
     OcSignupComponent,
     OcActivationComponent,
-    OcPasswordComponent
-    , OcLoginComponent,
+    OcPasswordComponent,
+    OcLoginComponent,
     EmailValidatorDirective,
     WhiteSpaceValidatorDirective,
     OcFeaturedAppsComponent,
