@@ -3,8 +3,9 @@ image: node:10.15.3
 pipelines:
   default:
     - step:
+        name: Build
         caches:
           - node
         script:
           - npm install
-          - ng build
+          - npm run build
