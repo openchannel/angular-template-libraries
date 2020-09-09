@@ -33,7 +33,7 @@
     "chart.js": "^2.9.3",
     "ngx-image-cropper": "^3.2.1",
     "oc-ng-common-component": "file:dist/oc-ng-common-component",
-    "oc-ng-common-service": "0.0.1",
+    "oc-ng-common-service": "0.0.1-1",
     "react": "^16.13.1",
     "react-is": "^16.13.1",
     "rxjs": "~6.5.4",
