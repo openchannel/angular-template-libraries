@@ -33,6 +33,7 @@ export * from './lib/oc-app-status-details/oc-app-status-details.component';
 export * from './lib/oc-activation/oc-activation.component';
 export * from './lib/oc-seller-agreement/oc-seller-agreement.component';
 export * from './lib/oc-reset-password/oc-reset-password.component';
+export * from './lib/oc-rich-text-editor/oc-rich-text-editor.component';
 
 // validators
 export * from './lib/validators/white-space-validator';

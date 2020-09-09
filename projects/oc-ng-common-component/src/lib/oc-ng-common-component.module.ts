@@ -55,6 +55,16 @@ import {OcTextareaComponent} from './oc-textarea/oc-textarea.component';
 import {OcNumberComponent} from './oc-number/oc-number.component';
 import {OcSellerAgreementComponent} from './oc-seller-agreement/oc-seller-agreement.component';
 import {OcResetPasswordComponent} from './oc-reset-password/oc-reset-password.component';
+import {OcRichTextEditorComponent} from './oc-rich-text-editor/oc-rich-text-editor.component';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import 'froala-editor/js/plugins/char_counter.min.js';
+import 'froala-editor/js/plugins/font_size.min.js';
+import 'froala-editor/js/plugins/font_family.min.js';
+import 'froala-editor/js/plugins/align.min.js';
+import 'froala-editor/js/plugins/paragraph_format.min.js';
+import 'froala-editor/js/plugins/link.min.js';
+import 'froala-editor/js/plugins/lists.min.js';
+import 'froala-editor/js/plugins/code_view.min.js';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -108,7 +118,8 @@ import {OcResetPasswordComponent} from './oc-reset-password/oc-reset-password.co
     OcTextareaComponent,
     OcNumberComponent,
     OcSellerAgreementComponent,
-    OcResetPasswordComponent
+    OcResetPasswordComponent,
+    OcRichTextEditorComponent
   ],
 
   imports: [
@@ -116,10 +127,11 @@ import {OcResetPasswordComponent} from './oc-reset-password/oc-reset-password.co
     CommonModule,
     BrowserModule,
     FormsModule,
-    ImageCropperModule
+    ImageCropperModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
-  exports: [
-    OcCommonLibComponent,
+  exports: [OcCommonLibComponent,
     OcInputComponent,
     OcButtonComponent,
     OcLabelComponent,
@@ -164,7 +176,8 @@ import {OcResetPasswordComponent} from './oc-reset-password/oc-reset-password.co
     OcTextareaComponent,
     OcNumberComponent,
     OcSellerAgreementComponent,
-    OcResetPasswordComponent
+    OcResetPasswordComponent,
+    OcRichTextEditorComponent
   ],
   providers: [
     NgbActiveModal,
