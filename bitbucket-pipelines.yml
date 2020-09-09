@@ -9,3 +9,9 @@ pipelines:
         script:
           - npm install
           - npm run build
+    - step:
+        name: Bump version
+        script:
+          - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
+          - npm version prepatch -m "Auto increment pre-patch version to %s [skip ci]" --force
+          - git push
