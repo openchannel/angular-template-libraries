@@ -12,6 +12,7 @@ pipelines:
     - step:
         name: Bump version
         script:
+          - npm install
           - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
           - npm run oc-ng-common-component-up-version
           - git push
