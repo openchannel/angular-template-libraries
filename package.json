@@ -13,7 +13,7 @@
     "storybook": "npm run docs:json && start-storybook -p 6006 -s src/assets",
     "build-storybook": "build-storybook",
     "oc-ng-common-component-pack": "cd dist/oc-ng-common-component/ && npm pack",
-    "oc-ng-common-component-up-version": "cd projects/oc-ng-common-component/ && npm version prerelease -m \"Auto increment prerelease version to %s [skip ci]\"",
+    "oc-ng-common-component-up-version": "cd projects/oc-ng-common-component/ && npm --no-git-tag-version version prerelease",
     "oc-ng-common-component-watch": "./node_modules/.bin/ng build oc-ng-common-component --watch"
   },
   "private": true,

@@ -12,17 +12,16 @@ pipelines:
     - step:
         name: Bump version
         script:
-          - npm install
           - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
           - npm run oc-ng-common-component-up-version
+          - git commit -a -m "Auto increment prerelease version [skip ci]"
           - git push
-          - npm run build
-          - npm run oc-ng-common-component-pack
-        artifacts:
-          - dist/**
     - step:
         name: Push library to repository
         script:
+          - npm install
+          - npm run build
+          - npm run oc-ng-common-component-pack
           - pipe: cloudsmith-io/publish:0.3.0
             variables:
               CLOUDSMITH_REPOSITORY: 'openchannel/angular-common-components'
