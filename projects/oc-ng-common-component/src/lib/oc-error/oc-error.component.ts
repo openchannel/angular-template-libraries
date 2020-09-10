@@ -9,7 +9,7 @@ import {OcErrorService} from './oc-error-service';
 })
 export class OcErrorComponent implements OnInit {
 
-  private static readonly errorMessages = {
+  private readonly errorMessages = {
     required: () => 'Please fill out this field',
     minlength: (params) => 'The min number of characters is ' + params.requiredLength,
     maxlength: (params) => 'The max allowed number of characters is ' + params.requiredLength,
@@ -78,7 +78,7 @@ export class OcErrorComponent implements OnInit {
   }
 
   private getMessage(type: string, params: any) {
-    return OcErrorComponent.errorMessages[type](params);
+    return this.errorMessages[type](params);
   }
 
 }

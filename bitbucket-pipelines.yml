@@ -8,7 +8,7 @@ pipelines:
         #          - node
         script:
           - npm install
-          - npm run build
+          - npm run build-prod
   branches:
     default:
       - step:
@@ -19,7 +19,7 @@ pipelines:
             - git commit -a -m "Auto increment prerelease version [skip ci]"
             - git push
             - npm install
-            - npm run build
+            - npm run build-prod
             - npm run oc-ng-common-component-pack
           artifacts:
             - dist/**
