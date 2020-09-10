@@ -19,8 +19,8 @@ pipelines:
           - cd ../../
           - npm run build
           - npm run oc-ng-common-component-pack
-          artifacts:
-            - dist/**
+        artifacts:
+          - dist/**
     - step:
         name: Push library to repository
         script:
