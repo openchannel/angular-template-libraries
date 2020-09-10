@@ -28,6 +28,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   isUploadInProcess = false;
 
   @Input() fileDetailArr: FileDetails[] = [];
+  @Output() fileDetailArrChange = new EventEmitter<FileDetails[]>();
 
   @Input() fileUploadText = 'Drag & drop file here';
 
@@ -97,6 +98,12 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
 
   @Input() uploadingIconUrl;
 
+  @Input() closeIconUrl = 'assets/img/close-icon.svg';
+  @Input() zoomInIconUrl = 'assets/img/zoom-in.svg';
+  @Input() zoomOutIconUrl = 'assets/img/zoom-out.svg';
+
+  @Input() hash: string[] = [];
+
   //////////////////
 
 
@@ -137,34 +144,34 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
     // this.fileUpload.emit(files);
     const formData: FormData = new FormData();
     formData.append('file', file, this.fileName);
-    this.uploadFileReq = this.uploadFileService.getToken().subscribe((resToken) => {
-      const token = resToken.token;
-      this.uploadFileReq = this.uploadFileService.prepareUploadReq(token, formData, this.isFileTypePrivate()).subscribe((event: any) => {
-          if (event.type === HttpEventType.UploadProgress) {
-            lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
-          } else if (event.type === HttpEventType.ResponseHeader) {
-            lastFileDetail.fileUploadProgress = 97;
-          } else if (event.type === HttpEventType.DownloadProgress) {
-            lastFileDetail.fileUploadProgress = 99;
-          } else if (event instanceof HttpResponse) {
-            lastFileDetail = this.convertFileUploadResToFileDetails(event);
-            lastFileDetail.fileUploadProgress = 100;
-            lastFileDetail.fileIconUrl = this.defaultFileIcon;
-            this.fileDetailArr[this.fileDetailArr.length - 1] = lastFileDetail;
-            this.isUploadInProcess = false;
-            this.uploadFileReq = null;
-            this.resetSelection();
-          }
-        },
-        (err) => {
-          this.isUploadInProcess = false;
-          this.resetSelection();
-        },
-        () => {
-          this.isUploadInProcess = false;
-          this.resetSelection();
-        });
-    });
+
+    this.uploadFileReq = this.uploadFileService.uploadToOpenChannel(formData, this.isFileTypePrivate(), this.hash)
+        .subscribe((event: any) => {
+              if (event.type === HttpEventType.UploadProgress) {
+                lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
+              } else if (event.type === HttpEventType.ResponseHeader) {
+                lastFileDetail.fileUploadProgress = 97;
+              } else if (event.type === HttpEventType.DownloadProgress) {
+                lastFileDetail.fileUploadProgress = 99;
+              } else if (event instanceof HttpResponse) {
+                lastFileDetail = this.convertFileUploadResToFileDetails(event);
+                lastFileDetail.fileUploadProgress = 100;
+                lastFileDetail.fileIconUrl = this.defaultFileIcon;
+                this.fileDetailArr[this.fileDetailArr.length - 1] = lastFileDetail;
+                this.fileDetailArrChange.emit(this.fileDetailArr);
+                this.isUploadInProcess = false;
+                this.uploadFileReq = null;
+                this.resetSelection();
+              }
+            },
+            (err) => {
+              this.isUploadInProcess = false;
+              this.resetSelection();
+            },
+            () => {
+              this.isUploadInProcess = false;
+              this.resetSelection();
+            });
 
     this.modalService.dismissAll();
   }
