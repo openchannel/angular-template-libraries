@@ -43,15 +43,15 @@
             <div *ngIf="file" class="col-md text-right pt-3">
                 <a (click)="cancelUploading(i)" class="cursor-pointer">
                     <img alt="close-icon"
-                         src="assets/img/close-icon.svg">
+                         [src]="closeIconUrl">
                 </a>
             </div>
             <div class="col-12 pt-1 mb-2 progressbar-wrapper">
-                <ngb-progressbar *ngIf="file?.fileUploadProgress == 100" [value]="file?.fileUploadProgress"
+                <ngb-progressbar *ngIf="file?.fileUploadProgress === 100" [value]="file?.fileUploadProgress"
                                  class="file-upload-progress"
                                  type="info">
                 </ngb-progressbar>
-                <ngb-progressbar *ngIf="file?.fileUploadProgress &lt; 100" [value]="file?.fileUploadProgress"
+                <ngb-progressbar *ngIf="file?.fileUploadProgress < 100" [value]="file?.fileUploadProgress"
                                  class="file-upload-progress"
                                  type="primary">
                 </ngb-progressbar>
@@ -104,9 +104,9 @@
             <div class="modal-footer pr-0 pb-0">
                 <div>
                     <a class="cursor-pointer" (click)="zoomIn()" style="padding-right: 15px;">
-                        <img src="assets/img/zoom-in.svg" style="width: 24px;"></a>
+                        <img [src]="zoomInIconUrl" style="width: 24px;"></a>
                     <a class="cursor-pointer" (click)="zoomOut()" style="padding-right: 15px;">
-                        <img src="assets/img/zoom-out.svg" style="width: 24px;"></a>
+                        <img [src]="zoomOutIconUrl" style="width: 24px;"></a>
                 </div>
                 <oc-button type="secondary" [disabled]="uploadImageInProcess"
                            (click)="d('Cross click'); resetSelection()" [text]="'Close'"></oc-button>
@@ -135,20 +135,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal-footer pr-0 pb-0">
-        <div style="padding-top: 15px;padding-right: 15px;">
-            <a (click)="zoomIn()" class="cursor-pointer" style="padding-right: 15px;"><i
-                    class="fa fa-search-plus"></i></a>
-            <a (click)="zoomOut()" class="cursor-pointer"><i class="fa fa-search-minus"></i></a>
-        </div>
-        <oc-button (click)="d('Cross click'); resetSelection()" [disabled]="uploadImageInProcess"
-                   [text]="'Close'" type="secondary"></oc-button>
-        <oc-button (click)="uploadImageFile();" [disabled]="hasImageLoadError || uploadImageInProcess"
-                   [disabled]="uploadImageInProcess"
-                   [process]="uploadImageInProcess"
-                   [text]="'Upload'" type="primary"
-        ></oc-button>
     </div>
 </ng-template>
 <!--end cropper modal for bulk edit-->
