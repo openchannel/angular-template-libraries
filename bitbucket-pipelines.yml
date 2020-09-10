@@ -16,7 +16,8 @@ pipelines:
         name: Bump version
         script:
           - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
-          - npm version prepatch -m "Auto increment pre-patch version to %s [skip ci]"
+          - cd projects/oc-ng-common-component/
+          - npm version prerelease -m "Auto increment prerelease version to %s [skip ci]"
           - git push
     - step:
         name: Push library to repository

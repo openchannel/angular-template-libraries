@@ -1,6 +1,6 @@
 {
   "name": "oc-angular-template",
-  "version": "0.0.3-0",
+  "version": "0.0.0",
   "scripts": {
     "ng": "./node_modules/.bin/ng",
     "start": "./node_modules/.bin/ng serve",
