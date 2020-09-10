@@ -16,7 +16,6 @@ pipelines:
           - cd projects/oc-ng-common-component/
           - npm version prerelease -m "Auto increment prerelease version to %s [skip ci]"
           - git push
-          - cd ../../
           - npm run build
           - npm run oc-ng-common-component-pack
         artifacts:
