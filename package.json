@@ -1,6 +1,6 @@
 {
   "name": "oc-ng-common-service",
-  "version": "0.0.1",
+  "version": "0.0.1-0",
   "scripts": {
     "ng": "./node_modules/.bin/ng",
     "start": "./node_modules/.bin/ng serve",
@@ -11,7 +11,8 @@
     "csslint": "./node_modules/.bin/ng lint",
     "e2e": "./node_modules/.bin/ng e2e",
     "oc-ng-common-service": "cd dist/oc-ng-common-service/ && npm pack",
-    "pack": "npm run build && npm run oc-ng-common-service"
+    "pack": "npm run build-prod && npm run oc-ng-common-service",
+    "oc-ng-common-service-up-version": "cd projects/oc-ng-common-component/ && npm --no-git-tag-version version prerelease"
   },
   "private": true,
   "dependencies": {
@@ -28,14 +29,14 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.900.7",
+    "@angular-devkit/build-angular": "^0.1001.0",
     "@angular-devkit/build-ng-packagr": "~0.900.7",
     "@angular/cli": "~9.1.1",
     "@angular/compiler-cli": "~9.1.1",
     "@angular/language-service": "~9.1.1",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",

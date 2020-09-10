@@ -1,0 +1,35 @@
+image: node:10.15.3
+
+pipelines:
+  default:
+    - step:
+        name: Build
+        caches:
+          - node
+        script:
+          - npm install
+          - npm run build-prod
+  branches:
+    default:
+      - step:
+          name: Bump version and pack
+          script:
+            - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
+            - npm run oc-ng-common-service-up-version
+            - git commit -a -m "Auto increment prerelease version [skip ci]"
+            - git push
+            - npm install
+            - npm run pack
+          artifacts:
+            - dist/**
+      - step:
+          name: Push library to repository
+          script:
+            - pipe: cloudsmith-io/publish:0.3.0
+              variables:
+                CLOUDSMITH_REPOSITORY: 'openchannel/angular-common-components'
+                CLOUDSMITH_API_KEY: $CLOUDSMITH_API_KEY
+                PACKAGE_FORMAT: 'npm'
+                PACKAGE_NPM_DIST_TAG: 'stable'
+                PACKAGE_PATH: 'dist/oc-ng-common-service/*.tgz'
+                REPUBLISH: 'true'
