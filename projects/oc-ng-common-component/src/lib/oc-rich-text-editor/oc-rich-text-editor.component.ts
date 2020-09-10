@@ -28,10 +28,6 @@ export class OcRichTextEditorComponent implements OnInit {
    */
   @Input() label: string = '';
   /**
-   * ID of the current Editor
-   */
-  @Input() id: string = '';
-  /**
    * Getting content of the editor through event
    */
   @Output() getEditorContent = new EventEmitter<SafeHtml>();
