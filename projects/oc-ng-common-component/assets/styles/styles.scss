@@ -1,5 +1,7 @@
 @import "./theme.scss";
 @import "~bootstrap/scss/bootstrap";
+@import '~froala-editor/css/froala_editor.pkgd.min.css';
+@import '~froala-editor/css/froala_style.min.css';
 
 @font-face {
   font-family: "Rubik-Black";
@@ -100,7 +102,7 @@ a {
   &:hover {
     color: $primary;
     text-decoration: none;
-  }  
+  }
   &:focus {
     outline:none
   }
@@ -269,7 +271,7 @@ button, input{
 }
 
 
-.toggle_password{  
+.toggle_password{
   float: right;
   margin-top: -31px;
   margin-right: 16px;
@@ -313,7 +315,7 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  /* Some browsers will not display the caret when using calc, so we put the fallback first */ 
+  /* Some browsers will not display the caret when using calc, so we put the fallback first */
   background: url(~oc-ng-common-component/assets/img/dropdown-icon.svg) white no-repeat 98.5%; /* !important used for overriding all other customisations */
   background: url(~oc-ng-common-component/assets/img/dropdown-icon.svg) white no-repeat calc(100% - 16px); /* Better placement regardless of input width */
 }
@@ -368,7 +370,7 @@ select::-ms-expand { display: none; }
 .popover{
   color: $body-color;
   .popover-body{
-    font-size: 14px;   
+    font-size: 14px;
   }
 }
 
