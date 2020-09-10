@@ -13,8 +13,7 @@ pipelines:
         name: Bump version
         script:
           - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
-          - cd projects/oc-ng-common-component/
-          - npm version prerelease -m "Auto increment prerelease version to %s [skip ci]"
+          - npm run oc-ng-common-component-up-version
           - git push
           - npm run build
           - npm run oc-ng-common-component-pack
