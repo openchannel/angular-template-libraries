@@ -4,14 +4,11 @@ pipelines:
   default:
     - step:
         name: Build
-#        caches:
-#          - node
+        #        caches:
+        #          - node
         script:
           - npm install
           - npm run build
-          - npm run oc-ng-common-component-pack
-        artifacts:
-          - dist/**
     - step:
         name: Bump version
         script:
@@ -19,14 +16,19 @@ pipelines:
           - cd projects/oc-ng-common-component/
           - npm version prerelease -m "Auto increment prerelease version to %s [skip ci]"
           - git push
+          - cd ../../
+          - npm run build
+          - npm run oc-ng-common-component-pack
+          artifacts:
+            - dist/**
     - step:
         name: Push library to repository
         script:
-        - pipe: cloudsmith-io/publish:0.3.0
-          variables:
-            CLOUDSMITH_REPOSITORY: 'openchannel/angular-common-components'
-            CLOUDSMITH_API_KEY: $CLOUDSMITH_API_KEY
-            PACKAGE_FORMAT: 'npm'
-            PACKAGE_NPM_DIST_TAG: 'stable'
-            PACKAGE_PATH: 'dist/oc-ng-common-component/*.tgz'
-            REPUBLISH: 'true'
+          - pipe: cloudsmith-io/publish:0.3.0
+            variables:
+              CLOUDSMITH_REPOSITORY: 'openchannel/angular-common-components'
+              CLOUDSMITH_API_KEY: $CLOUDSMITH_API_KEY
+              PACKAGE_FORMAT: 'npm'
+              PACKAGE_NPM_DIST_TAG: 'stable'
+              PACKAGE_PATH: 'dist/oc-ng-common-component/*.tgz'
+              REPUBLISH: 'true'
