@@ -1,52 +1,58 @@
-import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpRequest, HttpHeaders, HttpClient } from '@angular/common/http';
-import { HttpRequestService } from './http-request-services';
-import { mergeMap,map } from 'rxjs/operators'
-import { FileDetails } from '../model/file-details-model';
+import {Inject, Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpRequestService} from './http-request-services';
+import {mergeMap} from 'rxjs/operators';
+import {FileDetails} from '../model/file-details-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileUploadDownloadService {
 
+  private readonly openChannelUrl: string;
+
   private tokenUrl = 'api/v1/guest/file-upload-token';
   private downloadFileUrl = 'api/v1/user/download-file';
+  private uploadFileUrl = 'v2/files';
 
-  constructor(private httpRequest: HttpRequestService, private http: HttpClient, @Inject('environment') private environment) { }
-
-  uploadToOpenchannel(file: FormData, isPrivate=true): Observable<any>{
-    let tokenRes = this.getToken().pipe(map(res => {
-      let token = res['token'];
-      return token;
-    }),mergeMap(token =>this.prepareUploadReq(token,file,isPrivate)));
-    return tokenRes;
+  constructor(private httpRequest: HttpRequestService,
+              private http: HttpClient,
+              @Inject('environment') private environment) {
+    this.openChannelUrl = `${this.environment.openchannelUrl}${this.environment.openchannelUrl.endsWith('/') ? '' : '/'}`;
   }
 
-  prepareUploadReq(token,file,isPrivate): Observable<any>{
-    let query = '';
+  uploadToOpenChannel(file: FormData, isPrivate: boolean, hash?: string[]): Observable<any> {
+    return this.getToken().pipe(mergeMap(res => this.prepareUploadReq(res.token, file, isPrivate, hash)));
+  }
+
+  prepareUploadReq(token, file: FormData, isPrivate: boolean, hash?: string[]): Observable<any> {
+    const httpParams = new HttpParams();
     if (isPrivate !== null) {
-      query = `?isPrivate=${isPrivate}`;
+      httpParams.set('isPrivate', `${isPrivate}`);
     }
-    let openchannelUrl = this.environment.openchannelUrl+(this.environment.openchannelUrl.endsWith('/')?'':'/')
-                +"v2/files";
-    let options = {
+    if (hash && hash.length > 0) {
+      httpParams.set('hash', hash.join(','));
+    }
+
+    const url = `${this.openChannelUrl}${this.uploadFileUrl}`;
+
+    return this.http.post(url, file, {
       headers: new HttpHeaders({ 'Upload-Token': `${token}`}),
-      reportProgress: true
-    };
-      const req = new HttpRequest('POST', `${openchannelUrl}${query}`, file, options);
-    return this.http.request(req);
+      params: httpParams,
+      reportProgress: true,
+    });
   }
 
-  getToken(){
+  getToken() {
     return this.httpRequest.get(this.tokenUrl);
   }
 
-  downloadFileDetails(fileId): Observable<FileDetails>{
-    return this.httpRequest.get(this.downloadFileUrl+"?fileId="+fileId);
+  downloadFileDetails(fileId): Observable<FileDetails> {
+    return this.httpRequest.get(this.downloadFileUrl + '?fileId=' + fileId);
   }
 
-  downloadFileFromUrl(fileUrl): Observable<any>{
-    return this.http.get(fileUrl, {responseType: "blob"});
+  downloadFileFromUrl(fileUrl): Observable<any> {
+    return this.http.get(fileUrl, {responseType: 'blob'});
   }
 }
