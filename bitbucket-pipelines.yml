@@ -27,5 +27,5 @@ pipelines:
             CLOUDSMITH_API_KEY: $CLOUDSMITH_API_KEY
             PACKAGE_FORMAT: 'npm'
             PACKAGE_NPM_DIST_TAG: 'stable'
-            PACKAGE_PATH: 'dist/*.tgz'
+            PACKAGE_PATH: 'dist/oc-ng-common-component/*.tgz'
             REPUBLISH: 'true'
