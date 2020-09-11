@@ -123,7 +123,20 @@
         <tr *ngIf="pageSize && (appList.pages && appList.pages > 1)">
             <td colspan="7">
                 <div class="col-md-12 pr-5">
-                    <ngb-pagination class="d-flex justify-content-end" [pageSize]="pageSize" [collectionSize]="appList.count" [page]="appList.pageNumber" (pageChange)="updatePage($event)"  [maxSize]="appList.pages" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+                    <ngb-pagination class="d-flex justify-content-center custom-pagination" 
+                    [pageSize]="pageSize" 
+                    [collectionSize]="appList.count" 
+                    [page]="appList.pageNumber" 
+                    (pageChange)="updatePage($event)"  
+                    [maxSize]="3"
+                    [boundaryLinks]="true"
+                    [ellipses]="true">
+                        <ng-template ngbPaginationFirst>&lt;</ng-template>
+                        <ng-template ngbPaginationLast>&gt;</ng-template>
+                        <ng-template ngbPaginationEllipsis>...</ng-template>
+                        <ng-template ngbPaginationPrevious>Prev</ng-template>
+                        <ng-template ngbPaginationNext>Next</ng-template>
+                    </ngb-pagination>
                 </div>
             </td>
         </tr>
