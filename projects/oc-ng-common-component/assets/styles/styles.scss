@@ -374,3 +374,11 @@ select::-ms-expand { display: none; }
   }
 }
 
+.min-vw-auto {
+  min-height: auto;
+}
+
+.min-vh-auto {
+  min-width: auto;
+}
+

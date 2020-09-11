@@ -13,6 +13,8 @@ export class OcErrorComponent implements OnInit {
     required: () => 'Please fill out this field',
     minlength: (params) => 'The min number of characters is ' + params.requiredLength,
     maxlength: (params) => 'The max allowed number of characters is ' + params.requiredLength,
+    minElementsCount: (params) => 'The min elements count is ' + params.requiredCount,
+    maxElementsCount: (params) => 'The max elements count is ' + params.requiredCount,
     pattern: (params) => 'The required pattern is: ' + params.requiredPattern,
     years: (params) => params.message,
     countryCity: (params) => params.message,
@@ -29,11 +31,14 @@ export class OcErrorComponent implements OnInit {
     confirmPassword: () => 'Confirm password does not match to new password',
     serverErrorValidator: (params) => params.message
   };
+
   @Input()
   private control: AbstractControlDirective | AbstractControl | NgModel;
   // server error field name
   @Input()
   private field: string;
+  @Input()
+  private errorParams: any;
 
   constructor(public errorService: OcErrorService) {
   }
@@ -44,7 +49,7 @@ export class OcErrorComponent implements OnInit {
   shouldShowErrors(): boolean {
 
     // client side error validators check
-    if (this.control && this.control.errors && (this.control.dirty || this.control.touched)) {
+    if (this.field || (this.control && this.control.errors && (this.control.dirty || this.control.touched))) {
       return true;
     }
 
@@ -69,12 +74,16 @@ export class OcErrorComponent implements OnInit {
   }
 
   listOfErrors(): string[] {
-    if (!this.control.errors) {
-      return [];
+    if (this.control) {
+      if (!this.control.errors) {
+        return [];
+      }
+      return Object.keys(this.control.errors)
+          .map(field => this.getMessage(field, this.control.errors[field]));
+    } else if (this.field) {
+      return [this.getMessage(this.field, this.errorParams)];
     }
-
-    return Object.keys(this.control.errors)
-      .map(field => this.getMessage(field, this.control.errors[field]));
+    return [];
   }
 
   private getMessage(type: string, params: any) {
