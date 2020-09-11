@@ -4,7 +4,8 @@ import {DefaultValueAccessor, NgModel} from '@angular/forms';
 @Component({
   selector: 'oc-input',
   templateUrl: './oc-input.component.html',
-  styleUrls: ['./oc-input.component.scss']
+  styleUrls: ['./oc-input.component.scss'],
+  providers: [NgModel]
 })
 export class OcInputComponent implements OnInit {
 
@@ -38,8 +39,8 @@ export class OcInputComponent implements OnInit {
     (this.control.valueAccessor as DefaultValueAccessor).onTouched();
   }
 
-  changeModelVal() {
-    this.modelNameChange.emit(this.modelName);
+  changeModelVal(event: any) {
+    const text = event.target.value;
+    this.modelNameChange.emit(text);
   }
-
 }
