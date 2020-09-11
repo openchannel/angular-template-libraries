@@ -26,7 +26,7 @@
                             <img class="app-icon" [src]="app.customData.icon" alt="">
                         </div>
                         <div class="col-md pl-0">
-                            <h6 class="mb-0 cursor-pointer" (click)="action('edit' , app)">{{app.name}} </h6>
+                            <h6 class="mb-0 cursor-pointer pr-2 word-break" (click)="action('edit' , app)">{{app.name}} </h6>
                             <small> v {{app.version}}</small>
 
                         </div>
@@ -70,7 +70,7 @@
                             <img [src]="child.customData.icon" alt="" class="app-icon" alt="">
                         </div>
                         <div class="col-md pl-0">
-                            <h6 (click)="action('edit' , child)" class="mb-0 cursor-pointer">{{child.name}} </h6>
+                            <h6 (click)="action('edit' , child)" class="mb-0 cursor-pointer pr-2 word-break">{{child.name}} </h6>
                             <small>v {{child.version}}</small>
                         </div>
                     </div>
