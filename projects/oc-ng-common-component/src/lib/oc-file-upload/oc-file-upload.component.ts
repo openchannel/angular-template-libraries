@@ -53,6 +53,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   uploadImageResponse: any;
   browsedFileEvent: any;
   fileName = '';
+
   maintainAspectRatio = false;
   aspectRatio: any;
   scale = 1;
@@ -97,6 +98,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log("component.ocFileUpload.ts : "+this.fileDetailArr);
+    this.calculateAspectRatio();
   }
 
 
@@ -340,6 +342,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   cropperReady() {
 
   }
+
   zoomOut() {
     this.scale -= .1;
     this.transform = {
@@ -356,10 +359,6 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   }
 
   calculateAspectRatio() {
-    if (this.resizeToWidth) {
-      this.resizeToWidth = this.resizeToWidth;
-    }
-
     if (this.resizeToWidth && this.resizeToHeight) {
       this.aspectRatio = this.resizeToWidth / this.resizeToHeight;
       this.maintainAspectRatio = true;
