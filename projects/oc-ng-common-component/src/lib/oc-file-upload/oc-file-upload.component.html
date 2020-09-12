@@ -114,10 +114,11 @@
         </div>
       </div>
       <div class="modal-footer pr-0 pb-0">
-        <div style="padding-top: 15px;padding-right: 15px;">
-          <a class="cursor-pointer" (click)="zoomIn()" style="padding-right: 15px;"><i
-              class="fa fa-search-plus"></i></a>
-          <a class="cursor-pointer" (click)="zoomOut()"><i class="fa fa-search-minus"></i></a>
+        <div>
+          <a class="cursor-pointer" (click)="zoomIn()" style="padding-right: 15px;">
+            <img src="assets/img/zoom-in.svg" style="width: 24px;"></a>
+          <a class="cursor-pointer" (click)="zoomOut()" style="padding-right: 15px;">
+            <img src="assets/img/zoom-out.svg" style="width: 24px;"></a>
         </div>
         <oc-button type="secondary" [disabled]="uploadImageInProcess"
           (click)="d('Cross click'); resetSelection()" [text]="'Close'"></oc-button>

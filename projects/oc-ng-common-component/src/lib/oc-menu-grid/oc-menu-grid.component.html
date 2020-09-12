@@ -2,15 +2,21 @@
     <thead>
         <tr>
             <th class="placeholder"></th>
-            <th class="name">App Name
-                <img [src]="sortIcon" class="icon-down" alt="icon">
+            <th class="name">
+                <a (click)="sortAppsBy('name')" class="cursor-pointer">App Name
+                    <img *ngIf="sortBy=='name'" [src]="sortIcon" class="icon-down" alt="icon" [ngClass]="{'upside-down': sortBy=='name' && sortOrder=='-1'}" >
+                </a>
             </th>
             <th class="summary">Summary</th>
-            <th class="data">Data Added
-                <img [src]="sortIcon" class="icon-down" alt="icon">
+            <th class="data">
+                <a (click)="sortAppsBy('date')" class="cursor-pointer">Data Added
+                    <img *ngIf="sortBy=='date'" [src]="sortIcon" class="icon-down" alt="icon" [ngClass]="{'upside-down': sortBy=='date' && sortOrder=='-1'}">
+                </a>
             </th>
-            <th class="status">Status
-                <img [src]="sortIcon" class="icon-down" alt="icon">
+            <th class="status">
+                <a (click)="sortAppsBy('status')" class="cursor-pointer">Status
+                    <img *ngIf="sortBy=='status'" [src]="sortIcon" class="icon-down" alt="icon" [ngClass]="{'upside-down': sortBy=='status' && sortOrder=='-1'}">
+                </a>
             </th>
             <th class="action"></th>
             <th class="placeholder"></th>
@@ -109,9 +115,29 @@
                 <span> No Applications Found</span>
             </td>
         </tr>
-        <tr *ngIf="appList?.list.length > 0">
+        <tr *ngIf="!pageSize || !appList.pages || appList.pages === 1">
             <td colspan="7" class="text-center pb-5">
                 <span></span>
+            </td>
+        </tr>
+        <tr *ngIf="pageSize && (appList.pages && appList.pages > 1)">
+            <td colspan="7">
+                <div class="col-md-12 pr-5">
+                    <ngb-pagination class="d-flex justify-content-center custom-pagination" 
+                    [pageSize]="pageSize" 
+                    [collectionSize]="appList.count" 
+                    [page]="appList.pageNumber" 
+                    (pageChange)="updatePage($event)"  
+                    [maxSize]="3"
+                    [boundaryLinks]="true"
+                    [ellipses]="true">
+                        <ng-template ngbPaginationFirst>&lt;</ng-template>
+                        <ng-template ngbPaginationLast>&gt;</ng-template>
+                        <ng-template ngbPaginationEllipsis>...</ng-template>
+                        <ng-template ngbPaginationPrevious>Prev</ng-template>
+                        <ng-template ngbPaginationNext>Next</ng-template>
+                    </ngb-pagination>
+                </div>
             </td>
         </tr>
     </tbody>
@@ -123,7 +149,7 @@
             <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
             <div ngbDropdownMenu>
                 <button class="menu menu-submit"
-                    *ngIf="app.prettyStatus != 'In Review' && app.prettyStatus != 'Approved' && app.prettyStatus != 'Suspended' && app.prettyStatus != 'Draft' && app.prettyStatus != 'Rejected'"
+                    *ngIf="app.prettyStatus != 'In Review' && app.prettyStatus != 'Approved' && app.prettyStatus != 'Suspended' && app.prettyStatus != 'Rejected'"
                     (click)="action('submit' , app)" ngbDropdownItem>
                     Submit
                 </button>
