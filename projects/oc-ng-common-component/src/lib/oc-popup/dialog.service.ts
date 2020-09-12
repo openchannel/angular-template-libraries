@@ -16,7 +16,7 @@ export class DialogService {
   }
   showAppConfirmPopup(component: Component, title: string, type: string,
     cancelButtonText: string, confirmButtonText: string, text: string, textVariable: string,
-    informationalText: string, confirmCallback?, cancelCallback?) {
+    informationalText: string,isDirectSubmit=false , confirmCallback?, cancelCallback?) {
     const modalRef = this.modalService.open(component, { size: 'lg submit-app', backdrop: 'static' });
     modalRef.componentInstance.title = title;
     modalRef.componentInstance.text = text;
@@ -27,6 +27,7 @@ export class DialogService {
     modalRef.componentInstance.confirmCallback = confirmCallback;
     modalRef.componentInstance.closeIconUrl = "assets/img/close-icon.svg";
     modalRef.componentInstance.type = type;
+    modalRef.componentInstance.isDirectSubmit=isDirectSubmit;
     if (cancelCallback) {
       modalRef.componentInstance.cancelCallback = cancelCallback;
     } else {
