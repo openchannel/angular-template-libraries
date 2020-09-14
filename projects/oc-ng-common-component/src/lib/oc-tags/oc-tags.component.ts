@@ -1,11 +1,17 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
     selector: 'oc-tags',
     templateUrl: './oc-tags.component.html',
-    styleUrls: ['./oc-tags.component.scss']
+    styleUrls: ['./oc-tags.component.scss'],
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => OcTagsComponent),
+        multi: true
+    }],
 })
-export class OcTagsComponent implements OnInit {
+export class OcTagsComponent implements OnInit, ControlValueAccessor {
 
     constructor() {
     }
@@ -77,6 +83,11 @@ export class OcTagsComponent implements OnInit {
      */
     @Input() maxTagLength: number = null;
 
+    @Input()
+    set value(val) {
+        this.resultTags = val;
+        this.onChange(this.resultTags);
+    }
     /**
      * updatingTags - It is get a result list of user tags.
      */
@@ -100,6 +111,9 @@ export class OcTagsComponent implements OnInit {
 
     /** correct result tags */
     validResult = false;
+
+    private onTouched = () => {};
+    private onChange: (value: any) => void = () => {};
 
     ngOnInit(): void {
         this.applyDefaultTags();
@@ -143,7 +157,7 @@ export class OcTagsComponent implements OnInit {
 
     updateComponentData(): void {
         this.dropBoxTags = this.findAvailableDropBoxTags();
-        this.createErrorMessageByCountTagsIfNeed()
+        this.createErrorMessageByCountTagsIfNeed();
         this.updateOutput();
     }
 
@@ -192,13 +206,41 @@ export class OcTagsComponent implements OnInit {
         return this.availableTags.filter(tag => !this.existTagInResultList(tag));
     }
 
-    changeCurrentTag(currentTag: string): void {
-        this.currentTag = currentTag;
+    changeCurrentTag(): void {
         this.error = null;
         this.showTagLengthErrorMessage(this.currentTag);
     }
 
     updateOutput(): void {
         this.updatingTags.emit(this.resultTags);
+    }
+    /**
+     * Calls this function with new value. When user wrote something in the component
+     * It needs to know that new data has been entered in the control.
+     */
+    registerOnChange(onChange: (value: any) => void): void {
+        this.onChange = onChange;
+    }
+    /**
+     * Calls this function when user left chosen component.
+     * It needs for validation
+     */
+    registerOnTouched(onTouched: () => void): void {
+        this.onTouched = onTouched;
+    }
+    /**
+     * (Optional)
+     * the method will be called by the control when the [disabled] state changes.
+     */
+    setDisabledState(isDisabled: boolean): void {
+    }
+    /**
+     * this method will be called by the control to pass the value to our component.
+     * It is used if the value is changed through the code outside
+     * (setValue or changing the variable that ngModel is tied to),
+     * as well as to set the initial value.
+     */
+    writeValue(obj: any): void {
+        this.resultTags = obj;
     }
 }

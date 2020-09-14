@@ -6,8 +6,9 @@
         <div class="row w-100 m-0 align-items-stretch">
             <oc-input class="flex-grow-1" ngDefaultControl
                       [placeholder]="placeHolderInputName"
-                      (modelNameChange)="changeCurrentTag($event)"></oc-input>
-
+                      [(ngModel)]="currentTag"
+                      (ngModelChange)="changeCurrentTag()"
+                      ></oc-input>
             <oc-button class="ml-1"
                        [text]="'+'"
                        [type]="'primary'"
