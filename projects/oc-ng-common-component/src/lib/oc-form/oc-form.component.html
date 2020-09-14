@@ -1,0 +1,13 @@
+<form [formGroup]="customForm">
+  <ng-container>
+    <oc-rich-text-editor formControlName="richText"></oc-rich-text-editor>
+    <oc-input placeholder="I'm required!" formControlName="input" [class]="'mt-1 mb-1'"></oc-input>
+    <oc-select formControlName="select" [selectValArr]="arrForSelect"></oc-select>
+  </ng-container>
+  <oc-button (click)="showData()"
+             [disabled]="customForm.invalid"
+             text="Submit"
+             type="primary" [class]="'mt-2 mb-2'"></oc-button>
+</form>
+<p>{{formData | json}}</p>
+
