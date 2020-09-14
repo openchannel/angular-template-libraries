@@ -1,0 +1,16 @@
+@import "../../../assets/styles/theme.scss";
+
+::ng-deep.dropdown-menu {
+  max-height: 180px;
+  overflow-y: scroll;
+}
+
+::ng-deep.dropdown-item {
+  color: $gray-700;
+}
+
+::ng-deep.dropdown-item.active, .dropdown-item:active {
+  background: none;
+  color: $green;
+}
+
