@@ -1,8 +1,23 @@
-<form [formGroup]="customForm">
-  <ng-container>
-    <oc-rich-text-editor formControlName="richText"></oc-rich-text-editor>
-    <oc-input placeholder="I'm required!" formControlName="input" [class]="'mt-1 mb-1'"></oc-input>
-    <oc-select formControlName="select" [selectValArr]="arrForSelect"></oc-select>
+<form [formGroup]="customForm" *ngIf="customForm">
+  <ng-container *ngFor="let formElement of formJsonData?.fields">
+    <div [ngSwitch]="formElement?.type">
+      <oc-rich-text-editor *ngSwitchCase="'richText'" formControlName="{{formElement?.id}}"></oc-rich-text-editor>
+      <oc-input  *ngSwitchCase="'text'"
+              formControlName="{{formElement?.id}}"
+              [class]="'mt-1 mb-1'"></oc-input>
+      <oc-select *ngSwitchCase="'dropdownList'"
+                 formControlName="{{formElement?.id}}"
+                 [selectValArr]="formElement?.options"
+                 [class]="'mt-2 mb-2'"></oc-select>
+      <oc-tags  *ngSwitchCase="'tags'"
+               placeHolderInputName="Choose your tags"
+               formControlName="{{formElement?.id}}"
+                [description]="formElement?.description"
+               [availableTags]="formElement?.options ? formElement?.options : ['']"
+                [maxTagsCount]="formElement?.attributes?.maxCount"
+                [minTagsCount]="formElement?.attributes?.minCount"
+               [title]="formElement?.label"></oc-tags>
+    </div>
   </ng-container>
   <oc-button (click)="showData()"
              [disabled]="customForm.invalid"

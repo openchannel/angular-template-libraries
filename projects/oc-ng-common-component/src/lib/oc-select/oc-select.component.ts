@@ -16,6 +16,7 @@ export class OcSelectComponent implements OnInit, ControlValueAccessor {
   @Input() selectValArr: any [] = [];
   @Input() isObject: boolean = false;
   @Input() disabled: boolean = false;
+  @Input() class: string = '';
   @Input() set value(val) {
     this.selectedValue = val;
     this.onChange(this.selectedValue);

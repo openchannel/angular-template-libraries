@@ -12,7 +12,6 @@ export default {
   decorators: [
     moduleMetadata(modules),
   ],
-  // argTypes: { formData: { action: 'Form Data' }}
 };
 
 const FormGroupComponent = (args: OcFormComponent) => ({
@@ -21,7 +20,68 @@ const FormGroupComponent = (args: OcFormComponent) => ({
   props: args
 });
 
-export const FormWithRichText = FormGroupComponent.bind({});
+export const FormWithTestData = FormGroupComponent.bind({});
 
-FormWithRichText.args = {
+FormWithTestData.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+    {
+      id: 'name',
+      label: 'name',
+      description: 'test',
+      defaultValue: null,
+      type: 'text',
+      required: null,
+      attributes: {
+        maxChars: 20,
+        required: true,
+        minChars: 10
+      },
+      options: null,
+      subFieldDefinitions: null
+    },
+    {
+      id: 'role',
+      label: 'role',
+      description: '',
+      defaultValue: null,
+      type: 'dropdownList',
+      required: null,
+      attributes: {required: true},
+      options: ['admin', 'user', 'test'],
+      subFieldDefinitions: null
+    },
+    {
+      id: 'aboutme',
+      label: 'aboutme',
+      description: '',
+      defaultValue: null,
+      type: 'richText',
+      required: null,
+      attributes: {
+        maxChars: 150,
+        required: null,
+        minChars: 10
+      },
+      options: null,
+      subFieldDefinitions: null
+    },
+    {
+      id: 'skills',
+      label: 'skills',
+      description: 'skills',
+      defaultValue: ['angular'],
+      type: 'tags',
+      required: null,
+      attributes: {
+        minCount: 1,
+        maxCount: 5,
+        required: true
+      }, options: null,
+      subFieldDefinitions: null
+    }]
+  }
 };
