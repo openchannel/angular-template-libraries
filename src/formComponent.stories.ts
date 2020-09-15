@@ -85,3 +85,69 @@ FormWithTestData.args = {
     }]
   }
 };
+
+export const FormWithRequiredOnly = FormGroupComponent.bind({});
+
+FormWithRequiredOnly.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        id: 'name',
+        label: 'name',
+        description: 'test',
+        defaultValue: null,
+        type: 'text',
+        required: null,
+        attributes: {
+          maxChars: null,
+          required: true,
+          minChars: null
+        },
+        options: null,
+        subFieldDefinitions: null
+      },
+      {
+        id: 'role',
+        label: 'role',
+        description: '',
+        defaultValue: null,
+        type: 'dropdownList',
+        required: null,
+        attributes: {required: true},
+        options: ['admin', 'user', 'test'],
+        subFieldDefinitions: null
+      },
+      {
+        id: 'aboutme',
+        label: 'aboutme',
+        description: '',
+        defaultValue: null,
+        type: 'richText',
+        required: null,
+        attributes: {
+          maxChars: null,
+          required: null,
+          minChars: null
+        },
+        options: null,
+        subFieldDefinitions: null
+      },
+      {
+        id: 'skills',
+        label: 'skills',
+        description: 'skills',
+        defaultValue: ['angular'],
+        type: 'tags',
+        required: null,
+        attributes: {
+          minCount: null,
+          maxCount: null,
+          required: true
+        }, options: null,
+        subFieldDefinitions: null
+      }]
+  }
+};
