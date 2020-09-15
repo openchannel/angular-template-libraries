@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'oc-form',
@@ -49,37 +49,39 @@ export class OcFormComponent implements OnInit {
   }
 
   setValidators(control: AbstractControl, attributes) {
+    const validators: ValidatorFn [] = [];
     Object.keys(attributes).forEach(key => {
       switch (key) {
         case 'required':
           if (attributes.required) {
-            control.setValidators(Validators.required);
+            validators.push(Validators.required);
           }
           break;
         case 'maxChars':
           if (attributes.maxChars) {
-            control.setValidators(Validators.minLength(attributes.maxChars));
+            validators.push(Validators.maxLength(attributes.maxChars));
           }
           break;
         case 'minChars':
           if (attributes.minChars) {
-            control.setValidators(Validators.minLength(attributes.minChars));
+            validators.push(Validators.minLength(attributes.minChars));
           }
           break;
         case 'minCount':
           if (attributes.minCount) {
-            control.setValidators(Validators.minLength(attributes.minCount));
+            validators.push(Validators.minLength(attributes.minCount));
           }
           break;
         case 'maxCount':
           if (attributes.maxCount) {
-            control.setValidators(Validators.minLength(attributes.maxCount));
+            validators.push(Validators.maxLength(attributes.maxCount));
           }
           break;
         default:
           break;
       }
     });
+    control.setValidators(validators);
   }
   showData(): void {
     this.formData = this.customForm.getRawValue();
