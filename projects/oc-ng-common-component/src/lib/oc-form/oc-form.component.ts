@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,7 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from
 export class OcFormComponent implements OnInit {
 
   @Input() formJsonData: any;
+  @Output() formSubmitted = new EventEmitter<any>();
   public customForm: FormGroup;
   public formData: any;
   public arrForSelect: string[] = [];
@@ -83,7 +84,15 @@ export class OcFormComponent implements OnInit {
     });
     control.setValidators(validators);
   }
-  showData(): void {
-    this.formData = this.customForm.getRawValue();
+
+  trackByFieldId(index: number, formElement: any): string {
+    return formElement.id;
+  }
+
+  /**
+   * Output event which returns form value
+   */
+  sendData(): void {
+    this.formSubmitted.emit(this.customForm.getRawValue());
   }
 }

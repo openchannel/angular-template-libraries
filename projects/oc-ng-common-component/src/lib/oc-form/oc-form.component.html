@@ -1,5 +1,5 @@
 <form [formGroup]="customForm" *ngIf="customForm">
-  <ng-container *ngFor="let formElement of formJsonData?.fields">
+  <ng-container *ngFor="let formElement of formJsonData?.fields; trackBy:trackByFieldId">
     <div [ngSwitch]="formElement?.type">
       <oc-rich-text-editor *ngSwitchCase="'richText'" formControlName="{{formElement?.id}}"></oc-rich-text-editor>
       <oc-input  *ngSwitchCase="'text'"
@@ -19,10 +19,8 @@
                [title]="formElement?.label"></oc-tags>
     </div>
   </ng-container>
-  <oc-button (click)="showData()"
+  <oc-button (click)="sendData()"
              [disabled]="customForm.invalid"
              text="Submit"
              type="primary" [class]="'mt-2 mb-2'"></oc-button>
 </form>
-<p>{{formData | json}}</p>
-
