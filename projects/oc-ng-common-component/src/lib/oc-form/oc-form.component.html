@@ -1,0 +1,28 @@
+<form [formGroup]="customForm" *ngIf="customForm">
+  <ng-container *ngFor="let formElement of formJsonData?.fields">
+    <div [ngSwitch]="formElement?.type">
+      <oc-rich-text-editor *ngSwitchCase="'richText'" formControlName="{{formElement?.id}}"></oc-rich-text-editor>
+      <oc-input  *ngSwitchCase="'text'"
+              formControlName="{{formElement?.id}}"
+              [class]="'mt-1 mb-1'"></oc-input>
+      <oc-select *ngSwitchCase="'dropdownList'"
+                 formControlName="{{formElement?.id}}"
+                 [selectValArr]="formElement?.options"
+                 [class]="'mt-2 mb-2'"></oc-select>
+      <oc-tags  *ngSwitchCase="'tags'"
+               placeHolderInputName="Choose your tags"
+               formControlName="{{formElement?.id}}"
+                [description]="formElement?.description"
+               [availableTags]="formElement?.options ? formElement?.options : ['']"
+                [maxTagsCount]="formElement?.attributes?.maxCount"
+                [minTagsCount]="formElement?.attributes?.minCount"
+               [title]="formElement?.label"></oc-tags>
+    </div>
+  </ng-container>
+  <oc-button (click)="showData()"
+             [disabled]="customForm.invalid"
+             text="Submit"
+             type="primary" [class]="'mt-2 mb-2'"></oc-button>
+</form>
+<p>{{formData | json}}</p>
+

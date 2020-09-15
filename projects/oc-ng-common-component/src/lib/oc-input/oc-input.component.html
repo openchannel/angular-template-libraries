@@ -1,2 +1,5 @@
-<input (blur)="onblur()" (input)="changeModelVal($event)" [(ngModel)]="modelName" [disabled]="disabled"
-       [placeholder]="placeholder" class="form-control" type="text" whiteSpaceValidator>
+<input  [disabled]="disabled"
+        [placeholder]="placeholder"
+        [(ngModel)]="inputValue"
+        (ngModelChange)="changeModelVal()"
+        class="form-control {{class}}" type="text" whiteSpaceValidator>

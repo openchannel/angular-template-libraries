@@ -17,7 +17,7 @@ import {OcBoxGridComponent} from './oc-box-grid/oc-box-grid.component';
 import {OcRatingComponent} from './oc-rating/oc-rating.component';
 import {OcTextSearhComponent} from './oc-text-searh/oc-text-searh.component';
 import {OcForgotPasswordComponent} from './oc-forgot-password/oc-forgot-password.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {OcErrorComponent} from './oc-error/oc-error.component';
 import {EmailValidatorDirective} from './validators/email-validator.directive';
 import {WhiteSpaceValidatorDirective} from './validators/white-space-validator';
@@ -69,6 +69,7 @@ import 'froala-editor/js/plugins/code_view.min.js';
 import {OcTagElementComponent} from "./oc-tag-element/oc-tag-element.component";
 import {OcDropboxComponent} from "./oc-dropbox/oc-dropbox.component";
 import {OcTitleComponent} from "./oc-title/oc-title.component";
+import { OcFormComponent } from './oc-form/oc-form.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -127,7 +128,9 @@ import {OcTitleComponent} from "./oc-title/oc-title.component";
     OcTagsComponent,
     OcTagElementComponent,
     OcDropboxComponent,
-    OcTitleComponent
+    OcTitleComponent,
+    OcRichTextEditorComponent,
+    OcFormComponent
   ],
 
   imports: [
@@ -137,7 +140,8 @@ import {OcTitleComponent} from "./oc-title/oc-title.component";
     FormsModule,
     ImageCropperModule,
     FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot()
+    FroalaViewModule.forRoot(),
+    ReactiveFormsModule
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
