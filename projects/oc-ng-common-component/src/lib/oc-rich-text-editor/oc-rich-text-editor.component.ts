@@ -43,6 +43,8 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   public options = {
+    heightMax: 300,
+    height: 200,
     placeholderText: this.placeholder,
     charCounterCount: this.charCounterCount,
     charCounterMax: this.maxCharacters,

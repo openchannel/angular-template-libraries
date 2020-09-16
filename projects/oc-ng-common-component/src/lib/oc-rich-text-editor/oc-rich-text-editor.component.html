@@ -1,4 +1,3 @@
-<div class="w-100">
+<div class="w-100" style="height: 300px;">
   <div [froalaEditor]='options' [(froalaModel)]="editorContent" (froalaModelChange)="onModelChange()"></div>
-  <span *ngIf="required" class="text-danger">{{label + ' is required'}}</span>
 </div>
