@@ -43,8 +43,9 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   public options = {
-    heightMax: 300,
-    height: 200,
+    heightMin: 100,
+    heightMax: 150,
+    height: 'auto',
     placeholderText: this.placeholder,
     charCounterCount: this.charCounterCount,
     charCounterMax: this.maxCharacters,
@@ -52,14 +53,29 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
     attribution: false,
     fontFamilyDefaultSelection: 'Arial',
     paragraphFormatSelection: true,
-    toolbarButtons: [
+    toolbarButtonsSM: [
       ['paragraphFormat'],
       ['bold', 'italic', 'strikeThrough', 'fontFamily', 'fontSize'],
       ['insertLink'],
       ['alignLeft', 'alignCenter', 'alignRight', 'alignJustify'],
       ['formatOL', 'formatUL', 'outdent', 'indent'],
       ['html']
-    ]
+    ],
+    toolbarButtonsXS: {
+      moreParagraph: {
+        buttons: ['paragraphFormat', 'alignCenter', 'alignRight', 'alignJustify',
+          'formatOL', 'formatUL', 'outdent', 'indent'],
+        buttonsVisible: 1
+      },
+      moreText: {
+        buttons: ['bold', 'italic', 'strikeThrough', 'fontFamily', 'fontSize'],
+        buttonsVisible: 5
+      },
+      moreRich: {
+        buttons: ['insertLink', 'html'],
+        buttonsVisible: 2
+      }
+    }
   };
   public editorContent: SafeHtml;
 
