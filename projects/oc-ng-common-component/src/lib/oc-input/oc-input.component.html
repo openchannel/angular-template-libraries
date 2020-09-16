@@ -1,5 +1,6 @@
 <input  [disabled]="disabled"
         [placeholder]="placeholder"
         [(ngModel)]="inputValue"
+        (focus)="onFocus()"
         (ngModelChange)="changeModelVal()"
         class="form-control {{class}}" type="text" whiteSpaceValidator>
