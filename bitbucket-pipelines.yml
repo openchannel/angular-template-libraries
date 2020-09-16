@@ -50,4 +50,4 @@ pipelines:
                 PACKAGE_PATH: 'dist/oc-ng-common-component/*.tgz'
                 REPUBLISH: 'true'
     AT-117_angular_templates:
-      -step: *build-test-sonarcloud
+      - step: *build-test-sonarcloud
