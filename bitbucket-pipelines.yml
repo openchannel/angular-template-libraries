@@ -1,5 +1,20 @@
 image: node:10.15.3
 
+definitions:
+  caches:
+    sonar: ~/.sonar/cache  # Caching SonarCloud artifacts will speed up your build
+  steps:
+    - step: &build-test-sonarcloud
+        name: Build, test and analyze on SonarCloud
+        caches:
+          - node
+          - sonar
+        script:
+          - npm install --quiet
+          - pipe: sonarsource/sonarcloud-scan:0.1.5
+            variables:
+              SONAR_TOKEN: ${SONAR_TOKEN}
+              EXTRA_ARGS: '-Dsonar.sources=src -Dsonar.tests=src -Dsonar.test.inclusions="**/testing/**,**/*.spec.ts" -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info'
 pipelines:
   default:
     - step:
@@ -34,3 +49,5 @@ pipelines:
                 PACKAGE_NPM_DIST_TAG: 'stable'
                 PACKAGE_PATH: 'dist/oc-ng-common-component/*.tgz'
                 REPUBLISH: 'true'
+    AT-117_angular_templates:
+      -step: *build-test-sonarcloud
