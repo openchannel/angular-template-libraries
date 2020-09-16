@@ -1,7 +1,9 @@
 <form [formGroup]="customForm" *ngIf="customForm">
   <ng-container *ngFor="let formElement of formJsonData?.fields; trackBy:trackByFieldId">
     <div [ngSwitch]="formElement?.type">
-      <oc-rich-text-editor *ngSwitchCase="'richText'" formControlName="{{formElement?.id}}"></oc-rich-text-editor>
+      <div *ngSwitchCase="'richText'" class="mt-2 mb-2">
+        <oc-rich-text-editor  formControlName="{{formElement?.id}}"></oc-rich-text-editor>
+      </div>
       <oc-input  *ngSwitchCase="'text'"
               formControlName="{{formElement?.id}}"
               [class]="'mt-1 mb-1'"></oc-input>
@@ -9,14 +11,16 @@
                  formControlName="{{formElement?.id}}"
                  [selectValArr]="formElement?.options"
                  [class]="'mt-2 mb-2'"></oc-select>
-      <oc-tags  *ngSwitchCase="'tags'"
-               placeHolderInputName="Choose your tags"
-               formControlName="{{formElement?.id}}"
+      <div *ngSwitchCase="'tags'" class="mt-2 mb-2">
+        <oc-tags
+                placeHolderInputName="Choose your tags"
+                formControlName="{{formElement?.id}}"
                 [description]="formElement?.description"
-               [availableTags]="formElement?.options ? formElement?.options : ['']"
+                [availableTags]="formElement?.options ? formElement?.options : ['']"
                 [maxTagsCount]="formElement?.attributes?.maxCount"
                 [minTagsCount]="formElement?.attributes?.minCount"
-               [title]="formElement?.label"></oc-tags>
+                [title]="formElement?.label"></oc-tags>
+      </div>
     </div>
   </ng-container>
   <oc-button (click)="sendData()"
