@@ -14,7 +14,7 @@ definitions:
             variables:
               SONAR_SCANNER_OPTS: -Xmx512m
               SONAR_TOKEN: ${SONAR_TOKEN}
-              EXTRA_ARGS: '-Dsonar.sources=src -Dsonar.tests=src -Dsonar.test.inclusions="**/testing/**,**/*.spec.ts" -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info'
+              EXTRA_ARGS: '-Dsonar.sources=projects/oc-ng-common-service/src -Dsonar.tests=projects/oc-ng-common-service/src -Dsonar.test.inclusions="**/testing/**,**/*.spec.ts" -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info'
 
 pipelines:
   default:
