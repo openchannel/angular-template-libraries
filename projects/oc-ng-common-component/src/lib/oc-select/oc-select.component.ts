@@ -38,7 +38,7 @@ export class OcSelectComponent implements OnInit, ControlValueAccessor {
   }
 
   onblur(): void {
-    // (this.control.valueAccessor as DefaultValueAccessor).onTouched();
+    this.onTouched();
   }
   /**
    * Calls this function with new value. When user wrote something in the component

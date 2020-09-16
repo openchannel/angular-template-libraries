@@ -1,28 +1,41 @@
 <form [formGroup]="customForm" *ngIf="customForm">
-  <ng-container *ngFor="let formElement of formJsonData?.fields">
+  <ng-container *ngFor="let formElement of formJsonData?.fields; trackBy:trackByFieldId">
     <div [ngSwitch]="formElement?.type">
-      <oc-rich-text-editor *ngSwitchCase="'richText'" formControlName="{{formElement?.id}}"></oc-rich-text-editor>
-      <oc-input  *ngSwitchCase="'text'"
-              formControlName="{{formElement?.id}}"
-              [class]="'mt-1 mb-1'"></oc-input>
-      <oc-select *ngSwitchCase="'dropdownList'"
-                 formControlName="{{formElement?.id}}"
-                 [selectValArr]="formElement?.options"
-                 [class]="'mt-2 mb-2'"></oc-select>
-      <oc-tags  *ngSwitchCase="'tags'"
-               placeHolderInputName="Choose your tags"
-               formControlName="{{formElement?.id}}"
+      <div *ngSwitchCase="'richText'" class="mt-2 mb-2">
+        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
+        </oc-label>
+        <oc-rich-text-editor  formControlName="{{formElement?.id}}"></oc-rich-text-editor>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
+      </div>
+      <div class="mt-2 mb-2" *ngSwitchCase="'text'">
+        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
+        </oc-label>
+        <oc-input  formControlName="{{formElement?.id}}"
+                   ></oc-input>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
+      </div>
+      <div class="mt-2 mb-2" *ngSwitchCase="'dropdownList'">
+        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
+        </oc-label>
+        <oc-select formControlName="{{formElement?.id}}"
+                   [selectValArr]="formElement?.options"></oc-select>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
+      </div>
+      <div *ngSwitchCase="'tags'" class="mt-2 mb-2">
+        <oc-tags
+                placeHolderInputName="Choose your tags"
+                formControlName="{{formElement?.id}}"
                 [description]="formElement?.description"
-               [availableTags]="formElement?.options ? formElement?.options : ['']"
+                [availableTags]="formElement?.options ? formElement?.options : ['']"
                 [maxTagsCount]="formElement?.attributes?.maxCount"
                 [minTagsCount]="formElement?.attributes?.minCount"
-               [title]="formElement?.label"></oc-tags>
+                [required]="formElement?.attributes?.required"
+                [title]="formElement?.label"></oc-tags>
+      </div>
     </div>
   </ng-container>
-  <oc-button (click)="showData()"
+  <oc-button (click)="sendData()"
              [disabled]="customForm.invalid"
              text="Submit"
              type="primary" [class]="'mt-2 mb-2'"></oc-button>
 </form>
-<p>{{formData | json}}</p>
-

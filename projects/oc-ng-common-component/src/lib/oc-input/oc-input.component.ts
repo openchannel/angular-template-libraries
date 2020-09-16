@@ -43,6 +43,13 @@ export class OcInputComponent implements OnInit, ControlValueAccessor {
   changeModelVal(): void {
     this.onChange(this.inputValue);
   }
+
+  /**
+   * Register touch action
+   */
+  onFocus(): void {
+    this.onTouched();
+  }
   /**
    * Calls this function with new value. When user wrote something in the component
    * It needs to know that new data has been entered in the control.
