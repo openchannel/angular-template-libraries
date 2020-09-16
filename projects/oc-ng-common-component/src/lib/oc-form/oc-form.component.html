@@ -5,18 +5,21 @@
         <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
         </oc-label>
         <oc-rich-text-editor  formControlName="{{formElement?.id}}"></oc-rich-text-editor>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
       <div class="mt-2 mb-2" *ngSwitchCase="'text'">
         <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
         </oc-label>
         <oc-input  formControlName="{{formElement?.id}}"
                    ></oc-input>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
       <div class="mt-2 mb-2" *ngSwitchCase="'dropdownList'">
         <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
         </oc-label>
         <oc-select formControlName="{{formElement?.id}}"
                    [selectValArr]="formElement?.options"></oc-select>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
       <div *ngSwitchCase="'tags'" class="mt-2 mb-2">
         <oc-tags

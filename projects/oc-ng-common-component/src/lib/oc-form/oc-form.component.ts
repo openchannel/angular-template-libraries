@@ -8,11 +8,17 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from
 })
 export class OcFormComponent implements OnInit {
 
+  /**
+   * JSOM with all form data to generate dynamic form
+   */
   @Input() formJsonData: any;
+  /**
+   * Returning all form fields value to the parent component
+   */
   @Output() formSubmitted = new EventEmitter<any>();
+
   public customForm: FormGroup;
   public formData: any;
-  public arrForSelect: string[] = [];
 
   constructor() { }
 
@@ -20,7 +26,10 @@ export class OcFormComponent implements OnInit {
     this.generateForm();
   }
 
-  generateForm() {
+  /**
+   * Generating form by JSON data
+   */
+  generateForm(): void {
     const group = {};
     if (this.formJsonData?.fields) {
       this.formJsonData?.fields.forEach(inputTemplate => {
@@ -48,8 +57,10 @@ export class OcFormComponent implements OnInit {
       this.customForm = new FormGroup(group);
     }
   }
-
-  setValidators(control: AbstractControl, attributes) {
+  /**
+   * Setting validators array to the chosen control
+   */
+  setValidators(control: AbstractControl, attributes): void {
     const validators: ValidatorFn [] = [];
     Object.keys(attributes).forEach(key => {
       switch (key) {
