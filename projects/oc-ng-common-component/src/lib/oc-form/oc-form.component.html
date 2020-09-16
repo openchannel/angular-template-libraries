@@ -2,15 +2,22 @@
   <ng-container *ngFor="let formElement of formJsonData?.fields; trackBy:trackByFieldId">
     <div [ngSwitch]="formElement?.type">
       <div *ngSwitchCase="'richText'" class="mt-2 mb-2">
+        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
+        </oc-label>
         <oc-rich-text-editor  formControlName="{{formElement?.id}}"></oc-rich-text-editor>
       </div>
-      <oc-input  *ngSwitchCase="'text'"
-              formControlName="{{formElement?.id}}"
-              [class]="'mt-1 mb-1'"></oc-input>
-      <oc-select *ngSwitchCase="'dropdownList'"
-                 formControlName="{{formElement?.id}}"
-                 [selectValArr]="formElement?.options"
-                 [class]="'mt-2 mb-2'"></oc-select>
+      <div class="mt-2 mb-2" *ngSwitchCase="'text'">
+        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
+        </oc-label>
+        <oc-input  formControlName="{{formElement?.id}}"
+                   ></oc-input>
+      </div>
+      <div class="mt-2 mb-2" *ngSwitchCase="'dropdownList'">
+        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
+        </oc-label>
+        <oc-select formControlName="{{formElement?.id}}"
+                   [selectValArr]="formElement?.options"></oc-select>
+      </div>
       <div *ngSwitchCase="'tags'" class="mt-2 mb-2">
         <oc-tags
                 placeHolderInputName="Choose your tags"
@@ -19,6 +26,7 @@
                 [availableTags]="formElement?.options ? formElement?.options : ['']"
                 [maxTagsCount]="formElement?.attributes?.maxCount"
                 [minTagsCount]="formElement?.attributes?.minCount"
+                [required]="formElement?.attributes?.required"
                 [title]="formElement?.label"></oc-tags>
       </div>
     </div>
