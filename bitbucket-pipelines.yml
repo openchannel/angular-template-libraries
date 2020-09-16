@@ -7,7 +7,6 @@ definitions:
     - step: &build-test-sonarcloud
         name: Build, test and analyze on SonarCloud
         caches:
-          - node
           - sonar
         script:
           - npm install --quiet
@@ -19,13 +18,11 @@ pipelines:
   default:
     - step:
         name: Build
-        #        caches:
-        #          - node
         script:
           - npm install
           - npm run build-prod
   branches:
-    default:
+    develop:
       - step:
           name: Bump version and pack
           script:
