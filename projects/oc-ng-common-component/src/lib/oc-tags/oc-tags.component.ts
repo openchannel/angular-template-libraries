@@ -140,7 +140,8 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor {
                 this.showTagLengthErrorMessage(tagNormalized);
                 return false;
             } else if (!this.existTagInResultList(tagNormalized)) {
-                this.resultTags.push(tagNormalized);
+                this.resultTags = [...this.resultTags, tagNormalized];
+                // this.resultTags.push(tagNormalized);
                 this.updateComponentData();
                 return true;
             }
@@ -212,7 +213,8 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor {
     }
 
     updateOutput(): void {
-        this.updatingTags.emit(this.resultTags);
+        this.onChange(this.resultTags);
+        // this.updatingTags.emit(this.resultTags);
     }
     /**
      * Calls this function with new value. When user wrote something in the component
