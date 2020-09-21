@@ -1,7 +1,10 @@
 <input #dropBox
        type="text"
-       class="form-control"
+       class="form-control {{customClassStyle}}"
        placeholder="{{placeHolder}}"
+       (input)="emmitCurrentText($event)"
        (focus)="onFocus($event)"
        [ngbTypeahead]="search"
-       (selectItem)="selectItem($event)"/>
+       [ngStyle]="customNgStyle"
+       (selectItem)="selectItem($event)"
+       [resultTemplate]="dropElementTemplate"/>

@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
 import {NgbTypeaheadSelectItemEvent} from "@ng-bootstrap/ng-bootstrap";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
@@ -9,6 +9,10 @@ import {map} from "rxjs/operators";
     styleUrls: ['./oc-dropbox.component.scss']
 })
 export class OcDropboxComponent implements OnInit {
+
+    /**
+     * https://ng-bootstrap.github.io/#/components/typeahead/examples
+     */
 
     /**
      * placeHolder (optional) - show text inside dropbox.
@@ -27,6 +31,31 @@ export class OcDropboxComponent implements OnInit {
     @Input() clearFormAfterSelect: boolean = false;
 
     /**
+     * customNgStyle - customize drop box style by [ngStyle].
+     */
+    @Input() customNgStyle: {};
+
+    /**
+     * customClassStyle - customize drop box style by [class]
+     */
+    @Input() customClassStyle: string;
+
+    /**
+     * dropElementTemplate - need for showing one dropbox element.
+     */
+    @Input() dropElementTemplate: TemplateRef<any>;
+
+    /**
+     * currentText - user text.
+     */
+    @Output() currentText = new EventEmitter<string>();
+
+    /**
+     * existsItems - current items of dropbox after searching.
+     */
+    @Output() existsItems = new EventEmitter<string[]>();
+
+    /**
      * selectedItem - return currently selected item.
      */
     @Output() selectedItem = new EventEmitter<string>()
@@ -39,14 +68,21 @@ export class OcDropboxComponent implements OnInit {
 
     search = (text$: Observable<string>) => {
         return text$.pipe(map(searchTag => {
-            if (searchTag && this.items) {
-                const lowerTag = searchTag.toLowerCase();
-                return this.items.filter(v => v && v.toLowerCase().indexOf(lowerTag) > -1);
-            } else {
-                return this.items;
-            }
+            let newItems = this.filterItems(searchTag, this.items);
+            this.emmitExistsItems(newItems)
+            return newItems;
         }))
     };
+
+    filterItems(searchItem: string, items: string[]) {
+        if(items) {
+            if (searchItem) {
+                const lowerTag = searchItem.toLowerCase();
+                return this.items.filter(v => v && v.toLowerCase().indexOf(lowerTag) > -1);
+            }
+        }
+        return items;
+    }
 
     ngOnInit(): void {
     }
@@ -61,6 +97,14 @@ export class OcDropboxComponent implements OnInit {
         this.selectedItem.emit(itemEvent.item);
         this.clearForm(itemEvent);
         this.clearFocus();
+    }
+
+    emmitExistsItems(items: string[]) {
+        this.existsItems.emit(items);
+    }
+
+    emmitCurrentText(event: any) {
+        this.currentText.emit(event.target.value);
     }
 
     clearForm(itemEvent: NgbTypeaheadSelectItemEvent): void {

@@ -190,6 +190,9 @@ import { OcFormComponent } from './oc-form/oc-form.component';
     OcSellerAgreementComponent,
     OcResetPasswordComponent,
     OcRichTextEditorComponent,
+    OcDropboxComponent,
+    OcTitleComponent,
+    OcTagElementComponent,
     OcFormComponent
   ],
   providers: [

@@ -11,6 +11,9 @@ export * from './lib/oc-checkbox/oc-checkbox.component';
 export * from './lib/oc-radio/oc-radio.component';
 export * from './lib/oc-signup/oc-signup.component';
 export * from './lib/oc-password/oc-password.component';
+export * from './lib/oc-dropbox/oc-dropbox.component';
+export * from './lib/oc-title/oc-title.component';
+export * from './lib/oc-tag-element/oc-tag-element.component';
 
 export * from './lib/oc-login/oc-login.component';
 export * from './lib/oc-rating/oc-rating.component';
