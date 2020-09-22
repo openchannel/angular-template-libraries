@@ -5,12 +5,16 @@
   overflow-y: scroll;
 }
 
-::ng-deep.dropdown-item {
-  color: $gray-700;
+::ng-deep.dropdown-menu::-webkit-scrollbar {
+  display: none;
+}
+
+::ng-deep.dropdown-menu .dropdown-item {
+  padding: 0;
 }
 
 ::ng-deep.dropdown-item.active, .dropdown-item:active {
   background: none;
-  color: $green;
+  color: $gray-700;
 }
 
