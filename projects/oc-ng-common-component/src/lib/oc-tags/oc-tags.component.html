@@ -27,8 +27,16 @@
                     [items]="dropBoxTags"
                     [placeHolder]="placeHolderDropBoxName"
                     [clearFormAfterSelect] = "true"
+                    [dropElementTemplate]="dropElementTemplate"
                     (selectedItem)="addTagToResultList($event, true)">
         </oc-dropbox>
     </div>
     <oc-error *ngIf="error" [field]="error.field" [errorParams]="error.params"></oc-error>
 </div>
+
+
+<ng-template #dropElementTemplate let-result="result">
+    <div class="d-flex flex-row flex-nowrap align-items-center dropdown-element p-2">
+        <div class="custom-text">{{result}}</div>
+    </div>
+</ng-template>
