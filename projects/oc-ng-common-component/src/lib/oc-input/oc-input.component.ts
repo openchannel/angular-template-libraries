@@ -12,6 +12,7 @@ export class OcInputComponent implements OnInit {
   @Input() autoFocus;
   @Input() autocomplete;
   @Input() placeholder = '';
+  @Input() isURL = false;
 
   @Output() modelNameChange = new EventEmitter<any>();
   @Input() disabled = false;
@@ -34,6 +35,11 @@ export class OcInputComponent implements OnInit {
   }
 
   onblur() {
+    let modelValue : string = this.modelName; 
+    if(this.isURL && modelValue && !modelValue.startsWith("http://") && !modelValue.startsWith("https://")){
+      this.modelName = "http://" + this.modelName;
+      this.changeModelVal();
+    }
     (this.control.valueAccessor as DefaultValueAccessor).onTouched();
   }
 
