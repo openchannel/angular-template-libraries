@@ -28,7 +28,7 @@
                     [placeHolder]="placeHolderDropBoxName"
                     [clearFormAfterSelect] = "true"
                     [dropElementTemplate]="dropElementTemplate"
-                    (selectedItem)="addTagToResultList($event, true)">
+                    (select)="addTagToResultList($event, true)">
         </oc-dropbox>
     </div>
     <oc-error *ngIf="error" [field]="error.field" [errorParams]="error.params"></oc-error>
