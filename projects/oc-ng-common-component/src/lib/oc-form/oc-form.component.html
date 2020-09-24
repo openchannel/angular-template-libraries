@@ -32,10 +32,34 @@
                 [required]="formElement?.attributes?.required"
                 [title]="formElement?.label"></oc-tags>
       </div>
+      <div *ngSwitchCase="'multiFile'" class="mt-2 mb-2">
+        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
+        </oc-label>
+        <oc-file-upload
+                formControlName="{{formElement?.id}}"
+                isMultiFile="true"
+                fileType="'multiFile'"
+                uploadIconUrl="https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png"
+                [mockUploadingFile]="mockUploadingFile" >
+        </oc-file-upload>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
+      </div>
+      <div *ngSwitchCase="'multiImage'" class="mt-2 mb-2">
+        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
+        </oc-label>
+        <oc-file-upload
+                formControlName="{{formElement?.id}}"
+                isMultiFile="true"
+                fileType="'multiImage'"
+                [uploadIconUrl]="'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png'"
+                [mockUploadingFile]="mockUploadingFile">
+        </oc-file-upload>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
+      </div>
     </div>
   </ng-container>
-  <oc-button (click)="sendData()"
-             [disabled]="customForm.invalid"
-             text="Submit"
-             type="primary" [class]="'mt-2 mb-2'"></oc-button>
+    <oc-button (click)="sendData()"
+               [disabled]="this.customForm.invalid || this.anotherInvalidResult"
+               text="Submit"
+               type="primary" [class]="'mt-2 mb-2'"></oc-button>
 </form>

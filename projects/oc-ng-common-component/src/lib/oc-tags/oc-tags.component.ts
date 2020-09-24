@@ -212,6 +212,7 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor {
     }
 
     updateOutput(): void {
+        this.onChange(this.resultTags);
         this.updatingTags.emit(this.resultTags);
     }
     /**
@@ -241,6 +242,9 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor {
      * as well as to set the initial value.
      */
     writeValue(obj: any): void {
-        this.resultTags = obj;
+        if(obj && obj.length > 0) {
+            this.resultTags = obj.filter(tag => tag && tag.trim().length > 0);
+        }
+        this.resultTags = [];
     }
 }

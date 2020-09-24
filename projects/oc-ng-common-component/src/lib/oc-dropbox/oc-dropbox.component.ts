@@ -66,17 +66,10 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
      */
     @Input() customSearch: (text: Observable<string>) => Observable<readonly any[]>;
 
-    @Input()
-    set value(currentText: string) {
-        this.currentText = currentText;
-        this.onChange(this.currentText);
-    }
-    currentText: string;
-
     /**
-     * selectedItem - return currently selected item.
+     * select - return currently selected item.
      */
-    @Output() selectedItem = new EventEmitter<string>()
+    @Output() select = new EventEmitter<string>()
 
     @ViewChild('dropBox', {static: false})
     dropBox: ElementRef<HTMLInputElement>;
@@ -84,7 +77,7 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
     focus$ = new Subject<string>();
     click$ = new Subject<string>();
 
-    public outputSelectedItem: string;
+    outputSelectedItem: string;
 
     private onTouched = () => {};
 
@@ -118,7 +111,7 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
 
     selectItem(itemEvent: NgbTypeaheadSelectItemEvent): void {
         this.outputSelectedItem = itemEvent.item;
-        this.selectedItem.emit(this.outputSelectedItem);
+        this.select.emit(this.outputSelectedItem);
         this.onChange(this.outputSelectedItem)
         this.clearForm(itemEvent);
         this.clearFocus();
@@ -143,11 +136,11 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
     }
 
     writeValue(obj: any): void {
-        this.onChange(obj);
+        this.outputSelectedItem = obj ? obj : '';
     }
 
     clearSelectedValue(event: any) {
-        if (this.outputSelectedItem == null || this.outputSelectedItem !== event.target.value) {
+        if (this.outputSelectedItem !== event.target.value) {
             this.onChange('');
         }
     }
