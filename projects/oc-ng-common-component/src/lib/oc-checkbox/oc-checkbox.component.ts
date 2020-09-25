@@ -7,6 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class OcCheckboxComponent implements OnInit {
   @Input() isChecked;
+  @Input() labelText: string;
 
   @Output() isCheckedChange = new EventEmitter<any>();
 
