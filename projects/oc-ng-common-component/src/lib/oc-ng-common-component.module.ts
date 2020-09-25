@@ -193,7 +193,8 @@ import {OcFormComponent} from './oc-form/oc-form.component';
     OcDropboxComponent,
     OcTitleComponent,
     OcTagElementComponent,
-    OcFormComponent
+    OcFormComponent,
+    OcTagsComponent
   ],
   providers: [
     NgbActiveModal,
