@@ -8,7 +8,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class OcCheckboxComponent implements OnInit {
   @Input() set isChecked(value) {
     this.checked = value;
-    console.log(this.checked);
   }
   @Input() labelText: string;
 
