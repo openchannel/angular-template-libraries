@@ -1,4 +1,4 @@
-@import "../../../assets/styles/theme.scss";
+//@import "../../../assets/styles/theme.scss";
 
 .custom-checkbox {
   display: block;
@@ -37,7 +37,7 @@
       top: 1px;
       width: 0.5rem;
       height: 1rem;
-      border: solid $green;
+      border: solid #28A745;
       border-width: 0 3px 3px 0;
       -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);

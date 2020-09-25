@@ -17,7 +17,8 @@ export class OcFormComponent implements OnInit {
   @Input() formJsonData: any;
 
   @Input() anotherInvalidResult = false;
-
+  /** Show button on form. Default: true */
+  @Input() showButton: boolean = true;
   /**
    * Returning all form fields value to the parent component
    */
