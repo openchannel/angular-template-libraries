@@ -12,7 +12,7 @@ definitions:
           - npm install --quiet
           - pipe: sonarsource/sonarcloud-scan:0.1.5
             variables:
-              SONAR_SCANNER_OPTS: -Xmx512m
+              SONAR_SCANNER_OPTS: -Xmx1024m
               SONAR_TOKEN: ${SONAR_TOKEN}
               EXTRA_ARGS: '-Dsonar.sources=projects/oc-ng-common-component/src -Dsonar.tests=projects/oc-ng-common-component/src -Dsonar.test.inclusions="**/testing/**,**/*.spec.ts" -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info'
     - step: &new-version
@@ -52,6 +52,5 @@ pipelines:
       - step: *push-new-version
 
     AT-117_angular_templates:
-      - step: *build-test-sonarcloud
       - step: *new-version
       - step: *push-new-version
