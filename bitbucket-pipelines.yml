@@ -25,19 +25,19 @@ definitions:
           - npm install
           - npm run build-prod
           - npm run oc-ng-common-component-pack
-          artifacts:
-            - dist/**
+        artifacts:
+          - dist/**
     - step: &push-new-version
         name: Push library to repository
-          script:
-            - pipe: cloudsmith-io/publish:0.3.0
-              variables:
-                CLOUDSMITH_REPOSITORY: 'openchannel/angular-common-components'
-                CLOUDSMITH_API_KEY: $CLOUDSMITH_API_KEY
-                PACKAGE_FORMAT: 'npm'
-                PACKAGE_NPM_DIST_TAG: 'stable'
-                PACKAGE_PATH: 'dist/oc-ng-common-component/*.tgz'
-                REPUBLISH: 'true'
+        script:
+          - pipe: cloudsmith-io/publish:0.3.0
+            variables:
+              CLOUDSMITH_REPOSITORY: 'openchannel/angular-common-components'
+              CLOUDSMITH_API_KEY: $CLOUDSMITH_API_KEY
+              PACKAGE_FORMAT: 'npm'
+              PACKAGE_NPM_DIST_TAG: 'stable'
+              PACKAGE_PATH: 'dist/oc-ng-common-component/*.tgz'
+              REPUBLISH: 'true'
 
 pipelines:
   default:
