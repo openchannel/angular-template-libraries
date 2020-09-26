@@ -2,7 +2,6 @@
     <div class="card oc-card-with-border">
         <div class="card-body">
             <div class="text-center">
-                <!-- <img class="img-fluid mb-4" src="{{companyLogoUrl}}" alt="logo" /> -->
                 <img alt="logo"
                      class="img-fluid mb-4 company-logo"
                      src="{{companyLogoUrl}}">
@@ -37,7 +36,7 @@
                 </div>
             </div>
             <oc-button (click)="submitForm(loginForm)"
-                       [process]="process" [text]="getValue('Log In')"
+                       [process]="process" [text]="getValue(loginButtonText)"
                        [type]="getValue('primary')"
                        class="btn-block mt-4 mb-3">
             </oc-button>
