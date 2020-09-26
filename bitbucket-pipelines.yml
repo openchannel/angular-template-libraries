@@ -15,29 +15,20 @@ definitions:
               SONAR_SCANNER_OPTS: -Xmx512m
               SONAR_TOKEN: ${SONAR_TOKEN}
               EXTRA_ARGS: '-Dsonar.sources=projects/oc-ng-common-component/src -Dsonar.tests=projects/oc-ng-common-component/src -Dsonar.test.inclusions="**/testing/**,**/*.spec.ts" -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info'
-pipelines:
-  default:
-    - step:
-        name: Build
+    - step: &new-version
+        name: Create new version of library and commit
         script:
+          - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
+          - npm run oc-ng-common-component-up-version
+          - git commit -a -m "Auto increment prerelease version [skip ci]"
+          - git push
           - npm install
           - npm run build-prod
-  branches:
-    develop:
-      - step:
-          name: Bump version and pack
-          script:
-            - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
-            - npm run oc-ng-common-component-up-version
-            - git commit -a -m "Auto increment prerelease version [skip ci]"
-            - git push
-            - npm install
-            - npm run build-prod
-            - npm run oc-ng-common-component-pack
+          - npm run oc-ng-common-component-pack
           artifacts:
             - dist/**
-      - step:
-          name: Push library to repository
+    - step: &push-new-version
+        name: Push library to repository
           script:
             - pipe: cloudsmith-io/publish:0.3.0
               variables:
@@ -47,5 +38,20 @@ pipelines:
                 PACKAGE_NPM_DIST_TAG: 'stable'
                 PACKAGE_PATH: 'dist/oc-ng-common-component/*.tgz'
                 REPUBLISH: 'true'
+
+pipelines:
+  default:
+    - step:
+        name: Build
+        script:
+          - npm install
+          - npm run build-prod
+  branches:
+    develop:
+      - step: *new-version
+      - step: *push-new-version
+
     AT-117_angular_templates:
       - step: *build-test-sonarcloud
+      - step: *new-version
+      - step: *push-new-version
