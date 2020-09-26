@@ -11,7 +11,7 @@
                 <h4>Log In</h4>
                 <oc-label [text]="getValue('Log in into your account')" class="mb-3"></oc-label>
             </div>
-            <div class="form-group">
+            <div class="form-group" [hidden]="true">
                 <oc-label [text]="getValue('Email')"></oc-label>
                 <oc-input #email=ngModel (modelNameChange)="onchange(loginForm)" [(modelName)]="loginModel.email" [autocomplete]="'off'"
                           [ngModel]="loginModel.email" [placeholder]="'Email'" emailValidator
@@ -19,7 +19,7 @@
                           required="true"></oc-input>
                 <oc-error [control]="email" [field]="'email'"></oc-error>
             </div>
-            <div class="form-group mb-2">
+            <div class="form-group mb-2" [hidden]="true">
                 <oc-label [text]="getValue('Password')"></oc-label>
                 <oc-password #password=ngModel (modelNameChange)="onchange(loginForm)" [(modelName)]="loginModel.password" [autocomplete]="'off'"
                              [ngModel]="loginModel.password" [placeholder]="'Password'" class="mb-2" name="password"
@@ -28,22 +28,21 @@
                 <oc-error [control]="password" [field]="'password'"></oc-error>
             </div>
             <div class="form-group row">
-                <div class="col-md">
+                <div class="col-md" [hidden]="true">
                     <oc-checkbox [(isChecked)]="loginModel.isChecked"></oc-checkbox>
                     <oc-label [text]="getValue(' Remember Me ')" class="label-s"></oc-label>
                 </div>
-                <div class="col-md-auto">
+                <div class="col-md-auto" [hidden]="!forgotPwdUrl">
                     <a class="font-s font-med" href={{forgotPwdUrl}}> Forgot password? </a>
                 </div>
             </div>
             <oc-button (click)="submitForm(loginForm)"
-                       [disabled]="process || !loginForm.valid" [process]="process" [text]="getValue('Log In')"
+                       [process]="process" [text]="getValue('Log In')"
                        [type]="getValue('primary')"
                        class="btn-block mt-4 mb-3">
             </oc-button>
             <div class="text-center">
-                <oc-label [text]="getValue('Dont have an account yet?')"></oc-label>
-                <a class="font-m font-med" href={{signupUrl}}> Sign Up</a>
+                <oc-label [text]="getValue('Dont have an account yet ask administrator?')"></oc-label>
             </div>
         </div>
     </div>
