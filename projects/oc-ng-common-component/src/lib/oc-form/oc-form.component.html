@@ -14,6 +14,13 @@
                    ></oc-input>
         <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
+      <div class="mt-2 mb-2" *ngSwitchCase="'longText'">
+        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
+        </oc-label>
+        <oc-textarea  formControlName="{{formElement?.id}}"
+        ></oc-textarea>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
+      </div>
       <div class="mt-2 mb-2" *ngSwitchCase="'dropdownList'">
         <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
         </oc-label>

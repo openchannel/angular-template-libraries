@@ -44,6 +44,7 @@ export class OcFormComponent implements OnInit {
         switch (inputTemplate?.type) {
           case 'text':
           case 'richText':
+          case 'longText':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
               inputTemplate?.defaultValue : '');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
@@ -65,7 +66,7 @@ export class OcFormComponent implements OnInit {
           case 'multiImage':
             group[inputTemplate?.id] = new FormControl([]);
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
-            break
+            break;
           default:
             break;
         }
@@ -129,7 +130,7 @@ export class OcFormComponent implements OnInit {
           'minLength': {valid: false}
         };
       }
-    }
+    };
   }
 
   /**
