@@ -38,6 +38,7 @@ export * from './lib/oc-seller-agreement/oc-seller-agreement.component';
 export * from './lib/oc-reset-password/oc-reset-password.component';
 export * from './lib/oc-rich-text-editor/oc-rich-text-editor.component';
 export * from  './lib/oc-form/oc-form.component';
+export * from './lib/oc-tags/oc-tags.component';
 export * from './lib/oc-dropbox/oc-dropbox.component';
 
 // validators
