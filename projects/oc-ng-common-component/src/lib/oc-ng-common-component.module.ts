@@ -189,7 +189,8 @@ import { OcFormComponent } from './oc-form/oc-form.component';
     OcNumberComponent,
     OcSellerAgreementComponent,
     OcResetPasswordComponent,
-    OcRichTextEditorComponent
+    OcRichTextEditorComponent,
+    OcDropboxComponent
   ],
   providers: [
     NgbActiveModal,
