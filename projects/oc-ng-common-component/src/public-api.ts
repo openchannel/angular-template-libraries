@@ -11,6 +11,9 @@ export * from './lib/oc-checkbox/oc-checkbox.component';
 export * from './lib/oc-radio/oc-radio.component';
 export * from './lib/oc-signup/oc-signup.component';
 export * from './lib/oc-password/oc-password.component';
+export * from './lib/oc-dropbox/oc-dropbox.component';
+export * from './lib/oc-title/oc-title.component';
+export * from './lib/oc-tag-element/oc-tag-element.component';
 
 export * from './lib/oc-login/oc-login.component';
 export * from './lib/oc-rating/oc-rating.component';
@@ -34,6 +37,7 @@ export * from './lib/oc-activation/oc-activation.component';
 export * from './lib/oc-seller-agreement/oc-seller-agreement.component';
 export * from './lib/oc-reset-password/oc-reset-password.component';
 export * from './lib/oc-rich-text-editor/oc-rich-text-editor.component';
+export * from  './lib/oc-form/oc-form.component';
 export * from './lib/oc-dropbox/oc-dropbox.component';
 
 // validators

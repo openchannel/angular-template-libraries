@@ -140,7 +140,8 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor {
                 this.showTagLengthErrorMessage(tagNormalized);
                 return false;
             } else if (!this.existTagInResultList(tagNormalized)) {
-                this.resultTags.push(tagNormalized);
+                this.resultTags = [...this.resultTags, tagNormalized];
+                // this.resultTags.push(tagNormalized);
                 this.updateComponentData();
                 return true;
             }
@@ -212,6 +213,7 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor {
     }
 
     updateOutput(): void {
+        this.onChange(this.resultTags);
         this.updatingTags.emit(this.resultTags);
     }
     /**
@@ -241,6 +243,9 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor {
      * as well as to set the initial value.
      */
     writeValue(obj: any): void {
-        this.resultTags = obj;
+        if(obj && obj.length > 0) {
+            this.resultTags = obj.filter(tag => tag && tag.trim().length > 0);
+        }
+        this.resultTags = [];
     }
 }

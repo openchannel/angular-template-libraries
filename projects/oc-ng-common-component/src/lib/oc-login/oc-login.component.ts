@@ -9,6 +9,7 @@ import {SellerSignin} from 'oc-ng-common-service';
 export class OcLoginComponent implements OnInit {
   @Input() loginModel = new SellerSignin();
 
+  @Input() loginButtonText = 'Log In';
   @Input() forgotPwdUrl;
   @Input() signupUrl;
   @Input() companyLogoUrl;
