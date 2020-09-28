@@ -3,4 +3,5 @@
         [(ngModel)]="inputValue"
         (focus)="onFocus()"
         (ngModelChange)="changeModelVal()"
+        [ngModelOptions]="{standalone: true}"
         class="form-control {{class}}" type="text" whiteSpaceValidator>

@@ -69,7 +69,7 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
     /**
      * select - return currently selected item.
      */
-    @Output() select = new EventEmitter<string>()
+    @Output() select = new EventEmitter<string>();
 
     @ViewChild('dropBox', {static: false})
     dropBox: ElementRef<HTMLInputElement>;
@@ -112,7 +112,7 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
     selectItem(itemEvent: NgbTypeaheadSelectItemEvent): void {
         this.outputSelectedItem = itemEvent.item;
         this.select.emit(this.outputSelectedItem);
-        this.onChange(this.outputSelectedItem)
+        this.onChange(this.outputSelectedItem);
         this.clearForm(itemEvent);
         this.clearFocus();
     }

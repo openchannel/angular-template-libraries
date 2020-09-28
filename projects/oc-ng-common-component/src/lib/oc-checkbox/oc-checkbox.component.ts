@@ -6,10 +6,13 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./oc-checkbox.component.scss']
 })
 export class OcCheckboxComponent implements OnInit {
-  @Input() isChecked;
+  @Input() set isChecked(value) {
+    this.checked = value;
+  }
+  @Input() labelText: string;
 
   @Output() isCheckedChange = new EventEmitter<any>();
-
+  public checked: boolean;
   constructor() {
   }
 
@@ -17,7 +20,7 @@ export class OcCheckboxComponent implements OnInit {
   }
 
   changeModelVal() {
-    this.isCheckedChange.emit(this.isChecked);
+    this.isCheckedChange.emit(this.checked);
   }
 
 }

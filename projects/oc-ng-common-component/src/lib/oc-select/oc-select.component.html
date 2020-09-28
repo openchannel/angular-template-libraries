@@ -5,6 +5,7 @@
 <!--    <option *ngFor="let val of selectValArr;" [value]="val.value">{{val.key}}</option>-->
 <!--</select>-->
 <select (blur)="onblur()" (change)="onSelectionChange($event)" [(ngModel)]="selectedValue"
+        [ngModelOptions]="{standalone: true}"
         [disabled]="disabled" class="form-control select-control selectpicker {{class}}" name="delServiceOption">
 <!--    <option disabled selected value=null>{{defaultBlankValue}}</option>-->
     <option *ngFor="let val of selectValArr;" [value]="isObject? val.value : val">

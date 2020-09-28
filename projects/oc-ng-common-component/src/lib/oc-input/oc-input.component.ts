@@ -69,6 +69,7 @@ export class OcInputComponent implements OnInit, ControlValueAccessor {
    * the method will be called by the control when the [disabled] state changes.
    */
   setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
   /**
    * this method will be called by the control to pass the value to our component.

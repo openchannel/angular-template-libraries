@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
         multi: true
     }],
 })
-export class OcTagsComponent implements OnInit, ControlValueAccessor {
+export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges {
 
     constructor() {
     }
@@ -61,7 +61,7 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor {
      * When this list is empty dropbox not shows.
      * Default: empty string []
      */
-    @Input() availableTags: string [];
+    @Input() availableTags: string [] = [];
 
     /**
      * defaultTags (optional) - It is list tags for automatically adding to the user tags list.
@@ -118,6 +118,12 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor {
     ngOnInit(): void {
         this.applyDefaultTags();
         this.dropBoxTags = this.findAvailableDropBoxTags();
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes.availableTags && changes.availableTags.previousValue !== changes.availableTags.currentValue) {
+            this.dropBoxTags = this.findAvailableDropBoxTags();
+        }
     }
 
     applyDefaultTags(): void {
@@ -243,9 +249,10 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor {
      * as well as to set the initial value.
      */
     writeValue(obj: any): void {
-        if(obj && obj.length > 0) {
+        if (obj && obj.length > 0) {
             this.resultTags = obj.filter(tag => tag && tag.trim().length > 0);
+        } else {
+            this.resultTags = [];
         }
-        this.resultTags = [];
     }
 }

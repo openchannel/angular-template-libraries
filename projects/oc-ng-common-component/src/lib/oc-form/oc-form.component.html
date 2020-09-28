@@ -58,7 +58,8 @@
       </div>
     </div>
   </ng-container>
-    <oc-button (click)="sendData()"
+    <oc-button *ngIf="showButton"
+               (click)="sendData()"
                [disabled]="this.customForm.invalid || this.anotherInvalidResult"
                text="Submit"
                type="primary" [class]="'mt-2 mb-2'"></oc-button>
