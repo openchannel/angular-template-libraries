@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'oc-dynamic-array-item',
@@ -15,10 +15,23 @@ export class OcDynamicArrayItemComponent implements OnInit {
       throw Error('Required @Input : subFields');
     }
   }
+  /** Index of the current item. Default: 0 */
   @Input() index: number = 0;
 
+  /** Info about field deletion with field id */
+  @Output() deleteField: EventEmitter<number> = new EventEmitter<number>();
+  /** Info about field copy with subFieldDefinition data */
+  @Output() copyField: EventEmitter<any> = new EventEmitter<any>();
+
+  /** show fields values */
   public showDetail: boolean = false;
   public subFieldDefinition: any [] = [];
+  /** data from form fields */
+  public formFieldsData = {
+      field1: 'Name',
+      'long-text': 'Here supposed to be a description',
+      ololo: 'meow',
+  };
   constructor() { }
 
   ngOnInit(): void {
@@ -26,5 +39,24 @@ export class OcDynamicArrayItemComponent implements OnInit {
 
   changeDetailStatus(): void {
     this.showDetail = !this.showDetail;
+  }
+
+  copyCurrentItem() {
+    this.copyField.emit(this.formFieldsData);
+  }
+
+  deleteCurrentItem() {
+    this.deleteField.emit(this.index);
+  }
+
+  editFieldsData() {
+    this.updateFieldsDefinitions();
+    // todo Open form modal for data edition
+  }
+
+  updateFieldsDefinitions() {
+    this.subFieldDefinition.forEach((field) => {
+      field.defaultValue = this.formFieldsData[field.label];
+    });
   }
 }
