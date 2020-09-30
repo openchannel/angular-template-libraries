@@ -17,21 +17,24 @@ export class OcDynamicArrayItemComponent implements OnInit {
   }
   /** Index of the current item. Default: 0 */
   @Input() index: number = 0;
+  /** data from form fields */
+  @Input() formFieldsData = {
+    field1: 'Name',
+    'long-text': 'Here supposed to be a description',
+    ololo: 'meow',
+  };
 
   /** Info about field deletion with field id */
-  @Output() deleteField: EventEmitter<number> = new EventEmitter<number>();
+  @Output() deleteField: EventEmitter<boolean> = new EventEmitter<boolean>();
   /** Info about field copy with subFieldDefinition data */
   @Output() copyField: EventEmitter<any> = new EventEmitter<any>();
+  /** Sending data from */
+  @Output() sendFieldData: EventEmitter<any> = new EventEmitter<any>();
 
   /** show fields values */
   public showDetail: boolean = false;
   public subFieldDefinition: any [] = [];
-  /** data from form fields */
-  public formFieldsData = {
-      field1: 'Name',
-      'long-text': 'Here supposed to be a description',
-      ololo: 'meow',
-  };
+
   constructor() { }
 
   ngOnInit(): void {
@@ -42,16 +45,17 @@ export class OcDynamicArrayItemComponent implements OnInit {
   }
 
   copyCurrentItem() {
-    this.copyField.emit(this.formFieldsData);
+    this.copyField.emit(this.subFieldDefinition);
   }
 
   deleteCurrentItem() {
-    this.deleteField.emit(this.index);
+    this.deleteField.emit(true);
   }
 
   editFieldsData() {
     this.updateFieldsDefinitions();
     // todo Open form modal for data edition
+    this.sendFieldData.emit(this.formFieldsData);
   }
 
   updateFieldsDefinitions() {
