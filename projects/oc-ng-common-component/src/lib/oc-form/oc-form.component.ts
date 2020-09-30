@@ -12,7 +12,7 @@ import {HttpEventType, HttpResponse} from '@angular/common/http';
 export class OcFormComponent implements OnInit {
 
   /**
-   * JSOM with all form data to generate dynamic form
+   * JSON with all form data to generate dynamic form
    */
   @Input() formJsonData: any;
 
