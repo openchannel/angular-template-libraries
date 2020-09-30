@@ -19,10 +19,14 @@ export class OcFormComponent implements OnInit {
   @Input() anotherInvalidResult = false;
   /** Show button on form. Default: true */
   @Input() showButton: boolean = true;
+  /** Set custom text to success button. Default: 'Submit' */
+  @Input() successButtonText: string = 'Submit';
   /**
    * Returning all form fields value to the parent component
    */
-  @Output() formSubmitted = new EventEmitter<any>();
+  @Output() formSubmitted: EventEmitter<any> = new EventEmitter<any>();
+  /** Sending true when user cancel form submitting */
+  @Output() cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public customForm: FormGroup;
   public formData: any;
@@ -140,11 +144,15 @@ export class OcFormComponent implements OnInit {
     this.formSubmitted.emit(this.customForm.getRawValue());
   }
 
+  cancelForm(): void {
+    this.cancelSubmit.emit(true);
+  }
+
   mockUploadingFile(): FileDetails {
     const currentDate = new Date().getDate();
     const fileDetails = new FileDetails();
     fileDetails.uploadDate = currentDate;
-    fileDetails.fileId = `file_id_${currentDate}`
+    fileDetails.fileId = `file_id_${currentDate}`;
     fileDetails.fileUploadProgress = 100;
     fileDetails.fileUrl = 'https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2015/04/irkutsk_and_lake_baikal/15342550-1-eng-GB/Irkutsk_and_Lake_Baikal.jpg';
     return fileDetails;
