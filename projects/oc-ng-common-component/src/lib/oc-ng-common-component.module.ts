@@ -70,6 +70,9 @@ import {OcTagElementComponent} from './oc-tag-element/oc-tag-element.component';
 import {OcDropboxComponent} from './oc-dropbox/oc-dropbox.component';
 import {OcTitleComponent} from './oc-title/oc-title.component';
 import {OcFormComponent} from './oc-form/oc-form.component';
+import { OcDynamicFieldArrayComponent } from './oc-dynamic-field-array/oc-dynamic-field-array.component';
+import { OcDynamicArrayItemComponent } from './oc-dynamic-array-item/oc-dynamic-array-item.component';
+import { OcFormModalComponent } from './oc-form-modal/oc-form-modal.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -130,7 +133,10 @@ import {OcFormComponent} from './oc-form/oc-form.component';
     OcDropboxComponent,
     OcTitleComponent,
     OcRichTextEditorComponent,
-    OcFormComponent
+    OcFormComponent,
+    OcDynamicFieldArrayComponent,
+    OcDynamicArrayItemComponent,
+    OcFormModalComponent
   ],
 
   imports: [
@@ -194,13 +200,15 @@ import {OcFormComponent} from './oc-form/oc-form.component';
     OcTitleComponent,
     OcTagElementComponent,
     OcFormComponent,
-    OcTagsComponent
+    OcTagsComponent,
+    OcDynamicFieldArrayComponent
   ],
   providers: [
     NgbActiveModal,
   ],
   entryComponents: [
-    OcSellerAgreementComponent
+    OcSellerAgreementComponent,
+    OcFormModalComponent
   ]
 
 })
