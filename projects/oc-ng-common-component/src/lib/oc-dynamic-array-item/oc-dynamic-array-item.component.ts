@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OcFormModalComponent } from '../oc-form-modal/oc-form-modal.component';
 
 @Component({
   selector: 'oc-dynamic-array-item',
@@ -35,7 +37,7 @@ export class OcDynamicArrayItemComponent implements OnInit {
   public showDetail: boolean = false;
   public subFieldDefinition: any [] = [];
 
-  constructor() { }
+  constructor(private modal: NgbModal) { }
 
   ngOnInit(): void {
   }
@@ -54,13 +56,20 @@ export class OcDynamicArrayItemComponent implements OnInit {
 
   editFieldsData() {
     this.updateFieldsDefinitions();
-    // todo Open form modal for data edition
-    this.sendFieldData.emit(this.formFieldsData);
+    const modalRef = this.modal.open(OcFormModalComponent, {size: 'lg'});
+    modalRef.componentInstance.formJSONData = {
+      fields: this.subFieldDefinition
+    };
+    modalRef.result.then(result => {
+      if (result.status === 'success') {
+        this.sendFieldData.emit(result.data);
+      }
+    });
   }
 
   updateFieldsDefinitions() {
     this.subFieldDefinition.forEach((field) => {
-      field.defaultValue = this.formFieldsData[field.label];
+      field.defaultValue = this.formFieldsData[field.id];
     });
   }
 }

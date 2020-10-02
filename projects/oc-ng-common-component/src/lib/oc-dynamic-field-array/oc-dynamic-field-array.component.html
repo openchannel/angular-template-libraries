@@ -1,11 +1,11 @@
 <div class="w-100 d-flex flex-column">
-  <ng-container *ngFor="let field of fieldsDataArray; let i = index">
+  <div *ngFor="let field of fieldsDataArray; let i = index" class="mb-2">
     <oc-dynamic-array-item
             [subFields]="fieldDefinition?.subFieldDefinitions"
             [index]="i"
             [formFieldsData]="fieldsDataArray[i]"
             (sendFieldData)="getNewItemFieldsData($event, i)"
             (deleteField)="deleteDynamicItem($event, i)"></oc-dynamic-array-item>
-  </ng-container>
+  </div>
   <oc-button type="primary" text="ADD ITEM" (click)="addNewArrayItem()"></oc-button>
 </div>

@@ -15,7 +15,13 @@ import { OcFormModalComponent } from '../oc-form-modal/oc-form-modal.component';
 })
 export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccessor {
 
-  @Input() fieldDefinition: any;
+  @Input() set fieldDefinitionData(value) {
+    if (value) {
+      this.fieldDefinition = value;
+    } else {
+      throw Error('FieldDefinitionData is required @Input() parameter');
+    }
+  }
   @Input()
   set value(val) {
     this.fieldsDataArray = val;
@@ -23,6 +29,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccesso
   }
 
   public fieldsDataArray: any [] = [];
+  public fieldDefinition: any;
   constructor(private modal: NgbModal) { }
 
   private onTouched = () => {};
@@ -63,6 +70,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccesso
 
   getNewItemFieldsData(data, index) {
     this.fieldsDataArray[index] = data;
+    console.log(this.fieldsDataArray);
     this.onChange(this.fieldsDataArray);
   }
 
