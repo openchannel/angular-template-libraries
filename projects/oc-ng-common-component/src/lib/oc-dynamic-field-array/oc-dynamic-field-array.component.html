@@ -5,7 +5,8 @@
             [index]="i"
             [formFieldsData]="fieldsDataArray[i]"
             (sendFieldData)="getNewItemFieldsData($event, i)"
-            (deleteField)="deleteDynamicItem($event, i)"></oc-dynamic-array-item>
+            (deleteField)="deleteDynamicItem($event, i)"
+            (copyField)="duplicateField($event)"></oc-dynamic-array-item>
   </div>
   <oc-button type="primary" text="ADD ITEM" (click)="addNewArrayItem()"></oc-button>
 </div>

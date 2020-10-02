@@ -68,28 +68,43 @@ export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccesso
     this.fieldsDataArray = obj;
   }
 
-  getNewItemFieldsData(data, index) {
+  getNewItemFieldsData(data, index): void {
     this.fieldsDataArray[index] = data;
-    console.log(this.fieldsDataArray);
     this.onChange(this.fieldsDataArray);
   }
 
-  deleteDynamicItem(event, index) {
+  deleteDynamicItem(event, index): void {
     if (event) {
       this.fieldsDataArray.splice(index, 1);
       this.onChange(this.fieldsDataArray);
     }
   }
 
-  addNewArrayItem() {
-    const modalRef = this.modal.open(OcFormModalComponent, {size: 'lg'});
-    modalRef.componentInstance.formJSONData = {
-      fields: this.fieldDefinition.subFieldDefinitions
-    };
-    modalRef.result.then(result => {
+  addNewArrayItem(): void {
+    this.openFormModal(this.fieldDefinition.subFieldDefinitions).then(result => {
       if ( result.status === 'success') {
         this.fieldsDataArray.push(result.data);
+        this.onChange(this.fieldsDataArray);
       }
     });
+  }
+
+  duplicateField(fieldDefinitions): void {
+    this.openFormModal(fieldDefinitions).then(result => {
+      if ( result.status === 'success') {
+        this.fieldsDataArray.push(result.data);
+        this.onChange(this.fieldsDataArray);
+      }
+    });
+  }
+
+  openFormModal(subFieldDefinitions) {
+    const modalRef = this.modal.open(OcFormModalComponent, {size: 'lg'});
+
+    modalRef.componentInstance.formJSONData = {
+      fields: subFieldDefinitions
+    };
+
+    return modalRef.result;
   }
 }

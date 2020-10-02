@@ -20,11 +20,7 @@ export class OcDynamicArrayItemComponent implements OnInit {
   /** Index of the current item. Default: 0 */
   @Input() index: number = 0;
   /** data from form fields */
-  @Input() formFieldsData = {
-    field1: 'Name',
-    'long-text': 'Here supposed to be a description',
-    ololo: 'meow',
-  };
+  @Input() formFieldsData: any;
 
   /** Info about field deletion with field id */
   @Output() deleteField: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -47,6 +43,7 @@ export class OcDynamicArrayItemComponent implements OnInit {
   }
 
   copyCurrentItem() {
+    this.updateFieldsDefinitions();
     this.copyField.emit(this.subFieldDefinition);
   }
 
