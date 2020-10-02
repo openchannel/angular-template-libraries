@@ -14,8 +14,8 @@ export class OcErrorService {
   }
 
   clearError(error) {
-    this.serverErrorList = this.serverErrorList.filter(function (error, index) {
-      return error.field != error.field
+    this.serverErrorList = this.serverErrorList.filter((err, index) => {
+      return error.field !== err.field;
     });
   }
 
