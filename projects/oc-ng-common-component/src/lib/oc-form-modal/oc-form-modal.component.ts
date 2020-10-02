@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'oc-form-modal',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OcFormModalComponent implements OnInit {
 
-  constructor() { }
+  @Input() formJSONData: any;
+  constructor(private activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
   }
 
+  close(): void {
+    this.activeModal.close({
+      status: 'cancel'
+    });
+  }
+
+  catchFormData(data) {
+    this.activeModal.close({
+      status: 'success',
+      data
+    });
+  }
 }

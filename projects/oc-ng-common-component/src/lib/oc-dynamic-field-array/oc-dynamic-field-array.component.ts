@@ -1,5 +1,7 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OcFormModalComponent } from '../oc-form-modal/oc-form-modal.component';
 
 @Component({
   selector: 'oc-dynamic-field-array',
@@ -21,7 +23,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccesso
   }
 
   public fieldsDataArray: any [] = [];
-  constructor() { }
+  constructor(private modal: NgbModal) { }
 
   private onTouched = () => {};
   private onChange: (value: any) => void = () => {};
@@ -72,6 +74,14 @@ export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccesso
   }
 
   addNewArrayItem() {
-    this.fieldsDataArray.push({});
+    const modalRef = this.modal.open(OcFormModalComponent, {size: 'lg'});
+    modalRef.componentInstance.formJSONData = {
+      fields: this.fieldDefinition.subFieldDefinitions
+    };
+    modalRef.result.then(result => {
+      if ( result.status === 'success') {
+        this.fieldsDataArray.push(result.data);
+      }
+    });
   }
 }

@@ -1,1 +1,14 @@
-<p>oc-form-modal works!</p>
+<div>
+  <div class="modal-header">
+    <h4 class="modal-title">Add Item Fields</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <oc-form [formJsonData]="formJSONData"
+             successButtonText="SAVE"
+             (formSubmitted)="catchFormData($event)"
+             (cancelSubmit)="close()"></oc-form>
+  </div>
+</div>
