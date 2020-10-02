@@ -38,10 +38,17 @@ export class OcFormComponent implements OnInit {
     this.generateForm();
   }
 
+  removeJSONDots(): void {
+    this.formJsonData.fields.forEach(field => {
+      field.id = field.id.replace('.', '/');
+    });
+  }
+
   /**
    * Generating form by JSON data
    */
   generateForm(): void {
+    this.removeJSONDots();
     const group = {};
     if (this.formJsonData?.fields) {
       this.formJsonData?.fields.forEach(inputTemplate => {
@@ -141,7 +148,14 @@ export class OcFormComponent implements OnInit {
    * Output event which returns form value
    */
   sendData(): void {
-    this.formSubmitted.emit(this.customForm.getRawValue());
+    const formData = this.customForm.getRawValue();
+    Object.keys(formData).forEach(key => {
+      if (key.includes('/')) {
+        formData[key.replace('/', '.')] = formData[key];
+        delete formData[key];
+      }
+    });
+    this.formSubmitted.emit(formData);
   }
 
   cancelForm(): void {
