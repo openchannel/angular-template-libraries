@@ -56,6 +56,19 @@ DynamicFieldsArrayComponentSimpleForm.args = {
         label: 'field1',
         placeholder: 'write some text',
         type: 'text'
+      },
+      {
+        id:	'long-text-example',
+        label: 'Long Text Example',
+        type:	'longText',
+        placeholder: 'Write your text here...',
+        category: 'CUSTOM',
+        defaultValue: null,
+        attributes: {
+          maxChars:	200,
+          required:	null,
+          minChars:	2
+        },
       }
     ],
     type: 'dynamicFieldArray'
