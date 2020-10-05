@@ -6,7 +6,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <oc-form [formJsonData]="formJSONData"
+    <oc-form [formJsonData]="modalJSONData"
              successButtonText="SAVE"
              (formSubmitted)="catchFormData($event)"
              (cancelSubmit)="close()"></oc-form>

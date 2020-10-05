@@ -12,7 +12,7 @@ export class OcDynamicArrayItemComponent implements OnInit {
   /** Data of form fields. Required parameter */
   @Input() set subFields(value) {
     if (value) {
-      this.subFieldDefinition = value;
+      this.subFieldDefinition = [...value];
     } else {
       throw Error('Required @Input : subFields');
     }
@@ -43,8 +43,7 @@ export class OcDynamicArrayItemComponent implements OnInit {
   }
 
   copyCurrentItem() {
-    this.updateFieldsDefinitions();
-    this.copyField.emit(this.subFieldDefinition);
+    this.copyField.emit(this.updateFieldsDefinitions());
   }
 
   deleteCurrentItem() {
@@ -52,10 +51,9 @@ export class OcDynamicArrayItemComponent implements OnInit {
   }
 
   editFieldsData() {
-    this.updateFieldsDefinitions();
     const modalRef = this.modal.open(OcFormModalComponent, {size: 'lg'});
     modalRef.componentInstance.formJSONData = {
-      fields: this.subFieldDefinition
+      fields: this.updateFieldsDefinitions()
     };
     modalRef.result.then(result => {
       if (result.status === 'success') {
@@ -65,8 +63,10 @@ export class OcDynamicArrayItemComponent implements OnInit {
   }
 
   updateFieldsDefinitions() {
-    this.subFieldDefinition.forEach((field) => {
+    const newFields = [...this.subFieldDefinition];
+    return newFields.map((field) => {
       field.defaultValue = this.formFieldsData[field.id];
+      return field;
     });
   }
 }

@@ -9,18 +9,23 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class OcFormModalComponent implements OnInit {
 
   @Input() formJSONData: any;
+
+  public modalJSONData: any;
   constructor(private activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
+    this.modalJSONData = Object.assign({}, this.formJSONData);
   }
 
   close(): void {
+    this.modalJSONData = null;
     this.activeModal.close({
       status: 'cancel'
     });
   }
 
   catchFormData(data) {
+    this.modalJSONData = null;
     this.activeModal.close({
       status: 'success',
       data
