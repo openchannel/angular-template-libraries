@@ -26,7 +26,8 @@ export const Filled = ChartComponent.bind({});
 Filled.args = {
   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July'],
   dataSets: [200, 400, 100, 50, 700, 750, 250, 200, 400, 100, 50, 700, 750, 250],
-  count: 40
+  count: 40,
+  enablePoints: true
 };
 
 export const Empty = ChartComponent.bind({});
