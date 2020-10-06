@@ -1,37 +1,43 @@
-import {AfterViewInit, Component, ElementRef, Input, SimpleChanges, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import {Chart} from 'chart.js';
+import { SafeUrl } from '@angular/platform-browser';
 
 
-const chartPoint = new Image()
+const chartPoint = new Image();
 chartPoint.src = '../../../assets/img/chart_point.svg';
 
 @Component({
   selector: 'oc-chart',
   templateUrl: './oc-chart.component.html',
   styleUrls: ['./oc-chart.component.scss']
-  //encapsulation: ViewEncapsulation.ShadowDom
+  // encapsulation: ViewEncapsulation.ShadowDom
 })
-export class OcChartComponent implements AfterViewInit {
+export class OcChartComponent implements AfterViewInit, OnChanges {
 
   @ViewChild('myCanvas')
   myCanvas: ElementRef<HTMLCanvasElement>;
 
   public context: CanvasRenderingContext2D;
+  /** Labels at the bottom of the chart */
   @Input() labels: string[] = [];
+  /** Datasets at the right side of the chart */
   @Input() dataSets: number[] = [];
-  @Input() count;
-  @Input() countText;
-  @Input() downloadUrl;
-  @Input() name;
-
+  /** Sum of data or other total count that can be shown */
+  @Input() count: number;
+  /** Title text of the data count */
+  @Input() countText: string = '';
+  /** Url of the Chart count image */
+  @Input() downloadUrl: SafeUrl;
+  /** Set or remove background color for chart line */
+  @Input() isBackgroundColor: boolean = true;
+  /** Enable or Disable points on Chart */
+  @Input() enablePoints: boolean = false;
   // change in value of this invokes ngOnChanges
   @Input() random;
 
-  chart: any;
+  private chart: any;
 
   constructor() {
-    // this.labels = [];
-    // this.dataSets = [];
   }
 
 
@@ -50,7 +56,7 @@ export class OcChartComponent implements AfterViewInit {
   }
 
   getChart() {
-    var gradientFill = this.context.createLinearGradient(0, 0, 0, 170);
+    const gradientFill = this.context.createLinearGradient(0, 0, 0, 170);
     gradientFill.addColorStop(0, '#e7eef7');
     gradientFill.addColorStop(1, 'rgba(240, 247, 255, 0.25)');
 
@@ -62,7 +68,7 @@ export class OcChartComponent implements AfterViewInit {
           label: '',
           data: this.dataSets,
           // backgroundColor: 'rgba(240, 247, 255, 0.25)',
-          backgroundColor: gradientFill,
+          backgroundColor: this.isBackgroundColor ? gradientFill : 'transparent',
           borderColor: 'rgba(83, 124, 253, 1)',
           lineTension: 0,
           borderWidth: 1.7
@@ -74,22 +80,21 @@ export class OcChartComponent implements AfterViewInit {
         legend: {
           display: false
         },
-        hover: {
-          onHover: function (e, data) {
-            if ((<any>this).tooltip._active && (<any>this).tooltip._active.length > 0) {
-              //console.log("on hover:" + (<any>this).tooltip._active.length);
-              let chartPointArray = new Array((<any>this).tooltip._active[0]._index);
-              chartPointArray.push(chartPoint);
-              this.data.datasets[0].pointStyle = chartPointArray;
-              this.update();
-            }
-          }
-        },
+        // hover: {
+        //   onHover: (e, data) => {
+        //     if (this.tooltip._active && this.tooltip._active.length > 0) {
+        //       //console.log("on hover:" + (<any>this).tooltip._active.length);
+        //       const chartPointArray = new Array(this.tooltip._active[0]._index);
+        //       chartPointArray.push(chartPoint);
+        //       this.data.datasets[0].pointStyle = chartPointArray;
+        //       this.update();
+        //     }
+        //   }
+        // },
         tooltips: {
           enabled: true,
           intersect: false,
           position: 'nearest',
-          //mode: 'nearest',
           backgroundColor: '#FFF',
           titleFontSize: 14,
           titleFontColor: '#333333',
@@ -105,21 +110,25 @@ export class OcChartComponent implements AfterViewInit {
           titleAlign: 'center',
           bodyAlign: 'center',
           callbacks: {
-            title: function (tooltipItem, data) {
-
-              return "  " + tooltipItem[0].value + "  ";
+            title: (tooltipItem, data) => {
+              return '  ' + tooltipItem[0].value + '  ';
             },
-            label: function (tooltipItem, data) {
-              //data.datasets[0].pointStyle = chartPoint;
-              //this.chart.update();
-              var label = data.datasets[tooltipItem.datasetIndex].label || '';
+            label: (tooltipItem, data) => {
+              // data.datasets[0].pointStyle = chartPoint;
+              // this.chart.update();
+              // const label = data.datasets[tooltipItem.datasetIndex].label || '';
               return tooltipItem.label;
             }
           }
         },
         elements: {
           point: {
-            radius: 0
+            radius: this.enablePoints ? 2 : 0,
+            hitRadius: 10,
+            hoverRadius: this.enablePoints ? 4 : 0,
+            hoverBorderWidth: 0,
+            backgroundColor: 'rgba(83, 124, 253, 1)',
+            borderColor: 'rgba(83, 124, 253, 1)',
           },
           line: {
             tension: 0, // 0 disables bezier curves
@@ -139,7 +148,7 @@ export class OcChartComponent implements AfterViewInit {
               // maxRotation: 30,
               // minRotation: 30,
               callback(value: any, index, values) {
-                if (value.length == 8) {
+                if (value.length === 8) {
                   return value.substring(0, 3);
                 }
                 return value;
@@ -159,8 +168,7 @@ export class OcChartComponent implements AfterViewInit {
               fontColor: '#727272',
               callback(value: any, index, values) {
                 if (value > 999) {
-                  const val = (value / 1000) + 'k';
-                  return val;
+                  return (value / 1000) + 'k';
                 }
                 return value;
               }
@@ -169,7 +177,6 @@ export class OcChartComponent implements AfterViewInit {
         }
       }
     });
-    this.chart.name = this.name;
   }
 
   getValue(label: string) {

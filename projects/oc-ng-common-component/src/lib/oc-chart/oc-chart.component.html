@@ -2,8 +2,8 @@
     <div class="col-md-9 pl-0 pr-2">
         <canvas #myCanvas height="125" width="400"></canvas>
     </div>
-    <div class="pl-3 col-md-auto sec-download text-center">
-        <a>
+    <div class="pl-3 col-md-auto sec-download text-center mt-sm-3" *ngIf="count">
+        <a *ngIf="downloadUrl">
             <img alt="cloud" src="{{downloadUrl}}">
         </a>
         <h4>{{count}}</h4>
