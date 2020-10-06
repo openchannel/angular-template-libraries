@@ -25,7 +25,8 @@ const NumberInputComponent = (args: OcNumberComponent) => ({
 export const SimpleNumberInput = NumberInputComponent.bind({});
 
 SimpleNumberInput.args = {
-  autoFocus: true
+  autoFocus: true,
+  placeholder: 'Write any number here'
 };
 
 

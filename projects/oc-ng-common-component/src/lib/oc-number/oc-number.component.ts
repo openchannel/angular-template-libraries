@@ -64,10 +64,10 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
    * Register paste action
    */
   onPaste(event: ClipboardEvent) {
-    console.log(event.clipboardData.getData('text'));
     const newData = event.clipboardData.getData('text').replace(this.regex, '');
     setTimeout(() => {
       this.inputNumber = Number(newData);
+      this.onChange(this.inputNumber);
     }, 0);
   }
   /**
