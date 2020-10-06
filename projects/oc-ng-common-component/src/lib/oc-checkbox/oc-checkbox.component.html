@@ -1,5 +1,5 @@
 <label class="custom-checkbox">
-    <input (ngModelChange)="changeModelVal()"
+    <input (change)="changeModelVal($event)"
            [(ngModel)]="checked"
            [ngModelOptions]="{standalone: true}"
            [disabled]="disabled"

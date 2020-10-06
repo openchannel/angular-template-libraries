@@ -40,7 +40,8 @@ export class OcCheckboxComponent implements OnInit, ControlValueAccessor {
   ngOnInit(): void {
   }
 
-  changeModelVal(): void {
+  changeModelVal(event): void {
+    this.onTouched();
     this.onChange(this.checked);
     this.isCheckedChange.emit(this.checked);
   }
