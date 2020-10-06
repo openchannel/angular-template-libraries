@@ -12,6 +12,13 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   }],
 })
 export class OcNumberComponent implements OnInit, ControlValueAccessor {
+  @Input()
+  set value(val) {
+    this.inputNumber = val;
+    this.onChange(this.inputNumber);
+  }
+
+  constructor(private el: ElementRef) { }
 
   @Input() autocomplete;
   /** Set autofocus on input. Default: false */
@@ -27,18 +34,13 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
   @Input() customStyle: any;
   /** Set disable state for input */
   @Input() disabled: boolean = false;
-  @Input()
-  set value(val) {
-    this.inputNumber = val;
-    this.onChange(this.inputNumber);
-  }
   /** Value in the input */
   public inputNumber: number;
 
+  private regex = new RegExp(/[^\d.]/g);
+
   private onTouched = () => {};
   private onChange: (value: any) => void = () => {};
-
-  constructor(private el: ElementRef) { }
 
   ngOnInit(): void {
     if (this.autocomplete) {
@@ -57,6 +59,16 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
    */
   onFocus(): void {
     this.onTouched();
+  }
+  /**
+   * Register paste action
+   */
+  onPaste(event: ClipboardEvent) {
+    console.log(event.clipboardData.getData('text'));
+    const newData = event.clipboardData.getData('text').replace(this.regex, '');
+    setTimeout(() => {
+      this.inputNumber = Number(newData);
+    }, 0);
   }
   /**
    * Calls this function with new value. When user wrote something in the component
