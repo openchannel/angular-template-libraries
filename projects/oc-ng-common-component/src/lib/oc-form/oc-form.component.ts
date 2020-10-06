@@ -12,7 +12,7 @@ import {HttpEventType, HttpResponse} from '@angular/common/http';
 export class OcFormComponent implements OnInit {
 
   /**
-   * JSOM with all form data to generate dynamic form
+   * JSON with all form data to generate dynamic form
    */
   @Input() formJsonData: any;
 
@@ -74,6 +74,11 @@ export class OcFormComponent implements OnInit {
             group[inputTemplate?.id] = new FormControl([]);
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
             break;
+          case 'number':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : null);
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
+            break;
           default:
             break;
         }
@@ -112,6 +117,16 @@ export class OcFormComponent implements OnInit {
         case 'maxCount':
           if (attributes.maxCount) {
             validators.push(Validators.maxLength(attributes.maxCount));
+          }
+          break;
+        case 'min':
+          if (attributes.min) {
+            validators.push(Validators.min(Number(attributes.min)));
+          }
+          break;
+        case 'max':
+          if (attributes.max) {
+            validators.push(Validators.max(Number(attributes.max)));
           }
           break;
         default:
@@ -158,7 +173,7 @@ export class OcFormComponent implements OnInit {
     const currentDate = new Date().getDate();
     const fileDetails = new FileDetails();
     fileDetails.uploadDate = currentDate;
-    fileDetails.fileId = `file_id_${currentDate}`
+    fileDetails.fileId = `file_id_${currentDate}`;
     fileDetails.fileUploadProgress = 100;
     fileDetails.fileUrl = 'https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2015/04/irkutsk_and_lake_baikal/15342550-1-eng-GB/Irkutsk_and_Lake_Baikal.jpg';
     return fileDetails;
