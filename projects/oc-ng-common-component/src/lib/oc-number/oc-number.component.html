@@ -1,2 +1,10 @@
-<input (blur)="onblur()" (ngModelChange)="changeModelVal()" [(ngModel)]="modelName" [disabled]="disabled"
-       [placeholder]="placeholder" class="form-control" class="form-control" type="number">
+<input
+        (focus)="onFocus()"
+        (ngModelChange)="changeModelVal()"
+        [(ngModel)]="inputNumber"
+        [ngModelOptions]="{standalone: true}"
+        [disabled]="disabled"
+        [placeholder]="placeholder"
+        [ngStyle]="customStyle"
+        class="form-control {{customClass}}"
+        type="number">
