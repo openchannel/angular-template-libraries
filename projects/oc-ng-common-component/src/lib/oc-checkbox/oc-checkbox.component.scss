@@ -1,4 +1,4 @@
-//@import "../../../assets/styles/theme.scss";
+@import "../../../assets/styles/theme.scss";
 
 .custom-checkbox {
   display: block;
@@ -9,7 +9,6 @@
   -ms-user-select: none;
   user-select: none;
   padding-left: 1.5rem;
-  color: #000;
   .hide-checkbox {
     position: absolute;
     opacity: 0;
@@ -19,6 +18,9 @@
     &:checked + .checkmark:before {
       display: block;
     }
+    &:checked ~ .checkbox-text {
+      color: $primary;
+    }
   }
   .checkmark {
     position: absolute;
@@ -27,7 +29,7 @@
     height: 1.5rem;
     width: 1.5rem;
     display: block;
-    border: 2px solid green;
+    border: 2px solid darken($primary, 20%);
     border-radius: 0.3rem;
     &:before {
       content: "";
@@ -37,17 +39,17 @@
       top: 1px;
       width: 0.5rem;
       height: 1rem;
-      border: solid #28A745;
+      border: solid $primary;
       border-width: 0 3px 3px 0;
       -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
       transform: rotate(45deg);
-      //@include viewport-4 {
-      //  left: 12px;
-      //  top: 3px;
-      //  width: 0.4rem;
-      //  height: 0.7rem;
-      //}
+    }
+  }
+  .checkbox-text {
+    color: $body-color;
+    .required {
+      color: $danger;
     }
   }
 }
