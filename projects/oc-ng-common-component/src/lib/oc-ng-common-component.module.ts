@@ -70,6 +70,7 @@ import {OcTagElementComponent} from './oc-tag-element/oc-tag-element.component';
 import {OcDropboxComponent} from './oc-dropbox/oc-dropbox.component';
 import {OcTitleComponent} from './oc-title/oc-title.component';
 import {OcFormComponent} from './oc-form/oc-form.component';
+import {OnlyNumberDirective} from './directive/only-number.directive';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -130,7 +131,8 @@ import {OcFormComponent} from './oc-form/oc-form.component';
     OcDropboxComponent,
     OcTitleComponent,
     OcRichTextEditorComponent,
-    OcFormComponent
+    OcFormComponent,
+    OnlyNumberDirective,
   ],
 
   imports: [
