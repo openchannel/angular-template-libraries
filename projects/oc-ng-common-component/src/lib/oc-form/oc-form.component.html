@@ -77,6 +77,13 @@
         ></oc-checkbox>
         <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
+      <div class="mt-2 mb-2" *ngSwitchCase="'emailAddress'">
+        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
+        </oc-label>
+        <oc-input  formControlName="{{formElement?.id}}" inputType="email"
+        ></oc-input>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
+      </div>
     </div>
   </ng-container>
     <oc-button *ngIf="showButton"
