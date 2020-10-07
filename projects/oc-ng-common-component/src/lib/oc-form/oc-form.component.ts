@@ -91,6 +91,11 @@ export class OcFormComponent implements OnInit {
               inputTemplate?.defaultValue : 'myemail@example.com');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isEmail: true});
             break;
+          case 'websiteUrl':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : 'https://my.website.com');
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isUrl: true});
+            break;
           default:
             break;
         }
@@ -103,7 +108,7 @@ export class OcFormComponent implements OnInit {
    * Setting validators array to the chosen control
    */
   setValidators(control: AbstractControl, attributes,
-                additional?: {isCheckbox?: boolean, isEmail?: boolean}): void {
+                additional?: {isCheckbox?: boolean, isEmail?: boolean, isUrl?: boolean}): void {
     const validators: ValidatorFn [] = [];
     Object.keys(attributes).forEach(key => {
       switch (key) {
@@ -153,6 +158,9 @@ export class OcFormComponent implements OnInit {
     if (additional.isEmail) {
       validators.push(Validators.email);
     }
+    if (additional.isUrl) {
+      validators.push(this.urlValidator());
+    }
     control.setValidators(validators);
   }
 
@@ -170,6 +178,21 @@ export class OcFormComponent implements OnInit {
       } else {
         return {
           minLength: {valid: false}
+        };
+      }
+    };
+  }
+
+  urlValidator() {
+    return (c: AbstractControl): { [key: string]: any } => {
+      // regex for url validation
+      const reg = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm);
+      const value = c.value;
+      if (reg.test(value) || value === '') {
+        return null;
+      } else {
+        return {
+          websiteValidator: true
         };
       }
     };
