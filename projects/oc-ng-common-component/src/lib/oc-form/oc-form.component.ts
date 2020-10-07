@@ -1,8 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {FileDetails} from 'oc-ng-common-service';
-import {Observable, of} from 'rxjs';
-import {HttpEventType, HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'oc-form',
@@ -15,7 +13,10 @@ export class OcFormComponent implements OnInit {
    * JSON with all form data to generate dynamic form
    */
   @Input() formJsonData: any;
-
+  /**
+   * Set disable for button
+   * when siblings form is invalid
+   */
   @Input() anotherInvalidResult = false;
   /** Show button on form. Default: true */
   @Input() showButton: boolean = true;
@@ -23,8 +24,9 @@ export class OcFormComponent implements OnInit {
    * Returning all form fields value to the parent component
    */
   @Output() formSubmitted = new EventEmitter<any>();
-
+  /** Dynamically created form */
   public customForm: FormGroup;
+  /** Result data from form for submission */
   public formData: any;
 
   constructor(private fb: FormBuilder) {
@@ -77,12 +79,17 @@ export class OcFormComponent implements OnInit {
           case 'checkbox':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
               inputTemplate?.defaultValue : false);
-            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, true);
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isCheckbox: true});
             break;
           case 'number':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
               inputTemplate?.defaultValue : null);
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
+            break;
+          case 'emailAddress':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : 'myemail@example.com');
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isEmail: true});
             break;
           default:
             break;
@@ -95,13 +102,14 @@ export class OcFormComponent implements OnInit {
   /**
    * Setting validators array to the chosen control
    */
-  setValidators(control: AbstractControl, attributes, isCheckbox?: boolean): void {
+  setValidators(control: AbstractControl, attributes,
+                additional?: {isCheckbox?: boolean, isEmail?: boolean}): void {
     const validators: ValidatorFn [] = [];
     Object.keys(attributes).forEach(key => {
       switch (key) {
         case 'required':
           if (attributes.required) {
-            if (isCheckbox) {
+            if (additional.isCheckbox) {
               validators.push(Validators.requiredTrue);
             } else {
               validators.push(Validators.required);
@@ -142,6 +150,9 @@ export class OcFormComponent implements OnInit {
           break;
       }
     });
+    if (additional.isEmail) {
+      validators.push(Validators.email);
+    }
     control.setValidators(validators);
   }
 
@@ -158,7 +169,7 @@ export class OcFormComponent implements OnInit {
         return null;
       } else {
         return {
-          'minLength': {valid: false}
+          minLength: {valid: false}
         };
       }
     };

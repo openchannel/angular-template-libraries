@@ -21,7 +21,7 @@ export class OcErrorComponent implements OnInit {
     uniqueName: (params) => params.message,
     telephoneNumbers: (params) => params.message,
     telephoneNumber: (params) => params.errorMessages,
-    emailValidator: () => 'Email seems to be invalid',
+    email: () => 'Email seems to be invalid',
     websiteValidator: () => 'Please enter a valid URL',
     appImageFileValidator: () => 'Please provide valid png/jpg/jpeg/gif image file',
     appExpiredDateValidator: () => 'Please fill valid current or future date',
