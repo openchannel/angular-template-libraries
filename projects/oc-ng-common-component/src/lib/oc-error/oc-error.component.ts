@@ -29,7 +29,9 @@ export class OcErrorComponent implements OnInit {
     domainValidator: () => 'Please enter a valid domain',
     phoneNumberValidator: (params) => params.message,
     confirmPassword: () => 'Confirm password does not match to new password',
-    serverErrorValidator: (params) => params.message
+    serverErrorValidator: (params) => params.message,
+    min: (params) => 'The minimum possible value is ' + params.min,
+    max: (params) => 'The maximum possible value is ' + params.max
   };
 
   @Input()

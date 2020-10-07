@@ -63,6 +63,13 @@
         </oc-file-upload>
         <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
+      <div class="mt-2 mb-2" *ngSwitchCase="'number'">
+        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
+        </oc-label>
+        <oc-number  formControlName="{{formElement?.id}}"
+        ></oc-number>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
+      </div>
       <div class="mt-2 mb-2" *ngSwitchCase="'checkbox'">
         <oc-checkbox  formControlName="{{formElement?.id}}"
                       [labelText]="formElement?.label"

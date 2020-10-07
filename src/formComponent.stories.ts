@@ -152,6 +152,34 @@ FormWithRequiredOnly.args = {
   }
 };
 
+export const FormWithNumberInput =  FormGroupComponent.bind({});
+
+FormWithNumberInput.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        attributes:	{
+          max:	25,
+          min:	5,
+          required:	null,
+        },
+        category:	'CUSTOM',
+        defaultValue:	null,
+        description:	'',
+        id:	'test-number',
+        isOpen:	false,
+        isValid:	true,
+        label:	'Test number',
+        placeholder:	null,
+        type:	'number',
+      }
+    ]
+  }
+};
+
 export const FormWithCheckboxComponent = FormGroupComponent.bind({});
 
 FormWithCheckboxComponent.args = {
