@@ -16,9 +16,17 @@ export class OcInputComponent implements OnInit, ControlValueAccessor {
   @Input() modelName;
   @Input() autoFocus;
   @Input() autocomplete;
+  /** Placeholder text for input */
   @Input() placeholder: string = '';
+  /**
+   * List of classes which can be
+   * attached to the current list
+   */
   @Input() class: string = '';
+  /** Set 'disable' state for input */
   @Input() disabled: boolean = false;
+  /** Type of the input. Can be 'text' or 'email' */
+  @Input() inputType: string = 'text';
   @Input()
   set value(val) {
     this.inputValue = val;
