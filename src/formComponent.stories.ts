@@ -205,3 +205,30 @@ FormWithCheckboxComponent.args = {
     ]
   }
 };
+
+export const FormWithEmailComponent = FormGroupComponent.bind({});
+
+FormWithEmailComponent.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        attributes:	{
+          required:	true
+        },
+        category:	'CUSTOM',
+        defaultValue:	null,
+        description:	'',
+        id:	'test-email',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test email',
+        placeholder:	'enter email',
+        type:	'emailAddress'
+      }
+    ]
+  }
+};
