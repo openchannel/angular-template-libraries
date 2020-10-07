@@ -232,3 +232,30 @@ FormWithEmailComponent.args = {
     ]
   }
 };
+
+export const FormWithUrlComponent = FormGroupComponent.bind({});
+
+FormWithUrlComponent.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        attributes:	{
+          required:	true
+        },
+        category:	'CUSTOM',
+        defaultValue:	null,
+        description:	null,
+        id:	'test-url-component',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test URL component',
+        placeholder:	'Enter your link here..',
+        type:	'websiteUrl'
+      }
+    ]
+  }
+};
