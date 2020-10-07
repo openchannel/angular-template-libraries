@@ -11,13 +11,15 @@
         <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
         </oc-label>
         <oc-input  formControlName="{{formElement?.id}}"
-                   ></oc-input>
+                   [placeholder]="formElement?.placeholder"
+        ></oc-input>
         <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
       <div class="mt-2 mb-2" *ngSwitchCase="'longText'">
         <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
         </oc-label>
         <oc-textarea  formControlName="{{formElement?.id}}"
+                      [placeholder]="formElement?.placeholder"
         ></oc-textarea>
         <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
@@ -67,6 +69,7 @@
         <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
         </oc-label>
         <oc-number  formControlName="{{formElement?.id}}"
+                    [placeholder]="formElement?.placeholder"
         ></oc-number>
         <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
@@ -81,6 +84,15 @@
         <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
         </oc-label>
         <oc-input  formControlName="{{formElement?.id}}" inputType="email"
+                   [placeholder]="formElement?.placeholder"
+        ></oc-input>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
+      </div>
+      <div class="mt-2 mb-2" *ngSwitchCase="'websiteUrl'">
+        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
+        </oc-label>
+        <oc-input  formControlName="{{formElement?.id}}" inputType="url"
+                   [placeholder]="formElement?.placeholder"
         ></oc-input>
         <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
