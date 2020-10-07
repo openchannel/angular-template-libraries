@@ -179,3 +179,29 @@ FormWithNumberInput.args = {
     ]
   }
 };
+
+export const FormWithCheckboxComponent = FormGroupComponent.bind({});
+
+FormWithCheckboxComponent.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        attributes:	{
+          required:	true
+        },
+        category:	'CUSTOM',
+        defaultValue:	true,
+        description:	'',
+        id:	'test-checkbox',
+        isOpen:	false,
+        isValid:	true,
+        label:	'Test Checkbox',
+        placeholder:	null,
+        type:	'checkbox'
+      }
+    ]
+  }
+};

@@ -74,6 +74,11 @@ export class OcFormComponent implements OnInit {
             group[inputTemplate?.id] = new FormControl([]);
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
             break;
+          case 'checkbox':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : false);
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, true);
+            break;
           case 'number':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
               inputTemplate?.defaultValue : null);
@@ -90,13 +95,17 @@ export class OcFormComponent implements OnInit {
   /**
    * Setting validators array to the chosen control
    */
-  setValidators(control: AbstractControl, attributes): void {
+  setValidators(control: AbstractControl, attributes, isCheckbox?: boolean): void {
     const validators: ValidatorFn [] = [];
     Object.keys(attributes).forEach(key => {
       switch (key) {
         case 'required':
           if (attributes.required) {
-            validators.push(Validators.required);
+            if (isCheckbox) {
+              validators.push(Validators.requiredTrue);
+            } else {
+              validators.push(Validators.required);
+            }
           }
           break;
         case 'maxChars':
