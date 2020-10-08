@@ -96,6 +96,11 @@ export class OcFormComponent implements OnInit {
               inputTemplate?.defaultValue : 'https://my.website.com');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isUrl: true});
             break;
+          case 'color':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : '#00cf9f');
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isColor: true});
+            break;
           default:
             break;
         }
@@ -108,7 +113,7 @@ export class OcFormComponent implements OnInit {
    * Setting validators array to the chosen control
    */
   setValidators(control: AbstractControl, attributes,
-                additional?: {isCheckbox?: boolean, isEmail?: boolean, isUrl?: boolean}): void {
+                additional?: {isCheckbox?: boolean, isEmail?: boolean, isUrl?: boolean, isColor?: boolean}): void {
     const validators: ValidatorFn [] = [];
     Object.keys(attributes).forEach(key => {
       switch (key) {
@@ -161,6 +166,9 @@ export class OcFormComponent implements OnInit {
     if (additional.isUrl) {
       validators.push(this.urlValidator());
     }
+    if (additional.isColor) {
+      validators.push(this.colorValidator());
+    }
     control.setValidators(validators);
   }
 
@@ -198,6 +206,18 @@ export class OcFormComponent implements OnInit {
     };
   }
 
+  colorValidator() {
+    return (c: AbstractControl): { [key: string]: any } => {
+      const value = c.value;
+      if ((value.charAt(0) === '#' && value.length === 7) || value === '') {
+        return null;
+      } else {
+        return {
+          colorValidator: true
+        };
+      }
+    };
+  }
   /**
    * Output event which returns form value
    */

@@ -31,7 +31,8 @@ export class OcErrorComponent implements OnInit {
     confirmPassword: () => 'Confirm password does not match to new password',
     serverErrorValidator: (params) => params.message,
     min: (params) => 'The minimum possible value is ' + params.min,
-    max: (params) => 'The maximum possible value is ' + params.max
+    max: (params) => 'The maximum possible value is ' + params.max,
+    colorValidator: () => 'Please enter a valid Color value.'
   };
 
   @Input()

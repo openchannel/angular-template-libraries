@@ -259,3 +259,30 @@ FormWithUrlComponent.args = {
     ]
   }
 };
+
+export const FormWithColorComponent = FormGroupComponent.bind({});
+
+FormWithColorComponent.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        attributes:	{
+          required:	true
+        },
+        category:	'CUSTOM',
+        defaultValue:	null,
+        description:	null,
+        id:	'test-color-component',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test Color Component',
+        placeholder:	'Choose your color',
+        type:	'color'
+      }
+    ]
+  }
+};
