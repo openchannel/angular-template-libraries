@@ -55,4 +55,8 @@ export class FileUploadDownloadService {
   downloadFileFromUrl(fileUrl): Observable<any> {
     return this.http.get(fileUrl, {responseType: 'blob'});
   }
+
+  getVideoData(videoUrl): Observable<any> {
+    return this.http.get(`${this.environment.apiUrl}api/v2/utils/video/metadata?videoUrl=${videoUrl}&maxwidth=300`);
+  }
 }
