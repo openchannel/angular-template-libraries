@@ -72,6 +72,7 @@ import {OcTitleComponent} from './oc-title/oc-title.component';
 import {OcFormComponent} from './oc-form/oc-form.component';
 import {OnlyNumberDirective} from './directive/only-number.directive';
 import { OcVideoUrlComponent } from './oc-video-url/oc-video-url.component';
+import {AppIconsModule} from './app-icons.module';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -145,7 +146,8 @@ import { OcVideoUrlComponent } from './oc-video-url/oc-video-url.component';
     ImageCropperModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppIconsModule
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,

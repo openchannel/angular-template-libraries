@@ -1,15 +1,15 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ControlValueAccessor} from '@angular/forms';
+import {FileUploadDownloadService} from 'oc-ng-common-service';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'oc-video-url',
   templateUrl: './oc-video-url.component.html',
   styleUrls: ['./oc-video-url.component.scss']
 })
-export class OcVideoUrlComponent implements OnInit, ControlValueAccessor {
-
-  @ViewChild("preview") previewElement: ElementRef;
+export class OcVideoUrlComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   @Input() modelName;
   @Input() autoFocus;
@@ -35,49 +35,49 @@ export class OcVideoUrlComponent implements OnInit, ControlValueAccessor {
   loadInIframe = true;
   loadInVideo = false;
   showVideoLoader = false;
-  previewId: any;
   isValidUrl: boolean = false;
 
   previewData: string;
 
+  private videoUrlRegexp = /((?:https?\:\/\/|www\.)(?:[-a-z0-9]+\.)*[-a-z0-9]+.*)/i;
+
+  private destroy$: Subject<any> = new Subject<any>();
+
   private onTouched = () => {};
   private onChange: (value: any) => void = () => {};
 
-  private videoUrlRegexp = /((?:https?\:\/\/|www\.)(?:[-a-z0-9]+\.)*[-a-z0-9]+.*)/i;
-
-  constructor(private http: HttpClient) {
+  constructor(private fileService: FileUploadDownloadService) {
 
   }
 
   ngOnInit(): void {
-    this.previewId = this.generateUID();
+    if(this.videoUrl) {
+      this.verifyVideoUrl();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   verifyVideoUrl(): void {
     this.onChange(this.videoUrl);
-    this.previewData = undefined;
+    this.previewData = '';
 
-    this.isValidUrl = this.videoUrlRegexp.test(this.videoUrl)
+    this.isValidUrl = this.videoUrlRegexp.test(this.videoUrl);
 
-    if(this.isValidUrl) {
+    if (this.isValidUrl) {
       this.showVideoLoader = true;
-      this.http.get("https://iframe.ly/api/iframely?url=" + this.videoUrl + "&api_key=ab8c8d0627356d139eed8f").subscribe(
+      this.fileService.getVideoData(this.videoUrl)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(
           (data: any) => {
             this.showVideoLoader = false;
 
             if (data && data.html) {
               this.loadInIframe = true;
               this.previewData = data.html;
-              // const fragment = document.createRange().createContextualFragment(data.html);
-              // if (fragment) {
-              //   setTimeout(() => {
-              //     $('#' + this.previewId)
-              //     .empty()
-              //     .append(fragment);
-              //
-              //     // this.previewElement.nativeElement.
-              //   }, 100);
-              // }
             } else if (this.videoUrl.endsWith('.mp4') || this.videoUrl.endsWith('.webm') || this.videoUrl.endsWith('.ogv')) {
               this.loadInIframe = false;
               this.loadInVideo = true;
@@ -131,9 +131,5 @@ export class OcVideoUrlComponent implements OnInit, ControlValueAccessor {
    */
   writeValue(obj: any): void {
     this.videoUrl = obj;
-  }
-
-  private generateUID() {
-    return Math.floor(Date.now() + Math.random());
   }
 }
