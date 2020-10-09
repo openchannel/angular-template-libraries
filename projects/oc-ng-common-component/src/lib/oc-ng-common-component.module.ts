@@ -205,7 +205,8 @@ import {ColorPickerModule} from 'ngx-color-picker';
     OcTagElementComponent,
     OcFormComponent,
     OcTagsComponent,
-    OcColorComponent
+    OcColorComponent,
+    OcVideoUrlComponent
   ],
   providers: [
     NgbActiveModal,
