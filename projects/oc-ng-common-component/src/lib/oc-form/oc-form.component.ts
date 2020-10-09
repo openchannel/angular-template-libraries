@@ -106,6 +106,11 @@ export class OcFormComponent implements OnInit {
               inputTemplate?.defaultValue : ['true', 'false']);
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
             break;
+          case 'videoUrl':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : 'https://my.website.com');
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isUrl: true});
+            break;
           default:
             break;
         }
