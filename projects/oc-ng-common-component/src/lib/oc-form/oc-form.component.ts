@@ -96,6 +96,16 @@ export class OcFormComponent implements OnInit {
               inputTemplate?.defaultValue : 'https://my.website.com');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isUrl: true});
             break;
+          case 'color':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : '#00cf9f');
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isColor: true});
+            break;
+          case 'booleanTags':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : ['true', 'false']);
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
+            break;
           case 'videoUrl':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
               inputTemplate?.defaultValue : 'https://my.website.com');
@@ -113,13 +123,13 @@ export class OcFormComponent implements OnInit {
    * Setting validators array to the chosen control
    */
   setValidators(control: AbstractControl, attributes,
-                additional?: {isCheckbox?: boolean, isEmail?: boolean, isUrl?: boolean}): void {
+                additional?: {isCheckbox?: boolean, isEmail?: boolean, isUrl?: boolean, isColor?: boolean}): void {
     const validators: ValidatorFn [] = [];
     Object.keys(attributes).forEach(key => {
       switch (key) {
         case 'required':
           if (attributes.required) {
-            if (additional.isCheckbox) {
+            if (additional && additional.isCheckbox) {
               validators.push(Validators.requiredTrue);
             } else {
               validators.push(Validators.required);
@@ -160,11 +170,14 @@ export class OcFormComponent implements OnInit {
           break;
       }
     });
-    if (additional.isEmail) {
+    if (additional && additional.isEmail) {
       validators.push(Validators.email);
     }
-    if (additional.isUrl) {
+    if (additional && additional.isUrl) {
       validators.push(this.urlValidator());
+    }
+    if (additional && additional.isColor) {
+      validators.push(this.colorValidator());
     }
     control.setValidators(validators);
   }
@@ -188,6 +201,10 @@ export class OcFormComponent implements OnInit {
     };
   }
 
+  /**
+   * Custom validator
+   * for the url type control
+   */
   urlValidator() {
     return (c: AbstractControl): { [key: string]: any } => {
       // regex for url validation
@@ -203,6 +220,21 @@ export class OcFormComponent implements OnInit {
     };
   }
 
+  /**
+   * Custom validator for color control
+   */
+  colorValidator() {
+    return (c: AbstractControl): { [key: string]: any } => {
+      const value = c.value;
+      if ((value.charAt(0) === '#' && value.length === 7) || value === '') {
+        return null;
+      } else {
+        return {
+          colorValidator: true
+        };
+      }
+    };
+  }
   /**
    * Output event which returns form value
    */

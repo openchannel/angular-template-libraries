@@ -259,3 +259,60 @@ FormWithUrlComponent.args = {
     ]
   }
 };
+
+export const FormWithColorComponent = FormGroupComponent.bind({});
+
+FormWithColorComponent.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        attributes:	{
+          required:	true
+        },
+        category:	'CUSTOM',
+        defaultValue:	null,
+        description:	null,
+        id:	'test-color-component',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test Color Component',
+        placeholder:	'Choose your color',
+        type:	'color'
+      }
+    ]
+  }
+};
+
+export const FormWithBooleanTags = FormGroupComponent.bind({});
+
+FormWithBooleanTags.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        attributes:	{
+          required:	true,
+          maxCount:	null,
+          minCount:	null
+        },
+        options: ['true', 'false'],
+        category:	'CUSTOM',
+        defaultValue:	null,
+        description:	null,
+        id:	'test-boolean-tags',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test Boolean tags',
+        placeholder:	null,
+        type:	'booleanTags'
+      }
+    ]
+  }
+};
