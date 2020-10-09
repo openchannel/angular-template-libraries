@@ -119,6 +119,11 @@ export class OcFormComponent implements OnInit {
             }
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
             break;
+          case 'videoUrl':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : 'https://my.website.com');
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isUrl: true});
+            break;
           default:
             break;
         }
@@ -132,7 +137,7 @@ export class OcFormComponent implements OnInit {
    */
   setValidators(control: AbstractControl, attributes,
                 additional?: {isCheckbox?: boolean, isEmail?: boolean, isUrl?: boolean,
-                  isColor?: boolean, isTags?: boolean}): void {
+                  isColor?: boolean}): void {
     const validators: ValidatorFn [] = [];
     Object.keys(attributes).forEach(key => {
       switch (key) {

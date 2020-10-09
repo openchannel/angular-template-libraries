@@ -71,6 +71,8 @@ import {OcDropboxComponent} from './oc-dropbox/oc-dropbox.component';
 import {OcTitleComponent} from './oc-title/oc-title.component';
 import {OcFormComponent} from './oc-form/oc-form.component';
 import {OnlyNumberDirective} from './directive/only-number.directive';
+import { OcVideoUrlComponent } from './oc-video-url/oc-video-url.component';
+import {AppIconsModule} from './app-icons.module';
 import {OcColorComponent} from './oc-color/oc-color.component';
 import {ColorPickerModule} from 'ngx-color-picker';
 
@@ -135,6 +137,7 @@ import {ColorPickerModule} from 'ngx-color-picker';
     OcRichTextEditorComponent,
     OcFormComponent,
     OnlyNumberDirective,
+    OcVideoUrlComponent,
     OcColorComponent,
   ],
 
@@ -147,6 +150,7 @@ import {ColorPickerModule} from 'ngx-color-picker';
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     ReactiveFormsModule,
+    AppIconsModule,
     ColorPickerModule
   ],
   exports: [OcCommonLibComponent,
@@ -201,7 +205,8 @@ import {ColorPickerModule} from 'ngx-color-picker';
     OcTagElementComponent,
     OcFormComponent,
     OcTagsComponent,
-    OcColorComponent
+    OcColorComponent,
+    OcVideoUrlComponent
   ],
   providers: [
     NgbActiveModal,
