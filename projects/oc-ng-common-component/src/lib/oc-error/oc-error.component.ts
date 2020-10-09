@@ -32,7 +32,8 @@ export class OcErrorComponent implements OnInit {
     serverErrorValidator: (params) => params.message,
     min: (params) => 'The minimum possible value is ' + params.min,
     max: (params) => 'The maximum possible value is ' + params.max,
-    colorValidator: () => 'Please enter a valid Color value.'
+    colorValidator: () => 'Please enter a valid Color value.',
+    booleanTagsValidator: () => 'Boolean tags can only contain boolean values (\'true\' or \'false\')'
   };
 
   @Input()

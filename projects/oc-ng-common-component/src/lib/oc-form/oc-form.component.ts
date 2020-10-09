@@ -101,6 +101,11 @@ export class OcFormComponent implements OnInit {
               inputTemplate?.defaultValue : '#00cf9f');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isColor: true});
             break;
+          case 'booleanTags':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : ['true', 'false']);
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
+            break;
           default:
             break;
         }
@@ -119,7 +124,7 @@ export class OcFormComponent implements OnInit {
       switch (key) {
         case 'required':
           if (attributes.required) {
-            if (additional.isCheckbox) {
+            if (additional && additional.isCheckbox) {
               validators.push(Validators.requiredTrue);
             } else {
               validators.push(Validators.required);
@@ -160,13 +165,13 @@ export class OcFormComponent implements OnInit {
           break;
       }
     });
-    if (additional.isEmail) {
+    if (additional && additional.isEmail) {
       validators.push(Validators.email);
     }
-    if (additional.isUrl) {
+    if (additional && additional.isUrl) {
       validators.push(this.urlValidator());
     }
-    if (additional.isColor) {
+    if (additional && additional.isColor) {
       validators.push(this.colorValidator());
     }
     control.setValidators(validators);
@@ -191,6 +196,10 @@ export class OcFormComponent implements OnInit {
     };
   }
 
+  /**
+   * Custom validator
+   * for the url type control
+   */
   urlValidator() {
     return (c: AbstractControl): { [key: string]: any } => {
       // regex for url validation
@@ -206,6 +215,9 @@ export class OcFormComponent implements OnInit {
     };
   }
 
+  /**
+   * Custom validator for color control
+   */
   colorValidator() {
     return (c: AbstractControl): { [key: string]: any } => {
       const value = c.value;

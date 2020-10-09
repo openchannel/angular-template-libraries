@@ -104,6 +104,19 @@
         ></oc-color>
         <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
+      <div *ngSwitchCase="'booleanTags'" class="mt-2 mb-2">
+        <oc-tags
+                placeHolderInputName="Choose your tags"
+                formControlName="{{formElement?.id}}"
+                [description]="formElement?.description"
+                [availableTags]="formElement?.options ? formElement?.options : ['']"
+                [maxTagsCount]="formElement?.attributes?.maxCount"
+                [minTagsCount]="formElement?.attributes?.minCount"
+                [required]="formElement?.attributes?.required"
+                [title]="formElement?.label"
+                tagsType="boolean"></oc-tags>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
+      </div>
     </div>
   </ng-container>
     <oc-button *ngIf="showButton"

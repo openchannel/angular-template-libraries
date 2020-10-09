@@ -82,6 +82,12 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
      * Default: unlimited.
      */
     @Input() maxTagLength: number = null;
+    /**
+     * Set type of tags values.
+     * Can be 'string', 'boolean' or 'number'
+     * Default: 'string'
+     */
+    @Input() tagsType: 'string' | 'boolean' | 'number' = 'string';
 
     @Input()
     set value(val) {
@@ -99,8 +105,8 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
 
     /** current error message */
     error: {
-        field: 'minlength' | 'maxlength' | 'minElementsCount' | 'maxElementsCount',
-        params: { requiredLength: number } | { requiredCount: number }
+        field: 'minlength' | 'maxlength' | 'minElementsCount' | 'maxElementsCount' | 'booleanTagsValidator',
+        params: { requiredLength?: number } | { requiredCount?: number }
     };
 
     /** tags for showing in the drop box */
@@ -111,6 +117,8 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
 
     /** correct result tags */
     validResult = false;
+
+    private acceptableBooleanTags: string [] = ['true', 'false'];
 
     private onTouched = () => {};
     private onChange: (value: any) => void = () => {};
@@ -130,6 +138,10 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         this.defaultTags.forEach(tag => this.addTagToResultList(tag, true));
     }
 
+    checkForBooleanType(tag): boolean {
+        return this.acceptableBooleanTags.includes(tag);
+    }
+
     addCurrentTagToResultList(): void {
         this.error = null;
         if (this.addTagToResultList(this.currentTag, false)) {
@@ -146,10 +158,23 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
                 this.showTagLengthErrorMessage(tagNormalized);
                 return false;
             } else if (!this.existTagInResultList(tagNormalized)) {
-                this.resultTags = [...this.resultTags, tagNormalized];
-                // this.resultTags.push(tagNormalized);
-                this.updateComponentData();
-                return true;
+                switch (this.tagsType) {
+                    case 'boolean':
+                        if (this.checkForBooleanType(tagNormalized)) {
+                            this.resultTags = [...this.resultTags, tagNormalized];
+                            // this.resultTags.push(tagNormalized);
+                            this.updateComponentData();
+                            return true;
+                        } else {
+                            this.error = {field: 'booleanTagsValidator', params: {}};
+                            return false;
+                        }
+                    default:
+                        this.resultTags = [...this.resultTags, tagNormalized];
+                        // this.resultTags.push(tagNormalized);
+                        this.updateComponentData();
+                        return true;
+                }
             }
         }
 
@@ -193,7 +218,7 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         if (this.minTagLength && tagLength < this.minTagLength) {
             this.error = {field: 'minlength', params: {requiredLength: this.minTagLength}};
         }
-        //todo string interpolation
+        // todo string interpolation
         if (this.maxTagLength && this.maxTagLength < tagLength) {
             this.error = {field: 'maxlength', params: {requiredLength: this.maxTagLength}};
         }
@@ -201,10 +226,10 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
 
     createErrorMessageByCountTagsIfNeed(): void {
         const countTags = this.resultTags.length;
-        if (this.minTagsCount && countTags < this.minTagsCount) {
+        if (this.minTagsCount && (countTags < this.minTagsCount)) {
             this.error = {field: 'minElementsCount', params: {requiredCount: this.minTagsCount}};
         }
-        if (this.maxTagsCount && countTags > this.maxTagsCount) {
+        if (this.maxTagsCount && (countTags > this.maxTagsCount)) {
             this.error = {field: 'maxElementsCount', params: {requiredCount: this.maxTagsCount}};
         }
     }
