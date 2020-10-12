@@ -75,6 +75,7 @@ import { OcVideoUrlComponent } from './oc-video-url/oc-video-url.component';
 import {AppIconsModule} from './app-icons.module';
 import {OcColorComponent} from './oc-color/oc-color.component';
 import {ColorPickerModule} from 'ngx-color-picker';
+import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select-list.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -139,6 +140,7 @@ import {ColorPickerModule} from 'ngx-color-picker';
     OnlyNumberDirective,
     OcVideoUrlComponent,
     OcColorComponent,
+    OcMultiSelectListComponent,
   ],
 
   imports: [
@@ -206,7 +208,8 @@ import {ColorPickerModule} from 'ngx-color-picker';
     OcFormComponent,
     OcTagsComponent,
     OcColorComponent,
-    OcVideoUrlComponent
+    OcVideoUrlComponent,
+    OcMultiSelectListComponent
   ],
   providers: [
     NgbActiveModal,
