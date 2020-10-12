@@ -2,7 +2,7 @@
         [placeholder]="placeholder"
         [(ngModel)]="videoUrl"
         (focus)="onFocus()"
-        (ngModelChange)="verifyVideoUrl()"
+        (ngModelChange)="emitChanges()"
         [ngModelOptions]="{standalone: true}"
         class="form-control {{class}}"
         whiteSpaceValidator>

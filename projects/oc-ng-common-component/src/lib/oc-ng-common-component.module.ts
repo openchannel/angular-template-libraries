@@ -75,6 +75,7 @@ import { OcVideoUrlComponent } from './oc-video-url/oc-video-url.component';
 import {AppIconsModule} from './app-icons.module';
 import {OcColorComponent} from './oc-color/oc-color.component';
 import {ColorPickerModule} from 'ngx-color-picker';
+import { OcDatetimePickerComponent } from './oc-datetime-picker/oc-datetime-picker.component';
 import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select-list.component';
 
 @NgModule({
@@ -140,6 +141,7 @@ import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select
     OnlyNumberDirective,
     OcVideoUrlComponent,
     OcColorComponent,
+    OcDatetimePickerComponent,
     OcMultiSelectListComponent,
   ],
 
@@ -153,7 +155,7 @@ import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select
     FroalaViewModule.forRoot(),
     ReactiveFormsModule,
     AppIconsModule,
-    ColorPickerModule
+    ColorPickerModule,
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
