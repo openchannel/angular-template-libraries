@@ -17,7 +17,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccesso
 
   @Input() set fieldDefinitionData(value) {
     if (value) {
-      this.fieldDefinition = value;
+      this.fieldDefinition = [...value];
     } else {
       throw Error('FieldDefinitionData is required @Input() parameter');
     }
@@ -81,7 +81,6 @@ export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccesso
   }
 
   addNewArrayItem(): void {
-    console.log(this.fieldDefinition.subFieldDefinitions);
     this.openFormModal(this.fieldDefinition.subFieldDefinitions).then(result => {
       if ( result.status === 'success') {
         this.fieldsDataArray.push(result.data);
@@ -91,7 +90,6 @@ export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccesso
   }
 
   duplicateField(fieldDefinitions): void {
-    console.log(this.fieldDefinition.subFieldDefinitions);
     this.openFormModal(fieldDefinitions).then(result => {
       if ( result.status === 'success') {
         this.fieldsDataArray.push(result.data);

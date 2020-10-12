@@ -63,7 +63,7 @@ export class OcDynamicArrayItemComponent implements OnInit {
   }
 
   updateFieldsDefinitions() {
-    const newFields = [...this.subFieldDefinition];
+    const newFields = JSON.parse(JSON.stringify(this.subFieldDefinition));
     return newFields.map((field) => {
       field.defaultValue = this.formFieldsData[field.id];
       return field;
