@@ -76,6 +76,7 @@ import {AppIconsModule} from './app-icons.module';
 import {OcColorComponent} from './oc-color/oc-color.component';
 import {ColorPickerModule} from 'ngx-color-picker';
 import { OcDatetimePickerComponent } from './oc-datetime-picker/oc-datetime-picker.component';
+import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select-list.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -141,6 +142,7 @@ import { OcDatetimePickerComponent } from './oc-datetime-picker/oc-datetime-pick
     OcVideoUrlComponent,
     OcColorComponent,
     OcDatetimePickerComponent,
+    OcMultiSelectListComponent,
   ],
 
   imports: [
@@ -208,7 +210,8 @@ import { OcDatetimePickerComponent } from './oc-datetime-picker/oc-datetime-pick
     OcFormComponent,
     OcTagsComponent,
     OcColorComponent,
-    OcVideoUrlComponent
+    OcVideoUrlComponent,
+    OcMultiSelectListComponent
   ],
   providers: [
     NgbActiveModal,

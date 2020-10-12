@@ -129,6 +129,17 @@ export class OcFormComponent implements OnInit {
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue);
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
             break;
+          case 'multiselectList':
+            if (inputTemplate?.attributes.maxCount && inputTemplate?.attributes.maxCount < 2) {
+              group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+                inputTemplate?.defaultValue : ['item1']);
+            } else {
+              group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue
+              && inputTemplate?.defaultValue.length > 0 ?
+                inputTemplate?.defaultValue : ['item1', 'item2']);
+            }
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, { isMultiSelectList: true});
+            break;
           default:
             break;
         }
@@ -142,7 +153,7 @@ export class OcFormComponent implements OnInit {
    */
   setValidators(control: AbstractControl, attributes,
                 additional?: {isCheckbox?: boolean, isEmail?: boolean, isUrl?: boolean,
-                  isColor?: boolean}): void {
+                  isColor?: boolean, isMultiSelectList?: boolean}): void {
     const validators: ValidatorFn [] = [];
     Object.keys(attributes).forEach(key => {
       switch (key) {
@@ -167,12 +178,14 @@ export class OcFormComponent implements OnInit {
           break;
         case 'minCount':
           if (attributes.minCount) {
-            validators.push(this.validatorMinLengthArray(attributes.minCount));
+            validators.push(this.validatorMinLengthArray(attributes.minCount, additional ?
+              additional.isMultiSelectList : false));
           }
           break;
         case 'maxCount':
           if (attributes.maxCount) {
-            validators.push(this.validatorMaxLengthArray(attributes.maxCount));
+            validators.push(this.validatorMaxLengthArray(attributes.maxCount, additional ?
+              additional.isMultiSelectList : false));
           }
           break;
         case 'min':
@@ -220,28 +233,44 @@ export class OcFormComponent implements OnInit {
   /**
    * Return 'minLength' validation error, when array length < min.
    */
-  validatorMinLengthArray(min: number) {
+  validatorMinLengthArray(min: number, showLengthErrorText?: boolean) {
     return (c: AbstractControl): { [key: string]: any } => {
       if (c.value?.length >= min) {
         return null;
       } else {
-        return {
-          minCount: true
-        };
+        if (showLengthErrorText) {
+          return {
+            minElementsCount: {
+              requiredCount: min
+            }
+          };
+        } else {
+          return {
+            minCount: true
+          };
+        }
       }
     };
   }
   /**
    * Return 'maxLength' validation error, when array length > max.
    */
-  validatorMaxLengthArray(max: number) {
+  validatorMaxLengthArray(max: number, showLengthErrorText?: boolean) {
     return (c: AbstractControl): { [key: string]: any } => {
       if (c.value?.length <= max) {
         return null;
       } else {
-        return {
-          maxCount: true
-        };
+        if (showLengthErrorText) {
+          return {
+            maxElementsCount: {
+              requiredCount: max
+            }
+          };
+        } else {
+          return {
+            maxCount: true
+          };
+        }
       }
     };
   }
