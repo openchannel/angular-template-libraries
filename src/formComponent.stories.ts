@@ -495,7 +495,7 @@ FormWithMultiSelect.args = {
 
 export const FormWithDynamicFieldArray = FormGroupComponent.bind({});
 
-FormWithMultiSelect.args = {
+FormWithDynamicFieldArray.args = {
   formJsonData: {
     formId: 'test',
     name: 'test',
