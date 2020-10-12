@@ -346,3 +346,33 @@ FormWithNumberTags.args = {
     ]
   }
 };
+
+export const FormWithMultiSelect = FormGroupComponent.bind({});
+
+FormWithMultiSelect.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        attributes:	{
+          required:	true,
+          maxCount:	3,
+          minCount:	2
+        },
+        options: ['One', 'Two', 'Three', 'Five'],
+        category:	'CUSTOM',
+        defaultValue:	[],
+        description:	null,
+        id:	'multi-select-test',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Multi Select test',
+        placeholder:	null,
+        type:	'multiselectList'
+      }
+    ]
+  }
+};
