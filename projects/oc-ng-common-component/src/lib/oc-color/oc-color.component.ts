@@ -1,52 +1,51 @@
-import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'oc-checkbox',
-  templateUrl: './oc-checkbox.component.html',
-  styleUrls: ['./oc-checkbox.component.scss'],
+  selector: 'oc-color',
+  templateUrl: './oc-color.component.html',
+  styleUrls: ['./oc-color.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => OcCheckboxComponent),
+    useExisting: forwardRef(() => OcColorComponent),
     multi: true
   }]
 })
-export class OcCheckboxComponent implements OnInit, ControlValueAccessor {
+export class OcColorComponent implements OnInit, ControlValueAccessor {
 
-  /** Text near checkbox */
-  @Input() labelText: string;
-  /** Set 'required' indicator near the label */
-  @Input() requiredIndicator: boolean = false;
-  /** Disable checkbox */
+  /** Set 'disable' state for color input */
   @Input() disabled: boolean = false;
-  /** Set checkbox status value */
-  @Input() set isChecked(value) {
-    this.checked = value;
+  /** Placeholder text for input */
+  @Input() placeholder: string = '';
+  /** Set position for the color picker. Default: 'bottom-left' */
+  @Input() colorPickerPosition: 'auto' | 'top' | 'bottom' | 'left' | 'right' |
+  'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' = 'bottom-left';
+  @Input()
+  set value(val) {
+    this.colorValue = val;
+    this.onChange(this.colorValue);
   }
-  /**
-   * Output event with checkbox state.
-   * Use it when a checkbox isn't a part of the form
-   */
-  @Output() isCheckedChange = new EventEmitter<any>();
-  /** Checkbox state value. Can be true or false */
-  public checked: boolean = false;
+  /** Chosen color value */
+  public colorValue: string;
+  /** Toggle Open or Close of the color picker dialog */
+  public toggleDialog: boolean = false;
 
   private onTouched = () => {};
   private onChange: (value: any) => void = () => {};
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }
-
-  changeModelVal(event): void {
-    this.onTouched();
-    this.onChange(this.checked);
-    this.isCheckedChange.emit(this.checked);
+  /**
+   * Sending data to the formControl when
+   * color is chosen
+   */
+  onValueChange(): void {
+   this.onChange(this.colorValue);
   }
   /**
-   * Register touch/focus action
+   * Register touch action
    */
   onFocus(): void {
     this.onTouched();
@@ -79,6 +78,6 @@ export class OcCheckboxComponent implements OnInit, ControlValueAccessor {
    * as well as to set the initial value.
    */
   writeValue(obj: any): void {
-    this.checked = obj;
+    this.colorValue = obj;
   }
 }

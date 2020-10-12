@@ -30,9 +30,10 @@ storiesOf('Input', module)
 
 })).add('Checkbox', () => ({
   component: OcCheckboxComponent,
-  // props: {
-  //     text: "Name"
-  // }
+  props: {
+    labelText: 'Custom Checkbox',
+    requiredIndicator: true
+  }
 })).add('Text search', () => ({
   component: OcTextSearhComponent,
   // props: {

@@ -40,6 +40,9 @@ export * from './lib/oc-rich-text-editor/oc-rich-text-editor.component';
 export * from  './lib/oc-form/oc-form.component';
 export * from './lib/oc-tags/oc-tags.component';
 export * from './lib/oc-dropbox/oc-dropbox.component';
+export * from './lib/oc-color/oc-color.component';
+export * from './lib/oc-video-url/oc-video-url.component';
+export * from './lib/oc-multi-select-list/oc-multi-select-list.component';
 export * from './lib/oc-dynamic-field-array/oc-dynamic-field-array.component';
 
 // validators

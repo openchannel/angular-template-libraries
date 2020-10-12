@@ -13,6 +13,8 @@ export class OcErrorComponent implements OnInit {
     required: () => 'Please fill out this field',
     minlength: (params) => 'The min number of characters is ' + params.requiredLength,
     maxlength: (params) => 'The max allowed number of characters is ' + params.requiredLength,
+    minCount: () => '',
+    maxCount: () => '',
     minElementsCount: (params) => 'The min elements count is ' + params.requiredCount,
     maxElementsCount: (params) => 'The max elements count is ' + params.requiredCount,
     pattern: (params) => 'The required pattern is: ' + params.requiredPattern,
@@ -21,7 +23,7 @@ export class OcErrorComponent implements OnInit {
     uniqueName: (params) => params.message,
     telephoneNumbers: (params) => params.message,
     telephoneNumber: (params) => params.errorMessages,
-    emailValidator: () => 'Email seems to be invalid',
+    email: () => 'Email seems to be invalid',
     websiteValidator: () => 'Please enter a valid URL',
     appImageFileValidator: () => 'Please provide valid png/jpg/jpeg/gif image file',
     appExpiredDateValidator: () => 'Please fill valid current or future date',
@@ -29,7 +31,12 @@ export class OcErrorComponent implements OnInit {
     domainValidator: () => 'Please enter a valid domain',
     phoneNumberValidator: (params) => params.message,
     confirmPassword: () => 'Confirm password does not match to new password',
-    serverErrorValidator: (params) => params.message
+    serverErrorValidator: (params) => params.message,
+    min: (params) => 'The minimum possible value is ' + params.min,
+    max: (params) => 'The maximum possible value is ' + params.max,
+    colorValidator: () => 'Please enter a valid Color value.',
+    booleanTagsValidator: (params) => params.fieldTitle + ' can only contain boolean values (\'true\' or \'false\')',
+    numberTagsValidator: (params) => params.fieldTitle + ' can only contain numeric values'
   };
 
   @Input()

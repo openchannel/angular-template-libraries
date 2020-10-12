@@ -82,6 +82,12 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
      * Default: unlimited.
      */
     @Input() maxTagLength: number = null;
+    /**
+     * Set type of tags values.
+     * Can be 'string', 'boolean' or 'number'
+     * Default: 'string'
+     */
+    @Input() tagsType: 'string' | 'boolean' | 'number' = 'string';
 
     @Input()
     set value(val) {
@@ -99,8 +105,9 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
 
     /** current error message */
     error: {
-        field: 'minlength' | 'maxlength' | 'minElementsCount' | 'maxElementsCount',
-        params: { requiredLength: number } | { requiredCount: number }
+        field: 'minlength' | 'maxlength' | 'minElementsCount' | 'maxElementsCount'
+          | 'booleanTagsValidator' | 'numberTagsValidator',
+        params: { requiredLength?: number } | { requiredCount?: number } | { fieldTitle?: string }
     };
 
     /** tags for showing in the drop box */
@@ -111,6 +118,8 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
 
     /** correct result tags */
     validResult = false;
+
+    private acceptableBooleanTags: string [] = ['true', 'false'];
 
     private onTouched = () => {};
     private onChange: (value: any) => void = () => {};
@@ -130,6 +139,10 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         this.defaultTags.forEach(tag => this.addTagToResultList(tag, true));
     }
 
+    checkForBooleanType(tag): boolean {
+        return this.acceptableBooleanTags.includes(tag);
+    }
+
     addCurrentTagToResultList(): void {
         this.error = null;
         if (this.addTagToResultList(this.currentTag, false)) {
@@ -141,15 +154,40 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         this.error = null;
 
         if (tag) {
-            const tagNormalized = tag.trim();
+            let tagNormalized;
+            if (this.tagsType === 'number') {
+                tagNormalized = tag;
+            } else {
+                tagNormalized = tag.trim();
+            }
             if (!skipErrorChecks && !this.isTagLengthValid(tagNormalized)) {
                 this.showTagLengthErrorMessage(tagNormalized);
                 return false;
             } else if (!this.existTagInResultList(tagNormalized)) {
-                this.resultTags = [...this.resultTags, tagNormalized];
-                // this.resultTags.push(tagNormalized);
-                this.updateComponentData();
-                return true;
+                switch (this.tagsType) {
+                    case 'boolean':
+                        if (this.checkForBooleanType(tagNormalized)) {
+                            this.resultTags = [...this.resultTags, tagNormalized];
+                            this.updateComponentData();
+                            return true;
+                        } else {
+                            this.error = {field: 'booleanTagsValidator', params: {fieldTitle: this.title}};
+                            return false;
+                        }
+                    case 'number':
+                        if (!isNaN(Number(tagNormalized))) {
+                            this.resultTags = [...this.resultTags, Number(tagNormalized)];
+                            this.updateComponentData();
+                            return true;
+                        } else {
+                            this.error = {field: 'numberTagsValidator', params: {fieldTitle: this.title}};
+                        }
+                        break;
+                    default:
+                        this.resultTags = [...this.resultTags, tagNormalized];
+                        this.updateComponentData();
+                        return true;
+                }
             }
         }
 
@@ -169,8 +207,13 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
     }
 
     existTagInResultList(currentTag: string): boolean {
-        const tagNormalized = currentTag.toLowerCase();
-        return this.resultTags.filter(t => tagNormalized === t.toLowerCase()).length > 0;
+        if (this.tagsType === 'number') {
+            const tag = Number(currentTag);
+            return this.resultTags.filter(t => tag === t).length > 0;
+        } else {
+            const tagNormalized = currentTag.toLowerCase();
+            return this.resultTags.filter(t => tagNormalized === t.toLowerCase()).length > 0;
+        }
     }
 
     isTagLengthValid(tag: string): boolean {
@@ -193,7 +236,7 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         if (this.minTagLength && tagLength < this.minTagLength) {
             this.error = {field: 'minlength', params: {requiredLength: this.minTagLength}};
         }
-        //todo string interpolation
+        // todo string interpolation
         if (this.maxTagLength && this.maxTagLength < tagLength) {
             this.error = {field: 'maxlength', params: {requiredLength: this.maxTagLength}};
         }
@@ -201,10 +244,10 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
 
     createErrorMessageByCountTagsIfNeed(): void {
         const countTags = this.resultTags.length;
-        if (this.minTagsCount && countTags < this.minTagsCount) {
+        if (this.minTagsCount && (countTags < this.minTagsCount)) {
             this.error = {field: 'minElementsCount', params: {requiredCount: this.minTagsCount}};
         }
-        if (this.maxTagsCount && countTags > this.maxTagsCount) {
+        if (this.maxTagsCount && (countTags > this.maxTagsCount)) {
             this.error = {field: 'maxElementsCount', params: {requiredCount: this.maxTagsCount}};
         }
     }
@@ -250,7 +293,11 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
      */
     writeValue(obj: any): void {
         if (obj && obj.length > 0) {
-            this.resultTags = obj.filter(tag => tag && tag.trim().length > 0);
+            if (this.tagsType === 'number') {
+                this.resultTags = obj;
+            } else {
+                this.resultTags = obj.filter(tag => tag && tag.trim().length > 0);
+            }
         } else {
             this.resultTags = [];
         }

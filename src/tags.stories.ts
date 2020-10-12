@@ -51,13 +51,47 @@ CustomTags.args = {
     placeHolderDropBoxName: 'Select MyTag',
     availableTags: ['1', '2', '3', '4', '5', '6', '7', 'default', 'default_second'],
     defaultTags: ['default', 'default_second'],
-    minCountTags: 2,
-    maxCountTags: 3,
+    minTagsCount: 2,
+    maxTagsCount: 3,
     ignoreCase: true,
     minTagLength: 3,
     maxTagLength: 30,
 };
 
 
+export const BooleanTags = TagsComponent.bind({});
 
+BooleanTags.args = {
+    title: 'Test Boolean Tags',
+    required: true,
+    description: null,
+    placeHolderInputName: null,
+    placeHolderDropBoxName: 'Select Boolean Tags',
+    availableTags: ['true', 'false'],
+    defaultTags: [],
+    minTagsCount: 1,
+    maxTagsCount: null,
+    ignoreCase: true,
+    minTagLength: null,
+    maxTagLength: null,
+    tagsType: 'boolean'
+};
+
+export const NumberTags = TagsComponent.bind({});
+
+NumberTags.args = {
+    title: 'Test number tags',
+    required: true,
+    description: null,
+    placeHolderInputName: 'Add new number tags',
+    placeHolderDropBoxName: 'Select Number Tags',
+    availableTags: ['1', '3', '45'],
+    defaultTags: [45],
+    minTagsCount: 1,
+    maxTagsCount: 2,
+    ignoreCase: true,
+    minTagLength: null,
+    maxTagLength: null,
+    tagsType: 'number'
+};
 
