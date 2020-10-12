@@ -142,7 +142,12 @@ export class OcFormComponent implements OnInit {
               && inputTemplate?.defaultValue.length > 0 ?
                 inputTemplate?.defaultValue : ['item1', 'item2']);
             }
-            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, { isMultiSelectList: true});
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, { isList: true});
+            break;
+          case 'dynamicFieldArray':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : []);
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, { isList: true});
             break;
           default:
             break;
@@ -157,7 +162,7 @@ export class OcFormComponent implements OnInit {
    */
   setValidators(control: AbstractControl, attributes,
                 additional?: {isCheckbox?: boolean, isEmail?: boolean, isUrl?: boolean,
-                  isColor?: boolean, isMultiSelectList?: boolean}): void {
+                  isColor?: boolean, isList?: boolean}): void {
     const validators: ValidatorFn [] = [];
     Object.keys(attributes).forEach(key => {
       switch (key) {
@@ -183,13 +188,13 @@ export class OcFormComponent implements OnInit {
         case 'minCount':
           if (attributes.minCount) {
             validators.push(this.validatorMinLengthArray(attributes.minCount, additional ?
-              additional.isMultiSelectList : false));
+              additional.isList : false));
           }
           break;
         case 'maxCount':
           if (attributes.maxCount) {
             validators.push(this.validatorMaxLengthArray(attributes.maxCount, additional ?
-              additional.isMultiSelectList : false));
+              additional.isList : false));
           }
           break;
         case 'min':
@@ -324,6 +329,7 @@ export class OcFormComponent implements OnInit {
         delete formData[key];
       }
     });
+    console.log(formData);
     this.formSubmitted.emit(formData);
   }
 
