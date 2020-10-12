@@ -317,6 +317,36 @@ FormWithBooleanTags.args = {
   }
 };
 
+export const FormWithNumberTags = FormGroupComponent.bind({});
+
+FormWithNumberTags.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        attributes:	{
+          required:	true,
+          maxCount:	2,
+          minCount:	1
+        },
+        options: ['1', '3', '45'],
+        category:	'CUSTOM',
+        defaultValue:	[],
+        description:	null,
+        id:	'test-number-tags',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test number tags',
+        placeholder:	null,
+        type:	'numberTags'
+      }
+    ]
+  }
+};
+
 export const FormWithDateAndDateTime = FormGroupComponent.bind({});
 
 FormWithDateAndDateTime.args = {

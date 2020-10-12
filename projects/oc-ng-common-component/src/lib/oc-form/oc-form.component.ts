@@ -64,7 +64,8 @@ export class OcFormComponent implements OnInit {
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
             break;
           case 'tags':
-            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue
+            && inputTemplate?.defaultValue.length > 0 ?
               inputTemplate?.defaultValue : []);
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
             break;
@@ -106,6 +107,18 @@ export class OcFormComponent implements OnInit {
               inputTemplate?.defaultValue : ['true', 'false']);
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
             break;
+          case 'numberTags':
+            if (inputTemplate?.attributes.maxCount) {
+              group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+                inputTemplate?.defaultValue : []);
+              group[inputTemplate?.id].setValue(this.fillArrayForNumberTags(inputTemplate?.attributes.maxCount));
+            } else {
+              group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue
+              && inputTemplate?.defaultValue.length > 0 ?
+                inputTemplate?.defaultValue : [1, 2, 3]);
+            }
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
+            break;
           case 'videoUrl':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
               inputTemplate?.defaultValue : 'https://my.website.com');
@@ -128,7 +141,8 @@ export class OcFormComponent implements OnInit {
    * Setting validators array to the chosen control
    */
   setValidators(control: AbstractControl, attributes,
-                additional?: {isCheckbox?: boolean, isEmail?: boolean, isUrl?: boolean, isColor?: boolean}): void {
+                additional?: {isCheckbox?: boolean, isEmail?: boolean, isUrl?: boolean,
+                  isColor?: boolean}): void {
     const validators: ValidatorFn [] = [];
     Object.keys(attributes).forEach(key => {
       switch (key) {
@@ -158,7 +172,7 @@ export class OcFormComponent implements OnInit {
           break;
         case 'maxCount':
           if (attributes.maxCount) {
-            validators.push(Validators.maxLength(attributes.maxCount));
+            validators.push(this.validatorMaxLengthArray(attributes.maxCount));
           }
           break;
         case 'min':
@@ -192,6 +206,18 @@ export class OcFormComponent implements OnInit {
   }
 
   /**
+   * Creation of the number filled array
+   * for 'numberTags' component type
+   * @param maxCount max count of the tags
+   */
+  fillArrayForNumberTags(maxCount): number [] {
+    const resultArr: number [] = [];
+    for (let i = 0; i < maxCount; i++) {
+      resultArr.push(i + 1);
+    }
+    return  resultArr;
+  }
+  /**
    * Return 'minLength' validation error, when array length < min.
    */
   validatorMinLengthArray(min: number) {
@@ -200,7 +226,21 @@ export class OcFormComponent implements OnInit {
         return null;
       } else {
         return {
-          minLength: {valid: false}
+          minCount: true
+        };
+      }
+    };
+  }
+  /**
+   * Return 'maxLength' validation error, when array length > max.
+   */
+  validatorMaxLengthArray(max: number) {
+    return (c: AbstractControl): { [key: string]: any } => {
+      if (c.value?.length <= max) {
+        return null;
+      } else {
+        return {
+          maxCount: true
         };
       }
     };

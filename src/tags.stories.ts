@@ -77,3 +77,21 @@ BooleanTags.args = {
     tagsType: 'boolean'
 };
 
+export const NumberTags = TagsComponent.bind({});
+
+NumberTags.args = {
+    title: 'Test number tags',
+    required: true,
+    description: null,
+    placeHolderInputName: 'Add new number tags',
+    placeHolderDropBoxName: 'Select Number Tags',
+    availableTags: ['1', '3', '45'],
+    defaultTags: [45],
+    minTagsCount: 1,
+    maxTagsCount: 2,
+    ignoreCase: true,
+    minTagLength: null,
+    maxTagLength: null,
+    tagsType: 'number'
+};
+

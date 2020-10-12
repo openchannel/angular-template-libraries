@@ -105,8 +105,9 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
 
     /** current error message */
     error: {
-        field: 'minlength' | 'maxlength' | 'minElementsCount' | 'maxElementsCount' | 'booleanTagsValidator',
-        params: { requiredLength?: number } | { requiredCount?: number }
+        field: 'minlength' | 'maxlength' | 'minElementsCount' | 'maxElementsCount'
+          | 'booleanTagsValidator' | 'numberTagsValidator',
+        params: { requiredLength?: number } | { requiredCount?: number } | { fieldTitle?: string }
     };
 
     /** tags for showing in the drop box */
@@ -153,7 +154,12 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         this.error = null;
 
         if (tag) {
-            const tagNormalized = tag.trim();
+            let tagNormalized;
+            if (this.tagsType === 'number') {
+                tagNormalized = tag;
+            } else {
+                tagNormalized = tag.trim();
+            }
             if (!skipErrorChecks && !this.isTagLengthValid(tagNormalized)) {
                 this.showTagLengthErrorMessage(tagNormalized);
                 return false;
@@ -162,16 +168,23 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
                     case 'boolean':
                         if (this.checkForBooleanType(tagNormalized)) {
                             this.resultTags = [...this.resultTags, tagNormalized];
-                            // this.resultTags.push(tagNormalized);
                             this.updateComponentData();
                             return true;
                         } else {
-                            this.error = {field: 'booleanTagsValidator', params: {}};
+                            this.error = {field: 'booleanTagsValidator', params: {fieldTitle: this.title}};
                             return false;
                         }
+                    case 'number':
+                        if (!isNaN(Number(tagNormalized))) {
+                            this.resultTags = [...this.resultTags, Number(tagNormalized)];
+                            this.updateComponentData();
+                            return true;
+                        } else {
+                            this.error = {field: 'numberTagsValidator', params: {fieldTitle: this.title}};
+                        }
+                        break;
                     default:
                         this.resultTags = [...this.resultTags, tagNormalized];
-                        // this.resultTags.push(tagNormalized);
                         this.updateComponentData();
                         return true;
                 }
@@ -194,8 +207,13 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
     }
 
     existTagInResultList(currentTag: string): boolean {
-        const tagNormalized = currentTag.toLowerCase();
-        return this.resultTags.filter(t => tagNormalized === t.toLowerCase()).length > 0;
+        if (this.tagsType === 'number') {
+            const tag = Number(currentTag);
+            return this.resultTags.filter(t => tag === t).length > 0;
+        } else {
+            const tagNormalized = currentTag.toLowerCase();
+            return this.resultTags.filter(t => tagNormalized === t.toLowerCase()).length > 0;
+        }
     }
 
     isTagLengthValid(tag: string): boolean {
@@ -275,7 +293,11 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
      */
     writeValue(obj: any): void {
         if (obj && obj.length > 0) {
-            this.resultTags = obj.filter(tag => tag && tag.trim().length > 0);
+            if (this.tagsType === 'number') {
+                this.resultTags = obj;
+            } else {
+                this.resultTags = obj.filter(tag => tag && tag.trim().length > 0);
+            }
         } else {
             this.resultTags = [];
         }
