@@ -492,3 +492,66 @@ FormWithMultiSelect.args = {
     ]
   }
 };
+
+export const FormWithDynamicFieldArray = FormGroupComponent.bind({});
+
+FormWithMultiSelect.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        attributes: {
+          maxCount: null,
+          minCount: null,
+          ordering: 'append',
+          required:	null,
+          rowLabel:	null
+        },
+        required: null,
+        rowLabel: null,
+        category: 'CUSTOM',
+        defaultValue: null,
+        description: '',
+        id: 'test-dynamic-field-array',
+        isOpen: false,
+        isValid: true,
+        label: 'Test Dynamic field array',
+        placeholder: null,
+        subFieldDefinitions: [
+          {
+            attributes: {
+              maxChars: null,
+              minChars: null,
+              required: null
+            },
+            category: 'CUSTOM',
+            defaultValue: null,
+            description: 'some description',
+            id: 'field1',
+            isOpen: false,
+            isValid: true,
+            label: 'field1',
+            placeholder: 'write some text',
+            type: 'text'
+          },
+          {
+            id:	'long-text-example',
+            label: 'Long Text Example',
+            type:	'longText',
+            placeholder: 'Write your text here...',
+            category: 'CUSTOM',
+            defaultValue: null,
+            attributes: {
+              maxChars:	200,
+              required:	null,
+              minChars:	2
+            },
+          }
+        ],
+        type: 'dynamicFieldArray'
+      }
+    ]
+  }
+};
