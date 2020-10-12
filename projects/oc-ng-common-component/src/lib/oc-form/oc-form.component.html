@@ -117,6 +117,23 @@
                 tagsType="boolean"></oc-tags>
         <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
+      <div *ngSwitchCase="'date'" class="mt-2 mb-2">
+        <oc-label [text]="formElement?.label" class="mb-1" [required]="formElement?.attributes?.required">
+        </oc-label>
+        <oc-datetime-picker
+                formControlName="{{formElement?.id}}"
+                [type]="formElement?.type"
+                [settings]="{format: 'dd/MM/yyyy'}"></oc-datetime-picker>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
+      </div>
+      <div *ngSwitchCase="'datetime'" class="mt-2 mb-2">
+        <oc-label [text]="formElement?.label" class="mb-1" [required]="formElement?.attributes?.required">
+        </oc-label>
+        <oc-datetime-picker
+                formControlName="{{formElement?.id}}"
+                [type]="formElement?.type"></oc-datetime-picker>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
+      </div>
     </div>
   </ng-container>
     <oc-button *ngIf="showButton"

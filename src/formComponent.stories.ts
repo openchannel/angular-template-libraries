@@ -316,3 +316,45 @@ FormWithBooleanTags.args = {
     ]
   }
 };
+
+export const FormWithDateAndDateTime = FormGroupComponent.bind({});
+
+FormWithDateAndDateTime.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        attributes:	{
+          required:	true,
+        },
+        category:	'CUSTOM',
+        defaultValue:	null,
+        description:	null,
+        id:	'test-date-picker',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test Date picker',
+        placeholder:	null,
+        type:	'date'
+      },
+      {
+        attributes:	{
+          required:	true,
+        },
+        category:	'CUSTOM',
+        defaultValue:	1602489693553,
+        description:	null,
+        id:	'test-datetime-picker',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test date-time picker',
+        placeholder:	null,
+        type:	'datetime'
+      }
+    ]
+  }
+};
