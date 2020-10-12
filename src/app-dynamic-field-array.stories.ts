@@ -21,14 +21,74 @@ const DynamicFieldsArrayComponent = (args: OcDynamicFieldArrayComponent) => ({
   props: args
 });
 
-export const DynamicFieldsArrayComponentSimpleForm = DynamicFieldsArrayComponent.bind({});
+export const DynamicFieldsArrayComponentAppendOrdering = DynamicFieldsArrayComponent.bind({});
 
-DynamicFieldsArrayComponentSimpleForm.args = {
+DynamicFieldsArrayComponentAppendOrdering.args = {
   fieldDefinition: {
     attributes:    {
       maxCount: null,
       minCount: null,
-      ordering: 'append'
+      ordering: 'append',
+      required:	null,
+      rowLabel:	'field1'
+    },
+    required: null,
+    rowLabel: null,
+    category: 'CUSTOM',
+    defaultValue: null,
+    description: '',
+    id: 'test-dynamic-field-array',
+    isOpen: false,
+    isValid: true,
+    label: 'Test Dynamic field array',
+    placeholder: null,
+    subFieldDefinitions:   [
+      {
+        attributes: {
+          maxChars: null,
+          minChars: null,
+          required: null
+        },
+        category: 'CUSTOM',
+        defaultValue: null,
+        description: 'some description',
+        id: 'field1',
+        isOpen: false,
+        isValid: true,
+        label: 'field1',
+        placeholder: 'write some text',
+        type: 'text'
+      },
+      {
+        id:	'long-text-example',
+        label: 'Long Text Example',
+        type:	'longText',
+        placeholder: 'Write your text here...',
+        category: 'CUSTOM',
+        defaultValue: null,
+        attributes: {
+          maxChars:	200,
+          required:	null,
+          minChars:	2
+        },
+      }
+    ],
+    type: 'dynamicFieldArray'
+  },
+  maxCount: 3,
+  required: true
+};
+
+export const DynamicFieldsArrayComponentPrependOrdering = DynamicFieldsArrayComponent.bind({});
+
+DynamicFieldsArrayComponentPrependOrdering.args = {
+  fieldDefinition: {
+    attributes:    {
+      maxCount: null,
+      minCount: null,
+      ordering: 'prepend',
+      required:	null,
+      rowLabel:	'field1'
     },
     required: null,
     rowLabel: null,

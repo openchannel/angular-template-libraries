@@ -329,7 +329,6 @@ export class OcFormComponent implements OnInit {
         delete formData[key];
       }
     });
-    console.log(formData);
     this.formSubmitted.emit(formData);
   }
 
