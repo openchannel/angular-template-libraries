@@ -30,7 +30,8 @@
         </button>
       </div>
       <div class="col-md-8 pl-0 order-md-1" (click)="changeDetailStatus()">
-        <span>Item {{index + 1}}</span>
+        <span *ngIf="!fieldLabelId">Item {{index + 1}}</span>
+        <span *ngIf="fieldLabelId">{{formFieldsData[fieldLabelId]}}</span>
       </div>
     </div>
     <section class="mt-2" *ngIf="showDetail">

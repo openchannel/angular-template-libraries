@@ -21,7 +21,12 @@ export class OcDynamicArrayItemComponent implements OnInit {
   @Input() index: number = 0;
   /** data from form fields */
   @Input() formFieldsData: any;
-
+  /**
+   * ID of the form field which data
+   * will be set for array item label.
+   * Default: empty
+   */
+  @Input() fieldLabelId: string = '';
   /** Info about field deletion with field id */
   @Output() deleteField: EventEmitter<boolean> = new EventEmitter<boolean>();
   /** Info about field copy with subFieldDefinition data */

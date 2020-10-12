@@ -3,6 +3,7 @@
     <oc-dynamic-array-item
             [subFields]="fieldDefinition?.subFieldDefinitions"
             [index]="i"
+            [fieldLabelId]="fieldDefinition?.attributes.rowLabel ? fieldDefinition?.attributes.rowLabel : ''"
             [formFieldsData]="fieldsDataArray[i]"
             (sendFieldData)="getNewItemFieldsData($event, i)"
             (deleteField)="deleteDynamicItem($event, i)"
