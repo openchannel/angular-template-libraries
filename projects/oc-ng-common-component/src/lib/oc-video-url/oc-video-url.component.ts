@@ -1,5 +1,5 @@
-import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {ControlValueAccessor} from '@angular/forms';
+import {Component, forwardRef, Input, OnDestroy, OnInit} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {FileUploadDownloadService} from 'oc-ng-common-service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
@@ -7,7 +7,12 @@ import {Subject} from 'rxjs';
 @Component({
   selector: 'oc-video-url',
   templateUrl: './oc-video-url.component.html',
-  styleUrls: ['./oc-video-url.component.scss']
+  styleUrls: ['./oc-video-url.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => OcVideoUrlComponent),
+    multi: true
+  }],
 })
 export class OcVideoUrlComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
@@ -28,6 +33,7 @@ export class OcVideoUrlComponent implements OnInit, OnDestroy, ControlValueAcces
   set value(val) {
     this.videoUrl = val;
     this.onChange(this.videoUrl);
+    this.verifyVideoUrl();
   }
 
   public videoUrl: string;
@@ -39,8 +45,6 @@ export class OcVideoUrlComponent implements OnInit, OnDestroy, ControlValueAcces
 
   previewData: string;
 
-  private videoUrlRegexp = /((?:https?\:\/\/|www\.)(?:[-a-z0-9]+\.)*[-a-z0-9]+.*)/i;
-
   private destroy$: Subject<any> = new Subject<any>();
 
   private onTouched = () => {};
@@ -51,9 +55,6 @@ export class OcVideoUrlComponent implements OnInit, OnDestroy, ControlValueAcces
   }
 
   ngOnInit(): void {
-    if(this.videoUrl) {
-      this.verifyVideoUrl();
-    }
   }
 
   ngOnDestroy(): void {
@@ -61,11 +62,17 @@ export class OcVideoUrlComponent implements OnInit, OnDestroy, ControlValueAcces
     this.destroy$.complete();
   }
 
-  verifyVideoUrl(): void {
+  emitChanges(): void {
     this.onChange(this.videoUrl);
+    this.verifyVideoUrl();
+  }
+
+  verifyVideoUrl(): void {
     this.previewData = '';
 
-    this.isValidUrl = this.videoUrlRegexp.test(this.videoUrl);
+    const reg = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm);
+    this.isValidUrl = reg.test(this.videoUrl);
+    console.log(this.isValidUrl);
 
     if (this.isValidUrl) {
       this.showVideoLoader = true;
@@ -131,5 +138,6 @@ export class OcVideoUrlComponent implements OnInit, OnDestroy, ControlValueAcces
    */
   writeValue(obj: any): void {
     this.videoUrl = obj;
+    this.verifyVideoUrl();
   }
 }

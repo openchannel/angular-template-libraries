@@ -124,6 +124,11 @@ export class OcFormComponent implements OnInit {
               inputTemplate?.defaultValue : 'https://my.website.com');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isUrl: true});
             break;
+          case 'date':
+          case 'datetime':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue);
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
+            break;
           default:
             break;
         }

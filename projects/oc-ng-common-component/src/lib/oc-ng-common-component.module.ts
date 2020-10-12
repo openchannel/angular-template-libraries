@@ -75,6 +75,7 @@ import { OcVideoUrlComponent } from './oc-video-url/oc-video-url.component';
 import {AppIconsModule} from './app-icons.module';
 import {OcColorComponent} from './oc-color/oc-color.component';
 import {ColorPickerModule} from 'ngx-color-picker';
+import { OcDatetimePickerComponent } from './oc-datetime-picker/oc-datetime-picker.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -139,6 +140,7 @@ import {ColorPickerModule} from 'ngx-color-picker';
     OnlyNumberDirective,
     OcVideoUrlComponent,
     OcColorComponent,
+    OcDatetimePickerComponent,
   ],
 
   imports: [
@@ -151,7 +153,7 @@ import {ColorPickerModule} from 'ngx-color-picker';
     FroalaViewModule.forRoot(),
     ReactiveFormsModule,
     AppIconsModule,
-    ColorPickerModule
+    ColorPickerModule,
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
