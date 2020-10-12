@@ -130,6 +130,13 @@
                 tagsType="number"></oc-tags>
         <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
+      <div *ngSwitchCase="'videoUrl'" class="mt-2 mb-2">
+        <oc-label [text]="formElement?.label" class="mb-1" [required]="formElement?.attributes?.required">
+        </oc-label>
+        <oc-video-url
+                [formControlName]="formElement?.id"></oc-video-url>
+        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
+      </div>
       <div *ngSwitchCase="'date'" class="mt-2 mb-2">
         <oc-label [text]="formElement?.label" class="mb-1" [required]="formElement?.attributes?.required">
         </oc-label>
