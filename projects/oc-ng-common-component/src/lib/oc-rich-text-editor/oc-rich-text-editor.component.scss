@@ -1,5 +1,37 @@
+@import "../../../assets/styles/theme.scss";
 
 .editor-container {
   width: 100%;
   height: auto;
+}
+//Tiny Editor style customization
+.custom-editor::ng-deep {
+  .tox-tinymce {
+    border-radius: .8rem;
+
+    .tox-editor-container {
+      .tox-editor-header {
+        .tox-toolbar-overlord {
+          .tox-toolbar__primary {
+            .tox-toolbar__group {
+              .tox-tbtn--enabled {
+                background: none;
+                svg {
+                  fill: $primary
+                }
+                &:hover {
+                  background: #f4f4f4;
+                }
+              }
+              .tox-tbtn {
+                &:hover {
+                  background: #f4f4f4;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

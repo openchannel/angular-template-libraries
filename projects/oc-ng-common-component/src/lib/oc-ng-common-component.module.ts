@@ -71,12 +71,13 @@ import {OcDropboxComponent} from './oc-dropbox/oc-dropbox.component';
 import {OcTitleComponent} from './oc-title/oc-title.component';
 import {OcFormComponent} from './oc-form/oc-form.component';
 import {OnlyNumberDirective} from './directive/only-number.directive';
-import { OcVideoUrlComponent } from './oc-video-url/oc-video-url.component';
+import {OcVideoUrlComponent} from './oc-video-url/oc-video-url.component';
 import {AppIconsModule} from './app-icons.module';
 import {OcColorComponent} from './oc-color/oc-color.component';
 import {ColorPickerModule} from 'ngx-color-picker';
-import { OcDatetimePickerComponent } from './oc-datetime-picker/oc-datetime-picker.component';
+import {OcDatetimePickerComponent} from './oc-datetime-picker/oc-datetime-picker.component';
 import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select-list.component';
+import {EditorModule} from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -156,6 +157,7 @@ import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select
     ReactiveFormsModule,
     AppIconsModule,
     ColorPickerModule,
+    EditorModule
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
