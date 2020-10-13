@@ -57,14 +57,6 @@ import {OcSellerAgreementComponent} from './oc-seller-agreement/oc-seller-agreem
 import {OcResetPasswordComponent} from './oc-reset-password/oc-reset-password.component';
 import {OcRichTextEditorComponent} from './oc-rich-text-editor/oc-rich-text-editor.component';
 import {OcTagsComponent} from './oc-tags/oc-tags.component';
-import 'froala-editor/js/plugins/char_counter.min.js';
-import 'froala-editor/js/plugins/font_size.min.js';
-import 'froala-editor/js/plugins/font_family.min.js';
-import 'froala-editor/js/plugins/align.min.js';
-import 'froala-editor/js/plugins/paragraph_format.min.js';
-import 'froala-editor/js/plugins/link.min.js';
-import 'froala-editor/js/plugins/lists.min.js';
-import 'froala-editor/js/plugins/code_view.min.js';
 import {OcTagElementComponent} from './oc-tag-element/oc-tag-element.component';
 import {OcDropboxComponent} from './oc-dropbox/oc-dropbox.component';
 import {OcTitleComponent} from './oc-title/oc-title.component';
