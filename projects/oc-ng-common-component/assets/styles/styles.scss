@@ -154,13 +154,12 @@ h6 {
 
 .card.oc-card-with-border {
   margin: auto;
-  max-width: 410px;
+  width: 412px;
   border: 1px solid $info;
   border-radius: 4px;
   margin: auto;
   .card-body {
-    padding: 40px 30px;
-    padding-bottom: 32px;
+    padding: 40px 30px 38px;
     font-size: 14px;
     line-height: 16px;
   }
@@ -205,6 +204,15 @@ h6 {
 
 .company-logo{
   width: 159px;
+  margin-bottom: 30px;
+}
+
+.invitation {
+  margin-bottom: 20px !important;
+}
+
+.sign-up__text {
+  margin-bottom: 0 !important;
 }
 
 /** buttons **/

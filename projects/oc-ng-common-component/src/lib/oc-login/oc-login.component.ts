@@ -6,13 +6,14 @@ import {SellerSignin} from 'oc-ng-common-service';
   templateUrl: './oc-login.component.html',
   styleUrls: ['./oc-login.component.scss']
 })
-export class OcLoginComponent implements OnInit {
+export class OcLoginComponent {
   @Input() loginModel = new SellerSignin();
+  @Output() loginModelChange = new EventEmitter<SellerSignin>();
 
   @Input() loginButtonText = 'Log In';
   @Input() forgotPwdUrl;
   @Input() signupUrl;
-  @Input() companyLogoUrl;
+  @Input() companyLogoUrl = './assets/img/company_logo.svg';
   @Input() process;
 
   @Output() submit = new EventEmitter<any>();
@@ -20,14 +21,8 @@ export class OcLoginComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-  }
-
-  getValue(label: string) {
-    return label;
-  }
-
   submitForm(form) {
+    this.loginModelChange.emit(this.loginModel);
     if (!form.valid) {
       form.control.markAllAsTouched();
       return;
