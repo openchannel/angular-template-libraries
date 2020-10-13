@@ -25,6 +25,14 @@
             }
           }
         },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "jestConfig": "projects/oc-ng-common-component/jest.config.js",
+            "tsConfig": "projects/oc-ng-common-component/tsconfig.spec.json",
+            "setupFile": "projects/oc-ng-common-component/src/test-setup.ts"
+          }
+        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
