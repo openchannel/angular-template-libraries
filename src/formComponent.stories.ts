@@ -492,3 +492,30 @@ FormWithMultiSelect.args = {
     ]
   }
 };
+
+export const FormWithUpdatedRichTextEditor = FormGroupComponent.bind({});
+
+FormWithUpdatedRichTextEditor.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        id: 'rich-text-editor',
+        label: 'Rich Text Editor',
+        description: '',
+        defaultValue: null,
+        type: 'richText',
+        required: null,
+        attributes: {
+          maxChars: 100,
+          required: true,
+          minChars: 10
+        },
+        options: null,
+        subFieldDefinitions: null
+      }
+    ]
+  }
+};
