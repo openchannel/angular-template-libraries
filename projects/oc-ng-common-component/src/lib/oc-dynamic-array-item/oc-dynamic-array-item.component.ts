@@ -74,4 +74,16 @@ export class OcDynamicArrayItemComponent implements OnInit {
       return field;
     });
   }
+
+  parseFieldData(fieldData): string | string [] {
+    if (Array.isArray(fieldData)) {
+      if (typeof fieldData[0] === 'object') {
+        return fieldData.map(item => JSON.stringify(item));
+      } else {
+        return fieldData.join();
+      }
+    } else {
+      return fieldData;
+    }
+  }
 }
