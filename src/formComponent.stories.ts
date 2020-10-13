@@ -59,6 +59,7 @@ export default {
   decorators: [
     moduleMetadata(modules),
   ],
+  argTypes: { formSubmitted: { action: 'Form Data' }}
 };
 
 const FormGroupComponent = (args: OcFormComponent) => ({

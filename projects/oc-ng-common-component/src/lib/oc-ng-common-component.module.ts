@@ -56,7 +56,6 @@ import {OcNumberComponent} from './oc-number/oc-number.component';
 import {OcSellerAgreementComponent} from './oc-seller-agreement/oc-seller-agreement.component';
 import {OcResetPasswordComponent} from './oc-reset-password/oc-reset-password.component';
 import {OcRichTextEditorComponent} from './oc-rich-text-editor/oc-rich-text-editor.component';
-import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
 import {OcTagsComponent} from './oc-tags/oc-tags.component';
 import 'froala-editor/js/plugins/char_counter.min.js';
 import 'froala-editor/js/plugins/font_size.min.js';
@@ -152,8 +151,6 @@ import {EditorModule} from '@tinymce/tinymce-angular';
     BrowserModule,
     FormsModule,
     ImageCropperModule,
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot(),
     ReactiveFormsModule,
     AppIconsModule,
     ColorPickerModule,
