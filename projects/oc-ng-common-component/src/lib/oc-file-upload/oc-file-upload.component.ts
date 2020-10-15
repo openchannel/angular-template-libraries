@@ -68,6 +68,12 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   @Input()
   resizeToHeight = 0;
 
+  @Input()
+  cropperMinWidth = 0;
+
+  @Input()
+  cropperMinHeight = 0;
+
   @Output()
   cancelPopup = new EventEmitter<any>();
 
