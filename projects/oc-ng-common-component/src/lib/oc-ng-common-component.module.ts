@@ -15,7 +15,7 @@ import {OcFeaturedAppsComponent} from './oc-featured-apps/oc-featured-apps.compo
 import {OcSelectComponent} from './oc-select/oc-select.component';
 import {OcBoxGridComponent} from './oc-box-grid/oc-box-grid.component';
 import {OcRatingComponent} from './oc-rating/oc-rating.component';
-import {OcTextSearhComponent} from './oc-text-searh/oc-text-searh.component';
+import {OcTextSearchComponent} from './oc-text-search/oc-text-search.component';
 import {OcForgotPasswordComponent} from './oc-forgot-password/oc-forgot-password.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {OcErrorComponent} from './oc-error/oc-error.component';
@@ -77,6 +77,7 @@ import {OcColorComponent} from './oc-color/oc-color.component';
 import {ColorPickerModule} from 'ngx-color-picker';
 import { OcDatetimePickerComponent } from './oc-datetime-picker/oc-datetime-picker.component';
 import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select-list.component';
+import {PricePipe} from "./pipe/price.pipe";
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -93,7 +94,7 @@ import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select
     OcSelectComponent,
     OcBoxGridComponent,
     OcRatingComponent,
-    OcTextSearhComponent,
+    OcTextSearchComponent,
     OcAppCategoriesComponent,
     OcForgotPasswordComponent,
     WhiteSpaceValidatorDirective,
@@ -123,6 +124,7 @@ import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select
     CamelcasePipe,
     EllipsisPipe,
     RemoveHtmlTagsPipe,
+    PricePipe,
     CompareDirective,
     OcAppStatusDetailsComponent,
     OcActivationComponent,
@@ -173,7 +175,7 @@ import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select
     OcSelectComponent,
     OcBoxGridComponent,
     OcRatingComponent,
-    OcTextSearhComponent,
+    OcTextSearchComponent,
     OcAppCategoriesComponent,
     OcForgotPasswordComponent,
     OcErrorComponent,

@@ -5,7 +5,7 @@ import {
   OcCommonLibModule,
   OcInputComponent,
   OcRadioComponent,
-  OcTextSearhComponent
+  OcTextSearchComponent
 } from 'projects/oc-ng-common-component/src/public-api';
 import {withA11y} from '@storybook/addon-a11y';
 
@@ -35,7 +35,7 @@ storiesOf('Input', module)
     requiredIndicator: true
   }
 })).add('Text search', () => ({
-  component: OcTextSearhComponent,
+  component: OcTextSearchComponent,
   // props: {
   //     text: "Name"
   // }

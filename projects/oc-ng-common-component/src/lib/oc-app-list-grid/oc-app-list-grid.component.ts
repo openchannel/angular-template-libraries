@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {BasicAppDetails} from 'oc-ng-common-service';
+import {Application} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-app-list-grid',
@@ -8,7 +8,7 @@ import {BasicAppDetails} from 'oc-ng-common-service';
 })
 export class OcAppListGridComponent implements OnInit {
 
-  @Input() appList: BasicAppDetails[] = [];
+  @Input() appList: Application[] = [];
 
   @Input() noAppMessage = '';
 
@@ -18,6 +18,7 @@ export class OcAppListGridComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.appList);
   }
 
   viewDetails(app) {

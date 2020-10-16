@@ -22,7 +22,7 @@ export * from './lib/oc-select/oc-select.component';
 export * from './lib/oc-featured-apps/oc-featured-apps.component';
 export * from './lib/oc-app-categories/oc-app-categories.component';
 export * from './lib/oc-forgot-password/oc-forgot-password.component';
-export * from './lib/oc-text-searh/oc-text-searh.component';
+export * from './lib/oc-text-search/oc-text-search.component';
 export * from './lib/oc-app-list-grid/oc-app-list-grid.component';
 export * from './lib/oc-error/oc-error.component';
 export * from './lib/oc-error/oc-error-service';
