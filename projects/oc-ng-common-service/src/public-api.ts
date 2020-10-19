@@ -18,14 +18,15 @@ export * from './lib/model/overall-rating-summary-model';
 export * from './lib/model/oc-review-details-model';
 export * from './lib/model/file-details-model';
 export * from './lib/model/seller-my-profile-model';
+export * from './lib/model/app-data.model';
 
 export * from './lib/service/seller.service';
 export * from './lib/service/authentication.service';
 
 export * from './lib/model/seller-app-list';
 
-export * from './lib/service/file-upload-download.service'
-export * from './lib/service/seller-app.service'
+export * from './lib/service/file-upload-download.service';
+export * from './lib/service/seller-app.service';
 export * from './lib/model/key-value-mapper';
 export * from './lib/service/chart-service';
 
