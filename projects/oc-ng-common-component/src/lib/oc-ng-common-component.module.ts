@@ -77,6 +77,7 @@ import {OcColorComponent} from './oc-color/oc-color.component';
 import {ColorPickerModule} from 'ngx-color-picker';
 import { OcDatetimePickerComponent } from './oc-datetime-picker/oc-datetime-picker.component';
 import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select-list.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -156,6 +157,7 @@ import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select
     ReactiveFormsModule,
     AppIconsModule,
     ColorPickerModule,
+    RouterModule,
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
