@@ -95,7 +95,7 @@
       <!-- [resizeToWidth]="resizeToWidth"
           [resizeToHeight]="resizeToHeight" -->
 
-      <div class="w-100 my-2 text-center" *ngIf="hasImageLoadError">
+      <div class="w-100 my-2 small text-danger" *ngIf="hasImageLoadError">
         {{ imageLoadErrorMessage }}
       </div>
       <div *ngIf="uploadImageInProcess" class="fileUploader-new">

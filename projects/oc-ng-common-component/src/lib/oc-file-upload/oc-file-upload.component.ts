@@ -198,6 +198,11 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
 
     if (this.isFileTypeImage()) {
       this.browsedFileEvent = event;
+
+      if (this.cropperMinWidth !== 0 && this.cropperMinHeight !== 0) {
+        this.checkImageMinSize(event);
+      }
+
       this.fileName = event?.target?.files[0]?.name;
 
       this.fileName = this.fileName ? this.fileName : event?.dataTransfer?.files[0]?.name;
@@ -224,6 +229,26 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
       this.fileName = event?.target?.files[0]?.name;
       this.fileName = this.fileName ? this.fileName : event?.dataTransfer?.files[0]?.name;
       this.uploadFile(event.target.files[0])
+    }
+  }
+
+  getImageSize(event) {
+    return new Promise((resolve, reject) => {
+      let img = new Image();
+      img.src = window.URL.createObjectURL(event.target.files[0]);
+      img.onload = function () {
+        resolve([img.naturalWidth, img.naturalHeight]);
+      };
+      img.onerror = reject;
+    });
+  }
+
+  async checkImageMinSize(event) {
+    var imageSize = await this.getImageSize(event);
+    console.log(imageSize);
+    if (imageSize[0] < this.cropperMinWidth || imageSize[1] < this.cropperMinHeight) {
+      this.imageLoadErrorMessage = 'Image size is '+ imageSize[0] +'x' + imageSize[1] +', Please add image having dimentions above ' + this.cropperMinWidth +'x'+ this.cropperMinHeight;
+      this.hasImageLoadError = true;
     }
   }
 
@@ -410,22 +435,22 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
     }
   }
 
-  getFileIconClass(file){
-    if(this.isFileTypeNotImage()){
+  getFileIconClass(file) {
+    if (this.isFileTypeNotImage()) {
       return 'default-icon'
     }
-    return file?.fileUploadProgress===100 ? 'app-icon':'default-icon';
+    return file?.fileUploadProgress === 100 ? 'app-icon' : 'default-icon';
   }
 
-  downloadFile(file: FileDetails){
-    if(file && file.fileUploadProgress && file.fileUploadProgress==100){
-      if(this.isFileTypePrivate()){
-        this.uploadFileService.downloadFileDetails(file.fileId).subscribe((res)=>{
+  downloadFile(file: FileDetails) {
+    if (file && file.fileUploadProgress && file.fileUploadProgress == 100) {
+      if (this.isFileTypePrivate()) {
+        this.uploadFileService.downloadFileDetails(file.fileId).subscribe((res) => {
           if (res && res.fileUrl) {
             window.open(res.fileUrl, "_blank");
           }
         });
-      }else{
+      } else {
         if (file && file.fileUrl) {
           window.open(file.fileUrl, "_blank");
         }
