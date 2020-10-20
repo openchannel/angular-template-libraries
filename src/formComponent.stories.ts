@@ -59,6 +59,7 @@ export default {
   decorators: [
     moduleMetadata(modules),
   ],
+  argTypes: { formSubmitted: { action: 'Form Data' }}
 };
 
 const FormGroupComponent = (args: OcFormComponent) => ({
@@ -788,6 +789,33 @@ FormWithDynamicFieldArrayThirdLvl.args = {
           }
         ],
         type: 'dynamicFieldArray'
+      }
+    ]
+  }
+};
+
+export const FormWithUpdatedRichTextEditor = FormGroupComponent.bind({});
+
+FormWithUpdatedRichTextEditor.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        id: 'rich-text-editor',
+        label: 'Rich Text Editor',
+        description: '',
+        defaultValue: null,
+        type: 'richText',
+        required: null,
+        attributes: {
+          maxChars: 100,
+          required: true,
+          minChars: 10
+        },
+        options: null,
+        subFieldDefinitions: null
       }
     ]
   }
