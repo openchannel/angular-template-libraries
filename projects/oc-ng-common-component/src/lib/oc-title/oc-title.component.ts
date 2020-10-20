@@ -41,6 +41,16 @@ export class OcTitleComponent implements OnInit {
      * infoTitleIconCsv (optional) - icon for showing description.
      */
     @Input() infoTitleIconCsv: string = null;
+    /**
+     * String with class-list which can be
+     * added to the existed title class-list
+     */
+    @Input() customClass: string = '';
+    /**
+     * Style which can be added to the title
+     * Supposed to be the style object
+     */
+    @Input() customStyle: any;
 
     constructor() {
     }

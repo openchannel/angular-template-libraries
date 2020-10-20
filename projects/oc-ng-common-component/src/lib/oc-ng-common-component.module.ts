@@ -71,12 +71,15 @@ import {OcDropboxComponent} from './oc-dropbox/oc-dropbox.component';
 import {OcTitleComponent} from './oc-title/oc-title.component';
 import {OcFormComponent} from './oc-form/oc-form.component';
 import {OnlyNumberDirective} from './directive/only-number.directive';
-import { OcVideoUrlComponent } from './oc-video-url/oc-video-url.component';
+import {OcVideoUrlComponent} from './oc-video-url/oc-video-url.component';
 import {AppIconsModule} from './app-icons.module';
 import {OcColorComponent} from './oc-color/oc-color.component';
 import {ColorPickerModule} from 'ngx-color-picker';
-import { OcDatetimePickerComponent } from './oc-datetime-picker/oc-datetime-picker.component';
+import {OcDatetimePickerComponent} from './oc-datetime-picker/oc-datetime-picker.component';
 import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select-list.component';
+import {OcDynamicFieldArrayComponent} from './oc-dynamic-field-array/oc-dynamic-field-array.component';
+import {OcDynamicArrayItemComponent} from './oc-dynamic-array-item/oc-dynamic-array-item.component';
+import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
 import {PricePipe} from "./pipe/price.pipe";
 
 @NgModule({
@@ -145,6 +148,10 @@ import {PricePipe} from "./pipe/price.pipe";
     OcColorComponent,
     OcDatetimePickerComponent,
     OcMultiSelectListComponent,
+    OcFormComponent,
+    OcDynamicFieldArrayComponent,
+    OcDynamicArrayItemComponent,
+    OcFormModalComponent
   ],
 
   imports: [
@@ -213,13 +220,16 @@ import {PricePipe} from "./pipe/price.pipe";
     OcTagsComponent,
     OcColorComponent,
     OcVideoUrlComponent,
-    OcMultiSelectListComponent
+    OcMultiSelectListComponent,
+    OcTagsComponent,
+    OcDynamicFieldArrayComponent
   ],
   providers: [
     NgbActiveModal,
   ],
   entryComponents: [
-    OcSellerAgreementComponent
+    OcSellerAgreementComponent,
+    OcFormModalComponent
   ]
 
 })
