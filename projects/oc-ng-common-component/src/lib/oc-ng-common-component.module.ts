@@ -72,6 +72,7 @@ import {OcDynamicFieldArrayComponent} from './oc-dynamic-field-array/oc-dynamic-
 import {OcDynamicArrayItemComponent} from './oc-dynamic-array-item/oc-dynamic-array-item.component';
 import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
 import {EditorModule} from '@tinymce/tinymce-angular';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -153,7 +154,8 @@ import {EditorModule} from '@tinymce/tinymce-angular';
     ReactiveFormsModule,
     AppIconsModule,
     ColorPickerModule,
-    EditorModule
+    EditorModule,
+    RouterModule,
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
