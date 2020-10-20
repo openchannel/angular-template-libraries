@@ -20,11 +20,15 @@ export class OcFormComponent implements OnInit {
   @Input() anotherInvalidResult = false;
   /** Show button on form. Default: true */
   @Input() showButton: boolean = true;
+  /** Set custom text to success button. Default: 'Submit' */
+  @Input() successButtonText: string = 'Submit';
   /**
    * Returning all form fields value to the parent component
    */
   @Output() formSubmitted = new EventEmitter<any>();
-  /** Dynamically created form */
+  /** Sending true when user cancel form submitting */
+  @Output() cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   public customForm: FormGroup;
   /** Result data from form for submission */
   public formData: any;
@@ -138,7 +142,12 @@ export class OcFormComponent implements OnInit {
               && inputTemplate?.defaultValue.length > 0 ?
                 inputTemplate?.defaultValue : ['item1', 'item2']);
             }
-            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, { isMultiSelectList: true});
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, { isList: true});
+            break;
+          case 'dynamicFieldArray':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : []);
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, { isList: true});
             break;
           default:
             break;
@@ -153,7 +162,7 @@ export class OcFormComponent implements OnInit {
    */
   setValidators(control: AbstractControl, attributes,
                 additional?: {isCheckbox?: boolean, isEmail?: boolean, isUrl?: boolean,
-                  isColor?: boolean, isMultiSelectList?: boolean}): void {
+                  isColor?: boolean, isList?: boolean}): void {
     const validators: ValidatorFn [] = [];
     Object.keys(attributes).forEach(key => {
       switch (key) {
@@ -179,13 +188,13 @@ export class OcFormComponent implements OnInit {
         case 'minCount':
           if (attributes.minCount) {
             validators.push(this.validatorMinLengthArray(attributes.minCount, additional ?
-              additional.isMultiSelectList : false));
+              additional.isList : false));
           }
           break;
         case 'maxCount':
           if (attributes.maxCount) {
             validators.push(this.validatorMaxLengthArray(attributes.maxCount, additional ?
-              additional.isMultiSelectList : false));
+              additional.isList : false));
           }
           break;
         case 'min':
@@ -321,6 +330,10 @@ export class OcFormComponent implements OnInit {
       }
     });
     this.formSubmitted.emit(formData);
+  }
+
+  cancelForm(): void {
+    this.cancelSubmit.emit(true);
   }
 
   mockUploadingFile(): FileDetails {

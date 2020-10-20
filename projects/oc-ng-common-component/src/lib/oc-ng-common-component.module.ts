@@ -68,6 +68,9 @@ import {OcColorComponent} from './oc-color/oc-color.component';
 import {ColorPickerModule} from 'ngx-color-picker';
 import {OcDatetimePickerComponent} from './oc-datetime-picker/oc-datetime-picker.component';
 import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select-list.component';
+import {OcDynamicFieldArrayComponent} from './oc-dynamic-field-array/oc-dynamic-field-array.component';
+import {OcDynamicArrayItemComponent} from './oc-dynamic-array-item/oc-dynamic-array-item.component';
+import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
 import {EditorModule} from '@tinymce/tinymce-angular';
 
 @NgModule({
@@ -135,6 +138,10 @@ import {EditorModule} from '@tinymce/tinymce-angular';
     OcColorComponent,
     OcDatetimePickerComponent,
     OcMultiSelectListComponent,
+    OcFormComponent,
+    OcDynamicFieldArrayComponent,
+    OcDynamicArrayItemComponent,
+    OcFormModalComponent
   ],
 
   imports: [
@@ -202,13 +209,16 @@ import {EditorModule} from '@tinymce/tinymce-angular';
     OcTagsComponent,
     OcColorComponent,
     OcVideoUrlComponent,
-    OcMultiSelectListComponent
+    OcMultiSelectListComponent,
+    OcTagsComponent,
+    OcDynamicFieldArrayComponent
   ],
   providers: [
     NgbActiveModal,
   ],
   entryComponents: [
-    OcSellerAgreementComponent
+    OcSellerAgreementComponent,
+    OcFormModalComponent
   ]
 
 })
