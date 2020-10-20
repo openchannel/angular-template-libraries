@@ -56,27 +56,22 @@ import {OcNumberComponent} from './oc-number/oc-number.component';
 import {OcSellerAgreementComponent} from './oc-seller-agreement/oc-seller-agreement.component';
 import {OcResetPasswordComponent} from './oc-reset-password/oc-reset-password.component';
 import {OcRichTextEditorComponent} from './oc-rich-text-editor/oc-rich-text-editor.component';
-import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
 import {OcTagsComponent} from './oc-tags/oc-tags.component';
-import 'froala-editor/js/plugins/char_counter.min.js';
-import 'froala-editor/js/plugins/font_size.min.js';
-import 'froala-editor/js/plugins/font_family.min.js';
-import 'froala-editor/js/plugins/align.min.js';
-import 'froala-editor/js/plugins/paragraph_format.min.js';
-import 'froala-editor/js/plugins/link.min.js';
-import 'froala-editor/js/plugins/lists.min.js';
-import 'froala-editor/js/plugins/code_view.min.js';
 import {OcTagElementComponent} from './oc-tag-element/oc-tag-element.component';
 import {OcDropboxComponent} from './oc-dropbox/oc-dropbox.component';
 import {OcTitleComponent} from './oc-title/oc-title.component';
 import {OcFormComponent} from './oc-form/oc-form.component';
 import {OnlyNumberDirective} from './directive/only-number.directive';
-import { OcVideoUrlComponent } from './oc-video-url/oc-video-url.component';
+import {OcVideoUrlComponent} from './oc-video-url/oc-video-url.component';
 import {AppIconsModule} from './app-icons.module';
 import {OcColorComponent} from './oc-color/oc-color.component';
 import {ColorPickerModule} from 'ngx-color-picker';
-import { OcDatetimePickerComponent } from './oc-datetime-picker/oc-datetime-picker.component';
+import {OcDatetimePickerComponent} from './oc-datetime-picker/oc-datetime-picker.component';
 import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select-list.component';
+import {OcDynamicFieldArrayComponent} from './oc-dynamic-field-array/oc-dynamic-field-array.component';
+import {OcDynamicArrayItemComponent} from './oc-dynamic-array-item/oc-dynamic-array-item.component';
+import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
+import {EditorModule} from '@tinymce/tinymce-angular';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -144,6 +139,10 @@ import { RouterModule } from '@angular/router';
     OcColorComponent,
     OcDatetimePickerComponent,
     OcMultiSelectListComponent,
+    OcFormComponent,
+    OcDynamicFieldArrayComponent,
+    OcDynamicArrayItemComponent,
+    OcFormModalComponent
   ],
 
   imports: [
@@ -152,11 +151,10 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     FormsModule,
     ImageCropperModule,
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot(),
     ReactiveFormsModule,
     AppIconsModule,
     ColorPickerModule,
+    EditorModule,
     RouterModule,
   ],
   exports: [OcCommonLibComponent,
@@ -213,13 +211,16 @@ import { RouterModule } from '@angular/router';
     OcTagsComponent,
     OcColorComponent,
     OcVideoUrlComponent,
-    OcMultiSelectListComponent
+    OcMultiSelectListComponent,
+    OcTagsComponent,
+    OcDynamicFieldArrayComponent
   ],
   providers: [
     NgbActiveModal,
   ],
   entryComponents: [
-    OcSellerAgreementComponent
+    OcSellerAgreementComponent,
+    OcFormModalComponent
   ]
 
 })
