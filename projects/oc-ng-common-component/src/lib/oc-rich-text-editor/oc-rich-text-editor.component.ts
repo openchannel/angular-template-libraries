@@ -18,21 +18,9 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
    */
   @Input() placeholder: string = 'Write Your Content Here!';
   /**
-   * Show char counter. Default: false
+   * Developer API key for TinyMCE rich text editor
    */
-  @Input() charCounterCount: boolean = false;
-  /**
-   * Max Editor characters limit. Default: -1 (unlimited)
-   */
-  @Input() maxCharacters: number = -1;
-  /**
-   * Make text editor data required. Default: false
-   */
-  @Input() required: boolean = false;
-  /**
-   * Label of the current Editor
-   */
-  @Input() label: string = '';
+  @Input() tinyEditorApiKey: string = '979365t8xjz78m2q0fv4bwm2ezh77txvqtoezs9yupaev41t';
   /**
    * Setter for value changing
    */
@@ -41,41 +29,15 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
     this.editorContent = val;
     this.onChange(this.editorContent);
   }
-
-  public options = {
-    heightMin: 100,
-    heightMax: 150,
-    height: 'auto',
-    placeholderText: this.placeholder,
-    charCounterCount: this.charCounterCount,
-    charCounterMax: this.maxCharacters,
-    fontSizeDefaultSelection: '14',
-    attribution: false,
-    fontFamilyDefaultSelection: 'Arial',
-    paragraphFormatSelection: true,
-    toolbarButtonsSM: [
-      ['paragraphFormat'],
-      ['bold', 'italic', 'strikeThrough', 'fontFamily', 'fontSize'],
-      ['insertLink'],
-      ['alignLeft', 'alignCenter', 'alignRight', 'alignJustify'],
-      ['formatOL', 'formatUL', 'outdent', 'indent'],
-      ['html']
-    ],
-    toolbarButtonsXS: {
-      moreParagraph: {
-        buttons: ['paragraphFormat', 'alignCenter', 'alignRight', 'alignJustify',
-          'formatOL', 'formatUL', 'outdent', 'indent'],
-        buttonsVisible: 1
-      },
-      moreText: {
-        buttons: ['bold', 'italic', 'strikeThrough', 'fontFamily', 'fontSize'],
-        buttonsVisible: 5
-      },
-      moreRich: {
-        buttons: ['insertLink', 'html'],
-        buttonsVisible: 2
-      }
-    }
+  // options for Tiny Editor
+  public tinyOptions = {
+    selector: 'textarea',
+    menubar: false,
+    toolbar: 'bold italic underline strikethrough subscript superscript fontselect fontsizeselect |' +
+      'alignleft aligncenter alignright alignjustify | numlist bullist | outdent indent | link unlink | undo redo',
+    plugins: 'lists link wordcount',
+    placeholder: '',
+    max_height: 150
   };
   public editorContent: SafeHtml;
 
@@ -85,9 +47,7 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
   constructor() { }
 
   ngOnInit(): void {
-    this.options.placeholderText = this.placeholder;
-    this.options.charCounterCount = this.charCounterCount;
-    this.options.charCounterMax = this.maxCharacters;
+    this.tinyOptions.placeholder = this.placeholder;
   }
 
   onModelChange(): void {

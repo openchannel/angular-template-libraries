@@ -1,3 +1,7 @@
-<div class="w-100" style="height: 300px;">
-  <div [froalaEditor]='options' [(froalaModel)]="editorContent" (froalaModelChange)="onModelChange()"></div>
+<div class="w-100" style="max-height: 300px;">
+  <editor [apiKey]="tinyEditorApiKey"
+          [init]="tinyOptions"
+          [(ngModel)]="editorContent"
+          (ngModelChange)="onModelChange()"
+          class="custom-editor"></editor>
 </div>
