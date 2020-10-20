@@ -10,12 +10,12 @@
   line-height: 1;
   margin-right: 15px;
   margin-left: 15px;
-  
+
   .img-fluid {
     min-width: 44px;
     max-width: 44px;
   }
-  
+
   .app-price {
     font-size: 14px;
     font-family: "Rubik-Medium";
@@ -23,5 +23,8 @@
     color: $primary;
     margin-bottom: 8px;
     width: 130px;
+  }
+  .line-space {
+    line-height: 1.2rem;
   }
 }
