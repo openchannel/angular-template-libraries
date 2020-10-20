@@ -43,6 +43,7 @@ export * from './lib/oc-dropbox/oc-dropbox.component';
 export * from './lib/oc-color/oc-color.component';
 export * from './lib/oc-video-url/oc-video-url.component';
 export * from './lib/oc-multi-select-list/oc-multi-select-list.component';
+export * from './lib/oc-dynamic-field-array/oc-dynamic-field-array.component';
 
 // validators
 export * from './lib/validators/white-space-validator';
