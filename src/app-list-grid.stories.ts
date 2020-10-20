@@ -1,7 +1,7 @@
 import {storiesOf} from '@storybook/angular';
 import {withA11y} from '@storybook/addon-a11y';
 import {
-  OcAppGalaryComponent,
+  OcAppGalleryComponent,
   OcAppListGridComponent,
   OcCommonLibModule
 } from 'projects/oc-ng-common-component/src/public-api';

@@ -33,7 +33,7 @@ import {WebsiteValidatorDirective} from './validators/website-validator.directiv
 import {OcAppGetStartedComponent} from './oc-app-get-started/oc-app-get-started.component';
 import {OcChartComponent} from './oc-chart/oc-chart.component';
 import {OcMenuGridComponent} from './oc-menu-grid/oc-menu-grid.component';
-import {OcAppGalaryComponent} from './oc-app-galary/oc-app-galary.component';
+import {OcAppGalleryComponent} from './oc-app-galary/oc-app-galary.component';
 import {OcAppListGridComponent} from './oc-app-list-grid/oc-app-list-grid.component';
 import {OcRecommendedAppsComponent} from './oc-recommended-apps/oc-recommended-apps.component';
 import {OcOverallRatingComponent} from './oc-overall-rating/oc-overall-rating.component';
@@ -105,7 +105,7 @@ import { RouterModule } from '@angular/router';
     OcChartComponent,
     OcMenuGridComponent,
     OcAppGetStartedComponent,
-    OcAppGalaryComponent,
+    OcAppGalleryComponent,
     OcAppListGridComponent,
     OcRecommendedAppsComponent,
     OcOverallRatingComponent,
@@ -190,7 +190,7 @@ import { RouterModule } from '@angular/router';
     OcChartComponent,
     OcMenuGridComponent,
     OcAppGetStartedComponent,
-    OcAppGalaryComponent,
+    OcAppGalleryComponent,
     OcSelectExpandableComponent,
     OcFileUploadComponent,
     OcAppListGridComponent,

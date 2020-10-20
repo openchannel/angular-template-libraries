@@ -1,23 +1,27 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BasicAppDetails} from 'oc-ng-common-service';
+import { FullAppData } from 'oc-ng-common-service';
 
 @Component({
-  selector: 'oc-app-galary',
+  selector: 'oc-app-gallery',
   templateUrl: './oc-app-galary.component.html',
   styleUrls: ['./oc-app-galary.component.scss']
 })
-export class OcAppGalaryComponent implements OnInit {
+export class OcAppGalleryComponent implements OnInit {
 
-  @Input() appsArr: BasicAppDetails[] = [];
-
+  /**
+   * The array of the apps what will be shown
+   */
+  @Input() appsArr: FullAppData[] = [];
+  /** Message that will be shown when no apps */
   @Input() noAppMessage: string = '';
-
-  @Input() seeAllUrl: string;
-
-  @Input() appGalaryTitle: string;
-
-  @Input() appGalaryDescription: string;
-
+  /** Redirect link for the 'See All' */
+  @Input() seeAllUrl: string | any;
+  /** Title for the app list preview */
+  @Input() appGalleryTitle: string = '';
+  /** Description for the app list preview */
+  @Input() appGalleryDescription: string = '';
+  /** Router link for one app click, will contain 'appId' field */
+  @Input() routerLinkForOneApp: string;
 
   constructor() {
   }
