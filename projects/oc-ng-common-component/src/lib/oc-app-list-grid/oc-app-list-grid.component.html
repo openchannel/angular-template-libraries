@@ -1,31 +1,10 @@
-<!-- <div class="row">
-    <div class="col-md-12" *ngIf="appList && appList.length>0; else emptyList">
-        <div class="mb-3" *ngFor="let app of appList">
-            <img [src]="app.appLogoUrl">
-            <h5>{{app.appName}}</h5>
-            <span class="app-price">{{app.appPrice}}</span>
-            <oc-rating [rating]="app.rating" type="single-star" [reviewCount]="app.reviewCount"></oc-rating>
-            <a href="#" (click)="viewDetails(app)" class="float-right">
-                <img src="https://drive.google.com/u/0/uc?id=1slezM1BqinfgM0LVImYPB2Ljx9G5y7Q5&export=download" alt="icon">
-            </a>
-        </div>
-    </div>
-    <ng-template #emptyList>
-        <div class="row mx-0 mt-5">
-            <span class="col-md-12">
-                <h5>{{noAppMessage}}</h5>
-            </span>
-        </div>
-    </ng-template>
-</div> -->
-
 <div class="row mx-0" *ngFor="let app of appList">
     <div class="col-md card app-list-card">
         <div class="row mx-0">
             <div class="col-md-auto pl-0">
                 <img alt="app-icon"
                      class="img-fluid"
-                     [src]="app.customData?.logourl ? app.customData?.logourl : 'https://drive.google.com/u/0/uc?id=19l7Znd-iPPYUhM6zaiQZ01rE2NpkDFyk&export=download'">
+                     [src]="app.icon ? app.icon : defaultAppIcon">
             </div>
             <div class="col-md px-0">
                 <p class="mb-1 font-med">{{app.name}}</p>
@@ -34,7 +13,7 @@
             </div>
             <img alt="icon" (click)="viewDetails(app)"
                  class="icon-arrow"
-                 src="https://drive.google.com/u/0/uc?id=1slezM1BqinfgM0LVImYPB2Ljx9G5y7Q5&export=download">
+                 src="./assets/img/right-arrow.svg">
         </div>
     </div>
 </div>

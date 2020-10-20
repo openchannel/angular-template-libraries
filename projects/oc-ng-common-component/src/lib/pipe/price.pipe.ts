@@ -1,12 +1,12 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Model} from 'oc-ng-common-service';
+import {AppModel} from 'oc-ng-common-service';
 
 @Pipe({
   name: 'price'
 })
 export class PricePipe implements PipeTransform {
 
-  transform(model: Model): string {
+  transform(model: AppModel): string {
     if (!model || model.type === 'free') {
       return 'free';
     } else if (model.type === 'recurring') {
