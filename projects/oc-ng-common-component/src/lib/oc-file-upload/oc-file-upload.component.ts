@@ -247,7 +247,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
     var imageSize = await this.getImageSize(event);
     console.log(imageSize);
     if (imageSize[0] < this.cropperMinWidth || imageSize[1] < this.cropperMinHeight) {
-      this.imageLoadErrorMessage = 'Image size is '+ imageSize[0] +'x' + imageSize[1] +', Please add image having dimentions above ' + this.cropperMinWidth +'x'+ this.cropperMinHeight;
+      this.imageLoadErrorMessage = 'Image size is '+ imageSize[0] +'x' + imageSize[1] +', Please add image having dimensions equal or above ' + this.cropperMinWidth +'x'+ this.cropperMinHeight;
       this.hasImageLoadError = true;
     }
   }
