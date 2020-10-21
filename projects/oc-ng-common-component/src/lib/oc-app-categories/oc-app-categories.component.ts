@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AppCategoryDetail} from 'oc-ng-common-service';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl, SafeStyle } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 @Component({
@@ -26,8 +26,12 @@ export class OcAppCategoriesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  safeLogo(logoUrl: string): SafeResourceUrl {
+  safeImage(logoUrl: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(logoUrl);
+  }
+
+  safeStyle(imageLink: string): SafeStyle {
+    return this.sanitizer.bypassSecurityTrustStyle( `url(${imageLink})`);
   }
   /** Navigates to the category page */
   navigateToCategory(routerQuery?: any): void {

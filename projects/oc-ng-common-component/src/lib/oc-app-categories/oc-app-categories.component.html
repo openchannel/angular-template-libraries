@@ -7,9 +7,10 @@
     <div *ngFor="let appCategory of data;index as i;" class="col-md-auto">
         <div class="cursor-pointer category-card card-{{i}}"
              [ngClass]="appCategory.categoryCardClass"
+             [style.background-image]="appCategory.categoryBackgroundImage ? safeStyle(appCategory.categoryBackgroundImage) : ''"
             (click)="navigateToCategory(appCategory.categoryQuery)">
             <img *ngIf="appCategory.categoryLogo"
-                 [src]="safeLogo(appCategory.categoryLogo)" alt="category-icon">
+                 [src]="safeImage(appCategory.categoryLogo)" alt="category-icon">
             <div class="content-centered category-text">{{appCategory.categoryName ? appCategory.categoryName : 'All Apps'}}</div>
         </div>
     </div>
