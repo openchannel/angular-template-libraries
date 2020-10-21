@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {OcAppGalaryComponent} from './oc-app-galary.component';
+import {OcAppGalleryComponent} from './oc-app-galary.component';
 
-describe('OcAppGalaryComponent', () => {
-  let component: OcAppGalaryComponent;
-  let fixture: ComponentFixture<OcAppGalaryComponent>;
+describe('OcAppGalleryComponent', () => {
+  let component: OcAppGalleryComponent;
+  let fixture: ComponentFixture<OcAppGalleryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [OcAppGalaryComponent]
+      declarations: [OcAppGalleryComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OcAppGalaryComponent);
+    fixture = TestBed.createComponent(OcAppGalleryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

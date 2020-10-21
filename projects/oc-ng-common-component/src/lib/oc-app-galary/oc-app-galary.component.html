@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-md">
-        <h4>{{appGalaryTitle}}</h4>
-        <span class="text-secondary font-m">{{appGalaryDescription}}</span>
+        <h4>{{appGalleryTitle}}</h4>
+        <span class="text-secondary font-m">{{appGalleryDescription}}</span>
     </div>
     <div *ngIf="seeAllUrl && seeAllUrl.length > 0" class="col-md-auto">
-        <a [href]="seeAllUrl">
+        <a  (click)="navigateToSeeAll()" class="cursor-pointer">
             <span class="text-primary font-m font-med pr-1">See All</span>
             <img alt="icon" src="https://drive.google.com/u/0/uc?id=1slezM1BqinfgM0LVImYPB2Ljx9G5y7Q5&export=download">
         </a>
@@ -12,13 +12,12 @@
 </div>
 <div *ngIf="appsArr && appsArr.length > 0; else emptyData" class="row pt-5">
     <div *ngFor="let app of appsArr;">
-        <oc-app-card [app]="app"></oc-app-card>
+        <oc-app-card [app]="app"
+                     [appRouterLink]="routerLinkForOneApp"></oc-app-card>
     </div>
 </div>
 <ng-template #emptyData>
     <div class="row mx-0 mt-5">
-        <span class="col-md-12">
-            <h5>{{noAppMessage}}</h5>
-        </span>
+        <h5 class="col-md-12">{{noAppMessage}}</h5>
     </div>
 </ng-template>

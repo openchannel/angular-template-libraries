@@ -1,14 +1,16 @@
-<div class="col-md-auto card app-card">
+<div class="col-md-auto card app-card cursor-pointer" [routerLink]="[appRouterLink, app.appId]">
     <div class="row mx-0">
         <div class="col-md-auto pl-0">
-            <img [src]="app.appLogoUrl" alt="app-icon"
+            <img [src]="app.icon ? safeLink(app.icon) : '../../../assets/img/standard-app-icon.svg'" alt=""
                  class="img-fluid">
         </div>
         <div class="col-md px-0">
-            <p class="mb-1 font-med">{{app.appName}}</p>
-            <span class="app-price">{{app.appPrice}}</span>
-            <oc-rating [rating]="app.rating" [reviewCount]="app.reviewCount" type="single-star"></oc-rating>
-            <p class="text-secondary font-m mb-0">{{app.appDescription}}</p>
+            <p class="mb-1 font-med">{{app.name}}</p>
+            <span class="app-price">{{parsePrice(app.model[0])}}</span>
+            <oc-rating [rating]="parseRating(app.rating)"
+                       [reviewCount]="app.reviewCount"
+                       type="single-star"></oc-rating>
+            <p class="text-secondary font-m mb-0 line-space">{{app.summary ? app.summary : app.description}}</p>
         </div>
     </div>
 </div>
