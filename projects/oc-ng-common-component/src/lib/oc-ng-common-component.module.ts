@@ -71,9 +71,10 @@ import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select
 import {OcDynamicFieldArrayComponent} from './oc-dynamic-field-array/oc-dynamic-field-array.component';
 import {OcDynamicArrayItemComponent} from './oc-dynamic-array-item/oc-dynamic-array-item.component';
 import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
-import {PricePipe} from "./pipe/price.pipe";
+import {PricePipe} from './pipe/price.pipe';
 import {EditorModule} from '@tinymce/tinymce-angular';
 import { RouterModule } from '@angular/router';
+import {OcDropdownComponent} from "./oc-dropdown/oc-dropdown.component";
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -116,6 +117,7 @@ import { RouterModule } from '@angular/router';
     OcFileUploadComponent,
     OcAppCategorySelectComponent,
     OcPopupComponent,
+    OcDropdownComponent,
     SafehtmlPipe,
     CamelcasePipe,
     EllipsisPipe,
@@ -185,6 +187,7 @@ import { RouterModule } from '@angular/router';
     FileSizePipe,
     CamelcasePipe,
     EllipsisPipe,
+    PricePipe,
     ImageFileValidatorDirective,
     PasswordToggleDirective,
     PhoneNumberValidatorDirective,
@@ -198,6 +201,10 @@ import { RouterModule } from '@angular/router';
     OcAppListGridComponent,
     OcAppCategorySelectComponent,
     OcPopupComponent,
+    OcOverallRatingComponent,
+    OcReviewListComponent,
+    OcRecommendedAppsComponent,
+    OcDropdownComponent,
     NgbModule,
     CompareDirective,
     OcAppStatusDetailsComponent,

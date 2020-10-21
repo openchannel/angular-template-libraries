@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {OCReviewDetails} from 'oc-ng-common-service';
 
 @Component({
@@ -6,9 +6,19 @@ import {OCReviewDetails} from 'oc-ng-common-service';
   templateUrl: './oc-review-list.component.html',
   styleUrls: ['./oc-review-list.component.scss']
 })
-export class OcReviewListComponent implements OnInit {
+export class OcReviewListComponent implements OnInit, AfterViewInit {
 
-  @Input() reviewsList: OCReviewDetails[] = [];
+  @Input()
+  set reviewsList(list: OCReviewDetails[]) {
+    if (list) {
+      this.baseReviewsList = list;
+      this.displayedReviews = [...list];
+    }
+    if (this.baseReviewsList && this.baseReviewsList.length > 0) {
+      this.toggleDisplay();
+    }
+  }
+  baseReviewsList: OCReviewDetails[] = [];
 
   @Input() reviewListTitle = 'Most recent reviews';
 
@@ -22,20 +32,26 @@ export class OcReviewListComponent implements OnInit {
 
   @Output() writeAReview = new EventEmitter<any>();
 
+  displayedReviews: OCReviewDetails[] = [];
+
   constructor() {
   }
 
   ngOnInit(): void {
-    this.setReviewsDisplayList();
+  }
+
+  ngAfterViewInit(): void {
   }
 
   writeReview() {
     this.writeAReview.emit();
   }
 
-  setReviewsDisplayList() {
-    if (this.reviewsList && this.reviewsList.length > this.maxReviewDisplay) {
-      this.reviewsList.splice(this.maxReviewDisplay);
+  toggleDisplay(): void {
+    if (this.displayedReviews.length === this.maxReviewDisplay) {
+      this.displayedReviews = [...this.baseReviewsList];
+    } else {
+      this.displayedReviews.splice(this.maxReviewDisplay);
     }
   }
 }

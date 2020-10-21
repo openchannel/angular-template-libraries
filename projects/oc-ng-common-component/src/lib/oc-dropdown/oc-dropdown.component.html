@@ -1,0 +1,14 @@
+<div class="d-inline-block" ngbDropdown placement="bottom-right" #myDrop="ngbDropdown">
+    <!--                    <div class="">-->
+
+    <!--                        <img src="./assets/img/dropdown.svg" alt="dropdown-icon">-->
+    <!--                    </div>-->
+    <!--                    <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Toggle dropdown</button>-->
+    <a href="#" class="font-m font-med" (click)="$event.preventDefault(); myDrop.open()"
+       ngbDropdownAnchor id="dropdownManual">Sort by {{selected?.label | lowercase}}</a>
+    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button ngbDropdownItem
+                (click)="onSortChange(sort)"
+                *ngFor="let sort of this.options">{{sort.label}}</button>
+    </div>
+</div>

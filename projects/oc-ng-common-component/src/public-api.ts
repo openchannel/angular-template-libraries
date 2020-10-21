@@ -44,6 +44,7 @@ export * from './lib/oc-color/oc-color.component';
 export * from './lib/oc-video-url/oc-video-url.component';
 export * from './lib/oc-multi-select-list/oc-multi-select-list.component';
 export * from './lib/oc-dynamic-field-array/oc-dynamic-field-array.component';
+export * from './lib/oc-dropdown/oc-dropdown.component';
 
 // validators
 export * from './lib/validators/white-space-validator';
@@ -62,6 +63,7 @@ export * from './lib/validators/compare-passsword-validator.directive';
 export * from './lib/validators/file-size.pipe';
 export * from './lib/pipe/camelcase.pipe';
 export * from './lib/pipe/ellipsis.pipe';
+export * from './lib/pipe/price.pipe';
 
 // chart components
 export * from './lib/oc-chart/oc-chart.component';
