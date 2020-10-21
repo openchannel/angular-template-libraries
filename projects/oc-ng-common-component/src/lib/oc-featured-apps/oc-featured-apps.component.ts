@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { FullAppData } from 'oc-ng-common-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'oc-featured-apps',
@@ -27,10 +28,13 @@ export class OcFeaturedAppsComponent implements OnInit {
    * appId - is an router link parameter
    */
   @Input() mainRouterLink: string = '';
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
+  navigateToApp(appId: string): void {
+    this.router.navigate([this.mainRouterLink, appId]).then();
+  }
 }

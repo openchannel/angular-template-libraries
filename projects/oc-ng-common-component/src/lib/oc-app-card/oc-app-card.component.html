@@ -1,4 +1,4 @@
-<div class="col-md-auto card app-card cursor-pointer" [routerLink]="[appRouterLink, app.appId]">
+<div class="col-md-auto card app-card cursor-pointer" (click)="navigateToApp(app.appId)">
     <div class="row mx-0">
         <div class="col-md-auto pl-0">
             <img [src]="app.icon ? safeLink(app.icon) : '../../../assets/img/standard-app-icon.svg'" alt=""

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { AppModel, FullAppData } from 'oc-ng-common-service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'oc-app-card',
@@ -23,7 +24,8 @@ export class OcAppCardComponent implements OnInit {
     CNY: '¥',
     GBP: '£'
   };
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private sanitizer: DomSanitizer,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -52,5 +54,9 @@ export class OcAppCardComponent implements OnInit {
 
   parseRating(rating): number {
     return Number(rating) * 0.01;
+  }
+
+  navigateToApp(appId): void {
+    this.router.navigate([this.appRouterLink, appId]).then();
   }
 }
