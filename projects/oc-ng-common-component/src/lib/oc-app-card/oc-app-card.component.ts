@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { AppModel, FullAppData } from 'oc-ng-common-service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'oc-app-card',
