@@ -15,7 +15,7 @@ import {OcFeaturedAppsComponent} from './oc-featured-apps/oc-featured-apps.compo
 import {OcSelectComponent} from './oc-select/oc-select.component';
 import {OcBoxGridComponent} from './oc-box-grid/oc-box-grid.component';
 import {OcRatingComponent} from './oc-rating/oc-rating.component';
-import {OcTextSearhComponent} from './oc-text-searh/oc-text-searh.component';
+import {OcTextSearchComponent} from './oc-text-search/oc-text-search.component';
 import {OcForgotPasswordComponent} from './oc-forgot-password/oc-forgot-password.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {OcErrorComponent} from './oc-error/oc-error.component';
@@ -73,6 +73,7 @@ import {OcDynamicArrayItemComponent} from './oc-dynamic-array-item/oc-dynamic-ar
 import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
 import {EditorModule} from '@tinymce/tinymce-angular';
 import { RouterModule } from '@angular/router';
+import {PricePipe} from "./pipe/price.pipe";
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -89,7 +90,7 @@ import { RouterModule } from '@angular/router';
     OcSelectComponent,
     OcBoxGridComponent,
     OcRatingComponent,
-    OcTextSearhComponent,
+    OcTextSearchComponent,
     OcAppCategoriesComponent,
     OcForgotPasswordComponent,
     WhiteSpaceValidatorDirective,
@@ -119,6 +120,7 @@ import { RouterModule } from '@angular/router';
     CamelcasePipe,
     EllipsisPipe,
     RemoveHtmlTagsPipe,
+    PricePipe,
     CompareDirective,
     OcAppStatusDetailsComponent,
     OcActivationComponent,
@@ -173,7 +175,7 @@ import { RouterModule } from '@angular/router';
     OcSelectComponent,
     OcBoxGridComponent,
     OcRatingComponent,
-    OcTextSearhComponent,
+    OcTextSearchComponent,
     OcAppCategoriesComponent,
     OcForgotPasswordComponent,
     OcErrorComponent,
