@@ -1,25 +1,19 @@
 <div class="row">
     <div class="col-md-12 text-center mb-4">
-        <!-- <h1>Categories to Explore</h1> -->
         <h1>{{categoryHeaderTitle}}</h1>
     </div>
 </div>
 <div *ngIf="data && data.length > 0; else emptyData" class="row">
     <div *ngFor="let appCategory of data;index as i;" class="col-md-auto">
-        <div class="category-card card-{{i}}">
-            <img alt="category-icon"
-                 src="https://drive.google.com/u/0/uc?id=1b0lLlbQrVS0Lc-hey6KC6YCZkJrn07Qe&export=download">
-            <div class="content-centered">All Apps</div>
+        <div class="cursor-pointer category-card card-{{i}}"
+             [ngClass]="appCategory.categoryCardClass"
+            (click)="navigateToCategory(appCategory.categoryQuery)">
+            <img *ngIf="appCategory.categoryLogo"
+                 [src]="safeLogo(appCategory.categoryLogo)" alt="category-icon">
+            <div class="content-centered category-text">{{appCategory.categoryName ? appCategory.categoryName : 'All Apps'}}</div>
         </div>
-
-        <!-- <div [class]="appCategory.categoryCardClass">
-            <img [src]="appCategory.categoryLogo" alt="category-icon">
-            <div class="content-centered">{{appCategory.categoryName}}</div>
-        </div> -->
     </div>
 </div>
 <ng-template #emptyData>
-    <span class="col-md-12">
-        <h5>{{noDataMsg}}</h5>
-    </span>
+    <h5 class="col-md-12">{{noDataMsg}}</h5>
 </ng-template>
