@@ -1,7 +1,7 @@
 <div class="col-md-auto card app-card cursor-pointer" [routerLink]="[appRouterLink, app.appId]">
     <div class="row mx-0">
         <div class="col-md-auto pl-0">
-            <img [src]="safeLink(app.icon)" alt=""
+            <img [src]="app.icon ? safeLink(app.icon) : '../../../assets/img/standard-app-icon.svg'" alt=""
                  class="img-fluid">
         </div>
         <div class="col-md px-0">
