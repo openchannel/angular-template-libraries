@@ -71,9 +71,9 @@ import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select
 import {OcDynamicFieldArrayComponent} from './oc-dynamic-field-array/oc-dynamic-field-array.component';
 import {OcDynamicArrayItemComponent} from './oc-dynamic-array-item/oc-dynamic-array-item.component';
 import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
+import {PricePipe} from "./pipe/price.pipe";
 import {EditorModule} from '@tinymce/tinymce-angular';
 import { RouterModule } from '@angular/router';
-import {PricePipe} from "./pipe/price.pipe";
 
 @NgModule({
   declarations: [OcCommonLibComponent,
