@@ -29,8 +29,8 @@ export class OcAppCategoriesComponent implements OnInit {
   safeLogo(logoUrl: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(logoUrl);
   }
-
-  navigateToCategory(routerQuery?: any) {
+  /** Navigates to the category page */
+  navigateToCategory(routerQuery?: any): void {
     if (routerQuery) {
       this.router.navigate([this.categoryRouterLink], {queryParams: routerQuery}).then();
     } else {
