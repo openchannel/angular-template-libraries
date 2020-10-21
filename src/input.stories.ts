@@ -36,7 +36,4 @@ storiesOf('Input', module)
   }
 })).add('Text search', () => ({
   component: OcTextSearchComponent,
-  // props: {
-  //     text: "Name"
-  // }
 }));
