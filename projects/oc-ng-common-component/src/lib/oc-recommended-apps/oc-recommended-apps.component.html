@@ -1,10 +1,7 @@
-<div class="row">
-    <div class="col-md">
-        <h1>{{recommendedAppTitle}}</h1>
-    </div>
-</div>
-<div *ngIf="appList && appList.length > 0; else emptyData" class="d-flex mx-0 mt-5 w-100 flex-sm-wrap">
-    <div *ngFor="let app of appList;">
+<h1>{{recommendedAppTitle}}</h1>
+<div *ngIf="appList && appList.length > 0; else emptyData"
+     class="d-flex mx-0 mt-5 w-100 flex-wrap">
+    <div *ngFor="let app of appList;" class="card-margin">
         <oc-app-card [app]="app"
                      [appRouterLink]="appsMainLink"></oc-app-card>
     </div>

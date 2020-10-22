@@ -7,12 +7,12 @@
   margin-bottom: 40px;
   min-width: 350px;
   max-width: 350px;
-  
+
   img {
     min-width: 44px;
     max-width: 44px;
   }
-  
+
   .app-price {
     font-size: 14px;
     font-family: "Rubik-Medium";
@@ -20,5 +20,13 @@
     color: $primary;
     margin-bottom: 8px;
     width: 130px;
+  }
+}
+
+.card-margin {
+  margin-right: 30px;
+  margin-bottom: 1rem;
+  &:last-child {
+    margin-right: 0;
   }
 }
