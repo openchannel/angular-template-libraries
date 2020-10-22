@@ -75,6 +75,7 @@ import {PricePipe} from './pipe/price.pipe';
 import {EditorModule} from '@tinymce/tinymce-angular';
 import { RouterModule } from '@angular/router';
 import {OcDropdownComponent} from "./oc-dropdown/oc-dropdown.component";
+import {OcVideoComponent} from "./oc-video/oc-video.component";
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -118,6 +119,7 @@ import {OcDropdownComponent} from "./oc-dropdown/oc-dropdown.component";
     OcAppCategorySelectComponent,
     OcPopupComponent,
     OcDropdownComponent,
+    OcVideoComponent,
     SafehtmlPipe,
     CamelcasePipe,
     EllipsisPipe,
@@ -205,6 +207,7 @@ import {OcDropdownComponent} from "./oc-dropdown/oc-dropdown.component";
     OcReviewListComponent,
     OcRecommendedAppsComponent,
     OcDropdownComponent,
+    OcVideoComponent,
     NgbModule,
     CompareDirective,
     OcAppStatusDetailsComponent,
