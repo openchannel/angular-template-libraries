@@ -1,10 +1,10 @@
-<div class="col-md-auto card app-card cursor-pointer" [routerLink]="[appRouterLink, app.appId]">
+<div class="card app-card cursor-pointer" [routerLink]="[appRouterLink, app.appId]">
     <div class="row mx-0 p-2 card-height-fixed">
-        <div class="col-md-auto pl-0">
+        <div class="pl-0">
             <img [src]="app.icon ? safeLink(app.icon) : '../../../assets/img/standard-app-icon.svg'" alt=""
                  class="img-fluid">
         </div>
-        <div class="col-md px-0">
+        <div class="col-9 ml-1 px-0 w-auto">
             <p class="mb-1 font-med">{{app.name}}</p>
             <div class="d-flex mt-2 mb-1">
                 <span class="app-price">{{parsePrice(app.model[0])}}</span>
