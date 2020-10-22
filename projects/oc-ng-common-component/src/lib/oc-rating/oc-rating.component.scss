@@ -1,5 +1,10 @@
 @import "../../../assets/styles/theme.scss";
 
+.rating-star {
+  height: 18px;
+  width: 22px;
+}
+
 span {
   color: $secondary;
 }

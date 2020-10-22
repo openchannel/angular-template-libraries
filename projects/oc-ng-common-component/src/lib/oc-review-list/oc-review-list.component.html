@@ -5,16 +5,12 @@
                    type="primary">
         </oc-button>
     </div>
-<!--    <div class="">-->
-<!--        <span class="drop-down">Sort by Recent</span>-->
-<!--        <span class="drop-down">Show All Ratings</span>-->
-<!--    </div>-->
     <ng-content></ng-content>
     <div *ngIf="displayedReviews && displayedReviews.length>0 ; else emptyList">
         <div *ngFor="let review of displayedReviews" class="mt-5">
             <h4 class="font-reg">{{review.reviewOwnerName}}</h4>
             <div class="font-s rating-label mb-1">Rating</div>
-            <oc-rating [rating]="review.rating" type="multi-star" class="mb-2 d-block"></oc-rating>
+            <oc-rating [rating]="review.rating/100" type="multi-star" class="mb-2 d-block"></oc-rating>
             <div>{{review.review}}</div>
             <hr/>
         </div>
@@ -23,8 +19,6 @@
             {{ displayedReviews?.length === maxReviewDisplay ? 'View all reviews (' + totalReview + ')' : 'Collapse' }}</span>
     </div>
     <ng-template #emptyList>
-        <div class="col-md-12">
-            <h4>{{noReviewMessage}}</h4>
-        </div>
+        <h4 class="mt-5">{{noReviewMessage}}</h4>
     </ng-template>
 </div>
