@@ -28,3 +28,13 @@
     line-height: 1.2rem;
   }
 }
+
+a {
+  display: block;
+  text-decoration: none;
+  color: $body-color;
+  &:hover {
+    text-decoration: none;
+    color: $body-color;
+  }
+}

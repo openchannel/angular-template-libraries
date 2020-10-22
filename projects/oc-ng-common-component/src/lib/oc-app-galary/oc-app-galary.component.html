@@ -4,7 +4,7 @@
         <span class="text-secondary font-m">{{appGalleryDescription}}</span>
     </div>
     <div *ngIf="seeAllUrl && seeAllUrl.length > 0" class="col-md-auto">
-        <a  (click)="navigateToSeeAll()" class="cursor-pointer">
+        <a  [routerLink]="[seeAllUrl]" [queryParams]="seeAllLinkQuery ? seeAllLinkQuery : ''" class="cursor-pointer">
             <span class="text-primary font-m font-med pr-1">See All</span>
             <img alt="icon" src="https://drive.google.com/u/0/uc?id=1slezM1BqinfgM0LVImYPB2Ljx9G5y7Q5&export=download">
         </a>

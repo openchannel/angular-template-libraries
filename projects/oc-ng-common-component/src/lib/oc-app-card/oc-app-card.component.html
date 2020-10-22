@@ -1,4 +1,4 @@
-<div class="col-md-auto card app-card cursor-pointer" (click)="navigateToApp(app.appId)">
+<a class="col-md-auto card app-card cursor-pointer" [routerLink]="[this.appRouterLink,app.appId]">
     <div class="row mx-0">
         <div class="col-md-auto pl-0">
             <img [src]="app.icon ? safeLink(app.icon) : '../../../assets/img/standard-app-icon.svg'" alt=""
@@ -13,4 +13,4 @@
             <p class="text-secondary font-m mb-0 line-space">{{app.summary ? app.summary : app.description}}</p>
         </div>
     </div>
-</div>
+</a>

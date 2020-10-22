@@ -6,11 +6,11 @@
 <div *ngIf="data && data.length > 0; else emptyData" class="row">
     <div *ngFor="let app of data;" class="col-md-auto">
         <div class="featured-card card">
-            <div class="card-body {{customClasses}}" (click)="navigateToApp(app.appId)">
+            <a class="card-body {{customClasses}}" [routerLink]="[mainRouterLink, app.appId]">
                 <img alt="featured-logo" src="{{app.icon}}">
                 <h5>{{app.name}}</h5>
                 <span>{{app.summary}}</span>
-            </div>
+            </a>
         </div>
     </div>
 </div>
