@@ -1,7 +1,8 @@
 @import "../../../assets/styles/theme.scss";
 
 .card-margins {
-  margin-right: 15px;
-  margin-left: 15px;
   margin-bottom: 40px;
+  flex-grow: 1;
+  flex-basis: 250px;
+  max-width: 382px;
 }

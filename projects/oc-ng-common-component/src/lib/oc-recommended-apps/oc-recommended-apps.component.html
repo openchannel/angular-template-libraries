@@ -1,10 +1,9 @@
 <h1>{{recommendedAppTitle}}</h1>
 <div *ngIf="appList && appList.length > 0; else emptyData"
      class="d-flex mx-0 mt-5 w-100 flex-wrap">
-    <div *ngFor="let app of appList;" class="card-margin">
-        <oc-app-card [app]="app"
-                     [appRouterLink]="appsMainLink"></oc-app-card>
-    </div>
+    <oc-app-card *ngFor="let app of appList;"
+                 [app]="app" class="recommended-card card-margin"
+                 [appRouterLink]="appsMainLink"></oc-app-card>
 </div>
 <ng-template #emptyData>
     <div class="row mx-0 mt-5">
