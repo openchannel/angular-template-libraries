@@ -32,5 +32,4 @@ export class OcFeaturedAppsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
