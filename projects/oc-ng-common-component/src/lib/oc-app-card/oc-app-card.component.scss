@@ -4,20 +4,23 @@
   border: none;
   padding-right: 0;
   padding-left: 0;
-  margin-bottom: 40px;
   min-width: 350px;
-  max-width: 350px;
+  max-width: 382px;
   line-height: 1;
-  margin-right: 15px;
-  margin-left: 15px;
+  background-color: white;
 
   .img-fluid {
     min-width: 44px;
     max-width: 44px;
   }
 
+  .app-name {
+    line-height: 19px;
+  }
+
   .app-price {
     font-size: 14px;
+    line-height: 16px;
     font-family: "Rubik-Medium";
     display: inline-block;
     color: $primary;
@@ -26,6 +29,13 @@
   }
   .line-space {
     line-height: 1.2rem;
+  }
+  .text-summary-hidden {
+    max-height: 2.5rem;
+    overflow: hidden;
+  }
+  .card-height-fixed {
+    height: 99px
   }
 }
 

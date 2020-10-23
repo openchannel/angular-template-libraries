@@ -11,6 +11,8 @@ export class OcRatingComponent implements OnInit {
   @Input() type;
   @Input() rating = 0;
   @Input() reviewCount = 0;
+  @Input() label = '';
+  @Input() labelClass = 'font-m font-med';
 
   constructor(config: NgbRatingConfig) {
     config.max = 5;

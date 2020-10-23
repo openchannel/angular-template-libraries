@@ -1,0 +1,15 @@
+.vid-preview {
+  max-width: 380px;
+}
+
+.video-loader-div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+video {
+  outline: 0;
+}

@@ -63,7 +63,7 @@ import {OcTitleComponent} from './oc-title/oc-title.component';
 import {OcFormComponent} from './oc-form/oc-form.component';
 import {OnlyNumberDirective} from './directive/only-number.directive';
 import {OcVideoUrlComponent} from './oc-video-url/oc-video-url.component';
-import {AppIconsModule} from './app-icons.module';
+import {AppIconsModule} from './app-icon-module/app-icons.module';
 import {OcColorComponent} from './oc-color/oc-color.component';
 import {ColorPickerModule} from 'ngx-color-picker';
 import {OcDatetimePickerComponent} from './oc-datetime-picker/oc-datetime-picker.component';
@@ -71,9 +71,13 @@ import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select
 import {OcDynamicFieldArrayComponent} from './oc-dynamic-field-array/oc-dynamic-field-array.component';
 import {OcDynamicArrayItemComponent} from './oc-dynamic-array-item/oc-dynamic-array-item.component';
 import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
-import {PricePipe} from "./pipe/price.pipe";
+import {PricePipe} from './pipe/price.pipe';
 import {EditorModule} from '@tinymce/tinymce-angular';
 import { RouterModule } from '@angular/router';
+import {OcDropdownComponent} from './oc-dropdown/oc-dropdown.component';
+import {OcVideoComponent} from './oc-video/oc-video.component';
+import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.component';
+import { OcAppDescriptionComponent } from './oc-app-description/oc-app-description.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -116,6 +120,9 @@ import { RouterModule } from '@angular/router';
     OcFileUploadComponent,
     OcAppCategorySelectComponent,
     OcPopupComponent,
+    OcDropdownComponent,
+    OcVideoComponent,
+    OcImageGalleryComponent,
     SafehtmlPipe,
     CamelcasePipe,
     EllipsisPipe,
@@ -144,7 +151,8 @@ import { RouterModule } from '@angular/router';
     OcFormComponent,
     OcDynamicFieldArrayComponent,
     OcDynamicArrayItemComponent,
-    OcFormModalComponent
+    OcFormModalComponent,
+    OcAppDescriptionComponent
   ],
 
   imports: [
@@ -185,6 +193,7 @@ import { RouterModule } from '@angular/router';
     FileSizePipe,
     CamelcasePipe,
     EllipsisPipe,
+    PricePipe,
     ImageFileValidatorDirective,
     PasswordToggleDirective,
     PhoneNumberValidatorDirective,
@@ -198,6 +207,12 @@ import { RouterModule } from '@angular/router';
     OcAppListGridComponent,
     OcAppCategorySelectComponent,
     OcPopupComponent,
+    OcOverallRatingComponent,
+    OcReviewListComponent,
+    OcRecommendedAppsComponent,
+    OcDropdownComponent,
+    OcVideoComponent,
+    OcImageGalleryComponent,
     NgbModule,
     CompareDirective,
     OcAppStatusDetailsComponent,
@@ -215,7 +230,8 @@ import { RouterModule } from '@angular/router';
     OcVideoUrlComponent,
     OcMultiSelectListComponent,
     OcTagsComponent,
-    OcDynamicFieldArrayComponent
+    OcDynamicFieldArrayComponent,
+    OcAppDescriptionComponent
   ],
   providers: [
     NgbActiveModal,

@@ -6,18 +6,22 @@
   margin-bottom: 16px;
   line-height: 1;
   border-radius: 4px;
+
+  .app-name {
+    line-height: 19px;
+  }
   
   .img-fluid {
     min-width: 44px;
     max-width: 44px;
+    margin-right: 22px;
   }
   
   .app-price {
     font-size: 14px;
+    line-height: 16px;
     font-family: "Rubik-Medium";
-    display: inline-block;
     color: $primary;
-    margin-bottom: 8px;
     width: 130px;
   }
   
