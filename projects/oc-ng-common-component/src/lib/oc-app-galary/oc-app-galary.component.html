@@ -11,10 +11,9 @@
     </div>
 </div>
 <div *ngIf="appsArr && appsArr.length > 0; else emptyData" class="row pt-5">
-    <div *ngFor="let app of appsArr;" class="card-margins">
-        <oc-app-card [app]="app"
-                     [appRouterLink]="routerLinkForOneApp"></oc-app-card>
-    </div>
+    <oc-app-card *ngFor="let app of appsArr;" class="card-margins"
+                 [app]="app"
+                 [appRouterLink]="routerLinkForOneApp"></oc-app-card>
 </div>
 <ng-template #emptyData>
     <div class="row mx-0 mt-5">

@@ -5,7 +5,7 @@
   padding-right: 0;
   padding-left: 0;
   min-width: 350px;
-  max-width: 350px;
+  max-width: 382px;
   line-height: 1;
 
   .img-fluid {
@@ -13,8 +13,13 @@
     max-width: 44px;
   }
 
+  .app-name {
+    line-height: 19px;
+  }
+
   .app-price {
     font-size: 14px;
+    line-height: 16px;
     font-family: "Rubik-Medium";
     display: inline-block;
     color: $primary;
@@ -29,6 +34,6 @@
     overflow: hidden;
   }
   .card-height-fixed {
-    height: 131px;
+    height: 99px
   }
 }
