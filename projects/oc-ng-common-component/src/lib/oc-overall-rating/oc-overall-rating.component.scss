@@ -1,9 +1,33 @@
 @import "../../../assets/styles/theme.scss";
 
 .label-blue {
-  font-size: 12px;
-  font-family: "Rubik-Medium";
   color: $primary;
   margin-bottom: 8px;
   width: 130px;
+}
+
+.rating {
+  line-height: 38px;
+}
+
+.review-label {
+  color: $secondary;
+}
+
+.star {
+  font-size: 14px;
+  line-height: 14px;
+  height: 14px;
+  position: relative;
+  color: rgba(114, 114, 114, 0.4);
+}
+
+.full {
+  color: #ffc820;
+}
+
+.progress-bar__label {
+  color: $secondary;
+  line-height: 14px;
+  height: 14px;
 }

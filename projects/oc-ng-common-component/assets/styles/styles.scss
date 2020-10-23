@@ -380,3 +380,19 @@ select::-ms-expand { display: none; }
   min-width: auto;
 }
 
+.review {
+  &__rate {
+    height: 14px;
+    & > span {
+      font-size: 14px;
+      display: inline-flex;
+    }
+  }
+  &__progressbar {
+    display: block;
+
+    & .progress {
+      height: 8px;
+    }
+  }
+}
