@@ -1,4 +1,4 @@
-<div class="card app-card p-2 cursor-pointer" [routerLink]="[appRouterLink, app.appId]">
+<a class="card app-card p-2 cursor-pointer" [routerLink]="[appRouterLink, app.appId]">
     <div class="row mx-0 card-height-fixed">
         <div class="pl-0">
             <img [src]="app.icon ? safeLink(app.icon) : '../../../assets/img/standard-app-icon.svg'" alt=""
@@ -15,4 +15,4 @@
             <p class="text-secondary font-m mb-0 line-space text-summary-hidden">{{app.summary ? app.summary : app.description}}</p>
         </div>
     </div>
-</div>
+</a>
