@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {AfterContentInit, Component, Input, OnDestroy} from '@angular/core';
 import {takeUntil} from 'rxjs/operators';
 import {FileUploadDownloadService} from 'oc-ng-common-service';
 import {Subject} from 'rxjs';
@@ -8,7 +8,7 @@ import {Subject} from 'rxjs';
     templateUrl: './oc-video.component.html',
     styleUrls: ['./oc-video.component.scss']
 })
-export class OcVideoComponent implements AfterViewInit, OnDestroy {
+export class OcVideoComponent implements AfterContentInit, OnDestroy {
 
     @Input() videoUrl: string;
 
@@ -22,7 +22,7 @@ export class OcVideoComponent implements AfterViewInit, OnDestroy {
     constructor(private fileService: FileUploadDownloadService) {
     }
 
-    ngAfterViewInit(): void {
+    ngAfterContentInit(): void {
         this.loadVideoFrame();
     }
 

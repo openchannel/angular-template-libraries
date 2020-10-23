@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterContentInit, Component, Input} from '@angular/core';
 import {GalleryItem} from 'oc-ng-common-service';
 
 @Component({
@@ -6,14 +6,15 @@ import {GalleryItem} from 'oc-ng-common-service';
   templateUrl: './oc-image-gallery.component.html',
   styleUrls: ['./oc-image-gallery.component.scss']
 })
-export class OcImageGalleryComponent implements OnInit {
+export class OcImageGalleryComponent implements AfterContentInit {
 
   @Input() gallery: GalleryItem[];
   @Input() maxItems = 3;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngAfterContentInit(): void {
+    this.gallery.splice(this.maxItems);
   }
 
 }
