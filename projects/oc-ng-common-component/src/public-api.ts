@@ -47,6 +47,7 @@ export * from './lib/oc-dynamic-field-array/oc-dynamic-field-array.component';
 export * from './lib/oc-dropdown/oc-dropdown.component';
 export * from './lib/oc-video/oc-video.component';
 export * from './lib/oc-image-gallery/oc-image-gallery.component';
+export * from './lib/oc-app-description/oc-app-description.component';
 
 // validators
 export * from './lib/validators/white-space-validator';

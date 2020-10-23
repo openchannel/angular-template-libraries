@@ -1,0 +1,10 @@
+<div class="w-100">
+  <h4 class="mb-5">About</h4>
+  <p #description class="text-secondary" [innerHTML]="appDescription"
+     [class.hid-description]="!showFullDescription">
+  </p>
+  <span *ngIf="!showFullDescription" class="font-m font-med cursor-pointer text-primary"
+        (click)="showFullDescription = true">
+        {{expandDescriptionText}}
+  </span>
+</div>

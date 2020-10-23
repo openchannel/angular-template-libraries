@@ -63,7 +63,7 @@ import {OcTitleComponent} from './oc-title/oc-title.component';
 import {OcFormComponent} from './oc-form/oc-form.component';
 import {OnlyNumberDirective} from './directive/only-number.directive';
 import {OcVideoUrlComponent} from './oc-video-url/oc-video-url.component';
-import {AppIconsModule} from './app-icons.module';
+import {AppIconsModule} from './app-icon-module/app-icons.module';
 import {OcColorComponent} from './oc-color/oc-color.component';
 import {ColorPickerModule} from 'ngx-color-picker';
 import {OcDatetimePickerComponent} from './oc-datetime-picker/oc-datetime-picker.component';
@@ -77,6 +77,7 @@ import { RouterModule } from '@angular/router';
 import {OcDropdownComponent} from './oc-dropdown/oc-dropdown.component';
 import {OcVideoComponent} from './oc-video/oc-video.component';
 import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.component';
+import { OcAppDescriptionComponent } from './oc-app-description/oc-app-description.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -150,7 +151,8 @@ import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.compo
     OcFormComponent,
     OcDynamicFieldArrayComponent,
     OcDynamicArrayItemComponent,
-    OcFormModalComponent
+    OcFormModalComponent,
+    OcAppDescriptionComponent
   ],
 
   imports: [
@@ -228,7 +230,8 @@ import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.compo
     OcVideoUrlComponent,
     OcMultiSelectListComponent,
     OcTagsComponent,
-    OcDynamicFieldArrayComponent
+    OcDynamicFieldArrayComponent,
+    OcAppDescriptionComponent
   ],
   providers: [
     NgbActiveModal,
