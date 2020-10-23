@@ -6,7 +6,7 @@ import {OCReviewDetails} from 'oc-ng-common-service';
   templateUrl: './oc-review-list.component.html',
   styleUrls: ['./oc-review-list.component.scss']
 })
-export class OcReviewListComponent implements OnInit, AfterViewInit {
+export class OcReviewListComponent {
 
   @Input()
   set reviewsList(list: OCReviewDetails[]) {
@@ -37,11 +37,6 @@ export class OcReviewListComponent implements OnInit, AfterViewInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-  }
-
-  ngAfterViewInit(): void {
-  }
 
   writeReview() {
     this.writeAReview.emit();

@@ -19,22 +19,4 @@ export class OcOverallRatingComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  // getStarCount(starNumber: number): number {
-  //   switch (starNumber) {
-  //     case 5:
-  //       return this.allReviewSummary.fiveStarCount;
-  //     case 4:
-  //       return this.allReviewSummary.fourStarCount;
-  //     case 3:
-  //       return this.allReviewSummary.threeStarCount;
-  //     case 2:
-  //       return this.allReviewSummary.twoStarCount;
-  //     case 1:
-  //       return this.allReviewSummary.oneStarCount;
-  //     default:
-  //       return 5;
-  //   }
-  // }
-
 }
