@@ -8,7 +8,9 @@
   max-width: 382px;
   line-height: 1;
   background-color: white;
-
+  @include media-breakpoint-up(sm) {
+    max-width: 100%;
+  }
   .img-fluid {
     min-width: 44px;
     max-width: 44px;
