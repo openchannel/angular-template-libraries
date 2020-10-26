@@ -88,14 +88,14 @@
   <div class="modal-body d-flex flex-column">
     <div class="file-cropper-body w-100 d-flex flex-column">
       <image-cropper [imageChangedEvent]="browsedFileEvent" [maintainAspectRatio]="maintainAspectRatio"
-        [aspectRatio]="aspectRatio" [resizeToWidth]="resizeToWidth" [resizeToHeight]="resizeToHeight" format="png"
+        [aspectRatio]="aspectRatio" [resizeToWidth]="resizeToWidth" [cropperMinWidth]="cropperMinWidth" [cropperMinHeight]="cropperMinHeight" [resizeToHeight]="resizeToHeight" format="png"
         (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
         (loadImageFailed)="loadImageFailed()" [transform]="transform" style="padding: 0px;">
       </image-cropper>
       <!-- [resizeToWidth]="resizeToWidth"
           [resizeToHeight]="resizeToHeight" -->
 
-      <div class="w-100 my-2 text-center" *ngIf="hasImageLoadError">
+      <div class="w-100 my-2 small text-danger" *ngIf="hasImageLoadError">
         {{ imageLoadErrorMessage }}
       </div>
       <div *ngIf="uploadImageInProcess" class="fileUploader-new">
