@@ -1,2 +1,11 @@
 @import "../../../assets/styles/theme.scss";
 
+.card-margins {
+  margin-bottom: 40px;
+  flex-grow: 1;
+  flex-basis: 250px;
+  max-width: 382px;
+  @include media-breakpoint-up(sm) {
+    max-width: 100%;
+  }
+}

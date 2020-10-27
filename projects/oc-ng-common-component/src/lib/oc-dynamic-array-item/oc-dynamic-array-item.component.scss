@@ -1,0 +1,23 @@
+@import "../../../assets/styles/theme.scss";
+
+.main-item-button {
+  background-color: lighten($primary, 30%);
+  border: 0;
+  padding: 4px 10px;
+  border-radius: .25rem;
+  color: $primary;
+
+  span {
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+}
+
+.item-delete-button {
+  background-color: lighten($danger, 26%);
+  color: $danger;
+}
+
+.fields-details-text {
+  color: lighten($body-color, 10%);
+}

@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {OcTextSearhComponent} from './oc-text-searh.component';
+import {OcTextSearchComponent} from './oc-text-search.component';
 
 describe('OcTextSearhComponent', () => {
-  let component: OcTextSearhComponent;
-  let fixture: ComponentFixture<OcTextSearhComponent>;
+  let component: OcTextSearchComponent;
+  let fixture: ComponentFixture<OcTextSearchComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [OcTextSearhComponent]
+      declarations: [OcTextSearchComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OcTextSearhComponent);
+    fixture = TestBed.createComponent(OcTextSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

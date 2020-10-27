@@ -1,6 +1,6 @@
-<div *ngIf="type === 'single-star'" class="d-inline">
-    <img alt="rating" src="https://drive.google.com/u/0/uc?id=1Jj7A61PoiIzuVXII-eI5dmO50HsDa1PJ&export=download">
-    <span>{{rating}} ({{reviewCount}})</span>
+<div *ngIf="type === 'single-star'" class="d-flex align-items-center">
+    <img class="rating-star" src="./assets/img/star.svg">
+    <span class="{{labelClass}}">{{rating}} ({{reviewCount}}{{label ? ' ' + label : ''}})</span>
 </div>
 
 <div *ngIf="type === 'multi-star'">

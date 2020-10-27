@@ -1,0 +1,6 @@
+<div class="input-group">
+    <input class="form-control" placeholder="Search" type="text"
+           [(ngModel)]="searchText"
+           (ngModelChange)="searchTextChange.emit($event)" (keydown.enter)="enterAction()">
+    <img alt="search-icon" src="../assets/img/text-search-icon.svg" (click)="enterAction()">
+</div>

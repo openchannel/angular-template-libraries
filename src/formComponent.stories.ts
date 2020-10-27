@@ -59,6 +59,7 @@ export default {
   decorators: [
     moduleMetadata(modules),
   ],
+  argTypes: { formSubmitted: { action: 'Form Data' }}
 };
 
 const FormGroupComponent = (args: OcFormComponent) => ({
@@ -488,6 +489,333 @@ FormWithMultiSelect.args = {
         label:	'Multi Select test',
         placeholder:	null,
         type:	'multiselectList'
+      }
+    ]
+  }
+};
+
+export const FormWithDynamicFieldArray = FormGroupComponent.bind({});
+
+FormWithDynamicFieldArray.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        attributes: {
+          maxCount: 3,
+          minCount: 1,
+          ordering: 'append',
+          required:	true,
+          rowLabel:	'field1'
+        },
+        required: null,
+        rowLabel: null,
+        category: 'CUSTOM',
+        defaultValue: null,
+        description: '',
+        id: 'test-dynamic-field-array',
+        isOpen: false,
+        isValid: true,
+        label: 'Test Dynamic field array',
+        placeholder: null,
+        subFieldDefinitions: [
+          {
+            attributes: {
+              maxChars: null,
+              minChars: null,
+              required: null
+            },
+            category: 'CUSTOM',
+            defaultValue: null,
+            description: 'some description',
+            id: 'field1',
+            isOpen: false,
+            isValid: true,
+            label: 'field1',
+            placeholder: 'write some text',
+            type: 'text'
+          },
+          {
+            id:	'long-text-example',
+            label: 'Long Text Example',
+            type:	'longText',
+            placeholder: 'Write your text here...',
+            category: 'CUSTOM',
+            defaultValue: null,
+            attributes: {
+              maxChars:	200,
+              required:	null,
+              minChars:	2
+            },
+          }
+        ],
+        type: 'dynamicFieldArray'
+      }
+    ]
+  }
+};
+
+export const FormWithDynamicFieldArraySecondLvl = FormGroupComponent.bind({});
+
+FormWithDynamicFieldArraySecondLvl.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        attributes: {
+          maxCount: null,
+          minCount: null,
+          ordering: 'append',
+          required:	null,
+          rowLabel:	null
+        },
+        required: null,
+        rowLabel: null,
+        category: 'CUSTOM',
+        defaultValue: null,
+        description: '',
+        id: 'test-dynamic-field-array',
+        isOpen: false,
+        isValid: true,
+        label: 'Test Dynamic field array',
+        placeholder: null,
+        subFieldDefinitions: [
+          {
+            attributes: {
+              maxChars: null,
+              minChars: null,
+              required: null
+            },
+            category: 'CUSTOM',
+            defaultValue: null,
+            description: 'some description',
+            id: 'field1',
+            isOpen: false,
+            isValid: true,
+            label: 'field1',
+            placeholder: 'write some text',
+            type: 'text'
+          },
+          {
+            id:	'long-text-example',
+            label: 'Long Text Example',
+            type:	'longText',
+            placeholder: 'Write your text here...',
+            category: 'CUSTOM',
+            defaultValue: null,
+            attributes: {
+              maxChars:	200,
+              required:	null,
+              minChars:	2
+            },
+          },
+          {
+            attributes: {
+              maxCount: null,
+              minCount: null,
+              ordering: 'append',
+              required:	null,
+              rowLabel:	null
+            },
+            required: null,
+            rowLabel: null,
+            category: 'CUSTOM',
+            defaultValue: null,
+            description: '',
+            id: 'test-dynamic-field-array-2',
+            isOpen: false,
+            isValid: true,
+            label: 'Test Dynamic field array 2',
+            placeholder: null,
+            subFieldDefinitions: [
+              {
+                attributes: {
+                  maxChars: null,
+                  minChars: null,
+                  required: null
+                },
+                category: 'CUSTOM',
+                defaultValue: null,
+                description: 'some description',
+                id: 'field1',
+                isOpen: false,
+                isValid: true,
+                label: 'field1',
+                placeholder: 'write some text',
+                type: 'text'
+              }
+            ],
+            type: 'dynamicFieldArray'
+          }
+        ],
+        type: 'dynamicFieldArray'
+      }
+    ]
+  }
+};
+
+export const FormWithDynamicFieldArrayThirdLvl = FormGroupComponent.bind({});
+
+FormWithDynamicFieldArrayThirdLvl.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        attributes: {
+          maxCount: null,
+          minCount: null,
+          ordering: 'append',
+          required:	null,
+          rowLabel:	null
+        },
+        required: null,
+        rowLabel: null,
+        category: 'CUSTOM',
+        defaultValue: null,
+        description: '',
+        id: 'test-dynamic-field-array',
+        isOpen: false,
+        isValid: true,
+        label: 'Test Dynamic field array',
+        placeholder: null,
+        subFieldDefinitions: [
+          {
+            attributes: {
+              maxChars: null,
+              minChars: null,
+              required: null
+            },
+            category: 'CUSTOM',
+            defaultValue: null,
+            description: 'some description',
+            id: 'field1',
+            isOpen: false,
+            isValid: true,
+            label: 'field1',
+            placeholder: 'write some text',
+            type: 'text'
+          },
+          {
+            id:	'long-text-example',
+            label: 'Long Text Example',
+            type:	'longText',
+            placeholder: 'Write your text here...',
+            category: 'CUSTOM',
+            defaultValue: null,
+            attributes: {
+              maxChars:	200,
+              required:	null,
+              minChars:	2
+            },
+          },
+          {
+            attributes: {
+              maxCount: null,
+              minCount: null,
+              ordering: 'append',
+              required:	null,
+              rowLabel:	null
+            },
+            required: null,
+            rowLabel: null,
+            category: 'CUSTOM',
+            defaultValue: null,
+            description: '',
+            id: 'test-dynamic-field-array-2',
+            isOpen: false,
+            isValid: true,
+            label: 'Test Dynamic field array 2',
+            placeholder: null,
+            subFieldDefinitions: [
+              {
+                attributes: {
+                  maxChars: null,
+                  minChars: null,
+                  required: null
+                },
+                category: 'CUSTOM',
+                defaultValue: null,
+                description: 'some description',
+                id: 'field2',
+                isOpen: false,
+                isValid: true,
+                label: 'field2',
+                placeholder: 'write some text',
+                type: 'text'
+              },
+              {
+                attributes: {
+                  maxCount: null,
+                  minCount: 1,
+                  ordering: 'append',
+                  required:	false,
+                  rowLabel:	null
+                },
+                required: null,
+                rowLabel: null,
+                category: 'CUSTOM',
+                defaultValue: null,
+                description: '',
+                id: 'test-dynamic-field-array-3',
+                isOpen: false,
+                isValid: true,
+                label: 'Test Dynamic field array 3',
+                placeholder: null,
+                subFieldDefinitions: [
+                  {
+                    id:	'long-text-example2',
+                    label: 'Long Text Example2',
+                    type:	'longText',
+                    placeholder: 'Write your text here...',
+                    category: 'CUSTOM',
+                    defaultValue: null,
+                    attributes: {
+                      maxChars:	200,
+                      required:	null,
+                      minChars:	2
+                    },
+                  }
+                ],
+                type: 'dynamicFieldArray'
+              }
+            ],
+            type: 'dynamicFieldArray'
+          }
+        ],
+        type: 'dynamicFieldArray'
+      }
+    ]
+  }
+};
+
+export const FormWithUpdatedRichTextEditor = FormGroupComponent.bind({});
+
+FormWithUpdatedRichTextEditor.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        id: 'rich-text-editor',
+        label: 'Rich Text Editor',
+        description: '',
+        defaultValue: null,
+        type: 'richText',
+        required: null,
+        attributes: {
+          maxChars: 100,
+          required: true,
+          minChars: 10
+        },
+        options: null,
+        subFieldDefinitions: null
       }
     ]
   }

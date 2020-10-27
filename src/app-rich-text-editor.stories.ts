@@ -22,29 +22,9 @@ const RichTextEditorComponent = (args: OcRichTextEditorComponent) => ({
   props: args
 });
 
-export const RichTextEditorMaxCharacters = RichTextEditorComponent.bind({});
+export const SimpleRichTextEditor = RichTextEditorComponent.bind({});
 
-RichTextEditorMaxCharacters.args = {
-  placeholder: 'You can write 255 characters here',
-  charCounterCount: true,
-  maxCharacters: 255,
-  label: 'Rich Text Editor Text'
-};
-
-export const RichTextEditorLittleMaxCharacters = RichTextEditorComponent.bind({});
-
-RichTextEditorLittleMaxCharacters.args = {
-  placeholder: 'You can write only 10 characters here',
-  charCounterCount: true,
-  maxCharacters: 10,
-  label: 'Rich Text Editor Text'
-};
-
-export const RichTextEditorWithoutCharacterCounter = RichTextEditorComponent.bind({});
-
-RichTextEditorWithoutCharacterCounter.args = {
-  placeholder: '',
-  charCounterCount: false,
-  label: 'Rich Text Editor Text'
+SimpleRichTextEditor.args = {
+  placeholder: 'Write here about yourself...',
 };
 

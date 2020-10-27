@@ -11,7 +11,9 @@
   position: relative;
   text-align: center;
   color: $primary;
-  
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
   img {
     max-height: 52px;
   }

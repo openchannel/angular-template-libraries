@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AppCategoryDetail} from 'oc-ng-common-service';
+import { DomSanitizer, SafeResourceUrl, SafeStyle } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'oc-app-categories',
@@ -8,16 +10,35 @@ import {AppCategoryDetail} from 'oc-ng-common-service';
 })
 export class OcAppCategoriesComponent implements OnInit {
 
+  /** Data of the category that will be shown in array */
   @Input() data: AppCategoryDetail[] = [];
-
+  /** Title of the category section */
   @Input() categoryHeaderTitle = '';
-
+  /** The message that will be shown when no category */
   @Input() noDataMsg = '';
+  /** Main router link for the category */
+  @Input() categoryRouterLink: string = '';
 
-  constructor() {
+  constructor(private sanitizer: DomSanitizer,
+              private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
+  safeImage(logoUrl: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(logoUrl);
+  }
+
+  safeStyle(imageLink: string): SafeStyle {
+    return this.sanitizer.bypassSecurityTrustStyle( `url(${imageLink})`);
+  }
+  /** Navigates to the category page */
+  navigateToCategory(routerQuery?: any): void {
+    if (routerQuery) {
+      this.router.navigate([this.categoryRouterLink], {queryParams: routerQuery}).then();
+    } else {
+      this.router.navigate([this.categoryRouterLink]).then();
+    }
+  }
 }

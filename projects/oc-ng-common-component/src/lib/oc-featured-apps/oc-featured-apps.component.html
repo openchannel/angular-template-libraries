@@ -1,21 +1,21 @@
 <div class="row">
     <div class="col-md-12">
-        <h4 class="mb-3">{{label}}</h4>
+        <h4 class="mb-3 text-center text-md-left">{{label}}</h4>
     </div>
 </div>
-<div *ngIf="data && data.length > 0; else emptyData" class="row">
-    <div *ngFor="let app of data;" class="col-md-auto">
+<div *ngIf="data && data.length > 0; else emptyData" class="row featured-card-container">
+    <div *ngFor="let app of data;" class="col-md-auto card-box">
         <div class="featured-card card">
-            <div class="card-body">
-                <img alt="featured-logo" src="{{app.logoUrl}}">
-                <h5>{{app.appName}}</h5>
-                <span>{{app.appDescription}}</span>
-            </div>
+            <a class="card-body {{customClasses}}" [routerLink]="[mainRouterLink, app.appId]">
+                <img alt="featured-logo" src="{{app.icon}}">
+                <h5>{{app.name}}</h5>
+                <span>{{app.summary}}</span>
+            </a>
         </div>
     </div>
 </div>
 <ng-template #emptyData>
-    <span class="col-md-12">
-        <h5>{{emptyDataMessage}}</h5>
-    </span>
+    <h5 class="col-md-12">
+       {{emptyDataMessage}}
+    </h5>
 </ng-template>
