@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {OcNumberComponent} from './oc-number.component';
+import {FormsModule} from "@angular/forms";
 
 describe('OcNumberComponent', () => {
   let component: OcNumberComponent;
@@ -8,7 +9,8 @@ describe('OcNumberComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [OcNumberComponent]
+      declarations: [OcNumberComponent],
+      imports: [FormsModule],
     })
       .compileComponents();
   }));
