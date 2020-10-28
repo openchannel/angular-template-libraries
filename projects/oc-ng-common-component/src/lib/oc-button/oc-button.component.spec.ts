@@ -52,4 +52,17 @@ describe('OcButtonComponent', () => {
       expect(button.disabled).toBeTruthy();
     });
   });
+
+  it('should click', async () => {
+    component.type = 'secondary';
+
+    const button = fixture.nativeElement.querySelector('button');
+
+    button.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+
+    await fixture.whenStable().then(() => {
+      expect(component.type).toBe('secondary');
+    });
+  });
 });
