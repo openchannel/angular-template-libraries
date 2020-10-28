@@ -82,17 +82,6 @@ describe('OcCheckboxComponent', () => {
     });
   });
 
-  it('checkbox should be disabled', async () => {
-    component.setDisabledState(true);
-
-    const checkbox = fixture.nativeElement.querySelector('input');
-    fixture.detectChanges();
-
-    await fixture.whenStable().then(() => {
-      expect(checkbox.disabled).toBeTruthy();
-    });
-  });
-
   it('should call onChange with value', async () => {
     const onChangeFunc = jest.fn();
     component.registerOnChange(onChangeFunc);
