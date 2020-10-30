@@ -57,7 +57,7 @@ export class OcErrorComponent implements OnInit {
   shouldShowErrors(): boolean {
 
     // client side error validators check
-    if (this.field || (this.control && this.control.errors && (this.control.dirty || this.control.touched))) {
+    if (this.control && this.control.errors && (this.control.dirty || this.control.touched)) {
       return true;
     }
 

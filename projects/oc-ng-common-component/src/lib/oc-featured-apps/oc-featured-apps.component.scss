@@ -8,25 +8,25 @@
   max-height: 330px;
   min-width: 255px;
   max-width: 255px;
-  
+
   .card-body {
     padding: 0 16px 16px;
     font-size: 14px;
     text-align: center;
-    
+
     span {
       font-size: 12px;
     }
-    
+
     h5 {
       margin-bottom: 51px;
       font-family: "Rubik-Medium";
     }
-    
+
     h4 {
       font-family: "Rubik-Medium";
     }
-    
+
     img {
       margin-top: 74px;
       margin-bottom: 13px;
@@ -38,4 +38,14 @@
 
 .featured-card.card:hover {
   border: 1px solid $primary;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: $body-color;
+  &:hover {
+    text-decoration: none;
+    color: $body-color;
+  }
 }

@@ -22,7 +22,7 @@ export * from './lib/oc-select/oc-select.component';
 export * from './lib/oc-featured-apps/oc-featured-apps.component';
 export * from './lib/oc-app-categories/oc-app-categories.component';
 export * from './lib/oc-forgot-password/oc-forgot-password.component';
-export * from './lib/oc-text-searh/oc-text-searh.component';
+export * from './lib/oc-text-search/oc-text-search.component';
 export * from './lib/oc-app-list-grid/oc-app-list-grid.component';
 export * from './lib/oc-error/oc-error.component';
 export * from './lib/oc-error/oc-error-service';
@@ -43,6 +43,12 @@ export * from './lib/oc-dropbox/oc-dropbox.component';
 export * from './lib/oc-color/oc-color.component';
 export * from './lib/oc-video-url/oc-video-url.component';
 export * from './lib/oc-multi-select-list/oc-multi-select-list.component';
+export * from './lib/oc-dynamic-field-array/oc-dynamic-field-array.component';
+export * from './lib/oc-dropdown/oc-dropdown.component';
+export * from './lib/oc-video/oc-video.component';
+export * from './lib/oc-image-gallery/oc-image-gallery.component';
+export * from './lib/oc-app-description/oc-app-description.component';
+export * from './lib/oc-user-signup/oc-user-signup.component';
 
 // validators
 export * from './lib/validators/white-space-validator';
@@ -61,6 +67,7 @@ export * from './lib/validators/compare-passsword-validator.directive';
 export * from './lib/validators/file-size.pipe';
 export * from './lib/pipe/camelcase.pipe';
 export * from './lib/pipe/ellipsis.pipe';
+export * from './lib/pipe/price.pipe';
 
 // chart components
 export * from './lib/oc-chart/oc-chart.component';
