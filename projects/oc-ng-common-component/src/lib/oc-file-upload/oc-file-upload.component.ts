@@ -245,7 +245,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
 
   async checkImageMinSize(event) {
     var imageSize = await this.getImageSize(event);
-    console.log(imageSize);
+    // console.log(imageSize);
     if (imageSize[0] < this.cropperMinWidth || imageSize[1] < this.cropperMinHeight) {
       this.imageLoadErrorMessage = 'Image size is '+ imageSize[0] +'x' + imageSize[1] +', Please add image having dimensions equal or above ' + this.cropperMinWidth +'x'+ this.cropperMinHeight;
       this.hasImageLoadError = true;
@@ -376,12 +376,15 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   }
 
   zoomOut() {
-    this.scale -= .1;
-    this.transform = {
-      ...this.transform,
-      scale: this.scale
-    };
+    if(this.scale > 0.2) {
+      this.scale -= .1;
+      this.transform = {
+        ...this.transform,
+        scale: this.scale
+      };
+    }
   }
+  
   zoomIn() {
     this.scale += .1;
     this.transform = {
