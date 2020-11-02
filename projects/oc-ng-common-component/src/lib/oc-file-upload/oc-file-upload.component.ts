@@ -305,6 +305,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   }
 
   resetSelection() {
+    this.resetZoom();
     if (this.fileInputVar) {
       this.fileInputVar.nativeElement.value = '';
     }
@@ -410,6 +411,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   }
 
   cancelUploading(idx) {
+    this.resetZoom(); 
     if (this.isUploadInProcess && this.uploadFileReq) {
       console.log("Trying to unsubscribe....");
       this.uploadFileReq.unsubscribe();
