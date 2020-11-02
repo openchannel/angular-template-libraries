@@ -24,10 +24,12 @@
 }
 
 .card-margin {
-  margin-right: 30px;
   margin-bottom: 1rem;
+  margin-right: 30px;
   &:last-child {
-    margin-right: 0;
+    @include media-breakpoint-up(lg) {
+      margin-right: 0;
+    }
   }
 }
 
@@ -35,4 +37,7 @@
   flex-grow: 1;
   flex-basis: 250px;
   max-width: 382px;
+  @include media-breakpoint-down(xs) {
+    max-width: 100%;
+  }
 }

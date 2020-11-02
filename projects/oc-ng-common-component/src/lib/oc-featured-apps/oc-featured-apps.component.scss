@@ -9,6 +9,9 @@
   min-width: 255px;
   max-width: 255px;
 
+  @include media-breakpoint-down(sm) {
+    margin: 0 auto 1rem;
+  }
   .card-body {
     padding: 0 16px 16px;
     font-size: 14px;

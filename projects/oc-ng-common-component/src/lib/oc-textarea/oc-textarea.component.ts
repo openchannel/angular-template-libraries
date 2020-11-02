@@ -36,7 +36,7 @@ export class OcTextareaComponent implements OnInit, ControlValueAccessor {
   /**
    * rows of textarea. Default: 5
    */
-  @Input() rows: string = '5';
+  @Input() rows: number = 5;
   @Input()
   set value(val) {
     this.textAreaValue = val;
@@ -86,6 +86,7 @@ export class OcTextareaComponent implements OnInit, ControlValueAccessor {
    * the method will be called by the control when the [disabled] state changes.
    */
   setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
   /**
    * this method will be called by the control to pass the value to our component.
