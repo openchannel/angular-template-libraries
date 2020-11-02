@@ -20,6 +20,7 @@ describe('OcDropboxComponent', () => {
     fixture = TestBed.createComponent(OcDropboxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    component.items = ['selected1', 'selected2', 'selected3', 'other'];
   });
 
   it('should create', () => {
@@ -27,22 +28,20 @@ describe('OcDropboxComponent', () => {
   });
 
   it('should contain selected value', () => {
-    component.items = ['selected item1', 'selected item2'];
-    component.writeValue('selected item2');
-    expect(component.outputSelectedItem).toEqual('selected item2');
+    component.writeValue('selected2');
+    expect(component.outputSelectedItem).toEqual('selected2');
   });
 
   it('should show selected value', async () => {
-    component.items = ['selected item1', 'selected item2'];
-    component.writeValue('selected item2');
+    component.writeValue('selected2');
 
     fixture.detectChanges();
 
     const dropbox = fixture.nativeElement.querySelector('input');
 
     await fixture.whenStable().then(() => {
-      expect(component.outputSelectedItem).toEqual('selected item2');
-      expect(dropbox.value).toContain('selected item2');
+      expect(component.outputSelectedItem).toEqual('selected2');
+      expect(dropbox.value).toContain('selected2');
     });
   });
 
@@ -53,25 +52,6 @@ describe('OcDropboxComponent', () => {
     const dropbox = fixture.nativeElement.querySelector('input');
 
     expect(dropbox.placeholder).toEqual('Test placeholder');
-  });
-
-  it('should change selected value', async () => {
-    component.items = ['selected item1', 'selected item2'];
-    component.writeValue('selected item2');
-
-    const dropbox = fixture.nativeElement.querySelector('input');
-    fixture.detectChanges();
-
-    dropbox.click();
-    fixture.detectChanges();
-
-    const selectedButton = fixture.nativeElement.querySelectorAll('button')[0];
-    selectedButton.click();
-
-    await fixture.whenStable().then(() => {
-      expect(component.outputSelectedItem).toEqual('selected item1');
-      expect(dropbox.value).toContain('selected item1');
-    });
   });
 
   it('should be disabled', async () => {
@@ -85,54 +65,29 @@ describe('OcDropboxComponent', () => {
     });
   });
 
-  it('should call onChange with value', async () => {
-    const onChangeFunc = jest.fn();
-    component.registerOnChange(onChangeFunc);
-
-    component.items = ['selected item1', 'selected item2'];
-    component.writeValue('selected item2');
-
-    const dropbox = fixture.nativeElement.querySelector('input');
-    dropbox.click();
-    fixture.detectChanges();
-
-    const selectedButton = fixture.nativeElement.querySelectorAll('button')[0];
-    selectedButton.click();
-
-    expect(onChangeFunc).toHaveBeenCalled();
-    expect(onChangeFunc.mock.calls[0][0]).toBe('selected item1');
-  });
-
-  it('should call onTouch', async () => {
-    const onTouchedFunc = jest.fn();
-    component.registerOnTouched(onTouchedFunc);
-
-    component.items = ['selected item1', 'selected item2'];
-
-    const dropbox = fixture.nativeElement.querySelector('input');
-    dropbox.dispatchEvent(new Event('focus'));
-
-    expect(onTouchedFunc).toHaveBeenCalled();
-  });
-
-  it('should emit value', () => {
-    component.items = ['selected item1', 'selected item2'];
+  it('should change selected value', async () => {
+    component.writeValue('selected2');
 
     spyOn(component.selectedItem, 'emit');
 
     const dropbox = fixture.nativeElement.querySelector('input');
+    fixture.detectChanges();
+
     dropbox.click();
     fixture.detectChanges();
 
     const selectedButton = fixture.nativeElement.querySelectorAll('button')[0];
     selectedButton.click();
 
-    expect(component.selectedItem.emit).toHaveBeenCalledWith('selected item1');
+    await fixture.whenStable().then(() => {
+      expect(component.outputSelectedItem).toEqual('selected1');
+      expect(dropbox.value).toContain('selected1');
+      expect(component.selectedItem.emit).toHaveBeenCalledWith('selected1');
+    });
   });
 
   it('should filter values', () => {
     component.clearFormAfterSelect = true;
-    component.items = ['selected1', 'selected2', 'selected3', 'other'];
 
     const dropbox = fixture.nativeElement.querySelector('input');
     dropbox.value = 'oth';
@@ -142,5 +97,33 @@ describe('OcDropboxComponent', () => {
     const selectedButton = fixture.nativeElement.querySelectorAll('button')[0];
 
     expect(selectedButton.textContent).toContain('other');
+  });
+
+  it('should call onChange with value', async () => {
+    const onChangeFunc = jest.fn();
+    component.registerOnChange(onChangeFunc);
+
+    component.writeValue('selected2');
+
+    const dropbox = fixture.nativeElement.querySelector('input');
+    dropbox.click();
+    fixture.detectChanges();
+
+    const selectedButton = fixture.nativeElement.querySelectorAll('button')[0];
+    selectedButton.click();
+
+    expect(onChangeFunc).toHaveBeenCalled();
+    expect(onChangeFunc.mock.calls[0][0]).toBe('selected1');
+  });
+
+  it('should call onTouch', async () => {
+    const onTouchedFunc = jest.fn();
+    component.registerOnTouched(onTouchedFunc);
+
+
+    const dropbox = fixture.nativeElement.querySelector('input');
+    dropbox.dispatchEvent(new Event('focus'));
+
+    expect(onTouchedFunc).toHaveBeenCalled();
   });
 });
