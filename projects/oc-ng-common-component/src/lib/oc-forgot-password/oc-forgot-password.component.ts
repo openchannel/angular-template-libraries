@@ -12,9 +12,8 @@ export class OcForgotPasswordComponent implements OnInit {
 
   @Input() loginUrl;
   @Input() signupUrl;
-  @Input() companayLogoUrl;
   @Input() forgotPasswordDoneUrl;
-  @Input() ForgotPwdPageState;
+  @Input() showResultPage;
   @Input() companyLogoUrl;
   @Input() process;
   @Output() submit = new EventEmitter<any>();
@@ -23,10 +22,6 @@ export class OcForgotPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  getValue(label: string) {
-    return label;
   }
 
   submitForm(form) {
