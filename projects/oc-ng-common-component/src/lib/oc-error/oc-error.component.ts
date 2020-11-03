@@ -40,12 +40,12 @@ export class OcErrorComponent implements OnInit {
   };
 
   @Input()
-  private control: AbstractControlDirective | AbstractControl | NgModel;
+  public control: AbstractControlDirective | AbstractControl | NgModel;
   // server error field name
   @Input()
-  private field: string;
+  public field: string;
   @Input()
-  private errorParams: any;
+  public errorParams: any;
 
   constructor(public errorService: OcErrorService) {
   }
@@ -59,7 +59,6 @@ export class OcErrorComponent implements OnInit {
     if (this.field || (this.control && this.control.errors && (this.control.dirty || this.control.touched))) {
       return true;
     }
-
     // server side error validators check
     if (this.errorService.serverErrorList && this.errorService.serverErrorList.length
       && typeof this.errorService.serverErrorList === 'object') {
