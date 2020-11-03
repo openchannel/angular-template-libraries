@@ -10,23 +10,21 @@
                 <h4>Log In</h4>
                 <oc-label text="Log in into your account" class="invitation"></oc-label>
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="!loginType">
                 <oc-label text="Email"></oc-label>
                 <oc-input #email=ngModel (ngModelChange)="onchange(loginForm)" [(ngModel)]="loginModel.email"
-                          [ngModel]="loginModel.email" placeholder="Email" emailValidator
-                          name="email" ngDefaultControl
+                          placeholder="Email" emailValidator name="email" ngDefaultControl
                           required="true"></oc-input>
-                <oc-error [control]="email"></oc-error>
+                <oc-error [control]="email" field="email"></oc-error>
             </div>
-            <div class="form-group mb-2">
+            <div class="form-group mb-2" *ngIf="!loginType">
                 <oc-label text="Password"></oc-label>
-                <oc-password #password=ngModel (modelNameChange)="onchange(loginForm)" [(modelName)]="loginModel.password"
-                             [ngModel]="loginModel.password" placeholder="Password" class="mb-2" name="password"
-                             ngDefaultControl
+                <oc-password #password=ngModel (ngModelChange)="onchange(loginForm)" [(ngModel)]="loginModel.password"
+                             placeholder="Password" class="mb-2" name="password" ngDefaultControl
                              required="true" whiteSpaceValidator></oc-password>
-                <oc-error [control]="password"></oc-error>
+                <oc-error [control]="password" field="password"></oc-error>
             </div>
-            <div class="forgot__block row">
+            <div class="forgot__block row" *ngIf="!loginType">
                 <div class="remember col-md">
                     <label>
                         <input class="remember__checkbox" type="checkbox"
@@ -40,13 +38,13 @@
                 </div>
             </div>
             <oc-button (click)="submitForm(loginForm)"
-                       [process]="process" [text]="loginButtonText"
+                       [process]="process" [text]="loginType ? 'Log In Through ' + loginType : loginButtonText"
                        type="primary"
                        class="btn-block login-btn mt-4 mb-3">
             </oc-button>
-            <div class="text-center">
-                <oc-label class="sign-up__text" text="Dont have an account yet?"></oc-label>
-                <a *ngIf="signupUrl" class="font-m font-med" [href]="signupUrl"> Sign Up</a>
+            <div class="text-center font-m" *ngIf="!loginType">
+                Dont have an account yet?
+                <a *ngIf="signupUrl" class="font-m font-med" [routerLink]="signupUrl">Sign Up</a>
             </div>
         </div>
     </div>

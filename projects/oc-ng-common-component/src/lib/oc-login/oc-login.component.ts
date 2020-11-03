@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {SellerSignin} from 'oc-ng-common-service';
 
 @Component({
@@ -15,6 +15,7 @@ export class OcLoginComponent {
   @Input() signupUrl;
   @Input() companyLogoUrl = './assets/img/company_logo.svg';
   @Input() process;
+  @Input() loginType;
 
   @Output() submit = new EventEmitter<any>();
 
