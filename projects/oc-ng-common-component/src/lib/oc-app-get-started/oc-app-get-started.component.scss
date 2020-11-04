@@ -1,4 +1,15 @@
+@import "../../../assets/styles/theme.scss";
+
 img {
   margin-left: 190px;
   margin-right: 80px;
+  @include media-breakpoint-down(xs) {
+    margin: 0;
+  }
+}
+
+.image-align {
+  @include media-breakpoint-down(xs) {
+    text-align: center;
+  }
 }
