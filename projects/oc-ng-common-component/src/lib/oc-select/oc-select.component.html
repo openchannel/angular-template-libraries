@@ -3,13 +3,13 @@
         [disabled]="disabled" class="form-control select-control selectpicker {{class}}" name="delServiceOption">
     <ng-container *ngIf="isObject">
         <ng-container *ngFor="let val of selectValArr" >
-            <option *ngFor="let object of val | keyvalue" [value]="object.value">
+            <option *ngFor="let object of val | keyvalue" [ngValue]="object.value">
                 {{object.key}}
             </option>
         </ng-container>
     </ng-container>
     <ng-container *ngIf="!isObject">
-        <option *ngFor="let val of selectValArr;" [value]="val">
+        <option *ngFor="let val of selectValArr;" [ngValue]="val">
             {{val}}
         </option>
     </ng-container>
