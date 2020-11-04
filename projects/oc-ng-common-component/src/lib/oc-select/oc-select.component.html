@@ -1,14 +1,16 @@
-<!--<select (blur)="onblur()" (ngModelChange)="onSelectionChange($event)" *ngIf="!stringVal" [(ngModel)]="value"-->
-<!--        [disabled]="disabled" class="form-control select-control selectpicker" name="delServiceOption" placeholder="Please select a application"-->
-<!--        required>-->
-<!--    <option disabled selected value="">{{defaultBlankValue}}</option>-->
-<!--    <option *ngFor="let val of selectValArr;" [value]="val.value">{{val.key}}</option>-->
-<!--</select>-->
 <select (blur)="onblur()" (change)="onSelectionChange($event)" [(ngModel)]="selectedValue"
         [ngModelOptions]="{standalone: true}"
         [disabled]="disabled" class="form-control select-control selectpicker {{class}}" name="delServiceOption">
-<!--    <option disabled selected value=null>{{defaultBlankValue}}</option>-->
-    <option *ngFor="let val of selectValArr;" [value]="isObject? val.value : val">
-        {{isObject? val.key : val}}
-    </option>
+    <ng-container *ngIf="isObject">
+        <ng-container *ngFor="let val of selectValArr" >
+            <option *ngFor="let object of val | keyvalue" [value]="object.value">
+                {{object.key}}
+            </option>
+        </ng-container>
+    </ng-container>
+    <ng-container *ngIf="!isObject">
+        <option *ngFor="let val of selectValArr;" [value]="val">
+            {{val}}
+        </option>
+    </ng-container>
 </select>
