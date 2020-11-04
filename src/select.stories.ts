@@ -35,3 +35,11 @@ ObjectSelect.args = {
   selectValArr: [{first: 1}, {second: 2}],
   isObject: true
 };
+
+export const SelectedObjectValue = SelectComponent.bind({});
+
+SelectedObjectValue.args = {
+  selectValArr: [{first: 1}, {second: 2}],
+  isObject: true,
+  value: 1
+};
