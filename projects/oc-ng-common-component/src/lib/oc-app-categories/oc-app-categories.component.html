@@ -3,8 +3,8 @@
         <h1>{{categoryHeaderTitle}}</h1>
     </div>
 </div>
-<div *ngIf="data && data.length > 0; else emptyData" class="row">
-    <div *ngFor="let appCategory of data;index as i;" class="col-md-auto">
+<div *ngIf="data && data.length > 0; else emptyData" class="row justify-content-center justify-content-lg-start custom-card-container">
+    <div *ngFor="let appCategory of data;index as i;" class="col-md-auto mb-2 card-box">
         <div class="cursor-pointer category-card card-{{i}}"
              [ngClass]="appCategory.categoryCardClass"
              [style.background-image]="appCategory.categoryBackgroundImage ? safeStyle(appCategory.categoryBackgroundImage) : ''"

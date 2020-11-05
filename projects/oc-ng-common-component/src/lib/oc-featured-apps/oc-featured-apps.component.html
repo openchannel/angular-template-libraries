@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-md-12">
-        <h4 class="mb-3">{{label}}</h4>
+        <h4 class="mb-3 text-center text-md-left">{{label}}</h4>
     </div>
 </div>
-<div *ngIf="data && data.length > 0; else emptyData" class="row">
-    <div *ngFor="let app of data;" class="col-md-auto">
+<div *ngIf="data && data.length > 0; else emptyData" class="row featured-card-container">
+    <div *ngFor="let app of data;" class="col-md-auto card-box">
         <div class="featured-card card">
             <a class="card-body {{customClasses}}" [routerLink]="[mainRouterLink, app.appId]">
                 <img alt="featured-logo" src="{{app.icon}}">
