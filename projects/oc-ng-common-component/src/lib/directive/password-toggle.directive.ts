@@ -22,7 +22,7 @@ export class PasswordToggleDirective {
 
   toggle(current: HTMLElement, span: HTMLElement, parent: HTMLElement) {
 
-    this.showPasswordText = this.showPasswordText ? false : true;
+    this.showPasswordText = !this.showPasswordText;
     if (this.showPasswordText) {
       span.setAttribute('class', 'toggle_password fas fa-eye-slash');
       current.setAttribute('type', 'text');
