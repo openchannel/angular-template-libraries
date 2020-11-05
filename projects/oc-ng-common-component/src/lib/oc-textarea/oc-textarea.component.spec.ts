@@ -46,13 +46,15 @@ describe('OcTextareaComponent', () => {
     });
   });
 
-  it('textarea should contain placeholder', () => {
+  it('textarea should contain placeholder', async () => {
     component.placeholder = 'Textarea placeholder';
 
     const textarea = fixture.nativeElement.querySelector('textarea');
     fixture.detectChanges();
 
-    expect(textarea.placeholder).toEqual('Textarea placeholder');
+    await fixture.whenStable().then(() => {
+      expect(textarea.placeholder).toEqual('Textarea placeholder');
+    });
   });
 
   it('textarea should contain the rows', () => {
