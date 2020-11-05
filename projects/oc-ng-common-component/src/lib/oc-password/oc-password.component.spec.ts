@@ -46,8 +46,6 @@ describe('OcPasswordComponent', () => {
     input.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    input.dispatchEvent(new Event('input'));
-
     expect(component.modelName).toEqual('mypass');
     expect(component.modelNameChange.emit).toHaveBeenCalledWith('mypass');
   });
