@@ -72,7 +72,6 @@ export class OcVideoUrlComponent implements OnInit, OnDestroy, ControlValueAcces
 
     const reg = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm);
     this.isValidUrl = reg.test(this.videoUrl);
-    console.log(this.isValidUrl);
 
     if (this.isValidUrl) {
       this.showVideoLoader = true;
