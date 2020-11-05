@@ -3,6 +3,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {OcOverallRatingComponent} from './oc-overall-rating.component';
 import { OcLabelComponent } from '../oc-label/oc-label.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OverallRatingSummary } from 'oc-ng-common-service';
+import { By } from '@angular/platform-browser';
 
 describe('OcOverallRatingComponent', () => {
   let component: OcOverallRatingComponent;
@@ -24,5 +26,29 @@ describe('OcOverallRatingComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should show data', async () => {
+    component.allReviewSummary = {
+      rating: 4.2,
+      reviewCount: 10,
+      5: 3,
+      4: 4,
+      3: 2,
+      2: 1,
+      1: 0
+    };
+    component.overallReviewLabel = 'Test Rating';
+    fixture.detectChanges();
+
+    const showRating = fixture.debugElement.query(By.css('h1')).nativeElement;
+    const showLabel = fixture.debugElement.query(By.css('#reviewLabel')).nativeElement;
+    const reviewCount = fixture.debugElement.query(By.css('#reviewCount')).nativeElement;
+
+    await fixture.whenStable().then(() => {
+      expect(showRating.textContent).toContain('4.2');
+      expect(showLabel.textContent).toContain('Test Rating');
+      expect(reviewCount.textContent).toContain('10 reviews');
+    });
   });
 });
