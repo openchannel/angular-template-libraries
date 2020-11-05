@@ -1,6 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {OcOverallRatingComponent} from './oc-overall-rating.component';
+import { OcLabelComponent } from '../oc-label/oc-label.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('OcOverallRatingComponent', () => {
   let component: OcOverallRatingComponent;
@@ -8,7 +10,8 @@ describe('OcOverallRatingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [OcOverallRatingComponent]
+      declarations: [OcOverallRatingComponent, OcLabelComponent],
+      imports: [NgbModule]
     })
       .compileComponents();
   }));
