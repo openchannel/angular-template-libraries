@@ -27,7 +27,7 @@ import {DomainValidatorDirective} from './validators/domain-validator.directive'
 import {DragDropDirective} from './validators/drag-drop.directive';
 import {FileSizePipe} from './validators/file-size.pipe';
 import {ImageFileValidatorDirective} from './validators/image-file-validator.directive';
-import {PasswordToggleDirective} from './validators/password-toggle.directive';
+import {PasswordToggleDirective} from './directive/password-toggle.directive';
 import {PhoneNumberValidatorDirective} from './validators/phone-number-validator.directive';
 import {WebsiteValidatorDirective} from './validators/website-validator.directive';
 import {OcAppGetStartedComponent} from './oc-app-get-started/oc-app-get-started.component';
@@ -78,6 +78,7 @@ import {OcDropdownComponent} from './oc-dropdown/oc-dropdown.component';
 import {OcVideoComponent} from './oc-video/oc-video.component';
 import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.component';
 import { OcAppDescriptionComponent } from './oc-app-description/oc-app-description.component';
+import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -123,6 +124,7 @@ import { OcAppDescriptionComponent } from './oc-app-description/oc-app-descripti
     OcDropdownComponent,
     OcVideoComponent,
     OcImageGalleryComponent,
+    OcUserSignupComponent,
     SafehtmlPipe,
     CamelcasePipe,
     EllipsisPipe,
@@ -187,6 +189,7 @@ import { OcAppDescriptionComponent } from './oc-app-description/oc-app-descripti
     OcAppCategoriesComponent,
     OcForgotPasswordComponent,
     OcErrorComponent,
+    OcUserSignupComponent,
     AutofocusDirective,
     DomainValidatorDirective,
     DragDropDirective,

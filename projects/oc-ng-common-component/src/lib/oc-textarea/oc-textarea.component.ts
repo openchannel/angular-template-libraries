@@ -17,7 +17,12 @@ export class OcTextareaComponent implements OnInit, ControlValueAccessor {
    * Placeholder text
    * Default: empty
    */
-  @Input() placeholder: string = '';
+  placeholderValue: string = '';
+  @Input() set placeholder(placeholder: string) {
+    if(placeholder) {
+      this.placeholderValue = placeholder;
+    }
+  }
   /**
    * Add class list to the current class list
    * Required string with class names
