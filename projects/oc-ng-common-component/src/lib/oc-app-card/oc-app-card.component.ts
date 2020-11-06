@@ -34,7 +34,7 @@ export class OcAppCardComponent implements OnInit {
   }
 
   parsePrice(priceModel: AppModel): string {
-    let price: string;
+    let price: string = '';
     if (priceModel.type === 'free') {
        price = 'Free';
     } else {
