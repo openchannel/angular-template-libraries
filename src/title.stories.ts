@@ -44,6 +44,6 @@ export const CustomIconTitle = TitleComponent.bind({});
 CustomIconTitle.args = {
     title: 'Options',
     required: true,
-    infoTitleIconCsv: 'http://localhost:6006/oc-ng-common-component/assets/img/delete.svg',
+    infoTitleIconCsv: './assets/img/delete.svg',
     description: 'Description description description description'
 };
