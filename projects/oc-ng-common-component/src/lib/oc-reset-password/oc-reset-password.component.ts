@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {SellerResetPassword} from 'oc-ng-common-service'
+import {SellerResetPassword} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-reset-password',
@@ -7,7 +7,7 @@ import {SellerResetPassword} from 'oc-ng-common-service'
   styleUrls: ['./oc-reset-password.component.scss']
 })
 export class OcResetPasswordComponent implements OnInit {
-  @Input() resetUrl;
+
   @Input() companyLogoUrl;
   @Input() process;
   @Input() resetModel = new SellerResetPassword();
@@ -17,11 +17,6 @@ export class OcResetPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-
-  getValue(label: string) {
-    return label;
   }
 
   submitForm(form) {
