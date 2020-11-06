@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {OcNumberComponent} from './oc-number.component';
 import {FormsModule} from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 describe('OcNumberComponent', () => {
   let component: OcNumberComponent;
@@ -27,6 +28,7 @@ describe('OcNumberComponent', () => {
 
   it('should contain value', async () => {
     component.value = 21;
+    fixture.detectChanges();
 
     const numberInput = fixture.nativeElement.querySelector('input');
     fixture.detectChanges();
@@ -77,7 +79,7 @@ describe('OcNumberComponent', () => {
     });
     // set `clipboardData` and `getData` properties. Set your mocked properties here
     clipboardEvent['clipboardData'] = {
-      getData: () => '7'
+      getData: () => '7fa'
     };
 
     numberInput.dispatchEvent(clipboardEvent);
@@ -109,5 +111,16 @@ describe('OcNumberComponent', () => {
     numberInput.dispatchEvent(new Event('focus'));
 
     expect(onTouchedFunc).toHaveBeenCalled();
+  });
+
+  it('should contain value in input', async () => {
+    component.writeValue('45g34');
+
+    const numberInput: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    fixture.detectChanges();
+
+    await fixture.whenStable().then(() => {
+      expect(numberInput.value).toEqual('4534');
+    });
   });
 });
