@@ -95,7 +95,7 @@ FormWithTestData.args = {
       id: 'role',
       label: 'role',
       description: '',
-      defaultValue: null,
+      defaultValue: 'user',
       type: 'dropdownList',
       required: null,
       attributes: {required: true},

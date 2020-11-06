@@ -34,7 +34,7 @@
                     <span class="remember__label">Remember Me</span>
                 </div>
                 <div class="col-md-auto forgot" [hidden]="!forgotPwdUrl">
-                    <a class="font-s font-med" [href]="forgotPwdUrl"> Forgot password? </a>
+                    <a class="font-s font-med" [routerLink]="forgotPwdUrl"> Forgot password? </a>
                 </div>
             </div>
             <oc-button (click)="submitForm(loginForm)"
