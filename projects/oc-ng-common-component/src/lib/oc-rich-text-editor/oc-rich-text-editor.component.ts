@@ -31,7 +31,6 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
   }
   // options for Tiny Editor
   public tinyOptions = {
-    selector: 'textarea',
     menubar: false,
     toolbar: 'bold italic underline strikethrough subscript superscript fontselect fontsizeselect |' +
       'alignleft aligncenter alignright alignjustify | numlist bullist | outdent indent | link unlink | undo redo',
