@@ -99,18 +99,44 @@ describe('OcVideoUrlComponent', () => {
     const videoFrame = fixture.nativeElement.querySelector('iframe');
     expect(videoFrame).toBeTruthy();
   });
+
+  it('should mp4 video', () => {
+    component.videoUrl = 'https://techslides.com/demos/sample-videos/small.mp4';
+    component.emitChanges();
+    fixture.detectChanges();
+
+    const videoFrame = fixture.nativeElement.querySelector('video');
+    expect(videoFrame).toBeTruthy();
+  });
+
+  it('should not load video ', () => {
+    component.videoUrl = 'some text';
+    fixture.detectChanges();
+
+    const video = fixture.nativeElement.querySelector('video');
+    const videoFrame = fixture.nativeElement.querySelector('iframe');
+
+    expect(video).toBeFalsy();
+    expect(videoFrame).toBeFalsy();
+  });
 });
 
 
 class MockFleService {
   public getVideoData(videoUrl): Observable<any> {
-    return of({
-      html: '<div><div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">' +
-        '<iframe ' +
-        'src="https://cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fyoutu.be%2FDGQwd1_dpuc&amp;key=37e96b37fac1aa5b67e77eb5142641c6" ' +
-        'style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" ' +
-        'allowfullscreen scrolling="no" allow="encrypted-media *; accelerometer; gyroscope; picture-in-picture"></iframe>' +
-        '</div></div>',
-    });
+    if (videoUrl && !videoUrl.endsWith('.mp4')) {
+      return of({
+        html: '<div><div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">' +
+          '<iframe ' +
+          'src="https://cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fyoutu.be%2FDGQwd1_dpuc&amp;key=37e96b37fac1aa5b67e77eb5142641c6" ' +
+          'style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" ' +
+          'allowfullscreen scrolling="no" allow="encrypted-media *; accelerometer; gyroscope; picture-in-picture"></iframe>' +
+          '</div></div>',
+      });
+    } else {
+      return of({
+        error: true
+      });
+    }
   }
 }
