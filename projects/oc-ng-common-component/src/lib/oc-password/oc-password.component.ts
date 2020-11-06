@@ -4,7 +4,8 @@ import {DefaultValueAccessor, NgModel} from '@angular/forms';
 @Component({
   selector: 'oc-password',
   templateUrl: './oc-password.component.html',
-  styleUrls: ['./oc-password.component.scss']
+  styleUrls: ['./oc-password.component.scss'],
+  providers: [NgModel]
 })
 export class OcPasswordComponent implements OnInit {
 
