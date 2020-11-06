@@ -1,6 +1,6 @@
 import {moduleMetadata} from '@storybook/angular';
 import {OcCommonLibModule} from 'projects/oc-ng-common-component/src/public-api';
-import {OcDropboxComponent} from "../projects/oc-ng-common-component/src/lib/oc-dropbox/oc-dropbox.component";
+import {OcDropboxComponent} from '../projects/oc-ng-common-component/src/lib/oc-dropbox/oc-dropbox.component';
 
 const modules = {
     imports: [OcCommonLibModule]
@@ -31,7 +31,7 @@ DefaultDropbox.args = {
 export const ScrollDropbox = DropboxComponent.bind({});
 ScrollDropbox.args = {
     placeHolder: 'Default place holder',
-    items: ['1', '2', '3', '4','5','6','7','8','9','10','11','12','13','14','15'],
+    items: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'],
     clearFormAfterSelect: false,
 };
 
