@@ -21,11 +21,11 @@
     <div ngbDropdownMenu aria-labelledby="datePickerDD" class="p-0">
         <div class="wc-date-popover" [ngClass]="{'wc-date-popover__date': !isDateTime}">
             <div class="wc-banner">
-                <fa-icon class="cursor-pointer angle" icon="angle-left" (click)="prevMonth($event)"></fa-icon>
+                <fa-icon id="prevMonth" class="cursor-pointer angle" icon="angle-left" (click)="prevMonth($event)"></fa-icon>
                 <div class="wc-banner__detail">
                     {{ date | date: 'MMMM' }}, {{ date | date: 'yyyy' }}
                 </div>
-                <fa-icon icon="angle-right" class="cursor-pointer angle" (click)="nextMonth($event)"></fa-icon>
+                <fa-icon id="nextMonth" icon="angle-right" class="cursor-pointer angle" (click)="nextMonth($event)"></fa-icon>
             </div>
             <div class="wc-content">
                 <table class="calendar-header">

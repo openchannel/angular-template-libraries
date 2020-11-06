@@ -34,7 +34,7 @@ DefaultDropdown.args = {
             label: 'newest'
         },
         {
-            label: 'fetured'
+            label: 'featured'
         }
     ],
 };

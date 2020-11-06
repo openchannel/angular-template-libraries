@@ -23,6 +23,7 @@ export class OcErrorComponent implements OnInit {
     uniqueName: (params) => params.message,
     telephoneNumbers: (params) => params.message,
     telephoneNumber: (params) => params.errorMessages,
+    emailValidator: () => 'Email seems to be invalid',
     email: () => 'Email seems to be invalid',
     websiteValidator: () => 'Please enter a valid URL',
     appImageFileValidator: () => 'Please provide valid png/jpg/jpeg/gif image file',
@@ -56,7 +57,7 @@ export class OcErrorComponent implements OnInit {
   shouldShowErrors(): boolean {
 
     // client side error validators check
-    if (this.field || (this.control && this.control.errors && (this.control.dirty || this.control.touched))) {
+    if (this.control && this.control.errors && (this.control.dirty || this.control.touched)) {
       return true;
     }
     // server side error validators check
