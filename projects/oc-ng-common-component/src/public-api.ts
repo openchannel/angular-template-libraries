@@ -48,6 +48,7 @@ export * from './lib/oc-dropdown/oc-dropdown.component';
 export * from './lib/oc-video/oc-video.component';
 export * from './lib/oc-image-gallery/oc-image-gallery.component';
 export * from './lib/oc-app-description/oc-app-description.component';
+export * from './lib/oc-user-signup/oc-user-signup.component';
 
 // validators
 export * from './lib/validators/white-space-validator';
@@ -56,7 +57,7 @@ export * from './lib/validators/autofocus.directive';
 export * from './lib/validators/domain-validator.directive';
 export * from './lib/validators/drag-drop.directive';
 export * from './lib/validators/image-file-validator.directive';
-export * from './lib/validators/password-toggle.directive';
+export * from './lib/directive/password-toggle.directive';
 export * from './lib/validators/phone-number-validator.directive';
 export * from './lib/validators/website-validator.directive';
 export * from './lib/validators/compare-passsword-validator.directive';
