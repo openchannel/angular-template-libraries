@@ -4,44 +4,29 @@
             <div class="text-center">
                 <img alt="logo"
                      class="img-fluid mb-4 company-logo"
-                     src="{{companyLogoUrl}}">
+                     [src]="companyLogoUrl">
             </div>
             <div class="text-center">
                 <h4>Activate Account</h4>
-                <oc-label [text]="getValue('Check your inbox for the activation code')" class="mb-3"></oc-label>
+                <oc-label text="Check your inbox for the activation code" class="mb-3"></oc-label>
             </div>
             <div class="form-group">
-                <oc-label [text]="getValue('Email')"></oc-label>
-                <oc-input #email=ngModel (modelNameChange)="onchange(activationForm)" [(modelName)]="activationModel.email" [ngModel]="activationModel.email"
-                          [placeholder]="'Email'" emailValidator name="email" ngDefaultControl
-                          required="true"></oc-input>
-                <oc-error [control]="email" [field]="'email'"></oc-error>
-            </div>
-            <div class="form-group">
-                <oc-label [text]="getValue('Password')"></oc-label>
-                <oc-password #password=ngModel (modelNameChange)="onchange(activationForm)" [(modelName)]="activationModel.password" [ngModel]="activationModel.password"
-                             [placeholder]="'Password'" class="mb-2" name="password"
-                             ngDefaultControl required="true"></oc-password>
-                <oc-error [control]="password" [field]="'password'"></oc-error>
-            </div>
-            <div class="form-group">
-                <oc-label [text]="getValue('Activation Code')"></oc-label>
-                <oc-input #code=ngModel [(modelName)]="activationModel.code" [ngModel]="activationModel.code" [placeholder]="'Activation Code'"
-                          aria-autocomplete="off" name="code" ngDefaultControl
-                          required="true"></oc-input>
-                <oc-error [control]="code" [field]="'code'"></oc-error>
+                <oc-label text="Activation Code"></oc-label>
+                <oc-input #code=ngModel [(ngModel)]="activationModel.code" placeholder="Activation Code"
+                          name="code" ngDefaultControl required="true"></oc-input>
+                <oc-error [control]="code" field="code"></oc-error>
             </div>
             <oc-button (click)="submitForm(activationForm)"
-                       [disabled]="process || !activationForm.valid" [process]="process" [text]="getValue('Activate')"
-                       [type]="getValue('primary')" class="btn-block mt-5 mb-5">
+                       [disabled]="process || !activationForm.valid" [process]="process" text="Activate"
+                       type="primary" class="btn-block mt-5 mb-5">
             </oc-button>
             <div class="text-center mb-2">
-                <oc-label [text]="getValue('Didn’t get the activation code?')"></oc-label>
-                <a class="font-m font-med" href={{activationUrl}}> Resend it </a>
+                <oc-label text="Didn’t get the activation code?"></oc-label>
+                <a class="font-m font-med" [routerLink]="activationUrl"> Resend it </a>
             </div>
             <div class="text-center">
-                <oc-label [text]="getValue('Dont have an account yet?')"></oc-label>
-                <a class="font-m font-med" href={{signupUrl}}> Sign Up </a>
+                <oc-label text="Dont have an account yet?"></oc-label>
+                <a class="font-m font-med" [routerLink]="signupUrl"> Sign Up </a>
             </div>
         </div>
     </div>
