@@ -9,10 +9,10 @@ import {
     TemplateRef,
     ViewChild
 } from '@angular/core';
-import {NgbTypeaheadSelectItemEvent} from "@ng-bootstrap/ng-bootstrap";
-import {Observable, of, Subject} from "rxjs";
-import {map, mergeAll} from "rxjs/operators";
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {NgbTypeaheadSelectItemEvent} from '@ng-bootstrap/ng-bootstrap';
+import {Observable, of, Subject} from 'rxjs';
+import {map, mergeAll} from 'rxjs/operators';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
     selector: 'oc-dropbox',
@@ -67,17 +67,18 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
     @Input() customSearch: (text: Observable<string>) => Observable<readonly any[]>;
 
     /**
-     * select - return currently selected item.
+     * selectedItem - return currently selected item.
      */
-    @Output() select = new EventEmitter<string>();
+    @Output() selectedItem: EventEmitter<string> = new EventEmitter<string>();
 
     @ViewChild('dropBox', {static: false})
     dropBox: ElementRef<HTMLInputElement>;
 
-    focus$ = new Subject<string>();
-    click$ = new Subject<string>();
+    focus$: Subject<string> = new Subject<string>();
+    click$: Subject<string> = new Subject<string>();
 
     outputSelectedItem: string;
+    disabled: boolean = false;
 
     private onTouched = () => {};
 
@@ -98,8 +99,8 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
     }
 
     defaultSearch = (text$: Observable<string>) => {
-        return text$.pipe(map(searchTag => this.filterItems(searchTag, this.items)))
-    };
+        return text$.pipe(map(searchTag => this.filterItems(searchTag, this.items)));
+    }
 
     filterItems(searchItem: string, items: string[]) {
         if (items && searchItem) {
@@ -111,7 +112,7 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
 
     selectItem(itemEvent: NgbTypeaheadSelectItemEvent): void {
         this.outputSelectedItem = itemEvent.item;
-        this.select.emit(this.outputSelectedItem);
+        this.selectedItem.emit(this.outputSelectedItem);
         this.onChange(this.outputSelectedItem);
         this.clearForm(itemEvent);
         this.clearFocus();
@@ -121,6 +122,10 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
         if (this.clearFormAfterSelect) {
             itemEvent.preventDefault();
         }
+    }
+
+    onFocus() {
+        this.onTouched();
     }
 
     clearFocus(): void {
@@ -137,6 +142,10 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
 
     writeValue(obj: any): void {
         this.outputSelectedItem = obj ? obj : '';
+    }
+
+    setDisabledState(isDisabled: boolean) {
+        this.disabled = isDisabled;
     }
 
     clearSelectedValue(event: any) {

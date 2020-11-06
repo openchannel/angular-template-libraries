@@ -37,7 +37,7 @@ export class OcActivationComponent implements OnInit {
     return false;
   }
 
-  onchange(form) {
+  onChange(form) {
     if (form.form.controls.email.errors && form.form.controls.email.errors.serverErrorValidator) {
       form.form.controls.email.setErrors(null);
     }

@@ -27,7 +27,7 @@ import {DomainValidatorDirective} from './validators/domain-validator.directive'
 import {DragDropDirective} from './validators/drag-drop.directive';
 import {FileSizePipe} from './validators/file-size.pipe';
 import {ImageFileValidatorDirective} from './validators/image-file-validator.directive';
-import {PasswordToggleDirective} from './validators/password-toggle.directive';
+import {PasswordToggleDirective} from './directive/password-toggle.directive';
 import {PhoneNumberValidatorDirective} from './validators/phone-number-validator.directive';
 import {WebsiteValidatorDirective} from './validators/website-validator.directive';
 import {OcAppGetStartedComponent} from './oc-app-get-started/oc-app-get-started.component';

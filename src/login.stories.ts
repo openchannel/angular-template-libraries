@@ -1,10 +1,5 @@
-import {storiesOf} from '@storybook/angular';
-import {
-  OcAppListGridComponent,
-  OcCommonLibModule,
-  OcLoginComponent
-} from 'projects/oc-ng-common-component/src/public-api';
-import {withA11y} from '@storybook/addon-a11y';
+import {moduleMetadata} from '@storybook/angular';
+import {OcCommonLibModule, OcLoginComponent} from 'projects/oc-ng-common-component/src/public-api';
 import {action} from '@storybook/addon-actions';
 import {SellerSignin} from 'oc-ng-common-service';
 
@@ -13,46 +8,43 @@ const modules = {
   imports: [OcCommonLibModule]
 };
 
-let loginEmpty = new SellerSignin();
+const loginEmpty = new SellerSignin();
 
-let loginfilled = new SellerSignin();
-loginfilled.email = "zmehta@gmail.com"
-loginfilled.password = "Tenup123#"
-loginfilled.grant_type = "password"
-loginfilled.isChecked = true;
+const loginFilled = new SellerSignin();
+loginFilled.email = 'zmehta@gmail.com';
+loginFilled.password = 'Tenup123#';
+loginFilled.grant_type = 'password';
+loginFilled.isChecked = true;
 
-storiesOf('Login', module)
-  .addDecorator(withA11y)
-  .addParameters({
-    component: OcLoginComponent,
-  })
-  .add('Empty', () => ({
-    component: OcLoginComponent,
-    props: {
-      loginModel: loginEmpty,
-      submit: action('clicked event'),
-      forgotPwdUrl: "forgotPwd",
-      signupUrl: 'signup'
-    },
-    moduleMetadata: modules
-  })).add('With Errors', () => ({
+export default {
+  title: 'Login',
   component: OcLoginComponent,
-  props: {
-    loginModel: loginEmpty,
-    submit: action('clicked event'),
-    forgotPwdUrl: "forgotPwd",
-    signupUrl: 'signup'
-  },
-  moduleMetadata: modules
-})).add('Filled', () => ({
+  decorators: [
+    moduleMetadata(modules),
+  ],
+};
 
+const LoginComponent = (args: OcLoginComponent) => ({
   component: OcLoginComponent,
+  moduleMetadata: modules,
+  props: args
+});
 
-  props: {
-    loginModel: loginfilled,
-    submit: action('clicked event'),
-    forgotPwdUrl: "forgotPwd",
-    signupUrl: 'signup'
-  },
-  moduleMetadata: modules
-}));
+const defaultProps = {
+  submit: action('clicked event'),
+  forgotPwdUrl: 'forgotPwd',
+  signupUrl: 'signup',
+  loginModelChange: action('model changed'),
+};
+
+export const EmptyLogin = LoginComponent.bind({});
+EmptyLogin.args = {
+  ...defaultProps,
+  loginModel: loginEmpty,
+};
+
+export const FilledLogin = LoginComponent.bind({});
+FilledLogin.args = {
+  ...defaultProps,
+  loginModel: loginFilled,
+};
