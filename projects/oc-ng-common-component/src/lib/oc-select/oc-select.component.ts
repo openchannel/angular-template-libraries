@@ -13,10 +13,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class OcSelectComponent implements OnInit, ControlValueAccessor {
 
-  @Input() selectValArr: any [] = [];
+  /** Array of the select items */
+  @Input() selectValArr: any | object [] = [];
+  /** Set to 'true' if selectVarArray is object */
   @Input() isObject: boolean = false;
+  /** Disable select for user input */
   @Input() disabled: boolean = false;
+  /** Add string of public classes to the existed */
   @Input() class: string = '';
+  /** Set selected value */
   @Input() set value(val) {
     this.selectedValue = val;
     this.onChange(this.selectedValue);
@@ -59,6 +64,7 @@ export class OcSelectComponent implements OnInit, ControlValueAccessor {
    * the method will be called by the control when the [disabled] state changes.
    */
   setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
   /**
    * this method will be called by the control to pass the value to our component.
