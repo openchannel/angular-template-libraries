@@ -4,11 +4,11 @@
                 <h1 class="rating mb-0">{{allReviewSummary.rating}}</h1>
                 <span class="font-l font-med">/5.0</span>
             </div>
-            <span class="float-right font-l font-med">{{overallReviewLabel}}</span>
+            <span id="reviewLabel" class="float-right font-l font-med">{{overallReviewLabel}}</span>
         </div>
         <div class="mb-2">
             <oc-label class="font-m review-label" text="Based on"></oc-label>
-            <span class="label-blue font-m"> {{allReviewSummary.reviewCount}} reviews</span>
+            <span id="reviewCount" class="label-blue font-m"> {{allReviewSummary.reviewCount}} reviews</span>
         </div>
 
         <ng-template #t let-fill="fill">
