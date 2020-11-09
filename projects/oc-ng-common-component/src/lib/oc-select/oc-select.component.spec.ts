@@ -70,11 +70,10 @@ describe('OcSelectComponent', () => {
 
     const select: HTMLSelectElement = fixture.debugElement.query(By.css('select')).nativeElement;
     select.value = select.options[0].value;
-
     select.dispatchEvent(new Event('change'));
 
     expect(onChangeFunc).toHaveBeenCalled();
-    expect(onChangeFunc.mock.calls[0][0]).toBe('item1');
+    expect(onChangeFunc.mock.calls[0][0]).toContain('item1');
   });
 
   it('should call onTouch', async () => {
