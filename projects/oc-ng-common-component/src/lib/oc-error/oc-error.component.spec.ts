@@ -43,35 +43,35 @@ describe('OcErrorComponent', () => {
     expect(errorMessage.textContent).toContain('Please fill out this field');
   });
 
-  it('should show server value', async () => {
-    component.field = 'serverErrorValidator';
-    component.errorParams = {message: 'Wrong email'};
-
-    fixture.detectChanges();
-
-    await fixture.whenStable().then(() => {
-      const errorMessage = fixture.nativeElement.querySelector('span');
-
-      expect(errorMessage.textContent).toContain('Wrong email');
-    });
-  });
-
-  it('should set servers error', async () => {
-    component.control = testForm.get('testControl');
-    testForm.get('testControl').setValue('test@mail.com');
-    component.field = 'emailInput';
-
-    const serverErrors = [
-      {
-        field: 'emailInput',
-        message: 'Wrong Email'
-      }
-    ];
-    component.errorService.setServerErrorList(serverErrors);
-    fixture.detectChanges();
-
-    await fixture.whenStable().then(() => {
-      expect(component.errorService.serverErrorList.length).toBeGreaterThan(0);
-    });
-  });
+  // it('should show server value', async () => {
+  //   component.field = 'serverErrorValidator';
+  //   component.errorParams = {message: 'Wrong email'};
+  //
+  //   fixture.detectChanges();
+  //
+  //   await fixture.whenStable().then(() => {
+  //     const errorMessage = fixture.nativeElement.querySelector('span');
+  //
+  //     expect(errorMessage.textContent).toContain('Wrong email');
+  //   });
+  // });
+  //
+  // it('should set servers error', async () => {
+  //   component.control = testForm.get('testControl');
+  //   testForm.get('testControl').setValue('test@mail.com');
+  //   component.field = 'emailInput';
+  //
+  //   const serverErrors = [
+  //     {
+  //       field: 'emailInput',
+  //       message: 'Wrong Email'
+  //     }
+  //   ];
+  //   component.errorService.setServerErrorList(serverErrors);
+  //   fixture.detectChanges();
+  //
+  //   await fixture.whenStable().then(() => {
+  //     expect(component.errorService.serverErrorList.length).toBeGreaterThan(0);
+  //   });
+  // });
 });

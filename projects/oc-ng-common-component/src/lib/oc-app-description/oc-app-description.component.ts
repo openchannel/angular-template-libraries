@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import {OnChanges} from '@angular/core';
 
 @Component({
   selector: 'oc-app-description',
@@ -12,7 +13,12 @@ export class OcAppDescriptionComponent implements OnInit, OnChanges {
   /** App Description text */
   @Input() appDescription: string = '';
   /** Header of the App Description section */
-  @Input() header: string = '';
+  _header : string = '';
+  @Input() set header(header: string) {
+    if(header) {
+      this._header = header;
+    }
+  }
   /**
    * Text that will be shown on expand description button
    * Default: 'Show full description'
