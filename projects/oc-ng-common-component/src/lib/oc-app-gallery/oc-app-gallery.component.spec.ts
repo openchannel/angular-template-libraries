@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {OcAppGalleryComponent} from './oc-app-galary.component';
+import {OcAppGalleryComponent} from './oc-app-gallery.component';
 import { Component, Input } from '@angular/core';
 import { FullAppData } from 'oc-ng-common-service';
 import { CommonModule, Location } from '@angular/common';
