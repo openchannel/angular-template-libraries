@@ -5,20 +5,57 @@ import {
   OcAppGalleryComponent,
   OcCommonLibModule
 } from 'projects/oc-ng-common-component/src/public-api';
-import {BasicAppDetails} from 'oc-ng-common-service';
+import { BasicAppDetails, FullAppData } from 'oc-ng-common-service';
+import { StatElement } from 'oc-ng-common-service/lib/model/app-data-model';
 
 const modules = {
   imports: [OcCommonLibModule]
 };
 
-const app1 = new BasicAppDetails();
-app1.appCardClass = 'col-md-12';
-app1.appDescription = 'With this plugin you can communicate with your teammates any time';
-app1.appLogoUrl = 'https://drive.google.com/u/0/uc?id=19l7Znd-iPPYUhM6zaiQZ01rE2NpkDFyk&export=download';
-app1.appName = 'Plugin';
-app1.appPrice = 'Free';
-app1.rating = 3.5;
-app1.reviewCount = 12;
+const stat: StatElement = {
+  '90day': 10,
+  '30day': 20,
+  total: 20
+};
+
+const app: FullAppData = {
+  appId: '34343jfgi3423',
+  icon: '',
+  name: 'Test App',
+  model: [{
+    type: 'recurring',
+    price: 5,
+    trial: 1,
+    license: 'single',
+    modelId: '23235hfg4',
+    currency: 'EUR',
+    billingPeriod: 'monthly'
+  }],
+  rating: 4.2,
+  reviewCount: 20,
+  summary: 'Some test summary',
+  lastUpdated: new Date(),
+  version: 1.1,
+  safeName: ['test-app'],
+  developerId: '44555-3232gvdfdf',
+  submittedDate: new Date(),
+  created: new Date().getMonth() - 2,
+  status: {
+    value: '',
+    lastUpdated: 1.1,
+    modifiedBy: '',
+    reason: ''
+  },
+  statistics: {
+    views: stat,
+    downloads: stat,
+    developerSales: stat,
+    totalSales: stat,
+    ownerships: stat,
+    reviews: stat
+  },
+  isLive: true
+};
 
 const app2 = new BasicAppDetails();
 app2.appCardClass = 'col-md-12';
