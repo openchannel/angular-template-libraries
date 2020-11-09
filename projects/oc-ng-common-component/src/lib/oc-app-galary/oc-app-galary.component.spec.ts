@@ -3,10 +3,11 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {OcAppGalleryComponent} from './oc-app-galary.component';
 import { Component, Input } from '@angular/core';
 import { FullAppData } from 'oc-ng-common-service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { StatElement } from 'oc-ng-common-service/lib/model/app-data-model';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'oc-app-card',
@@ -26,6 +27,9 @@ export class MockRoutingComponent {
 describe('OcAppGalleryComponent', () => {
   let component: OcAppGalleryComponent;
   let fixture: ComponentFixture<OcAppGalleryComponent>;
+  let location: Location;
+  let router: Router;
+
   const statElement: StatElement = {
     '90day': 20,
     '30day': 10,
@@ -77,12 +81,18 @@ describe('OcAppGalleryComponent', () => {
       ])]
     })
       .compileComponents();
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(OcAppGalleryComponent);
     component = fixture.componentInstance;
     component.appsArr = [app, app, app];
+    component.appGalleryTitle = 'Test Apps';
+    component.appGalleryDescription = 'The list of test apps';
+    component.routerLinkForOneApp = '/app';
+
     fixture.detectChanges();
   });
 
@@ -91,14 +101,33 @@ describe('OcAppGalleryComponent', () => {
   });
 
   it('should show data', () => {
-    component.appGalleryTitle = 'Test Apps';
-    component.appGalleryDescription = 'The list of test apps';
-    component.routerLinkForOneApp = '/app';
-
-    fixture.detectChanges();
 
     const galleryTitle = fixture.debugElement.query(By.css('h4')).nativeElement;
     const galleryDescription = fixture.debugElement.query(By.css('#description')).nativeElement;
-    expect(component).toBeTruthy();
+
+    expect(galleryTitle.textContent).toContain('Test Apps');
+    expect(galleryDescription.textContent).toContain('The list of test apps');
+  });
+
+  it('should show no app message', () => {
+    component.appsArr = [];
+    component.noAppMessage = 'No Apps Added Yet';
+    fixture.detectChanges();
+
+    const noAppsMessage = fixture.debugElement.query(By.css('h5')).nativeElement;
+
+    expect(noAppsMessage.textContent).toContain('No Apps Added Yet');
+  });
+
+  it('should redirect on router link', async () => {
+    component.seeAllUrl = 'mock-router';
+    fixture.detectChanges();
+
+    const redirectLink = fixture.debugElement.query(By.css('#seeAllLink')).nativeElement;
+    redirectLink.click();
+
+    await fixture.whenStable().then(() => {
+      expect(location.path()).toEqual('/mock-router');
+    });
   });
 });
