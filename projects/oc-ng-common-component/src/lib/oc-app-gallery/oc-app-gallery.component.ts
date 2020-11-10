@@ -3,8 +3,8 @@ import { FullAppData } from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-app-gallery',
-  templateUrl: './oc-app-galary.component.html',
-  styleUrls: ['./oc-app-galary.component.scss']
+  templateUrl: './oc-app-gallery.component.html',
+  styleUrls: ['./oc-app-gallery.component.scss']
 })
 export class OcAppGalleryComponent implements OnInit {
 
