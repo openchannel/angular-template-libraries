@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'oc-app-get-started',
@@ -7,9 +8,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class OcAppGetStartedComponent implements OnInit {
 
-  @Input() getStartedImage: string = '';
+  @Input() getStartedImage: string = 'https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download';
 
-  @Input() getStartedHeader: string = '';
+  @Input() getStartedHeader: string = 'List Your App in our App Store';
 
   @Input() getStartedDescription: string = '';
 
@@ -19,7 +20,7 @@ export class OcAppGetStartedComponent implements OnInit {
 
   @Input() getStartedType: 'home' | 'search' = 'home';
 
-  constructor() {
+  constructor(private sanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {
@@ -27,5 +28,9 @@ export class OcAppGetStartedComponent implements OnInit {
 
   listAppGetStarted() {
     this.getStarted.emit();
+  }
+
+  sanitizeImage(): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.getStartedImage);
   }
 }

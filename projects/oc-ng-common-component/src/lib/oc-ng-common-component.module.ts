@@ -33,7 +33,7 @@ import {WebsiteValidatorDirective} from './validators/website-validator.directiv
 import {OcAppGetStartedComponent} from './oc-app-get-started/oc-app-get-started.component';
 import {OcChartComponent} from './oc-chart/oc-chart.component';
 import {OcMenuGridComponent} from './oc-menu-grid/oc-menu-grid.component';
-import {OcAppGalleryComponent} from './oc-app-galary/oc-app-galary.component';
+import {OcAppGalleryComponent} from './oc-app-gallery/oc-app-gallery.component';
 import {OcAppListGridComponent} from './oc-app-list-grid/oc-app-list-grid.component';
 import {OcRecommendedAppsComponent} from './oc-recommended-apps/oc-recommended-apps.component';
 import {OcOverallRatingComponent} from './oc-overall-rating/oc-overall-rating.component';
