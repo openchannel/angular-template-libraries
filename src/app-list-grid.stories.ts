@@ -18,46 +18,6 @@ const stat: StatElement = {
   total: 40
 };
 
-const app: FullAppData = {
-  appId: '344gf-43s3j-gi3423',
-  icon: '',
-  name: 'Test App',
-  model: [{
-    type: 'recurring',
-    price: 5,
-    trial: 1,
-    license: 'single',
-    modelId: '23235hfg4',
-    currency: 'EUR',
-    billingPeriod: 'monthly'
-  }],
-  rating: 4.2,
-  reviewCount: 20,
-  summary: 'Some test summary',
-  description: 'Some Description',
-  lastUpdated: new Date(),
-  version: 1.1,
-  safeName: ['test-app'],
-  developerId: '44555-3232gvdfdf',
-  submittedDate: new Date(),
-  created: new Date().getMonth() - 2,
-  status: {
-    value: '',
-    lastUpdated: 1.1,
-    modifiedBy: '',
-    reason: ''
-  },
-  statistics: {
-    views: stat,
-    downloads: stat,
-    developerSales: stat,
-    totalSales: stat,
-    ownerships: stat,
-    reviews: stat
-  },
-  isLive: true
-};
-
 const app1 = {
   appId: '344gf-43s3j-gi3423',
   icon: 'https://drive.google.com/u/0/uc?id=19l7Znd-iPPYUhM6zaiQZ01rE2NpkDFyk&export=download',
