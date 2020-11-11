@@ -42,7 +42,7 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
    * Set result items array value
    */
   @Input()
-  set value(val) {
+  set value(val: any []) {
     this.resultItems = val;
     this.onChange(this.resultItems);
   }
