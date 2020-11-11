@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import {OCReviewDetails} from 'oc-ng-common-service';
 
 @Component({
@@ -6,7 +6,19 @@ import {OCReviewDetails} from 'oc-ng-common-service';
   templateUrl: './oc-review-list.component.html',
   styleUrls: ['./oc-review-list.component.scss']
 })
-export class OcReviewListComponent {
+export class OcReviewListComponent implements OnChanges {
+
+  baseReviewsList: OCReviewDetails[] = [];
+
+  @Input() reviewListTitle = 'Most recent reviews';
+
+  @Input() totalReview: number;
+
+  @Input() maxReviewDisplay: number = 3;
+
+  @Input() canWriteReview = false;
+
+  @Input() noReviewMessage = 'There is no review for this app.';
 
   @Input()
   set reviewsList(list: OCReviewDetails[]) {
@@ -18,17 +30,6 @@ export class OcReviewListComponent {
       this.toggleDisplay();
     }
   }
-  baseReviewsList: OCReviewDetails[] = [];
-
-  @Input() reviewListTitle = 'Most recent reviews';
-
-  @Input() totalReview: number;
-
-  @Input() maxReviewDisplay = 3;
-
-  @Input() canWriteReview = false;
-
-  @Input() noReviewMessage = 'There is no review for this app.';
 
   @Output() writeAReview = new EventEmitter<any>();
 
@@ -37,6 +38,14 @@ export class OcReviewListComponent {
   constructor() {
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.maxReviewDisplay && this.maxReviewDisplay) {
+      if (changes.maxReviewDisplay.previousValue !== changes.maxReviewDisplay.currentValue) {
+        this.displayedReviews = [...this.baseReviewsList];
+        this.toggleDisplay();
+      }
+    }
+  }
 
   writeReview() {
     this.writeAReview.emit();
