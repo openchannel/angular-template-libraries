@@ -8,7 +8,7 @@
             <p class="mb-1 font-med app-name">{{app.name}}</p>
             <div class="d-flex mb-1">
                 <span class="app-price mb-0">{{app.model[0] | price}}</span>
-                <oc-rating [rating]="parseRating(app.rating)"
+                <oc-rating [rating]="app.rating"
                            [reviewCount]="app.reviewCount"
                            type="single-star"></oc-rating>
             </div>
