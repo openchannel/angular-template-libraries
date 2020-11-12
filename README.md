@@ -42,25 +42,19 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 5. `sudo npm link` Then copy result link. 
 
-## Link oc-ng-common-service
-npm install file:<absolute path to common service project dist/oc-ng-common-service>
+## Start components service
 
-## Run Project
-ng build oc-ng-common-component --watch
+1. `npm install`  
+
+2. `ng build oc-ng-common-component`
+
+3. `npm run oc-ng-common-component`
+
+## Build Project with logging
+Run `ng build oc-ng-common-component --watch`
 
 ## Run storybook
-npm run storybook 
-
-## Package Project
-npm install  
-
-ng build oc-ng-common-component
-
-npm run oc-ng-common-component
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run storybook` 
 
 ## Code scaffolding
 
@@ -70,20 +64,25 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Running tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `npm run test:lib`
 
 ## Angular CLI help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## Upgrade Storybook 
-npx sb@next upgrade --prerelease
+Run `npx sb@next upgrade --prerelease`
+
+## Up package version
+Run `npm run oc-ng-common-component-up-version`
+
+## Package Project
+Run `npm run oc-ng-common-component-pack`
+
+## Publish package version
+Run `cd ./dist/oc-ng-common-component && npm publish`
 
 <!-- USAGE EXAMPLES -->
 ## Usage
