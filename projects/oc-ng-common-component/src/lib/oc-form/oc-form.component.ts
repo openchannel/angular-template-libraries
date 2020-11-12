@@ -23,6 +23,12 @@ export class OcFormComponent implements OnInit {
   /** Set custom text to success button. Default: 'Submit' */
   @Input() successButtonText: string = 'Submit';
   /**
+   * Set position of the field label
+   * can be: 'top', 'left', 'right'.
+   * default value: 'top'
+   */
+  @Input() labelPosition: 'top' | 'left' | 'right' = 'top';
+  /**
    * Returning all form fields value to the parent component
    */
   @Output() formSubmitted = new EventEmitter<any>();
