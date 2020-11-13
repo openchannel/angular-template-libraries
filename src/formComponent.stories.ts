@@ -59,7 +59,9 @@ export default {
   decorators: [
     moduleMetadata(modules),
   ],
-  argTypes: { formSubmitted: { action: 'Form Data' }}
+  argTypes: { formSubmitted: { action: 'Form Data' },
+    formDataUpdated: { action: 'Form Data Updates'}
+  }
 };
 
 const FormGroupComponent = (args: OcFormComponent) => ({
@@ -197,7 +199,8 @@ FormWithRequiredOnly.args = {
         }, options: null,
         subFieldDefinitions: null
       }]
-  }
+  },
+  showButton: false
 };
 
 export const FormWithNumberInput =  FormGroupComponent.bind({});
@@ -554,7 +557,9 @@ FormWithDynamicFieldArray.args = {
         type: 'dynamicFieldArray'
       }
     ]
-  }
+  },
+  showButton: true,
+  buttonPosition: 'left'
 };
 
 export const FormWithDynamicFieldArraySecondLvl = FormGroupComponent.bind({});
