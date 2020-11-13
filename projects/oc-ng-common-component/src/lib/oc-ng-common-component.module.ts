@@ -78,7 +78,6 @@ import {OcDropdownComponent} from './oc-dropdown/oc-dropdown.component';
 import {OcVideoComponent} from './oc-video/oc-video.component';
 import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.component';
 import { OcAppDescriptionComponent } from './oc-app-description/oc-app-description.component';
-import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -124,7 +123,6 @@ import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
     OcDropdownComponent,
     OcVideoComponent,
     OcImageGalleryComponent,
-    OcUserSignupComponent,
     SafehtmlPipe,
     CamelcasePipe,
     EllipsisPipe,
@@ -189,7 +187,6 @@ import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
     OcAppCategoriesComponent,
     OcForgotPasswordComponent,
     OcErrorComponent,
-    OcUserSignupComponent,
     AutofocusDirective,
     DomainValidatorDirective,
     DragDropDirective,
