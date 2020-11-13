@@ -1,13 +1,14 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {FileDetails} from 'oc-ng-common-service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'oc-form',
   templateUrl: './oc-form.component.html',
   styleUrls: ['./oc-form.component.scss']
 })
-export class OcFormComponent implements OnInit {
+export class OcFormComponent implements OnInit, OnDestroy {
 
   /**
    * JSON with all form data to generate dynamic form
@@ -20,6 +21,12 @@ export class OcFormComponent implements OnInit {
   @Input() anotherInvalidResult = false;
   /** Show button on form. Default: true */
   @Input() showButton: boolean = true;
+  /**
+   * Set position of the buttons
+   * can be: 'center', 'left', 'right'.
+   * default value: 'left'
+   */
+  @Input() buttonPosition: 'center' | 'left' | 'right' = 'left';
   /** Set custom text to success button. Default: 'Submit' */
   @Input() successButtonText: string = 'Submit';
   /**
@@ -34,16 +41,25 @@ export class OcFormComponent implements OnInit {
   @Output() formSubmitted = new EventEmitter<any>();
   /** Sending true when user cancel form submitting */
   @Output() cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+  /** When need to get data of the form without buttons */
+  @Output() formDataUpdated: EventEmitter<any> = new EventEmitter<any>();
 
   public customForm: FormGroup;
   /** Result data from form for submission */
   public formData: any;
 
+  private formSubscription: Subscription = new Subscription();
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
     this.generateForm();
+  }
+
+  ngOnDestroy() {
+    if (!this.showButton) {
+      this.formSubscription.unsubscribe();
+    }
   }
 
   removeJSONDots(): void {
@@ -160,6 +176,9 @@ export class OcFormComponent implements OnInit {
         }
       });
       this.customForm = new FormGroup(group);
+      if (!this.showButton) {
+        this.subscribeToForm();
+      }
     }
   }
 
@@ -335,7 +354,14 @@ export class OcFormComponent implements OnInit {
         delete formData[key];
       }
     });
-    this.formSubmitted.emit(formData);
+    console.log(formData);
+    if (this.showButton) {
+      console.log('formSubmitted');
+      this.formSubmitted.emit(formData);
+    } else {
+      console.log('formDataUpdated');
+      this.formDataUpdated.emit(formData);
+    }
   }
 
   cancelForm(): void {
@@ -350,5 +376,11 @@ export class OcFormComponent implements OnInit {
     fileDetails.fileUploadProgress = 100;
     fileDetails.fileUrl = 'https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2015/04/irkutsk_and_lake_baikal/15342550-1-eng-GB/Irkutsk_and_Lake_Baikal.jpg';
     return fileDetails;
+  }
+  /** Listening to value changes of the form if buttons not applied */
+  subscribeToForm(): void {
+    this.formSubscription.add(this.customForm.valueChanges.subscribe(() => {
+      this.sendData();
+    }));
   }
 }
