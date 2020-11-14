@@ -74,7 +74,7 @@ export * from './lib/oc-chart/oc-chart.component';
 export * from './lib/oc-menu-grid/oc-menu-grid.component';
 
 export * from './lib/oc-app-get-started/oc-app-get-started.component';
-export * from './lib/oc-app-galary/oc-app-galary.component';
+export * from './lib/oc-app-gallery/oc-app-gallery.component';
 
 export * from './lib/oc-select-expandable/oc-select-expandable.component';
 export * from './lib/oc-popup/dialog.service';
