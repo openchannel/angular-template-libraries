@@ -159,4 +159,15 @@ describe('OcAppListGridComponent', () => {
 
     expect(component.gotoDetails.emit).toHaveBeenCalledWith(component.appList[0]);
   });
+
+  it('should show Free price on empty model', () => {
+    app.model = [];
+    component.appList = [app];
+
+    fixture.detectChanges();
+
+    const priceField: HTMLSpanElement = fixture.debugElement.query(By.css('.app-price')).nativeElement;
+
+    expect(priceField.textContent).toContain('Free');
+  });
 });
