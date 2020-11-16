@@ -192,8 +192,35 @@ describe('OcDynamicFieldArrayComponent', () => {
     });
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should delete array item', () => {
+    component.value = [{field1: 'Test label',
+      'long-text-example': 'Test long text'},
+      {field1: 'Test label2',
+      'long-text-example': 'Test long text2'}];
+
+    fixture.detectChanges();
+
+    component.deleteDynamicItem(true, 0);
+
+    fixture.detectChanges();
+
+    expect(component.fieldsDataArray.length).toEqual(1);
+    expect(component.fieldsDataArray[0].field1).toEqual('Test label2');
+  });
+
+  it('should throw error',  () => {
+    expect(() => component.fieldDefinitionData = undefined)
+      .toThrowError('FieldDefinitionData is required @Input() parameter');
+  });
+
+  it('should write value', () => {
+    component.writeValue([{field1: 'Test label',
+      'long-text-example': 'Test long text'}]);
+
+    fixture.detectChanges();
+
+    expect(component.fieldsDataArray.length).toEqual(1);
+    expect(component.fieldsDataArray[0].field1).toEqual('Test label');
   });
 });
 
