@@ -43,6 +43,8 @@ export class OcFormComponent implements OnInit, OnDestroy {
   @Output() cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
   /** When need to get data of the form without buttons */
   @Output() formDataUpdated: EventEmitter<any> = new EventEmitter<any>();
+  /** Send form valid status */
+  @Output() isFormInvalid: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public customForm: FormGroup;
   /** Result data from form for submission */
@@ -354,12 +356,9 @@ export class OcFormComponent implements OnInit, OnDestroy {
         delete formData[key];
       }
     });
-    console.log(formData);
     if (this.showButton) {
-      console.log('formSubmitted');
       this.formSubmitted.emit(formData);
     } else {
-      console.log('formDataUpdated');
       this.formDataUpdated.emit(formData);
     }
   }
@@ -381,6 +380,7 @@ export class OcFormComponent implements OnInit, OnDestroy {
   subscribeToForm(): void {
     this.formSubscription.add(this.customForm.valueChanges.subscribe(() => {
       this.sendData();
+      this.isFormInvalid.emit(this.customForm.invalid);
     }));
   }
 }
