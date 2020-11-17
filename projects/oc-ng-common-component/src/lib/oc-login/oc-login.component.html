@@ -38,7 +38,9 @@
                 </div>
             </div>
             <oc-button (click)="submitForm(loginForm)"
-                       [process]="process" [text]="loginType ? 'Log In Through ' + loginType : loginButtonText"
+                       [disabled]="process"
+                       [process]="process"
+                       [text]="loginType ? 'Log In Through ' + loginType : loginButtonText"
                        type="primary"
                        class="btn-block login-btn mt-4 mb-3">
             </oc-button>
