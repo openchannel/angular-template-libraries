@@ -170,4 +170,15 @@ describe('OcAppListGridComponent', () => {
 
     expect(priceField.textContent).toContain('Free');
   });
+
+  it('should check rating data', () => {
+    app.rating = null;
+    component.appList = [app];
+
+    fixture.detectChanges();
+
+    const ratingComponent = fixture.debugElement.query(By.css('oc-rating'));
+
+    expect(ratingComponent).toBeNull();
+  });
 });

@@ -12,7 +12,8 @@
                     <p class="mb-1 font-med app-name">{{app.name}}</p>
                     <div class="d-flex align-items-center">
                         <span class="app-price">{{app.model[0] | price}}</span>
-                        <oc-rating [rating]="app.rating/100"
+                        <oc-rating *ngIf="app.rating"
+                                   [rating]="app.rating/100"
                                    type="single-star"
                                    [reviewCount]="app.reviewCount"></oc-rating>
                     </div>
