@@ -11,10 +11,10 @@ export class OcSelectExpandableComponent implements OnInit {
   @Input() title: string;
 
   @Input() selectModels: SelectModel[];
-  @Output() selectModelsChange: EventEmitter<SelectModel[]> = new EventEmitter<SelectModel[]>();
-
   @Input() collapsedOnInit: boolean = true;
+
   @Input() isCollapsed: boolean = true;
+  @Output() selectModelsChange: EventEmitter<SelectModel[]> = new EventEmitter<SelectModel[]>();
 
   constructor() {
   }
