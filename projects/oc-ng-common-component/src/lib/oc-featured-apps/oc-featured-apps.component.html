@@ -9,7 +9,7 @@
             <a class="card-body {{customClasses}}" [routerLink]="[mainRouterLink, app.appId]">
                 <img alt="featured-logo" src="{{app.icon}}">
                 <h5>{{app.name}}</h5>
-                <span>{{app.summary}}</span>
+                <span>{{app.summary ? app.summary : app.description}}</span>
             </a>
         </div>
     </div>
