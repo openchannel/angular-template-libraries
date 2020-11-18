@@ -32,7 +32,7 @@ const app1: FullAppData = {
   appId: '5f22dd91b5ad376fff8431a7',
   safeName: ['firstapp'],
   customData: {
-    summary: '',
+    summary: 'Some Test summary',
     'website-url': null,
     'product-images': null,
     icon: '//d3grfap2l5ikgv.cloudfront.net/5f20f7ff579d1a20c527d847/public/5f255adfb5ad376fff84b6cf.png',
@@ -119,7 +119,7 @@ const app3: FullAppData = {
   appId: '5f22e3a9ec4ad046ff9e59ec',
   safeName: ['thirdapp'],
   customData: {
-    summary: 'this isb long text <b>bold<b></b></b>',
+    summary: 'this is long text',
     'website-url': 'http://www.google.com',
     'product-images': null,
     icon: '//d3grfap2l5ikgv.cloudfront.net/5f20f7ff579d1a20c527d847/public/5f255af8b5ad376fff84b6d2.png',
@@ -163,7 +163,7 @@ const app4: FullAppData = {
   appId: '5f236dedec4ad046ff9e855e',
   safeName: ['fourthapp'],
   customData: {
-    summary: 'this is\'nt long text <b>bold<b></b></b>',
+    summary: '',
     'website-url': 'http://www.google.com',
     'product-images': null,
     icon: '//d3grfap2l5ikgv.cloudfront.net/5f20f7ff579d1a20c527d847/public/5f255992b5ad376fff84b6a6.png',
@@ -208,7 +208,7 @@ const app5: FullAppData = {
   appId: '5f236e6bec4ad046ff9e8567',
   safeName: ['fifththapp'],
   customData: {
-    summary: 'this is\'nt long text <b>bold<b></b></b>',
+    summary: 'my app',
     'website-url': 'http://www.google.com',
     'product-images': null,
     icon: '//d3grfap2l5ikgv.cloudfront.net/5f20f7ff579d1a20c527d847/public/5f255992b5ad376fff84b6a6.png',

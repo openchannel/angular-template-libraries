@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {SellerAppsWrapper} from 'oc-ng-common-service'
+import { AppListing, AppListingOptions, AppListMenuAction } from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-menu-grid',
@@ -8,19 +8,36 @@ import {SellerAppsWrapper} from 'oc-ng-common-service'
 })
 export class OcMenuGridComponent implements OnInit {
 
-  @Input() appList: SellerAppsWrapper;
+  /**
+   * Configuration of the component,
+   * must consist fields:
+   * 'layout' -  Changes the layout of how
+   * the component is displayed. Default 'table';
+   * 'data' - pages with an array of the apps;
+   * 'options' - The available options of the hidden menu to show;
+   * 'previewTemplate' - A URL template for the preview.
+   * Example: https://mysite.com/apps/{appId}/{version}
+   */
+  @Input() properties: AppListing;
+  /**
+   * Message that will be shown if no apps in the data array.
+   * Default: empty
+   */
+  @Input() noAppMessage: string = '';
+  /**
+   * Path to the custom icon for the hidden menu toggle button.
+   * Default: empty
+   */
+  @Input() menuUrl: string = 'assets/img/dots-menu.svg';
+  /**
+   * Path to the custom icon for the 'sort' button.
+   * Default: empty
+   */
+  @Input() sortIcon: string = '';
 
-  @Input() menuUrl;
-  @Input() sortIcon;
-  editIcon = 'assets/img/edit_icon.svg';
+  @Output() menuClicked: EventEmitter<AppListMenuAction> = new EventEmitter<AppListMenuAction>();
 
-  submitIcon = 'assets/img/submit_icon.svg';
-  deleteIcon = 'assets/img/delete.svg';
-  suspendIcon = 'assets/img/suspend_icon.svg';
-
-  @Output() menuClicked = new EventEmitter<any>();
-
-  childExist: boolean = false;
+  public childExist: boolean = false;
 
   constructor() {
   }
@@ -28,15 +45,29 @@ export class OcMenuGridComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  action(menu, app) {
-    const menuItems = {
-      menu: menu,
-      appId: app.appId,
-      version: app.version,
-      hasChild: !!app.childs
+  action(menu: AppListingOptions, appId: string, appVersion: number): void {
+    const appAction: AppListMenuAction = {
+      action: menu,
+      appId,
+      appVersion
     };
-
-    this.menuClicked.emit(menuItems);
+    this.menuClicked.emit(appAction);
   }
 
+  needToShowItem(item: AppListingOptions, status: string): boolean {
+    if (status.includes(item.toLowerCase())) {
+      return false;
+    } else {
+      switch (item) {
+        case 'PREVIEW':
+          return !!this.properties.previewTemplate;
+        case 'PUBLISH':
+          return status === 'inDevelopment' || status === 'suspended';
+        case 'SUSPEND':
+          return status !== 'inDevelopment';
+        default:
+          return true;
+      }
+    }
+  }
 }
