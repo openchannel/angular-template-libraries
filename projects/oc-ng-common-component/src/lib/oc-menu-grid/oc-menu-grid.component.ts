@@ -81,7 +81,7 @@ export class OcMenuGridComponent implements OnInit {
     }
   }
 
-  showChildrenById(id: string) {
+  showChildrenById(id: string): void {
     if (this.displayChildrenId === id) {
       this.displayChildrenId = null;
     } else {
@@ -89,8 +89,48 @@ export class OcMenuGridComponent implements OnInit {
     }
   }
 
-  onScrollDown() {
+  onScrollDown(): void {
     this.pageNumber++;
     this.pageScrolled.emit(this.pageNumber);
+  }
+
+  sortAppsBy(by: 'name' | 'date' | 'status'): void {
+    switch (by) {
+      case 'name':
+        this.properties.data.list.sort((a, b) => {
+          if (a.name < b.name) {
+            return -1;
+          } else if (a.name > b.name) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        break;
+      case 'date':
+        this.properties.data.list.sort((a, b) => {
+          if (a.created < b.created) {
+            return -1;
+          } else if (a.created > b.created) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        break;
+      case 'status':
+        this.properties.data.list.sort((a, b) => {
+          if (a.status.value < b.status.value) {
+            return -1;
+          } else if (a.status.value > b.status.value) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        break;
+      default:
+        break;
+    }
   }
 }
