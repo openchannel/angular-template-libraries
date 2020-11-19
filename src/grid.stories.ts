@@ -40,7 +40,7 @@ const app1: FullAppData = {
     'video-url': null
   },
   status: {
-    value: 'inDevelopment',
+    value: 'Approved',
     lastUpdated: 1432696823474,
     modifiedBy: 'developer',
     reason: ''
@@ -56,7 +56,7 @@ const app1: FullAppData = {
   }],
   name: 'FirstApp',
   lastUpdated: 1432696823474,
-  isLive: false,
+  isLive: true,
   version: 1,
   submittedDate: 1432696823474,
   created: 1432696823474,
@@ -69,7 +69,95 @@ const app1: FullAppData = {
     totalSales: statElement,
     ownerships: statElement,
     reviews: statElement
-  }
+  },
+  children: [
+    {
+      appId: '5f22dd91b5ad376fff8431a7',
+      safeName: ['firstapp'],
+      customData: {
+        summary: 'New Test Summary',
+        'website-url': null,
+        'product-images': null,
+        icon: '//d3grfap2l5ikgv.cloudfront.net/5f20f7ff579d1a20c527d847/public/5f255adfb5ad376fff84b6cf.png',
+        category: ['category'],
+        'video-url': null
+      },
+      status: {
+        value: 'inDevelopment',
+        lastUpdated: 1432696823474,
+        modifiedBy: 'developer',
+        reason: ''
+      },
+      developerId: '3dcfdd48ed6b4f9d8b6a3e23deb36249',
+      model: [{
+        license: 'single',
+        modelId: '5f22dd91b5ad376fff8431a6',
+        price: 0,
+        currency: 'USD',
+        type: 'free',
+        trial: 0
+      }],
+      name: 'FirstApp',
+      lastUpdated: 1432696823474,
+      isLive: false,
+      version: 1.2,
+      submittedDate: 1432696823474,
+      created: 1432956823474,
+      rating: 4.2,
+      reviewCount: 10,
+      statistics: {
+        views: statElement,
+        downloads: statElement,
+        developerSales: statElement,
+        totalSales: statElement,
+        ownerships: statElement,
+        reviews: statElement
+      }
+    },
+    {
+      appId: '5f22dd91b5ad376fff8431a7',
+      safeName: ['firstapp'],
+      customData: {
+        summary: 'New Test Summary',
+        'website-url': null,
+        'product-images': null,
+        icon: '//d3grfap2l5ikgv.cloudfront.net/5f20f7ff579d1a20c527d847/public/5f255adfb5ad376fff84b6cf.png',
+        category: ['category'],
+        'video-url': null
+      },
+      status: {
+        value: 'suspended',
+        lastUpdated: 1432696823474,
+        modifiedBy: 'developer',
+        reason: ''
+      },
+      developerId: '3dcfdd48ed6b4f9d8b6a3e23deb36249',
+      model: [{
+        license: 'single',
+        modelId: '5f22dd91b5ad376fff8431a6',
+        price: 0,
+        currency: 'USD',
+        type: 'free',
+        trial: 0
+      }],
+      name: 'FirstApp',
+      lastUpdated: 1432696823474,
+      isLive: false,
+      version: 1.1,
+      submittedDate: 1432696823474,
+      created: 1434796823474,
+      rating: 4.2,
+      reviewCount: 10,
+      statistics: {
+        views: statElement,
+        downloads: statElement,
+        developerSales: statElement,
+        totalSales: statElement,
+        ownerships: statElement,
+        reviews: statElement
+      }
+    }
+  ]
 };
 const app2: FullAppData = {
   appId: '5f22e2e1ec4ad046ff9e5968',
@@ -189,7 +277,7 @@ const app4: FullAppData = {
   name: 'FourthApp',
   lastUpdated: 1596283284364,
   isLive: false,
-  version: 1,
+  version: 1.3,
   submittedDate: 1596781554341,
   created: 1596157421014,
   rating: 5,
@@ -234,7 +322,7 @@ const app5: FullAppData = {
   name: 'FifthApp',
   lastUpdated: 1596782716848,
   isLive: true,
-  version: 1,
+  version: 2.1,
   submittedDate: 1596781554341,
   created: 1596157421014,
   rating: 4,
