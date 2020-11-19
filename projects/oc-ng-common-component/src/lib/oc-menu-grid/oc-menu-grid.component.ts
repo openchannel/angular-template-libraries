@@ -38,6 +38,7 @@ export class OcMenuGridComponent implements OnInit {
   @Output() menuClicked: EventEmitter<AppListMenuAction> = new EventEmitter<AppListMenuAction>();
 
   public childExist: boolean = false;
+  public displayChildrenId: string = null;
 
   constructor() {
   }
@@ -68,6 +69,14 @@ export class OcMenuGridComponent implements OnInit {
         default:
           return true;
       }
+    }
+  }
+
+  showChildrenById(id: string) {
+    if (this.displayChildrenId === id) {
+      this.displayChildrenId = null;
+    } else {
+      this.displayChildrenId = id;
     }
   }
 }
