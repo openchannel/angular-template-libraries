@@ -13,6 +13,10 @@
             <div class="error-container font-s" *ngIf="hasServerError(email, incorrectEmailErrorCode)">
                 The email and password you have provided is incorrect.
             </div>
+            <div class="error-container font-s" *ngIf="hasServerError(email, notVerifiedEmailErrorCode)">
+                This account has not been activated yet. <br>
+                Please check your inbox for an activation email or <a (click)="onActivationLinkClick(email)" class="font-s font-med resend-link">resend the activation email</a>.
+            </div>
             <div class="form-group" [ngClass]="{'mt-5': !isServerErrorExist()}">
                 <oc-label text="Email"></oc-label>
                 <oc-input #email=ngModel (ngModelChange)="onchange()" [(ngModel)]="loginModel.email"

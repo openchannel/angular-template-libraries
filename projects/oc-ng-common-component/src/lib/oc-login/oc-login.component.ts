@@ -23,6 +23,7 @@ export class OcLoginComponent {
   @Input() notVerifiedEmailErrorCode = 'email_not_verified';
 
   @Output() submit = new EventEmitter<any>();
+  @Output() sendActivationLink = new EventEmitter<string>();
 
   constructor() {
   }
@@ -64,6 +65,11 @@ export class OcLoginComponent {
       }
     }
     return false;
+  }
+
+  onActivationLinkClick(email: NgModel): void {
+    this.sendActivationLink.emit(email.value);
+    this.onchange();
   }
 }
 

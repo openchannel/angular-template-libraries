@@ -48,6 +48,7 @@ export * from './lib/oc-dropdown/oc-dropdown.component';
 export * from './lib/oc-video/oc-video.component';
 export * from './lib/oc-image-gallery/oc-image-gallery.component';
 export * from './lib/oc-app-description/oc-app-description.component';
+export * from './lib/oc-alerts/oc-alerts.component';
 
 // validators
 export * from './lib/validators/white-space-validator';
@@ -80,3 +81,7 @@ export * from './lib/oc-popup/dialog.service';
 
 export * from './lib/oc-textarea/oc-textarea.component';
 export * from './lib/oc-number/oc-number.component';
+
+// services
+export * from './lib/oc-alerts/alert.service';
+export * from './lib/oc-alerts/alert';
