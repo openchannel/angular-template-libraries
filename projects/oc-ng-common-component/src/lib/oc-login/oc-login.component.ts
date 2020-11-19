@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {SellerSignin} from 'oc-ng-common-service';
+import {NgForm, NgModel} from '@angular/forms';
 
 @Component({
   selector: 'oc-login',
@@ -7,6 +8,8 @@ import {SellerSignin} from 'oc-ng-common-service';
   styleUrls: ['./oc-login.component.scss']
 })
 export class OcLoginComponent {
+  @ViewChild('loginForm') form: NgForm;
+
   @Input() loginModel = new SellerSignin();
   @Output() loginModelChange = new EventEmitter<SellerSignin>();
 
@@ -16,6 +19,8 @@ export class OcLoginComponent {
   @Input() companyLogoUrl = './assets/img/company_logo.svg';
   @Input() process;
   @Input() loginType;
+  @Input() incorrectEmailErrorCode = 'email_is_incorrect';
+  @Input() notVerifiedEmailErrorCode = 'email_not_verified';
 
   @Output() submit = new EventEmitter<any>();
 
@@ -31,13 +36,34 @@ export class OcLoginComponent {
     this.submit.emit(true);
   }
 
-  onchange(form) {
-    if (form.form.controls.email.errors && form.form.controls.email.errors.serverErrorValidator) {
-      form.form.controls.email.setErrors(null);
+  onchange() {
+    if (this.form.form.controls.email.errors && this.form.form.controls.email.errors.serverErrorValidator) {
+      this.form.form.controls.email.setErrors(null);
     }
-    if (form.form.controls.password.errors && form.form.controls.password.errors.serverErrorValidator) {
-      form.form.controls.password.setErrors(null);
+    if (this.form.form.controls.password.errors && this.form.form.controls.password.errors.serverErrorValidator) {
+      this.form.form.controls.password.setErrors(null);
     }
+  }
+
+  isServerErrorExist(): boolean {
+    if (this.form) {
+      for (const control of Object.keys(this.form.controls)) {
+        if (this.form.controls[control].hasError('serverErrorValidator')) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  hasServerError(email: NgModel, errorCode: string): boolean {
+    if (email.errors) {
+      const serverErrorValidator = email.errors.serverErrorValidator;
+      if (serverErrorValidator && serverErrorValidator.code === errorCode) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 
