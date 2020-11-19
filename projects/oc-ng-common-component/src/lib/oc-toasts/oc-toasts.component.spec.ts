@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OcAlertsComponent } from './oc-alerts.component';
+import { OcToastsComponent } from './oc-toasts.component';
 
 describe('OcAlertsComponent', () => {
-  let component: OcAlertsComponent;
-  let fixture: ComponentFixture<OcAlertsComponent>;
+  let component: OcToastsComponent;
+  let fixture: ComponentFixture<OcToastsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcAlertsComponent ],
+      declarations: [ OcToastsComponent ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OcAlertsComponent);
+    fixture = TestBed.createComponent(OcToastsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

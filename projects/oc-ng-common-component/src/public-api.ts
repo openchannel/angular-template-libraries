@@ -37,7 +37,7 @@ export * from './lib/oc-activation/oc-activation.component';
 export * from './lib/oc-seller-agreement/oc-seller-agreement.component';
 export * from './lib/oc-reset-password/oc-reset-password.component';
 export * from './lib/oc-rich-text-editor/oc-rich-text-editor.component';
-export * from  './lib/oc-form/oc-form.component';
+export * from './lib/oc-form/oc-form.component';
 export * from './lib/oc-tags/oc-tags.component';
 export * from './lib/oc-dropbox/oc-dropbox.component';
 export * from './lib/oc-color/oc-color.component';
@@ -48,7 +48,7 @@ export * from './lib/oc-dropdown/oc-dropdown.component';
 export * from './lib/oc-video/oc-video.component';
 export * from './lib/oc-image-gallery/oc-image-gallery.component';
 export * from './lib/oc-app-description/oc-app-description.component';
-export * from './lib/oc-alerts/oc-alerts.component';
+export * from './lib/oc-toasts/oc-toasts.component';
 
 // validators
 export * from './lib/validators/white-space-validator';
@@ -83,5 +83,5 @@ export * from './lib/oc-textarea/oc-textarea.component';
 export * from './lib/oc-number/oc-number.component';
 
 // services
-export * from './lib/oc-alerts/alert.service';
-export * from './lib/oc-alerts/alert';
+export * from './lib/oc-toasts/toast.service';
+export * from './lib/oc-toasts/toast.model';

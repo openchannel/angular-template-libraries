@@ -78,8 +78,7 @@ import {OcDropdownComponent} from './oc-dropdown/oc-dropdown.component';
 import {OcVideoComponent} from './oc-video/oc-video.component';
 import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.component';
 import { OcAppDescriptionComponent } from './oc-app-description/oc-app-description.component';
-import { OcAlertsComponent } from './oc-alerts/oc-alerts.component';
-import { OcAlertComponent } from './oc-alert/oc-alert.component';
+import { OcToastsComponent } from './oc-toasts/oc-toasts.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -155,8 +154,7 @@ import { OcAlertComponent } from './oc-alert/oc-alert.component';
     OcDynamicArrayItemComponent,
     OcFormModalComponent,
     OcAppDescriptionComponent,
-    OcAlertsComponent,
-    OcAlertComponent
+    OcToastsComponent,
   ],
 
   imports: [
@@ -236,7 +234,7 @@ import { OcAlertComponent } from './oc-alert/oc-alert.component';
     OcTagsComponent,
     OcDynamicFieldArrayComponent,
     OcAppDescriptionComponent,
-    OcAlertsComponent
+    OcToastsComponent
   ],
   providers: [
     NgbActiveModal,
