@@ -1,4 +1,7 @@
-<table class="table">
+<table class="table"
+       [infiniteScrollThrottle]="50"
+       (scrolled)="onScrollDown()"
+       infiniteScroll>
   <thead>
   <tr>
     <th class="placeholder"></th>

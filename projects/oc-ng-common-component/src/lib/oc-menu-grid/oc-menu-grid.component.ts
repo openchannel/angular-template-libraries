@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppListing, AppListingOptions, AppListMenuAction } from 'oc-ng-common-service';
 
 @Component({
@@ -34,11 +34,20 @@ export class OcMenuGridComponent implements OnInit {
    * Default: empty
    */
   @Input() sortIcon: string = '';
-
+  /**
+   * Output of menu list item clicked action.
+   * Contains an action name, app ID, app version
+   */
   @Output() menuClicked: EventEmitter<AppListMenuAction> = new EventEmitter<AppListMenuAction>();
+  /**
+   * Output with page number for new apps request
+   * Start number = 1
+   */
+  @Output() pageScrolled: EventEmitter<number> = new EventEmitter<number>();
 
-  public childExist: boolean = false;
   public displayChildrenId: string = null;
+
+  private pageNumber: number = 1;
 
   constructor() {
   }
@@ -78,5 +87,10 @@ export class OcMenuGridComponent implements OnInit {
     } else {
       this.displayChildrenId = id;
     }
+  }
+
+  onScrollDown() {
+    this.pageNumber++;
+    this.pageScrolled.emit(this.pageNumber);
   }
 }

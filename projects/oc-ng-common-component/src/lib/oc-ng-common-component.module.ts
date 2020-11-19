@@ -73,12 +73,13 @@ import {OcDynamicArrayItemComponent} from './oc-dynamic-array-item/oc-dynamic-ar
 import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
 import {PricePipe} from './pipe/price.pipe';
 import {EditorModule} from '@tinymce/tinymce-angular';
-import { RouterModule } from '@angular/router';
+import {RouterModule} from '@angular/router';
 import {OcDropdownComponent} from './oc-dropdown/oc-dropdown.component';
 import {OcVideoComponent} from './oc-video/oc-video.component';
 import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.component';
-import { OcAppDescriptionComponent } from './oc-app-description/oc-app-description.component';
+import {OcAppDescriptionComponent} from './oc-app-description/oc-app-description.component';
 import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -168,6 +169,7 @@ import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
     ColorPickerModule,
     EditorModule,
     RouterModule,
+    InfiniteScrollModule
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
