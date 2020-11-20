@@ -2,10 +2,12 @@ import {moduleMetadata} from '@storybook/angular';
 import {OcCommonLibModule, OcLoginComponent} from 'projects/oc-ng-common-component/src/public-api';
 import {action} from '@storybook/addon-actions';
 import {SellerSignin} from 'oc-ng-common-service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
-  imports: [OcCommonLibModule]
+  imports: [OcCommonLibModule, BrowserAnimationsModule, RouterTestingModule]
 };
 
 const loginEmpty = new SellerSignin();

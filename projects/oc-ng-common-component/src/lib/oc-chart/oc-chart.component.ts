@@ -15,9 +15,9 @@ import {
   ChartStatisticModel,
   ChartStatisticParameterModel,
   ChartStatisticFiledModel,
-  ChartStatisticPeriodModel
-} from 'oc-ng-common-service/lib/model/oc-chart.model';
-import {DropdownModel} from 'oc-ng-common-service';
+  ChartStatisticPeriodModel,
+  DropdownModel
+} from 'oc-ng-common-service';
 
 
 
@@ -50,7 +50,7 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   // change in value of this invokes ngOnChanges
   @Input() random;
   /** Min width for the dropdown **/
-  @Input() minDropdownWidth: string
+  @Input() minDropdownWidth: string;
   /** Main model for building chart with buttons and dropdown **/
   @Input() chartData: ChartStatisticModel;
   /** Function for updating chart data, when user choice a new options **/
