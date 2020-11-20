@@ -79,6 +79,7 @@ import {OcVideoComponent} from './oc-video/oc-video.component';
 import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.component';
 import { OcAppDescriptionComponent } from './oc-app-description/oc-app-description.component';
 import { OcToastsComponent } from './oc-toasts/oc-toasts.component';
+import { OcResendActivationComponent } from './oc-resend-activation/oc-resend-activation.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -155,6 +156,7 @@ import { OcToastsComponent } from './oc-toasts/oc-toasts.component';
     OcFormModalComponent,
     OcAppDescriptionComponent,
     OcToastsComponent,
+    OcResendActivationComponent,
   ],
 
   imports: [
@@ -234,7 +236,8 @@ import { OcToastsComponent } from './oc-toasts/oc-toasts.component';
     OcTagsComponent,
     OcDynamicFieldArrayComponent,
     OcAppDescriptionComponent,
-    OcToastsComponent
+    OcToastsComponent,
+    OcResendActivationComponent
   ],
   providers: [
     NgbActiveModal,
