@@ -14,7 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class OcNumberComponent implements OnInit, ControlValueAccessor {
   @Input()
   set value(val) {
-    this.inputNumber = val;
+    this.inputNumber = this.parseNumber(val);
     this.onChange(this.inputNumber);
   }
 
@@ -64,9 +64,9 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
    * Register paste action
    */
   onPaste(event: ClipboardEvent) {
-    const newData = event.clipboardData.getData('text').replace(this.regex, '');
+    const newData = event.clipboardData.getData('text');
     setTimeout(() => {
-      this.inputNumber = Number(newData);
+      this.inputNumber = this.parseNumber(newData);
       this.onChange(this.inputNumber);
     }, 0);
   }
@@ -98,6 +98,14 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
    * as well as to set the initial value.
    */
   writeValue(obj: any): void {
-    this.inputNumber = obj;
+    this.inputNumber = this.parseNumber(obj);
+  }
+
+  parseNumber(inputString): number {
+    if ( typeof inputString  === 'string') {
+      return Number(inputString.replace(this.regex, ''));
+    } else {
+      return inputString;
+    }
   }
 }
