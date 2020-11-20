@@ -31,19 +31,11 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
      * placeHolderDropBoxName (required) - Name for the DropBox with available tags.
      */
     @Input() placeHolderDropBoxName: string = '';
-
-    /**
-     * description - Description for all tags.
-     * Default: empty
-     */
-    @Input() description: string;
-
     /**
      * required (optional) - Is the required result data. Show the red marker.
      * Default: false
      */
     @Input() required: boolean = false;
-
     /**
      * minCountTags (optional) - It is minimal count tags for getting the correct result. Show error message.
      * Default: null (skip this check)
