@@ -73,12 +73,14 @@ import {OcDynamicArrayItemComponent} from './oc-dynamic-array-item/oc-dynamic-ar
 import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
 import {PricePipe} from './pipe/price.pipe';
 import {EditorModule} from '@tinymce/tinymce-angular';
-import { RouterModule } from '@angular/router';
+import {RouterModule} from '@angular/router';
 import {OcDropdownComponent} from './oc-dropdown/oc-dropdown.component';
 import {OcVideoComponent} from './oc-video/oc-video.component';
 import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.component';
-import { OcAppDescriptionComponent } from './oc-app-description/oc-app-description.component';
-import { OcToastsComponent } from './oc-toasts/oc-toasts.component';
+import {OcAppDescriptionComponent} from './oc-app-description/oc-app-description.component';
+import {OcToastsComponent} from './oc-toasts/oc-toasts.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -122,6 +124,7 @@ import { OcToastsComponent } from './oc-toasts/oc-toasts.component';
     OcAppCategorySelectComponent,
     OcPopupComponent,
     OcDropdownComponent,
+    OcDropdownButtonComponent,
     OcVideoComponent,
     OcImageGalleryComponent,
     SafehtmlPipe,
@@ -168,6 +171,7 @@ import { OcToastsComponent } from './oc-toasts/oc-toasts.component';
     ColorPickerModule,
     EditorModule,
     RouterModule,
+    InfiniteScrollModule
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
@@ -213,6 +217,7 @@ import { OcToastsComponent } from './oc-toasts/oc-toasts.component';
     OcReviewListComponent,
     OcRecommendedAppsComponent,
     OcDropdownComponent,
+    OcDropdownButtonComponent,
     OcVideoComponent,
     OcImageGalleryComponent,
     NgbModule,

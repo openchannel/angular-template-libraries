@@ -1,31 +1,77 @@
 @import "../../../assets/styles/theme.scss";
+@import "../../../assets/styles/mixins";
 
-.chart-card {
-  border: 1px solid $info;
-  border-radius: 4px;
-  padding: 40px;
-  padding-bottom: 32px;
+.chart-options-container {
   margin: 0;
-  background-color: white;
-  
-  .sec-download {
-    width: 245px;
-    padding: 0;
-    
-    img {
-      margin-top: 48px;
-      margin-bottom: 16px;
+  display: flex;
+  flex-direction: row;
+
+  .time-selection {
+    padding: 0.2rem;
+    height: 3rem;
+    width: 9rem;
+    margin-right: 0.2rem;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .time-selection.active {
+    border: 1px solid $gray-200;
+    background-color: white;
+  }
+
+  .type-section {
+    border: 1px solid $gray-200;
+    height: 3rem;
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: row;
+
+  .chart-statistic {
+    min-height: 20rem;
+  }
+
+  .description-statistic {
+    min-width: 12rem;
+  }
+
+  span {
+    border-top: 1px solid $gray-200;
+    color: $gray-600;
+    font-size: 14px;
+  }
+}
+
+.border {
+  border: 1px solid $gray-200;
+}
+
+.radius {
+  border-radius: 0.3rem;
+}
+
+
+@include media-breakpoint-md {
+  .chart-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@include media-breakpoint-sm {
+  .chart-options-container {
+    display: flex;
+    flex-direction: column;
+    .time-selection {
+      margin: auto auto 0.2rem;
     }
-    
-    h4 {
-      padding-bottom: 47px;
-      border-bottom: 1px solid rgba(201, 213, 234, 0.5);
-      margin-bottom: 12px;
-    }
-    
-    span {
-      color: #74787e;
-      font-size: 14px;
+    .type-section {
+      margin: auto;
     }
   }
 }

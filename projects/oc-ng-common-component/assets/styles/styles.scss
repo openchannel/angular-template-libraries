@@ -333,11 +333,11 @@ select::-ms-expand { display: none; }
   background: url(~oc-ng-common-component/assets/img/edit_icon_h.svg) left center no-repeat;
   background-position: 15px;
 }
-.menu-del{
+.menu-delete{
   background: url(~oc-ng-common-component/assets/img/delete.svg) left center no-repeat;
   background-position: 15px;
 }
-.menu-del:hover{
+.menu-delete:hover{
   background: url(~oc-ng-common-component/assets/img/delete_h.svg) left center no-repeat;
   background-position: 15px;
 }
@@ -359,12 +359,21 @@ select::-ms-expand { display: none; }
   background-position: 15px;
 }
 
-.menu-submit{
+.menu-publish{
   background: url(~oc-ng-common-component/assets/img/submit_icon.svg) left center no-repeat;
   background-position: 15px;
 }
-.menu-submit:hover{
+.menu-publish:hover{
   background: url(~oc-ng-common-component/assets/img/submit_icon_h.svg) left center no-repeat;
+  background-position: 15px;
+}
+
+.menu-preview{
+  background: url(~oc-ng-common-component/assets/img/view.svg) left center no-repeat;
+  background-position: 15px;
+}
+.menu-preview:hover{
+  background: url(~oc-ng-common-component/assets/img/view.svg) left center no-repeat;
   background-position: 15px;
 }
 
