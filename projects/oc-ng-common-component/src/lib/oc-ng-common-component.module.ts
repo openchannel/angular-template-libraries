@@ -78,8 +78,9 @@ import {OcDropdownComponent} from './oc-dropdown/oc-dropdown.component';
 import {OcVideoComponent} from './oc-video/oc-video.component';
 import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.component';
 import {OcAppDescriptionComponent} from './oc-app-description/oc-app-description.component';
-import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
+// import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -123,9 +124,10 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
     OcAppCategorySelectComponent,
     OcPopupComponent,
     OcDropdownComponent,
+    OcDropdownButtonComponent,
     OcVideoComponent,
     OcImageGalleryComponent,
-    OcUserSignupComponent,
+    // OcUserSignupComponent,
     SafehtmlPipe,
     CamelcasePipe,
     EllipsisPipe,
@@ -191,7 +193,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
     OcAppCategoriesComponent,
     OcForgotPasswordComponent,
     OcErrorComponent,
-    OcUserSignupComponent,
+    // OcUserSignupComponent,
     AutofocusDirective,
     DomainValidatorDirective,
     DragDropDirective,
@@ -216,6 +218,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
     OcReviewListComponent,
     OcRecommendedAppsComponent,
     OcDropdownComponent,
+    OcDropdownButtonComponent,
     OcVideoComponent,
     OcImageGalleryComponent,
     NgbModule,
