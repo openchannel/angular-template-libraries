@@ -35,6 +35,11 @@ export class OcMenuGridComponent implements OnInit {
    */
   @Input() sortIcon: string = '';
   /**
+   * Set default app icon that will be
+   * shown when icon of the app is not present
+   */
+  @Input() defaultAppIcon: string = '';
+  /**
    * Output of menu list item clicked action.
    * Contains an action name, app ID, app version
    */
