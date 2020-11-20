@@ -201,11 +201,7 @@ h6 {
 }
 
 .company-logo{
-  width: 159px;
-}
-
-.invitation {
-  margin-bottom: 20px !important;
+  height: 27px;
 }
 
 .sign-up__text {
@@ -411,4 +407,8 @@ select::-ms-expand { display: none; }
       height: 8px;
     }
   }
+}
+
+.alert-dismissible .close {
+  padding: 8px 15px;
 }
