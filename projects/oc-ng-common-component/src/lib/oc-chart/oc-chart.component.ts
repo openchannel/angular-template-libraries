@@ -1,6 +1,24 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {Chart} from 'chart.js';
 import { SafeUrl } from '@angular/platform-browser';
+import {
+  ChartStatisticModel,
+  ChartStatisticParameterModel,
+  ChartStatisticFiledModel,
+  ChartStatisticPeriodModel
+} from 'oc-ng-common-service/lib/model/oc-chart.model';
+import {DropdownModel} from 'oc-ng-common-service';
+
 
 
 const chartPoint = new Image();
@@ -18,10 +36,7 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   myCanvas: ElementRef<HTMLCanvasElement>;
 
   public context: CanvasRenderingContext2D;
-  /** Labels at the bottom of the chart */
-  @Input() labels: string[] = [];
-  /** Datasets at the right side of the chart */
-  @Input() dataSets: number[] = [];
+
   /** Sum of data or other total count that can be shown */
   @Input() count: number;
   /** Title text of the data count */
@@ -34,8 +49,17 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   @Input() enablePoints: boolean = false;
   // change in value of this invokes ngOnChanges
   @Input() random;
+  /** Min width for the dropdown **/
+  @Input() minDropdownWidth: string
+  /** Main model for building chart with buttons and dropdown **/
+  @Input() chartData: ChartStatisticModel;
+  /** Function for updating chart data, when user choice a new options **/
+  @Input() updateChartDataFunc = (period: ChartStatisticPeriodModel, fields: ChartStatisticFiledModel): void => {};
 
   private chart: any;
+
+  dropdownTypes: DropdownModel<ChartStatisticFiledModel>[];
+  dropdownSelectedType: DropdownModel<ChartStatisticFiledModel>;
 
   constructor() {
   }
@@ -56,6 +80,8 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   }
 
   getChart() {
+    this.updateDropdownValues();
+
     const gradientFill = this.context.createLinearGradient(0, 0, 0, 170);
     gradientFill.addColorStop(0, '#e7eef7');
     gradientFill.addColorStop(1, 'rgba(240, 247, 255, 0.25)');
@@ -63,10 +89,10 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
     this.chart = new Chart(this.context, {
       type: 'line',
       data: {
-        labels: this.labels,
+        labels: this.chartData?.data?.labelsX ? this.chartData.data.labelsX : [],
         datasets: [{
           label: '',
-          data: this.dataSets,
+          data: this.chartData?.data?.labelsY ? this.chartData.data.labelsY : [],
           // backgroundColor: 'rgba(240, 247, 255, 0.25)',
           backgroundColor: this.isBackgroundColor ? gradientFill : 'transparent',
           borderColor: 'rgba(83, 124, 253, 1)',
@@ -183,4 +209,42 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
     return label;
   }
 
+  updateChartPeriod(activePeriod: ChartStatisticPeriodModel): void {
+    this.setNewActiveParameter(this.chartData?.periods, activePeriod.id);
+    this.updateChartData();
+  }
+
+  updateChartFiled(activeFiled: DropdownModel<ChartStatisticFiledModel>): void {
+    this.setNewActiveParameter(this.chartData?.fields, activeFiled.value.id);
+    this.updateChartData();
+  }
+
+  private updateChartData(): void {
+    let period = null;
+    let field = null;
+    if(this.chartData?.periods) {
+      period = this.chartData.periods.filter(period => period && period.active)[0];
+    }
+    if(this.chartData?.fields) {
+      field = this.chartData.fields.filter(field => field && field.active)[0];
+    }
+    this.updateChartDataFunc(period, field);
+  }
+
+  private setNewActiveParameter(parameters: ChartStatisticParameterModel[], newActiveElementId: string): void  {
+    if(parameters) {
+      parameters.forEach(parameter => {
+        if(parameter) {
+          parameter.active = parameter.id === newActiveElementId;
+        }
+      })
+    }
+  }
+
+  private updateDropdownValues() {
+    this.dropdownTypes = this.chartData?.fields ? this.chartData.fields
+      .map(field => new DropdownModel(field.label, field)) : [];
+    this.dropdownSelectedType = this.dropdownTypes.filter(field => field.value.active)[0];
+  }
 }
+

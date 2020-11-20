@@ -33,7 +33,7 @@ import {WebsiteValidatorDirective} from './validators/website-validator.directiv
 import {OcAppGetStartedComponent} from './oc-app-get-started/oc-app-get-started.component';
 import {OcChartComponent} from './oc-chart/oc-chart.component';
 import {OcMenuGridComponent} from './oc-menu-grid/oc-menu-grid.component';
-import {OcAppGalleryComponent} from './oc-app-galary/oc-app-galary.component';
+import {OcAppGalleryComponent} from './oc-app-gallery/oc-app-gallery.component';
 import {OcAppListGridComponent} from './oc-app-list-grid/oc-app-list-grid.component';
 import {OcRecommendedAppsComponent} from './oc-recommended-apps/oc-recommended-apps.component';
 import {OcOverallRatingComponent} from './oc-overall-rating/oc-overall-rating.component';
@@ -73,12 +73,14 @@ import {OcDynamicArrayItemComponent} from './oc-dynamic-array-item/oc-dynamic-ar
 import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
 import {PricePipe} from './pipe/price.pipe';
 import {EditorModule} from '@tinymce/tinymce-angular';
-import { RouterModule } from '@angular/router';
+import {RouterModule} from '@angular/router';
 import {OcDropdownComponent} from './oc-dropdown/oc-dropdown.component';
 import {OcVideoComponent} from './oc-video/oc-video.component';
 import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.component';
-import { OcAppDescriptionComponent } from './oc-app-description/oc-app-description.component';
+import {OcAppDescriptionComponent} from './oc-app-description/oc-app-description.component';
 import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -122,6 +124,7 @@ import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
     OcAppCategorySelectComponent,
     OcPopupComponent,
     OcDropdownComponent,
+    OcDropdownButtonComponent,
     OcVideoComponent,
     OcImageGalleryComponent,
     OcUserSignupComponent,
@@ -168,6 +171,7 @@ import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
     ColorPickerModule,
     EditorModule,
     RouterModule,
+    InfiniteScrollModule
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
@@ -214,6 +218,7 @@ import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
     OcReviewListComponent,
     OcRecommendedAppsComponent,
     OcDropdownComponent,
+    OcDropdownButtonComponent,
     OcVideoComponent,
     OcImageGalleryComponent,
     NgbModule,
