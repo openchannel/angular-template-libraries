@@ -52,8 +52,9 @@
       </td>
       <td>
         <small *ngIf="app.status.reason">
-            <span [ngbPopover]="popContent"
-                  class="cursor-pointer font-med text-primary" placement="bottom"
+          <span class="indicator" [ngClass]="app.status.value ? statusColor(app.status.value) : ''"></span>
+          <span [ngbPopover]="popContent"
+                  class="cursor-pointer font-med text-body" placement="bottom"
                   popoverClass="popover shadow-sm bg-white rounded"
                   popoverTitle="Status Change Reason"
                   triggers="hover">
@@ -65,7 +66,8 @@
           {{ app.status.reason }}
         </ng-template>
         <small *ngIf="!app.status.reason">
-          <span class="cursor-pointer font-med text-primary">
+          <span class="indicator" [ngClass]="app.status.value ? statusColor(app.status.value) : ''"></span>
+          <span class="cursor-pointer font-med text-body">
             {{app.status.value === 'inDevelopment'? 'Draft'
               : app.status.value | camelcase}}</span>
         </small>
@@ -100,8 +102,9 @@
         </td>
         <td>
           <small *ngIf="child.status.reason">
+            <span class="indicator" [ngClass]="child.status.value ? statusColor(app.status.value) : ''"></span>
             <span [ngbPopover]="popContent"
-                  class="cursor-pointer font-med text-primary" placement="bottom"
+                  class="cursor-pointer font-med text-body" placement="bottom"
                   popoverClass="popover shadow-sm bg-white rounded"
                   popoverTitle="Status Change Reason"
                   triggers="hover">
@@ -113,7 +116,8 @@
             {{ child.status.reason }}
           </ng-template>
           <small *ngIf="!child.status.reason">
-            <span class="cursor-pointer font-med text-primary">
+            <span class="indicator" [ngClass]="child.status.value ? statusColor(app.status.value) : ''"></span>
+            <span class="cursor-pointer font-med text-body">
               {{child.status.value === 'inDevelopment'? 'Draft'
                 : child.status.value | camelcase}}</span>
           </small>

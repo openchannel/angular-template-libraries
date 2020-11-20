@@ -138,4 +138,15 @@ export class OcMenuGridComponent implements OnInit {
         break;
     }
   }
+
+  statusColor(status: string): string {
+    switch (status) {
+      case 'inDevelopment':
+        return 'in-development';
+      case 'inReview':
+        return 'in-review';
+      default:
+        return status;
+    }
+  }
 }
