@@ -78,6 +78,7 @@ import {OcDropdownComponent} from './oc-dropdown/oc-dropdown.component';
 import {OcVideoComponent} from './oc-video/oc-video.component';
 import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.component';
 import { OcAppDescriptionComponent } from './oc-app-description/oc-app-description.component';
+import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -121,6 +122,7 @@ import { OcAppDescriptionComponent } from './oc-app-description/oc-app-descripti
     OcAppCategorySelectComponent,
     OcPopupComponent,
     OcDropdownComponent,
+    OcDropdownButtonComponent,
     OcVideoComponent,
     OcImageGalleryComponent,
     SafehtmlPipe,
@@ -211,6 +213,7 @@ import { OcAppDescriptionComponent } from './oc-app-description/oc-app-descripti
     OcReviewListComponent,
     OcRecommendedAppsComponent,
     OcDropdownComponent,
+    OcDropdownButtonComponent,
     OcVideoComponent,
     OcImageGalleryComponent,
     NgbModule,
