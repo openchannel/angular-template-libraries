@@ -10,6 +10,8 @@ export class OcResetPasswordComponent implements OnInit {
 
   @Input() companyLogoUrl;
   @Input() process;
+  @Input() loginUrl;
+  @Input() signupUrl;
   @Input() resetModel = new SellerResetPassword();
   @Output() submit = new EventEmitter<any>();
 
