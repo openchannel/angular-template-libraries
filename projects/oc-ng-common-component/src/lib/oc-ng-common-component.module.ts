@@ -73,11 +73,14 @@ import {OcDynamicArrayItemComponent} from './oc-dynamic-array-item/oc-dynamic-ar
 import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
 import {PricePipe} from './pipe/price.pipe';
 import {EditorModule} from '@tinymce/tinymce-angular';
-import { RouterModule } from '@angular/router';
+import {RouterModule} from '@angular/router';
 import {OcDropdownComponent} from './oc-dropdown/oc-dropdown.component';
 import {OcVideoComponent} from './oc-video/oc-video.component';
 import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.component';
-import { OcAppDescriptionComponent } from './oc-app-description/oc-app-description.component';
+import {OcAppDescriptionComponent} from './oc-app-description/oc-app-description.component';
+import {OcToastsComponent} from './oc-toasts/oc-toasts.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -121,6 +124,7 @@ import { OcAppDescriptionComponent } from './oc-app-description/oc-app-descripti
     OcAppCategorySelectComponent,
     OcPopupComponent,
     OcDropdownComponent,
+    OcDropdownButtonComponent,
     OcVideoComponent,
     OcImageGalleryComponent,
     SafehtmlPipe,
@@ -152,7 +156,8 @@ import { OcAppDescriptionComponent } from './oc-app-description/oc-app-descripti
     OcDynamicFieldArrayComponent,
     OcDynamicArrayItemComponent,
     OcFormModalComponent,
-    OcAppDescriptionComponent
+    OcAppDescriptionComponent,
+    OcToastsComponent,
   ],
 
   imports: [
@@ -166,6 +171,7 @@ import { OcAppDescriptionComponent } from './oc-app-description/oc-app-descripti
     ColorPickerModule,
     EditorModule,
     RouterModule,
+    InfiniteScrollModule
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
@@ -211,6 +217,7 @@ import { OcAppDescriptionComponent } from './oc-app-description/oc-app-descripti
     OcReviewListComponent,
     OcRecommendedAppsComponent,
     OcDropdownComponent,
+    OcDropdownButtonComponent,
     OcVideoComponent,
     OcImageGalleryComponent,
     NgbModule,
@@ -231,7 +238,8 @@ import { OcAppDescriptionComponent } from './oc-app-description/oc-app-descripti
     OcMultiSelectListComponent,
     OcTagsComponent,
     OcDynamicFieldArrayComponent,
-    OcAppDescriptionComponent
+    OcAppDescriptionComponent,
+    OcToastsComponent
   ],
   providers: [
     NgbActiveModal,
