@@ -86,14 +86,6 @@ export class OcMenuGridComponent implements OnInit {
     }
   }
 
-  showChildrenById(id: string): void {
-    if (this.displayChildrenId === id) {
-      this.displayChildrenId = null;
-    } else {
-      this.displayChildrenId = id;
-    }
-  }
-
   onScrollDown(): void {
     this.pageNumber++;
     this.pageScrolled.emit(this.pageNumber);

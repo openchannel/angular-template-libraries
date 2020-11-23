@@ -32,8 +32,7 @@
   <ng-template [ngForOf]="properties.data.list" let-app ngFor>
     <tr>
       <td class="col-blank"></td>
-      <td (click)="showChildrenById(app.appId)"
-          [class.cursor-pointer]="app.children && app.children.length > 0">
+      <td>
         <div class="row">
           <div class="col-md-auto">
             <img [src]="app.customData.icon ? app.customData.icon : defaultAppIcon" alt="" class="app-icon">
@@ -79,14 +78,14 @@
       <td class="col-blank"></td>
     </tr>
     <ng-container *ngIf="app.children && app.children.length > 0">
-      <tr *ngFor="let child of app?.children; let i = index" [class.d-none]="this.displayChildrenId !== app.appId">
+      <tr *ngFor="let child of app?.children; let i = index">
         <td class="col-blank"></td>
         <td>
           <div class="row">
             <div class="col-md-auto">
               <img alt="icon" class="px-3" src="assets/img/line-arrow-down.svg" *ngIf="i === 0">
               <span *ngIf="i > 0" class="px-4"></span>
-              <img [src]="child.customData.icon" alt="" class="app-icon">
+              <img [src]="child.customData.icon ? child.customData.icon : defaultAppIcon" alt="" class="app-icon">
             </div>
             <div class="col-md pl-0">
               <h6 class="mb-0 cursor-pointer pr-2 word-break">{{child.name}}</h6>
