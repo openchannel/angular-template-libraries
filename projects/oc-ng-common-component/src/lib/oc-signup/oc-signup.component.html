@@ -67,8 +67,8 @@
         <div class="card-body">
             <div class="text-center">
                 <img alt="logo"
-                     class="img-fluid mb-4 company-logo"
-                     src="{{companyLogoUrl}}">
+                     class="img-fluid mb-5 company-logo"
+                     [src]="companyLogoUrl">
             </div>
             <div class="text-center">
                 <img alt="dropdown-icon"
@@ -77,8 +77,11 @@
                 <oc-label text="An activation link has been sent to your inbox."></oc-label>
             </div>
             <div class="text-center">
+                <oc-button (click)="goToActivationPage()" [disabled]="false"
+                           text="Activate account" type="primary" class="btn-block mt-5 mb-3">
+                </oc-button>
                 <oc-label text="Dont have an account yet?"></oc-label>
-                <a class="font-m font-med" [routerLink]="signupUrl"> Sign Up</a>
+                <a class="font-m font-med link" (click)="showSignupFeedbackPage = !showSignupFeedbackPage"> Sign Up</a>
             </div>
         </div>
     </div>

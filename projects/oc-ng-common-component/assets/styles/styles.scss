@@ -412,3 +412,15 @@ select::-ms-expand { display: none; }
 .alert-dismissible .close {
   padding: 8px 15px;
 }
+
+a.link {
+  cursor: pointer;
+  color: $primary;
+  &:hover {
+    color: $primary;
+    text-decoration: none;
+  }
+  &:focus {
+    outline:none
+  }
+}

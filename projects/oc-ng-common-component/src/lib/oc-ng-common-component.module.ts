@@ -77,8 +77,9 @@ import {RouterModule} from '@angular/router';
 import {OcDropdownComponent} from './oc-dropdown/oc-dropdown.component';
 import {OcVideoComponent} from './oc-video/oc-video.component';
 import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.component';
-import {OcAppDescriptionComponent} from './oc-app-description/oc-app-description.component';
-import {OcToastsComponent} from './oc-toasts/oc-toasts.component';
+import { OcAppDescriptionComponent } from './oc-app-description/oc-app-description.component';
+import { OcToastsComponent } from './oc-toasts/oc-toasts.component';
+import { OcResendActivationComponent } from './oc-resend-activation/oc-resend-activation.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button.component';
 
@@ -158,6 +159,7 @@ import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button
     OcFormModalComponent,
     OcAppDescriptionComponent,
     OcToastsComponent,
+    OcResendActivationComponent,
   ],
 
   imports: [
@@ -239,7 +241,8 @@ import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button
     OcTagsComponent,
     OcDynamicFieldArrayComponent,
     OcAppDescriptionComponent,
-    OcToastsComponent
+    OcToastsComponent,
+    OcResendActivationComponent
   ],
   providers: [
     NgbActiveModal,

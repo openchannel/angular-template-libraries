@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {SellerSignup} from 'oc-ng-common-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'oc-signup',
@@ -13,6 +14,7 @@ export class OcSignupComponent {
   @Input() signupModel = new SellerSignup();
   @Input() loginUrl;
   @Input() signupUrl;
+  @Input() activationUrl;
   @Input() termsUrl;
   @Input() policyUrl;
   @Input() companyLogoUrl;
@@ -24,7 +26,7 @@ export class OcSignupComponent {
   @Output() submit = new EventEmitter<any>();
 
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   submitForm(form) {
@@ -35,5 +37,9 @@ export class OcSignupComponent {
     }
     this.submit.emit(true);
     return false;
+  }
+
+  goToActivationPage() {
+    this.router.navigate([this.activationUrl]);
   }
 }
