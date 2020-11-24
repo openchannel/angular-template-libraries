@@ -37,7 +37,7 @@ export * from './lib/oc-activation/oc-activation.component';
 export * from './lib/oc-seller-agreement/oc-seller-agreement.component';
 export * from './lib/oc-reset-password/oc-reset-password.component';
 export * from './lib/oc-rich-text-editor/oc-rich-text-editor.component';
-export * from  './lib/oc-form/oc-form.component';
+export * from './lib/oc-form/oc-form.component';
 export * from './lib/oc-tags/oc-tags.component';
 export * from './lib/oc-dropbox/oc-dropbox.component';
 export * from './lib/oc-color/oc-color.component';
@@ -45,10 +45,12 @@ export * from './lib/oc-video-url/oc-video-url.component';
 export * from './lib/oc-multi-select-list/oc-multi-select-list.component';
 export * from './lib/oc-dynamic-field-array/oc-dynamic-field-array.component';
 export * from './lib/oc-dropdown/oc-dropdown.component';
+export * from './lib/oc-dropdown-button/oc-dropdown-button.component';
 export * from './lib/oc-video/oc-video.component';
 export * from './lib/oc-image-gallery/oc-image-gallery.component';
 export * from './lib/oc-app-description/oc-app-description.component';
-export * from './lib/oc-user-signup/oc-user-signup.component';
+export * from './lib/oc-toasts/oc-toasts.component';
+export * from './lib/oc-resend-activation/oc-resend-activation.component';
 
 // validators
 export * from './lib/validators/white-space-validator';
@@ -74,10 +76,14 @@ export * from './lib/oc-chart/oc-chart.component';
 export * from './lib/oc-menu-grid/oc-menu-grid.component';
 
 export * from './lib/oc-app-get-started/oc-app-get-started.component';
-export * from './lib/oc-app-galary/oc-app-galary.component';
+export * from './lib/oc-app-gallery/oc-app-gallery.component';
 
 export * from './lib/oc-select-expandable/oc-select-expandable.component';
 export * from './lib/oc-popup/dialog.service';
 
 export * from './lib/oc-textarea/oc-textarea.component';
 export * from './lib/oc-number/oc-number.component';
+
+// services
+export * from './lib/oc-toasts/toast.service';
+export * from './lib/oc-toasts/toast.model';

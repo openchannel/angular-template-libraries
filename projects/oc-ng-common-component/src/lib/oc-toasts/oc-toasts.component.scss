@@ -1,0 +1,17 @@
+@import "../../../assets/styles/theme.scss";
+
+.toast-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: .5em;
+  z-index: 1200;
+}
+
+.toast-success {
+  background-color: $green-alert;
+}
+
+.toast-danger {
+  background-color: $danger;
+}
