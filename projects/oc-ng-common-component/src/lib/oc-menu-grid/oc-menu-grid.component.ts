@@ -35,6 +35,11 @@ export class OcMenuGridComponent implements OnInit {
    */
   @Input() sortIcon: string = '';
   /**
+   * Set default app icon that will be
+   * shown when icon of the app is not present
+   */
+  @Input() defaultAppIcon: string = '';
+  /**
    * Output of menu list item clicked action.
    * Contains an action name, app ID, app version
    */
@@ -55,11 +60,12 @@ export class OcMenuGridComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  action(menu: AppListingOptions, appId: string, appVersion: number): void {
+  action(menu: AppListingOptions, appId: string, appVersion: number, isChild?: boolean): void {
     const appAction: AppListMenuAction = {
       action: menu,
       appId,
-      appVersion
+      appVersion,
+      isChild
     };
     this.menuClicked.emit(appAction);
   }
@@ -78,14 +84,6 @@ export class OcMenuGridComponent implements OnInit {
         default:
           return true;
       }
-    }
-  }
-
-  showChildrenById(id: string): void {
-    if (this.displayChildrenId === id) {
-      this.displayChildrenId = null;
-    } else {
-      this.displayChildrenId = id;
     }
   }
 
@@ -131,6 +129,17 @@ export class OcMenuGridComponent implements OnInit {
         break;
       default:
         break;
+    }
+  }
+
+  statusColor(status: string): string {
+    switch (status) {
+      case 'inDevelopment':
+        return 'in-development';
+      case 'inReview':
+        return 'in-review';
+      default:
+        return status;
     }
   }
 }
