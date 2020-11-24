@@ -60,11 +60,12 @@ export class OcMenuGridComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  action(menu: AppListingOptions, appId: string, appVersion: number): void {
+  action(menu: AppListingOptions, appId: string, appVersion: number, isChild?: boolean): void {
     const appAction: AppListMenuAction = {
       action: menu,
       appId,
-      appVersion
+      appVersion,
+      isChild
     };
     this.menuClicked.emit(appAction);
   }
