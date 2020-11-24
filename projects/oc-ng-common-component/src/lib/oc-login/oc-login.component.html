@@ -45,7 +45,9 @@
                 </div>
             </div>
             <oc-button (click)="submitForm(loginForm)"
-                       [process]="process" [text]="loginButtonText"
+                       [disabled]="process"
+                       [process]="process"
+                       [text]="loginButtonText"
                        type="primary"
                        class="btn-block login-btn mt-4 mb-3">
             </oc-button>
