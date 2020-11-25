@@ -17,12 +17,6 @@ export class OcAppCardComponent implements OnInit {
   /** Router link for one app click, will contain 'appId' field */
   @Input() appRouterLink: any | string;
 
-  private isoCurrencyCode = {
-    USD: '$',
-    EUR: '€',
-    CNY: '¥',
-    GBP: '£'
-  };
   constructor(private sanitizer: DomSanitizer) {
   }
 
@@ -31,23 +25,6 @@ export class OcAppCardComponent implements OnInit {
 
   safeLink(sourceUrl): SafeResourceUrl {
     return  this.sanitizer.bypassSecurityTrustResourceUrl(sourceUrl);
-  }
-
-  parsePrice(priceModel: AppModel): string {
-    let price: string = '';
-    if (priceModel.type === 'free') {
-       price = 'Free';
-    } else {
-       price += priceModel.currency ? Object.keys(this.isoCurrencyCode).includes(priceModel.currency) ?
-         this.isoCurrencyCode[priceModel.currency] : '$' : '';
-
-       price += priceModel.price;
-       if (priceModel.billingPeriod) {
-         price += '/' + priceModel.billingPeriod.substring(0, 2);
-       }
-    }
-
-    return price;
   }
 
   parseRating(rating): number {
