@@ -1,9 +1,8 @@
-import {NgbModal, NgbModalConfig, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {Component, Injectable} from '@angular/core';
-import {Router} from '@angular/router';
+import { NgbModalConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Injectable, OnInit, Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 export type ViewMode = 'deployee' | 'subscribe';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -15,11 +14,10 @@ export class DialogService {
     config.backdrop = 'static';
     config.keyboard = true;
   }
-
   showAppConfirmPopup(component: Component, title: string, type: string,
-                      cancelButtonText: string, confirmButtonText: string, text: string, textVariable: string,
-                      informationalText: string, confirmCallback?, cancelCallback?) {
-    const modalRef = this.modalService.open(component, {size: 'lg submit-app', backdrop: 'static'});
+    cancelButtonText: string, confirmButtonText: string, text: string, textVariable: string,
+    informationalText: string,isDirectSubmit=false , confirmCallback?, cancelCallback?) {
+    const modalRef = this.modalService.open(component, { size: 'lg submit-app', backdrop: 'static' });
     modalRef.componentInstance.title = title;
     modalRef.componentInstance.text = text;
     modalRef.componentInstance.textVariable = textVariable;
@@ -29,6 +27,7 @@ export class DialogService {
     modalRef.componentInstance.confirmCallback = confirmCallback;
     modalRef.componentInstance.closeIconUrl = "assets/img/close-icon.svg";
     modalRef.componentInstance.type = type;
+    modalRef.componentInstance.isDirectSubmit=isDirectSubmit;
     if (cancelCallback) {
       modalRef.componentInstance.cancelCallback = cancelCallback;
     } else {
@@ -44,12 +43,9 @@ export class DialogService {
 
 
   showConfirmDialog(component: Component, size, title: string, type: string,
-                    cancelButtonText: string, confirmButtonText: string, text: string, textVariable: string,
-                    informationalText: string, confirmCallback?, cancelCallback?) {
-    const modalRef = this.modalService.open(component, {
-      size: size + ' submit-app',
-      backdrop: 'static'
-    });
+    cancelButtonText: string, confirmButtonText: string, text: string, textVariable: string,
+    informationalText: string, confirmCallback?, cancelCallback?) {
+    const modalRef = this.modalService.open(component, { size: size + ' submit-app', backdrop: 'static' });
     modalRef.componentInstance.title = title;
     modalRef.componentInstance.text = text;
     modalRef.componentInstance.textVariable = textVariable;
@@ -74,11 +70,8 @@ export class DialogService {
   }
 
   showAgreementPopup(component: Component, title: string, text: string,
-                     closeButtonText: string, cancelCallback?) {
-    const modalRef = this.modalService.open(component, {
-      size: 'md submit-app' + ' submit-app',
-      backdrop: 'static'
-    });
+    closeButtonText: string, cancelCallback?){
+    const modalRef = this.modalService.open(component, { size: 'md submit-app' + ' submit-app', backdrop: 'static' });
     modalRef.componentInstance.title = title;
     modalRef.componentInstance.text = text;
     modalRef.componentInstance.closeButtonText = closeButtonText;

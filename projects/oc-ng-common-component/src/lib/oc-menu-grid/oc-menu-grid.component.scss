@@ -1,5 +1,4 @@
 @import "../../../assets/styles/theme.scss";
-
 .table {
   border: 1px solid #c9d5ea;
   border-radius: 4px;
@@ -9,7 +8,6 @@
   margin-bottom: 116px;
   border-spacing: 0;
   border-collapse: inherit;
-  
   thead {
     th {
       font-size: 14px;
@@ -17,51 +15,45 @@
       border-top: 1px solid #c9d5ea;
       padding: 1.5rem 0;
       vertical-align: middle;
+      a{
+        font-size: 14px;
+      }
     }
-    
     th:first-child,
     th:last-child {
       // padding: 1.5rem 2.5rem;
       width: 2.5rem;
     }
-    
     th.name {
       width: 26%;
     }
-    
     th.summary {
       width: 33%;
     }
-    
-    th.data {
+    th.data{
       width: 14%;
     }
-    
     td.status {
       width: 9%;
     }
-    
-    th.action {
+    th.action{
       width: 10%;
     }
   }
-  
   tr:first-child {
     th,
     td {
       border-top: none;
     }
   }
-  
   td:last-child {
     border-top: 1px solid #c9d5ea;
   }
-  
   td {
     padding: 1rem 0;
     vertical-align: middle;
     border-top: 1px solid rgba(201, 213, 234, 0.5);
-    
+
     .summary-text {
       -webkit-line-clamp: 2;
       max-height: 40px;
@@ -72,45 +64,38 @@
       -webkit-box-orient: vertical;
       padding-right: 8px;
     }
-    
+
   }
-  
+
   td.col-blank {
     // padding: 1rem 2.5rem;
     width: 2.5rem;
     border-top: none;
   }
-  
   span {
     color: $secondary;
     font-size: 14px;
   }
-  
   small {
     color: $secondary;
     font-size: 12px;
   }
-  
   .icon-dots {
     padding: 19px;
     border: 1px solid $info;
     border-radius: 4px;
   }
-  
   .icon-down {
     padding-left: 8px;
   }
-  
   .icon-up {
     padding-right: 8px;
     transform: rotate(180deg);
   }
-  
   .app-icon {
     max-width: 44px;
     min-width: 44px;
   }
-  
   // .fa-ellipsis-h::after{
   //   display: none;
   // }
@@ -118,7 +103,6 @@
     float: right;
   }
 }
-
 // Dropdown menu style
 .dropdown-menu {
   top: 48px;
@@ -128,13 +112,11 @@
   top: 70px;
   left: 76px;
   transform: translate(0px, 44px);
-  
   .dropdown-item {
     font-size: 14px;
     padding: 14px 42px;
     border-bottom: 1px solid #c9d5ea;
   }
-  
   .dropdown-item:hover,
   .dropdown-item:focus {
     background-color: rgba(201, 213, 234, 0.1);
@@ -142,14 +124,18 @@
     outline: none;
     // box-shadow: 0px 1px 0 #c9d5ea;
   }
-  
   .dropdown-item:active {
     color: #537cfd;
     box-shadow: 0px 1px 0 #c9d5ea;
   }
-  
+
 }
 
-.word-break {
+.upside-down{
+  margin-left: 8px;
+  transform: rotate(180deg);
+}
+
+.word-break{
   word-break: break-word
 }

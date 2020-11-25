@@ -1,19 +1,41 @@
-import {Directive} from '@angular/core';
-import {FormControl, NG_VALIDATORS, ValidationErrors, Validator} from '@angular/forms';
+import { Directive } from '@angular/core';
+import { NG_VALIDATORS, Validator, FormControl, ValidationErrors } from '@angular/forms';
 
 
 @Directive({
   selector: '[websiteValidator]',
-  providers: [{provide: NG_VALIDATORS, useExisting: WebsiteValidatorDirective, multi: true}]
+  providers: [{ provide: NG_VALIDATORS, useExisting: WebsiteValidatorDirective, multi: true }]
 })
 export class WebsiteValidatorDirective implements Validator {
-  validate(c: FormControl): ValidationErrors {
-    const isValidWebsite = c.value ? /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,50}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/.test(c.value) : true;
-    const message = {
-      'websiteValidator': {
-        'message': 'Please enter a valid URL'
+ validate(c: FormControl): ValidationErrors {
+   const isValidWebsite = this.validateInputWithPattern(c.value);
+   const message = {
+     'websiteValidator': {
+       'message': 'Please enter a valid URL'
+     }
+   };
+   return isValidWebsite ? null : message;
+ }
+
+ validateInputWithPattern(urlString:string) : boolean {
+    if(urlString === null || typeof urlString === 'undefined' || urlString.trim().length === 0){
+      return true;
+    }
+    if(!/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#\$&'\*\+,;=.]+$/.test(urlString)){
+      return false;
+    } 
+    if(urlString.startsWith("http://.") || urlString.startsWith("https://.")){
+      return false;
+    }
+    if(urlString.startsWith(".") || urlString.endsWith(".")){
+      return false;
+    }else{
+      for(let i = 0; i<urlString.length;i++){
+        if(urlString[i] === "." && urlString[++i] === "."){
+          return false;
+        }
       }
-    };
-    return isValidWebsite ? null : message;
-  }
+    }
+    return true;
+ }
 }

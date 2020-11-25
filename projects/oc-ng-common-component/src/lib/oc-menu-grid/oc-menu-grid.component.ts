@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {SellerAppsWrapper} from 'oc-ng-common-service'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { SellerAppsWrapper } from 'oc-ng-common-service'
 
 @Component({
   selector: 'oc-menu-grid',
@@ -12,31 +12,59 @@ export class OcMenuGridComponent implements OnInit {
 
   @Input() menuUrl;
   @Input() sortIcon;
-  editIcon = 'assets/img/edit_icon.svg';
 
-  submitIcon = 'assets/img/submit_icon.svg';
-  deleteIcon = 'assets/img/delete.svg';
-  suspendIcon = 'assets/img/suspend_icon.svg';
+  @Input() pageSize;
+  editIcon = "assets/img/edit_icon.svg";
+
+  submitIcon = "assets/img/submit_icon.svg";
+  deleteIcon = "assets/img/delete.svg";
+  suspendIcon = "assets/img/suspend_icon.svg";
+
+  sortBy :'name'|'date'|'status' = 'name';
+  sortOrder: '1'|'-1' = '1';
+  pageNumber=1;
 
   @Output() menuClicked = new EventEmitter<any>();
+  @Output() orderedApps = new EventEmitter<any>();
 
   childExist: boolean = false;
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   action(menu, app) {
-    const menuItems = {
+    let menuItems = {
       menu: menu,
       appId: app.appId,
+      prettyStatus: app.prettyStatus,
       version: app.version,
-      hasChild: !!app.childs
-    };
-
+      hasChild: app.childs ? true : false
+    }
     this.menuClicked.emit(menuItems);
   }
+  sortAppsBy(sortBy){
+    if(this.sortBy !== sortBy){
+      this.sortBy=sortBy;
+      this.sortOrder = '1';
+    }else{
+      this.sortOrder= this.sortOrder == '1' ? "-1" : "1";
+    }
+    let orderedOptions ={
+      sortBy:this.sortBy,
+      sortOrder:this.sortOrder,
+      pageNumber:this.pageNumber
+    }
+    this.orderedApps.emit(orderedOptions);
+  }
 
+  updatePage(pageNumber){
+    let orderedOptions ={
+      sortBy:this.sortBy,
+      sortOrder:this.sortOrder,
+      "pageNumber":pageNumber
+    }
+    this.orderedApps.emit(orderedOptions);
+  }
 }

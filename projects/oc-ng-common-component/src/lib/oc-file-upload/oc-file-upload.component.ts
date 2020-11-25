@@ -1,18 +1,10 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild
-} from '@angular/core';
-import {FileDetails, FileUploadDownloadService} from 'oc-ng-common-service';
-import {OCComponentConstants} from '../model/oc-constants';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {base64ToFile, ImageCroppedEvent, ImageTransform} from 'ngx-image-cropper';
-import {HttpEventType, HttpResponse} from '@angular/common/http';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, OnDestroy, Renderer2 } from '@angular/core';
+import { FileDetails, FileUploadDownloadService } from 'oc-ng-common-service';
+import { OCComponentConstants } from '../model/oc-constants';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ImageTransform, ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { DefaultValueAccessor, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'oc-file-upload',
@@ -21,7 +13,7 @@ import {HttpEventType, HttpResponse} from '@angular/common/http';
 })
 export class OcFileUploadComponent implements OnInit, OnDestroy {
 
-  @ViewChild('fileDropRef', {static: false})
+  @ViewChild('fileDropRef', { static: false })
   fileInputVar: ElementRef<any>;
   cropperModalRef: any;
 
@@ -76,6 +68,12 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   @Input()
   resizeToHeight = 0;
 
+  @Input()
+  cropperMinWidth = 0;
+
+  @Input()
+  cropperMinHeight = 0;
+
   @Output()
   cancelPopup = new EventEmitter<any>();
 
@@ -102,8 +100,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
 
 
   constructor(private modalService: NgbModal,
-              private uploadFileService: FileUploadDownloadService) {
-  }
+    private uploadFileService: FileUploadDownloadService) { }
 
   ngOnInit(): void {
     console.log("component.ocFileUpload.ts : "+this.fileDetailArr);
@@ -124,7 +121,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
 
 
     this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
-    this.fileInputVar.nativeElement.dispatchEvent(new Event('change', {bubbles: true}));
+    this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
     // this.fileInputVar.nativeElement.change();
   }
 
@@ -132,8 +129,8 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
     this.isUploadInProcess = true;
     let lastFileDetail = new FileDetails();
     lastFileDetail.name = this.fileName;
-    if (!this.fileDetailArr) {
-      this.fileDetailArr = [];
+    if(!this.fileDetailArr){
+      this.fileDetailArr=[];
     }
     this.fileDetailArr.push(lastFileDetail);
     // this.fileUpload.emit(files);
@@ -142,22 +139,22 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
     this.uploadFileReq = this.uploadFileService.getToken().subscribe((resToken) => {
       let token = resToken['token'];
       this.uploadFileReq = this.uploadFileService.prepareUploadReq(token, formData, this.isFileTypePrivate()).subscribe((event: any) => {
-          if (event.type === HttpEventType.UploadProgress) {
-            lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
-          } else if (event.type == HttpEventType.ResponseHeader) {
-            lastFileDetail.fileUploadProgress = 97;
-          } else if (event.type == HttpEventType.DownloadProgress) {
-            lastFileDetail.fileUploadProgress = 99;
-          } else if (event instanceof HttpResponse) {
-            lastFileDetail = this.convertFileUploadResToFileDetails(event);
-            lastFileDetail.fileUploadProgress = 100;
-            lastFileDetail.fileIconUrl = this.defaultFileIcon;
-            this.fileDetailArr[this.fileDetailArr.length - 1] = lastFileDetail;
-            this.isUploadInProcess = false;
-            this.uploadFileReq = null;
-            this.resetSelection();
-          }
-        },
+        if (event.type === HttpEventType.UploadProgress) {
+          lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
+        } else if (event.type == HttpEventType.ResponseHeader) {
+          lastFileDetail.fileUploadProgress = 97;
+        } else if (event.type == HttpEventType.DownloadProgress) {
+          lastFileDetail.fileUploadProgress = 99;
+        } else if (event instanceof HttpResponse) {
+          lastFileDetail = this.convertFileUploadResToFileDetails(event);
+          lastFileDetail.fileUploadProgress = 100;
+          lastFileDetail.fileIconUrl = this.defaultFileIcon;
+          this.fileDetailArr[this.fileDetailArr.length - 1] = lastFileDetail;
+          this.isUploadInProcess = false;
+          this.uploadFileReq = null;
+          this.resetSelection();
+        }
+      },
         (err) => {
           this.isUploadInProcess = false;
           this.resetSelection();
@@ -173,8 +170,8 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
 
   /**
    * This method is used to convert uploaded file response to fileDetails.
-   *
-   * @param fileUploadRes
+   * 
+   * @param fileUploadRes 
    */
   convertFileUploadResToFileDetails(fileUploadRes) {
     let fileDetails = new FileDetails();
@@ -189,19 +186,23 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
     fileDetails.isError = fileUploadRes.body.isError;
     return fileDetails;
   }
-
   /**
    * handle file from browsing
    */
   fileBrowseHandler(event, content?) {
 
 
-    if (!event?.target?.files[0]?.name) {
+    if(!event?.target?.files[0]?.name){
       return;
     }
 
     if (this.isFileTypeImage()) {
       this.browsedFileEvent = event;
+
+      if (this.cropperMinWidth !== 0 && this.cropperMinHeight !== 0) {
+        this.checkImageMinSize(event);
+      }
+
       this.fileName = event?.target?.files[0]?.name;
 
       this.fileName = this.fileName ? this.fileName : event?.dataTransfer?.files[0]?.name;
@@ -228,6 +229,26 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
       this.fileName = event?.target?.files[0]?.name;
       this.fileName = this.fileName ? this.fileName : event?.dataTransfer?.files[0]?.name;
       this.uploadFile(event.target.files[0])
+    }
+  }
+
+  getImageSize(event) {
+    return new Promise((resolve, reject) => {
+      let img = new Image();
+      img.src = window.URL.createObjectURL(event.target.files[0]);
+      img.onload = function () {
+        resolve([img.naturalWidth, img.naturalHeight]);
+      };
+      img.onerror = reject;
+    });
+  }
+
+  async checkImageMinSize(event) {
+    var imageSize = await this.getImageSize(event);
+    // console.log(imageSize);
+    if (imageSize[0] < this.cropperMinWidth || imageSize[1] < this.cropperMinHeight) {
+      this.imageLoadErrorMessage = 'Image size is '+ imageSize[0] +'x' + imageSize[1] +', Please add image having dimensions equal or above ' + this.cropperMinWidth +'x'+ this.cropperMinHeight;
+      this.hasImageLoadError = true;
     }
   }
 
@@ -284,6 +305,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   }
 
   resetSelection() {
+    this.resetZoom();
     if (this.fileInputVar) {
       this.fileInputVar.nativeElement.value = '';
     }
@@ -354,13 +376,15 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   }
 
   zoomOut() {
-    this.scale -= .1;
-    this.transform = {
-      ...this.transform,
-      scale: this.scale
-    };
+    if(this.scale > 0.2) {
+      this.scale -= .1;
+      this.transform = {
+        ...this.transform,
+        scale: this.scale
+      };
+    }
   }
-
+  
   zoomIn() {
     this.scale += .1;
     this.transform = {
@@ -390,6 +414,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   }
 
   cancelUploading(idx) {
+    this.resetZoom(); 
     if (this.isUploadInProcess && this.uploadFileReq) {
       console.log("Trying to unsubscribe....");
       this.uploadFileReq.unsubscribe();
@@ -405,7 +430,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
 
   getUrl(file) {
     // for non image file upload always show default file upload icon
-    if (this.isFileTypeNotImage()) {
+    if(this.isFileTypeNotImage()){
       return this.defaultFileIcon;
     }
     if (file.fileUploadProgress === 100) {
