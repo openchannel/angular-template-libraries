@@ -40,7 +40,7 @@ const app1: FullAppData = {
     'video-url': null
   },
   status: {
-    value: 'Approved',
+    value: 'approved',
     lastUpdated: 1432696823474,
     modifiedBy: 'developer',
     reason: ''
