@@ -36,6 +36,10 @@ export class OcFormComponent implements OnInit, OnDestroy {
    */
   @Input() labelPosition: 'top' | 'left' | 'right' = 'top';
   /**
+   * Set form 'dirty' after form init
+   */
+  @Input() setFormDirty: boolean = false;
+  /**
    * Returning all form fields value to the parent component
    */
   @Output() formSubmitted = new EventEmitter<any>();
@@ -180,6 +184,9 @@ export class OcFormComponent implements OnInit, OnDestroy {
       this.customForm = new FormGroup(group);
       if (!this.showButton) {
         this.subscribeToForm();
+      }
+      if (this.setFormDirty) {
+        this.setDirty();
       }
     }
   }
@@ -382,5 +389,12 @@ export class OcFormComponent implements OnInit, OnDestroy {
       this.sendData();
       this.isFormInvalid.emit(this.customForm.invalid);
     }));
+  }
+
+  private setDirty(): void {
+    (Object as any).values(this.customForm.controls).forEach(control => {
+      control.markAsTouched();
+      control.markAsDirty();
+    });
   }
 }
