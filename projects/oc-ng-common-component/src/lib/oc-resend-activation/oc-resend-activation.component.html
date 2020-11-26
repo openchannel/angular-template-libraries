@@ -7,22 +7,22 @@
                      [src]="companyLogoUrl">
             </div>
             <div class="text-center mb-5">
-                <h4>Activate Account</h4>
-                <oc-label text="Check your inbox for the activation code"></oc-label>
+                <h4>Resend Activation Code</h4>
+                <oc-label text="Resend the activation code to your email"></oc-label>
             </div>
             <div class="form-group">
-                <oc-label text="Activation Code"></oc-label>
-                <oc-input #code=ngModel [(ngModel)]="activationModel.code" placeholder="Activation Code"
-                          name="code" ngDefaultControl required="true"></oc-input>
-                <oc-error [control]="code" field="code"></oc-error>
+                <oc-label text="Email"></oc-label>
+                <oc-input #email=ngModel [(ngModel)]="activationModel.email" placeholder="Email"
+                          name="code" ngDefaultControl required="true" emailValidator></oc-input>
+                <oc-error [control]="email"></oc-error>
             </div>
             <oc-button (click)="submitForm(activationForm)"
-                       [disabled]="process || !activationForm.valid" [process]="process" text="Activate"
+                       [disabled]="process || !activationForm.valid" [process]="process" text="Resend"
                        type="primary" class="btn-block mt-5 mb-4">
             </oc-button>
             <div class="text-center mb-2">
-                <oc-label class="mb-0" text="Didn’t get the activation code?"></oc-label>
-                <a class="font-m font-med" [routerLink]="resendActivationUrl"> Resend it </a>
+                <oc-label class="mb-0" text="Already have an account?"></oc-label>
+                <a class="font-m font-med" [routerLink]="loginUrl"> Log In </a>
             </div>
             <div class="text-center">
                 <oc-label class="mb-0" text="Dont have an account yet?"></oc-label>

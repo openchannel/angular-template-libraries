@@ -32,11 +32,10 @@
   <ng-template [ngForOf]="properties.data.list" let-app ngFor>
     <tr>
       <td class="col-blank"></td>
-      <td (click)="showChildrenById(app.appId)"
-          [class.cursor-pointer]="app.children && app.children.length > 0">
+      <td>
         <div class="row">
           <div class="col-md-auto">
-            <img [src]="app.customData.icon" alt="" class="app-icon">
+            <img [src]="app.customData.icon ? app.customData.icon : defaultAppIcon" alt="" class="app-icon">
           </div>
           <div class="col-md pl-0">
             <h6 class="mb-0 cursor-pointer pr-2 word-break">{{app.name}} </h6>
@@ -52,8 +51,9 @@
       </td>
       <td>
         <small *ngIf="app.status.reason">
-            <span [ngbPopover]="popContent"
-                  class="cursor-pointer font-med text-primary" placement="bottom"
+          <span class="indicator" [ngClass]="app.status.value ? statusColor(app.status.value) : ''"></span>
+          <span [ngbPopover]="popContent"
+                  class="cursor-pointer font-med text-body" placement="bottom"
                   popoverClass="popover shadow-sm bg-white rounded"
                   popoverTitle="Status Change Reason"
                   triggers="hover">
@@ -65,26 +65,28 @@
           {{ app.status.reason }}
         </ng-template>
         <small *ngIf="!app.status.reason">
-          <span class="cursor-pointer font-med text-primary">
+          <span class="indicator" [ngClass]="app.status.value ? statusColor(app.status.value) : ''"></span>
+          <span class="cursor-pointer font-med text-body">
             {{app.status.value === 'inDevelopment'? 'Draft'
               : app.status.value | camelcase}}</span>
         </small>
       </td>
       <td>
-        <ng-container [ngTemplateOutletContext]="{ $implicit: app }" [ngTemplateOutlet]="appMenuTemplate">
+        <ng-container [ngTemplateOutletContext]="{ $implicit: {data: app, child: false} }"
+                      [ngTemplateOutlet]="appMenuTemplate">
         </ng-container>
       </td>
       <td class="col-blank"></td>
     </tr>
     <ng-container *ngIf="app.children && app.children.length > 0">
-      <tr *ngFor="let child of app?.children; let i = index" [class.d-none]="this.displayChildrenId !== app.appId">
+      <tr *ngFor="let child of app?.children; let i = index">
         <td class="col-blank"></td>
         <td>
           <div class="row">
             <div class="col-md-auto">
               <img alt="icon" class="px-3" src="assets/img/line-arrow-down.svg" *ngIf="i === 0">
               <span *ngIf="i > 0" class="px-4"></span>
-              <img [src]="child.customData.icon" alt="" class="app-icon">
+              <img [src]="child.customData.icon ? child.customData.icon : defaultAppIcon" alt="" class="app-icon">
             </div>
             <div class="col-md pl-0">
               <h6 class="mb-0 cursor-pointer pr-2 word-break">{{child.name}}</h6>
@@ -100,8 +102,9 @@
         </td>
         <td>
           <small *ngIf="child.status.reason">
+            <span class="indicator" [ngClass]="child.status.value ? statusColor(app.status.value) : ''"></span>
             <span [ngbPopover]="popContent"
-                  class="cursor-pointer font-med text-primary" placement="bottom"
+                  class="cursor-pointer font-med text-body" placement="bottom"
                   popoverClass="popover shadow-sm bg-white rounded"
                   popoverTitle="Status Change Reason"
                   triggers="hover">
@@ -113,13 +116,14 @@
             {{ child.status.reason }}
           </ng-template>
           <small *ngIf="!child.status.reason">
-            <span class="cursor-pointer font-med text-primary">
+            <span class="indicator" [ngClass]="child.status.value ? statusColor(child.status.value) : ''"></span>
+            <span class="cursor-pointer font-med text-body">
               {{child.status.value === 'inDevelopment'? 'Draft'
                 : child.status.value | camelcase}}</span>
           </small>
         </td>
         <td>
-          <ng-container [ngTemplateOutletContext]="{ $implicit: child }" [ngTemplateOutlet]="appMenuTemplate">
+          <ng-container [ngTemplateOutletContext]="{ $implicit: {data: child, child: true} }" [ngTemplateOutlet]="appMenuTemplate">
           </ng-container>
         </td>
         <td class="col-blank"></td>
@@ -145,8 +149,8 @@
       <img [src]="menuUrl" alt="more-icon" class="icon-dots" ngbDropdownToggle>
       <div ngbDropdownMenu>
         <ng-container *ngFor="let menuAction of properties.options">
-          <button *ngIf="needToShowItem(menuAction, app?.status.value)"
-                  (click)="action(menuAction, app?.appId, app?.version)"
+          <button *ngIf="needToShowItem(menuAction, app.data?.status.value)"
+                  (click)="action(menuAction, app.data?.appId, app.data?.version, app.child)"
                   ngbDropdownItem
                   class="menu" [ngClass]="'menu-' + menuAction | lowercase" >
             {{menuAction | titlecase}}
