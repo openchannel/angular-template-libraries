@@ -2,11 +2,11 @@
   <ng-container *ngFor="let formElement of formJsonData?.fields; trackBy:trackByFieldId">
     <div class="mt-2 mb-2 d-flex flex-column" [ngClass]="labelPosition === 'right' ? 'flex-md-row-reverse'
          : labelPosition === 'left' ? 'flex-md-row' : ''">
-      <oc-label [text]="formElement?.label" class="mb-1" [required]="formElement?.attributes?.required"
+      <oc-tooltip-label [text]="formElement?.label" class="mb-1" [required]="formElement?.attributes?.required"
                 [ngClass]="labelPosition === 'left' ? 'form-label mr-2' : labelPosition === 'right' ? 'form-label ml-2' : ''"
                 [description]="formElement?.description ? formElement?.description : ''"
                 >
-      </oc-label>
+      </oc-tooltip-label>
       <div class="w-100">
         <div [ngSwitch]="formElement?.type">
           <oc-rich-text-editor *ngSwitchCase="'richText'"  formControlName="{{formElement?.id}}"></oc-rich-text-editor>

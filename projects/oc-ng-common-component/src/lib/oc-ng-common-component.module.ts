@@ -83,6 +83,7 @@ import { OcResendActivationComponent } from './oc-resend-activation/oc-resend-ac
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button.component';
 import { OcMenuUserGridComponent } from './oc-menu-user-grid/oc-menu-user-grid.component';
+import {OcTooltipLabelComponent} from './oc-tooltip-label/oc-tooltip-label.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -162,6 +163,7 @@ import { OcMenuUserGridComponent } from './oc-menu-user-grid/oc-menu-user-grid.c
     OcAppDescriptionComponent,
     OcToastsComponent,
     OcResendActivationComponent,
+    OcTooltipLabelComponent
   ],
 
   imports: [

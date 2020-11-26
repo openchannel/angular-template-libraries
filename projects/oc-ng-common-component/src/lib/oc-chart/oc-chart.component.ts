@@ -39,7 +39,7 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   // change in value of this invokes ngOnChanges
   @Input() random;
   /** Min width for the dropdown **/
-  @Input() minDropdownWidth: string
+  @Input() minDropdownWidth: string;
   /** Main model for building chart with buttons and dropdown **/
   @Input() chartData: ChartStatisticModel;
   /** Function for updating chart data, when user choice a new options **/
