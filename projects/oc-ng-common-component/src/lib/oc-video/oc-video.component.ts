@@ -1,62 +1,43 @@
-import {AfterContentInit, Component, Input, OnDestroy} from '@angular/core';
-import {takeUntil} from 'rxjs/operators';
-import {FileUploadDownloadService} from 'oc-ng-common-service';
-import {Subject} from 'rxjs';
+import {Component, Input} from '@angular/core';
+import {EmbedVideoService} from 'ngx-embed-video';
+import {SafeHtml} from '@angular/platform-browser';
 
 @Component({
     selector: 'oc-video',
     templateUrl: './oc-video.component.html',
     styleUrls: ['./oc-video.component.scss']
 })
-export class OcVideoComponent implements AfterContentInit, OnDestroy {
+export class OcVideoComponent {
 
-    @Input() videoUrl: string;
+    @Input()
+    set videoUrl(videoUrl: string) {
+        this.url = videoUrl;
+        this.loadVideo();
+    }
 
+    url: string;
     loadInIframe = true;
     loadInVideo = false;
     showVideoLoader = false;
-    previewData: string;
+    previewData: SafeHtml;
 
-    private destroy$: Subject<any> = new Subject<any>();
-
-    constructor(private fileService: FileUploadDownloadService) {
+    constructor(private embedService: EmbedVideoService) {
     }
 
-    ngAfterContentInit(): void {
-        this.loadVideoFrame();
-    }
-
-    ngOnDestroy(): void {
-        this.destroy$.next();
-        this.destroy$.complete();
-    }
-
-    loadVideoFrame() {
+    loadVideo() {
         this.showVideoLoader = true;
-        this.fileService.getVideoMetaData(this.videoUrl)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(
-                (data: any) => {
-                    this.showVideoLoader = false;
 
-                    if (data && data.html) {
-                        this.loadInIframe = true;
-                        this.previewData = data.html;
-                    } else if (this.videoUrl.endsWith('.mp4') || this.videoUrl.endsWith('.webm') || this.videoUrl.endsWith('.ogv')) {
-                        this.loadInIframe = false;
-                        this.loadInVideo = true;
-                    } else {
-                        this.loadInIframe = false;
-                        this.loadInVideo = false;
-                    }
-                },
-                error => {
-                    this.loadInIframe = false;
-                    this.loadInVideo = false;
-                    this.showVideoLoader = false;
-                    // showing video url in case of error
-                }
-            );
+        this.previewData = this.embedService.embed(this.url);
+
+        if (this.previewData) {
+            this.loadInIframe = true;
+        } else if (this.url.endsWith('.mp4') || this.url.endsWith('.webm') || this.url.endsWith('.ogv')) {
+            this.loadInIframe = false;
+            this.loadInVideo = true;
+        } else {
+            this.loadInIframe = false;
+            this.loadInVideo = false;
+        }
+        this.showVideoLoader = false;
     }
-
 }

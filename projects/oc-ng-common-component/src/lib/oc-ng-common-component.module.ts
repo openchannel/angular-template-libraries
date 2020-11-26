@@ -82,6 +82,7 @@ import { OcToastsComponent } from './oc-toasts/oc-toasts.component';
 import { OcResendActivationComponent } from './oc-resend-activation/oc-resend-activation.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button.component';
+import {EmbedVideo} from 'ngx-embed-video';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -173,7 +174,8 @@ import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button
     ColorPickerModule,
     EditorModule,
     RouterModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    EmbedVideo.forRoot()
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
