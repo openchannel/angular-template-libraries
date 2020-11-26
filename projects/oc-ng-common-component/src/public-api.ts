@@ -75,6 +75,7 @@ export * from './lib/pipe/price.pipe';
 // chart components
 export * from './lib/oc-chart/oc-chart.component';
 export * from './lib/oc-menu-grid/oc-menu-grid.component';
+export * from './lib/oc-menu-user-grid/oc-menu-user-grid.component';
 
 export * from './lib/oc-app-get-started/oc-app-get-started.component';
 export * from './lib/oc-app-gallery/oc-app-gallery.component';
