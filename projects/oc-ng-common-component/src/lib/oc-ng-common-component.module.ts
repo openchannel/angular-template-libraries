@@ -82,6 +82,7 @@ import { OcToastsComponent } from './oc-toasts/oc-toasts.component';
 import { OcResendActivationComponent } from './oc-resend-activation/oc-resend-activation.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button.component';
+import { OcMenuUserGridComponent } from './oc-menu-user-grid/oc-menu-user-grid.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -116,6 +117,7 @@ import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button
     OcAppGetStartedComponent,
     OcAppGalleryComponent,
     OcAppListGridComponent,
+    OcMenuUserGridComponent,
     OcRecommendedAppsComponent,
     OcOverallRatingComponent,
     OcAppCardComponent,
@@ -242,7 +244,8 @@ import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button
     OcDynamicFieldArrayComponent,
     OcAppDescriptionComponent,
     OcToastsComponent,
-    OcResendActivationComponent
+    OcResendActivationComponent,
+    OcMenuUserGridComponent,
   ],
   providers: [
     NgbActiveModal,

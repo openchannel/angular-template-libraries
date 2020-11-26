@@ -1,0 +1,125 @@
+<table class="table"
+       [infiniteScrollThrottle]="50"
+       (scrolled)="onScrollDown()"
+       infiniteScroll>
+    <thead>
+    <tr>
+        <th class="col-blank"></th>
+        <th class="name">
+            <div class="th-row">Name
+                <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon"
+                     (click)="sortAppsBy('name')">
+                <fa-icon icon="angle-down" class="cursor-pointer angle" *ngIf="!sortIcon"
+                         (click)="sortAppsBy('name')"></fa-icon>
+            </div>
+        </th>
+        <th class="email">
+            <div class="th-row">Email
+                <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon"
+                     (click)="sortAppsBy('email')">
+                <fa-icon icon="angle-down" class="cursor-pointer angle" *ngIf="!sortIcon"
+                         (click)="sortAppsBy('email')"></fa-icon>
+            </div>
+        </th>
+        <th class="data">
+            <div class="th-row">Date Added
+                <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon"
+                     (click)="sortAppsBy('date')">
+                <fa-icon icon="angle-down" class="cursor-pointer angle" *ngIf="!sortIcon"
+                         (click)="sortAppsBy('date')"></fa-icon>
+            </div>
+        </th>
+        <th class="role">
+            <div class="th-row">Role
+                <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon"
+                     (click)="sortAppsBy('role')">
+                <fa-icon icon="angle-down" class="cursor-pointer angle" *ngIf="!sortIcon"
+                         (click)="sortAppsBy('role')"></fa-icon>
+            </div>
+        </th>
+        <th class="status">
+            <div class="th-row">Status
+                <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon"
+                     (click)="sortAppsBy('status')">
+                <fa-icon icon="angle-down" class="cursor-pointer angle" *ngIf="!sortIcon"
+                         (click)="sortAppsBy('status')"></fa-icon>
+            </div>
+        </th>
+        <th class="action"></th>
+        <th class="col-blank"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-template [ngForOf]="properties.data.list" let-user ngFor>
+        <tr>
+            <td class="col-blank"></td>
+            <!-- Name -->
+            <td>
+                <div class="td-row">
+                    <div class="profile text-primary">{{initials(user)}}</div>
+                    <small class="c-dark font-weight-bold">{{user.name}}</small>
+                </div>
+            </td>
+            <!-- Email -->
+            <td>
+                <div class="td-row">
+                    <small class="c-gray">{{user.email}}</small>
+                </div>
+            </td>
+            <!-- Date Added -->
+            <td>
+                <div class="td-row">
+                    <small class="c-gray">{{user.created | date:'M/d/yyyy'}}</small>
+                </div>
+            </td>
+            <!-- Role -->
+            <td>
+                <div class="td-row">
+                    <small class="c-blue text-capitalize font-weight-bold">{{user.type | lowercase}}</small>
+                </div>
+            </td>
+            <!-- Status-->
+            <td>
+                <div class="td-row"
+                     [ngClass]="user.inviteStatus === 'ACTIVE' ? 'c-dark' : 'c-gray'">
+                    <small class="text-capitalize font-weight-bold">{{user.inviteStatus | lowercase}}</small>
+                </div>
+            </td>
+            <!-- Options -->
+            <td>
+                <ng-container [ngTemplateOutletContext]="{ $implicit: {data: user, child: false} }"
+                              [ngTemplateOutlet]="appMenuTemplate">
+                </ng-container>
+            </td>
+            <td class="col-blank"></td>
+        </tr>
+    </ng-template>
+    <tr *ngIf="!properties.data.list || properties.data.list.length == 0">
+        <td class="text-center last-grid-row" colspan="8">
+            <span>No Users Found</span>
+        </td>
+    </tr>
+    <tr *ngIf="properties.data.list.length > 0">
+        <td class="text-center last-grid-row pb-5" colspan="8">
+            <span></span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<ng-template #appMenuTemplate let-user>
+    <div class="text-right ellipsis cursor-pointer">
+        <div ngbDropdown placement="bottom-right">
+            <img [src]="menuUrl" alt="more-icon" class="icon-dots" ngbDropdownToggle>
+            <div ngbDropdownMenu>
+                <ng-container *ngFor="let menuAction of properties.options">
+                    <button (click)="action(menuAction, user.data?.userId, user.data?.userAccountId)"
+                            ngbDropdownItem
+                            class="menu" [ngClass]="'menu-' + menuAction | lowercase">
+                        {{menuAction | titlecase}}
+                    </button>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</ng-template>
