@@ -8,6 +8,7 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
+  * [Storybook](#storybook)
 * [Usage](#usage)
 * [Contact](#contact)
 
@@ -53,9 +54,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Build Project with logging
 Run `ng build oc-ng-common-component --watch`
 
-## Run storybook
-Run `npm run storybook` 
-
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
@@ -83,6 +81,19 @@ Run `npm run oc-ng-common-component-pack`
 
 ## Publish package version
 Run `cd ./dist/oc-ng-common-component && npm publish`
+
+<!-- STORYBOOK -->
+# Storybook
+
+Install and run
+   * Run `npm install`<br>
+   * Run `npm run storybook`
+   
+Usage :
+   * Open [http://localhost:6006](http://localhost:6006)
+   * [Document](https://storybook.js.org/docs/react/get-started/introduction) : about storybook.
+   * [Document](https://storybook.js.org/docs/react/essentials/controls) : changing incoming parameters for a component. 
+   * [Document](https://storybook.js.org/docs/react/get-started/introduction) : tutorials.
 
 <!-- USAGE EXAMPLES -->
 ## Usage

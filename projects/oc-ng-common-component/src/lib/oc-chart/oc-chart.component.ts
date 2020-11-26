@@ -1,24 +1,13 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-  ViewChild
-} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {Chart} from 'chart.js';
-import { SafeUrl } from '@angular/platform-browser';
+import {SafeUrl} from '@angular/platform-browser';
 import {
+  ChartStatisticFiledModel,
   ChartStatisticModel,
   ChartStatisticParameterModel,
-  ChartStatisticFiledModel,
-  ChartStatisticPeriodModel
-} from 'oc-ng-common-service/lib/model/oc-chart.model';
-import {DropdownModel} from 'oc-ng-common-service';
-
+  ChartStatisticPeriodModel,
+  DropdownModel,
+} from 'oc-ng-common-service';
 
 
 const chartPoint = new Image();
@@ -50,7 +39,7 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   // change in value of this invokes ngOnChanges
   @Input() random;
   /** Min width for the dropdown **/
-  @Input() minDropdownWidth: string
+  @Input() minDropdownWidth: string;
   /** Main model for building chart with buttons and dropdown **/
   @Input() chartData: ChartStatisticModel;
   /** Function for updating chart data, when user choice a new options **/
