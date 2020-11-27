@@ -49,6 +49,8 @@ export class OcFormComponent implements OnInit, OnDestroy {
   @Output() formDataUpdated: EventEmitter<any> = new EventEmitter<any>();
   /** Send form valid status */
   @Output() isFormInvalid: EventEmitter<boolean> = new EventEmitter<boolean>();
+  /** Emit created form */
+  @Output() createdForm: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   public customForm: FormGroup;
   /** Result data from form for submission */
@@ -188,6 +190,7 @@ export class OcFormComponent implements OnInit, OnDestroy {
       if (this.setFormDirty) {
         this.setDirty();
       }
+      this.createdForm.emit(this.customForm);
     }
   }
 
