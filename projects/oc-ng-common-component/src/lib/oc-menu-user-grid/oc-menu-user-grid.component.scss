@@ -31,7 +31,6 @@
 .table {
   border: 1px solid #c9d5ea;
   border-radius: 4px;
-  width: 1110px;
   vertical-align: middle;
   background-color: white;
   margin-bottom: 116px;
@@ -59,11 +58,11 @@
     }
 
     th.name {
-      width: 22%;
+      width: 15%;
     }
 
     th.email {
-      width: auto;
+      width: 15%;
     }
 
     th.data {

@@ -28,7 +28,17 @@ const propsConfig: UsersGridParametersModel = {
   data: {
     pages: 50,
     pageNumber: 1,
-    list: [{
+    list: [
+      {
+        name: undefined,
+        created: new Date().getTime() - 10 * 24 * 60 * 60 * 1000,
+        email: undefined,
+        userId: 'undefined_id',
+        userAccountId: 'undefined_account_id',
+        type: undefined,
+        inviteStatus: undefined,
+        customData: {companyName: 'Company', interests: []},
+      }, {
       name: 'Mark LL',
       created: new Date().getTime() - 30 * 24 * 60 * 60 * 1000,
       email: 'mark@test.com',
@@ -46,7 +56,16 @@ const propsConfig: UsersGridParametersModel = {
       type: 'ADMIN',
       inviteStatus: 'INVITED',
       customData: {companyName: 'Johnny Company', interests: []},
-    }],
+    },{
+        name: undefined,
+        created: new Date().getTime() - 10 * 24 * 60 * 60 * 1000,
+        email: undefined,
+        userId: 'jon_id',
+        userAccountId: 'jon_account_id',
+        type: undefined,
+        inviteStatus: undefined,
+        customData: {companyName: 'Jon Company', interests: []},
+      }],
     count: 50
   },
   options: ['EDIT', 'DELETE']
