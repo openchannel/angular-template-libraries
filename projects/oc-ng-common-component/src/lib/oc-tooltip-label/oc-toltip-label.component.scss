@@ -2,7 +2,7 @@
 
 label {
   font-size: 14px;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   line-height: 14px;
 
   span {
@@ -16,4 +16,8 @@ label {
 
 .label-l {
   font-size: 16px;
+}
+
+.description-icon {
+  color: lighten($body-color, 20%);
 }
