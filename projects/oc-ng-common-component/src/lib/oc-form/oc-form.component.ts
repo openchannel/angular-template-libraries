@@ -36,6 +36,10 @@ export class OcFormComponent implements OnInit, OnDestroy {
    */
   @Input() labelPosition: 'top' | 'left' | 'right' = 'top';
   /**
+   * Set form 'dirty' after form init
+   */
+  @Input() setFormDirty: boolean = false;
+  /**
    * Returning all form fields value to the parent component
    */
   @Output() formSubmitted = new EventEmitter<any>();
@@ -45,6 +49,8 @@ export class OcFormComponent implements OnInit, OnDestroy {
   @Output() formDataUpdated: EventEmitter<any> = new EventEmitter<any>();
   /** Send form valid status */
   @Output() isFormInvalid: EventEmitter<boolean> = new EventEmitter<boolean>();
+  /** Emit created form */
+  @Output() createdForm: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   public customForm: FormGroup;
   /** Result data from form for submission */
@@ -181,6 +187,10 @@ export class OcFormComponent implements OnInit, OnDestroy {
       if (!this.showButton) {
         this.subscribeToForm();
       }
+      if (this.setFormDirty) {
+        this.setDirty();
+      }
+      this.createdForm.emit(this.customForm);
     }
   }
 
@@ -382,5 +392,12 @@ export class OcFormComponent implements OnInit, OnDestroy {
       this.sendData();
       this.isFormInvalid.emit(this.customForm.invalid);
     }));
+  }
+
+  private setDirty(): void {
+    (Object as any).values(this.customForm.controls).forEach(control => {
+      control.markAsTouched();
+      control.markAsDirty();
+    });
   }
 }

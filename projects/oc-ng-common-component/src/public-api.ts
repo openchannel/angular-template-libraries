@@ -51,6 +51,7 @@ export * from './lib/oc-image-gallery/oc-image-gallery.component';
 export * from './lib/oc-app-description/oc-app-description.component';
 export * from './lib/oc-toasts/oc-toasts.component';
 export * from './lib/oc-resend-activation/oc-resend-activation.component';
+export * from './lib/oc-tooltip-label/oc-tooltip-label.component';
 
 // validators
 export * from './lib/validators/white-space-validator';

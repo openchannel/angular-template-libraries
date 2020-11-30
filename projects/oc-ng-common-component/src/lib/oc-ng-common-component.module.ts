@@ -83,6 +83,7 @@ import { OcResendActivationComponent } from './oc-resend-activation/oc-resend-ac
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button.component';
 import {EmbedVideo} from 'ngx-embed-video';
+import {OcTooltipLabelComponent} from './oc-tooltip-label/oc-tooltip-label.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -161,6 +162,7 @@ import {EmbedVideo} from 'ngx-embed-video';
     OcAppDescriptionComponent,
     OcToastsComponent,
     OcResendActivationComponent,
+    OcTooltipLabelComponent
   ],
 
   imports: [
