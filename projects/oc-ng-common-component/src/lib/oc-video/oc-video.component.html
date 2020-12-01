@@ -3,10 +3,10 @@
 </div>
 <div *ngIf="!showVideoLoader" class="w-100">
     <div class="d-flex justify-content-center">
-        <div [innerHTML]="previewData | safehtml" class="col-12 p-0 vid-preview"></div>
+        <div [innerHTML]="previewData" class="col-12 p-0 vid-preview"></div>
     </div>
     <div class="col-12 d-flex justify-content-center flex-column align-items-center" *ngIf="!loadInIframe">
-        <video width="300" *ngIf="loadInVideo" [src]="videoUrl" controls></video>
+        <video width="300" *ngIf="loadInVideo" [src]="url" controls></video>
         <div class="video-loader-div mb-2" *ngIf="!loadInVideo">
             No Preview Available.
         </div>
