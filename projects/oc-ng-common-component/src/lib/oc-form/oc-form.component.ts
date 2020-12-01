@@ -123,12 +123,12 @@ export class OcFormComponent implements OnInit, OnDestroy {
             break;
           case 'emailAddress':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
-              inputTemplate?.defaultValue : 'myemail@example.com');
+              inputTemplate?.defaultValue : inputTemplate?.placeholder ? '' : 'myemail@example.com');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isEmail: true});
             break;
           case 'websiteUrl':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
-              inputTemplate?.defaultValue : 'https://my.website.com');
+              inputTemplate?.defaultValue : inputTemplate?.placeholder ? '' : 'https://my.website.com');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isUrl: true});
             break;
           case 'color':
