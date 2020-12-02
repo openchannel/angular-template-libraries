@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcVideoUrlComponent } from './oc-video-url.component';
-import { FormsModule } from '@angular/forms';
-import { AppIconsModule } from '../app-icon-module/app-icons.module';
-import { SafehtmlPipe } from '../pipe/safehtml.pipe';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Observable, of } from 'rxjs';
-import { FileUploadDownloadService } from 'oc-ng-common-service';
-import { By } from '@angular/platform-browser';
+import {OcVideoUrlComponent} from './oc-video-url.component';
+import {FormsModule} from '@angular/forms';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {Observable, of} from 'rxjs';
+import {By} from '@angular/platform-browser';
+import {EmbedVideoService} from 'ngx-embed-video';
+import {OcVideoComponent} from '../oc-video/oc-video.component';
+import {AppIconsModule} from '../app-icon-module/app-icons.module';
 
 describe('OcVideoUrlComponent', () => {
   let component: OcVideoUrlComponent;
@@ -15,9 +15,9 @@ describe('OcVideoUrlComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcVideoUrlComponent, SafehtmlPipe ],
-      imports: [FormsModule, AppIconsModule, HttpClientTestingModule ],
-      providers: [{provide: FileUploadDownloadService, useClass: MockFleService}]
+      declarations: [ OcVideoUrlComponent, OcVideoComponent ],
+      imports: [FormsModule, HttpClientTestingModule, AppIconsModule ],
+      providers: [EmbedVideoService]
     })
     .compileComponents();
   }));
