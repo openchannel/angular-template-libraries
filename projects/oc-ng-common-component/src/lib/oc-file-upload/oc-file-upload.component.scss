@@ -7,28 +7,30 @@
   border-radius: 4px;
   background-color: #f4f7fc;
   padding: 28px 24px;
+  position: relative;
   // margin: 0 auto;
   input {
     opacity: 0;
+    position: absolute;
     z-index: 2;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
   }
-  
+
   h3 {
     font-size: 20px;
     font-weight: 600;
     color: #38424c;
   }
-  
+
   .upload-s {
     width: 24px;
     margin-bottom: 3px;
     margin-right: 8px;
   }
-  
+
   .placeholder-text-container {
     line-height: 1.2;
   }
@@ -41,7 +43,7 @@
 
 .files-list {
   margin-top: 1.5rem;
-  
+
   .single-file {
     display: flex;
     padding: 0.5rem;
@@ -49,24 +51,24 @@
     align-items: center;
     border: dashed 1px #979797;
     margin-bottom: 1rem;
-    
+
     .delete {
       display: flex;
       margin-left: 0.5rem;
       cursor: pointer;
       align-self: flex-end;
     }
-    
+
     display: flex;
     flex-grow: 1;
-    
+
     .name {
       font-size: 14px;
       font-weight: 500;
       color: #353f4a;
       margin: 0;
     }
-    
+
     .size {
       font-size: 12px;
       font-weight: 500;
@@ -74,7 +76,7 @@
       margin: 0;
       margin-bottom: 0.25rem;
     }
-    
+
     .info {
       width: 100%;
     }
@@ -88,8 +90,10 @@
 // }
 
 .without-files {
-  padding: 64px 16px 0;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .browse-file {

@@ -820,3 +820,27 @@ FormWithUpdatedRichTextEditor.args = {
     ]
   }
 };
+
+export const FormWithFileUpload = FormGroupComponent.bind({});
+
+FormWithFileUpload.args = {
+  formJsonData: {
+    formId: 'test',
+    name: 'test',
+    createdDate: 1599982592157,
+    fields: [
+      {
+        id: 'file-upload',
+        label: 'File Upload',
+        description: '',
+        defaultValue: null,
+        type: 'multiFile',
+        required: null,
+        attributes: {
+        },
+        options: null,
+        subFieldDefinitions: null
+      }
+    ]
+  }
+};

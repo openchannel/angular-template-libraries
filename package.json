@@ -12,7 +12,7 @@
     "lint": "./node_modules/.bin/ng lint",
     "e2e": "./node_modules/.bin/ng e2e",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
-    "storybook": "npm run docs:json && start-storybook -p 6006 -s projects/",
+    "storybook": "npm run docs:json && start-storybook -p 6006 -s projects/oc-ng-common-component",
     "storybook-withoutdocs": "start-storybook -p 6006 -s projects/",
     "build-storybook": "build-storybook",
     "oc-ng-common-component-pack": "cd dist/oc-ng-common-component/ && npm pack",
