@@ -11,7 +11,7 @@
             <h4 class="font-reg">{{review.reviewOwnerName}}</h4>
             <div class="font-s rating-label mb-1">Rating</div>
             <oc-rating [rating]="review.rating/100" type="multi-star" class="mb-2 d-block"></oc-rating>
-            <div>{{review.review}}</div>
+            <div id="reviewText">{{review.review}}</div>
             <hr/>
         </div>
         <span class="drop-down" (click)="toggleDisplay()"

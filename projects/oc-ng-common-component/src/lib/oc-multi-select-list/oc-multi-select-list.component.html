@@ -9,7 +9,7 @@
               *ngIf="dropBoxItems?.length > 0"
               [items]="dropBoxItems"
               [placeHolder]="'Select ' + label"
-              [clearFormAfterSelect] = "true"
+              clearFormAfterSelect="true"
               [dropElementTemplate]="dropElementTemplate"
               (selectedItem)="addTagToResultList($event)">
   </oc-dropbox>
