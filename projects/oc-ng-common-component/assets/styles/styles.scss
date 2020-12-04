@@ -424,3 +424,8 @@ a.link {
     outline:none
   }
 }
+
+.error-container {
+  background-color: $error-bg;
+  color: $error;
+}
