@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { OcFormComponent } from './oc-form.component';
 import { Component, forwardRef, Input } from '@angular/core';
 import { FileDetails } from 'oc-ng-common-service';
@@ -11,6 +10,7 @@ import {
   NgModel,
   ReactiveFormsModule
 } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 @Component({
   selector: 'oc-tooltip-label',
@@ -418,10 +418,23 @@ describe('OcFormComponent', () => {
           subFieldDefinitions: null
         }]
     };
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    spyOn(component.createdForm, 'emit');
+    fixture.detectChanges();
+
     expect(component).toBeTruthy();
+    expect(component.createdForm.emit).toHaveBeenCalledTimes(1);
+  });
+
+  it('should hide buttons', () => {
+    component.showButton = false;
+
+    fixture.detectChanges();
+
+    const button = fixture.debugElement.query(By.css('oc-button'));
+
+    expect(button).toBeNull();
   });
 });
