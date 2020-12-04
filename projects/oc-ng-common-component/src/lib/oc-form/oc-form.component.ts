@@ -88,6 +88,7 @@ export class OcFormComponent implements OnInit, OnDestroy {
           case 'text':
           case 'richText':
           case 'longText':
+          case 'password':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
               inputTemplate?.defaultValue : '');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
