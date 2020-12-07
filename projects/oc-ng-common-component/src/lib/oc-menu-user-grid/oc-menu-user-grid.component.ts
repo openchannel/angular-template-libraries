@@ -30,6 +30,12 @@ export class OcMenuUserGridComponent implements OnInit {
    * Start number = 1
    */
   @Output() pageScrolled: EventEmitter<number> = new EventEmitter<number>();
+  /**
+   * Returns clicked sorting type clicked
+   * can be 'name', 'email', 'date' or 'role'
+   */
+  @Output() sortChosen: EventEmitter<'name' | 'email' | 'date' | 'role'> =
+    new EventEmitter<'name' | 'email' | 'date' | 'role'>();
 
   public displayChildrenId: string = null;
 
@@ -55,56 +61,12 @@ export class OcMenuUserGridComponent implements OnInit {
     this.pageScrolled.emit(this.pageNumber);
   }
 
-  sortAppsBy(by: 'name' | 'email' | 'date' | 'role' | 'status'): void {
-    console.log('sort');
-    switch (by) {
-      case 'name':
-        this.properties.data.list.sort(
-          (a, b) => this.compare(true, a.name, b.name));
-        break;
-      case 'email':
-        this.properties.data.list.sort(
-          (a, b) => this.compare(true, a.email, b.email));
-        break;
-      case 'date':
-        this.properties.data.list.sort(
-          (a, b) => this.compare(false, a.created, b.created));
-        break;
-      case 'role':
-        this.properties.data.list.sort(
-          (a, b) => this.compare(true, a?.type, b?.type));
-        break;
-      case 'status':
-        this.properties.data.list.sort(
-          (a, b) => this.compare(true, a?.inviteStatus, b?.inviteStatus));
-        break;
-      default:
-        console.error('Unknown sort type : ', by);
-    }
+  sortAppsBy(by: 'name' | 'email' | 'date' | 'role'): void {
+    this.sortChosen.emit(by);
+    this.pageNumber = 1;
   }
 
   initials(user: UserAccountGridModel): string {
     return user?.name ? user.name.split(' ').map(value => value.substring(0, 1)).join('').substring(0, 2) : '';
-  }
-
-  /**
-   * @param ascending
-   *  true - lowest first (A, B, C)
-   *  false - highest sorts first (C, B, A)
-   * @param first
-   * @param second
-   */
-  private compare<T extends string | number>(ascending: boolean, first: T, second: T): number {
-    if(first === second) {
-      return 0;
-    } else if(!first) {
-      return 1;
-    } else if(!second) {
-      return -1;
-    } else if (ascending) {
-      return first < second ? -1 : 1;
-    } else {
-      return first < second ? 1 : -1;
-    }
   }
 }

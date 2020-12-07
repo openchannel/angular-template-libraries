@@ -38,12 +38,7 @@
             </div>
         </th>
         <th class="status">
-            <div class="th-row">Status
-                <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon"
-                     (click)="sortAppsBy('status')">
-                <fa-icon icon="angle-down" class="cursor-pointer angle" *ngIf="!sortIcon"
-                         (click)="sortAppsBy('status')"></fa-icon>
-            </div>
+            <div class="th-row">Status</div>
         </th>
         <th class="action"></th>
         <th class="col-blank"></th>
@@ -51,7 +46,7 @@
     </thead>
     <tbody>
     <ng-template [ngForOf]="properties.data.list" let-user ngFor>
-        <tr>
+        <tr [class.highlight-user]="user.inviteStatus === 'INVITED'">
             <td class="col-blank"></td>
             <!-- Name -->
             <td>
