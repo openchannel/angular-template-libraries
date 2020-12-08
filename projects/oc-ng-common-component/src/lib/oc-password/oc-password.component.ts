@@ -11,7 +11,7 @@ import {NG_VALUE_ACCESSOR} from '@angular/forms';
     multi: true
   }],
 })
-export class OcPasswordComponent implements OnInit {
+export class OcPasswordComponent {
 
   @Input() placeholder;
   /** Set 'disable' state for input */
@@ -26,26 +26,16 @@ export class OcPasswordComponent implements OnInit {
 
   public inputValue: string;
 
-  private onTouched = () => {};
+  public onTouched = () => {};
   private onChange: (value: any) => void = () => {};
 
   constructor() {
-  }
-
-  ngOnInit(): void {
-
   }
 
   changeModelVal(): void {
     this.onChange(this.inputValue);
   }
 
-  /**
-   * Register touch action
-   */
-  onFocus(): void {
-    this.onTouched();
-  }
   /**
    * Calls this function with new value. When user wrote something in the component
    * It needs to know that new data has been entered in the control.

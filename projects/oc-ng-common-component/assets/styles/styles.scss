@@ -248,7 +248,7 @@ h6 {
 }
 /** input password **/
 
-oc-input, oc-password, oc-app-category-select , oc-select{
+oc-input, oc-password, oc-app-category-select , oc-select, oc-video-url, oc-color{
     &.ng-invalid{
       input.ng-touched, select.ng-touched , textarea.ng-touched{
         border-color: $danger;
