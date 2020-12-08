@@ -78,9 +78,10 @@ export class OcMenuGridComponent implements OnInit {
         case 'PREVIEW':
           return !!this.properties.previewTemplate;
         case 'PUBLISH':
+        case 'SUBMIT':
           return status === 'inDevelopment' || status === 'suspended';
         case 'SUSPEND':
-          return status !== 'inDevelopment';
+          return status !== 'inDevelopment' && status !== 'pending';
         default:
           return true;
       }
