@@ -56,8 +56,6 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
   @Input() iconMsg;
   @Output() iconMsgChange = new EventEmitter<boolean>();
 
-  @Input() mockUploadingFile: () => FileDetails;
-
   @Input()
   set value(val) {
     this.fileDetailArr = val ? val : [];
@@ -147,52 +145,45 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
   }
 
   uploadFile(file) {
-    if(this.mockUploadingFile) {
-      this.fileDetailArr.push(this.mockUploadingFile());
-      this.onChange(this.fileDetailArr);
-      this.resetSelection();
-      this.modalService.dismissAll();
-    } else {
-      this.isUploadInProcess = true;
-      let lastFileDetail = new FileDetails();
-      lastFileDetail.name = this.fileName;
-      if (!this.fileDetailArr) {
-        this.fileDetailArr = [];
-      }
-      this.fileDetailArr.push(lastFileDetail);
-      // this.fileUpload.emit(files);
-      const formData: FormData = new FormData();
-      formData.append('file', file, this.fileName);
-      this.uploadFileReq = this.uploadFileService.uploadToOpenChannel(formData, this.isFileTypePrivate(), this.hash)
-        .subscribe((event: any) => {
-            if (event.type === HttpEventType.UploadProgress) {
-              lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
-            } else if (event.type === HttpEventType.ResponseHeader) {
-              lastFileDetail.fileUploadProgress = 97;
-            } else if (event.type === HttpEventType.DownloadProgress) {
-              lastFileDetail.fileUploadProgress = 99;
-            } else if (event instanceof HttpResponse) {
-              lastFileDetail = this.convertFileUploadResToFileDetails(event);
-              lastFileDetail.fileUploadProgress = 100;
-              lastFileDetail.fileIconUrl = this.defaultFileIcon;
-              this.fileDetailArr[this.fileDetailArr.length - 1] = lastFileDetail;
-              this.isUploadInProcess = false;
-              this.uploadFileReq = null;
-              this.onChange(this.fileDetailArr);
-              this.resetSelection();
-            }
-          },
-          (err) => {
-            this.isUploadInProcess = false;
-            this.resetSelection();
-          },
-          () => {
-            this.isUploadInProcess = false;
-            this.resetSelection();
-          });
-
-      this.modalService.dismissAll();
+    this.isUploadInProcess = true;
+    let lastFileDetail = new FileDetails();
+    lastFileDetail.name = this.fileName;
+    if (!this.fileDetailArr) {
+      this.fileDetailArr = [];
     }
+    this.fileDetailArr.push(lastFileDetail);
+    // this.fileUpload.emit(files);
+    const formData: FormData = new FormData();
+    formData.append('file', file, this.fileName);
+    this.uploadFileReq = this.uploadFileService.uploadToOpenChannel(formData, this.isFileTypePrivate(), this.hash)
+      .subscribe((event: any) => {
+          if (event.type === HttpEventType.UploadProgress) {
+            lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
+          } else if (event.type === HttpEventType.ResponseHeader) {
+            lastFileDetail.fileUploadProgress = 97;
+          } else if (event.type === HttpEventType.DownloadProgress) {
+            lastFileDetail.fileUploadProgress = 99;
+          } else if (event instanceof HttpResponse) {
+            lastFileDetail = this.convertFileUploadResToFileDetails(event);
+            lastFileDetail.fileUploadProgress = 100;
+            lastFileDetail.fileIconUrl = this.defaultFileIcon;
+            this.fileDetailArr[this.fileDetailArr.length - 1] = lastFileDetail;
+            this.isUploadInProcess = false;
+            this.uploadFileReq = null;
+            this.onChange(this.fileDetailArr);
+            this.resetSelection();
+          }
+        },
+        (err) => {
+          this.isUploadInProcess = false;
+          this.resetSelection();
+        },
+        () => {
+          this.isUploadInProcess = false;
+          this.resetSelection();
+        });
+
+    this.modalService.dismissAll();
   }
 
   /**

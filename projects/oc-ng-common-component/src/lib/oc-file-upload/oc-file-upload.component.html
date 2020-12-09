@@ -16,11 +16,8 @@
 
 <ng-template #fileList>
     <div class="file-container">
-        <div class="row">
-            <div class="col-md">
-                <p class="mb-3 font-med font-m">My Attachments</p>
-            </div>
-            <div *ngIf="isMultiFileSupport()" class="col-md-auto">
+        <div class="row justify-content-center mb-3" *ngIf="isMultiFileSupport()">
+            <div class="col-md-auto">
                 <img [src]="uploadIconUrl" alt="upload-icon"
                      class="upload-s">
                 <a (click)="fileDropRef.click()" class="font-m font-bold browse-file">
@@ -110,9 +107,9 @@
                 </div>
                 <oc-button type="secondary" [disabled]="uploadImageInProcess"
                            (click)="d('Cross click'); resetSelection()" [text]="'Close'"></oc-button>
-                <oc-button type="primary" [disabled]="hasImageLoadError || uploadImageInProcess"
+                <oc-button type="primary"
+                           [disabled]="hasImageLoadError || uploadImageInProcess"
                            (click)="uploadImageFile();"
-                           [disabled]="uploadImageInProcess"
                            [process]="uploadImageInProcess" [text]="'Upload'"
                 ></oc-button>
             </div>
