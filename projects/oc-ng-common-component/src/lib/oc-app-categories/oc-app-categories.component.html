@@ -3,32 +3,28 @@
         <h1>{{categoryHeaderTitle}}</h1>
     </div>
 </div>
-<!--<div *ngIf="data && data.length > 0; else emptyData" class="row justify-content-center justify-content-lg-start custom-card-container">-->
-<!--    <div *ngFor="let appCategory of data;index as i;" class="col-md-auto mb-2 card-box">-->
-<!--        <div class="cursor-pointer category-card card-{{i}}"-->
-<!--             [ngClass]="appCategory.categoryCardClass"-->
-<!--             [style.background-image]="appCategory.categoryBackgroundImage ? safeStyle(appCategory.categoryBackgroundImage) : ''"-->
-<!--            (click)="navigateToCategory(appCategory.categoryQuery)">-->
-<!--            <img *ngIf="appCategory.categoryLogo"-->
-<!--                 [src]="safeImage(appCategory.categoryLogo)" alt="category-icon">-->
-<!--            <div class="content-centered category-text">{{appCategory.categoryName ? appCategory.categoryName : 'All Apps'}}</div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 <div class="position-relative">
     <owl-carousel-o [options]="customOptions" #carousel >
-        <ng-template carouselSlide *ngFor="let appCategory of data;index as i;" class="col-md-auto mb-2 card-box">
-            <div class="cursor-pointer category-card card-{{i}}"
-                 [ngClass]="appCategory.categoryCardClass"
+        <ng-template carouselSlide *ngFor="let appCategory of data;index as i;" class="card-box">
+            <div class="cursor-pointer category-card"
+                 [ngClass]="appCategory.categoryCardClass ? appCategory.categoryCardClass : ''"
                  [style.background-image]="appCategory.categoryBackgroundImage ? safeStyle(appCategory.categoryBackgroundImage) : ''"
+                 [class.long-card]="data.length < 4"
                  (click)="navigateToCategory(appCategory.categoryQuery)">
-                <img *ngIf="appCategory.categoryLogo"
-                     [src]="safeImage(appCategory.categoryLogo)" alt="category-icon">
-                <div class="content-centered category-text">{{appCategory.categoryName ? appCategory.categoryName : 'All Apps'}}</div>
+                <div class="logo-container">
+                    <img *ngIf="appCategory.categoryLogo"
+                         [src]="safeImage(appCategory.categoryLogo)" alt="category-icon">
+                </div>
+                <div class="content-centered category-text"
+                     [style.color]="appCategory.categoryTitleColor ? appCategory.categoryTitleColor : ''">
+                    {{appCategory.categoryName ? appCategory.categoryName : 'All Apps'}}
+                </div>
             </div>
         </ng-template>
     </owl-carousel-o>
-    <fa-icon icon="angle-right" class="carousel-nav" (click)="nextSlide()"></fa-icon>
+    <fa-icon icon="angle-right" class="carousel-nav"
+             (click)="nextSlide()"
+             *ngIf="data.length > 5"></fa-icon>
 </div>
 <ng-template #emptyData>
     <h5 class="col-md-12">{{noDataMsg}}</h5>

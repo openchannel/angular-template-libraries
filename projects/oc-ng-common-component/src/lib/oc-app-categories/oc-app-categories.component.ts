@@ -26,7 +26,7 @@ export class OcAppCategoriesComponent implements OnInit {
     loop: true,
     mouseDrag: false,
     touchDrag: false,
-    pullDrag: false,
+    pullDrag: true,
     dots: false,
     navSpeed: 700,
     navText: ['', ''],
@@ -35,13 +35,13 @@ export class OcAppCategoriesComponent implements OnInit {
         items: 1
       },
       400: {
-        items: 2
+        items: 1
       },
       740: {
-        items: 3
+        items: 2
       },
       940: {
-        items: 2
+        items: this.data.length > 5 ? 5 : this.data.length
       }
     },
     nav: false
