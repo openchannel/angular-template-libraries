@@ -70,8 +70,18 @@ export class OcErrorComponent implements OnInit {
           this.errorService.clearError(error);
           // create error validation object an pass it to control
           const errors = { serverErrorValidator: error};
-          (this.control as NgModel).control.setErrors(errors);
-          (this.control as NgModel).control.markAsTouched();
+          if(this.control instanceof AbstractControlDirective) {
+            (this.control as AbstractControlDirective).control.setErrors(errors);
+            (this.control as AbstractControlDirective).control.markAsTouched();
+          } else if(this.control instanceof NgModel) {
+            (this.control as NgModel).control.setErrors(errors);
+            (this.control as NgModel).control.markAsTouched();
+          } else if(this.control as AbstractControl) {
+            (this.control as AbstractControl).setErrors(errors);
+            (this.control as AbstractControl).markAsTouched();
+          } else {
+            console.error('Invalid control type');
+          }
         });
         return true;
       }
@@ -96,5 +106,4 @@ export class OcErrorComponent implements OnInit {
   private getMessage(type: string, params: any) {
     return this.errorMessages[type](params);
   }
-
 }
