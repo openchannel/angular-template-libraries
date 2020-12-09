@@ -248,7 +248,7 @@ h6 {
 }
 /** input password **/
 
-oc-input, oc-password, oc-app-category-select , oc-select{
+oc-input, oc-password, oc-app-category-select , oc-select, oc-video-url, oc-color{
     &.ng-invalid{
       input.ng-touched, select.ng-touched , textarea.ng-touched{
         border-color: $danger;
@@ -368,6 +368,15 @@ select::-ms-expand { display: none; }
   background-position: 15px;
 }
 
+.menu-submit{
+  background: url(~oc-ng-common-component/assets/img/submit_icon.svg) left center no-repeat;
+  background-position: 15px;
+}
+.menu-submit:hover{
+  background: url(~oc-ng-common-component/assets/img/submit_icon_h.svg) left center no-repeat;
+  background-position: 15px;
+}
+
 .menu-preview{
   background: url(~oc-ng-common-component/assets/img/view.svg) left center no-repeat;
   background-position: 15px;
@@ -423,4 +432,9 @@ a.link {
   &:focus {
     outline:none
   }
+}
+
+.error-container {
+  background-color: $error-bg;
+  color: $error;
 }
