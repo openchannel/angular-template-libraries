@@ -26,14 +26,21 @@
   transform: translate(-50%, -50%);
 }
 
-.carousel-nav {
-  position: absolute;
-  top: calc(50% - 10px);
-  right: 0;
-  z-index: 2;
-  color: $primary;
-  cursor: pointer;
-  font-size: 20px;
+.carousel {
+  &-nav {
+    position: absolute;
+    top: calc(50% - 10px);
+    z-index: 2;
+    color: $primary;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  &-right {
+    right: 0;
+  }
+  &-left {
+    left: 0;
+  }
 }
 
 .logo-container {

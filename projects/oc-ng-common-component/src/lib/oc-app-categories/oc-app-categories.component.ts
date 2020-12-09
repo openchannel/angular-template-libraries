@@ -28,6 +28,7 @@ export class OcAppCategoriesComponent implements OnInit {
     touchDrag: false,
     pullDrag: true,
     dots: false,
+    autoWidth: true,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {
@@ -68,8 +69,13 @@ export class OcAppCategoriesComponent implements OnInit {
       this.router.navigate([this.categoryRouterLink]).then();
     }
   }
-
+  /** Move carousel to next slide */
   nextSlide() {
     this.carouselRef.next();
   }
+  /** Move carousel to previous slide */
+  prevSlide() {
+    this.carouselRef.prev();
+  }
+
 }
