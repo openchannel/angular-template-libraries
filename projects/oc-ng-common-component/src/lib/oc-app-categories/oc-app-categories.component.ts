@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {AppCategoryDetail} from 'oc-ng-common-service';
 import { DomSanitizer, SafeResourceUrl, SafeStyle } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'oc-app-categories',
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./oc-app-categories.component.scss']
 })
 export class OcAppCategoriesComponent implements OnInit {
+
+  @ViewChild('carousel', {static: false}) carouselRef: CarouselComponent;
 
   /** Data of the category that will be shown in array */
   @Input() data: AppCategoryDetail[] = [];
@@ -18,7 +21,31 @@ export class OcAppCategoriesComponent implements OnInit {
   @Input() noDataMsg = '';
   /** Main router link for the category */
   @Input() categoryRouterLink: string = '';
-
+  /** Owl Carousel options */
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 2
+      }
+    },
+    nav: false
+  };
   constructor(private sanitizer: DomSanitizer,
               private router: Router) {
   }
@@ -40,5 +67,9 @@ export class OcAppCategoriesComponent implements OnInit {
     } else {
       this.router.navigate([this.categoryRouterLink]).then();
     }
+  }
+
+  nextSlide() {
+    this.carouselRef.next();
   }
 }

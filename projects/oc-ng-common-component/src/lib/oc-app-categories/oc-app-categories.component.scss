@@ -28,3 +28,10 @@
   margin-top: 16px;
   transform: translate(-50%, -50%);
 }
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  color: $primary;
+}
