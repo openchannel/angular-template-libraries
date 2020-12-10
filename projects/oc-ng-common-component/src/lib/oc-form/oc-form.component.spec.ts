@@ -416,6 +416,249 @@ describe('OcFormComponent', () => {
             required: true
           }, options: null,
           subFieldDefinitions: null
+        },
+        {
+          attributes:	{
+            max:	25,
+            min:	5,
+            required:	null,
+          },
+          category:	'CUSTOM',
+          defaultValue:	null,
+          description:	'',
+          id:	'test-number',
+          isOpen:	false,
+          isValid:	true,
+          label:	'Test number',
+          placeholder:	null,
+          type:	'number'
+        },
+        {
+          attributes:	{
+            required:	true
+          },
+          category:	'CUSTOM',
+          defaultValue:	true,
+          description:	'',
+          id:	'test-checkbox',
+          isOpen:	false,
+          isValid:	true,
+          label:	'Test Checkbox',
+          placeholder:	null,
+          type:	'checkbox'
+        },
+        {
+          attributes:	{
+            required:	true
+          },
+          category:	'CUSTOM',
+          defaultValue:	null,
+          description:	'',
+          id:	'test-email',
+          isOpen:	false,
+          isValid:	true,
+          deleteable:	false,
+          label:	'Test email',
+          placeholder:	'enter email',
+          type:	'emailAddress'
+        },
+        {
+          attributes:	{
+            required:	true
+          },
+          category:	'CUSTOM',
+          defaultValue:	null,
+          description:	null,
+          id:	'test-url-component',
+          isOpen:	false,
+          isValid:	true,
+          deleteable:	false,
+          label:	'Test URL component',
+          placeholder:	'Enter your link here..',
+          type:	'websiteUrl'
+        },
+        {
+          attributes:	{
+            required:	true
+          },
+          category:	'CUSTOM',
+          defaultValue:	null,
+          description:	null,
+          id:	'test-color-component',
+          isOpen:	false,
+          isValid:	true,
+          deleteable:	false,
+          label:	'Test Color Component',
+          placeholder:	'Choose your color',
+          type:	'color'
+        },
+        {
+          attributes:	{
+            required:	true,
+            maxCount:	null,
+            minCount:	null
+          },
+          options: ['true', 'false'],
+          category:	'CUSTOM',
+          defaultValue:	null,
+          description:	null,
+          id:	'test-boolean-tags',
+          isOpen:	false,
+          isValid:	true,
+          deleteable:	false,
+          label:	'Test Boolean tags',
+          placeholder:	null,
+          type:	'booleanTags'
+        },
+        {
+          attributes:	{
+            required:	true,
+            maxCount:	2,
+            minCount:	1
+          },
+          options: ['1', '3', '45'],
+          category:	'CUSTOM',
+          defaultValue:	[],
+          description:	null,
+          id:	'test-number-tags',
+          isOpen:	false,
+          isValid:	true,
+          deleteable:	false,
+          label:	'Test number tags',
+          placeholder:	null,
+          type:	'numberTags'
+        },
+        {
+          attributes:	{
+            required:	true,
+            maxCount:	null,
+            minCount:	1
+          },
+          options: ['1', '3', '45'],
+          category:	'CUSTOM',
+          defaultValue:	[],
+          description:	null,
+          id:	'test-number-tags',
+          isOpen:	false,
+          isValid:	true,
+          deleteable:	false,
+          label:	'Test number tags',
+          placeholder:	null,
+          type:	'numberTags'
+        },
+        {
+          attributes:	{
+            required:	true,
+          },
+          category:	'CUSTOM',
+          defaultValue:	null,
+          description:	null,
+          id:	'test-date-picker',
+          isOpen:	false,
+          isValid:	true,
+          deleteable:	false,
+          label:	'Test Date picker',
+          placeholder:	null,
+          type:	'date'
+        },
+        {
+          attributes:	{
+            required:	true,
+          },
+          category:	'CUSTOM',
+          defaultValue:	1602489693553,
+          description:	null,
+          id:	'test-datetime-picker',
+          isOpen:	false,
+          isValid:	true,
+          deleteable:	false,
+          label:	'Test date-time picker',
+          placeholder:	null,
+          type:	'datetime'
+        },
+        {
+          attributes:	{
+            required:	true,
+          },
+          category:	'CUSTOM',
+          defaultValue:	'https://www.youtube.com/watch?v=DGQwd1_dpuc',
+          description:	null,
+          id:	'test-video-url-comp',
+          isOpen:	false,
+          isValid:	true,
+          deleteable:	false,
+          label:	'Test videoUrl component',
+          placeholder:	null,
+          type:	'videoUrl'
+        },
+        {
+          attributes:	{
+            required:	true,
+            maxCount:	3,
+            minCount:	2
+          },
+          options: ['One', 'Two', 'Three', 'Five'],
+          category:	'CUSTOM',
+          defaultValue:	[],
+          description:	null,
+          id:	'multi-select-test',
+          isOpen:	false,
+          isValid:	true,
+          deleteable:	false,
+          label:	'Multi Select test',
+          placeholder:	null,
+          type:	'multiselectList'
+        },
+        {
+          attributes: {
+            maxCount: 3,
+            minCount: 1,
+            ordering: 'append',
+            required:	true,
+            rowLabel:	'field1'
+          },
+          required: null,
+          rowLabel: null,
+          category: 'CUSTOM',
+          defaultValue: null,
+          description: '',
+          id: 'test-dynamic-field-array',
+          isOpen: false,
+          isValid: true,
+          label: 'Test Dynamic field array',
+          placeholder: null,
+          subFieldDefinitions: [
+            {
+              attributes: {
+                maxChars: null,
+                minChars: null,
+                required: null
+              },
+              category: 'CUSTOM',
+              defaultValue: null,
+              description: 'some description',
+              id: 'field1',
+              isOpen: false,
+              isValid: true,
+              label: 'field1',
+              placeholder: 'write some text',
+              type: 'text'
+            },
+            {
+              id:	'long-text-example',
+              label: 'Long Text Example',
+              type:	'longText',
+              placeholder: 'Write your text here...',
+              category: 'CUSTOM',
+              defaultValue: null,
+              attributes: {
+                maxChars:	200,
+                required:	null,
+                minChars:	2
+              },
+            }
+          ],
+          type: 'dynamicFieldArray'
         }]
     };
   });
@@ -436,5 +679,14 @@ describe('OcFormComponent', () => {
     const button = fixture.debugElement.query(By.css('oc-button'));
 
     expect(button).toBeNull();
+  });
+
+  it('should show text on button', () => {
+    component.successButtonText = 'Text Button';
+    fixture.detectChanges();
+
+    const button = fixture.debugElement.query(By.css('oc-button')).componentInstance;
+
+    expect(button.text).toEqual('Text Button');
   });
 });
