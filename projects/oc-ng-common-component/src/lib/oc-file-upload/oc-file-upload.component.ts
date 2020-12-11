@@ -15,7 +15,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {base64ToFile, ImageCroppedEvent, ImageTransform} from 'ngx-image-cropper';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Observable, Subject, of} from 'rxjs';
+import {Observer, of, Subject, Subscription} from 'rxjs';
 import {mergeMap, takeUntil} from 'rxjs/operators';
 
 @Component({
@@ -103,7 +103,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
   @Output()
   imageFileUrlChange = new EventEmitter<any>();
 
-  uploadFileReq = null;
+  uploadFileReq: Subscription = null;
 
 
   @Input() completeIconUrl;
@@ -134,6 +134,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     this.resetSelection();
     this.destroy$.next();
     this.destroy$.complete();
+    this.uploadFileReq.unsubscribe();
   }
 
   getAcceptTypes() {
@@ -167,7 +168,6 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     console.log(file);
     console.log(formData);
     this.uploadFileReq = this.uploadFileService.uploadToOpenChannel(formData, this.isFileTypePrivate(), this.hash)
-      .pipe(takeUntil(this.destroy$))
       .subscribe((event: any) => {
           console.log(event);
           if (event.type === HttpEventType.UploadProgress) {
@@ -263,6 +263,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
    */
   deleteFile(index: number) {
     this.fileDetailArr.splice(index, 1);
+    this.emitChanges();
   }
 
   /**
@@ -386,6 +387,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     }
     this.uploadFileReq = null;
     this.fileDetailArr.splice(idx, 1);
+    this.emitChanges();
     if (this.fileDetailArr.length < 1) {
       this.customMsg = true;
       this.customMsgChange.emit(this.customMsg);
@@ -457,20 +459,26 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
   }
 
   private initValues(url) {
-    if (this.isMultiFileSupport() && url) {
-      this.loadDetails(url);
-    } else {
-      this.uploadFileService.downloadFileDetails(url)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((res) => {
-        this.fileDetailArr = res ? [{...res, fileUploadProgress: 100}] : [];
-      });
+    if (url) {
+      if (this.isMultiFileSupport()) {
+        this.loadDetails(url);
+      } else {
+        this.uploadFileService.downloadFileDetails(url)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((res) => {
+            this.fileDetailArr = res ? [{...res, fileUploadProgress: 100}] : [];
+            this.emitChanges();
+          });
+      }
     }
   }
 
   private loadDetails(urls: string[]): void {
     of(...urls)
       .pipe(mergeMap(fileUrl => this.uploadFileService.downloadFileDetails(fileUrl)))
-      .subscribe(detail => this.fileDetailArr.push({...detail, fileUploadProgress: 100}));
+      .subscribe(
+        detail => this.fileDetailArr.push({...detail, fileUploadProgress: 100}),
+        () => {},
+        () => this.emitChanges());
   }
 }
