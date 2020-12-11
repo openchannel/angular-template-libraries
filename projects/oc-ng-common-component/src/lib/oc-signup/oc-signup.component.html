@@ -13,32 +13,32 @@
                 <oc-label [text]="getValue('Enter your account details below')" class="mb-3"></oc-label>
             </div>
             <div class="form-group">
-                <oc-label [text]="getValue('Name')"></oc-label>
+                <oc-label [text]="getValue('Name')" [for]="getValue('uname')"></oc-label>
                 <oc-input whiteSpaceValidator [(modelName)]="signupModel.uname" name="uname" #uname=ngModel
-                [ngModel]="signupModel.uname" ngDefaultControl required="true" [placeholder]="'Name'" [autocomplete]="'off'"></oc-input>
+                [ngModel]="signupModel.uname" ngDefaultControl required="true" [placeholder]="'Name'" [id]="getValue('uname')" [autocomplete]="'off'"></oc-input>
             <oc-error [control]="uname" [field]="'developerAccount.name'"> </oc-error>
             </div>
             <div class="form-group">
-                <oc-label [text]="getValue('Company')"></oc-label>
+                <oc-label [text]="getValue('Company')" [for]="getValue('company')"></oc-label>
                 <oc-input whiteSpaceValidator [(modelName)]="signupModel.company" name="company" #company=ngModel
-                [ngModel]="signupModel.company" ngDefaultControl required="true" [placeholder]="'Company'" [autocomplete]="'off'"></oc-input>
+                [ngModel]="signupModel.company" ngDefaultControl required="true" [id]="getValue('company')" [placeholder]="'Company'" [autocomplete]="'off'"></oc-input>
                 <oc-error [control]="company" [field]="'developer.name'"> </oc-error>
             </div>
             <div class="form-group">
-                <oc-label [text]="getValue('Email')"></oc-label>
+                <oc-label [text]="getValue('Email')" [for]="getValue('email')"></oc-label>
                 <oc-input emailValidator [(modelName)]="signupModel.email" name="email" #email=ngModel
-                [ngModel]="signupModel.email" ngDefaultControl required="true" [placeholder]="'Email'" [autocomplete]="'off'"></oc-input>
+                [ngModel]="signupModel.email" ngDefaultControl required="true" [id]="getValue('email')" [placeholder]="'Email'" [autocomplete]="'off'"></oc-input>
                 <oc-error [control]="email" [field]="'developerAccount.email'"> </oc-error>
             </div>
             <div class="form-group mb-2">
-                <oc-label [text]="getValue('Password')"></oc-label>
+                <oc-label [text]="getValue('Password')" [for]="getValue('password')"></oc-label>
                 <oc-password [(modelName)]="signupModel.password" class="mb-2" name="password" #password=ngModel
-                [ngModel]="signupModel.password" ngDefaultControl required="true" [placeholder]="'Password'" [autocomplete]="'off'"></oc-password>
+                [ngModel]="signupModel.password" ngDefaultControl required="true" [id]="getValue('password')" [placeholder]="'Password'" [autocomplete]="'off'"></oc-password>
                 <oc-error [control]="password" [field]="'extra.password'"> </oc-error>
             </div>
 
             <div class="form-group">
-                <oc-checkbox [(isChecked)]="signupModel.isChecked"></oc-checkbox>
+                <oc-checkbox [(isChecked)]="signupModel.isChecked" ></oc-checkbox>
                 <oc-label [text]="getValue(' I agree to ')" class="label-s"></oc-label>
                 <a href={{termsUrl}} target="_blank" class="font-s"><b> Terms of Service </b></a>
                 <oc-label [text]="getValue(' and ')" class="label-s"></oc-label>
