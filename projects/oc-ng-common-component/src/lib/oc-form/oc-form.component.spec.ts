@@ -311,6 +311,8 @@ export class MockDynamicFieldArrayComponent implements ControlValueAccessor {
 export class MockErrorComponent {
   @Input()
   public control: AbstractControlDirective | AbstractControl | NgModel;
+  @Input()
+  public field: string;
 }
 @Component({
   selector: 'oc-button',
@@ -359,307 +361,307 @@ describe('OcFormComponent', () => {
     component = fixture.componentInstance;
     component.formJsonData = {
       formId: 'test',
-        name: 'test',
-        createdDate: 1599982592157,
-        fields: [
-        {
-          id: 'name',
-          label: 'name',
-          description: 'test',
-          defaultValue: null,
-          type: 'text',
+      name: 'test',
+      createdDate: 1599982592157,
+      fields: [
+      {
+        id: 'name',
+        label: 'name',
+        description: 'test',
+        defaultValue: null,
+        type: 'text',
+        required: null,
+        attributes: {
+          maxChars: 20,
+          required: true,
+          minChars: 10
+        },
+        options: null,
+        subFieldDefinitions: null
+      },
+      {
+        id: 'role',
+        label: 'role',
+        description: '',
+        defaultValue: 'user',
+        type: 'dropdownList',
+        required: null,
+        attributes: {required: true},
+        options: ['admin', 'user', 'test'],
+        subFieldDefinitions: null
+      },
+      {
+        id: 'aboutme',
+        label: 'About Me',
+        description: '',
+        defaultValue: null,
+        type: 'richText',
+        required: null,
+        attributes: {
+          maxChars: 150,
           required: null,
-          attributes: {
-            maxChars: 20,
-            required: true,
-            minChars: 10
-          },
-          options: null,
-          subFieldDefinitions: null
+          minChars: 10
         },
-        {
-          id: 'role',
-          label: 'role',
-          description: '',
-          defaultValue: 'user',
-          type: 'dropdownList',
-          required: null,
-          attributes: {required: true},
-          options: ['admin', 'user', 'test'],
-          subFieldDefinitions: null
+        options: null,
+        subFieldDefinitions: null
+      },
+      {
+        id: 'skills',
+        label: 'skills',
+        description: 'skills',
+        defaultValue: ['angular'],
+        type: 'tags',
+        required: null,
+        attributes: {
+          minCount: 1,
+          maxCount: 5,
+          required: true
+        }, options: null,
+        subFieldDefinitions: null
+      },
+      {
+        attributes:	{
+          max:	25,
+          min:	5,
+          required:	null,
         },
-        {
-          id: 'aboutme',
-          label: 'About Me',
-          description: '',
-          defaultValue: null,
-          type: 'richText',
-          required: null,
-          attributes: {
-            maxChars: 150,
-            required: null,
-            minChars: 10
-          },
-          options: null,
-          subFieldDefinitions: null
+        category:	'CUSTOM',
+        defaultValue:	null,
+        description:	'',
+        id:	'test-number',
+        isOpen:	false,
+        isValid:	true,
+        label:	'Test number',
+        placeholder:	null,
+        type:	'number'
+      },
+      {
+        attributes:	{
+          required:	true
         },
-        {
-          id: 'skills',
-          label: 'skills',
-          description: 'skills',
-          defaultValue: ['angular'],
-          type: 'tags',
-          required: null,
-          attributes: {
-            minCount: 1,
-            maxCount: 5,
-            required: true
-          }, options: null,
-          subFieldDefinitions: null
+        category:	'CUSTOM',
+        defaultValue:	true,
+        description:	'',
+        id:	'test-checkbox',
+        isOpen:	false,
+        isValid:	true,
+        label:	'Test Checkbox',
+        placeholder:	null,
+        type:	'checkbox'
+      },
+      {
+        attributes:	{
+          required:	true
         },
-        {
-          attributes:	{
-            max:	25,
-            min:	5,
-            required:	null,
-          },
-          category:	'CUSTOM',
-          defaultValue:	null,
-          description:	'',
-          id:	'test-number',
-          isOpen:	false,
-          isValid:	true,
-          label:	'Test number',
-          placeholder:	null,
-          type:	'number'
+        category:	'CUSTOM',
+        defaultValue:	null,
+        description:	'',
+        id:	'test-email',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test email',
+        placeholder:	'enter email',
+        type:	'emailAddress'
+      },
+      {
+        attributes:	{
+          required:	true
         },
-        {
-          attributes:	{
-            required:	true
-          },
-          category:	'CUSTOM',
-          defaultValue:	true,
-          description:	'',
-          id:	'test-checkbox',
-          isOpen:	false,
-          isValid:	true,
-          label:	'Test Checkbox',
-          placeholder:	null,
-          type:	'checkbox'
+        category:	'CUSTOM',
+        defaultValue:	null,
+        description:	null,
+        id:	'test-url-component',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test URL component',
+        placeholder:	'Enter your link here..',
+        type:	'websiteUrl'
+      },
+      {
+        attributes:	{
+          required:	true
         },
-        {
-          attributes:	{
-            required:	true
-          },
-          category:	'CUSTOM',
-          defaultValue:	null,
-          description:	'',
-          id:	'test-email',
-          isOpen:	false,
-          isValid:	true,
-          deleteable:	false,
-          label:	'Test email',
-          placeholder:	'enter email',
-          type:	'emailAddress'
+        category:	'CUSTOM',
+        defaultValue:	null,
+        description:	null,
+        id:	'test-color-component',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test Color Component',
+        placeholder:	'Choose your color',
+        type:	'color'
+      },
+      {
+        attributes:	{
+          required:	true,
+          maxCount:	null,
+          minCount:	null
         },
-        {
-          attributes:	{
-            required:	true
-          },
-          category:	'CUSTOM',
-          defaultValue:	null,
-          description:	null,
-          id:	'test-url-component',
-          isOpen:	false,
-          isValid:	true,
-          deleteable:	false,
-          label:	'Test URL component',
-          placeholder:	'Enter your link here..',
-          type:	'websiteUrl'
+        options: ['true', 'false'],
+        category:	'CUSTOM',
+        defaultValue:	null,
+        description:	null,
+        id:	'test-boolean-tags',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test Boolean tags',
+        placeholder:	null,
+        type:	'booleanTags'
+      },
+      {
+        attributes:	{
+          required:	true,
+          maxCount:	2,
+          minCount:	1
         },
-        {
-          attributes:	{
-            required:	true
-          },
-          category:	'CUSTOM',
-          defaultValue:	null,
-          description:	null,
-          id:	'test-color-component',
-          isOpen:	false,
-          isValid:	true,
-          deleteable:	false,
-          label:	'Test Color Component',
-          placeholder:	'Choose your color',
-          type:	'color'
+        options: ['1', '3', '45'],
+        category:	'CUSTOM',
+        defaultValue:	[],
+        description:	null,
+        id:	'test-number-tags',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test number tags',
+        placeholder:	null,
+        type:	'numberTags'
+      },
+      {
+        attributes:	{
+          required:	true,
         },
-        {
-          attributes:	{
-            required:	true,
-            maxCount:	null,
-            minCount:	null
-          },
-          options: ['true', 'false'],
-          category:	'CUSTOM',
-          defaultValue:	null,
-          description:	null,
-          id:	'test-boolean-tags',
-          isOpen:	false,
-          isValid:	true,
-          deleteable:	false,
-          label:	'Test Boolean tags',
-          placeholder:	null,
-          type:	'booleanTags'
+        category:	'CUSTOM',
+        defaultValue:	null,
+        description:	null,
+        id:	'test-date-picker',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test Date picker',
+        placeholder:	null,
+        type:	'date'
+      },
+      {
+        attributes:	{
+          required:	true,
         },
-        {
-          attributes:	{
-            required:	true,
-            maxCount:	2,
-            minCount:	1
-          },
-          options: ['1', '3', '45'],
-          category:	'CUSTOM',
-          defaultValue:	[],
-          description:	null,
-          id:	'test-number-tags',
-          isOpen:	false,
-          isValid:	true,
-          deleteable:	false,
-          label:	'Test number tags',
-          placeholder:	null,
-          type:	'numberTags'
+        category:	'CUSTOM',
+        defaultValue:	1602489693553,
+        description:	null,
+        id:	'test-datetime-picker',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test date-time picker',
+        placeholder:	null,
+        type:	'datetime'
+      },
+      {
+        attributes:	{
+          required:	true,
         },
-        {
-          attributes:	{
-            required:	true,
-            maxCount:	null,
-            minCount:	1
-          },
-          options: ['1', '3', '45'],
-          category:	'CUSTOM',
-          defaultValue:	[],
-          description:	null,
-          id:	'test-number-tags',
-          isOpen:	false,
-          isValid:	true,
-          deleteable:	false,
-          label:	'Test number tags',
-          placeholder:	null,
-          type:	'numberTags'
+        category:	'CUSTOM',
+        defaultValue:	'https://www.youtube.com/watch?v=DGQwd1_dpuc',
+        description:	null,
+        id:	'test-video-url-comp',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test videoUrl component',
+        placeholder:	null,
+        type:	'videoUrl'
+      },
+      {
+        attributes:	{
+          required:	true,
+          maxCount:	3,
+          minCount:	2
         },
-        {
-          attributes:	{
-            required:	true,
-          },
-          category:	'CUSTOM',
-          defaultValue:	null,
-          description:	null,
-          id:	'test-date-picker',
-          isOpen:	false,
-          isValid:	true,
-          deleteable:	false,
-          label:	'Test Date picker',
-          placeholder:	null,
-          type:	'date'
+        options: ['One', 'Two', 'Three', 'Five'],
+        category:	'CUSTOM',
+        defaultValue:	[],
+        description:	null,
+        id:	'multi-select-test',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Multi Select test',
+        placeholder:	null,
+        type:	'multiselectList'
+      },
+      {
+        attributes:	{
+          required:	true,
+          maxCount:	1,
+          minCount:	null
         },
-        {
-          attributes:	{
-            required:	true,
-          },
-          category:	'CUSTOM',
-          defaultValue:	1602489693553,
-          description:	null,
-          id:	'test-datetime-picker',
-          isOpen:	false,
-          isValid:	true,
-          deleteable:	false,
-          label:	'Test date-time picker',
-          placeholder:	null,
-          type:	'datetime'
+        options: ['One', 'Two', 'Three', 'Five'],
+        category:	'CUSTOM',
+        defaultValue:	[],
+        description:	null,
+        id:	'multi-select-test2',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Multi Select test',
+        placeholder:	null,
+        type:	'multiselectList'
+      },
+      {
+        attributes: {
+          maxCount: 3,
+          minCount: 1,
+          ordering: 'append',
+          required:	true,
+          rowLabel:	'field1'
         },
-        {
-          attributes:	{
-            required:	true,
-          },
-          category:	'CUSTOM',
-          defaultValue:	'https://www.youtube.com/watch?v=DGQwd1_dpuc',
-          description:	null,
-          id:	'test-video-url-comp',
-          isOpen:	false,
-          isValid:	true,
-          deleteable:	false,
-          label:	'Test videoUrl component',
-          placeholder:	null,
-          type:	'videoUrl'
-        },
-        {
-          attributes:	{
-            required:	true,
-            maxCount:	3,
-            minCount:	2
-          },
-          options: ['One', 'Two', 'Three', 'Five'],
-          category:	'CUSTOM',
-          defaultValue:	[],
-          description:	null,
-          id:	'multi-select-test',
-          isOpen:	false,
-          isValid:	true,
-          deleteable:	false,
-          label:	'Multi Select test',
-          placeholder:	null,
-          type:	'multiselectList'
-        },
-        {
-          attributes: {
-            maxCount: 3,
-            minCount: 1,
-            ordering: 'append',
-            required:	true,
-            rowLabel:	'field1'
-          },
-          required: null,
-          rowLabel: null,
-          category: 'CUSTOM',
-          defaultValue: null,
-          description: '',
-          id: 'test-dynamic-field-array',
-          isOpen: false,
-          isValid: true,
-          label: 'Test Dynamic field array',
-          placeholder: null,
-          subFieldDefinitions: [
-            {
-              attributes: {
-                maxChars: null,
-                minChars: null,
-                required: null
-              },
-              category: 'CUSTOM',
-              defaultValue: null,
-              description: 'some description',
-              id: 'field1',
-              isOpen: false,
-              isValid: true,
-              label: 'field1',
-              placeholder: 'write some text',
-              type: 'text'
+        required: null,
+        rowLabel: null,
+        category: 'CUSTOM',
+        defaultValue: null,
+        description: '',
+        id: 'test-dynamic-field-array',
+        isOpen: false,
+        isValid: true,
+        label: 'Test Dynamic field array',
+        placeholder: null,
+        subFieldDefinitions: [
+          {
+            attributes: {
+              maxChars: null,
+              minChars: null,
+              required: null
             },
-            {
-              id:	'long-text-example',
-              label: 'Long Text Example',
-              type:	'longText',
-              placeholder: 'Write your text here...',
-              category: 'CUSTOM',
-              defaultValue: null,
-              attributes: {
-                maxChars:	200,
-                required:	null,
-                minChars:	2
-              },
-            }
-          ],
-          type: 'dynamicFieldArray'
-        }]
+            category: 'CUSTOM',
+            defaultValue: null,
+            description: 'some description',
+            id: 'field1',
+            isOpen: false,
+            isValid: true,
+            label: 'field1',
+            placeholder: 'write some text',
+            type: 'text'
+          },
+          {
+            id:	'long-text-example',
+            label: 'Long Text Example',
+            type:	'longText',
+            placeholder: 'Write your text here...',
+            category: 'CUSTOM',
+            defaultValue: null,
+            attributes: {
+              maxChars:	200,
+              required:	null,
+              minChars:	2
+            },
+          }
+        ],
+        type: 'dynamicFieldArray'
+      }]
     };
   });
 
@@ -688,5 +690,86 @@ describe('OcFormComponent', () => {
     const button = fixture.debugElement.query(By.css('oc-button')).componentInstance;
 
     expect(button.text).toEqual('Text Button');
+  });
+
+  it('should set form dirty', () => {
+    component.setFormDirty = true;
+
+    fixture.detectChanges();
+
+    const testControl = (Object as any).values(component.customForm.controls)[0];
+
+    expect(testControl.touched).toEqual(true);
+    expect(component.customForm.dirty).toEqual(true);
+  });
+
+  it('should show count validation errors', () => {
+    component.formJsonData.fields.push(
+      {
+        attributes:	{
+          required:	true,
+          maxCount:	3,
+          minCount:	2
+        },
+        options: ['1', '3', '45'],
+        category:	'CUSTOM',
+        defaultValue:	[],
+        description:	null,
+        id:	'test-number-tags3',
+        isOpen:	false,
+        isValid:	true,
+        deleteable:	false,
+        label:	'Test number tags',
+        placeholder:	null,
+        type:	'numberTags'
+      },
+    );
+    fixture.detectChanges();
+    const invalidControl = component.customForm.get('test-number-tags3');
+
+    invalidControl.setValue([1, 3, 5, 6]);
+    fixture.detectChanges();
+
+    expect(invalidControl.hasError('maxCount')).toEqual(true);
+
+    invalidControl.setValue(1);
+    fixture.detectChanges();
+
+    expect(invalidControl.hasError('minCount')).toEqual(true);
+  });
+
+  it('should show url validation error', () => {
+    fixture.detectChanges();
+
+    const invalidControlEmail = component.customForm.get('test-url-component');
+
+    invalidControlEmail.setValue('mysite');
+    fixture.detectChanges();
+
+
+    expect(invalidControlEmail.hasError('websiteValidator')).toEqual(true);
+  });
+
+  it('should show color validation error', () => {
+    fixture.detectChanges();
+
+    const invalidControlColor = component.customForm.get('test-color-component');
+
+    invalidControlColor.setValue('333');
+    fixture.detectChanges();
+
+    expect(invalidControlColor.hasError('colorValidator')).toEqual(true);
+  });
+
+  it('should send data', () => {
+    spyOn(component.formSubmitted, 'emit');
+    component.showButton = true;
+    fixture.detectChanges();
+
+    const submitButton = fixture.debugElement.query(By.css('#successBtn')).nativeElement;
+
+    submitButton.click();
+
+    expect(component.formSubmitted.emit).toHaveBeenCalledTimes(1);
   });
 });

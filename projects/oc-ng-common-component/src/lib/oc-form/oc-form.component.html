@@ -110,7 +110,8 @@
     <oc-button (click)="sendData()"
                [disabled]="this.customForm.invalid || this.anotherInvalidResult"
                [text]="successButtonText"
-               type="primary" [class]="buttonPosition === 'right' ? 'ml-1' : 'mr-1'"></oc-button>
+               type="primary" [class]="buttonPosition === 'right' ? 'ml-1' : 'mr-1'"
+               id="successBtn"></oc-button>
     <oc-button (click)="cancelForm()"
                text="Cancel"
                type="secondary"></oc-button>
