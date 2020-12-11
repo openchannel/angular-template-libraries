@@ -1,24 +1,9 @@
 <input  [disabled]="disabled"
-        [placeholder]="placeholder"
+        placeholder="{{placeholder}}"
         [(ngModel)]="videoUrl"
         (focus)="onFocus()"
         (ngModelChange)="emitChanges()"
         [ngModelOptions]="{standalone: true}"
         class="form-control {{class}}"
         whiteSpaceValidator>
-<div class="mt-2" *ngIf="isValidUrl">
-  <div *ngIf="showVideoLoader" class="video-loader-div edit">
-    <fa-icon icon="spinner" [pulse]="true" class="inline-loader"></fa-icon>
-  </div>
-  <div *ngIf="!showVideoLoader" class="w-100">
-    <div class="d-flex justify-content-center">
-      <div [innerHTML]="previewData | safehtml" class="col-12 p-0 vid-preview"></div>
-    </div>
-    <div class="col-12 d-flex justify-content-center flex-column align-items-center" *ngIf="!loadInIframe">
-      <video width="300" *ngIf="loadInVideo" [src]="videoUrl" controls></video>
-      <div class="video-loader-div mb-2" *ngIf="!loadInVideo">
-        No Preview Available.
-      </div>
-    </div>
-  </div>
-</div>
+<oc-video class="mt-2 d-block" [videoUrl]="videoUrl" *ngIf="isValidUrl"></oc-video>

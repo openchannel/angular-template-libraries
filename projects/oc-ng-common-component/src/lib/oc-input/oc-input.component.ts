@@ -1,5 +1,5 @@
-import { Component, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnInit, Output } from '@angular/core';
-import { ControlValueAccessor, DefaultValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
+import {Component, ElementRef, forwardRef, Input, OnInit} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'oc-input',
@@ -35,7 +35,7 @@ export class OcInputComponent implements OnInit, ControlValueAccessor {
 
   public inputValue: string;
 
-  private onTouched = () => {};
+  public onTouched = () => {};
   private onChange: (value: any) => void = () => {};
 
   constructor(private el: ElementRef) {
@@ -52,12 +52,6 @@ export class OcInputComponent implements OnInit, ControlValueAccessor {
     this.onChange(this.inputValue);
   }
 
-  /**
-   * Register touch action
-   */
-  onFocus(): void {
-    this.onTouched();
-  }
   /**
    * Calls this function with new value. When user wrote something in the component
    * It needs to know that new data has been entered in the control.

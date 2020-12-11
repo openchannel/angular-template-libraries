@@ -73,12 +73,17 @@ import {OcDynamicArrayItemComponent} from './oc-dynamic-array-item/oc-dynamic-ar
 import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
 import {PricePipe} from './pipe/price.pipe';
 import {EditorModule} from '@tinymce/tinymce-angular';
-import { RouterModule } from '@angular/router';
+import {RouterModule} from '@angular/router';
 import {OcDropdownComponent} from './oc-dropdown/oc-dropdown.component';
 import {OcVideoComponent} from './oc-video/oc-video.component';
 import {OcImageGalleryComponent} from './oc-image-gallery/oc-image-gallery.component';
 import { OcAppDescriptionComponent } from './oc-app-description/oc-app-description.component';
-import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
+import { OcToastsComponent } from './oc-toasts/oc-toasts.component';
+import { OcResendActivationComponent } from './oc-resend-activation/oc-resend-activation.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button.component';
+import {EmbedVideo} from 'ngx-embed-video';
+import {OcTooltipLabelComponent} from './oc-tooltip-label/oc-tooltip-label.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -122,9 +127,9 @@ import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
     OcAppCategorySelectComponent,
     OcPopupComponent,
     OcDropdownComponent,
+    OcDropdownButtonComponent,
     OcVideoComponent,
     OcImageGalleryComponent,
-    OcUserSignupComponent,
     SafehtmlPipe,
     CamelcasePipe,
     EllipsisPipe,
@@ -154,7 +159,10 @@ import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
     OcDynamicFieldArrayComponent,
     OcDynamicArrayItemComponent,
     OcFormModalComponent,
-    OcAppDescriptionComponent
+    OcAppDescriptionComponent,
+    OcToastsComponent,
+    OcResendActivationComponent,
+    OcTooltipLabelComponent
   ],
 
   imports: [
@@ -168,6 +176,8 @@ import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
     ColorPickerModule,
     EditorModule,
     RouterModule,
+    InfiniteScrollModule,
+    EmbedVideo.forRoot()
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
@@ -189,7 +199,6 @@ import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
     OcAppCategoriesComponent,
     OcForgotPasswordComponent,
     OcErrorComponent,
-    OcUserSignupComponent,
     AutofocusDirective,
     DomainValidatorDirective,
     DragDropDirective,
@@ -214,6 +223,7 @@ import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
     OcReviewListComponent,
     OcRecommendedAppsComponent,
     OcDropdownComponent,
+    OcDropdownButtonComponent,
     OcVideoComponent,
     OcImageGalleryComponent,
     NgbModule,
@@ -234,7 +244,9 @@ import {OcUserSignupComponent} from './oc-user-signup/oc-user-signup.component';
     OcMultiSelectListComponent,
     OcTagsComponent,
     OcDynamicFieldArrayComponent,
-    OcAppDescriptionComponent
+    OcAppDescriptionComponent,
+    OcToastsComponent,
+    OcResendActivationComponent
   ],
   providers: [
     NgbActiveModal,

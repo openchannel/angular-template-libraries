@@ -1,0 +1,33 @@
+<form #activationForm="ngForm" novalidate>
+    <div class="card oc-card-with-border">
+        <div class="card-body">
+            <div class="text-center">
+                <img alt="logo"
+                     class="img-fluid mb-5 company-logo"
+                     [src]="companyLogoUrl">
+            </div>
+            <div class="text-center mb-5">
+                <h4>Resend Activation Code</h4>
+                <oc-label text="Resend the activation code to your email"></oc-label>
+            </div>
+            <div class="form-group">
+                <oc-label text="Email"></oc-label>
+                <oc-input #email=ngModel [(ngModel)]="activationModel.email" placeholder="Email"
+                          name="code" ngDefaultControl required="true" emailValidator></oc-input>
+                <oc-error [control]="email"></oc-error>
+            </div>
+            <oc-button (click)="submitForm(activationForm)"
+                       [disabled]="process || !activationForm.valid" [process]="process" text="Resend"
+                       type="primary" class="btn-block mt-5 mb-4">
+            </oc-button>
+            <div class="text-center mb-2">
+                <oc-label class="mb-0" text="Already have an account?"></oc-label>
+                <a class="font-m font-med" [routerLink]="loginUrl"> Log In </a>
+            </div>
+            <div class="text-center">
+                <oc-label class="mb-0" text="Dont have an account yet?"></oc-label>
+                <a class="font-m font-med" [routerLink]="signupUrl"> Sign Up </a>
+            </div>
+        </div>
+    </div>
+</form>

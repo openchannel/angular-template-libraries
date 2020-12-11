@@ -1,14 +1,14 @@
 <form #activationForm="ngForm" novalidate>
     <div class="card oc-card-with-border">
-        <div class="card-body mb-2">
+        <div class="card-body">
             <div class="text-center">
                 <img alt="logo"
-                     class="img-fluid mb-4 company-logo"
+                     class="img-fluid mb-5 company-logo"
                      [src]="companyLogoUrl">
             </div>
-            <div class="text-center">
+            <div class="text-center mb-5">
                 <h4>Activate Account</h4>
-                <oc-label text="Check your inbox for the activation code" class="mb-3"></oc-label>
+                <oc-label text="Check your inbox for the activation code"></oc-label>
             </div>
             <div class="form-group">
                 <oc-label text="Activation Code"></oc-label>
@@ -18,14 +18,14 @@
             </div>
             <oc-button (click)="submitForm(activationForm)"
                        [disabled]="process || !activationForm.valid" [process]="process" text="Activate"
-                       type="primary" class="btn-block mt-5 mb-5">
+                       type="primary" class="btn-block mt-5 mb-4">
             </oc-button>
             <div class="text-center mb-2">
-                <oc-label text="Didn’t get the activation code?"></oc-label>
-                <a class="font-m font-med" [routerLink]="activationUrl"> Resend it </a>
+                <oc-label class="mb-0" text="Didn’t get the activation code?"></oc-label>
+                <a class="font-m font-med" [routerLink]="resendActivationUrl"> Resend it </a>
             </div>
             <div class="text-center">
-                <oc-label text="Dont have an account yet?"></oc-label>
+                <oc-label class="mb-0" text="Dont have an account yet?"></oc-label>
                 <a class="font-m font-med" [routerLink]="signupUrl"> Sign Up </a>
             </div>
         </div>

@@ -201,11 +201,7 @@ h6 {
 }
 
 .company-logo{
-  width: 159px;
-}
-
-.invitation {
-  margin-bottom: 20px !important;
+  height: 27px;
 }
 
 .sign-up__text {
@@ -252,7 +248,7 @@ h6 {
 }
 /** input password **/
 
-oc-input, oc-password, oc-app-category-select , oc-select{
+oc-input, oc-password, oc-app-category-select , oc-select, oc-video-url, oc-color{
     &.ng-invalid{
       input.ng-touched, select.ng-touched , textarea.ng-touched{
         border-color: $danger;
@@ -337,11 +333,11 @@ select::-ms-expand { display: none; }
   background: url(~oc-ng-common-component/assets/img/edit_icon_h.svg) left center no-repeat;
   background-position: 15px;
 }
-.menu-del{
+.menu-delete{
   background: url(~oc-ng-common-component/assets/img/delete.svg) left center no-repeat;
   background-position: 15px;
 }
-.menu-del:hover{
+.menu-delete:hover{
   background: url(~oc-ng-common-component/assets/img/delete_h.svg) left center no-repeat;
   background-position: 15px;
 }
@@ -363,12 +359,30 @@ select::-ms-expand { display: none; }
   background-position: 15px;
 }
 
+.menu-publish{
+  background: url(~oc-ng-common-component/assets/img/submit_icon.svg) left center no-repeat;
+  background-position: 15px;
+}
+.menu-publish:hover{
+  background: url(~oc-ng-common-component/assets/img/submit_icon_h.svg) left center no-repeat;
+  background-position: 15px;
+}
+
 .menu-submit{
   background: url(~oc-ng-common-component/assets/img/submit_icon.svg) left center no-repeat;
   background-position: 15px;
 }
 .menu-submit:hover{
   background: url(~oc-ng-common-component/assets/img/submit_icon_h.svg) left center no-repeat;
+  background-position: 15px;
+}
+
+.menu-preview{
+  background: url(~oc-ng-common-component/assets/img/view.svg) left center no-repeat;
+  background-position: 15px;
+}
+.menu-preview:hover{
+  background: url(~oc-ng-common-component/assets/img/view.svg) left center no-repeat;
   background-position: 15px;
 }
 
@@ -402,4 +416,25 @@ select::-ms-expand { display: none; }
       height: 8px;
     }
   }
+}
+
+.alert-dismissible .close {
+  padding: 8px 15px;
+}
+
+a.link {
+  cursor: pointer;
+  color: $primary;
+  &:hover {
+    color: $primary;
+    text-decoration: none;
+  }
+  &:focus {
+    outline:none
+  }
+}
+
+.error-container {
+  background-color: $error-bg;
+  color: $error;
 }

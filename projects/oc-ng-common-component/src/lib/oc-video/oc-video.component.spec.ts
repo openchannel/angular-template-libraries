@@ -7,6 +7,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Observable, of } from 'rxjs';
 import { FileUploadDownloadService } from 'oc-ng-common-service';
 import { FormsModule } from '@angular/forms';
+import {EmbedVideo, EmbedVideoService} from 'ngx-embed-video';
 
 describe('OcVideoComponent', () => {
   let component: OcVideoComponent;
@@ -14,9 +15,9 @@ describe('OcVideoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcVideoComponent, SafehtmlPipe ],
-      imports: [AppIconsModule, HttpClientTestingModule, FormsModule],
-      providers: [{provide: FileUploadDownloadService, useClass: MockFleService}]
+      declarations: [ OcVideoComponent ],
+      imports: [AppIconsModule, HttpClientTestingModule],
+      providers: [EmbedVideoService]
     })
     .compileComponents();
   }));
@@ -50,23 +51,3 @@ describe('OcVideoComponent', () => {
     expect(videoFrame).toBeTruthy();
   });
 });
-
-
-class MockFleService {
-  public getVideoMetaData(videoUrl): Observable<any> {
-    if (videoUrl && !videoUrl.endsWith('.mp4')) {
-      return of({
-        html: '<div><div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">' +
-          '<iframe ' +
-          'src="https://cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fyoutu.be%2FDGQwd1_dpuc&amp;key=37e96b37fac1aa5b67e77eb5142641c6" ' +
-          'style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" ' +
-          'allowfullscreen scrolling="no" allow="encrypted-media *; accelerometer; gyroscope; picture-in-picture"></iframe>' +
-          '</div></div>',
-      });
-    } else {
-      return of({
-        error: true
-      });
-    }
-  }
-}
