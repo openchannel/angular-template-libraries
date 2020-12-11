@@ -64,6 +64,7 @@ export * from './lib/directive/password-toggle.directive';
 export * from './lib/validators/phone-number-validator.directive';
 export * from './lib/validators/website-validator.directive';
 export * from './lib/validators/compare-passsword-validator.directive';
+export * from './lib/validators/password-validator.directive';
 
 
 // pipe

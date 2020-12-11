@@ -32,7 +32,7 @@
                 <oc-label text="Password"></oc-label>
                 <oc-password #password=ngModel [(ngModel)]="signupModel.password"
                              placeholder="Password" class="mb-2" name="password"
-                             ngDefaultControl required="true"></oc-password>
+                             ngDefaultControl passwordValidator required="true"></oc-password>
                 <oc-error [control]="password" field="password"></oc-error>
             </div>
 

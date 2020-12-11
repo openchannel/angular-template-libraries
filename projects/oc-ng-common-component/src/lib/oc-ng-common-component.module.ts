@@ -84,6 +84,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button.component';
 import {EmbedVideo} from 'ngx-embed-video';
 import {OcTooltipLabelComponent} from './oc-tooltip-label/oc-tooltip-label.component';
+import {PasswordValidatorDirective} from './validators/password-validator.directive';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -110,6 +111,7 @@ import {OcTooltipLabelComponent} from './oc-tooltip-label/oc-tooltip-label.compo
     DragDropDirective,
     FileSizePipe,
     ImageFileValidatorDirective,
+    PasswordValidatorDirective,
     PasswordToggleDirective,
     PhoneNumberValidatorDirective,
     WebsiteValidatorDirective,
@@ -207,6 +209,7 @@ import {OcTooltipLabelComponent} from './oc-tooltip-label/oc-tooltip-label.compo
     EllipsisPipe,
     PricePipe,
     ImageFileValidatorDirective,
+    PasswordValidatorDirective,
     PasswordToggleDirective,
     PhoneNumberValidatorDirective,
     WebsiteValidatorDirective,
