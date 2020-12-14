@@ -12,17 +12,17 @@
                 <oc-label [text]="getValue('Log in into your account')" class="mb-3"></oc-label>
             </div>
             <div class="form-group">
-                <oc-label [text]="getValue('Email')"></oc-label>
+                <oc-label [text]="getValue('Email')" [for]="getValue('email')"></oc-label>
                 <oc-input emailValidator [(modelName)]="loginModel.email" name="email" #email=ngModel
                     [ngModel]="loginModel.email" ngDefaultControl required="true"
-                    [autocomplete]="'off'" [placeholder]="'Email'" (modelNameChange)="onchange(loginForm)"></oc-input>
+                    [autocomplete]="'off'" [placeholder]="'Email'" (modelNameChange)="onchange(loginForm)" [id]="getValue('email')"></oc-input>
                 <oc-error [control]="email" [field]="'email'"> </oc-error>
             </div>
             <div class="form-group mb-2">
-                <oc-label [text]="getValue('Password')"></oc-label>
+                <oc-label [text]="getValue('Password')" [for]="getValue('password')"></oc-label>
                 <oc-password whiteSpaceValidator [(modelName)]="loginModel.password" class="mb-2" name="password"
                     #password=ngModel [ngModel]="loginModel.password" ngDefaultControl required="true" [autocomplete]="'off'" 
-                    [placeholder]="'Password'" (modelNameChange)="onchange(loginForm)"></oc-password>
+                    [placeholder]="'Password'" (modelNameChange)="onchange(loginForm)" [id]="getValue('password')"></oc-password>
                 <oc-error [control]="password" [field]="'password'"></oc-error>
             </div>
             <div class="form-group row">
