@@ -353,20 +353,3 @@ AppGrid.args = {
   properties: propsConfig,
   noAppMessage: 'No Apps Has Been Added Yet'
 };
-
-// storiesOf('App Data Grid', module)
-//   .addDecorator(withA11y)
-//   .addParameters({
-//     component: OcMenuGridComponent,
-//   })
-//   .add('App grid', () => ({
-//     component: OcMenuGridComponent,
-//     moduleMetadata: modules,
-//     props: {
-//       appList: application,
-//       editIcon: 'http://localhost:4200/assets/img/delete.svg',
-//       publishIcon: 'http://localhost:4200/assets/img/publish.svg',
-//       sortIcon: 'http://localhost:4200/assets/img/dropdown-icon.svg',
-//       menuUrl: 'http://localhost:4200/assets/img/dots-hr-icon.svg'
-//     }
-//   }));
