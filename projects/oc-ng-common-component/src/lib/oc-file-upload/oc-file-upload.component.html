@@ -2,8 +2,8 @@
   (fileDropped)="onFileDropped($event,cropperModal)">
   <img [src]="uploadIconUrl" class="mb-2"
     alt="upload-icon">
-  <input type="file" #fileDropRef id="fileDropRef" [accept]="getAcceptTypes()"
-    (change)="fileBrowseHandler($event,cropperModal)" class="cursor-pointer"/>
+  <input type="file" #fileDropRef [id]="id" [accept]="getAcceptTypes()"
+    (change)="fileBrowseHandler($event,cropperModal)" class="cursor-pointer" />
   <div class="placeholder-text-container">
     <span class="d-block text-secondary font-m">{{fileUploadText}}</span>
     <span class="text-secondary font-m">or</span> <a class="font-m font-bold browse-file"  (click)="fileDropRef.click()" > Browse File</a>
@@ -20,7 +20,7 @@
         <img [src]="uploadIconUrl" class="upload-s"
           alt="upload-icon">
         <a class="font-m font-bold browse-file" (click)="fileDropRef.click()">
-          <input type="file" [accept]="getAcceptTypes()" #fileDropRef (change)="fileBrowseHandler($event,cropperModal)" style="display: none;"/>
+          <input type="file" [id]="id" [accept]="getAcceptTypes()" #fileDropRef (change)="fileBrowseHandler($event,cropperModal)" style="display: none;"/>
           Browse File
         </a>
         <!-- <a href="#" *ngIf="isMultiFile || (!files || files.length == 0)">
