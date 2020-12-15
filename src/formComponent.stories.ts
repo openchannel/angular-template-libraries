@@ -3,6 +3,8 @@ import { moduleMetadata } from '@storybook/angular';
 import { OcFormComponent } from '../projects/oc-ng-common-component/src/lib/oc-form/oc-form.component';
 import {FileDetails, FileUploadDownloadService} from 'oc-ng-common-service';
 import {Observable, of} from 'rxjs';
+import {EmbedVideoService} from 'ngx-embed-video';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 class StubFileUploadDownloadService {
   constructor() {}
@@ -47,9 +49,10 @@ class StubFileUploadDownloadService {
 }
 
 const modules = {
-  imports: [OcCommonLibModule],
+  imports: [OcCommonLibModule, HttpClientModule],
   providers: [
-    {provide: FileUploadDownloadService, useClass: StubFileUploadDownloadService},
+    HttpClient,
+    {provide: FileUploadDownloadService, useClass: StubFileUploadDownloadService}, EmbedVideoService
   ],
 };
 
@@ -59,7 +62,9 @@ export default {
   decorators: [
     moduleMetadata(modules),
   ],
-  argTypes: { formSubmitted: { action: 'Form Data' }}
+  argTypes: { formSubmitted: { action: 'Form Data' },
+    formDataUpdated: { action: 'Form Data Updates'}
+  }
 };
 
 const FormGroupComponent = (args: OcFormComponent) => ({
@@ -197,7 +202,8 @@ FormWithRequiredOnly.args = {
         }, options: null,
         subFieldDefinitions: null
       }]
-  }
+  },
+  showButton: false
 };
 
 export const FormWithNumberInput =  FormGroupComponent.bind({});
@@ -554,7 +560,9 @@ FormWithDynamicFieldArray.args = {
         type: 'dynamicFieldArray'
       }
     ]
-  }
+  },
+  showButton: true,
+  buttonPosition: 'left'
 };
 
 export const FormWithDynamicFieldArraySecondLvl = FormGroupComponent.bind({});

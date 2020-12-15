@@ -1,8 +1,7 @@
 import {Component, forwardRef, Input, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {FileUploadDownloadService} from 'oc-ng-common-service';
-import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
+import {EmbedVideoService} from 'ngx-embed-video';
 
 @Component({
   selector: 'oc-video-url',
@@ -14,7 +13,7 @@ import {Subject} from 'rxjs';
     multi: true
   }],
 })
-export class OcVideoUrlComponent implements OnInit, OnDestroy, ControlValueAccessor {
+export class OcVideoUrlComponent implements ControlValueAccessor {
 
   @Input() modelName;
   @Input() autoFocus;
@@ -36,31 +35,13 @@ export class OcVideoUrlComponent implements OnInit, OnDestroy, ControlValueAcces
     this.verifyVideoUrl();
   }
 
-  public videoUrl: string;
-
-  loadInIframe = true;
-  loadInVideo = false;
-  showVideoLoader = false;
+  videoUrl: string;
   isValidUrl: boolean = false;
-
-  previewData: string;
-
-  private destroy$: Subject<any> = new Subject<any>();
 
   private onTouched = () => {};
   private onChange: (value: any) => void = () => {};
 
-  constructor(private fileService: FileUploadDownloadService) {
-
-  }
-
-  ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
+  constructor() {}
 
   emitChanges(): void {
     this.onChange(this.videoUrl);
@@ -68,38 +49,8 @@ export class OcVideoUrlComponent implements OnInit, OnDestroy, ControlValueAcces
   }
 
   verifyVideoUrl(): void {
-    this.previewData = '';
-
     const reg = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm);
     this.isValidUrl = reg.test(this.videoUrl);
-
-    if (this.isValidUrl) {
-      this.showVideoLoader = true;
-      this.fileService.getVideoData(this.videoUrl)
-          .pipe(takeUntil(this.destroy$))
-          .subscribe(
-          (data: any) => {
-            this.showVideoLoader = false;
-
-            if (data && data.html) {
-              this.loadInIframe = true;
-              this.previewData = data.html;
-            } else if (this.videoUrl.endsWith('.mp4') || this.videoUrl.endsWith('.webm') || this.videoUrl.endsWith('.ogv')) {
-              this.loadInIframe = false;
-              this.loadInVideo = true;
-            } else {
-              this.loadInIframe = false;
-              this.loadInVideo = false;
-            }
-          },
-          error => {
-            this.loadInIframe = false;
-            this.loadInVideo = false;
-            this.showVideoLoader = false;
-            // showing video url in case of error
-          }
-      );
-    }
   }
 
   /**

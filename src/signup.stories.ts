@@ -8,24 +8,11 @@ import {withA11y} from '@storybook/addon-a11y';
 import {SellerSignup} from 'oc-ng-common-service';
 import {action} from '@storybook/addon-actions';
 import {NgbModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {Router} from '@angular/router';
-
-/** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
-class RouterStub {
-  constructor() {
-  }
-
-  navigateByUrl(url: string) {
-
-  }
-}
+import {RouterTestingModule} from '@angular/router/testing';
 
 const modules = {
-  imports: [OcCommonLibModule, NgbModule],
-  providers: [DialogService, NgbModal, {
-    provide: Router,
-    useClass: RouterStub,
-  }]
+  imports: [OcCommonLibModule, NgbModule, RouterTestingModule],
+  providers: [DialogService, NgbModal]
 };
 
 const signupEmpty = new SellerSignup();

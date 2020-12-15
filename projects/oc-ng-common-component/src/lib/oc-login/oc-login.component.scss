@@ -27,3 +27,17 @@
 .company-logo {
   margin-bottom: 30px;
 }
+
+.error-container {
+  margin: 12px 0;
+  padding: 15px 10px 15px 9px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.resend-link {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}

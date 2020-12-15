@@ -1,185 +1,119 @@
 <form [formGroup]="customForm" *ngIf="customForm">
   <ng-container *ngFor="let formElement of formJsonData?.fields; trackBy:trackByFieldId">
-    <div [ngSwitch]="formElement?.type">
-      <div *ngSwitchCase="'richText'" class="mt-2 mb-2">
-        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-rich-text-editor  formControlName="{{formElement?.id}}"></oc-rich-text-editor>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div class="mt-2 mb-2" *ngSwitchCase="'text'">
-        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-input  formControlName="{{formElement?.id}}"
-                   [placeholder]="formElement?.placeholder"
-        ></oc-input>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div class="mt-2 mb-2" *ngSwitchCase="'longText'">
-        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-textarea  formControlName="{{formElement?.id}}"
-                      [placeholder]="formElement?.placeholder"
-        ></oc-textarea>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div class="mt-2 mb-2" *ngSwitchCase="'dropdownList'">
-        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-select formControlName="{{formElement?.id}}"
-                   [selectValArr]="formElement?.options"></oc-select>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div *ngSwitchCase="'tags'" class="mt-2 mb-2">
-        <oc-tags
-                placeHolderInputName="Choose your tags"
-                formControlName="{{formElement?.id}}"
-                [description]="formElement?.description"
-                [availableTags]="formElement?.options ? formElement?.options : ['']"
-                [maxTagsCount]="formElement?.attributes?.maxCount"
-                [minTagsCount]="formElement?.attributes?.minCount"
-                [required]="formElement?.attributes?.required"
-                [title]="formElement?.label"></oc-tags>
-      </div>
-      <div *ngSwitchCase="'multiFile'" class="mt-2 mb-2">
-        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-file-upload
-                formControlName="{{formElement?.id}}"
-                isMultiFile="true"
-                fileType="'multiFile'"
-                uploadIconUrl="https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png"
-                [mockUploadingFile]="mockUploadingFile" >
-        </oc-file-upload>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div *ngSwitchCase="'multiImage'" class="mt-2 mb-2">
-        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-file-upload
-                formControlName="{{formElement?.id}}"
-                isMultiFile="true"
-                fileType="'multiImage'"
-                [uploadIconUrl]="'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png'"
-                [mockUploadingFile]="mockUploadingFile">
-        </oc-file-upload>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div class="mt-2 mb-2" *ngSwitchCase="'number'">
-        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-number  formControlName="{{formElement?.id}}"
+    <div class="mt-2 mb-2 d-flex flex-column" [ngClass]="labelPosition === 'right' ? 'flex-md-row-reverse'
+         : labelPosition === 'left' ? 'flex-md-row' : ''">
+      <oc-tooltip-label [text]="formElement?.label" class="mb-1" [required]="formElement?.attributes?.required"
+                [ngClass]="labelPosition === 'left' ? 'form-label mr-2' : labelPosition === 'right' ? 'form-label ml-2' : ''"
+                [description]="formElement?.description ? formElement?.description : ''"
+                >
+      </oc-tooltip-label>
+      <div class="w-100">
+        <div [ngSwitch]="formElement?.type">
+          <oc-rich-text-editor *ngSwitchCase="'richText'"  formControlName="{{formElement?.id}}"></oc-rich-text-editor>
+          <oc-input *ngSwitchCase="'text'"  formControlName="{{formElement?.id}}"
                     [placeholder]="formElement?.placeholder"
-        ></oc-number>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div class="mt-2 mb-2" *ngSwitchCase="'checkbox'">
-        <oc-checkbox  formControlName="{{formElement?.id}}"
-                      [labelText]="formElement?.label"
-                      [requiredIndicator]="formElement?.attributes.required"
-        ></oc-checkbox>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div class="mt-2 mb-2" *ngSwitchCase="'emailAddress'">
-        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-input  formControlName="{{formElement?.id}}" inputType="email"
-                   [placeholder]="formElement?.placeholder"
-        ></oc-input>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div class="mt-2 mb-2" *ngSwitchCase="'websiteUrl'">
-        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-input  formControlName="{{formElement?.id}}" inputType="url"
-                   [placeholder]="formElement?.placeholder"
-        ></oc-input>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div class="mt-2 mb-2" *ngSwitchCase="'color'">
-        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-color  formControlName="{{formElement?.id}}"
-                   [placeholder]="formElement?.placeholder"
-        ></oc-color>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div *ngSwitchCase="'booleanTags'" class="mt-2 mb-2">
-        <oc-tags
-                placeHolderInputName="Choose your tags"
-                formControlName="{{formElement?.id}}"
-                [description]="formElement?.description"
-                [availableTags]="formElement?.options ? formElement?.options : ['']"
-                [maxTagsCount]="formElement?.attributes?.maxCount"
-                [minTagsCount]="formElement?.attributes?.minCount"
-                [required]="formElement?.attributes?.required"
-                [title]="formElement?.label"
-                tagsType="boolean"></oc-tags>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div *ngSwitchCase="'numberTags'" class="mt-2 mb-2">
-        <oc-tags
-                placeHolderInputName="Choose your tags"
-                formControlName="{{formElement?.id}}"
-                [description]="formElement?.description"
-                [availableTags]="formElement?.options ? formElement?.options : ['']"
-                [maxTagsCount]="formElement?.attributes?.maxCount"
-                [minTagsCount]="formElement?.attributes?.minCount"
-                [required]="formElement?.attributes?.required"
-                [title]="formElement?.label"
-                tagsType="number"></oc-tags>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div *ngSwitchCase="'videoUrl'" class="mt-2 mb-2">
-        <oc-label [text]="formElement?.label" class="mb-1" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-video-url
-                [formControlName]="formElement?.id"></oc-video-url>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div *ngSwitchCase="'date'" class="mt-2 mb-2">
-        <oc-label [text]="formElement?.label" class="mb-1" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-datetime-picker
-                formControlName="{{formElement?.id}}"
-                [type]="formElement?.type"
-                [settings]="{format: 'dd/MM/yyyy'}"></oc-datetime-picker>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div *ngSwitchCase="'datetime'" class="mt-2 mb-2">
-        <oc-label [text]="formElement?.label" class="mb-1" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-datetime-picker
-                formControlName="{{formElement?.id}}"
-                [type]="formElement?.type"></oc-datetime-picker>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div class="mt-2 mb-2" *ngSwitchCase="'multiselectList'">
-        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-multi-select-list  formControlName="{{formElement?.id}}"
-                               [availableItemsList]="formElement?.options ? formElement?.options : ['']"
-                               [label]="formElement?.label"
-        ></oc-multi-select-list>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
-      </div>
-      <div class="mt-2 mb-2" *ngSwitchCase="'dynamicFieldArray'">
-        <oc-label [text]="formElement?.label" [class]="'mb-1'" [required]="formElement?.attributes?.required">
-        </oc-label>
-        <oc-dynamic-field-array  formControlName="{{formElement?.id}}"
-                                 [fieldDefinitionData]="formElement"
-        ></oc-dynamic-field-array>
-        <oc-error [control]="customForm.get(formElement?.id)"></oc-error>
+          ></oc-input>
+          <oc-textarea *ngSwitchCase="'longText'"  formControlName="{{formElement?.id}}"
+                       [placeholder]="formElement?.placeholder"
+          ></oc-textarea>
+          <oc-select *ngSwitchCase="'dropdownList'" formControlName="{{formElement?.id}}"
+                     [selectValArr]="formElement?.options"></oc-select>
+          <oc-tags *ngSwitchCase="'tags'"
+                   placeHolderInputName="Choose your tags"
+                   formControlName="{{formElement?.id}}"
+                   [availableTags]="formElement?.options ? formElement?.options : ['']"
+                   [maxTagsCount]="formElement?.attributes?.maxCount"
+                   [minTagsCount]="formElement?.attributes?.minCount"
+                   [required]="formElement?.attributes?.required"
+                   [title]="formElement?.label"></oc-tags>
+          <oc-file-upload *ngSwitchCase="'multiFile'"
+                          formControlName="{{formElement?.id}}"
+                          isMultiFile="true"
+                          fileType="'multiFile'"
+                          uploadIconUrl="https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png"
+                          [mockUploadingFile]="mockUploadingFile" >
+          </oc-file-upload>
+          <oc-file-upload *ngSwitchCase="'multiImage'"
+                          formControlName="{{formElement?.id}}"
+                          isMultiFile="true"
+                          fileType="'multiImage'"
+                          [uploadIconUrl]="'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png'"
+                          [mockUploadingFile]="mockUploadingFile">
+          </oc-file-upload>
+          <oc-number *ngSwitchCase="'number'"
+                     formControlName="{{formElement?.id}}"
+                     [placeholder]="formElement?.placeholder"
+          ></oc-number>
+          <oc-checkbox *ngSwitchCase="'checkbox'"
+                       formControlName="{{formElement?.id}}"
+                       [labelText]="formElement?.label"
+                       [requiredIndicator]="formElement?.attributes.required"
+          ></oc-checkbox>
+          <oc-input *ngSwitchCase="'emailAddress'"
+                    formControlName="{{formElement?.id}}"
+                    inputType="email"
+                    [placeholder]="formElement?.placeholder"
+          ></oc-input>
+          <oc-input *ngSwitchCase="'websiteUrl'"
+                    formControlName="{{formElement?.id}}" inputType="url"
+                    [placeholder]="formElement?.placeholder"
+          ></oc-input>
+          <oc-color  *ngSwitchCase="'color'"
+                     formControlName="{{formElement?.id}}"
+                     [placeholder]="formElement?.placeholder"
+          ></oc-color>
+          <oc-tags *ngSwitchCase="'booleanTags'"
+                   placeHolderInputName="Choose your tags"
+                   formControlName="{{formElement?.id}}"
+                   [availableTags]="formElement?.options ? formElement?.options : ['']"
+                   [maxTagsCount]="formElement?.attributes?.maxCount"
+                   [minTagsCount]="formElement?.attributes?.minCount"
+                   [required]="formElement?.attributes?.required"
+                   [title]="formElement?.label"
+                   tagsType="boolean"></oc-tags>
+          <oc-tags *ngSwitchCase="'numberTags'"
+                   placeHolderInputName="Choose your tags"
+                   formControlName="{{formElement?.id}}"
+                   [availableTags]="formElement?.options ? formElement?.options : ['']"
+                   [maxTagsCount]="formElement?.attributes?.maxCount"
+                   [minTagsCount]="formElement?.attributes?.minCount"
+                   [required]="formElement?.attributes?.required"
+                   [title]="formElement?.label"
+                   tagsType="number"></oc-tags>
+          <oc-video-url *ngSwitchCase="'videoUrl'"
+                        [formControlName]="formElement?.id"></oc-video-url>
+          <oc-datetime-picker *ngSwitchCase="'date'"
+                              formControlName="{{formElement?.id}}"
+                              [type]="formElement?.type"
+                              [settings]="{format: 'dd/MM/yyyy'}"></oc-datetime-picker>
+          <oc-datetime-picker *ngSwitchCase="'datetime'"
+                              formControlName="{{formElement?.id}}"
+                              [type]="formElement?.type"></oc-datetime-picker>
+          <oc-multi-select-list  *ngSwitchCase="'multiselectList'"
+                                 formControlName="{{formElement?.id}}"
+                                 [availableItemsList]="formElement?.options ? formElement?.options : ['']"
+                                 [label]="formElement?.label"
+          ></oc-multi-select-list>
+          <oc-dynamic-field-array  *ngSwitchCase="'dynamicFieldArray'"
+                                   formControlName="{{formElement?.id}}"
+                                   [fieldDefinitionData]="formElement"
+          ></oc-dynamic-field-array>
+        </div>
+        <oc-error *ngIf="formElement?.type !== 'tags'"
+                  [field]="formElement?.id"
+                  [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
     </div>
   </ng-container>
-  <section class="mt-3 mb-2 row mr-0 ml-0" *ngIf="showButton">
+  <div class="mt-3 mb-2 row mr-0 ml-0" *ngIf="showButton" [ngClass]="buttonPosition === 'center' ? 'justify-content-center'
+           : buttonPosition === 'left' ? 'justify-content-start' : 'justify-content-start flex-row-reverse'">
     <oc-button (click)="sendData()"
                [disabled]="this.customForm.invalid || this.anotherInvalidResult"
                [text]="successButtonText"
-               type="primary" [class]="'mr-1'"></oc-button>
+               type="primary" [class]="buttonPosition === 'right' ? 'ml-1' : 'mr-1'"
+               id="successBtn"></oc-button>
     <oc-button (click)="cancelForm()"
                text="Cancel"
                type="secondary"></oc-button>
-  </section>
+  </div>
 </form>
