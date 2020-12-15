@@ -58,7 +58,7 @@ describe('OcAppGalleryComponent', () => {
     submittedDate: new Date(),
     created: new Date().getMonth() - 2,
     status: {
-      value: '',
+      value: 'approved',
       lastUpdated: 1.1,
       modifiedBy: '',
       reason: ''
