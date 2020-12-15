@@ -17,7 +17,6 @@ chartPoint.src = '../../../assets/img/chart_point.svg';
   selector: 'oc-chart',
   templateUrl: './oc-chart.component.html',
   styleUrls: ['./oc-chart.component.scss']
-  // encapsulation: ViewEncapsulation.ShadowDom
 })
 export class OcChartComponent implements AfterViewInit, OnChanges {
 
@@ -45,10 +44,11 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   /** Function for updating chart data, when user choice a new options **/
   @Input() updateChartDataFunc = (period: ChartStatisticPeriodModel, fields: ChartStatisticFiledModel): void => {};
 
-  private chart: any;
-
   dropdownTypes: DropdownModel<ChartStatisticFiledModel>[];
   dropdownSelectedType: DropdownModel<ChartStatisticFiledModel>;
+
+  private chart: any;
+
 
   constructor() {
   }
@@ -82,7 +82,6 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
         datasets: [{
           label: '',
           data: this.chartData?.data?.labelsY ? this.chartData.data.labelsY : [],
-          // backgroundColor: 'rgba(240, 247, 255, 0.25)',
           backgroundColor: this.isBackgroundColor ? gradientFill : 'transparent',
           borderColor: 'rgba(83, 124, 253, 1)',
           lineTension: 0,
@@ -95,17 +94,6 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
         legend: {
           display: false
         },
-        // hover: {
-        //   onHover: (e, data) => {
-        //     if (this.tooltip._active && this.tooltip._active.length > 0) {
-        //       //console.log("on hover:" + (<any>this).tooltip._active.length);
-        //       const chartPointArray = new Array(this.tooltip._active[0]._index);
-        //       chartPointArray.push(chartPoint);
-        //       this.data.datasets[0].pointStyle = chartPointArray;
-        //       this.update();
-        //     }
-        //   }
-        // },
         tooltips: {
           enabled: true,
           intersect: false,
@@ -129,9 +117,6 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
               return '  ' + tooltipItem[0].value + '  ';
             },
             label: (tooltipItem, data) => {
-              // data.datasets[0].pointStyle = chartPoint;
-              // this.chart.update();
-              // const label = data.datasets[tooltipItem.datasetIndex].label || '';
               return tooltipItem.label;
             }
           }
@@ -154,14 +139,11 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
             position: 'bottom',
             gridLines: {
               display: false,
-              // drawBorder: true,
             },
             ticks: {
               autoSkip: false,
               padding: 24,
               fontColor: '#727272',
-              // maxRotation: 30,
-              // minRotation: 30,
               callback(value: any, index, values) {
                 if (value.length === 8) {
                   return value.substring(0, 3);
@@ -211,22 +193,22 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   private updateChartData(): void {
     let period = null;
     let field = null;
-    if(this.chartData?.periods) {
+    if (this.chartData?.periods) {
       period = this.chartData.periods.filter(period => period && period.active)[0];
     }
-    if(this.chartData?.fields) {
+    if (this.chartData?.fields) {
       field = this.chartData.fields.filter(field => field && field.active)[0];
     }
     this.updateChartDataFunc(period, field);
   }
 
   private setNewActiveParameter(parameters: ChartStatisticParameterModel[], newActiveElementId: string): void  {
-    if(parameters) {
+    if (parameters) {
       parameters.forEach(parameter => {
-        if(parameter) {
+        if (parameter) {
           parameter.active = parameter.id === newActiveElementId;
         }
-      })
+      });
     }
   }
 
