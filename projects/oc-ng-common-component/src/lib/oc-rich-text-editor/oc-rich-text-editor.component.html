@@ -1,6 +1,5 @@
 <div class="w-100" style="max-height: 300px;">
-  <editor [apiKey]="tinyEditorApiKey"
-          [init]="tinyOptions"
+  <editor [init]="tinyOptions"
           [(ngModel)]="editorContent"
           (ngModelChange)="onModelChange()"
           class="custom-editor"></editor>
