@@ -5,23 +5,23 @@
   <thead>
   <tr>
     <th class="placeholder"></th>
-    <th class="name">App Name
-      <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down"
-           *ngIf="sortIcon" (click)="sortAppsBy('name')">
-      <fa-icon icon="angle-down" class="cursor-pointer angle"
-               *ngIf="!sortIcon" (click)="sortAppsBy('name')"></fa-icon>
+    <th class="name cursor-pointer" (click)="sortAppsBy('name')">App Name
+      <img [src]="sortIcon" alt="icon" class="icon-down"
+           *ngIf="sortIcon" >
+      <fa-icon icon="angle-down" class="angle"
+               *ngIf="!sortIcon"></fa-icon>
     </th>
     <th class="summary">Summary</th>
-    <th class="data">Data Added
-      <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down"
-           *ngIf="sortIcon" (click)="sortAppsBy('date')">
-      <fa-icon icon="angle-down" class="cursor-pointer angle"
-               *ngIf="!sortIcon" (click)="sortAppsBy('date')"></fa-icon>
+    <th class="data cursor-pointer" (click)="sortAppsBy('date')">Data Added
+      <img [src]="sortIcon" alt="icon" class="icon-down"
+           *ngIf="sortIcon">
+      <fa-icon icon="angle-down" class="angle"
+               *ngIf="!sortIcon"></fa-icon>
     </th>
-    <th class="status">Status
-      <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down"
-           *ngIf="sortIcon" (click)="sortAppsBy('status')">
-      <fa-icon icon="angle-down" class="cursor-pointer angle"
+    <th class="status cursor-pointer" (click)="sortAppsBy('status')">Status
+      <img [src]="sortIcon" alt="icon" class="icon-down"
+           *ngIf="sortIcon" >
+      <fa-icon icon="angle-down" class="angle"
                *ngIf="!sortIcon" (click)="sortAppsBy('status')"></fa-icon>
     </th>
     <th class="action"></th>
