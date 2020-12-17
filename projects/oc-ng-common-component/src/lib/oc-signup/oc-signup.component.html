@@ -38,10 +38,10 @@
             </div>
 
             <div class="form-group">
-                <oc-checkbox [(isChecked)]="signupModel.isChecked" ></oc-checkbox>
-                <oc-label [text]="getValue(' I agree to ')" class="label-s"></oc-label>
+                <oc-checkbox [(isChecked)]="signupModel.isChecked" [for]="getValue('iagree')" [id]="getValue('iagree')"></oc-checkbox>
+                <oc-label [text]="getValue(' I agree to ')" class="label-s" [for]="getValue('iagree')"></oc-label>
                 <a href={{termsUrl}} target="_blank" class="font-s"><b> Terms of Service </b></a>
-                <oc-label [text]="getValue(' and ')" class="label-s"></oc-label>
+                <oc-label [text]="getValue(' and ')" class="label-s" [for]="getValue('iagree')"></oc-label>
                 <a href={{policyUrl}} target="_blank" class="font-s"><b> Data Processing Policy</b></a>
             </div>
             <oc-button [text]="getValue('Sign Up')" [disabled]="!signupModel.isChecked || !signupform.valid || process"
