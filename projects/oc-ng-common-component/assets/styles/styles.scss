@@ -486,15 +486,6 @@ a.link {
       opacity: 0;
     }
   }
-  .tox {
-    .tox-edit-area {
-      &:focus-within {
-        .tox-tinymce {
-          border-color: $primary;
-        }
-      }
-    }
-  }
 }
 .editor-border-focus {
   .tox-tinymce {
