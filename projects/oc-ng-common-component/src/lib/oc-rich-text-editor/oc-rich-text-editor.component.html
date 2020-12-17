@@ -2,6 +2,10 @@
   <editor [apiKey]="tinyEditorApiKey"
           [init]="tinyOptions"
           [(ngModel)]="editorContent"
+          [class.editor-border-focus]="editorOnFocus"
           (ngModelChange)="onModelChange()"
+          (onBlur)="onTouched()"
+          (onFocusIn)="changeEditorFocus(true)"
+          (onFocusOut)="changeEditorFocus(false)"
           class="custom-editor"></editor>
 </div>
