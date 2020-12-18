@@ -84,6 +84,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button.component';
 import {EmbedVideo} from 'ngx-embed-video';
 import {OcTooltipLabelComponent} from './oc-tooltip-label/oc-tooltip-label.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -177,6 +178,7 @@ import {OcTooltipLabelComponent} from './oc-tooltip-label/oc-tooltip-label.compo
     EditorModule,
     RouterModule,
     InfiniteScrollModule,
+    CarouselModule,
     EmbedVideo.forRoot()
   ],
   exports: [OcCommonLibComponent,
