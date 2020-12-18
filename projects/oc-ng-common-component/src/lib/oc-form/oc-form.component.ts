@@ -88,6 +88,7 @@ export class OcFormComponent implements OnInit, OnDestroy {
           case 'text':
           case 'richText':
           case 'longText':
+          case 'password':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
               inputTemplate?.defaultValue : '');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
@@ -104,11 +105,10 @@ export class OcFormComponent implements OnInit, OnDestroy {
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
             break;
           case 'multiFile':
-            group[inputTemplate?.id] = new FormControl([]);
-            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
-            break;
+          case 'singleFile':
           case 'multiImage':
-            group[inputTemplate?.id] = new FormControl([]);
+          case 'singleImage':
+            group[inputTemplate?.id] = new FormControl(inputTemplate.defaultValue);
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
             break;
           case 'checkbox':
@@ -123,12 +123,12 @@ export class OcFormComponent implements OnInit, OnDestroy {
             break;
           case 'emailAddress':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
-              inputTemplate?.defaultValue : 'myemail@example.com');
+              inputTemplate?.defaultValue : inputTemplate?.placeholder ? '' : 'myemail@example.com');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isEmail: true});
             break;
           case 'websiteUrl':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
-              inputTemplate?.defaultValue : 'https://my.website.com');
+              inputTemplate?.defaultValue : inputTemplate?.placeholder ? '' : 'https://my.website.com');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isUrl: true});
             break;
           case 'color':
@@ -377,15 +377,6 @@ export class OcFormComponent implements OnInit, OnDestroy {
     this.cancelSubmit.emit(true);
   }
 
-  mockUploadingFile(): FileDetails {
-    const currentDate = new Date().getDate();
-    const fileDetails = new FileDetails();
-    fileDetails.uploadDate = currentDate;
-    fileDetails.fileId = `file_id_${currentDate}`;
-    fileDetails.fileUploadProgress = 100;
-    fileDetails.fileUrl = 'https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2015/04/irkutsk_and_lake_baikal/15342550-1-eng-GB/Irkutsk_and_Lake_Baikal.jpg';
-    return fileDetails;
-  }
   /** Listening to value changes of the form if buttons not applied */
   subscribeToForm(): void {
     this.formSubscription.add(this.customForm.valueChanges.subscribe(() => {

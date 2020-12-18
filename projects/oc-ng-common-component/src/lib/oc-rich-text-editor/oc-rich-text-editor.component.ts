@@ -18,10 +18,6 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
    */
   @Input() placeholder: string = 'Write Your Content Here!';
   /**
-   * Developer API key for TinyMCE rich text editor
-   */
-  @Input() tinyEditorApiKey: string = '979365t8xjz78m2q0fv4bwm2ezh77txvqtoezs9yupaev41t';
-  /**
    * Setter for value changing
    */
   @Input()
@@ -31,6 +27,8 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
   }
   // options for Tiny Editor
   public tinyOptions = {
+    base_url: '/tinymce',
+    suffix: '.min',
     menubar: false,
     toolbar: 'bold italic underline strikethrough subscript superscript fontselect fontsizeselect |' +
       'alignleft aligncenter alignright alignjustify | numlist bullist | outdent indent | link unlink | undo redo',

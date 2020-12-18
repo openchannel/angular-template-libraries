@@ -1,4 +1,4 @@
-<table class="table"
+<table class="table mb-0"
        [infiniteScrollThrottle]="50"
        (scrolled)="onScrollDown()"
        infiniteScroll>
@@ -12,7 +12,7 @@
                *ngIf="!sortIcon" (click)="sortAppsBy('name')"></fa-icon>
     </th>
     <th class="summary">Summary</th>
-    <th class="data">Data Added
+    <th class="data">Created Date
       <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down"
            *ngIf="sortIcon" (click)="sortAppsBy('date')">
       <fa-icon icon="angle-down" class="cursor-pointer angle"
