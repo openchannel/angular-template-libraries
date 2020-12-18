@@ -165,11 +165,8 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     // this.fileUpload.emit(files);
     const formData: FormData = new FormData();
     formData.append('file', file, this.fileName);
-    console.log(file);
-    console.log(formData);
     this.uploadFileReq = this.uploadFileService.uploadToOpenChannel(formData, this.isFileTypePrivate(), this.hash)
       .subscribe((event: any) => {
-          console.log(event);
           if (event.type === HttpEventType.UploadProgress) {
             lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
           } else if (event.type === HttpEventType.ResponseHeader) {
