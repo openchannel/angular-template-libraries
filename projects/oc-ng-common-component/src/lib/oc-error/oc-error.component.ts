@@ -107,5 +107,4 @@ export class OcErrorComponent implements OnInit {
   private getMessage(type: string, params: any) {
     return this.errorMessages[type](params);
   }
-
 }

@@ -83,6 +83,7 @@ import { OcResendActivationComponent } from './oc-resend-activation/oc-resend-ac
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button.component';
 import {EmbedVideo} from 'ngx-embed-video';
+import { OcMenuUserGridComponent } from './oc-menu-user-grid/oc-menu-user-grid.component';
 import {OcTooltipLabelComponent} from './oc-tooltip-label/oc-tooltip-label.component';
 import {PasswordValidatorDirective} from './validators/password-validator.directive';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -121,6 +122,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     OcAppGetStartedComponent,
     OcAppGalleryComponent,
     OcAppListGridComponent,
+    OcMenuUserGridComponent,
     OcRecommendedAppsComponent,
     OcOverallRatingComponent,
     OcAppCardComponent,
@@ -251,7 +253,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     OcDynamicFieldArrayComponent,
     OcAppDescriptionComponent,
     OcToastsComponent,
-    OcResendActivationComponent
+    OcResendActivationComponent,
+    OcMenuUserGridComponent,
   ],
   providers: [
     NgbActiveModal,

@@ -103,6 +103,9 @@
                                    formControlName="{{formElement?.id}}"
                                    [fieldDefinitionData]="formElement"
           ></oc-dynamic-field-array>
+          <oc-input *ngSwitchCase="'password'"  formControlName="{{formElement?.id}}"
+                    [placeholder]="formElement?.placeholder" inputType="password"
+          ></oc-input>
         </div>
         <oc-error *ngIf="formElement?.type !== 'tags'"
                   [field]="formElement?.id"
