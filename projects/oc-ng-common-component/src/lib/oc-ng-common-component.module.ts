@@ -85,6 +85,7 @@ import {OcDropdownButtonComponent} from './oc-dropdown-button/oc-dropdown-button
 import {EmbedVideo} from 'ngx-embed-video';
 import {OcTooltipLabelComponent} from './oc-tooltip-label/oc-tooltip-label.component';
 import {PasswordValidatorDirective} from './validators/password-validator.directive';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -179,6 +180,7 @@ import {PasswordValidatorDirective} from './validators/password-validator.direct
     EditorModule,
     RouterModule,
     InfiniteScrollModule,
+    CarouselModule,
     EmbedVideo.forRoot()
   ],
   exports: [OcCommonLibComponent,

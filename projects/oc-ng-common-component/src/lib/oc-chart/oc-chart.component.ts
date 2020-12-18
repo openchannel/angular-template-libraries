@@ -24,8 +24,6 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   @ViewChild('myCanvas')
   myCanvas: ElementRef<HTMLCanvasElement>;
 
-  public context: CanvasRenderingContext2D;
-
   /** Sum of data or other total count that can be shown */
   @Input() count: number;
   /** Title text of the data count */
@@ -38,17 +36,18 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   @Input() enablePoints: boolean = false;
   // change in value of this invokes ngOnChanges
   @Input() random;
-  /** Min width for the dropdown **/
+  /** Min width for the dropdown */
   @Input() minDropdownWidth: string;
-  /** Main model for building chart with buttons and dropdown **/
+  /** Main model for building chart with buttons and dropdown */
   @Input() chartData: ChartStatisticModel;
-  /** Function for updating chart data, when user choice a new options **/
-  @Input() updateChartDataFunc = (period: ChartStatisticPeriodModel, fields: ChartStatisticFiledModel): void => {};
-
-  private chart: any;
 
   dropdownTypes: DropdownModel<ChartStatisticFiledModel>[];
   dropdownSelectedType: DropdownModel<ChartStatisticFiledModel>;
+  context: CanvasRenderingContext2D;
+  private chart: any;
+
+  /** Function for updating chart data, when user choice a new options */
+  @Input() updateChartDataFunc = (period: ChartStatisticPeriodModel, fields: ChartStatisticFiledModel): void => {};
 
   constructor() {
   }
@@ -82,7 +81,6 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
         datasets: [{
           label: '',
           data: this.chartData?.data?.labelsY ? this.chartData.data.labelsY : [],
-          // backgroundColor: 'rgba(240, 247, 255, 0.25)',
           backgroundColor: this.isBackgroundColor ? gradientFill : 'transparent',
           borderColor: 'rgba(83, 124, 253, 1)',
           lineTension: 0,
@@ -95,17 +93,6 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
         legend: {
           display: false
         },
-        // hover: {
-        //   onHover: (e, data) => {
-        //     if (this.tooltip._active && this.tooltip._active.length > 0) {
-        //       //console.log("on hover:" + (<any>this).tooltip._active.length);
-        //       const chartPointArray = new Array(this.tooltip._active[0]._index);
-        //       chartPointArray.push(chartPoint);
-        //       this.data.datasets[0].pointStyle = chartPointArray;
-        //       this.update();
-        //     }
-        //   }
-        // },
         tooltips: {
           enabled: true,
           intersect: false,
@@ -129,9 +116,6 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
               return '  ' + tooltipItem[0].value + '  ';
             },
             label: (tooltipItem, data) => {
-              // data.datasets[0].pointStyle = chartPoint;
-              // this.chart.update();
-              // const label = data.datasets[tooltipItem.datasetIndex].label || '';
               return tooltipItem.label;
             }
           }
@@ -154,14 +138,11 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
             position: 'bottom',
             gridLines: {
               display: false,
-              // drawBorder: true,
             },
             ticks: {
               autoSkip: false,
               padding: 24,
               fontColor: '#727272',
-              // maxRotation: 30,
-              // minRotation: 30,
               callback(value: any, index, values) {
                 if (value.length === 8) {
                   return value.substring(0, 3);
@@ -211,22 +192,22 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   private updateChartData(): void {
     let period = null;
     let field = null;
-    if(this.chartData?.periods) {
+    if (this.chartData?.periods) {
       period = this.chartData.periods.filter(period => period && period.active)[0];
     }
-    if(this.chartData?.fields) {
+    if (this.chartData?.fields) {
       field = this.chartData.fields.filter(field => field && field.active)[0];
     }
     this.updateChartDataFunc(period, field);
   }
 
   private setNewActiveParameter(parameters: ChartStatisticParameterModel[], newActiveElementId: string): void  {
-    if(parameters) {
+    if (parameters) {
       parameters.forEach(parameter => {
-        if(parameter) {
+        if (parameter) {
           parameter.active = parameter.id === newActiveElementId;
         }
-      })
+      });
     }
   }
 

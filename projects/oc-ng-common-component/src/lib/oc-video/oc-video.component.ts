@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {EmbedVideoService} from 'ngx-embed-video';
 import {SafeHtml} from '@angular/platform-browser';
 
