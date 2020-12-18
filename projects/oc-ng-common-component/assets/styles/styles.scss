@@ -1,5 +1,7 @@
 @import "./theme.scss";
 @import "~bootstrap/scss/bootstrap";
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
 @font-face {
   font-family: "Rubik-Black";
@@ -437,6 +439,26 @@ a.link {
 .error-container {
   background-color: $error-bg;
   color: $error;
+}
+
+oc-dropbox {
+  & .dropdown-menu {
+    max-height: 180px;
+    overflow-y: scroll;
+  }
+
+  & .dropdown-menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  & .dropdown-menu .dropdown-item {
+    padding: 0;
+  }
+
+  & .dropdown-item.active, .dropdown-item:active {
+    background: none;
+    color: $gray-700;
+  }
 }
 
 .modal-button {
