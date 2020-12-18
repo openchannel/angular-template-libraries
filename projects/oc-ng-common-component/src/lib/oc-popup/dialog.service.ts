@@ -57,7 +57,7 @@ export class DialogService {
     modalRef.componentInstance.cancelButtonText = cancelButtonText;
     modalRef.componentInstance.confirmButtonText = confirmButtonText;
     modalRef.componentInstance.confirmCallback = confirmCallback;
-    modalRef.componentInstance.closeIconUrl = "assets/img/close-icon.svg";
+    modalRef.componentInstance.closeIconUrl = "assets/img/close-file_upload.svg";
     modalRef.componentInstance.type = type;
 
     if (cancelCallback) {
@@ -82,7 +82,7 @@ export class DialogService {
     modalRef.componentInstance.title = title;
     modalRef.componentInstance.text = text;
     modalRef.componentInstance.closeButtonText = closeButtonText;
-    modalRef.componentInstance.closeIconUrl = "assets/img/close-icon.svg";
+    modalRef.componentInstance.closeIconUrl = "assets/img/close-file_upload.svg";
     if (cancelCallback) {
       modalRef.componentInstance.cancelCallback = cancelCallback;
     } else {
