@@ -29,3 +29,14 @@ export const DefaultVideoUrl = VideoUrlComponent.bind({});
 DefaultVideoUrl.args = {
   value: 'https://www.youtube.com/watch?v=DGQwd1_dpuc',
 };
+
+export const UrlWithoutPreview = VideoUrlComponent.bind({});
+
+UrlWithoutPreview.args = {
+  value: 'https://coub.com/view/1po8m3',
+};
+
+export const EmptyField = VideoUrlComponent.bind({});
+
+EmptyField.args = {
+};
