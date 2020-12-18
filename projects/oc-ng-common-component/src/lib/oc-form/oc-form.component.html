@@ -104,7 +104,9 @@
                                    [fieldDefinitionData]="formElement"
           ></oc-dynamic-field-array>
         </div>
-        <oc-error *ngIf="formElement?.type !== 'tags'" [control]="customForm.get(formElement?.id)"></oc-error>
+        <oc-error *ngIf="formElement?.type !== 'tags'"
+                  [field]="formElement?.id"
+                  [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
     </div>
   </ng-container>
