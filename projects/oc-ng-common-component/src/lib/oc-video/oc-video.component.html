@@ -7,8 +7,5 @@
     </div>
     <div class="col-12 d-flex justify-content-center flex-column align-items-center" *ngIf="!loadInIframe">
         <video width="300" *ngIf="loadInVideo" [src]="url" controls></video>
-        <div class="video-loader-div mb-2" *ngIf="!loadInVideo">
-            No Preview Available.
-        </div>
     </div>
 </div>
