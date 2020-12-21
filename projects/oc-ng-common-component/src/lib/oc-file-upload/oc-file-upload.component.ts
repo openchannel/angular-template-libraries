@@ -134,7 +134,9 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     this.resetSelection();
     this.destroy$.next();
     this.destroy$.complete();
-    this.uploadFileReq.unsubscribe();
+    if (this.uploadFileReq) {
+      this.uploadFileReq.unsubscribe();
+    }
   }
 
   getAcceptTypes() {
