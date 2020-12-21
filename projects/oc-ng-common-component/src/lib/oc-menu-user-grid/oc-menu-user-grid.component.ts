@@ -47,11 +47,13 @@ export class OcMenuUserGridComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  action(actionType: UserGridOptionTypeModel, userId: string, userAccountId: string): void {
+  action(actionType: UserGridOptionTypeModel, userData: UserAccountGridModel): void {
     const action: UserGridActionModel = {
       action: actionType,
-      userId,
-      userAccountId
+      userId: userData.userId,
+      userAccountId: userData.userAccountId,
+      inviteId: userData?.inviteId,
+      inviteToken: userData?.inviteToken
     };
     this.menuClicked.emit(action);
   }
