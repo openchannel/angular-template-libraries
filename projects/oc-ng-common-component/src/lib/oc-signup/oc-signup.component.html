@@ -32,7 +32,7 @@
                 <oc-label text="Password"></oc-label>
                 <oc-password #password=ngModel [(ngModel)]="signupModel.password"
                              placeholder="Password" class="mb-2" name="password"
-                             ngDefaultControl required="true"></oc-password>
+                             ngDefaultControl passwordValidator required="true"></oc-password>
                 <oc-error [control]="password" field="password"></oc-error>
             </div>
 
@@ -74,13 +74,13 @@
                 <img alt="dropdown-icon"
                      class="mb-3" [src]="forgotPasswordDoneUrl">
                 <h4>Done!</h4>
-                <oc-label text="An activation link has been sent to your inbox."></oc-label>
+                <oc-label text="An activation email has been sent to your inbox."></oc-label>
             </div>
             <div class="text-center">
                 <oc-button (click)="goToActivationPage()" [disabled]="false"
                            text="Activate account" type="primary" class="btn-block mt-5 mb-3">
                 </oc-button>
-                <oc-label text="Dont have an account yet?"></oc-label>
+                <oc-label text="Don't have an account yet?"></oc-label>
                 <a class="font-m font-med link" (click)="showSignupFeedbackPage = !showSignupFeedbackPage"> Sign Up</a>
             </div>
         </div>

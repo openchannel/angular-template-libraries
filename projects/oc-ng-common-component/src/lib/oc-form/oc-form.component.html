@@ -26,19 +26,24 @@
                    [minTagsCount]="formElement?.attributes?.minCount"
                    [required]="formElement?.attributes?.required"
                    [title]="formElement?.label"></oc-tags>
+          <oc-file-upload *ngSwitchCase="'singleFile'"
+                          formControlName="{{formElement?.id}}"
+                          isMultiFile="true"
+                          fileType="singleFile">
+          </oc-file-upload>
           <oc-file-upload *ngSwitchCase="'multiFile'"
                           formControlName="{{formElement?.id}}"
                           isMultiFile="true"
-                          fileType="'multiFile'"
-                          uploadIconUrl="https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png"
-                          [mockUploadingFile]="mockUploadingFile" >
+                          fileType="multiFile">
           </oc-file-upload>
           <oc-file-upload *ngSwitchCase="'multiImage'"
                           formControlName="{{formElement?.id}}"
                           isMultiFile="true"
-                          fileType="'multiImage'"
-                          [uploadIconUrl]="'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png'"
-                          [mockUploadingFile]="mockUploadingFile">
+                          fileType="multiImage">
+          </oc-file-upload>
+          <oc-file-upload *ngSwitchCase="'singleImage'"
+                          formControlName="{{formElement?.id}}"
+                          fileType="singleImage">
           </oc-file-upload>
           <oc-number *ngSwitchCase="'number'"
                      formControlName="{{formElement?.id}}"
@@ -98,6 +103,9 @@
                                    formControlName="{{formElement?.id}}"
                                    [fieldDefinitionData]="formElement"
           ></oc-dynamic-field-array>
+          <oc-input *ngSwitchCase="'password'"  formControlName="{{formElement?.id}}"
+                    [placeholder]="formElement?.placeholder" inputType="password"
+          ></oc-input>
         </div>
         <oc-error *ngIf="formElement?.type !== 'tags'"
                   [field]="formElement?.id"

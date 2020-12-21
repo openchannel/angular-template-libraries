@@ -71,30 +71,36 @@ storiesOf('File Uploader', module)
     moduleMetadata: modules,
     props: {
       fileUpload: action('fileUpload'),
-      fileType: OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_FILE
+      fileType: OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_FILE,
+      uploadIconUrl: 'assets/img/upload_icon.svg',
+      defaultFileIcon: 'assets/img/file_icon.svg'
     }
   })).add('Single Private image', () => ({
   component: OcFileUploadComponent,
   moduleMetadata: modules,
   props: {
     fileUpload: action('fileUpload'),
-    fileType: OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_IMAGE
+    fileType: OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_IMAGE,
+    uploadIconUrl: 'assets/img/upload_icon.svg',
+    defaultFileIcon: 'assets/img/file_icon.svg'
   }
 })).add('Single File With Data', () => ({
   component: OcFileUploadComponent,
   moduleMetadata: modules,
   props: {
-    files: [file2],
+    fileDetailArr: [file2],
     fileType: OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_FILE,
-    defaultFileIcon: 'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png'
+    uploadIconUrl: 'assets/img/upload_icon.svg',
+    defaultFileIcon: 'assets/img/file_icon.svg'
   }
 })).add('Multi Public Image With Data', () => ({
   component: OcFileUploadComponent,
   moduleMetadata: modules,
   props: {
     isMultiFile: true,
-    files: [file1, file2, file3, file4],
+    fileDetailArr: [file1, file2, file3, file4],
     fileType: OCComponentConstants.FILE_TYPES.MULTI_PUBLIC_IMAGE,
-    defaultFileIcon: 'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png'
+    uploadIconUrl: 'assets/img/upload_icon.svg',
+    defaultFileIcon: 'assets/img/file_icon.svg'
   }
 }));

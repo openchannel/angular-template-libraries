@@ -1,27 +1,27 @@
-<table class="table"
+<table class="table mb-0"
        [infiniteScrollThrottle]="50"
        (scrolled)="onScrollDown()"
        infiniteScroll>
   <thead>
   <tr>
     <th class="placeholder"></th>
-    <th class="name">Name
-      <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down"
-           *ngIf="sortIcon" (click)="sortAppsBy('name')">
-      <fa-icon icon="angle-down" class="cursor-pointer angle"
-               *ngIf="!sortIcon" (click)="sortAppsBy('name')"></fa-icon>
+    <th class="name cursor-pointer" (click)="sortAppsBy('name')">Name
+      <img [src]="sortIcon" alt="icon" class="icon-down"
+           *ngIf="sortIcon" >
+      <fa-icon icon="angle-down" class="angle"
+               *ngIf="!sortIcon"></fa-icon>
     </th>
     <th class="summary">Summary</th>
-    <th class="data">Created
+    <th class="data" (click)="sortAppsBy('date')">Created
       <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down"
            *ngIf="sortIcon" (click)="sortAppsBy('date')">
       <fa-icon icon="angle-down" class="cursor-pointer angle"
                *ngIf="!sortIcon" (click)="sortAppsBy('date')"></fa-icon>
     </th>
-    <th class="status">Status
-      <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down"
-           *ngIf="sortIcon" (click)="sortAppsBy('status')">
-      <fa-icon icon="angle-down" class="cursor-pointer angle"
+    <th class="status cursor-pointer" (click)="sortAppsBy('status')">Status
+      <img [src]="sortIcon" alt="icon" class="icon-down"
+           *ngIf="sortIcon" >
+      <fa-icon icon="angle-down" class="angle"
                *ngIf="!sortIcon" (click)="sortAppsBy('status')"></fa-icon>
     </th>
     <th class="action"></th>
