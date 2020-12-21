@@ -85,8 +85,12 @@ export class OcFormComponent implements OnInit, OnDestroy {
     if (this.formJsonData?.fields) {
       this.formJsonData?.fields.forEach(inputTemplate => {
         switch (inputTemplate?.type) {
-          case 'text':
           case 'richText':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : '');
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isRichText: true});
+            break;
+          case 'text':
           case 'longText':
           case 'password':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
@@ -199,7 +203,7 @@ export class OcFormComponent implements OnInit, OnDestroy {
    */
   setValidators(control: AbstractControl, attributes,
                 additional?: {isCheckbox?: boolean, isEmail?: boolean, isUrl?: boolean,
-                  isColor?: boolean, isList?: boolean}): void {
+                  isColor?: boolean, isList?: boolean, isRichText?: boolean}): void {
     const validators: ValidatorFn [] = [];
     Object.keys(attributes).forEach(key => {
       switch (key) {
@@ -214,12 +218,20 @@ export class OcFormComponent implements OnInit, OnDestroy {
           break;
         case 'maxChars':
           if (attributes.maxChars) {
-            validators.push(Validators.maxLength(attributes.maxChars));
+            if (additional && additional.isRichText) {
+              validators.push(this.richTextMaxCharactersValidator(attributes.maxChars));
+            } else {
+              validators.push(Validators.maxLength(attributes.maxChars));
+            }
           }
           break;
         case 'minChars':
           if (attributes.minChars) {
-            validators.push(Validators.minLength(attributes.minChars));
+            if (additional && additional.isRichText) {
+              validators.push(this.richTextMinCharactersValidator(attributes.minChars));
+            } else {
+              validators.push(Validators.minLength(attributes.minChars));
+            }
           }
           break;
         case 'minCount':
@@ -351,6 +363,42 @@ export class OcFormComponent implements OnInit, OnDestroy {
       } else {
         return {
           colorValidator: true
+        };
+      }
+    };
+  }
+  /**
+   * Custom validator of min characters for rich text.
+   * Check only characters, not tags
+   */
+  richTextMinCharactersValidator(min: number) {
+    return (c: AbstractControl): { [key: string]: any } => {
+      const characters = c.value.replace(/<[^>]*>/g, '');
+      if (characters.length >= min) {
+        return null;
+      } else {
+        return {
+          minlength: {
+            requiredLength: min
+          }
+        };
+      }
+    };
+  }
+  /**
+   * Custom validator of max characters for rich text.
+   * Check only characters, not tags
+   */
+  richTextMaxCharactersValidator(max: number) {
+    return (c: AbstractControl): { [key: string]: any } => {
+      const characters = c.value.replace(/<[^>]*>/g, '');
+      if (characters.length <= max) {
+        return null;
+      } else {
+        return {
+          maxlength: {
+            requiredLength: max
+          }
         };
       }
     };

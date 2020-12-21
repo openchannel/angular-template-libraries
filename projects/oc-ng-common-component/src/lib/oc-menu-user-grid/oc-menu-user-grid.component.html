@@ -108,7 +108,7 @@
             <img [src]="menuUrl" alt="more-icon" class="icon-dots" ngbDropdownToggle>
             <div ngbDropdownMenu>
                 <ng-container *ngFor="let menuAction of properties.options">
-                    <button (click)="action(menuAction, user.data?.userId, user.data?.userAccountId)"
+                    <button (click)="action(menuAction, user.data)"
                             ngbDropdownItem
                             class="menu" [ngClass]="'menu-' + menuAction | lowercase">
                         {{menuAction | titlecase}}
