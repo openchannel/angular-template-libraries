@@ -5,14 +5,14 @@
   <thead>
   <tr>
     <th class="placeholder"></th>
-    <th class="name cursor-pointer" (click)="sortAppsBy('name')">App Name
+    <th class="name cursor-pointer" (click)="sortAppsBy('name')">Name
       <img [src]="sortIcon" alt="icon" class="icon-down"
            *ngIf="sortIcon" >
       <fa-icon icon="angle-down" class="angle"
                *ngIf="!sortIcon"></fa-icon>
     </th>
     <th class="summary">Summary</th>
-    <th class="data" (click)="sortAppsBy('date')">Created Date
+    <th class="data" (click)="sortAppsBy('date')">Created
       <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down"
            *ngIf="sortIcon" (click)="sortAppsBy('date')">
       <fa-icon icon="angle-down" class="cursor-pointer angle"
