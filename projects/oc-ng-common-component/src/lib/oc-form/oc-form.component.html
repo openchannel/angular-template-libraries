@@ -1,9 +1,11 @@
 <form [formGroup]="customForm" *ngIf="customForm">
   <ng-container *ngFor="let formElement of formJsonData?.fields; trackBy:trackByFieldId">
-    <div class="mt-2 mb-2 d-flex flex-column" [ngClass]="labelPosition === 'right' ? 'flex-md-row-reverse'
-         : labelPosition === 'left' ? 'flex-md-row' : ''">
-      <oc-tooltip-label [text]="formElement?.label" class="mb-1" [required]="formElement?.attributes?.required"
-                [ngClass]="labelPosition === 'left' ? 'form-label mr-2' : labelPosition === 'right' ? 'form-label ml-2' : ''"
+    <div class="mt-2 mb-2 d-flex flex-column" [ngClass]="labelPosition === 'right' ?
+         'flex-md-row-reverse align-items-md-center'
+         : labelPosition === 'left' ? 'flex-md-row align-items-md-center' : ''">
+      <oc-tooltip-label [text]="formElement?.label" class="mb-2" [required]="formElement?.attributes?.required"
+                [ngClass]="labelPosition === 'left' ? 'col-md-3 mr-2 pl-0 mb-md-0' :
+                labelPosition === 'right' ? 'col-md-3 ml-2 pr-0 mb-md-0' : ''"
                 [description]="formElement?.description ? formElement?.description : ''"
                 >
       </oc-tooltip-label>
