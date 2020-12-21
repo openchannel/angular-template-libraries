@@ -34,17 +34,25 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
       'alignleft aligncenter alignright alignjustify | numlist bullist | outdent indent | link unlink | undo redo',
     plugins: 'lists link wordcount',
     placeholder: '',
-    max_height: 150
+    max_height: 150,
+    content_style: 'body { font-family: Arial; }'
   };
   public editorContent: SafeHtml;
+  public editorOnFocus: boolean = false;
 
-  private onTouched = () => {};
+  public onTouched = () => {};
   private onChange: (value: any) => void = () => {};
 
   constructor() { }
 
   ngOnInit(): void {
     this.tinyOptions.placeholder = this.placeholder;
+  }
+  /**
+   * Listen to editor focus status for changing border style
+   */
+  changeEditorFocus(status) {
+    this.editorOnFocus = status;
   }
 
   onModelChange(): void {
