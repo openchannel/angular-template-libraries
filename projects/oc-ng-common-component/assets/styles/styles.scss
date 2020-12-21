@@ -250,19 +250,24 @@ h6 {
 }
 /** input password **/
 
-oc-input, oc-password, oc-app-category-select , oc-select, oc-video-url, oc-color{
+oc-input, oc-password, oc-app-category-select , oc-select, oc-video-url, oc-color, oc-rich-text-editor, oc-textarea{
     &.ng-invalid{
       input.ng-touched, select.ng-touched , textarea.ng-touched{
         border-color: $danger;
       }
-    }
-    &.ng-invalid{
-      &.ng-touched{
-        input, select, button.ng-invalid , textarea{
-        border-color: $danger;
+      .custom-editor.ng-touched {
+        .tox-tinymce {
+          border-color: $danger;
+        }
       }
     }
-  }
+    &.ng-invalid {
+      &.ng-touched {
+        input, select, button.ng-invalid , textarea {
+          border-color: $danger;
+        }
+      }
+    }
 }
 
 button, input{
@@ -464,3 +469,53 @@ oc-dropbox {
 .modal-button {
   width: 255px;
 }
+
+//Tiny Editor style customization
+.custom-editor {
+  .tox-tinymce {
+    border-radius: 4px;
+    border-color: $info;
+    &:focus-within {
+      border-color: $primary;
+    }
+    .tox-editor-container {
+      .tox-editor-header {
+        .tox-toolbar-overlord {
+          .tox-toolbar__primary {
+            .tox-toolbar__group {
+              .tox-tbtn--enabled {
+                background: none;
+                svg {
+                  fill: $primary
+                }
+                &:hover {
+                  background: #f4f4f4;
+                }
+              }
+              .tox-tbtn {
+                &:hover {
+                  background: #f4f4f4;
+                }
+                svg {
+                  fill: mix(#000, $info, 38%);
+                }
+                &__select-label {
+                  color: mix(#000, $info, 38%);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .tox-statusbar {
+      opacity: 0;
+    }
+  }
+}
+.editor-border-focus {
+  .tox-tinymce {
+    border-color: $primary;
+  }
+}
+// end of the Tiny Editor style customization
