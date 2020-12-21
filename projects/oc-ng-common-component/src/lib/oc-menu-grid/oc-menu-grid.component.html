@@ -38,7 +38,9 @@
             <img [src]="app.customData.icon ? app.customData.icon : defaultAppIcon" alt="" class="app-icon">
           </div>
           <div class="col-md pl-0">
-            <h6 class="mb-0 cursor-pointer pr-2 word-break">{{app.name}} </h6>
+            <h6 class="mb-0 cursor-pointer pr-2 word-break"
+                (click)="action('PREVIEW', app.appId, app.version, false)"
+            >{{app.name}} </h6>
             <small> v {{app.version}}</small>
           </div>
         </div>
@@ -89,7 +91,8 @@
               <img [src]="child.customData.icon ? child.customData.icon : defaultAppIcon" alt="" class="app-icon">
             </div>
             <div class="col-md pl-0">
-              <h6 class="mb-0 cursor-pointer pr-2 word-break">{{child.name}}</h6>
+              <h6 class="mb-0 cursor-pointer pr-2 word-break"
+                  (click)="action('PREVIEW', child.appId, child.version, true)">{{child.name}}</h6>
               <small>v {{child.version}}</small>
             </div>
           </div>
