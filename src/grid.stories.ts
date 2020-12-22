@@ -353,3 +353,4 @@ AppGrid.args = {
   properties: propsConfig,
   noAppMessage: 'No Apps Has Been Added Yet'
 };
+

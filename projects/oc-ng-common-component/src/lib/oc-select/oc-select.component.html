@@ -9,7 +9,7 @@
         </ng-container>
     </ng-container>
     <ng-container *ngIf="!isObject">
-        <option *ngFor="let val of selectValArr;" [ngValue]="val">
+        <option *ngFor="let val of selectValArr;" [value]="val">
             {{val}}
         </option>
     </ng-container>

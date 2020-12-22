@@ -11,7 +11,7 @@ export class OcButtonComponent implements OnInit {
   @Input() type: 'primary' | 'secondary' | 'link' = 'primary';
   @Input() class: string;
   @Input() style: string;
-  @Input() process: string;
+  @Input() process: boolean;
 
   constructor() {
   }
