@@ -519,3 +519,32 @@ oc-dropbox {
   }
 }
 // end of the Tiny Editor style customization
+
+
+// oc-select
+
+oc-select {
+  & .btn:focus {
+    border-color: $primary !important;
+  }
+
+  .dropdown-menu {
+    .dropdown-item {
+      padding: 16px;
+      border-bottom: 1px;
+      &:hover {
+        color: $body-color;
+        background-color: $light;
+      }
+      &:active{
+        color: $primary;
+        background-color: $light;
+        border-color: unset;
+      }
+      &:focus{
+        outline: none;
+        background-color: $light;
+      }
+    }
+  }
+}
