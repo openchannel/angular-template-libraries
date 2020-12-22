@@ -43,12 +43,11 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   dropdownTypes: DropdownModel<ChartStatisticFiledModel>[];
   dropdownSelectedType: DropdownModel<ChartStatisticFiledModel>;
   context: CanvasRenderingContext2D;
+
   private chart: any;
 
   /** Function for updating chart data, when user choice a new options */
   @Input() updateChartDataFunc = (period: ChartStatisticPeriodModel, fields: ChartStatisticFiledModel): void => {};
-
-  private chart: any;
 
 
   constructor() {
