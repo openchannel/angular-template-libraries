@@ -3,28 +3,40 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {OcAppCategoriesComponent} from './oc-app-categories.component';
 import {AppCategoryDetail} from 'oc-ng-common-service';
 import {By} from '@angular/platform-browser';
-import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {RouterTestingModule} from '@angular/router/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { Component, Directive, Input, TemplateRef } from '@angular/core';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { OwlOptions } from 'ngx-owl-carousel-o/lib/models/owl-options.model';
+
+@Component({
+  template: '',
+  selector: 'fa-icon'
+})
+export class FaIconMockComponent {
+  @Input() icon: IconProp;
+}
+@Component({
+  template: '',
+  selector: 'owl-carousel-o'
+})
+export class CarouselMockComponent {
+  @Input() options: OwlOptions;
+}
+@Directive({
+  selector: '[carouselSlide]'
+})
+export class CarouselSlideMockDirective {
+  @Input() tplRef: TemplateRef<any>;
+  @Input() width: number;
+}
 
 const appCategory1 = new AppCategoryDetail();
 appCategory1.categoryCardClass = 'category-card';
 appCategory1.categoryLogo = 'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png';
 appCategory1.categoryName = 'All Apps';
 appCategory1.categoryTitleColor = 'orange';
-
-const appCategory2 = new AppCategoryDetail();
-appCategory2.categoryCardClass = 'category-card';
-appCategory2.categoryLogo = 'https://stage1-philips-market-test.openchannel.io/assets/img/item-2.png';
-appCategory2.categoryName = 'Analytics';
-appCategory2.categoryTitleColor = 'blue';
-
-const appCategory3 = new AppCategoryDetail();
-appCategory3.categoryCardClass = 'category-card';
-appCategory3.categoryLogo = 'https://stage1-philips-market-test.openchannel.io/assets/img/item-3.png';
-appCategory3.categoryName = 'Communication';
-appCategory3.categoryTitleColor = 'green';
 
 describe('OcAppCategoriesComponent', () => {
   let component: OcAppCategoriesComponent;
@@ -33,14 +45,14 @@ describe('OcAppCategoriesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        FontAwesomeModule,
-        CarouselModule,
         BrowserAnimationsModule,
-
-        FontAwesomeModule,
-
         RouterTestingModule.withRoutes([])],
-      declarations: [OcAppCategoriesComponent]
+      declarations: [
+        OcAppCategoriesComponent,
+        FaIconMockComponent,
+        CarouselMockComponent,
+        CarouselSlideMockDirective
+      ]
     })
       .compileComponents();
   }));
@@ -55,23 +67,34 @@ describe('OcAppCategoriesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('without left scroll button', () => {
+  it('should move slides to the next', () => {
+    component.data = [...Array(10).fill(appCategory1, 0, 9)];
 
-    component.data = duplicate(10, appCategory1);
+    spyOn(component, 'nextSlide');
     fixture.detectChanges();
 
-    const leftScrollButton: HTMLParagraphElement = fixture.debugElement.query(By.css('.carousel-nav.carousel-left')).nativeElement;
-    console.log(leftScrollButton);
+    const rightScrollButton = fixture.debugElement.query(By.css('#iconRight')).nativeElement;
+
+    rightScrollButton.click();
+    expect(component.nextSlide).toHaveBeenCalled();
+  });
+
+  it('should move slides to the preview', () => {
+    component.data = [...Array(10).fill(appCategory1, 0, 9)];
+
+    spyOn(component, 'prevSlide');
+    fixture.detectChanges();
+
+    const leftScrollButton = fixture.debugElement.query(By.css('#iconLeft')).nativeElement;
+
+    leftScrollButton.click();
+    expect(component.prevSlide).toHaveBeenCalled();
+  });
+
+  it('should router redirect', () => {
+    expect(component).toBeTruthy();
   });
 });
-
-function duplicate<T>(count: number, ... items: T[]): T[] {
-  const result: T[] = [];
-  while (count-- >= 0) {
-    result.push(...items);
-  }
-  return result;
-}
 
 
 
