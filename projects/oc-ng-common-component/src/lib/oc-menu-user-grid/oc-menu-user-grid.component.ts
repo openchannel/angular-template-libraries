@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UserGridActionModel, UserGridOptionTypeModel, UsersGridParametersModel} from 'oc-ng-common-service';
 import {UserAccountGridModel} from 'oc-ng-common-service/lib/model/user.model';
 
+export declare type SortField = 'name' | 'email' | 'date' | 'role';
+
 @Component({
   selector: 'oc-menu-user-grid',
   templateUrl: './oc-menu-user-grid.component.html',
@@ -34,15 +36,13 @@ export class OcMenuUserGridComponent implements OnInit {
    * Returns clicked sorting type clicked
    * can be 'name', 'email', 'date' or 'role'
    */
-  @Output() sortChosen: EventEmitter<'name' | 'email' | 'date' | 'role'> =
-    new EventEmitter<'name' | 'email' | 'date' | 'role'>();
+  @Output() sortChosen: EventEmitter<SortField> = new EventEmitter<SortField>();
 
-  public displayChildrenId: string = null;
+  public currentSortField: SortField;
 
   private pageNumber: number = 1;
 
-  constructor() {
-  }
+  constructor(){}
 
   ngOnInit(): void {
   }
@@ -63,8 +63,9 @@ export class OcMenuUserGridComponent implements OnInit {
     this.pageScrolled.emit(this.pageNumber);
   }
 
-  sortAppsBy(by: 'name' | 'email' | 'date' | 'role'): void {
-    this.sortChosen.emit(by);
+  sortAppsBy(sortField: SortField): void {
+    this.sortChosen.emit(sortField);
+    this.currentSortField = sortField;
     this.pageNumber = 1;
   }
 

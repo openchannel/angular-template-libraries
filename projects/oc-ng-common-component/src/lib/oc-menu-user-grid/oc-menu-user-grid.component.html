@@ -6,36 +6,24 @@
     <tr>
         <th class="col-blank"></th>
         <th class="name">
-            <div class="th-row">Name
-                <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon"
-                     (click)="sortAppsBy('name')">
-                <fa-icon icon="angle-down" class="cursor-pointer angle" *ngIf="!sortIcon"
-                         (click)="sortAppsBy('name')"></fa-icon>
-            </div>
+            <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Name', field: 'name'}}"
+                          [ngTemplateOutlet]="sortIconTemplate">
+            </ng-container>
         </th>
         <th class="email">
-            <div class="th-row">Email
-                <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon"
-                     (click)="sortAppsBy('email')">
-                <fa-icon icon="angle-down" class="cursor-pointer angle" *ngIf="!sortIcon"
-                         (click)="sortAppsBy('email')"></fa-icon>
-            </div>
+            <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Email', field: 'email'}}"
+                          [ngTemplateOutlet]="sortIconTemplate">
+            </ng-container>
         </th>
         <th class="data">
-            <div class="th-row">Date Added
-                <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon"
-                     (click)="sortAppsBy('date')">
-                <fa-icon icon="angle-down" class="cursor-pointer angle" *ngIf="!sortIcon"
-                         (click)="sortAppsBy('date')"></fa-icon>
-            </div>
+            <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Date Added', field: 'date'}}"
+                          [ngTemplateOutlet]="sortIconTemplate">
+            </ng-container>
         </th>
         <th class="role">
-            <div class="th-row">Role
-                <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon"
-                     (click)="sortAppsBy('role')">
-                <fa-icon icon="angle-down" class="cursor-pointer angle" *ngIf="!sortIcon"
-                         (click)="sortAppsBy('role')"></fa-icon>
-            </div>
+            <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Role', field: 'role'}}"
+                          [ngTemplateOutlet]="sortIconTemplate">
+            </ng-container>
         </th>
         <th class="status">
             <div class="th-row">Status</div>
@@ -45,7 +33,7 @@
     </tr>
     </thead>
     <tbody>
-    <ng-template [ngForOf]="properties.data.list" let-user ngFor>
+    <ng-template [ngForOf]="properties.data.list" let-user let-i="index" ngFor>
         <tr [class.highlight-user]="user.inviteStatus === 'INVITED'">
             <td class="col-blank"></td>
             <!-- Name -->
@@ -82,7 +70,7 @@
             </td>
             <!-- Options -->
             <td>
-                <ng-container [ngTemplateOutletContext]="{ $implicit: {data: user, child: false} }"
+                <ng-container [ngTemplateOutletContext]="{ $implicit: {data: user, child: false, index: i} }"
                               [ngTemplateOutlet]="appMenuTemplate">
                 </ng-container>
             </td>
@@ -104,7 +92,7 @@
 
 <ng-template #appMenuTemplate let-user>
     <div class="text-right ellipsis cursor-pointer">
-        <div ngbDropdown placement="bottom-right">
+        <div ngbDropdown placement="bottom-right top-right">
             <img [src]="menuUrl" alt="more-icon" class="icon-dots" ngbDropdownToggle>
             <div ngbDropdownMenu>
                 <ng-container *ngFor="let menuAction of properties.options">
@@ -115,6 +103,15 @@
                     </button>
                 </ng-container>
             </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #sortIconTemplate let-column>
+    <div class="th-row cursor-pointer" (click)="sortAppsBy(column.field)">{{column.name}}
+        <div [ngClass]="currentSortField !== column.field ? 'invisible' : ''" >
+            <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon">
+            <fa-icon icon="angle-down" class="cursor-pointer angle" *ngIf="!sortIcon"></fa-icon>
         </div>
     </div>
 </ng-template>

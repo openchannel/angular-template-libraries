@@ -19,7 +19,7 @@
     background-color: rgba(201, 213, 234, 0.1);
     color: #537cfd;
     outline: none;
-    box-shadow: 0px 1px 0 #c9d5ea;
+    box-shadow: 0 1px 0 #c9d5ea;
   }
 
   .dropdown-item:active {
@@ -33,18 +33,17 @@
   border-radius: 4px;
   vertical-align: middle;
   background-color: white;
-  margin-bottom: 116px;
   border-spacing: 0;
   border-collapse: inherit;
-
   thead {
     th {
       align-items: center;
       font-size: 14px;
       border-bottom: 1px solid #c9d5ea;
       border-top: 1px solid #c9d5ea;
-      padding: 1.5rem 0;
+      padding: 1.5rem 5px;
       vertical-align: middle;
+      white-space: nowrap;
     }
 
     .th-row {
@@ -58,27 +57,32 @@
     }
 
     th.name {
-      width: 15%;
+      max-width: 15%;
     }
 
     th.email {
-      width: 15%;
+      max-width: 15%;
     }
 
     th.data {
-      width: 15%;
+      max-width: 15%;
     }
 
     th.role {
-      width: 11.3%;
+      max-width: 11.3%;
     }
 
     th.status {
-      width: 11.3%;
+      max-width: 11.3%;
     }
 
     th.action {
-      width: 7%;
+      max-width: 7%;
+    }
+
+    td.col-blank {
+      min-width: 5%;
+      border-top: none;
     }
   }
 
@@ -96,7 +100,7 @@
   }
 
   td.col-blank {
-    width: 2.5rem;
+    width: 5%;
     border-top: none;
   }
 
@@ -104,6 +108,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding: 0 10px 0;
   }
 
   .c-dark {
