@@ -49,21 +49,21 @@ Empty.args = {
   categoryHeaderTitle: 'Categories to Explore',
   data: [],
   noDataMsg: 'No Category Found'
-}
+};
 
 export const Some = AppCategoriesComponent.bind({});
 Some.args = {
   categoryHeaderTitle: 'Categories to Explore',
   categoryRouterLink: 'test/category',
   data: [appCategory1]
-}
+};
 
 export const All = AppCategoriesComponent.bind({});
 All.args = {
   categoryHeaderTitle: 'Categories to Explore',
   categoryRouterLink: 'test/category',
   data: duplicate(5, appCategory1, appCategory2, appCategory3)
-}
+};
 
 function duplicate<T>(count: number, ... items: T[]): T[] {
   const result: T[] = [];
