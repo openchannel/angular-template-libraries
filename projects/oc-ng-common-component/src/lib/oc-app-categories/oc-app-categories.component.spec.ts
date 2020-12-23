@@ -6,9 +6,11 @@ import {By} from '@angular/platform-browser';
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {RouterTestingModule} from '@angular/router/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { Component, Directive, Input, TemplateRef } from '@angular/core';
+import { Component, Directive, Input, NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { OwlOptions } from 'ngx-owl-carousel-o/lib/models/owl-options.model';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   template: '',
@@ -18,59 +20,60 @@ export class FaIconMockComponent {
   @Input() icon: IconProp;
 }
 @Component({
-  template: '',
-  selector: 'owl-carousel-o'
+  template: ''
 })
-export class CarouselMockComponent {
-  @Input() options: OwlOptions;
-}
-@Directive({
-  selector: '[carouselSlide]'
-})
-export class CarouselSlideMockDirective {
-  @Input() tplRef: TemplateRef<any>;
-  @Input() width: number;
+export class MockRoutingComponent {
 }
 
-const appCategory1 = new AppCategoryDetail();
-appCategory1.categoryCardClass = 'category-card';
-appCategory1.categoryLogo = 'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png';
-appCategory1.categoryName = 'All Apps';
-appCategory1.categoryTitleColor = 'orange';
+const appCategory1: AppCategoryDetail = {
+  categoryCardClass: 'category-card',
+  categoryLogo: 'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png',
+  categoryName: 'All Apps',
+  categoryTitleColor: 'orange',
+  categoryQuery: null
+};
 
 describe('OcAppCategoriesComponent', () => {
   let component: OcAppCategoriesComponent;
   let fixture: ComponentFixture<OcAppCategoriesComponent>;
+  let location: Location;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
-        RouterTestingModule.withRoutes([])],
+        CarouselModule,
+        RouterTestingModule.withRoutes([
+          {path: 'mock-router', component: MockRoutingComponent}
+        ])],
       declarations: [
         OcAppCategoriesComponent,
         FaIconMockComponent,
-        CarouselMockComponent,
-        CarouselSlideMockDirective
-      ]
+        MockRoutingComponent,
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(OcAppCategoriesComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    fixture.detectChanges();
+
     expect(component).toBeTruthy();
   });
 
   it('should move slides to the next', () => {
-    component.data = [...Array(10).fill(appCategory1, 0, 9)];
-
+    component.data = [appCategory1, appCategory1, appCategory1, appCategory1, appCategory1, appCategory1];
     spyOn(component, 'nextSlide');
+
     fixture.detectChanges();
 
     const rightScrollButton = fixture.debugElement.query(By.css('#iconRight')).nativeElement;
@@ -80,8 +83,7 @@ describe('OcAppCategoriesComponent', () => {
   });
 
   it('should move slides to the preview', () => {
-    component.data = [...Array(10).fill(appCategory1, 0, 9)];
-
+    component.data = [appCategory1, appCategory1, appCategory1, appCategory1, appCategory1, appCategory1];
     spyOn(component, 'prevSlide');
     fixture.detectChanges();
 
@@ -91,8 +93,31 @@ describe('OcAppCategoriesComponent', () => {
     expect(component.prevSlide).toHaveBeenCalled();
   });
 
-  it('should router redirect', () => {
-    expect(component).toBeTruthy();
+  it('should redirect on route without query', async () => {
+    component.data = [appCategory1, appCategory1, appCategory1, appCategory1, appCategory1, appCategory1];
+    component.categoryRouterLink = 'mock-router';
+    fixture.detectChanges();
+
+    const categoryCard = fixture.debugElement.query(By.css('.category-card')).nativeElement;
+    categoryCard.click();
+
+    await fixture.whenStable().then(() => {
+      expect(location.path()).toEqual('/mock-router');
+    });
+  });
+
+  it('should redirect on route with query', async () => {
+    appCategory1.categoryQuery = {test: 'test'};
+    component.data = [appCategory1, appCategory1, appCategory1, appCategory1, appCategory1, appCategory1];
+    component.categoryRouterLink = 'mock-router';
+    fixture.detectChanges();
+
+    const categoryCard = fixture.debugElement.query(By.css('.category-card')).nativeElement;
+    categoryCard.click();
+
+    await fixture.whenStable().then(() => {
+      expect(location.path()).toEqual('/mock-router?test=test');
+    });
   });
 });
 
