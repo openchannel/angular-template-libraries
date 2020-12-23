@@ -1,0 +1,13 @@
+.dropdown-toggle[aria-expanded="true"]::after {
+  content: url(/assets/img/select-up.svg);
+  border: none;
+}
+.dropdown-toggle[aria-expanded="false"]::after {
+  content: url(/assets/img/select-down.svg);
+  border: none;
+}
+
+.dropdown-menu {
+  padding: 0;
+  right: 0;
+}
