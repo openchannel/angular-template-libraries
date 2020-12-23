@@ -73,7 +73,6 @@ export class OcAppCategoriesComponent implements OnInit {
   }
   /** Move carousel to previous slide */
   prevSlide() {
-    console.log('hi');
     this.carouselRef.prev();
   }
 
