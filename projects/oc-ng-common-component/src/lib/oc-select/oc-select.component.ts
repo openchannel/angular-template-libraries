@@ -15,8 +15,8 @@ export class OcSelectComponent implements OnInit, ControlValueAccessor {
 
   /** Array of the select items */
   @Input() selectValArr: any | object [] = [];
-  /** Set to 'true' if selectVarArray is object */
-  @Input() isObject: boolean = false;
+  /** Set object field name using as label */
+  @Input() labelField: string;
   /** Disable select for user input */
   @Input() disabled: boolean = false;
   /** Add string of public classes to the existed */
