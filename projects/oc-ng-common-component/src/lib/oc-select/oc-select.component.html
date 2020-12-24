@@ -1,8 +1,7 @@
 <div ngbDropdown #myDrop="ngbDropdown">
     <button class="btn btn-secondary w-100 d-flex justify-content-between align-items-center"
             ngbDropdownToggle [disabled]="disabled"
-            (blur)="onblur()"
-            (click)="disabled ? $event.preventDefault() : myDrop.open()">
+            (blur)="onblur()">
         <div class="text-dark">{{ labelField ? selectedValue[labelField] : selectedValue }}</div>
     </button>
 
