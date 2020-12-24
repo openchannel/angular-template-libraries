@@ -100,7 +100,6 @@ describe('OcFileUploadComponent', () => {
     };
 
     fixture.debugElement.query(By.css('input#fileDropRef')).triggerEventHandler('change', changeEvent);
-    // await new Promise(res => setTimeout(res, 1000));
 
     component.croppedFileObj = mockedFile;
     component.uploadImageFile();
