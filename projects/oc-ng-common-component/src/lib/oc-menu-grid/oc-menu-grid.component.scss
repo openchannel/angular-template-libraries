@@ -123,6 +123,10 @@
   }
 }
 
+.dropup, .dropright, .dropdown, .dropleft {
+  position: initial;
+}
+
 // Dropdown menu style
 .dropdown-menu {
   top: 48px;
@@ -132,7 +136,6 @@
   top: 70px;
   left: 76px;
   transform: translate(0px, 44px);
-  z-index: 10;
 
   .dropdown-item {
     font-size: 14px;
