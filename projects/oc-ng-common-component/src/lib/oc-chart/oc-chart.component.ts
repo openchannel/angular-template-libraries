@@ -17,7 +17,6 @@ chartPoint.src = '../../../assets/img/chart_point.svg';
   selector: 'oc-chart',
   templateUrl: './oc-chart.component.html',
   styleUrls: ['./oc-chart.component.scss']
-  // encapsulation: ViewEncapsulation.ShadowDom
 })
 export class OcChartComponent implements AfterViewInit, OnChanges {
 
@@ -48,6 +47,9 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
 
   /** Function for updating chart data, when user choice a new options */
   @Input() updateChartDataFunc = (period: ChartStatisticPeriodModel, fields: ChartStatisticFiledModel): void => {};
+
+  private chart: any;
+
 
   constructor() {
   }

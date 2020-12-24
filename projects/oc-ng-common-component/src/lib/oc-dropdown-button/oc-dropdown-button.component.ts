@@ -24,7 +24,7 @@ export class OcDropdownButtonComponent implements OnInit {
 
   @Input()
   set minDropdownWidth(minWidth: string) {
-    this.minWidthModel = minWidth ? {'min-width': minWidth}: {};
+    this.minWidthModel = minWidth ? {'min-width': minWidth} : {};
   }
 
   constructor() { }

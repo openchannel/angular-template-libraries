@@ -1,6 +1,6 @@
-<div class="tag-colors row flex-nowrap cursor-pointer h-100 m-0 pl-2 pt-1 pr-2 pb-1 justify-content-between align-items-center"
+<div id="tag" class="tag-colors row flex-nowrap cursor-pointer h-100 m-0 px-2 py-1 justify-content-between align-items-center"
      (click)="sentCurrentTag()">
-    <div class="text-wrap text-truncate">{{title}}</div>
+    <div id="tagTitle" class="text-wrap text-truncate">{{title}}</div>
     <img *ngIf="closeMarker && deleteTagImgUrl" class="pl-1 tag-colors img-fluid" src="{{deleteTagImgUrl}}" alt="app-icon">
     <svg *ngIf="closeMarker && !deleteTagImgUrl" class="pl-1 tag-colors img-fluid w-auto bi bi-x-circle" width="1em" height="1em" viewBox="0 0 16 16"
          fill="$primary" xmlns="http://www.w3.org/2000/svg">

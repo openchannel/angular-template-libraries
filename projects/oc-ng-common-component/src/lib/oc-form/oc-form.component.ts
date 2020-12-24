@@ -170,7 +170,7 @@ export class OcFormComponent implements OnInit, OnDestroy {
           case 'multiselectList':
             if (inputTemplate?.attributes.maxCount && inputTemplate?.attributes.maxCount < 2) {
               group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
-                inputTemplate?.defaultValue : ['item1']);
+                inputTemplate?.defaultValue : [inputTemplate?.options[0]]);
             } else {
               group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue
               && inputTemplate?.defaultValue.length > 0 ?

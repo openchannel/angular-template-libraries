@@ -26,7 +26,7 @@ export class OcTagElementComponent implements OnInit {
     /**
      * clickEmitter - return title by click event on this component.
      */
-    @Output() clickEmitter = new EventEmitter<string>()
+    @Output() clickEmitter = new EventEmitter<string>();
 
     constructor() {
     }
