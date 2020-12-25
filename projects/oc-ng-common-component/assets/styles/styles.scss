@@ -189,10 +189,12 @@ h6 {
     }
   }
 }
+
+/* oc-file-upload */
 .file-upload-progress[type="primary"]{
   .progress {
     height: 4px;
-    background-color: #c9d5ea;
+    background-color: $info;
   }
 }
 
@@ -201,6 +203,7 @@ h6 {
     height: 1px;
   }
 }
+/* end */
 
 .company-logo{
   height: 27px;
