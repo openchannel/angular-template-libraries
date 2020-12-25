@@ -173,7 +173,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
   imports: [
     NgbModule,
     CommonModule,
-    BrowserModule,
     FormsModule,
     ImageCropperModule,
     ReactiveFormsModule,
