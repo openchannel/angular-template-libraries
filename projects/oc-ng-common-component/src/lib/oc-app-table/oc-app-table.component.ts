@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppListing, AppListingOptions, AppListMenuAction } from 'oc-ng-common-service';
 
+export interface SortChosen {
+  by: 'name' | 'date' | 'status';
+  ascending: boolean;
+}
 @Component({
   selector: 'oc-app-table',
   templateUrl: './oc-app-table.component.html',
@@ -30,10 +34,15 @@ export class OcAppTableComponent implements OnInit {
    */
   @Input() menuUrl: string = 'assets/img/dots-menu.svg';
   /**
-   * Path to the custom icon for the 'sort' button.
+   * Path to the custom icon for the 'sort' button when ascending sorting chosen.
    * Default: empty
    */
-  @Input() sortIcon: string = '';
+  @Input() ascendingSortIcon: string = '';
+  /**
+   * Path to the custom icon for the 'sort' button when descending sorting chosen.
+   * Default: empty
+   */
+  @Input() descendingSortIcon: string = '';
   /**
    * Set default app icon that will be
    * shown when icon of the app is not present
@@ -49,8 +58,28 @@ export class OcAppTableComponent implements OnInit {
    * Start number = 1
    */
   @Output() pageScrolled: EventEmitter<number> = new EventEmitter<number>();
+  /**
+   * Returns clicked sorting type.
+   * Contains fields 'by' - chosen sorting type, can be 'name', 'date' or 'status';
+   * ascending - true or false
+   */
+  @Output() sortChosen: EventEmitter<SortChosen> = new EventEmitter<SortChosen>();
 
   public displayChildrenId: string = null;
+  public sortingObjects: SortChosen [] = [
+    {
+      by: 'name',
+      ascending: false
+    },
+    {
+      by: 'date',
+      ascending: false
+    },
+    {
+      by: 'status',
+      ascending: false
+    }
+  ];
 
   private pageNumber: number = 1;
 
@@ -94,43 +123,12 @@ export class OcAppTableComponent implements OnInit {
   }
 
   sortAppsBy(by: 'name' | 'date' | 'status'): void {
-    switch (by) {
-      case 'name':
-        this.properties.data.list.sort((a, b) => {
-          if (a.name < b.name) {
-            return -1;
-          } else if (a.name > b.name) {
-            return 1;
-          } else {
-            return 0;
-          }
-        });
-        break;
-      case 'date':
-        this.properties.data.list.sort((a, b) => {
-          if (a.created < b.created) {
-            return -1;
-          } else if (a.created > b.created) {
-            return 1;
-          } else {
-            return 0;
-          }
-        });
-        break;
-      case 'status':
-        this.properties.data.list.sort((a, b) => {
-          if (a.status.value < b.status.value) {
-            return -1;
-          } else if (a.status.value > b.status.value) {
-            return 1;
-          } else {
-            return 0;
-          }
-        });
-        break;
-      default:
-        break;
-    }
+    this.sortingObjects.filter(sorting => sorting.by !== by).forEach(obj => {
+      obj.ascending = false;
+    });
+    const sort = this.sortingObjects.find(sorting => sorting.by === by);
+    sort.ascending = !sort.ascending;
+    this.sortChosen.emit(sort);
   }
 
   statusColor(status: string): string {

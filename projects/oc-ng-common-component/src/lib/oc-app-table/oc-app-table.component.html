@@ -6,23 +6,38 @@
   <tr>
     <th class="placeholder"></th>
     <th class="name cursor-pointer" (click)="sortAppsBy('name')">Name
-      <img [src]="sortIcon" alt="icon" class="icon-down"
-           *ngIf="sortIcon" >
+      <img [src]="sortingObjects[0].ascending ? ascendingSortIcon ? ascendingSortIcon
+      : descendingSortIcon : descendingSortIcon"
+           alt="icon" class="icon-down"
+           *ngIf="ascendingSortIcon || descendingSortIcon"
+           [class.icon-up]="!ascendingSortIcon && sortingObjects[0].ascending">
       <fa-icon icon="angle-down" class="angle"
-               *ngIf="!sortIcon"></fa-icon>
+               *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[0].ascending"></fa-icon>
+      <fa-icon icon="angle-up" class="angle"
+               *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[0].ascending"></fa-icon>
     </th>
     <th class="summary">Summary</th>
     <th class="data" (click)="sortAppsBy('date')">Created
-      <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down"
-           *ngIf="sortIcon" (click)="sortAppsBy('date')">
-      <fa-icon icon="angle-down" class="cursor-pointer angle"
-               *ngIf="!sortIcon" (click)="sortAppsBy('date')"></fa-icon>
+      <img [src]="sortingObjects[1].ascending ? ascendingSortIcon ? ascendingSortIcon
+      : descendingSortIcon : descendingSortIcon"
+           alt="icon" class="cursor-pointer icon-down"
+           *ngIf="ascendingSortIcon || descendingSortIcon"
+           [class.icon-up]="!ascendingSortIcon && sortingObjects[1].ascending">
+      <fa-icon icon="angle-down" class="angle"
+               *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[1].ascending"></fa-icon>
+      <fa-icon icon="angle-up" class="angle"
+               *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[1].ascending"></fa-icon>
     </th>
     <th class="status cursor-pointer" (click)="sortAppsBy('status')">Status
-      <img [src]="sortIcon" alt="icon" class="icon-down"
-           *ngIf="sortIcon" >
+      <img [src]="sortingObjects[2].ascending ? ascendingSortIcon ? ascendingSortIcon
+      : descendingSortIcon : descendingSortIcon"
+           alt="icon" class="icon-down"
+           *ngIf="ascendingSortIcon || descendingSortIcon"
+           [class.icon-up]="!ascendingSortIcon && sortingObjects[2].ascending">
       <fa-icon icon="angle-down" class="angle"
-               *ngIf="!sortIcon" (click)="sortAppsBy('status')"></fa-icon>
+               *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[2].ascending"></fa-icon>
+      <fa-icon icon="angle-up" class="angle"
+               *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[2].ascending"></fa-icon>
     </th>
     <th class="action"></th>
     <th class="placeholder"></th>
