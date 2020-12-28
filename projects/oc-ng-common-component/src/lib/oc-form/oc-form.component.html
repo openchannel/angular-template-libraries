@@ -59,11 +59,11 @@
           <oc-input *ngSwitchCase="'emailAddress'"
                     formControlName="{{formElement?.id}}"
                     inputType="email"
-                    [placeholder]="formElement?.placeholder"
+                    [placeholder]="formElement?.placeholder? formElement.placeholder : 'myemail@example.com'"
           ></oc-input>
           <oc-input *ngSwitchCase="'websiteUrl'"
                     formControlName="{{formElement?.id}}" inputType="url"
-                    [placeholder]="formElement?.placeholder"
+                    [placeholder]="formElement?.placeholder ? formElement.placeholder : 'https://my.website.com'"
           ></oc-input>
           <oc-color  *ngSwitchCase="'color'"
                      formControlName="{{formElement?.id}}"
@@ -88,7 +88,9 @@
                    [title]="formElement?.label"
                    tagsType="number"></oc-tags>
           <oc-video-url *ngSwitchCase="'videoUrl'"
-                        [formControlName]="formElement?.id"></oc-video-url>
+                        [formControlName]="formElement?.id"
+                        [placeholder]="formElement?.placeholder ? formElement.placeholder : ''">
+          </oc-video-url>
           <oc-datetime-picker *ngSwitchCase="'date'"
                               formControlName="{{formElement?.id}}"
                               [type]="formElement?.type"
