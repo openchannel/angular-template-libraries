@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppListing, AppListingOptions, AppListMenuAction } from 'oc-ng-common-service';
 
 @Component({
-  selector: 'oc-menu-grid',
-  templateUrl: './oc-menu-grid.component.html',
-  styleUrls: ['./oc-menu-grid.component.scss']
+  selector: 'oc-app-table',
+  templateUrl: './oc-app-table.component.html',
+  styleUrls: ['./oc-app-table.component.scss']
 })
-export class OcMenuGridComponent implements OnInit {
+export class OcAppTableComponent implements OnInit {
 
   /**
    * Configuration of the component,
