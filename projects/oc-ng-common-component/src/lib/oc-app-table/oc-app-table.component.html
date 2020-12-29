@@ -17,7 +17,7 @@
                *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[0].ascending"></fa-icon>
     </th>
     <th class="summary">Summary</th>
-    <th class="data" (click)="sortAppsBy('date')">Created
+    <th class="data" (click)="sortAppsBy('created')">Created
       <img [src]="sortingObjects[1].ascending ? ascendingSortIcon ? ascendingSortIcon
       : descendingSortIcon : descendingSortIcon"
            alt="icon" class="cursor-pointer icon-down"

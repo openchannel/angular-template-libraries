@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppListing, AppListingOptions, AppListMenuAction } from 'oc-ng-common-service';
 
 export interface SortChosen {
-  by: 'name' | 'date' | 'status';
+  by: 'name' | 'created' | 'status';
   ascending: boolean;
 }
 @Component({
@@ -60,7 +60,7 @@ export class OcAppTableComponent implements OnInit {
   @Output() pageScrolled: EventEmitter<number> = new EventEmitter<number>();
   /**
    * Returns clicked sorting type.
-   * Contains fields 'by' - chosen sorting type, can be 'name', 'date' or 'status';
+   * Contains fields 'by' - chosen sorting type, can be 'name', 'created' or 'status';
    * ascending - true or false
    */
   @Output() sortChosen: EventEmitter<SortChosen> = new EventEmitter<SortChosen>();
@@ -72,7 +72,7 @@ export class OcAppTableComponent implements OnInit {
       ascending: false
     },
     {
-      by: 'date',
+      by: 'created',
       ascending: false
     },
     {
@@ -122,7 +122,7 @@ export class OcAppTableComponent implements OnInit {
     this.pageScrolled.emit(this.pageNumber);
   }
 
-  sortAppsBy(by: 'name' | 'date' | 'status'): void {
+  sortAppsBy(by: 'name' | 'created' | 'status'): void {
     this.sortingObjects.filter(sorting => sorting.by !== by).forEach(obj => {
       obj.ascending = false;
     });
