@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class OcTextareaComponent implements OnInit {
 
   @Input() placeholder;
+  @Input() id = '';
 
   constructor() { }
 

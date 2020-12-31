@@ -13,6 +13,7 @@ export class OcInputComponent implements OnInit {
   @Input() autocomplete;
   @Input() placeholder = '';
   @Input() isURL = false;
+  @Input() id ='';
 
   @Output() modelNameChange = new EventEmitter<any>();
   @Input() disabled = false;

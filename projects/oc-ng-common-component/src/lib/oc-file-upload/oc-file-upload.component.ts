@@ -30,7 +30,10 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   @Input() defaultFileIcon = '';
 
   @Input() fileType: string;
+
   @Input() uploadIconUrl;
+
+  @Input() id = '';
 
   @Output() fileReset = new EventEmitter<any>();
 
@@ -39,6 +42,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy {
   @Output() customMsgChange = new EventEmitter<boolean>();
 
   @Input() iconMsg;
+  
   @Output() iconMsgChange = new EventEmitter<boolean>();
 
 

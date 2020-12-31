@@ -9,6 +9,7 @@ export class OcLabelComponent implements OnInit {
   @Input() text;
   @Input() class;
   @Input() required;
+  @Input() for = '';
   constructor() { }
 
   ngOnInit(): void {
