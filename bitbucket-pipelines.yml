@@ -15,8 +15,8 @@ definitions:
               SONAR_SCANNER_OPTS: -Xmx1024m
               SONAR_TOKEN: ${SONAR_TOKEN}
               EXTRA_ARGS: '-Dsonar.sources=projects/oc-ng-common-component/src -Dsonar.tests=projects/oc-ng-common-component/src -Dsonar.test.inclusions="**/testing/**,**/*.spec.ts" -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info'
-    - step: &new-version
-        name: Create new version of library and commit
+    - step: &build-and-push-new-version
+        name: Push library to repository
         script:
           - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
           - npm run oc-ng-common-component-up-version
@@ -25,11 +25,6 @@ definitions:
           - npm install --quiet
           - npm run build-prod
           - npm run oc-ng-common-component-pack
-        artifacts:
-          - dist/**
-    - step: &push-new-version
-        name: Push library to repository
-        script:
           - pipe: cloudsmith-io/publish:0.3.0
             variables:
               CLOUDSMITH_REPOSITORY: 'openchannel/angular-common-components'
@@ -48,9 +43,11 @@ pipelines:
           - npm run build-prod
   branches:
     develop:
-      - step: *new-version
-      - step: *push-new-version
+      - step:
+          trigger: manual
+          <<: *build-and-push-new-version
 
     AT-117_angular_templates:
-      - step: *new-version
-      - step: *push-new-version
+      - step:
+          trigger: manual
+          <<: *build-and-push-new-version
