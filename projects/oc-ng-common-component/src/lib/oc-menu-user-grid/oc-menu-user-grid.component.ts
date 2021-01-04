@@ -31,7 +31,7 @@ export class OcMenuUserGridComponent implements OnInit {
    */
   @Output() pageScrolled: EventEmitter<number> = new EventEmitter<number>();
   /**
-   * Returns clicked sorting type clicked
+   * Returns clicked sorting type.
    * can be 'name', 'email', 'date' or 'role'
    */
   @Output() sortChosen: EventEmitter<'name' | 'email' | 'date' | 'role'> =
