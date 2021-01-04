@@ -219,6 +219,10 @@ h6 {
   border-radius: 4px;
   font-weight: 300;
   font-family: "Rubik-Medium";
+  span {
+    font-size: 14px;
+    font-family: "Rubik-Medium";
+  }
 }
 .btn:focus{
   box-shadow: none !important;
