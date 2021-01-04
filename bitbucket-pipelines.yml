@@ -43,11 +43,13 @@ pipelines:
           - npm run build-prod
   branches:
     develop:
+      - step: *build-test-sonarcloud
       - step:
           trigger: manual
           <<: *build-and-push-new-version
 
     AT-117_angular_templates:
+      - step: *build-test-sonarcloud
       - step:
           trigger: manual
           <<: *build-and-push-new-version
