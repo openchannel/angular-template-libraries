@@ -1,12 +1,14 @@
-<button *ngIf="type === 'primary'" [disabled]="disabled" class="btn btn-primary {{class}}" style="{{style}}">
+<button *ngIf="type === 'primary'" [disabled]="disabled" class="btn btn-primary {{class}} {{customClass}}" style="{{style}}">
+    <ng-template *ngIf="customTemplate; else defaultButtonText" [ngTemplateOutlet]="customTemplate"></ng-template>
+</button>
+<button *ngIf="type === 'secondary'" [disabled]="disabled" class="btn btn-secondary {{class}} {{customClass}}" style="{{style}}">
+    <ng-template *ngIf="customTemplate; else defaultButtonText" [ngTemplateOutlet]="customTemplate"></ng-template>
+</button>
+<button *ngIf="type === 'link'" [disabled]="disabled" class="btn btn-link {{class}} {{customClass}}" style="{{style}}">
+    <ng-template *ngIf="customTemplate; else defaultButtonText" [ngTemplateOutlet]="customTemplate"></ng-template>
+</button>
+
+<ng-template #defaultButtonText>
     <span [hidden]="!process" aria-hidden="true" class="spinner-border spinner-border-sm" role="status"></span>
     {{text}}
-</button>
-<button *ngIf="type === 'secondary'" [disabled]="disabled" class="btn btn-secondary {{class}}" style="{{style}}">
-    <span [hidden]="!process" aria-hidden="true" class="spinner-border spinner-border-sm" role="status"></span>
-    {{text}}
-</button>
-<button *ngIf="type === 'link'" [disabled]="disabled" class="btn btn-link {{class}}" style="{{style}}">
-    <span [hidden]="!process" aria-hidden="true" class="spinner-border spinner-border-sm" role="status"></span>
-    {{text}}
-</button>
+</ng-template>
