@@ -16,7 +16,7 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
   /**
    * Placeholder text data
    */
-  @Input() placeholder: string = 'Write Your Content Here!';
+  @Input() placeholder: string = '';
   /**
    * Setter for value changing
    */
@@ -33,7 +33,7 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
     toolbar: 'bold italic underline strikethrough subscript superscript fontselect fontsizeselect |' +
       'alignleft aligncenter alignright alignjustify | numlist bullist | outdent indent | link unlink | undo redo',
     plugins: 'lists link wordcount',
-    placeholder: '',
+    placeholder: this.placeholder,
     max_height: 150,
     content_style: 'body { font-family: Arial; }'
   };
@@ -46,7 +46,9 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
   constructor() { }
 
   ngOnInit(): void {
-    this.tinyOptions.placeholder = this.placeholder;
+    if (this.placeholder) {
+      this.tinyOptions.placeholder = this.placeholder;
+    }
   }
   /**
    * Listen to editor focus status for changing border style
