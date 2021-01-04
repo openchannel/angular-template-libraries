@@ -9,6 +9,6 @@
 </button>
 
 <ng-template #defaultButtonText>
-    <span [hidden]="!process" aria-hidden="true" class="spinner-border spinner-border-sm" role="status"></span>
-    {{text}}
+    <span *ngIf="process" aria-hidden="true" class="spinner-border spinner-border-sm" role="status"></span>
+    <span *ngIf="!process">{{text}}</span>
 </ng-template>
