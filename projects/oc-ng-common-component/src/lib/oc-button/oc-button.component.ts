@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, TemplateRef} from '@angular/core';
 
 @Component({
   selector: 'oc-button',
@@ -12,6 +12,8 @@ export class OcButtonComponent implements OnInit {
   @Input() class: string;
   @Input() style: string;
   @Input() process: boolean;
+  @Input() customClass: string;
+  @Input() customTemplate: TemplateRef<any>;
 
   constructor() {
   }

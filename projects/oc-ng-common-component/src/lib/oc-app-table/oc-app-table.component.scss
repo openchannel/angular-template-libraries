@@ -1,5 +1,9 @@
 @import "../../../assets/styles/theme.scss";
 
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
 .table {
   border: 1px solid #c9d5ea;
   border-radius: 4px;
@@ -119,6 +123,10 @@
   }
 }
 
+.dropup, .dropright, .dropdown, .dropleft {
+  position: initial;
+}
+
 // Dropdown menu style
 .dropdown-menu {
   top: 48px;
@@ -186,3 +194,5 @@
 .suspended {
   background-color: $suspended;
 }
+
+

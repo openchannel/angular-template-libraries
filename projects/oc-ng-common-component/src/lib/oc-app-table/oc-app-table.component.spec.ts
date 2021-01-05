@@ -1,17 +1,17 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {OcMenuGridComponent} from './oc-menu-grid.component';
+import {OcAppTableComponent} from './oc-app-table.component.ts';
 import {FormsModule, NgModel} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 
 
 describe('OcMenuGridComponent', () => {
-  let component: OcMenuGridComponent;
-  let fixture: ComponentFixture<OcMenuGridComponent>;
+  let component: OcAppTableComponent;
+  let fixture: ComponentFixture<OcAppTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [OcMenuGridComponent],
+      declarations: [OcAppTableComponent],
       providers: [NgModel],
       imports: [FormsModule, CommonModule, BrowserModule]
     })
@@ -19,7 +19,7 @@ describe('OcMenuGridComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OcMenuGridComponent);
+    fixture = TestBed.createComponent(OcAppTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
