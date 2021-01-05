@@ -1,17 +1,22 @@
-<button *ngIf="type === 'primary'" [disabled]="disabled" class="btn btn-primary {{class}} {{customClass}}" style="{{style}}">
+<button #button *ngIf="type === 'primary'"
+        [disabled]="disabled" class="btn btn-primary {{class}} {{customClass}}"
+        style="{{style}}">
     <ng-template *ngIf="customTemplate; else defaultButtonText" [ngTemplateOutlet]="customTemplate"></ng-template>
 </button>
-<button *ngIf="type === 'secondary'" [disabled]="disabled" class="btn btn-secondary {{class}} {{customClass}}" style="{{style}}">
+<button #button *ngIf="type === 'secondary'"
+        [disabled]="disabled" class="btn btn-secondary {{class}} {{customClass}}"
+        style="{{style}}">
     <ng-template *ngIf="customTemplate; else defaultButtonText" [ngTemplateOutlet]="customTemplate"></ng-template>
 </button>
-<button *ngIf="type === 'link'" [disabled]="disabled" class="btn btn-link {{class}} {{customClass}}" style="{{style}}">
+<button #button *ngIf="type === 'link'" [disabled]="disabled" class="btn btn-link {{class}} {{customClass}}"
+        style="{{style}}">
     <ng-template *ngIf="customTemplate; else defaultButtonText" [ngTemplateOutlet]="customTemplate"></ng-template>
 </button>
 
 <ng-template #defaultButtonText>
     <ngx-spinner *ngIf="process" type="ball-spin" bdColor=""
                  [fullScreen]="false" size="small"
-                 [color]="this.type === 'primary' ? '#fff' : '#727272'">
+                 [color]="spinnerColor">
     </ngx-spinner>
     <span *ngIf="!process">{{text}}</span>
 </ng-template>
