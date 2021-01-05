@@ -87,6 +87,8 @@ import {OcTooltipLabelComponent} from './oc-tooltip-label/oc-tooltip-label.compo
 import {PasswordValidatorDirective} from './validators/password-validator.directive';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OcAppTableComponent } from './oc-app-table/oc-app-table.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -182,7 +184,9 @@ import { OcAppTableComponent } from './oc-app-table/oc-app-table.component';
     RouterModule,
     InfiniteScrollModule,
     CarouselModule,
-    EmbedVideo.forRoot()
+    NgxSpinnerModule,
+    EmbedVideo.forRoot(),
+    BrowserAnimationsModule
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
