@@ -88,7 +88,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import {OcAppShortInfoComponent} from './oc-app-short-info/oc-app-short-info.component';
 import { OcAppTableComponent } from './oc-app-table/oc-app-table.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -187,7 +186,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CarouselModule,
     NgxSpinnerModule,
     EmbedVideo.forRoot(),
-    BrowserAnimationsModule
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
