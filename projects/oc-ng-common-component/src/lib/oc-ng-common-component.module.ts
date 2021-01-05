@@ -4,7 +4,6 @@ import {OcButtonComponent} from './oc-button/oc-button.component';
 import {OcInputComponent} from './oc-input/oc-input.component';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CommonModule} from '@angular/common';
-import {BrowserModule} from '@angular/platform-browser';
 import {OcLabelComponent} from './oc-label/oc-label.component';
 import {OcCheckboxComponent} from './oc-checkbox/oc-checkbox.component';
 import {OcRadioComponent} from './oc-radio/oc-radio.component';
