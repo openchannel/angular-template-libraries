@@ -9,12 +9,9 @@
 </button>
 
 <ng-template #defaultButtonText>
-<!--    <fa-icon *ngIf="process" icon="spinner" [pulse]="true" class="inline-loader"></fa-icon>-->
     <ngx-spinner *ngIf="process" type="ball-spin" bdColor=""
                  [fullScreen]="false" size="small"
                  [color]="this.type === 'primary' ? '#fff' : '#727272'">
     </ngx-spinner>
     <span *ngIf="!process">{{text}}</span>
-    <!--    <span *ngIf="process" aria-hidden="true" class="spinner-border spinner-border-sm" role="status"></span>-->
 </ng-template>
-<!--[color]="this.type === 'primary' ? '#fff' : '#727272'"-->
