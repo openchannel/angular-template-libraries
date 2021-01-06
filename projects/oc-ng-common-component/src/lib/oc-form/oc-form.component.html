@@ -11,7 +11,9 @@
       </oc-tooltip-label>
       <div class="w-100">
         <div [ngSwitch]="formElement?.type">
-          <oc-rich-text-editor *ngSwitchCase="'richText'"  formControlName="{{formElement?.id}}"></oc-rich-text-editor>
+          <oc-rich-text-editor *ngSwitchCase="'richText'"
+                               formControlName="{{formElement?.id}}"
+                               [placeholder]="formElement?.placeholder"></oc-rich-text-editor>
           <oc-input *ngSwitchCase="'text'"  formControlName="{{formElement?.id}}"
                     [placeholder]="formElement?.placeholder"
           ></oc-input>
