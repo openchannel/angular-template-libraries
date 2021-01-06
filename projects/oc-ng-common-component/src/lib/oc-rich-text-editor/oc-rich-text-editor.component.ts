@@ -16,7 +16,11 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
   /**
    * Placeholder text data
    */
-  @Input() placeholder: string = 'Write Your Content Here!';
+  @Input() set placeholder(value: string) {
+    if (value) {
+      this.placeholderText = value;
+    }
+  }
   /**
    * Setter for value changing
    */
@@ -25,6 +29,8 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
     this.editorContent = val;
     this.onChange(this.editorContent);
   }
+
+  public placeholderText: string = '';
   // options for Tiny Editor
   public tinyOptions = {
     base_url: '/tinymce',
@@ -33,7 +39,7 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
     toolbar: 'bold italic underline strikethrough subscript superscript fontselect fontsizeselect |' +
       'alignleft aligncenter alignright alignjustify | numlist bullist | outdent indent | link unlink | undo redo',
     plugins: 'lists link wordcount',
-    placeholder: '',
+    placeholder: this.placeholderText,
     max_height: 150,
     content_style: 'body { font-family: Arial; }'
   };
@@ -46,8 +52,11 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
   constructor() { }
 
   ngOnInit(): void {
-    this.tinyOptions.placeholder = this.placeholder;
+    if (this.placeholderText) {
+      this.tinyOptions.placeholder = this.placeholderText;
+    }
   }
+
   /**
    * Listen to editor focus status for changing border style
    */
