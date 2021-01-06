@@ -86,6 +86,7 @@ import { OcMenuUserGridComponent } from './oc-menu-user-grid/oc-menu-user-grid.c
 import {OcTooltipLabelComponent} from './oc-tooltip-label/oc-tooltip-label.component';
 import {PasswordValidatorDirective} from './validators/password-validator.directive';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import {OcAppShortInfoComponent} from './oc-app-short-info/oc-app-short-info.component';
 import { OcAppTableComponent } from './oc-app-table/oc-app-table.component';
 
 @NgModule({
@@ -167,7 +168,8 @@ import { OcAppTableComponent } from './oc-app-table/oc-app-table.component';
     OcAppDescriptionComponent,
     OcToastsComponent,
     OcResendActivationComponent,
-    OcTooltipLabelComponent
+    OcTooltipLabelComponent,
+    OcAppShortInfoComponent,
   ],
 
   imports: [
@@ -254,6 +256,7 @@ import { OcAppTableComponent } from './oc-app-table/oc-app-table.component';
     OcToastsComponent,
     OcResendActivationComponent,
     OcMenuUserGridComponent,
+    OcAppShortInfoComponent
   ],
   providers: [
     NgbActiveModal,
