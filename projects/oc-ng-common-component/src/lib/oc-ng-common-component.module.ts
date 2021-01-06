@@ -4,7 +4,6 @@ import {OcButtonComponent} from './oc-button/oc-button.component';
 import {OcInputComponent} from './oc-input/oc-input.component';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CommonModule} from '@angular/common';
-import {BrowserModule} from '@angular/platform-browser';
 import {OcLabelComponent} from './oc-label/oc-label.component';
 import {OcCheckboxComponent} from './oc-checkbox/oc-checkbox.component';
 import {OcRadioComponent} from './oc-radio/oc-radio.component';
@@ -88,6 +87,7 @@ import {PasswordValidatorDirective} from './validators/password-validator.direct
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import {OcAppShortInfoComponent} from './oc-app-short-info/oc-app-short-info.component';
 import { OcAppTableComponent } from './oc-app-table/oc-app-table.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -184,7 +184,8 @@ import { OcAppTableComponent } from './oc-app-table/oc-app-table.component';
     RouterModule,
     InfiniteScrollModule,
     CarouselModule,
-    EmbedVideo.forRoot()
+    NgxSpinnerModule,
+    EmbedVideo.forRoot(),
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,

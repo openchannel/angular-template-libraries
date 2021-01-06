@@ -218,11 +218,17 @@ h6 {
   min-height: 52px;
   border-radius: 4px;
   font-weight: 300;
+  position: relative;
   font-family: "Rubik-Medium";
+  span {
+    font-size: 14px;
+    font-family: "Rubik-Medium";
+  }
 }
 .btn:focus{
   box-shadow: none !important;
   outline: none;
+  border: 2px solid $focus-border;
 }
 .btn:disabled{
   opacity: 0.35;
@@ -230,20 +236,47 @@ h6 {
 .btn-primary{
   background-color: $primary !important;
   border-color: $primary !important;
+  &:hover {
+    box-shadow: 1px 5px 30px 0 rgba(mix(#000, $primary, 10%), 0.5);
+  }
+  &:not(:disabled):not(.disabled):active {
+    background-color: mix(#000, $primary, 10%) !important;
+  }
+  &-spinner {
+    background-color: mix(#000, $primary, 10%) !important;
+  }
 }
 .btn-secondary{
   background-color: white !important;
   border-color: $info !important;
-  color: $secondary !important;
+  color: $body-color !important;
+  &:hover {
+    box-shadow: 1px 5px 30px 0 rgba(lighten($secondary, 34%), 0.5);
+  }
+  &:not(:disabled):not(.disabled):active {
+    background-color: $info !important;
+  }
+  &-spinner {
+    background-color: $info !important;
+  }
 }
 .btn-link{
   color: $primary !important;
-  text-align: left;
   text-decoration: none;
+  width: auto;
+  height: auto;
+  min-width: unset;
+  min-height: unset;
+  padding: 2px;
+  &:hover {
+    text-decoration: underline;
+  }
+  &:not(:disabled):not(.disabled):active {
+    text-decoration: underline;
+    color: mix(#000, $primary, 10%) !important;
+  }
 }
-.btn-link:hover {
-  text-decoration: none;
-}
+
 /** End buttons **/
 .divider{
   border-top: 1px solid $info;
