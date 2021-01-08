@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -6,7 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   templateUrl: './oc-button.component.html',
   styleUrls: ['./oc-button.component.scss'],
 })
-export class OcButtonComponent implements OnInit, OnChanges {
+export class OcButtonComponent implements OnChanges, AfterViewInit {
   @Input() text: string = '';
   @Input() disabled: boolean = false;
   @Input() type: 'primary' | 'secondary' | 'link' = 'primary';
@@ -23,7 +23,8 @@ export class OcButtonComponent implements OnInit, OnChanges {
   constructor(private spinner: NgxSpinnerService) {
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
+    this.spinnerColor = window.getComputedStyle(this.button.nativeElement).color;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -33,8 +34,6 @@ export class OcButtonComponent implements OnInit, OnChanges {
   }
 
   checkSpinner(): void {
-    this.spinnerColor = window.getComputedStyle(this.button.nativeElement).color;
-
     if (this.process && this.type !== 'link') {
       this.spinner.show();
     } else {
