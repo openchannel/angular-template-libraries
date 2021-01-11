@@ -4,7 +4,6 @@ import {OcButtonComponent} from './oc-button/oc-button.component';
 import {OcInputComponent} from './oc-input/oc-input.component';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CommonModule} from '@angular/common';
-import {BrowserModule} from '@angular/platform-browser';
 import {OcLabelComponent} from './oc-label/oc-label.component';
 import {OcCheckboxComponent} from './oc-checkbox/oc-checkbox.component';
 import {OcRadioComponent} from './oc-radio/oc-radio.component';
@@ -32,7 +31,6 @@ import {PhoneNumberValidatorDirective} from './validators/phone-number-validator
 import {WebsiteValidatorDirective} from './validators/website-validator.directive';
 import {OcAppGetStartedComponent} from './oc-app-get-started/oc-app-get-started.component';
 import {OcChartComponent} from './oc-chart/oc-chart.component';
-import {OcMenuGridComponent} from './oc-menu-grid/oc-menu-grid.component';
 import {OcAppGalleryComponent} from './oc-app-gallery/oc-app-gallery.component';
 import {OcAppListGridComponent} from './oc-app-list-grid/oc-app-list-grid.component';
 import {OcRecommendedAppsComponent} from './oc-recommended-apps/oc-recommended-apps.component';
@@ -87,6 +85,9 @@ import { OcMenuUserGridComponent } from './oc-menu-user-grid/oc-menu-user-grid.c
 import {OcTooltipLabelComponent} from './oc-tooltip-label/oc-tooltip-label.component';
 import {PasswordValidatorDirective} from './validators/password-validator.directive';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import {OcAppShortInfoComponent} from './oc-app-short-info/oc-app-short-info.component';
+import { OcAppTableComponent } from './oc-app-table/oc-app-table.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -118,7 +119,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     PhoneNumberValidatorDirective,
     WebsiteValidatorDirective,
     OcChartComponent,
-    OcMenuGridComponent,
+    OcAppTableComponent,
     OcAppGetStartedComponent,
     OcAppGalleryComponent,
     OcAppListGridComponent,
@@ -167,13 +168,13 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     OcAppDescriptionComponent,
     OcToastsComponent,
     OcResendActivationComponent,
-    OcTooltipLabelComponent
+    OcTooltipLabelComponent,
+    OcAppShortInfoComponent,
   ],
 
   imports: [
     NgbModule,
     CommonModule,
-    BrowserModule,
     FormsModule,
     ImageCropperModule,
     ReactiveFormsModule,
@@ -183,7 +184,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     RouterModule,
     InfiniteScrollModule,
     CarouselModule,
-    EmbedVideo.forRoot()
+    NgxSpinnerModule,
+    EmbedVideo.forRoot(),
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
@@ -218,7 +220,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     PhoneNumberValidatorDirective,
     WebsiteValidatorDirective,
     OcChartComponent,
-    OcMenuGridComponent,
+    OcAppTableComponent,
     OcAppGetStartedComponent,
     OcAppGalleryComponent,
     OcSelectExpandableComponent,
@@ -255,6 +257,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     OcToastsComponent,
     OcResendActivationComponent,
     OcMenuUserGridComponent,
+    OcAppShortInfoComponent
   ],
   providers: [
     NgbActiveModal,

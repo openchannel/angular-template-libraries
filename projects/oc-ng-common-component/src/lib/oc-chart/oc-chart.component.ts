@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {Chart} from 'chart.js';
 import {SafeUrl} from '@angular/platform-browser';
 import {
@@ -18,7 +18,7 @@ chartPoint.src = '../../../assets/img/chart_point.svg';
   templateUrl: './oc-chart.component.html',
   styleUrls: ['./oc-chart.component.scss']
 })
-export class OcChartComponent implements AfterViewInit, OnChanges {
+export class OcChartComponent implements OnChanges {
 
   @ViewChild('myCanvas')
   myCanvas: ElementRef<HTMLCanvasElement>;
@@ -53,8 +53,13 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   constructor() {
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.chartData.previousValue !== changes.chartData.currentValue) {
+      this.reloadChart();
+    }
+  }
 
-  ngAfterViewInit(): void {
+  reloadChart(): void {
     if (typeof this.chart !== 'undefined') {
       this.chart.destroy();
     }
@@ -62,10 +67,6 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
       this.context = this.myCanvas.nativeElement.getContext('2d');
       this.getChart();
     }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    this.ngAfterViewInit();
   }
 
   getChart() {
@@ -194,10 +195,10 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
     let period = null;
     let field = null;
     if (this.chartData?.periods) {
-      period = this.chartData.periods.filter(period => period && period.active)[0];
+      period = this.chartData.periods.filter(periodItem => periodItem && periodItem.active)[0];
     }
     if (this.chartData?.fields) {
-      field = this.chartData.fields.filter(field => field && field.active)[0];
+      field = this.chartData.fields.filter(fieldItem => fieldItem && fieldItem.active)[0];
     }
     this.updateChartDataFunc(period, field);
   }

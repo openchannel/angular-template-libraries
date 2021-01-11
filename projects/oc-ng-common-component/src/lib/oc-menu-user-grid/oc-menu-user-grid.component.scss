@@ -1,5 +1,9 @@
 @import "../../../assets/styles/theme.scss";
 
+.dropup, .dropright, .dropdown, .dropleft {
+  position: initial;
+}
+
 // Dropdown menu style
 .dropdown-menu {
   padding: 0;

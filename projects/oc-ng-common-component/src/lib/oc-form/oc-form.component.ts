@@ -127,12 +127,12 @@ export class OcFormComponent implements OnInit, OnDestroy {
             break;
           case 'emailAddress':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
-              inputTemplate?.defaultValue : inputTemplate?.placeholder ? '' : 'myemail@example.com');
+              inputTemplate?.defaultValue : '');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isEmail: true});
             break;
           case 'websiteUrl':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
-              inputTemplate?.defaultValue : inputTemplate?.placeholder ? '' : 'https://my.website.com');
+              inputTemplate?.defaultValue : '');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isUrl: true});
             break;
           case 'color':
@@ -159,7 +159,7 @@ export class OcFormComponent implements OnInit, OnDestroy {
             break;
           case 'videoUrl':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
-              inputTemplate?.defaultValue : 'https://my.website.com');
+              inputTemplate?.defaultValue : '');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isUrl: true});
             break;
           case 'date':

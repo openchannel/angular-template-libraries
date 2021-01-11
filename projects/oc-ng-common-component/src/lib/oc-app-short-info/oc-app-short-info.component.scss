@@ -1,0 +1,46 @@
+@import "../../../assets/styles/theme.scss";
+
+.app-card {
+  border: 1px solid $info;
+  border-radius: 4px;
+  padding: 16px;
+
+  .app-name {
+    line-height: 19px;
+  }
+
+  .app-price {
+    font-size: 14px;
+    line-height: 16px;
+    font-family: "Rubik-Medium";
+    display: inline-block;
+    color: $primary;
+    margin-bottom: 8px;
+    width: 130px;
+  }
+  .line-space {
+    line-height: 1.2rem;
+  }
+  .text-summary-hidden {
+    max-height: 2.5rem;
+    overflow: hidden;
+  }
+  .card-height-fixed {
+    height: 99px
+  }
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: $body-color;
+  &:hover {
+    text-decoration: none;
+    color: $body-color;
+  }
+}
+
+.img-fluid {
+  min-width: 60px;
+  max-width: 60px;
+}

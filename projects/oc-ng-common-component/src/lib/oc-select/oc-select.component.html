@@ -1,14 +1,13 @@
 <div ngbDropdown #myDrop="ngbDropdown">
     <button class="btn btn-secondary w-100 d-flex justify-content-between align-items-center"
             ngbDropdownToggle [disabled]="disabled"
-            (blur)="onblur()"
-            (click)="disabled ? $event.preventDefault() : myDrop.open()">
-        <div class="text-dark">{{ selectedValue }}</div>
+            (blur)="onblur()">
+        <div class="text-dark">{{ labelField ? selectedValue[labelField] : selectedValue }}</div>
     </button>
 
     <div ngbDropdownMenu aria-labelledby="dropdownManual">
         <button ngbDropdownItem class="p-2 border-info border-bottom"
                 (click)="onSelectionChange(val)"
-                *ngFor="let val of selectValArr">{{ isObject ? val.value : val}}</button>
+                *ngFor="let val of selectValArr">{{ labelField ? val[labelField] : val }}</button>
     </div>
 </div>
