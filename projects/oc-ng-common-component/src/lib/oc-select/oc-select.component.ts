@@ -38,7 +38,7 @@ export class OcSelectComponent implements OnInit, ControlValueAccessor {
   }
 
   onSelectionChange(event: any): void {
-    this.selectedValue = event.target.value;
+    this.selectedValue = event;
     this.onChange(this.selectedValue);
   }
 

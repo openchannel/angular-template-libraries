@@ -142,10 +142,10 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
             },
             ticks: {
               autoSkip: false,
-              padding: 24,
+              padding: this.chartData?.data?.labelsX.length > 13 ? 10 : 24,
               fontColor: '#727272',
               callback(value: any, index, values) {
-                if (value.length === 8) {
+                if (value.length >= 8) {
                   return value.substring(0, 3);
                 }
                 return value;

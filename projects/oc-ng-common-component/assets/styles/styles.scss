@@ -189,10 +189,12 @@ h6 {
     }
   }
 }
+
+/* oc-file-upload */
 .file-upload-progress[type="primary"]{
   .progress {
     height: 4px;
-    background-color: #c9d5ea;
+    background-color: $info;
   }
 }
 
@@ -201,6 +203,7 @@ h6 {
     height: 1px;
   }
 }
+/* end */
 
 .company-logo{
   height: 27px;
@@ -519,3 +522,32 @@ oc-dropbox {
   }
 }
 // end of the Tiny Editor style customization
+
+
+// oc-select
+
+oc-select {
+  & .btn:focus {
+    border-color: $primary !important;
+  }
+
+  .dropdown-menu {
+    .dropdown-item {
+      padding: 16px;
+      border-bottom: 1px;
+      &:hover {
+        color: $body-color;
+        background-color: $light;
+      }
+      &:active{
+        color: $primary;
+        background-color: $light;
+        border-color: unset;
+      }
+      &:focus{
+        outline: none;
+        background-color: $light;
+      }
+    }
+  }
+}
