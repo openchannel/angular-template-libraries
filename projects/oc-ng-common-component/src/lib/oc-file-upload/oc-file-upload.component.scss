@@ -5,30 +5,25 @@
   min-height: 248px;
   border: 1px solid $info;
   border-radius: 4px;
-  background-color: #f4f7fc;
+  background-color: $light;
   padding: 28px 24px;
-  // margin: 0 auto;
+  position: relative;
   input {
     opacity: 0;
+    position: absolute;
     z-index: 2;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
   }
-  
-  h3 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #38424c;
-  }
-  
+
   .upload-s {
     width: 24px;
     margin-bottom: 3px;
     margin-right: 8px;
   }
-  
+
   .placeholder-text-container {
     line-height: 1.2;
   }
@@ -41,7 +36,7 @@
 
 .files-list {
   margin-top: 1.5rem;
-  
+
   .single-file {
     display: flex;
     padding: 0.5rem;
@@ -49,51 +44,45 @@
     align-items: center;
     border: dashed 1px #979797;
     margin-bottom: 1rem;
-    
+
     .delete {
       display: flex;
       margin-left: 0.5rem;
       cursor: pointer;
       align-self: flex-end;
     }
-    
-    display: flex;
+
     flex-grow: 1;
-    
+
     .name {
       font-size: 14px;
       font-weight: 500;
       color: #353f4a;
       margin: 0;
     }
-    
+
     .size {
       font-size: 12px;
       font-weight: 500;
       color: #a4a4a4;
-      margin: 0;
-      margin-bottom: 0.25rem;
+      margin: 0 0 0.25rem;
     }
-    
+
     .info {
       width: 100%;
     }
   }
 }
 
-// .blue-label {
-//   font-size: 14px;
-//   font-family: "Rubik-Medium";
-//   color: $primary;
-// }
-
 .without-files {
-  padding: 64px 16px 0;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .browse-file {
-  color: #537cfd !important;
+  color: $primary !important;
   cursor: pointer;
 }
 
@@ -112,4 +101,8 @@
   padding-right: 8px;
 }
 
+.zoom-icon {
+  height: 16px;
+  width: 16px;
+}
 

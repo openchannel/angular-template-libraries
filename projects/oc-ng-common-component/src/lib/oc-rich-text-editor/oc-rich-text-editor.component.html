@@ -1,7 +1,10 @@
 <div class="w-100" style="max-height: 300px;">
-  <editor [apiKey]="tinyEditorApiKey"
-          [init]="tinyOptions"
+  <editor [init]="tinyOptions"
           [(ngModel)]="editorContent"
+          [class.editor-border-focus]="editorOnFocus"
           (ngModelChange)="onModelChange()"
+          (onBlur)="onTouched()"
+          (onFocusIn)="changeEditorFocus(true)"
+          (onFocusOut)="changeEditorFocus(false)"
           class="custom-editor"></editor>
 </div>

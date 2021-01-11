@@ -1,5 +1,7 @@
 @import "./theme.scss";
 @import "~bootstrap/scss/bootstrap";
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
 @font-face {
   font-family: "Rubik-Black";
@@ -187,10 +189,12 @@ h6 {
     }
   }
 }
+
+/* oc-file-upload */
 .file-upload-progress[type="primary"]{
   .progress {
     height: 4px;
-    background-color: #c9d5ea;
+    background-color: $info;
   }
 }
 
@@ -199,6 +203,7 @@ h6 {
     height: 1px;
   }
 }
+/* end */
 
 .company-logo{
   height: 27px;
@@ -248,19 +253,24 @@ h6 {
 }
 /** input password **/
 
-oc-input, oc-password, oc-app-category-select , oc-select, oc-video-url, oc-color{
+oc-input, oc-password, oc-app-category-select , oc-select, oc-video-url, oc-color, oc-rich-text-editor, oc-textarea{
     &.ng-invalid{
       input.ng-touched, select.ng-touched , textarea.ng-touched{
         border-color: $danger;
       }
-    }
-    &.ng-invalid{
-      &.ng-touched{
-        input, select, button.ng-invalid , textarea{
-        border-color: $danger;
+      .custom-editor.ng-touched {
+        .tox-tinymce {
+          border-color: $danger;
+        }
       }
     }
-  }
+    &.ng-invalid {
+      &.ng-touched {
+        input, select, button.ng-invalid , textarea {
+          border-color: $danger;
+        }
+      }
+    }
 }
 
 button, input{
@@ -437,4 +447,107 @@ a.link {
 .error-container {
   background-color: $error-bg;
   color: $error;
+}
+
+oc-dropbox {
+  & .dropdown-menu {
+    max-height: 180px;
+    overflow-y: scroll;
+  }
+
+  & .dropdown-menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  & .dropdown-menu .dropdown-item {
+    padding: 0;
+  }
+
+  & .dropdown-item.active, .dropdown-item:active {
+    background: none;
+    color: $gray-700;
+  }
+}
+
+.modal-button {
+  width: 255px;
+}
+
+//Tiny Editor style customization
+.custom-editor {
+  .tox-tinymce {
+    border-radius: 4px;
+    border-color: $info;
+    &:focus-within {
+      border-color: $primary;
+    }
+    .tox-editor-container {
+      .tox-editor-header {
+        .tox-toolbar-overlord {
+          .tox-toolbar__primary {
+            .tox-toolbar__group {
+              .tox-tbtn--enabled {
+                background: none;
+                svg {
+                  fill: $primary
+                }
+                &:hover {
+                  background: #f4f4f4;
+                }
+              }
+              .tox-tbtn {
+                &:hover {
+                  background: #f4f4f4;
+                }
+                svg {
+                  fill: mix(#000, $info, 38%);
+                }
+                &__select-label {
+                  color: mix(#000, $info, 38%);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .tox-statusbar {
+      opacity: 0;
+    }
+  }
+}
+.editor-border-focus {
+  .tox-tinymce {
+    border-color: $primary;
+  }
+}
+// end of the Tiny Editor style customization
+
+
+// oc-select
+
+oc-select {
+  & .btn:focus {
+    border-color: $primary !important;
+  }
+
+  .dropdown-menu {
+    .dropdown-item {
+      padding: 16px;
+      border-bottom: 1px;
+      &:hover {
+        color: $body-color;
+        background-color: $light;
+      }
+      &:active{
+        color: $primary;
+        background-color: $light;
+        border-color: unset;
+      }
+      &:focus{
+        outline: none;
+        background-color: $light;
+      }
+    }
+  }
 }

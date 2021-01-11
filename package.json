@@ -43,8 +43,9 @@
     "ngx-embed-video": "^1.0.4",
     "ngx-image-cropper": "^3.2.1",
     "ngx-infinite-scroll": "^10.0.0",
+    "ngx-owl-carousel-o": "^4.0.0",
     "oc-ng-common-component": "file:dist/oc-ng-common-component",
-    "oc-ng-common-service": "0.0.2-23",
+    "oc-ng-common-service": "0.0.2-30",
     "react": "^16.13.1",
     "react-is": "^16.13.1",
     "rxjs": "~6.5.4",
@@ -87,6 +88,7 @@
     "ts-jest": "^26.4.1",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
-    "typescript": "~3.7.5"
+    "typescript": "~3.7.5",
+    "jwt-decode": "^3.1.2"
   }
 }

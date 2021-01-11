@@ -16,11 +16,8 @@
 
 <ng-template #fileList>
     <div class="file-container">
-        <div class="row">
-            <div class="col-md">
-                <p class="mb-3 font-med font-m">My Attachments</p>
-            </div>
-            <div *ngIf="isMultiFileSupport()" class="col-md-auto">
+        <div class="row justify-content-center mb-3" *ngIf="isMultiFileSupport()">
+            <div class="col-md-auto">
                 <img [src]="uploadIconUrl" alt="upload-icon"
                      class="upload-s">
                 <a (click)="fileDropRef.click()" class="font-m font-bold browse-file">
@@ -36,12 +33,12 @@
                 <img [ngClass]="getFileIconClass(file)" [src]="getUrl(file)" alt="app-icon">
             </div>
             <div *ngIf="file" class="col-md-auto ml-n1">
-                <a (click)="downloadFile(file)" class="cursor-pointer"><span
-                        class="font-med font-m d-block"> {{file.name}}</span></a>
+                <a (click)="downloadFile(file)" class="cursor-pointer" id="downloadFile">
+                    <span id="fileName" class="font-med font-m d-block"> {{file.name}}</span></a>
                 <span class="text-secondary font-s">{{file.fileUploadProgress === 100 ? "Complete" : "Uploading"}}</span>
             </div>
             <div *ngIf="file" class="col-md text-right pt-3">
-                <a (click)="cancelUploading(i)" class="cursor-pointer">
+                <a (click)="cancelUploading(i)" id="closeLink" class="cursor-pointer">
                     <img alt="close-icon"
                          [src]="closeIconUrl">
                 </a>
@@ -64,24 +61,31 @@
 
 <!--cropper modal for bulk edit-->
 <ng-template #cropperModal let-c="close" let-d="dismiss">
-    <div class="modal-header pb-0">
-        <h4 class="modal-title">Edit Image</h4>
-        <a (click)="d('Cross click'); resetSelection()" aria-describedby="modal-title" class="close cursor-pointer">
-            <span aria-hidden="true">&times;</span>
-        </a>
+    <div class="modal-header p-3">
+        <h4 class="flex-grow-1 text-center mb-0">Edit Image</h4>
+        <img (click)="d('Cross click'); resetSelection()"
+             class="cursor-pointer" [src]="closeIconUrl" alt="close-icon">
     </div>
-    <div class="modal-body d-flex flex-column">
+    <div class="modal-body d-flex flex-column p-5">
         <div class="file-cropper-body w-100 d-flex flex-column">
-            <image-cropper (cropperReady)="cropperReady()" (imageCropped)="imageCropped($event)"
-                           (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()"
+
+            <div class="d-flex justify-content-between mb-2">
+                <div class="font-m">{{croppedImageHeight}}p X {{croppedImageWidth}}p</div>
+                <div>
+                    <a class="cursor-pointer" (click)="zoomIn()">
+                        <img class="zoom-icon mr-2" [src]="zoomInIconUrl"></a>
+                    <a class="cursor-pointer" (click)="zoomOut()">
+                        <img class="zoom-icon" [src]="zoomOutIconUrl"></a>
+                </div>
+            </div>
+            <image-cropper (imageCropped)="imageCropped($event)"
+                           (loadImageFailed)="loadImageFailed()"
                            [aspectRatio]="aspectRatio"
                            [imageChangedEvent]="browsedFileEvent"
                            [maintainAspectRatio]="maintainAspectRatio" [resizeToHeight]="resizeToHeight"
                            [resizeToWidth]="resizeToWidth"
                            [transform]="transform" format="png" style="padding: 0px;">
             </image-cropper>
-            <!-- [resizeToWidth]="resizeToWidth"
-                [resizeToHeight]="resizeToHeight" -->
 
             <div class="w-100 my-2 text-center" *ngIf="hasImageLoadError">
                 {{ imageLoadErrorMessage }}
@@ -101,19 +105,13 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer pr-0 pb-0">
-                <div>
-                    <a class="cursor-pointer" (click)="zoomIn()" style="padding-right: 15px;">
-                        <img [src]="zoomInIconUrl" style="width: 24px;"></a>
-                    <a class="cursor-pointer" (click)="zoomOut()" style="padding-right: 15px;">
-                        <img [src]="zoomOutIconUrl" style="width: 24px;"></a>
-                </div>
-                <oc-button type="secondary" [disabled]="uploadImageInProcess"
-                           (click)="d('Cross click'); resetSelection()" [text]="'Close'"></oc-button>
-                <oc-button type="primary" [disabled]="hasImageLoadError || uploadImageInProcess"
+            <div class="modal-footer px-0 pt-5 pb-0 d-flex justify-content-center">
+                <oc-button type="secondary" [disabled]="uploadImageInProcess" [class]="'modal-button'"
+                           (click)="d('Cross click'); resetSelection()" text="Cancel"></oc-button>
+                <oc-button type="primary" [class]="'modal-button ml-2'" id="modalAgreeButton"
+                           [disabled]="hasImageLoadError || uploadImageInProcess"
                            (click)="uploadImageFile();"
-                           [disabled]="uploadImageInProcess"
-                           [process]="uploadImageInProcess" [text]="'Upload'"
+                           [process]="uploadImageInProcess" text="Confirm"
                 ></oc-button>
             </div>
         </div>

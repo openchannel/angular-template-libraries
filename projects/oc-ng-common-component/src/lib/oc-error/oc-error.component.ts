@@ -37,7 +37,8 @@ export class OcErrorComponent implements OnInit {
     max: (params) => 'The maximum possible value is ' + params.max,
     colorValidator: () => 'Please enter a valid Color value.',
     booleanTagsValidator: (params) => params.fieldTitle + ' can only contain boolean values (\'true\' or \'false\')',
-    numberTagsValidator: (params) => params.fieldTitle + ' can only contain numeric values'
+    numberTagsValidator: (params) => params.fieldTitle + ' can only contain numeric values',
+    passwordValidator: () => 'Password must contains 1 uppercase, 1 lowercase, 1 digit, 1 special char (one of @#$%!^&) and at least 8 character long'
   };
 
   @Input()
@@ -106,5 +107,4 @@ export class OcErrorComponent implements OnInit {
   private getMessage(type: string, params: any) {
     return this.errorMessages[type](params);
   }
-
 }

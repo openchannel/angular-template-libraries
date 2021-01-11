@@ -23,8 +23,6 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   @ViewChild('myCanvas')
   myCanvas: ElementRef<HTMLCanvasElement>;
 
-  public context: CanvasRenderingContext2D;
-
   /** Sum of data or other total count that can be shown */
   @Input() count: number;
   /** Title text of the data count */
@@ -37,17 +35,19 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
   @Input() enablePoints: boolean = false;
   // change in value of this invokes ngOnChanges
   @Input() random;
-  /** Min width for the dropdown **/
+  /** Min width for the dropdown */
   @Input() minDropdownWidth: string;
-  /** Main model for building chart with buttons and dropdown **/
+  /** Main model for building chart with buttons and dropdown */
   @Input() chartData: ChartStatisticModel;
-  /** Function for updating chart data, when user choice a new options **/
-  @Input() updateChartDataFunc = (period: ChartStatisticPeriodModel, fields: ChartStatisticFiledModel): void => {};
 
   dropdownTypes: DropdownModel<ChartStatisticFiledModel>[];
   dropdownSelectedType: DropdownModel<ChartStatisticFiledModel>;
+  context: CanvasRenderingContext2D;
 
   private chart: any;
+
+  /** Function for updating chart data, when user choice a new options */
+  @Input() updateChartDataFunc = (period: ChartStatisticPeriodModel, fields: ChartStatisticFiledModel): void => {};
 
 
   constructor() {
@@ -142,10 +142,10 @@ export class OcChartComponent implements AfterViewInit, OnChanges {
             },
             ticks: {
               autoSkip: false,
-              padding: 24,
+              padding: this.chartData?.data?.labelsX.length > 13 ? 10 : 24,
               fontColor: '#727272',
               callback(value: any, index, values) {
-                if (value.length === 8) {
+                if (value.length >= 8) {
                   return value.substring(0, 3);
                 }
                 return value;
