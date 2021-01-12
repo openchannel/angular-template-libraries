@@ -31,10 +31,12 @@
 .chart-container {
   display: flex;
   flex-direction: row;
+  max-height: 300px;
+  padding: 40px;
 
   .chart-statistic {
     min-height: 20rem;
-    max-height: 362px;
+    max-height: 220px;
   }
 
   .description-statistic {
