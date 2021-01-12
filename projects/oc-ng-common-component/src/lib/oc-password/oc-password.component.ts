@@ -1,5 +1,5 @@
 import {Component, forwardRef, Input, OnInit} from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'oc-password',
@@ -11,7 +11,7 @@ import {NG_VALUE_ACCESSOR} from '@angular/forms';
     multi: true
   }],
 })
-export class OcPasswordComponent {
+export class OcPasswordComponent implements ControlValueAccessor {
 
   @Input() placeholder;
   /** Set 'disable' state for input */

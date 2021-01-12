@@ -303,15 +303,6 @@ oc-input, oc-password, oc-app-category-select , oc-select, oc-video-url, oc-colo
     }
 }
 
-button, input{
-  &.ng-invalid{
-    &.ng-touched{
-      border-color: $danger;
-    }
-  }
-}
-
-
 .toggle_password{
   float: right;
   margin-top: -31px;
