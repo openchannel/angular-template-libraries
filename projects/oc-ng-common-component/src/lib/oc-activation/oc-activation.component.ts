@@ -20,12 +20,13 @@ export class OcActivationComponent {
   }
 
   submitForm(form) {
-    if (!form.valid) {
-      form.control.markAllAsTouched();
-      this.submit.emit(false);
-      return false;
+    if (!this.process) {
+      if (!form.valid) {
+        form.control.markAllAsTouched();
+        this.submit.emit(false);
+      } else {
+        this.submit.emit(true);
+      }
     }
-    this.submit.emit(true);
-    return false;
   }
 }

@@ -19,12 +19,11 @@ export class OcResendActivationComponent {
   }
 
   submitForm(form) {
-    if (!form.valid) {
-      form.control.markAllAsTouched();
-      this.submit.emit(false);
-      return false;
+    if (!this.process) {
+      if (!form.valid) {
+        form.control.markAllAsTouched();
+      }
+      this.submit.emit(form.valid);
     }
-    this.submit.emit(true);
-    return false;
   }
 }
