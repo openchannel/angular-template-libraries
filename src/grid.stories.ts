@@ -1,9 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
-import {
-  OcCommonLibModule,
-  OcMenuGridComponent
-} from 'projects/oc-ng-common-component/src/public-api';
 import { AppListing, FullAppData } from 'oc-ng-common-service';
+import { OcCommonLibModule } from '../projects/oc-ng-common-component/src/lib/oc-ng-common-component.module';
+import { OcAppTableComponent } from '../projects/oc-ng-common-component/src/lib/oc-app-table/oc-app-table.component';
 
 const modules = {
   imports: [OcCommonLibModule]
@@ -11,14 +9,14 @@ const modules = {
 
 export default {
   title: 'App List',
-  component: OcMenuGridComponent,
+  component: OcAppTableComponent,
   decorators: [
     moduleMetadata(modules),
   ],
 };
 
-const ListGridComponent = (args: OcMenuGridComponent) => ({
-  component: OcMenuGridComponent,
+const ListGridComponent = (args: OcAppTableComponent) => ({
+  component: OcAppTableComponent,
   moduleMetadata: modules,
   props: args
 });

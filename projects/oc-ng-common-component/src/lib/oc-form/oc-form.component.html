@@ -11,7 +11,9 @@
       </oc-tooltip-label>
       <div class="w-100">
         <div [ngSwitch]="formElement?.type">
-          <oc-rich-text-editor *ngSwitchCase="'richText'"  formControlName="{{formElement?.id}}"></oc-rich-text-editor>
+          <oc-rich-text-editor *ngSwitchCase="'richText'"
+                               formControlName="{{formElement?.id}}"
+                               [placeholder]="formElement?.placeholder"></oc-rich-text-editor>
           <oc-input *ngSwitchCase="'text'"  formControlName="{{formElement?.id}}"
                     [placeholder]="formElement?.placeholder"
           ></oc-input>
@@ -89,7 +91,7 @@
                    tagsType="number"></oc-tags>
           <oc-video-url *ngSwitchCase="'videoUrl'"
                         [formControlName]="formElement?.id"
-                        [placeholder]="formElement?.placeholder ? formElement.placeholder : ''">
+                        [placeholder]="formElement?.placeholder ? formElement.placeholder : 'https://my.website.com'">
           </oc-video-url>
           <oc-datetime-picker *ngSwitchCase="'date'"
                               formControlName="{{formElement?.id}}"

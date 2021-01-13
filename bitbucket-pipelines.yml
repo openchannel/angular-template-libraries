@@ -3,6 +3,9 @@ image: node:10.15.3
 definitions:
   caches:
     sonar: ~/.sonar/cache  # Caching SonarCloud artifacts will speed up your build
+  services:
+    docker:
+      memory: 2048
   steps:
     - step: &build-test-sonarcloud
         name: Build, test and analyze on SonarCloud
@@ -12,11 +15,11 @@ definitions:
           - npm install --quiet
           - pipe: sonarsource/sonarcloud-scan:0.1.5
             variables:
-              SONAR_SCANNER_OPTS: -Xmx1024m
+              SONAR_SCANNER_OPTS: -Xmx2048m
               SONAR_TOKEN: ${SONAR_TOKEN}
               EXTRA_ARGS: '-Dsonar.sources=projects/oc-ng-common-component/src -Dsonar.tests=projects/oc-ng-common-component/src -Dsonar.test.inclusions="**/testing/**,**/*.spec.ts" -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info'
-    - step: &new-version
-        name: Create new version of library and commit
+    - step: &build-and-push-new-version
+        name: Push library to repository
         script:
           - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
           - npm run oc-ng-common-component-up-version
@@ -25,11 +28,6 @@ definitions:
           - npm install --quiet
           - npm run build-prod
           - npm run oc-ng-common-component-pack
-        artifacts:
-          - dist/**
-    - step: &push-new-version
-        name: Push library to repository
-        script:
           - pipe: cloudsmith-io/publish:0.3.0
             variables:
               CLOUDSMITH_REPOSITORY: 'openchannel/angular-common-components'
@@ -43,14 +41,20 @@ pipelines:
   default:
     - step:
         name: Build
+        caches:
+          - node
         script:
           - npm install
           - npm run build-prod
   branches:
     develop:
-      - step: *new-version
-      - step: *push-new-version
+      - step: *build-test-sonarcloud
+      - step:
+          trigger: manual
+          <<: *build-and-push-new-version
 
     AT-117_angular_templates:
-      - step: *new-version
-      - step: *push-new-version
+      - step: *build-test-sonarcloud
+      - step:
+          trigger: manual
+          <<: *build-and-push-new-version

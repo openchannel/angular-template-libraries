@@ -52,6 +52,7 @@ export * from './lib/oc-app-description/oc-app-description.component';
 export * from './lib/oc-toasts/oc-toasts.component';
 export * from './lib/oc-resend-activation/oc-resend-activation.component';
 export * from './lib/oc-tooltip-label/oc-tooltip-label.component';
+export * from './lib/oc-app-short-info/oc-app-short-info.component';
 
 // validators
 export * from './lib/validators/white-space-validator';
@@ -75,7 +76,8 @@ export * from './lib/pipe/price.pipe';
 
 // chart components
 export * from './lib/oc-chart/oc-chart.component';
-export * from './lib/oc-menu-grid/oc-menu-grid.component';
+// tables with data and dropdown menu
+export * from './lib/oc-app-table/oc-app-table.component';
 export * from './lib/oc-menu-user-grid/oc-menu-user-grid.component';
 
 export * from './lib/oc-app-get-started/oc-app-get-started.component';
