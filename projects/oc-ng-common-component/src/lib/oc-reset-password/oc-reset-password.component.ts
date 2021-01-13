@@ -22,13 +22,12 @@ export class OcResetPasswordComponent implements OnInit {
   }
 
   submitForm(form) {
-    if (!form.valid) {
+    if (!form.valid || this.process) {
       form.control.markAllAsTouched();
       this.submit.emit(false);
-      return false;
+    } else {
+      this.submit.emit(true);
     }
-    this.submit.emit(true);
-    return false;
   }
 
   onchange(form) {

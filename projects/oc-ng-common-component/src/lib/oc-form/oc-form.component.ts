@@ -40,6 +40,11 @@ export class OcFormComponent implements OnInit, OnDestroy {
    */
   @Input() setFormDirty: boolean = false;
   /**
+   * Submitting process. 'true' option will lock for
+   *  click and start the spinner in the submit button
+   */
+  @Input() process: boolean = false;
+  /**
    * Returning all form fields value to the parent component
    */
   @Output() formSubmitted = new EventEmitter<any>();
@@ -407,17 +412,19 @@ export class OcFormComponent implements OnInit, OnDestroy {
    * Output event which returns form value
    */
   sendData(): void {
-    const formData = this.customForm.getRawValue();
-    Object.keys(formData).forEach(key => {
-      if (key.includes('/')) {
-        formData[key.replace('/', '.')] = formData[key];
-        delete formData[key];
+    if (this.customForm.valid && !this.anotherInvalidResult && !this.process) {
+      const formData = this.customForm.getRawValue();
+      Object.keys(formData).forEach(key => {
+        if (key.includes('/')) {
+          formData[key.replace('/', '.')] = formData[key];
+          delete formData[key];
+        }
+      });
+      if (this.showButton) {
+        this.formSubmitted.emit(formData);
+      } else {
+        this.formDataUpdated.emit(formData);
       }
-    });
-    if (this.showButton) {
-      this.formSubmitted.emit(formData);
-    } else {
-      this.formDataUpdated.emit(formData);
     }
   }
 

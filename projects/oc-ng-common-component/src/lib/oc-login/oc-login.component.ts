@@ -29,12 +29,14 @@ export class OcLoginComponent {
   }
 
   submitForm(form) {
-    this.loginModelChange.emit(this.loginModel);
-    if (!form.valid) {
-      form.control.markAllAsTouched();
-      return;
+    if (!this.process) {
+      this.loginModelChange.emit(this.loginModel);
+      if (!form.valid) {
+        form.control.markAllAsTouched();
+        return;
+      }
+      this.submit.emit(true);
     }
-    this.submit.emit(true);
   }
 
   onchange() {

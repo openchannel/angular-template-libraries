@@ -25,11 +25,13 @@ export class OcForgotPasswordComponent implements OnInit {
   }
 
   submitForm(form) {
-    if (!form.valid) {
-      form.control.markAllAsTouched();
-      return;
+    if (!this.process) {
+      if (!form.valid) {
+        form.control.markAllAsTouched();
+      } else {
+        this.submit.emit(true);
+      }
     }
-    this.submit.emit(true);
   }
 
   goBackToLogin() {
