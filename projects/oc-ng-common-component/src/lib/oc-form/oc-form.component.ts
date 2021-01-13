@@ -127,7 +127,7 @@ export class OcFormComponent implements OnInit, OnDestroy {
             break;
           case 'emailAddress':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
-              inputTemplate?.defaultValue : '');
+              inputTemplate?.defaultValue :  '');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isEmail: true});
             break;
           case 'websiteUrl':

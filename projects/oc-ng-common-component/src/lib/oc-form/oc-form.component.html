@@ -61,7 +61,7 @@
           <oc-input *ngSwitchCase="'emailAddress'"
                     formControlName="{{formElement?.id}}"
                     inputType="email"
-                    [placeholder]="formElement?.placeholder ? formElement.placeholder : 'myemail@example.com'"
+                    [placeholder]="formElement?.placeholder? formElement.placeholder : 'myemail@example.com'"
           ></oc-input>
           <oc-input *ngSwitchCase="'websiteUrl'"
                     formControlName="{{formElement?.id}}" inputType="url"

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import { Component, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import {AppCategoryDetail} from 'oc-ng-common-service';
 import { DomSanitizer, SafeResourceUrl, SafeStyle } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -17,8 +17,6 @@ export class OcAppCategoriesComponent implements OnInit {
   @Input() data: AppCategoryDetail[] = [];
   /** Title of the category section */
   @Input() categoryHeaderTitle = '';
-  /** The message that will be shown when no category */
-  @Input() noDataMsg = '';
   /** Main router link for the category */
   @Input() categoryRouterLink: string = '';
   /** Owl Carousel options */
