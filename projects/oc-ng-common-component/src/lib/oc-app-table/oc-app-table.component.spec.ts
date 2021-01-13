@@ -1,8 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {OcAppTableComponent} from './oc-app-table.component.ts';
 import {FormsModule, NgModel} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
+import {OcAppTableComponent} from './oc-app-table.component';
 
 
 describe('OcMenuGridComponent', () => {
