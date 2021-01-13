@@ -41,8 +41,6 @@ pipelines:
   default:
     - step:
         name: Build
-        caches:
-          - node
         script:
           - npm install
           - npm run build-prod
