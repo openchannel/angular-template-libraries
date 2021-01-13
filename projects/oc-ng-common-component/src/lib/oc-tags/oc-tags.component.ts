@@ -159,7 +159,7 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
                 switch (this.tagsType) {
                     case 'boolean':
                         if (this.checkForBooleanType(tagNormalized)) {
-                            this.resultTags = [...this.resultTags, tagNormalized];
+                            this.resultTags = [...this.resultTags, tagNormalized].map(tag => String(tag) == 'true');
                             this.updateComponentData();
                             return true;
                         } else {
@@ -202,6 +202,12 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         if (this.tagsType === 'number') {
             const tag = Number(currentTag);
             return this.resultTags.filter(t => tag === t).length > 0;
+        } else if(this.tagsType === 'boolean') {
+            if(this.checkForBooleanType(currentTag)) {
+                const tag = 'true' === currentTag;
+                return this.resultTags.filter(t => t === tag).length > 0;
+            }
+            return true;
         } else {
             const tagNormalized = currentTag.toLowerCase();
             return this.resultTags.filter(t => tagNormalized === t.toLowerCase()).length > 0;
