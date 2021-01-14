@@ -30,13 +30,15 @@ export class OcSignupComponent {
   }
 
   submitForm(form) {
-    if (!form.valid) {
-      form.control.markAllAsTouched();
-      this.submit.emit(false);
+    if (this.signupModel.isChecked && !this.process) {
+      if (!form.valid) {
+        form.control.markAllAsTouched();
+        this.submit.emit(false);
+        return false;
+      }
+      this.submit.emit(true);
       return false;
     }
-    this.submit.emit(true);
-    return false;
   }
 
   goToActivationPage() {

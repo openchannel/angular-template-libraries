@@ -46,7 +46,7 @@ const app: FullAppData = {
   submittedDate: new Date(),
   created: new Date().getMonth() - 2,
   status: {
-    value: '',
+    value: 'inDevelopment',
     lastUpdated: 1.1,
     modifiedBy: '',
     reason: ''
@@ -101,7 +101,7 @@ describe('OcAppListGridComponent', () => {
       submittedDate: new Date(),
       created: new Date().getMonth() - 2,
       status: {
-        value: '',
+        value: 'approved',
         lastUpdated: 1.1,
         modifiedBy: '',
         reason: ''

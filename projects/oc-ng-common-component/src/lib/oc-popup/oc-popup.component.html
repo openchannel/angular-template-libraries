@@ -10,7 +10,8 @@
                 <h1 [innerHTML]="text"></h1>
             </div>
             <div class="col-md-12 mb-4 mt-2">
-                <oc-button (click)="confirm()" [disabled]="inProcess" [process]="inProcess" [style]="'width:255px;'"
+                <oc-button (click)="confirm()"
+                           [process]="inProcess" [style]="'width:255px;'"
                            [text]="'Submit'" [type]="'primary'"></oc-button>
             </div>
             <div *ngIf="type === 'newApp'" class="col-md sec-divider ml-8"></div>

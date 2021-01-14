@@ -44,9 +44,10 @@ export class OcPopupComponent implements OnInit {
 
 
   confirm() {
-    this.inProcess = true;
-    this.confirmCallback('confirm');
-
+    if (!this.inProcess) {
+      this.inProcess = true;
+      this.confirmCallback('confirm');
+    }
   }
 
 
