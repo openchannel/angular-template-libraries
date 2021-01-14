@@ -115,9 +115,6 @@
     min-width: 44px;
   }
 
-  // .fa-ellipsis-h::after{
-  //   display: none;
-  // }
   .ellipsis {
     float: right;
   }
@@ -148,12 +145,11 @@
     background-color: rgba(201, 213, 234, 0.1);
     color: #537cfd;
     outline: none;
-    // box-shadow: 0px 1px 0 #c9d5ea;
   }
 
   .dropdown-item:active {
     color: #537cfd;
-    box-shadow: 0px 1px 0 #c9d5ea;
+    box-shadow: 0 1px 0 #c9d5ea;
   }
 
 }

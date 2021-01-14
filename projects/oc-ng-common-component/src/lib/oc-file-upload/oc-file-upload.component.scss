@@ -5,10 +5,9 @@
   min-height: 248px;
   border: 1px solid $info;
   border-radius: 4px;
-  background-color: #f4f7fc;
+  background-color: $light;
   padding: 28px 24px;
   position: relative;
-  // margin: 0 auto;
   input {
     opacity: 0;
     position: absolute;
@@ -17,12 +16,6 @@
     height: 100%;
     top: 0;
     left: 0;
-  }
-
-  h3 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #38424c;
   }
 
   .upload-s {
@@ -59,7 +52,6 @@
       align-self: flex-end;
     }
 
-    display: flex;
     flex-grow: 1;
 
     .name {
@@ -73,8 +65,7 @@
       font-size: 12px;
       font-weight: 500;
       color: #a4a4a4;
-      margin: 0;
-      margin-bottom: 0.25rem;
+      margin: 0 0 0.25rem;
     }
 
     .info {
@@ -82,12 +73,6 @@
     }
   }
 }
-
-// .blue-label {
-//   font-size: 14px;
-//   font-family: "Rubik-Medium";
-//   color: $primary;
-// }
 
 .without-files {
   text-align: center;
@@ -97,7 +82,7 @@
 }
 
 .browse-file {
-  color: #537cfd !important;
+  color: $primary !important;
   cursor: pointer;
 }
 

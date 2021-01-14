@@ -7,6 +7,7 @@ import { StatElement } from 'oc-ng-common-service/lib/model/app-data-model';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { PricePipe } from '../pipe/price.pipe';
 
 @Component({
   selector: 'oc-rating',
@@ -42,7 +43,8 @@ describe('OcAppCardComponent', () => {
       declarations: [
         OcAppCardComponent,
         OcRatingMockComponent,
-        MockRoutingComponent
+        MockRoutingComponent,
+        PricePipe
       ],
       imports: [RouterTestingModule.withRoutes([
         {path: 'mock-router/:id', component: MockRoutingComponent}
@@ -78,7 +80,7 @@ describe('OcAppCardComponent', () => {
       submittedDate: new Date(),
       created: new Date().getMonth() - 2,
       status: {
-        value: '',
+        value: 'approved',
         lastUpdated: 1.1,
         modifiedBy: '',
         reason: ''

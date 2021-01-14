@@ -33,12 +33,12 @@
                 <img [ngClass]="getFileIconClass(file)" [src]="getUrl(file)" alt="app-icon">
             </div>
             <div *ngIf="file" class="col-md-auto ml-n1">
-                <a (click)="downloadFile(file)" class="cursor-pointer"><span
-                        class="font-med font-m d-block"> {{file.name}}</span></a>
+                <a (click)="downloadFile(file)" class="cursor-pointer" id="downloadFile">
+                    <span id="fileName" class="font-med font-m d-block"> {{file.name}}</span></a>
                 <span class="text-secondary font-s">{{file.fileUploadProgress === 100 ? "Complete" : "Uploading"}}</span>
             </div>
             <div *ngIf="file" class="col-md text-right pt-3">
-                <a (click)="cancelUploading(i)" class="cursor-pointer">
+                <a (click)="cancelUploading(i)" id="closeLink" class="cursor-pointer">
                     <img alt="close-icon"
                          [src]="closeIconUrl">
                 </a>
@@ -78,8 +78,8 @@
                         <img class="zoom-icon" [src]="zoomOutIconUrl"></a>
                 </div>
             </div>
-            <image-cropper (cropperReady)="cropperReady()" (imageCropped)="imageCropped($event)"
-                           (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()"
+            <image-cropper (imageCropped)="imageCropped($event)"
+                           (loadImageFailed)="loadImageFailed()"
                            [aspectRatio]="aspectRatio"
                            [imageChangedEvent]="browsedFileEvent"
                            [maintainAspectRatio]="maintainAspectRatio" [resizeToHeight]="resizeToHeight"
@@ -108,7 +108,7 @@
             <div class="modal-footer px-0 pt-5 pb-0 d-flex justify-content-center">
                 <oc-button type="secondary" [disabled]="uploadImageInProcess" [class]="'modal-button'"
                            (click)="d('Cross click'); resetSelection()" text="Cancel"></oc-button>
-                <oc-button type="primary" [class]="'modal-button ml-2'"
+                <oc-button type="primary" [class]="'modal-button ml-2'" id="modalAgreeButton"
                            [disabled]="hasImageLoadError || uploadImageInProcess"
                            (click)="uploadImageFile();"
                            [process]="uploadImageInProcess" text="Confirm"

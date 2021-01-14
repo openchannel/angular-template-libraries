@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="position-relative">
-    <fa-icon icon="angle-left" class="carousel-nav carousel-left"
+    <fa-icon icon="angle-left" class="carousel-nav carousel-left" id="iconLeft"
              (click)="prevSlide()"
              *ngIf="data.length > 5"></fa-icon>
     <owl-carousel-o [options]="customOptions" #carousel>
@@ -26,10 +26,7 @@
             </div>
         </ng-template>
     </owl-carousel-o>
-    <fa-icon icon="angle-right" class="carousel-nav carousel-right"
+    <fa-icon icon="angle-right" class="carousel-nav carousel-right" id="iconRight"
              (click)="nextSlide()"
              *ngIf="data.length > 5"></fa-icon>
 </div>
-<ng-template #emptyData>
-    <h5 class="col-md-12">{{noDataMsg}}</h5>
-</ng-template>

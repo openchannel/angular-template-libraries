@@ -60,7 +60,7 @@ storiesOf('Review List', module)
   moduleMetadata: modules,
   props: {
     reviewsList: [appReview1, appReview2, appReview3, appReview4, appReview1, appReview2],
-    totalReview: 12,
+    totalReview: 7,
     maxReviewDisplay: 4,
     canWriteReview: true,
   }

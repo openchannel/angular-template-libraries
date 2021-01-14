@@ -23,10 +23,8 @@ export class OcActivationComponent {
     if (!this.process) {
       if (!form.valid) {
         form.control.markAllAsTouched();
-        this.submit.emit(false);
-      } else {
-        this.submit.emit(true);
       }
+      this.submit.emit(form.valid);
     }
   }
 }

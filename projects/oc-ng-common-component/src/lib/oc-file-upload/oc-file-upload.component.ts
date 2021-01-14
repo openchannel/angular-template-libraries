@@ -147,13 +147,8 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
    * on file drop handler
    */
   onFileDropped($event, content?) {
-    // this.fileUpload.emit($event);
-    // this.fileBrowseHandler($event, content)
-
-
     this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
     this.fileInputVar.nativeElement.dispatchEvent(new Event('change', {bubbles: true}));
-    // this.fileInputVar.nativeElement.change();
   }
 
   uploadFile(file) {
@@ -164,7 +159,6 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
       this.fileDetailArr = [];
     }
     this.fileDetailArr.push(lastFileDetail);
-    // this.fileUpload.emit(files);
     const formData: FormData = new FormData();
     formData.append('file', file, this.fileName);
     this.uploadFileReq = this.uploadFileService.uploadToOpenChannel(formData, this.isFileTypePrivate(), this.hash)
@@ -219,7 +213,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
    * handle file from browsing
    */
   fileBrowseHandler(event, content?) {
-
+    this.onTouched();
 
     if (!event?.target?.files[0]?.name) {
       return;
@@ -254,15 +248,6 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
       this.fileName = this.fileName ? this.fileName : event?.dataTransfer?.files[0]?.name;
       this.uploadFile(event.target.files[0]);
     }
-  }
-
-  /**
-   * Delete file from files list
-   * @param index (File index)
-   */
-  deleteFile(index: number) {
-    this.fileDetailArr.splice(index, 1);
-    this.emitChanges();
   }
 
   /**
@@ -336,14 +321,6 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     this.hasImageLoadError = true;
   }
 
-  imageLoaded() {
-
-  }
-
-  cropperReady() {
-
-  }
-
   zoomOut() {
     this.scale -= .1;
     this.transform = {
@@ -375,12 +352,13 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
   }
 
   uploadImageFile() {
-    // this.fileUpload.emit();
     const fileToUpload = this.croppedFileObj;
     this.uploadFile(fileToUpload);
   }
 
   cancelUploading(idx) {
+    this.onTouched();
+
     if (this.isUploadInProcess && this.uploadFileReq) {
       this.uploadFileReq.unsubscribe();
     }
