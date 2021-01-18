@@ -58,6 +58,9 @@
   border-radius: 0.3rem;
 }
 
+.dropdown-label {
+  font-size: 14px;
+}
 
 @include media-breakpoint-md {
   .chart-container {

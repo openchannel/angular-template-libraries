@@ -17,7 +17,9 @@
                             class="type-section radius cursor-pointer">
             <div customPlaceholder
                  class="d-flex align-items-center h-100 pl-2">
-                <label class="m-auto mr-0">{{dropdownSelectedType?.label ? dropdownSelectedType?.label : ''}}</label>
+                <label class="m-auto mr-0 dropdown-label">
+                    {{dropdownSelectedType?.label ? dropdownSelectedType?.label : ''}}
+                </label>
             </div>
             <fa-icon defaultPlaceholderIcon icon="angle-up" class="cursor-pointer angle ml-auto mr-0 pr-2"></fa-icon>
             <fa-icon activePlaceholderIcon icon="angle-down" class="cursor-pointer angle ml-auto mr-0 pr-2"></fa-icon>
