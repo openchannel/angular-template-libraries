@@ -88,6 +88,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import {OcAppShortInfoComponent} from './oc-app-short-info/oc-app-short-info.component';
 import { OcAppTableComponent } from './oc-app-table/oc-app-table.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -185,7 +187,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     InfiniteScrollModule,
     CarouselModule,
     NgxSpinnerModule,
+    HttpClientModule,
     EmbedVideo.forRoot(),
+    AngularSvgIconModule.forRoot()
   ],
   exports: [OcCommonLibComponent,
     OcInputComponent,
