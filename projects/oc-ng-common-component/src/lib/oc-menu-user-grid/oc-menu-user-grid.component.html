@@ -3,39 +3,36 @@
        (scrolled)="onScrollDown()"
        infiniteScroll>
     <thead>
-    <tr>
-        <th class="col-blank"></th>
-        <th class="name">
-            <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Name', field: 'name'}}"
-                          [ngTemplateOutlet]="sortIconTemplate">
-            </ng-container>
-        </th>
-        <th class="email">
-            <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Email', field: 'email'}}"
-                          [ngTemplateOutlet]="sortIconTemplate">
-            </ng-container>
-        </th>
-        <th class="data">
-            <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Date Added', field: 'date'}}"
-                          [ngTemplateOutlet]="sortIconTemplate">
-            </ng-container>
-        </th>
-        <th class="role">
-            <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Role', field: 'role'}}"
-                          [ngTemplateOutlet]="sortIconTemplate">
-            </ng-container>
-        </th>
-        <th class="status">
-            <div class="th-row">Status</div>
-        </th>
-        <th class="action"></th>
-        <th class="col-blank"></th>
-    </tr>
+        <tr>
+            <th class="name">
+                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Name', field: 'name'}}"
+                              [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+            </th>
+            <th class="email">
+                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Email', field: 'email'}}"
+                              [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+            </th>
+            <th class="data">
+                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Date Added', field: 'date'}}"
+                              [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+            </th>
+            <th class="role">
+                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Role', field: 'role'}}"
+                              [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+            </th>
+            <th class="status">
+                <div class="th-row">Status</div>
+            </th>
+            <th class="action"></th>
+        </tr>
     </thead>
     <tbody>
     <ng-template [ngForOf]="properties.data.list" let-user let-i="index" ngFor>
         <tr [class.highlight-user]="user.inviteStatus === 'INVITED'">
-            <td class="col-blank"></td>
             <!-- Name -->
             <td>
                 <div class="td-row">
@@ -69,12 +66,11 @@
                 </div>
             </td>
             <!-- Options -->
-            <td>
+            <td class="action-menu">
                 <ng-container [ngTemplateOutletContext]="{ $implicit: {data: user, child: false, index: i} }"
                               [ngTemplateOutlet]="appMenuTemplate">
                 </ng-container>
             </td>
-            <td class="col-blank"></td>
         </tr>
     </ng-template>
     <tr *ngIf="!properties.data.list || properties.data.list.length == 0">
