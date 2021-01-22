@@ -90,6 +90,7 @@ import { OcAppTableComponent } from './oc-app-table/oc-app-table.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
+import { OcSidebarComponent } from './oc-sidebar/oc-sidebar.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -172,6 +173,7 @@ import { HttpClientModule } from '@angular/common/http';
     OcResendActivationComponent,
     OcTooltipLabelComponent,
     OcAppShortInfoComponent,
+    OcSidebarComponent,
   ],
 
   imports: [
