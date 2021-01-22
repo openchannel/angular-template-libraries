@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {
-  DeveloperAccountTypesService,
-  InviteUserModel,
   ModalInviteUserModel,
   ModalUpdateUserModel
 } from 'oc-ng-common-service';

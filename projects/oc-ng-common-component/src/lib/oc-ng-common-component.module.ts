@@ -265,14 +265,18 @@ import { OcInviteModalComponent } from './oc-invite-modal/oc-invite-modal.compon
     OcToastsComponent,
     OcResendActivationComponent,
     OcMenuUserGridComponent,
-    OcAppShortInfoComponent
+    OcAppShortInfoComponent,
+    OcMainModalComponent,
+    OcInviteModalComponent,
   ],
   providers: [
     NgbActiveModal,
   ],
   entryComponents: [
     OcSellerAgreementComponent,
-    OcFormModalComponent
+    OcFormModalComponent,
+    OcInviteModalComponent,
+    OcMainModalComponent
   ]
 
 })
