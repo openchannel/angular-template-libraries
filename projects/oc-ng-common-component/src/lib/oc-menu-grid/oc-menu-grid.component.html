@@ -3,18 +3,18 @@
         <tr>
             <th class="placeholder"></th>
             <th class="name">
-                <a (click)="sortAppsBy('name')" class="cursor-pointer">App Name
+                <a href="javascript:void(0);" (click)="sortAppsBy('name')" class="text-black text-decoration-none">App Name
                     <img *ngIf="sortBy=='name'" [src]="sortIcon" class="icon-down" alt="icon" [ngClass]="{'upside-down': sortBy=='name' && sortOrder=='-1'}" >
                 </a>
             </th>
             <th class="summary">Summary</th>
             <th class="data">
-                <a (click)="sortAppsBy('date')" class="cursor-pointer">Data Added
+                <a href="javascript:void(0);"  (click)="sortAppsBy('date')" class="text-black text-decoration-none">Date
                     <img *ngIf="sortBy=='date'" [src]="sortIcon" class="icon-down" alt="icon" [ngClass]="{'upside-down': sortBy=='date' && sortOrder=='-1'}">
                 </a>
             </th>
             <th class="status">
-                <a (click)="sortAppsBy('status')" class="cursor-pointer">Status
+                <a href="javascript:void(0);" (click)="sortAppsBy('status')" class="text-black text-decoration-none">Status
                     <img *ngIf="sortBy=='status'" [src]="sortIcon" class="icon-down" alt="icon" [ngClass]="{'upside-down': sortBy=='status' && sortOrder=='-1'}">
                 </a>
             </th>
@@ -32,7 +32,7 @@
                             <img class="app-icon" [src]="app.customData.icon" alt="">
                         </div>
                         <div class="col-md pl-0">
-                            <h6 class="mb-0 cursor-pointer pr-2 word-break" (click)="action('edit' , app)">{{app.name}} </h6>
+                            <h6 class="mb-0 pr-2 word-break" (click)="action('edit' , app)">{{app.name}} </h6>
                             <small> v {{app.version}}</small>
 
                         </div>
@@ -146,12 +146,14 @@
 <ng-template #appMenuTemplate let-app>
     <div class="text-right ellipsis cursor-pointer">
         <div ngbDropdown placement="bottom-right">
-            <img [src]="menuUrl" class="icon-dots" alt="more-icon" ngbDropdownToggle>
-            <div ngbDropdownMenu>
+            <a href="javascript:void(0);" class="no-arrow-dropdown" [id]="app.name" ngbDropdownToggle> 
+                <img [src]="menuUrl" class="icon-dots" alt="more-icon">
+            </a>
+            <div ngbDropdownMenu [attr.aria-labelledby]="app.name">
                 <button class="menu menu-submit"
                     *ngIf="app.prettyStatus != 'In Review' && app.prettyStatus != 'Approved' && app.prettyStatus != 'Suspended' && app.prettyStatus != 'Rejected'"
                     (click)="action('submit' , app)" ngbDropdownItem>
-                    Submit
+                    Submit  
                 </button>
                 <button class="menu menu-edit" (click)="action('edit' , app)" ngbDropdownItem>
                      Edit
