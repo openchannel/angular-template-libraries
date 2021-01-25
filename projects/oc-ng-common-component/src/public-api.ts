@@ -53,6 +53,7 @@ export * from './lib/oc-toasts/oc-toasts.component';
 export * from './lib/oc-resend-activation/oc-resend-activation.component';
 export * from './lib/oc-tooltip-label/oc-tooltip-label.component';
 export * from './lib/oc-app-short-info/oc-app-short-info.component';
+export * from './lib/oc-sidebar/oc-sidebar.component';
 
 // validators
 export * from './lib/validators/white-space-validator';

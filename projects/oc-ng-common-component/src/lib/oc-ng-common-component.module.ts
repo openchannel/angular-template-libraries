@@ -263,7 +263,8 @@ import { OcSidebarComponent } from './oc-sidebar/oc-sidebar.component';
     OcToastsComponent,
     OcResendActivationComponent,
     OcMenuUserGridComponent,
-    OcAppShortInfoComponent
+    OcAppShortInfoComponent,
+    OcSidebarComponent
   ],
   providers: [
     NgbActiveModal,
