@@ -12,7 +12,8 @@ export class OcForgotPasswordComponent implements OnInit {
 
   @Input() loginUrl;
   @Input() signupUrl;
-  @Input() forgotPasswordDoneUrl;
+  /** Path to the email sent icon in .svg format */
+  @Input() forgotPasswordDoneUrl: string = '../../../assets/img/email_done.svg';
   @Input() showResultPage;
   @Input() companyLogoUrl;
   @Input() process;
