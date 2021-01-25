@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {SellerSignup} from 'oc-ng-common-service';
 import {Router} from '@angular/router';
+import {FormGroup, NgForm} from '@angular/forms';
 
 @Component({
   selector: 'oc-signup',
@@ -25,14 +26,13 @@ export class OcSignupComponent {
 
   @Output() submit = new EventEmitter<any>();
 
-
   constructor(private router: Router) {
   }
 
-  submitForm(form) {
+  submitForm(form: NgForm) {
+    form.form.markAllAsTouched()
     if (this.signupModel.isChecked && !this.process) {
       if (!form.valid) {
-        form.control.markAllAsTouched();
         this.submit.emit(false);
         return false;
       }

@@ -1,0 +1,10 @@
+@import "../../../assets/styles/theme.scss";
+
+.header {
+  border-bottom: 1px solid $draft;
+}
+.svg-style {
+  width: 16px;
+  height: 16px;
+  fill: $black;
+}

@@ -32,15 +32,15 @@
                 <oc-label text="Password"></oc-label>
                 <oc-password #password=ngModel [(ngModel)]="signupModel.password"
                              placeholder="Password" class="mb-2" name="password"
-                             ngDefaultControl passwordValidator required="true"></oc-password>
+                             ngDefaultControl passwordValidator></oc-password>
                 <oc-error [control]="password" field="password"></oc-error>
             </div>
-
             <div class="form-group">
                 <div class="d-flex align-items-center">
-                    <input type="checkbox" [(ngModel)]="signupModel.isChecked"
-                           [ngModelOptions]="{standalone: true}"
-                           class="agree-checkbox mr-1">
+                    <oc-checkbox #isChecked=ngModel
+                                 required="true"
+                                 name="isChecked"
+                                 [(ngModel)]="signupModel.isChecked"></oc-checkbox>
                     <div class="font-s">
                         I agree to
                         <a class="font-s font-med" [href]="termsUrl" target="_blank"> Terms of Service</a>
@@ -48,7 +48,8 @@
                         <a class="font-s font-med" [href]="policyUrl" target="_blank"> Data Processing Policy</a>
                     </div>
                 </div>
-
+                <oc-error [control]="isChecked"
+                          [modifyErrors]="[{validator: 'required', message: 'Please confirm this checkbox'}]"></oc-error>
             </div>
             <oc-button (click)="submitForm(signUpForm)"
                        [process]="process" text="Sign Up" type="primary"

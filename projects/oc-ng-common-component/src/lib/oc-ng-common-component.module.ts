@@ -90,6 +90,8 @@ import { OcAppTableComponent } from './oc-app-table/oc-app-table.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
+import { OcMainModalComponent } from './oc-main-modal/oc-main-modal.component';
+import { OcInviteModalComponent } from './oc-invite-modal/oc-invite-modal.component';
 import { OcSidebarComponent } from './oc-sidebar/oc-sidebar.component';
 
 @NgModule({
@@ -173,6 +175,8 @@ import { OcSidebarComponent } from './oc-sidebar/oc-sidebar.component';
     OcResendActivationComponent,
     OcTooltipLabelComponent,
     OcAppShortInfoComponent,
+    OcMainModalComponent,
+    OcInviteModalComponent,
     OcSidebarComponent,
   ],
 
@@ -264,6 +268,8 @@ import { OcSidebarComponent } from './oc-sidebar/oc-sidebar.component';
     OcResendActivationComponent,
     OcMenuUserGridComponent,
     OcAppShortInfoComponent,
+    OcMainModalComponent,
+    OcInviteModalComponent,
     OcSidebarComponent
   ],
   providers: [
@@ -271,7 +277,9 @@ import { OcSidebarComponent } from './oc-sidebar/oc-sidebar.component';
   ],
   entryComponents: [
     OcSellerAgreementComponent,
-    OcFormModalComponent
+    OcFormModalComponent,
+    OcInviteModalComponent,
+    OcMainModalComponent
   ]
 
 })
