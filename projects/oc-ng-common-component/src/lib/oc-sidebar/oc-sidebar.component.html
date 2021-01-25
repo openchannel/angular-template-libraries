@@ -1,22 +1,25 @@
 <div class="row mx-0">
-  <nav class="col-md-2 sidebar sidebar-width">
+  <nav class="sidebar">
     <div class="sidebar-sticky">
-      <h6 class="sidebar-heading d-flex justify-content-between align-items-center">
+      <span class="sidebar-heading">
         {{title}}
-      </h6>
-      <ul class="nav flex-column" *ngFor="let select of sidebarModel">
-        <li class="checkbox__wrapper cursor-pointer">
-          <div>
-            <span class="ml-1 font-m" [class.font-weight-bold]="select.checked" (click)="onChange(select.label)">
+      </span>
+      <ul class="nav flex-column mt-4">
+        <li class="cursor-pointer mb-3" *ngFor="let select of sidebarModel">
+          <div class="expand-line">
+            <span class="font-m sidebar-item" [class.font-weight-bold]="select.checked" (click)="onChange(select.label)">
               {{select.label}}
             </span>
             <svg-icon *ngIf="select.sublist && select.sublist.length > 0"
                       (click)="select.expanded = !select.expanded"
-                      src="../../../assets/img/down-arrow.svg"></svg-icon>
+                      [src]="select.expanded ? toggleIconUp : toggleIconDown"
+                      svgClass="recolor-svg"></svg-icon>
           </div>
-            <ul class="list-unstyled" *ngFor="let subLabel of select.sublist"
-                [ngbCollapse]="select.expanded">
-              <li class="ml-1 font-m cursor-pointer" [class.font-weight-bold]="subLabel.checked"
+            <ul class="list-unstyled pl-3" *ngIf="select.sublist && select.sublist.length > 0"
+                [ngbCollapse]="!select.expanded">
+              <li *ngFor="let subLabel of select.sublist"
+                  class="font-m cursor-pointer mt-2 sidebar-item"
+                  [class.font-weight-bold]="subLabel.checked"
                   (click)="onChange(select.label, subLabel.label)">
                 {{subLabel.label}}
               </li>
