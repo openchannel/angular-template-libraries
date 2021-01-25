@@ -6,7 +6,8 @@
     <div *ngIf="seeAllUrl && seeAllUrl.length > 0" class="col-3 col-md-auto">
         <a  [routerLink]="[seeAllUrl]" [queryParams]="seeAllLinkQuery ? seeAllLinkQuery : ''" class="cursor-pointer" id="seeAllLink">
             <span class="text-primary font-m font-med pr-1">See All</span>
-            <img alt="icon" src="https://drive.google.com/u/0/uc?id=1slezM1BqinfgM0LVImYPB2Ljx9G5y7Q5&export=download">
+            <svg-icon [src]="routerIcon" svgClass="svg-primary"
+                      [svgStyle]="{'height': '10px', 'width': 'auto'}"></svg-icon>
         </a>
     </div>
 </div>
