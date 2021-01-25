@@ -22,8 +22,13 @@
 }
 
 .sidebar-item {
+  padding: 2px;
+  border-radius: 4px;
   &:hover {
     font-weight: 700;
+  }
+  &:focus {
+    border: 1px solid $focus-border;
   }
 }
 
