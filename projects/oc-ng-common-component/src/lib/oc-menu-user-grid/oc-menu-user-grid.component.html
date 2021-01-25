@@ -3,78 +3,77 @@
        (scrolled)="onScrollDown()"
        infiniteScroll>
     <thead>
-    <tr>
-        <th class="col-blank"></th>
-        <th class="name">
-            <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Name', field: 'name'}}"
-                          [ngTemplateOutlet]="sortIconTemplate">
-            </ng-container>
-        </th>
-        <th class="email">
-            <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Email', field: 'email'}}"
-                          [ngTemplateOutlet]="sortIconTemplate">
-            </ng-container>
-        </th>
-        <th class="data">
-            <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Date Added', field: 'date'}}"
-                          [ngTemplateOutlet]="sortIconTemplate">
-            </ng-container>
-        </th>
-        <th class="role">
-            <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Role', field: 'role'}}"
-                          [ngTemplateOutlet]="sortIconTemplate">
-            </ng-container>
-        </th>
-        <th class="status">
-            <div class="th-row">Status</div>
-        </th>
-        <th class="action"></th>
-        <th class="col-blank"></th>
-    </tr>
+        <tr>
+            <th class="name">
+                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Name', field: 'name'}}"
+                              [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+            </th>
+            <th class="email">
+                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Email', field: 'email'}}"
+                              [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+            </th>
+            <th class="data">
+                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Date Added', field: 'date'}}"
+                              [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+            </th>
+            <th class="role">
+                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Role', field: 'role'}}"
+                              [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+            </th>
+            <th class="status">
+                <div class="th-row">Status</div>
+            </th>
+            <th class="action"></th>
+        </tr>
     </thead>
     <tbody>
     <ng-template [ngForOf]="properties.data.list" let-user let-i="index" ngFor>
         <tr [class.highlight-user]="user.inviteStatus === 'INVITED'">
-            <td class="col-blank"></td>
             <!-- Name -->
             <td>
                 <div class="td-row">
                     <div class="profile text-primary">{{initials(user)}}</div>
-                    <small class="c-dark font-weight-bold">{{user.name}}</small>
+                    <span class="c-dark font-weight-bold">{{user.name}}</span>
                 </div>
             </td>
             <!-- Email -->
             <td>
                 <div class="td-row">
-                    <small class="c-gray">{{user.email}}</small>
+                    <span class="c-gray">{{user.email}}</span>
                 </div>
             </td>
             <!-- Date Added -->
             <td>
                 <div class="td-row">
-                    <small class="c-gray">{{user.created | date:'M/d/yyyy'}}</small>
+                    <span class="c-gray">{{user.created | date:'M/d/yyyy'}}</span>
                 </div>
             </td>
             <!-- Role -->
             <td>
                 <div class="td-row">
-                    <small class="c-blue text-capitalize font-weight-bold">{{user.type | lowercase}}</small>
+                    <span class="c-blue text-capitalize font-weight-bold">{{user.type | lowercase}}</span>
                 </div>
             </td>
             <!-- Status-->
             <td>
                 <div class="td-row"
                      [ngClass]="user.inviteStatus === 'ACTIVE' ? 'c-dark' : 'c-gray'">
-                    <small class="text-capitalize font-weight-bold">{{user.inviteStatus | lowercase}}</small>
+                    <span class="text-capitalize font-weight-bold"
+                          [class.font-weight-bold]="user.inviteStatus === 'ACTIVE'">
+                        {{user.inviteStatus | lowercase}}
+                    </span>
                 </div>
             </td>
             <!-- Options -->
-            <td>
+            <td class="action-menu">
                 <ng-container [ngTemplateOutletContext]="{ $implicit: {data: user, child: false, index: i} }"
                               [ngTemplateOutlet]="appMenuTemplate">
                 </ng-container>
             </td>
-            <td class="col-blank"></td>
         </tr>
     </ng-template>
     <tr *ngIf="!properties.data.list || properties.data.list.length == 0">
