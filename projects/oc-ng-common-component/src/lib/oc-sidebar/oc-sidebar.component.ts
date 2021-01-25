@@ -10,8 +10,13 @@ export class OcSidebarComponent implements OnInit {
 
   /** title of the sidebar */
   @Input() title: string;
+  /** Sidebar config */
   @Input() sidebarModel: SidebarModel[];
-  @Input() tickCounterStart: number = 0;
+  /** Path to the custom toggle icon up */
+  @Input() toggleIconDown: string = '../../../assets/img/down-arrow.svg';
+  /** Path to the custom toggle icon down */
+  @Input() toggleIconUp: string = '../../../assets/img/select-up.svg';
+  /** Return changed model */
   @Output() selectModelsChange: EventEmitter<SelectModel[]> = new EventEmitter<SelectModel[]>();
 
   constructor() { }
