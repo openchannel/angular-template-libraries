@@ -1,22 +1,23 @@
 import {storiesOf} from '@storybook/angular';
 import {
-  OcAppListGridComponent,
   OcCommonLibModule,
   OcForgotPasswordComponent
 } from 'projects/oc-ng-common-component/src/public-api';
 import {withA11y} from '@storybook/addon-a11y';
 import {action} from '@storybook/addon-actions';
 import {SellerSignin} from 'oc-ng-common-service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
-  imports: [OcCommonLibModule]
+  imports: [OcCommonLibModule, RouterTestingModule.withRoutes([]), BrowserAnimationsModule]
 };
 
-let pwdEmpty = new SellerSignin();
+const pwdEmpty = new SellerSignin();
 
-let pwdFilled = new SellerSignin();
-pwdFilled.email = "zmehta@tenupsoft.com"
+const pwdFilled = new SellerSignin();
+pwdFilled.email = 'zmehta@tenupsoft.com';
 console.log(pwdFilled);
 
 storiesOf('Forgot Password', module)
@@ -29,8 +30,8 @@ storiesOf('Forgot Password', module)
     props: {
       loginModel: pwdEmpty,
       submit: action('clicked event'),
-      loginUrl: "login",
-      signupUrl: "signup"
+      loginUrl: 'login',
+      signupUrl: 'signup'
     },
     moduleMetadata: modules
   })).add('With Errors', () => ({
@@ -38,8 +39,8 @@ storiesOf('Forgot Password', module)
   props: {
     loginModel: pwdEmpty,
     submit: action('clicked event'),
-    loginUrl: "login",
-    signupUrl: "signup"
+    loginUrl: 'login',
+    signupUrl: 'signup'
   },
   moduleMetadata: modules
 })).add('Filled', () => ({
@@ -47,8 +48,8 @@ storiesOf('Forgot Password', module)
   props: {
     loginModel: pwdFilled,
     submit: action('clicked event'),
-    loginUrl: "login",
-    signupUrl: "signup"
+    loginUrl: 'login',
+    signupUrl: 'signup'
   },
   moduleMetadata: modules
 }));
