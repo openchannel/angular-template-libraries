@@ -1,12 +1,9 @@
-import { moduleMetadata, storiesOf } from '@storybook/angular';
-import {withA11y} from '@storybook/addon-a11y';
+import { moduleMetadata } from '@storybook/angular';
 import {
-  OcAppGalleryComponent,
   OcAppListGridComponent,
-  OcCommonLibModule, OcNumberComponent
+  OcCommonLibModule,
 } from 'projects/oc-ng-common-component/src/public-api';
-import { BasicAppDetails, FullAppData, StatElement } from 'oc-ng-common-service';
-import {action} from '@storybook/addon-actions';
+import { StatElement } from 'oc-ng-common-service';
 
 const modules = {
   imports: [OcCommonLibModule]
@@ -20,7 +17,7 @@ const stat: StatElement = {
 
 const app1 = {
   appId: '344gf-43s3j-gi3423',
-  icon: 'https://drive.google.com/u/0/uc?id=19l7Znd-iPPYUhM6zaiQZ01rE2NpkDFyk&export=download',
+  icon: '',
   name: 'Plugin',
   model: [{
     type: 'free',
@@ -60,7 +57,7 @@ const app1 = {
 
 const app2 = {
   appId: '343344gf-43s3j-gi3423',
-  icon: 'https://drive.google.com/u/0/uc?id=1vDDzbS--o_UIgXFE_LmMfVmSAKuprCyb&export=download',
+  icon: '',
   name: 'Application',
   model: [{
     type: 'recurring',
@@ -100,7 +97,7 @@ const app2 = {
 
 const app3 = {
   appId: '34ks344gf-43s3j-gi3423',
-  icon: 'https://drive.google.com/u/0/uc?id=1fWkPPXp3tmkYRBy-GtCm_9PkP7fmConE&export=download',
+  icon: '',
   name: 'Plugin',
   model: [{
     type: 'free',
@@ -140,7 +137,7 @@ const app3 = {
 
 const app4 = {
   appId: '35-344gf-43s3j-gi3423',
-  icon: 'https://drive.google.com/u/0/uc?id=1KipwDw0K8xJC_StaAhsyDTEgcAoVHqDp&export=download',
+  icon: '',
   name: 'Integration',
   model: [{
     type: 'single',
