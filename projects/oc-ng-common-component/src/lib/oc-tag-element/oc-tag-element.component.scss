@@ -1,10 +1,21 @@
 @import "../../../assets/styles/theme.scss";
 
-.tag-colors {
-  background-color: $light-blue;
-  color: $blue;
-  fill: $blue;
+.tag {
+  border-radius: 4px;
 }
 
+.tag-colors {
+  background-color: $light;
+  color: $body-color;
+  fill: $body-color;
+}
 
+.tag-label {
+  font-size: 14px;
+}
+
+.tag-close {
+  height: 18px;
+  width: 18px;
+}
 
