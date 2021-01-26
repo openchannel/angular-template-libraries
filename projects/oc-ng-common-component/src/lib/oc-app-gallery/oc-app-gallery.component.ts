@@ -27,6 +27,8 @@ export class OcAppGalleryComponent implements OnInit {
   @Input() appGalleryDescription: string = '';
   /** Router link for one app click, will contain 'appId' field */
   @Input() routerLinkForOneApp: string;
+  /** path to the custom icon near 'See All' */
+  @Input() routerIcon: string = '../../../../assets/img/arrow.svg';
 
   constructor() {
   }

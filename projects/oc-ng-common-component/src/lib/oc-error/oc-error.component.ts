@@ -48,6 +48,11 @@ export class OcErrorComponent implements OnInit {
   public field: string;
   @Input()
   public errorParams: any;
+  /**
+   * Replace error message from validator to custom
+   */
+  @Input()
+  public modifyErrors: [{validator: string, message: string}];
 
   constructor(public errorService: OcErrorService) {
   }
@@ -97,7 +102,8 @@ export class OcErrorComponent implements OnInit {
         return [];
       }
       return Object.keys(this.control.errors)
-          .map(field => this.getMessage(field, this.control.errors[field]));
+          .map(field => this.getMessage(field, this.control.errors[field]))
+          .filter(message => message);
     } else if (this.field) {
       return [this.getMessage(this.field, this.errorParams)];
     }
@@ -105,6 +111,13 @@ export class OcErrorComponent implements OnInit {
   }
 
   private getMessage(type: string, params: any) {
+    if(this.modifyErrors) {
+      const errorMsg = this.modifyErrors.filter(update => update.validator === type)[0];
+      if(errorMsg) {
+        // clean up an error message
+        return errorMsg?.message;
+      }
+    }
     return this.errorMessages[type](params);
   }
 }
