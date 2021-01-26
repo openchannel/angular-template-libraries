@@ -18,7 +18,7 @@ export class OcTooltipLabelComponent implements OnInit {
   /**
    * infoTitleIconCsv (optional) - icon for showing description.
    */
-  @Input() infoTitleIconCsv: string = null;
+  @Input() infoTitleIconCsv: string = '../../../assets/img/info.svg';
   /** Set global classes for label */
   @Input() labelClass: string = '';
   constructor() {
