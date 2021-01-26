@@ -1,6 +1,6 @@
 <div *ngIf="type === 'single-star'" class="d-flex align-items-center">
-    <img class="rating-star" src="./assets/img/star.svg" alt="">
-    <span class="{{labelClass}}">{{rating}} ({{reviewCount}}{{label ? ' ' + label : ''}})</span>
+    <svg-icon svgClass="rating-star" src="../../../assets/img/star.svg"></svg-icon>
+    <span class="{{labelClass}} ml-1">{{rating}} ({{reviewCount}}{{label ? ' ' + label : ''}})</span>
 </div>
 
 <div *ngIf="type === 'multi-star'">
