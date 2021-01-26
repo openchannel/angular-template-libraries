@@ -92,6 +92,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
 import { OcMainModalComponent } from './oc-main-modal/oc-main-modal.component';
 import { OcInviteModalComponent } from './oc-invite-modal/oc-invite-modal.component';
+import { OcSidebarComponent } from './oc-sidebar/oc-sidebar.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -176,6 +177,7 @@ import { OcInviteModalComponent } from './oc-invite-modal/oc-invite-modal.compon
     OcAppShortInfoComponent,
     OcMainModalComponent,
     OcInviteModalComponent,
+    OcSidebarComponent,
   ],
 
   imports: [
@@ -268,6 +270,7 @@ import { OcInviteModalComponent } from './oc-invite-modal/oc-invite-modal.compon
     OcAppShortInfoComponent,
     OcMainModalComponent,
     OcInviteModalComponent,
+    OcSidebarComponent
   ],
   providers: [
     NgbActiveModal,
