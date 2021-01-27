@@ -3,7 +3,7 @@ import {Component, Input, OnInit} from '@angular/core';
 @Component({
   selector: 'oc-tooltip-label',
   templateUrl: './oc-tooltip-label.component.html',
-  styleUrls: ['./oc-toltip-label.component.scss']
+  styleUrls: ['./oc-tooltip-label.component.scss']
 })
 export class OcTooltipLabelComponent implements OnInit {
   /** Label text */
@@ -18,7 +18,7 @@ export class OcTooltipLabelComponent implements OnInit {
   /**
    * infoTitleIconCsv (optional) - icon for showing description.
    */
-  @Input() infoTitleIconCsv: string = null;
+  @Input() infoTitleIconCsv: string = '../../../assets/img/info.svg';
   /** Set global classes for label */
   @Input() labelClass: string = '';
   constructor() {

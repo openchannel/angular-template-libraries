@@ -577,5 +577,7 @@ oc-select {
 }
 
 .svg-primary {
-  fill: $primary;
+  path {
+    fill: $primary;
+  }
 }

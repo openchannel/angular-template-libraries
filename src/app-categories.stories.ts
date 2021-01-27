@@ -1,9 +1,7 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
-import {withA11y} from '@storybook/addon-a11y';
 import {
   OcAppCategoriesComponent,
-  OcCommonLibModule, OcNumberComponent
-} from 'projects/oc-ng-common-component/src/public-api';
+  OcCommonLibModule} from 'projects/oc-ng-common-component/src/public-api';
 import {AppCategoryDetail} from 'oc-ng-common-service';
 import {RouterTestingModule} from '@angular/router/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -38,7 +36,7 @@ export default {
   ],
 };
 
-const AppCategoriesComponent = (args: OcNumberComponent) => ({
+const AppCategoriesComponent = (args: OcAppCategoriesComponent) => ({
   component: OcAppCategoriesComponent,
   moduleMetadata: modules,
   props: args

@@ -11,7 +11,7 @@ export class OcAppListGridComponent implements OnInit {
   @Input() appList: FullAppData[] = [];
 
   @Input() noAppMessage = '';
-  @Input() defaultAppIcon = '';
+  @Input() defaultAppIcon = '../../../assets/img/standard-app-icon.svg';
 
   @Output() gotoDetails = new EventEmitter<FullAppData>();
 
