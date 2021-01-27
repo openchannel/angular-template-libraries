@@ -15,7 +15,7 @@ export class OcAppDescriptionComponent implements OnInit, OnChanges {
   /** Header of the App Description section */
   _header : string = '';
   @Input() set header(header: string) {
-    if(header) {
+    if (header) {
       this._header = header;
     }
   }
@@ -26,6 +26,8 @@ export class OcAppDescriptionComponent implements OnInit, OnChanges {
   @Input() expandDescriptionText: string = 'Show full description';
   /** Show full description always. Text for expand description will not be shown */
   @Input() showFullDescription: boolean = false;
+  /** String with classes that will be applied to the header */
+  @Input() headerClass: string;
 
   constructor() { }
 
