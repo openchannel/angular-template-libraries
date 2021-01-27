@@ -14,6 +14,8 @@ export class OcSelectExpandableComponent implements OnInit {
   @Input() collapsedOnInit: boolean = true;
 
   @Input() isCollapsed: boolean = true;
+  @Input() expandedIcon: string = '../../../assets/img/select-up.svg';
+  @Input() collapsedIcon: string = '../../../assets/img/down-arrow.svg';
   @Output() selectModelsChange: EventEmitter<SelectModel[]> = new EventEmitter<SelectModel[]>();
 
   constructor() {

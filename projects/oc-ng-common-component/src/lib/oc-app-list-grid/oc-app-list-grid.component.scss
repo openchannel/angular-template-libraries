@@ -27,9 +27,15 @@
 
   .icon-arrow {
     cursor: pointer;
+    height: 12px;
     position: absolute;
     right: 24px;
-    top: 34px;
+    top: calc(50% - 6px);
+    width: auto;
+
+    path {
+      fill: $body-color;
+    }
     @media (max-width: 353px) {
       top: 17px;
     }
