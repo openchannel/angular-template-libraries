@@ -13,6 +13,7 @@ definitions:
           - sonar
         script:
           - npm install --quiet
+          - npm run build-prod
           - pipe: sonarsource/sonarcloud-scan:0.1.5
             variables:
               SONAR_SCANNER_OPTS: -Xmx2048m
@@ -38,12 +39,9 @@ definitions:
               REPUBLISH: 'true'
 
 pipelines:
-  default:
-    - step:
-        name: Build
-        script:
-          - npm install
-          - npm run build-prod
+  pull-requests:
+    '**':
+      - step: *build-test-sonarcloud
   branches:
     develop:
       - step: *build-test-sonarcloud
