@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {SellerSignup} from 'oc-ng-common-service';
 import {Router} from '@angular/router';
-import {FormGroup, NgForm} from '@angular/forms';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'oc-signup',
@@ -30,14 +30,11 @@ export class OcSignupComponent {
   }
 
   submitForm(form: NgForm) {
-    form.form.markAllAsTouched()
     if (this.signupModel.isChecked && !this.process) {
       if (!form.valid) {
-        this.submit.emit(false);
-        return false;
+        form.form.markAllAsTouched();
       }
-      this.submit.emit(true);
-      return false;
+      this.submit.emit(form.valid);
     }
   }
 
