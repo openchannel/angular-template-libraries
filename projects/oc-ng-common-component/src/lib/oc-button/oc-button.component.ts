@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import {ButtonType} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-button',
@@ -21,7 +20,7 @@ export class OcButtonComponent implements OnChanges, AfterViewInit {
   @Input() customTemplate: TemplateRef<any>;
   @Input() process: boolean;
 
-  @Input() set type(type: ButtonType | 'none') {
+  @Input() set type(type: 'primary' | 'secondary' | 'link' | 'danger' | 'none') {
     this._type = type;
     this._buttonTypeClass = type != 'none' ? `btn-${this._type}` : null;
     this._showButton = true;
