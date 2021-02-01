@@ -7,14 +7,24 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./oc-button.component.scss'],
 })
 export class OcButtonComponent implements OnChanges, AfterViewInit {
+
+  _type: string;
+  _showButton = false;
+  _buttonTypeClass: string;
+
   @Input() text: string = '';
   @Input() disabled: boolean = false;
-  @Input() type: 'primary' | 'secondary' | 'link' = 'primary';
   @Input() class: string;
   @Input() style: string;
-  @Input() process: boolean;
   @Input() customClass: string;
   @Input() customTemplate: TemplateRef<any>;
+  @Input() process: boolean;
+
+  @Input() set type(type: 'primary' | 'secondary' | 'link' | 'danger' | 'none') {
+    this._type = type;
+    this._buttonTypeClass = type != 'none' ? `btn-${this._type}` : null;
+    this._showButton = true;
+  }
 
   @ViewChild('button') button;
 
@@ -34,7 +44,7 @@ export class OcButtonComponent implements OnChanges, AfterViewInit {
   }
 
   checkSpinner(): void {
-    if (this.process && this.type !== 'link') {
+    if (this.process && this._type !== 'link') {
       this.spinner.show();
     } else {
       this.spinner.hide();

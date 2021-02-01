@@ -1,15 +1,4 @@
-<button #button *ngIf="type === 'primary'"
-        [disabled]="disabled" class="btn btn-primary {{class}} {{customClass}}"
-        style="{{style}}" [ngClass]="process? 'btn-primary-spinner' : ''">
-    <ng-template *ngIf="customTemplate; else defaultButtonText" [ngTemplateOutlet]="customTemplate"></ng-template>
-</button>
-<button #button *ngIf="type === 'secondary'"
-        [disabled]="disabled" class="btn btn-secondary {{class}} {{customClass}}"
-        style="{{style}}" [ngClass]="process? 'btn-secondary-spinner' : ''">
-    <ng-template *ngIf="customTemplate; else defaultButtonText" [ngTemplateOutlet]="customTemplate"></ng-template>
-</button>
-<button #button *ngIf="type === 'link'" [disabled]="disabled" class="btn btn-link {{class}} {{customClass}}"
-        style="{{style}}">
+<button *ngIf="_showButton" #button [disabled]="disabled" class="btn {{_buttonTypeClass}} {{class}} {{customClass}}" style="{{style}}">
     <ng-template *ngIf="customTemplate; else defaultButtonText" [ngTemplateOutlet]="customTemplate"></ng-template>
 </button>
 
