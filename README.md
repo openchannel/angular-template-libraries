@@ -1,29 +1,43 @@
-# README #
+# OcCommonService
 
-This README would normally document whatever steps are necessary to get your application up and running.
 
-### What is this repository for? ###
+## Create Global link
+cd dist/oc-ng-common-service
+npm link
+(output :abc -> <absolute path to common service project dist>)
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## Run Project
+ng build oc-ng-common-service --watch
 
-### How do I get set up? ###
+## Packege Project
+npm install  
+ng build oc-ng-common-service
+npm run oc-ng-common-service
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
 
-### Contribution guidelines ###
 
-* Writing tests
-* Code review
-* Other guidelines
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 
-### Who do I talk to? ###
+## Development server
 
-* Repo owner or admin
-* Other community or team contact
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

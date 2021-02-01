@@ -1,4 +1,4 @@
-export class SignUp {
+export class SellerSignup { 
     uname: string;
     company: string;
     password: string;
