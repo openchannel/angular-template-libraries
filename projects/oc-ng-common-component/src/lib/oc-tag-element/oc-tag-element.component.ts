@@ -7,8 +7,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class OcTagElementComponent implements OnInit {
 
-    // todo move svg to the asserts
-
     /**
      * title (optional) - component title.
      */
@@ -20,9 +18,9 @@ export class OcTagElementComponent implements OnInit {
     @Input() closeMarker: boolean = false;
 
     /**
-     * deleteTagImgUrl (optional) - an icon on the right title side.
+     * deleteTagImgUrl (optional) - path to the SVG icon on the right title side.
      */
-    @Input() deleteTagImgUrl: string = null;
+    @Input() deleteTagImgUrl: string = '../../assets/img/close-icon.svg';
     /**
      * clickEmitter - return title by click event on this component.
      */
