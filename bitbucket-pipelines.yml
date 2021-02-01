@@ -14,7 +14,7 @@ definitions:
         script:
           - npm install --quiet
           - npm run build-prod
-          - pipe: sonarsource/sonarcloud-scan:0.1.5
+          - pipe: sonarsource/sonarcloud-scan:1.2.1
             variables:
               SONAR_SCANNER_OPTS: -Xmx2048m
               SONAR_TOKEN: ${SONAR_TOKEN}
