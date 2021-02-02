@@ -1,12 +1,10 @@
 <div class="col p-0 align-items-end">
     <div class="col p-0">
         <div class="row w-100 m-0 align-items-stretch">
-            <oc-input class="flex-grow-1" ngDefaultControl
-                      [placeholder]="placeHolderInputName"
-                      [(ngModel)]="currentTag"
-                      [ngModelOptions]="{standalone: true}"
-                      (ngModelChange)="changeCurrentTag()"
-                      ></oc-input>
+            <oc-select [selectValArr]="dropBoxTags" [(ngModel)]="currentTag"
+                       [ngModelOptions]="{standalone: true}"
+                       (ngModelChange)="changeCurrentTag()"
+                       class="flex-grow-1"></oc-select>
             <oc-button class="ml-1"
                        text="Add"
                        type="secondary"
@@ -21,20 +19,6 @@
                         [title]="tag"
                         (clickEmitter)="removeTag(i)">
         </oc-tag-element>
-        <oc-dropbox *ngIf="dropBoxTags?.length > 0" class="m-0 mr-2 mt-2"
-                    [items]="dropBoxTags"
-                    [placeHolder]="placeHolderDropBoxName"
-                    [clearFormAfterSelect] = "true"
-                    [dropElementTemplate]="dropElementTemplate"
-                    (selectedItem)="addTagToResultList($event, true)">
-        </oc-dropbox>
     </div>
     <oc-error *ngIf="error" [field]="error.field" [errorParams]="error.params"></oc-error>
 </div>
-
-
-<ng-template #dropElementTemplate let-result="result">
-    <div class="d-flex flex-row flex-nowrap align-items-center dropdown-element p-2">
-        <div class="custom-text">{{result}}</div>
-    </div>
-</ng-template>
