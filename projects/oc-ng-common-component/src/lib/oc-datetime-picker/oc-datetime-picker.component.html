@@ -9,23 +9,27 @@
             class="btn btn-secondary w-100 d-flex justify-content-between align-items-center date-picker-dd-toggle"
             id="datePickerDD"
             ngbDropdownToggle
-            (click)="disabled ? myDrop.close() : (myDrop.isOpen() ? initCal() : null)"
-    >
+            (click)="disabled ? myDrop.close() : (myDrop.isOpen() ? initCal() : null)">
         <input type="hidden" class="wc-input" value="{{ date }}" />
         <div class="wc-date-container">
             <span *ngIf="date">{{ date | date: settings.format }}</span>
             <span *ngIf="!date">{{settings.format | uppercase}}</span>
         </div>
-        <fa-icon icon="calendar-alt"></fa-icon>
+        <svg-icon src="../../assets/img/calendar-icon.svg" svgClass="calendar-icon-size" style="height: 16px">
+        </svg-icon>
     </button>
     <div ngbDropdownMenu aria-labelledby="datePickerDD" class="p-0">
         <div class="wc-date-popover" [ngClass]="{'wc-date-popover__date': !isDateTime}">
             <div class="wc-banner">
-                <fa-icon id="prevMonth" class="cursor-pointer angle" icon="angle-left" (click)="prevMonth($event)"></fa-icon>
+                <svg-icon id="prevMonth" src="../../assets/img/arrow-left-analog.svg"
+                          svgClass="calendar-icon-size" class="cursor-pointer"
+                          (click)="prevMonth($event)"></svg-icon>
                 <div class="wc-banner__detail">
                     {{ date | date: 'MMMM' }}, {{ date | date: 'yyyy' }}
                 </div>
-                <fa-icon id="nextMonth" icon="angle-right" class="cursor-pointer angle" (click)="nextMonth($event)"></fa-icon>
+                <svg-icon id="nextMonth" src="../../assets/img/arrow-right-analog.svg"
+                          svgClass="calendar-icon-size" class="cursor-pointer"
+                          (click)="nextMonth($event)"></svg-icon>
             </div>
             <div class="wc-content">
                 <table class="calendar-header">
@@ -46,12 +50,12 @@
                                 [ngClass]="{
                 'calendar-day': day.day != null,
                 today:
-                  day.day == today.getDate() &&
-                  day.date?.getMonth() == today.getMonth() &&
-                  day.date?.getFullYear() == today.getFullYear(),
+                  day.day === today.getDate() &&
+                  day.date?.getMonth() === today.getMonth() &&
+                  day.date?.getFullYear() === today.getFullYear(),
                 'selected-day': day.day === date?.getDate() &&
                   day.date?.getMonth() === date?.getMonth(),
-                'prev-month': day.date?.getMonth() != date?.getMonth()
+                'prev-month': day.date?.getMonth() !== date?.getMonth()
               }"
                                 *ngFor="let day of week"
                         >
@@ -65,17 +69,25 @@
                     <div class="hour">
                         <div class="time__header">Hours</div>
                         <div class="time__manipulators">
-                            <fa-icon icon="angle-left" class="inc-btn" (click)="decHour()"></fa-icon>
+                            <svg-icon src="../../assets/img/arrow-left-analog.svg"
+                                      svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
+                                      (click)="decHour()"></svg-icon>
                             <input type="number" value="{{ hourValue }}" [(ngModel)]="hourValue" autofocus (input)="onHourChange()"/>
-                            <fa-icon icon="angle-right" class="dec-btn" (click)="incHour()"></fa-icon>
+                            <svg-icon src="../../assets/img/arrow-right-analog.svg"
+                                      svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
+                                      (click)="incHour()"></svg-icon>
                         </div>
                     </div>
                     <div class="minutes">
                         <div class="time__header">Minutes</div>
                         <div class="time__manipulators">
-                            <fa-icon icon="angle-left" class="inc-btn" (click)="decMinutes()"></fa-icon>
+                            <svg-icon src="../../assets/img/arrow-left-analog.svg"
+                                      svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
+                                      (click)="decMinutes()"></svg-icon>
                             <input type="number" value="{{ minuteValue }}" [(ngModel)]="minuteValue" (input)="onMinChange()" />
-                            <fa-icon icon="angle-right" class="dec-btn" (click)="incMinutes()"></fa-icon>
+                            <svg-icon src="../../assets/img/arrow-right-analog.svg"
+                                      svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
+                                      (click)="incMinutes()"></svg-icon>
                         </div>
                     </div>
                 </div>
