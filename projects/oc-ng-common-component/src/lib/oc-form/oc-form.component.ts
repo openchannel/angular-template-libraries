@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {Subscription} from 'rxjs';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'oc-form',
@@ -61,7 +61,7 @@ export class OcFormComponent implements OnInit, OnDestroy {
   public formData: any;
 
   private formSubscription: Subscription = new Subscription();
-  constructor(private fb: FormBuilder) {
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -428,7 +428,7 @@ export class OcFormComponent implements OnInit, OnDestroy {
    * Output event which returns form value
    */
   sendData(): void {
-    if (this.customForm.valid && !this.anotherInvalidResult && !this.process) {
+    if (!this.anotherInvalidResult && !this.process) {
       const formData = this.customForm.getRawValue();
       Object.keys(formData).forEach(key => {
         if (key.includes('/')) {
@@ -436,7 +436,7 @@ export class OcFormComponent implements OnInit, OnDestroy {
           delete formData[key];
         }
       });
-      if (this.showButton) {
+      if (this.customForm.valid && this.showButton) {
         this.formSubmitted.emit(formData);
       } else {
         this.formDataUpdated.emit(formData);
@@ -451,8 +451,8 @@ export class OcFormComponent implements OnInit, OnDestroy {
   /** Listening to value changes of the form if buttons not applied */
   subscribeToForm(): void {
     this.formSubscription.add(this.customForm.valueChanges.subscribe(() => {
-      this.sendData();
       this.isFormInvalid.emit(this.customForm.invalid);
+      this.sendData();
     }));
   }
 

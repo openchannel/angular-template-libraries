@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SelectModel, SidebarModel } from 'oc-ng-common-service';
+import { SelectModel, SidebarValue } from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-sidebar',
@@ -11,28 +11,28 @@ export class OcSidebarComponent implements OnInit {
   /** title of the sidebar */
   @Input() title: string;
   /** Sidebar config */
-  @Input() sidebarModel: SidebarModel[];
+  @Input() sidebarModel: SidebarValue[];
   /** Path to the custom toggle icon up */
   @Input() toggleIconDown: string = '../../../assets/img/down-arrow.svg';
   /** Path to the custom toggle icon down */
   @Input() toggleIconUp: string = '../../../assets/img/select-up.svg';
   /** Return changed model */
-  @Output() selectModelsChange: EventEmitter<SelectModel[]> = new EventEmitter<SelectModel[]>();
+  @Output() selectedLabelChange: EventEmitter<SidebarValue> = new EventEmitter<SidebarValue>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onChange(chosenLabel: string, chosenSubLabel?: string) {
+  onChange(selectedValue: SidebarValue, chosenId: string) {
     this.sidebarModel.forEach(item => {
-      item.checked = item.label === chosenLabel && !chosenSubLabel;
-      if (item.sublist && item.sublist.length > 0) {
-        item.sublist.forEach(subItem => {
-          subItem.checked = chosenSubLabel && subItem.label === chosenSubLabel;
+      item.checked = item.id === chosenId && (!selectedValue.values || selectedValue.values.length === 0);
+      if (item.values && item.values.length > 0) {
+        item.values.forEach(subItem => {
+          subItem.checked = subItem.id === chosenId;
         });
       }
     });
-    this.selectModelsChange.emit(this.sidebarModel);
+    this.selectedLabelChange.emit(selectedValue);
   }
 }

@@ -93,6 +93,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { OcMainModalComponent } from './oc-main-modal/oc-main-modal.component';
 import { OcInviteModalComponent } from './oc-invite-modal/oc-invite-modal.component';
 import { OcSidebarComponent } from './oc-sidebar/oc-sidebar.component';
+import { OcConfirmationModalComponent } from './oc-confirmation-modal/oc-confirmation-modal.component';
 
 @NgModule({
   declarations: [OcCommonLibComponent,
@@ -178,6 +179,7 @@ import { OcSidebarComponent } from './oc-sidebar/oc-sidebar.component';
     OcMainModalComponent,
     OcInviteModalComponent,
     OcSidebarComponent,
+    OcConfirmationModalComponent,
   ],
 
   imports: [
@@ -270,7 +272,8 @@ import { OcSidebarComponent } from './oc-sidebar/oc-sidebar.component';
     OcAppShortInfoComponent,
     OcMainModalComponent,
     OcInviteModalComponent,
-    OcSidebarComponent
+    OcSidebarComponent,
+    OcConfirmationModalComponent,
   ],
   providers: [
     NgbActiveModal,

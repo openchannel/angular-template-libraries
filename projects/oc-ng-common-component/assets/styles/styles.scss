@@ -263,6 +263,19 @@ h6 {
     background-color: $info !important;
   }
 }
+.btn-danger{
+  background-color: $danger !important;
+  border-color: $danger !important;
+  &:hover {
+    box-shadow: 1px 5px 30px 0 rgba(mix(#000, $danger, 10%), 0.5);
+  }
+  &:not(:disabled):not(.disabled):active {
+    background-color: mix(#000, $danger, 10%) !important;
+  }
+  &-spinner {
+    background-color: mix(#000, $danger, 10%) !important;
+  }
+}
 .btn-link{
   color: $primary !important;
   text-decoration: none;
