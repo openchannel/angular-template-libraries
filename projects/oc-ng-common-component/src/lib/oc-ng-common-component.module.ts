@@ -272,7 +272,8 @@ import { OcConfirmationModalComponent } from './oc-confirmation-modal/oc-confirm
     OcAppShortInfoComponent,
     OcMainModalComponent,
     OcInviteModalComponent,
-    OcSidebarComponent
+    OcSidebarComponent,
+    OcConfirmationModalComponent,
   ],
   providers: [
     NgbActiveModal,

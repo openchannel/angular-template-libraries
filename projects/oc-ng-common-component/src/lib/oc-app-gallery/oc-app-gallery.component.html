@@ -12,7 +12,7 @@
     </div>
 </div>
 <div *ngIf="appsArr && appsArr.length > 0; else emptyData" class="row pt-5">
-    <oc-app-card *ngFor="let app of appsArr;" class="card-margins col-md-4 p-0"
+    <oc-app-card *ngFor="let app of appsArr;" class="card-margins col-md-4 p-2"
                  [app]="app"
                  [appRouterLink]="routerLinkForOneApp"></oc-app-card>
 </div>
