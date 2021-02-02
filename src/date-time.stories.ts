@@ -34,6 +34,7 @@ DefaultDate.args = {
     settings: {
         format: 'dd/MM/yyyy',
     },
+    disabled: false
 };
 
 export const DefaultDateTime = DateTimeComponent.bind({});
