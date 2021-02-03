@@ -20,6 +20,7 @@ export class OcPopupComponent implements OnInit {
   confirmCallback: any;
   cancelCallback: any;
   closeCallBack: any;
+  @Input() isDirectSubmit = false;
 
   @Input() closeIconUrl;
   @Input() type;
@@ -31,6 +32,9 @@ export class OcPopupComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.type);
+    if(this.isDirectSubmit){
+      this.confirm();
+    }
   }
 
   dismiss() {
