@@ -454,6 +454,9 @@ export class OcFormComponent implements OnInit, OnDestroy {
 
   /** Listening to value changes of the form if buttons not applied */
   subscribeToForm(): void {
+    this.isFormInvalid.emit(this.customForm.invalid);
+    this.sendData();
+
     this.formSubscription.add(this.customForm.valueChanges.subscribe(() => {
       this.isFormInvalid.emit(this.customForm.invalid);
       this.sendData();
