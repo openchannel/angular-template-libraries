@@ -9,6 +9,7 @@
             class="btn btn-secondary w-100 d-flex justify-content-between align-items-center date-picker-dd-toggle"
             id="datePickerDD"
             ngbDropdownToggle
+            [disabled]="disabled"
             (click)="disabled ? myDrop.close() : (myDrop.isOpen() ? initCal() : null)">
         <input type="hidden" class="wc-input" value="{{ date }}" />
         <div class="wc-date-container">
@@ -72,7 +73,9 @@
                             <svg-icon src="../../assets/img/arrow-left-analog.svg"
                                       svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
                                       (click)="decHour()"></svg-icon>
-                            <input type="number" value="{{ hourValue }}" [(ngModel)]="hourValue" autofocus (input)="onHourChange()"/>
+                            <input #hourInput type="text" [value]="hourValue < 10 ? '0' + hourStr : hourStr"
+                                   (input)="onHourChange($event)" ocOnlyNumber
+                                   (click)="hourInput.select()" />
                             <svg-icon src="../../assets/img/arrow-right-analog.svg"
                                       svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
                                       (click)="incHour()"></svg-icon>
@@ -84,7 +87,9 @@
                             <svg-icon src="../../assets/img/arrow-left-analog.svg"
                                       svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
                                       (click)="decMinutes()"></svg-icon>
-                            <input type="number" value="{{ minuteValue }}" [(ngModel)]="minuteValue" (input)="onMinChange()" />
+                            <input #minInput type="text" [value]="minuteValue < 10 ? '0' + minuteStr : minuteStr"
+                                   (input)="onMinChange($event)"
+                                   ocOnlyNumber (click)="minInput.select()"/>
                             <svg-icon src="../../assets/img/arrow-right-analog.svg"
                                       svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
                                       (click)="incMinutes()"></svg-icon>

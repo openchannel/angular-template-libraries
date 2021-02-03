@@ -29,7 +29,9 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
   type: 'datetime' | 'date';
 
   date: Date;
+  hourStr: string;
   hourValue: number = 0;
+  minuteStr: string;
   minuteValue: number = 0;
   monthDays: Array<any> = [];
   today: Date = new Date();
@@ -69,7 +71,6 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
     } else {
       this.initCal();
     }
-    console.log(this.date);
   }
 
   initCal() {
@@ -83,6 +84,8 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
 
     this.hourValue = this.date.getHours();
     this.minuteValue = this.date.getMinutes();
+    this.hourStr = this.hourValue.toString();
+    this.minuteStr = this.minuteValue.toString();
   }
 
   generateDays(date: Date) {
@@ -125,13 +128,7 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         day++;
         dateRow.push({ day: dateCell, date: new Date(date.getFullYear(), month, dateCell) });
       }
-      // stop making rows if we've run out of days
-      if (day > monthLength) {
-        dateArr.push(dateRow);
-        // break;
-      } else {
-        dateArr.push(dateRow);
-      }
+      dateArr.push(dateRow);
     }
     return dateArr;
   }
@@ -215,29 +212,36 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
     } else {
       this.hourValue = 0;
     }
+    this.hourStr = this.hourValue.toString();
     this.setTimeView();
   }
 
   decHour() {
     if (this.hourValue > 1) {
       this.hourValue -= 1;
-    } else {
+    } else if (this.hourValue === 0) {
       this.hourValue = 23;
+    } else {
+      this.hourValue = 0;
     }
+    this.hourStr = this.hourValue.toString();
     this.setTimeView();
   }
 
-  onHourChange() {
-    console.log('on hour change!');
-    setTimeout(() => {
-      if (this.hourValue > 12) {
-        this.hourValue = 12;
-      }
-      if (this.hourValue < 1) {
-        this.hourValue = 1;
-      }
-      this.setTimeView();
-    }, 100);
+  onHourChange(event) {
+    const inputData = event.target.value;
+    this.hourValue = Number.parseInt(inputData, 10);
+
+    if (!inputData) {
+      this.hourValue = 0;
+    } else {
+      this.hourStr = inputData;
+    }
+    if (this.hourValue < 1 || this.hourValue > 23) {
+      this.hourValue = 0;
+    }
+    this.hourStr = this.hourValue.toString();
+    this.setTimeView();
   }
 
   incMinutes() {
@@ -246,6 +250,7 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
     } else {
       this.minuteValue = 0;
     }
+    this.minuteStr = this.minuteValue.toString();
     this.setTimeView();
   }
 
@@ -255,19 +260,26 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
     } else {
       this.minuteValue = 59;
     }
+    this.minuteStr = this.minuteValue.toString();
     this.setTimeView();
   }
 
-  onMinChange() {
-    setTimeout(() => {
-      if (this.minuteValue > 59) {
-        this.minuteValue = 59;
-      }
-      if (this.minuteValue < 0) {
-        this.minuteValue = 0;
-      }
-      this.setTimeView();
-    }, 100);
+  onMinChange(event) {
+    const inputData = event.target.value;
+    this.minuteValue = Number.parseInt(inputData, 10);
+    if (!inputData) {
+      this.minuteValue = 0;
+    } else {
+      this.minuteStr = inputData;
+    }
+    if (this.minuteValue > 59) {
+      this.minuteValue = 59;
+    }
+    if (this.minuteValue < 0) {
+      this.minuteValue = 0;
+    }
+    this.minuteStr = this.minuteValue.toString();
+    this.setTimeView();
   }
 
   done(event?) {

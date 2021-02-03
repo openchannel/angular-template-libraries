@@ -56,21 +56,21 @@
   background: #fff;
   width: 100%;
   z-index: 1;
-  padding: 0 15px;
+  padding: 0 16px 16px;
 }
 
 .time-view .time {
   font-size: 36px;
   width: 100%;
   margin: 0 auto;
-  //display: inline-block;
-  padding: 13px 0;
+  padding-top: 16px;
   font-weight: 300;
   display: flex;
   border-top: 1px solid $gray-400;
 
   &__header{
     text-align: center;
+    font-size: 14px;
   }
   &__manipulators{
     display: flex;
@@ -93,7 +93,7 @@
   text-align: center;
   cursor: pointer;
   font-family: inherit;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 300;
   padding: 0 10px;
   &:focus {
@@ -111,7 +111,7 @@
 
 .calendar-header td {
   padding: 5px 0 !important;
-  font-size: 14px;
+  font-size: 12px;
   color: $secondary;
 }
 
@@ -153,7 +153,7 @@ input[type='number']::-webkit-outer-spin-button {
     border: 1px solid $primary !important;
     outline: none;
   }
-  &:not(:disabled):active {
+  &:not(:disabled):not(.disabled):active {
     border: 1px solid $primary !important;
     background-color: #fff !important;
     outline: none;
@@ -161,7 +161,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .wc-date-popover {
-  height: 375px;
+  height: auto;
   width: 250px;
   font-size: 14px;
 
@@ -174,7 +174,7 @@ input[type='number']::-webkit-outer-spin-button {
   height: 30px;
   display: flex;
   color: black;
-  padding: 13px 21px 0px 21px;
+  padding: 16px 16px 0px;
   justify-content: space-between;
 
   &__detail {
@@ -193,7 +193,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .wc-content {
-  padding: 13px 15px 0;
+  padding: 16px 16px 0;
   font-size: 14px;
 
   .calendar-header,
@@ -208,7 +208,7 @@ input[type='number']::-webkit-outer-spin-button {
       padding: 5px 0;
       span {
         display: block;
-        font-size: 14px;
+        font-size: 12px;
       }
     }
   }
