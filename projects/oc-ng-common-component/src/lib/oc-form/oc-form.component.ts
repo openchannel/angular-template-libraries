@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'oc-form',
@@ -97,6 +97,10 @@ export class OcFormComponent implements OnInit, OnDestroy {
           case 'text':
           case 'longText':
           case 'password':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : '');
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isPassword: true});
+            break;
           case 'dropdownList':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
               inputTemplate?.defaultValue : '');
@@ -199,7 +203,7 @@ export class OcFormComponent implements OnInit, OnDestroy {
    */
   setValidators(control: AbstractControl, attributes,
                 additional?: {isCheckbox?: boolean, isEmail?: boolean, isUrl?: boolean,
-                  isColor?: boolean, isList?: boolean, isRichText?: boolean}): void {
+                  isColor?: boolean, isList?: boolean, isRichText?: boolean, isPassword?: boolean}): void {
     const validators: ValidatorFn [] = [];
     Object.keys(attributes).forEach(key => {
       switch (key) {
@@ -264,6 +268,9 @@ export class OcFormComponent implements OnInit, OnDestroy {
     }
     if (additional && additional.isColor) {
       validators.push(this.colorValidator());
+    }
+    if (additional && additional.isPassword) {
+      validators.push(this.passwordValidator());
     }
     control.setValidators(validators);
   }
@@ -396,6 +403,20 @@ export class OcFormComponent implements OnInit, OnDestroy {
             requiredLength: max
           }
         };
+      }
+    };
+  }
+  /**
+   * Custom validator of password
+   */
+  passwordValidator() {
+    return (c: AbstractControl): { [key: string]: any } => {
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%!^&]).{8,}$/;
+      const password = c.value ? c.value : '';
+      if(password.match(regex)) {
+        return null;
+      } else {
+        return {passwordValidator:{}}
       }
     };
   }
