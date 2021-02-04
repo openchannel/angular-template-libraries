@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import { Subscription } from 'rxjs';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'oc-form',
@@ -96,6 +96,10 @@ export class OcFormComponent implements OnInit, OnDestroy {
             break;
           case 'text':
           case 'longText':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : '');
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
+            break
           case 'password':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
               inputTemplate?.defaultValue : '');
@@ -450,6 +454,9 @@ export class OcFormComponent implements OnInit, OnDestroy {
 
   /** Listening to value changes of the form if buttons not applied */
   subscribeToForm(): void {
+    this.isFormInvalid.emit(this.customForm.invalid);
+    this.sendData();
+
     this.formSubscription.add(this.customForm.valueChanges.subscribe(() => {
       this.isFormInvalid.emit(this.customForm.invalid);
       this.sendData();
