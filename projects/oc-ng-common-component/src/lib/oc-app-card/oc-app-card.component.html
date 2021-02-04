@@ -1,4 +1,4 @@
-<a class="card app-card cursor-pointer" [routerLink]="[appRouterLink, routerAppIdentifier(app)]">
+<a class="card app-card cursor-pointer" (click)="clickByApp()">
     <div class="row mx-0 card-height-fixed">
         <div class="pl-0">
             <img [src]="app.icon ? safeLink(app.icon) : '../../../assets/img/standard-app-icon.svg'" alt=""

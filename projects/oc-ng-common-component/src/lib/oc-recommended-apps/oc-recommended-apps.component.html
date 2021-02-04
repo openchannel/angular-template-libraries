@@ -3,8 +3,7 @@
      class="d-flex mx-0 mt-5 w-100 flex-wrap justify-content-center justify-content-lg-start">
     <oc-app-card *ngFor="let app of appList;"
                  [app]="app" class="recommended-card card-margin"
-                 [appRouterLink]="appsMainLink"
-                 [routerAppIdentifier]="routerAppIdentifier"></oc-app-card>
+                 (clickByAppCard)="this.clickByAppCard.emit($event)"></oc-app-card>
 </div>
 <ng-template #emptyData>
     <div class="row mx-0 mt-5">

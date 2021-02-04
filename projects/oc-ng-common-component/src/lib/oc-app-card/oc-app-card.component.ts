@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FullAppData} from 'oc-ng-common-service';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
@@ -14,10 +14,10 @@ export class OcAppCardComponent implements OnInit {
    * 'rating', 'reviewCount', 'summary' or 'description'
    */
   @Input() app: FullAppData;
-  /** Router link for one app click, will contain 'appId' field */
-  @Input() appRouterLink: any | string;
-  /** Router path after appRouterLink. */
-  @Input() routerAppIdentifier = (appData: FullAppData): string | number => appData.appId;
+  /**
+   * Emitter for click by App card.
+   */
+  @Output() clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
 
   constructor(private sanitizer: DomSanitizer) {
   }
@@ -26,10 +26,14 @@ export class OcAppCardComponent implements OnInit {
   }
 
   safeLink(sourceUrl): SafeResourceUrl {
-    return  this.sanitizer.bypassSecurityTrustResourceUrl(sourceUrl);
+    return this.sanitizer.bypassSecurityTrustResourceUrl(sourceUrl);
   }
 
   parseRating(rating): number {
     return Number(rating) * 0.01;
+  }
+
+  clickByApp(): void {
+    this.clickByAppCard.emit(this.app);
   }
 }

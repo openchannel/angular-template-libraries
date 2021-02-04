@@ -6,7 +6,7 @@
 <div *ngIf="data && data.length > 0; else emptyData" class="row featured-card-container">
     <div *ngFor="let app of data;" class="col-md-auto card-box">
         <div class="featured-card card">
-            <a class="card-body {{customClasses}}" [routerLink]="[mainRouterLink, routerAppIdentifier(app)]">
+            <a class="card-body {{customClasses}}" (click)="this.clickByAppCard.emit(app)">
                 <img alt="featured-logo" src="{{app.icon}}">
                 <h5>{{app.name}}</h5>
                 <span>{{app.summary ? app.summary : app.description}}</span>

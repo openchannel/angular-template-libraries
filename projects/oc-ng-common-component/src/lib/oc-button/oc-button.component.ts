@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
+import {AfterViewInit, Component, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild} from '@angular/core';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'oc-button',
@@ -8,9 +8,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class OcButtonComponent implements OnChanges, AfterViewInit {
 
-  _type: string;
-  _showButton = false;
-  _buttonTypeClass: string;
+  buttonType: string;
+  showButton = false;
+  buttonTypeClass: string;
 
   @Input() text: string = '';
   @Input() disabled: boolean = false;
@@ -21,9 +21,9 @@ export class OcButtonComponent implements OnChanges, AfterViewInit {
   @Input() process: boolean;
 
   @Input() set type(type: 'primary' | 'secondary' | 'link' | 'danger' | 'none') {
-    this._type = type;
-    this._buttonTypeClass = type != 'none' ? `btn-${this._type}` : null;
-    this._showButton = true;
+    this.buttonType = type;
+    this.buttonTypeClass = type !== 'none' ? `btn-${this.buttonType}` : null;
+    this.showButton = true;
   }
 
   @ViewChild('button') button;
@@ -44,7 +44,7 @@ export class OcButtonComponent implements OnChanges, AfterViewInit {
   }
 
   checkSpinner(): void {
-    if (this.process && this._type !== 'link') {
+    if (this.process && this.buttonType !== 'link') {
       this.spinner.show();
     } else {
       this.spinner.hide();

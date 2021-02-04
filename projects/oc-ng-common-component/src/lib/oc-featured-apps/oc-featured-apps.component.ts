@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FullAppData} from 'oc-ng-common-service';
 
 @Component({
@@ -18,19 +18,18 @@ export class OcFeaturedAppsComponent implements OnInit {
    * Default: 'Featured'
    */
   @Input() label: string = 'Featured';
-  /** The message that will be shown when no featured apps */
+  /**
+   * The message that will be shown when no featured apps
+   */
   @Input() emptyDataMessage: string = 'No Featured App';
-  /** List of classes that will be added to the default class list */
+  /**
+   * List of classes that will be added to the default class list
+   */
   @Input() customClasses: string = '';
   /**
-   * Router link for each app. Will be end with an app id
-   * appId - is an router link parameter
+   * Emitter for click by App card.
    */
-  @Input() mainRouterLink: string = '';
-  /**
-   * Router path after mainRouterLink.
-   */
-  @Input() routerAppIdentifier = (appData: FullAppData): string | number => appData.appId;
+  @Output() clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
 
   constructor() {
   }
