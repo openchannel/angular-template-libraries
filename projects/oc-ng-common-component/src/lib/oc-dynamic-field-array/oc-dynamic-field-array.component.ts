@@ -1,7 +1,5 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { OcFormModalComponent } from '../oc-form-modal/oc-form-modal.component';
 
 export interface FormArrayItem {
   fields: any;
@@ -38,7 +36,9 @@ export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccesso
   public fieldsDataArray: any [] = [];
   public formsArray: FormArrayItem [] = [];
   public fieldDefinition: any;
-  constructor(private modal: NgbModal) { }
+  public hiddenItemsIndexArray: number [] = [];
+
+  constructor() { }
 
   private onTouched = () => {};
   private onChange: (value: any) => void = () => {};
@@ -79,19 +79,19 @@ export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccesso
   saveItemFieldsData(formItem: FormArrayItem, index?: number): void {
     if (formItem.new) {
       this.addDataToDFA(formItem.fieldsData);
-      this.cancelArrayItemAdding(index);
     } else {
       this.fieldsDataArray[formItem.index] = formItem.fieldsData;
+      this.hiddenItemsIndexArray.splice(this.hiddenItemsIndexArray.indexOf(formItem.index), 1);
     }
+    this.cancelArrayItemAdding(index);
     this.onChange(this.fieldsDataArray);
   }
 
   deleteDynamicItem(isNewItem, index): void {
-    if (isNewItem) {
-      this.cancelArrayItemAdding(index);
-    } else {
+    if (!isNewItem) {
       this.fieldsDataArray.splice(index, 1);
     }
+    this.cancelArrayItemAdding(index);
     this.onChange(this.fieldsDataArray);
   }
 
@@ -104,16 +104,23 @@ export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccesso
     });
   }
 
-  duplicateField(fieldDefinitions): void {
-    this.addDataToDFA(fieldDefinitions);
-  }
-
   cancelArrayItemAdding(index: number) {
     this.formsArray.splice(index, 1);
   }
 
   onFieldDataUpdates(data, form) {
     form.fieldsData = data;
+  }
+
+  editDFAItemData(fieldsDefinitions, index) {
+    this.formsArray.push({
+      fields: fieldsDefinitions,
+      index,
+      fieldsData: this.fieldsDataArray[index],
+      new: false
+    });
+
+    this.hiddenItemsIndexArray.push(index);
   }
 
   addDataToDFA(fieldsData) {
@@ -125,13 +132,11 @@ export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccesso
     this.onChange(this.fieldsDataArray);
   }
 
-  openFormModal(subFieldDefinitions) {
-    const modalRef = this.modal.open(OcFormModalComponent, {size: 'lg'});
+  getHiddenItemIndex(index: number): boolean {
+    return !!this.formsArray.find(form => form.index === index);
+  }
 
-    modalRef.componentInstance.formJSONData = {
-      fields: subFieldDefinitions
-    };
-
-    return modalRef.result;
+  getLabelValue(dataObject, rowLabel) {
+    return dataObject[rowLabel];
   }
 }

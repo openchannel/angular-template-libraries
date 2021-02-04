@@ -1,18 +1,19 @@
 <div class="w-100 d-flex flex-column">
-  <div *ngFor="let field of fieldsDataArray; let i = index" class="mb-2">
+  <div *ngFor="let field of fieldsDataArray; let i = index" class="mb-2" [class.hid-item]="getHiddenItemIndex(i)">
     <oc-dynamic-array-item
             [subFields]="fieldDefinition?.subFieldDefinitions"
             [index]="i"
             [fieldLabelId]="fieldDefinition?.attributes.rowLabel ? fieldDefinition?.attributes.rowLabel : ''"
             [formFieldsData]="fieldsDataArray[i]"
-            (deleteField)="deleteDynamicItem($event, i)"
-            (copyField)="duplicateField($event)"></oc-dynamic-array-item>
+            (sendFieldData)="editDFAItemData($event, i)"
+            (deleteField)="deleteDynamicItem($event, i)"></oc-dynamic-array-item>
   </div>
   <div *ngFor="let form of formsArray; let j = index" class="form-card mb-3">
     <div class="form-card-header pt-3 px-5 pb-2">
       <h3 class="mb-0">
-        {{form?.fieldsData && fieldDefinition?.attributes.rowLabel ?
-          fieldDefinition?.attributes.rowLabel : 'Item ' + (form.index + 1)}}
+        {{!form.new && fieldDefinition?.attributes.rowLabel ?
+          getLabelValue(fieldsDataArray[form.index], fieldDefinition?.attributes.rowLabel)
+          : 'Item ' + (form.index + 1)}}
       </h3>
       <svg-icon src="../../../assets/img/trash-icon.svg" svgClass="icon-size"
                 (click)="deleteDynamicItem(form.new, j)"></svg-icon>
