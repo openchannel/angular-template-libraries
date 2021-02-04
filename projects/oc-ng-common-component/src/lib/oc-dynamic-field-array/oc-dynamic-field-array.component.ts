@@ -3,6 +3,13 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OcFormModalComponent } from '../oc-form-modal/oc-form-modal.component';
 
+export interface FormArrayItem {
+  fields: any;
+  index: number;
+  fieldsData: any;
+  new: boolean;
+}
+
 @Component({
   selector: 'oc-dynamic-field-array',
   templateUrl: './oc-dynamic-field-array.component.html',
@@ -29,6 +36,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccesso
   }
 
   public fieldsDataArray: any [] = [];
+  public formsArray: FormArrayItem [] = [];
   public fieldDefinition: any;
   constructor(private modal: NgbModal) { }
 
@@ -68,42 +76,53 @@ export class OcDynamicFieldArrayComponent implements OnInit, ControlValueAccesso
     this.fieldsDataArray = obj;
   }
 
-  getNewItemFieldsData(data, index): void {
-    this.fieldsDataArray[index] = data;
+  saveItemFieldsData(formItem: FormArrayItem, index?: number): void {
+    if (formItem.new) {
+      this.addDataToDFA(formItem.fieldsData);
+      this.cancelArrayItemAdding(index);
+    } else {
+      this.fieldsDataArray[formItem.index] = formItem.fieldsData;
+    }
     this.onChange(this.fieldsDataArray);
   }
 
-  deleteDynamicItem(event, index): void {
-    if (event) {
+  deleteDynamicItem(isNewItem, index): void {
+    if (isNewItem) {
+      this.cancelArrayItemAdding(index);
+    } else {
       this.fieldsDataArray.splice(index, 1);
-      this.onChange(this.fieldsDataArray);
     }
+    this.onChange(this.fieldsDataArray);
   }
 
   addNewArrayItem(): void {
-    this.openFormModal(this.fieldDefinition.subFieldDefinitions).then(result => {
-      if ( result.status === 'success') {
-        if (this.fieldDefinition.attributes.ordering  === 'append') {
-          this.fieldsDataArray.push(result.data);
-        } else {
-          this.fieldsDataArray.splice(0, 0, result.data);
-        }
-        this.onChange(this.fieldsDataArray);
-      }
+    this.formsArray.push({
+      fields: this.fieldDefinition.subFieldDefinitions,
+      index: this.fieldsDataArray.length,
+      fieldsData: null,
+      new: true
     });
   }
 
   duplicateField(fieldDefinitions): void {
-    this.openFormModal(fieldDefinitions).then(result => {
-      if ( result.status === 'success') {
-        if (this.fieldDefinition.attributes.ordering  === 'append') {
-          this.fieldsDataArray.push(result.data);
-        } else {
-          this.fieldsDataArray.splice(0, 0, result.data);
-        }
-        this.onChange(this.fieldsDataArray);
-      }
-    });
+    this.addDataToDFA(fieldDefinitions);
+  }
+
+  cancelArrayItemAdding(index: number) {
+    this.formsArray.splice(index, 1);
+  }
+
+  onFieldDataUpdates(data, form) {
+    form.fieldsData = data;
+  }
+
+  addDataToDFA(fieldsData) {
+    if (this.fieldDefinition.attributes.ordering  === 'append') {
+      this.fieldsDataArray.push(fieldsData);
+    } else {
+      this.fieldsDataArray.splice(0, 0, fieldsData);
+    }
+    this.onChange(this.fieldsDataArray);
   }
 
   openFormModal(subFieldDefinitions) {

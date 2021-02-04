@@ -5,9 +5,28 @@
             [index]="i"
             [fieldLabelId]="fieldDefinition?.attributes.rowLabel ? fieldDefinition?.attributes.rowLabel : ''"
             [formFieldsData]="fieldsDataArray[i]"
-            (sendFieldData)="getNewItemFieldsData($event, i)"
             (deleteField)="deleteDynamicItem($event, i)"
             (copyField)="duplicateField($event)"></oc-dynamic-array-item>
   </div>
-  <oc-button type="primary" text="ADD ITEM" (click)="addNewArrayItem()"></oc-button>
+  <div *ngFor="let form of formsArray; let j = index" class="form-card mb-3">
+    <div class="form-card-header pt-3 px-5 pb-2">
+      <h3 class="mb-0">
+        {{form?.fieldsData && fieldDefinition?.attributes.rowLabel ?
+          fieldDefinition?.attributes.rowLabel : 'Item ' + (form.index + 1)}}
+      </h3>
+      <svg-icon src="../../../assets/img/trash-icon.svg" svgClass="icon-size"
+                (click)="deleteDynamicItem(form.new, j)"></svg-icon>
+    </div>
+    <div class="form-card-body pt-3 px-5 pb-4">
+      <oc-form [formJsonData]="form"
+               [showButton]="false"
+               (formDataUpdated)="onFieldDataUpdates($event, form)"
+               successButtonText="Save"></oc-form>
+    </div>
+    <div class="form-card-buttons px-5 pb-5">
+      <oc-button type="secondary" text="Cancel" (click)="cancelArrayItemAdding(j)"></oc-button>
+      <oc-button type="primary" text="Save" (click)="saveItemFieldsData(form, j)"></oc-button>
+    </div>
+  </div>
+  <oc-button type="primary" text="Add" (click)="addNewArrayItem()"></oc-button>
 </div>
