@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { AppModel, FullAppData } from 'oc-ng-common-service';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import {FullAppData} from 'oc-ng-common-service';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'oc-app-card',
@@ -16,6 +16,8 @@ export class OcAppCardComponent implements OnInit {
   @Input() app: FullAppData;
   /** Router link for one app click, will contain 'appId' field */
   @Input() appRouterLink: any | string;
+  /** Router path after appRouterLink. */
+  @Input() routerAppIdentifier = (appData: FullAppData): string | number => appData.appId;
 
   constructor(private sanitizer: DomSanitizer) {
   }

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { FullAppData } from 'oc-ng-common-service';
+import {FullAppData} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-app-gallery',
@@ -27,6 +27,8 @@ export class OcAppGalleryComponent implements OnInit {
   @Input() appGalleryDescription: string = '';
   /** Router link for one app click, will contain 'appId' field */
   @Input() routerLinkForOneApp: string;
+  /** Router path after routerLinkForOneApp. */
+  @Input() routerAppIdentifier = (appData: FullAppData): string | number => appData.appId;
   /** path to the custom icon near 'See All' */
   @Input() routerIcon: string = '../../../../assets/img/arrow.svg';
 

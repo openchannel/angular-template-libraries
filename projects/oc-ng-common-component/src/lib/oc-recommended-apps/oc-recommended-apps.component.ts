@@ -20,6 +20,10 @@ export class OcRecommendedAppsComponent implements OnInit {
   @Input() recommendedAppTitle: string = 'Recommended Apps';
   /** Router link for one app click, will contain 'appId' field */
   @Input() appsMainLink: string = '';
+  /**
+   * Router path after appsMainLink.
+   */
+  @Input() routerAppIdentifier = (appData: FullAppData): string | number => appData.appId;
 
   constructor() {
   }
