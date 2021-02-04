@@ -96,19 +96,15 @@ export class OcFormComponent implements OnInit, OnDestroy {
             break;
           case 'text':
           case 'longText':
-            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
-              inputTemplate?.defaultValue : '');
-            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
-            break
-          case 'password':
-            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
-              inputTemplate?.defaultValue : '');
-            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isPassword: true});
-            break;
           case 'dropdownList':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
               inputTemplate?.defaultValue : '');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
+            break;
+          case 'password':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : '');
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isPassword: true});
             break;
           case 'tags':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue
