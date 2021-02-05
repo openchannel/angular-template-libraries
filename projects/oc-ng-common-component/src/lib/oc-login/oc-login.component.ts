@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {SellerSignin} from 'oc-ng-common-service';
+import {UserLoginModel} from 'oc-ng-common-service';
 import {NgForm, NgModel} from '@angular/forms';
 
 @Component({
@@ -10,8 +10,8 @@ import {NgForm, NgModel} from '@angular/forms';
 export class OcLoginComponent {
   @ViewChild('loginForm') form: NgForm;
 
-  @Input() loginModel = new SellerSignin();
-  @Output() loginModelChange = new EventEmitter<SellerSignin>();
+  @Input() loginModel = new UserLoginModel();
+  @Output() loginModelChange = new EventEmitter<UserLoginModel>();
 
   @Input() loginButtonText = 'Log In';
   @Input() forgotPwdUrl;

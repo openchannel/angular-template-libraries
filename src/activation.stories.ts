@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/angular';
 import {OcActivationComponent, OcCommonLibModule} from 'projects/oc-ng-common-component/src/public-api';
-import {SellerActivation} from 'oc-ng-common-service';
+import {UserActivationModel} from 'oc-ng-common-service';
 import {withA11y} from '@storybook/addon-a11y';
 import {action} from '@storybook/addon-actions';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -10,9 +10,9 @@ const modules = {
   imports: [OcCommonLibModule, RouterTestingModule]
 };
 
-const activationEmpty = new SellerActivation();
+const activationEmpty = new UserActivationModel();
 
-const activationFilled = new SellerActivation();
+const activationFilled = new UserActivationModel();
 activationFilled.email = 'test@gmail.com';
 activationFilled.password = 'Tenup123#';
 activationFilled.code = '2202';

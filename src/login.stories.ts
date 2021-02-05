@@ -1,7 +1,7 @@
 import {moduleMetadata} from '@storybook/angular';
 import {OcCommonLibModule, OcLoginComponent} from 'projects/oc-ng-common-component/src/public-api';
 import {action} from '@storybook/addon-actions';
-import {SellerSignin} from 'oc-ng-common-service';
+import {UserLoginModel} from 'oc-ng-common-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -10,12 +10,11 @@ const modules = {
   imports: [OcCommonLibModule, BrowserAnimationsModule, RouterTestingModule]
 };
 
-const loginEmpty = new SellerSignin();
+const loginEmpty = new UserLoginModel();
 
-const loginFilled = new SellerSignin();
+const loginFilled = new UserLoginModel();
 loginFilled.email = 'zmehta@gmail.com';
 loginFilled.password = 'Tenup123#';
-loginFilled.grant_type = 'password';
 loginFilled.isChecked = true;
 
 export default {

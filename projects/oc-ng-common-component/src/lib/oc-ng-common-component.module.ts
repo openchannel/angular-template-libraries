@@ -31,8 +31,6 @@ import {OcReviewListComponent} from './oc-review-list/oc-review-list.component';
 import {OcSelectExpandableComponent} from './oc-select-expandable/oc-select-expandable.component';
 import {OcFileUploadComponent} from './oc-file-upload/oc-file-upload.component';
 import {ImageCropperModule} from 'ngx-image-cropper';
-import {SafehtmlPipe} from './pipe/safehtml.pipe';
-import {RemoveHtmlTagsPipe} from './pipe/remove-html-tags.pipe';
 import {CamelcasePipe} from './pipe/camelcase.pipe';
 import {EllipsisPipe} from './pipe/ellipsis.pipe';
 import {OcActivationComponent} from './oc-activation/oc-activation.component';
@@ -116,10 +114,8 @@ import {OcConfirmationModalComponent} from './oc-confirmation-modal/oc-confirmat
         OcDropdownButtonComponent,
         OcVideoComponent,
         OcImageGalleryComponent,
-        SafehtmlPipe,
         CamelcasePipe,
         EllipsisPipe,
-        RemoveHtmlTagsPipe,
         PricePipe,
         OcActivationComponent,
         OcTextareaComponent,
@@ -150,7 +146,6 @@ import {OcConfirmationModalComponent} from './oc-confirmation-modal/oc-confirmat
         OcSidebarComponent,
         OcConfirmationModalComponent,
     ],
-
     imports: [
         NgbModule,
         CommonModule,

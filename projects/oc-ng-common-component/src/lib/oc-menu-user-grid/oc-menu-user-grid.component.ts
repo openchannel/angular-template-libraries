@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UserGridActionModel, UserGridOptionTypeModel, UsersGridParametersModel} from 'oc-ng-common-service';
-import {UserAccountGridModel} from 'oc-ng-common-service/lib/model/user.model';
+import {UserAccountGridModel} from 'oc-ng-common-service';
 
 export declare type SortField = 'name' | 'email' | 'date' | 'role';
 

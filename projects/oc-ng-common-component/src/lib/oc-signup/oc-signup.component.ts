@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {SellerSignup} from 'oc-ng-common-service';
+import {UserRegistrationModel} from 'oc-ng-common-service';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 
@@ -12,7 +12,7 @@ export class OcSignupComponent {
   imagePath: any;
   closeResult = '';
 
-  @Input() signupModel = new SellerSignup();
+  @Input() signupModel = new UserRegistrationModel();
   @Input() loginUrl;
   @Input() signupUrl;
   @Input() activationUrl;

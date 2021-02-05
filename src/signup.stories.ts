@@ -1,11 +1,6 @@
-import {moduleMetadata, storiesOf} from '@storybook/angular';
-import {
-    OcCommonLibModule,
-    OcForgotPasswordComponent,
-    OcSignupComponent,
-} from 'projects/oc-ng-common-component/src/public-api';
-import {withA11y} from '@storybook/addon-a11y';
-import {SellerSignup} from 'oc-ng-common-service';
+import {moduleMetadata} from '@storybook/angular';
+import {OcCommonLibModule, OcSignupComponent} from 'projects/oc-ng-common-component/src/public-api';
+import {UserRegistrationModel} from 'oc-ng-common-service';
 import {action} from '@storybook/addon-actions';
 import {RouterTestingModule} from '@angular/router/testing';
 
@@ -13,9 +8,9 @@ const modules = {
     imports: [OcCommonLibModule, RouterTestingModule],
 };
 
-const signupEmpty = new SellerSignup();
+const signupEmpty = new UserRegistrationModel();
 
-const signupFilled: SellerSignup = {
+const signupFilled: UserRegistrationModel = {
     uname: 'User name',
     company: 'test company',
     email: 'test@gmail.com',

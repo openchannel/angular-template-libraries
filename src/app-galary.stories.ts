@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { OcAppGalleryComponent, OcCommonLibModule } from 'projects/oc-ng-common-component/src/public-api';
 import { FullAppData } from 'oc-ng-common-service';
-import { StatElement } from 'oc-ng-common-service/lib/model/app-data-model';
+import { StatElement } from 'oc-ng-common-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
