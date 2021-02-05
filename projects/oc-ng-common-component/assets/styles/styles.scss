@@ -94,7 +94,6 @@ h1{
   font-family: "Rubik Regular";
   font-size: 16px;
   font-weight: normal;
-  // line-height: 16px;
 }
 
 a {
@@ -167,7 +166,7 @@ h6 {
 
 .sidebar {
   min-width: 255px;
-  background-color: #f4f7fc;
+  background-color: $light;
   border-radius: 4px;
   h6 {
     padding: 16px 0;
@@ -177,9 +176,7 @@ h6 {
     margin-bottom: 0;
   }
   span {
-    // padding: 14px 0;
     font-size: 14px;
-    // display: inline-block;
     line-height: 18px;
   }
   .nav {
@@ -297,9 +294,9 @@ h6 {
 .divider{
   border-top: 1px solid $info;
 }
-/** input password **/
 
-oc-input, oc-password, oc-app-category-select , oc-select, oc-video-url, oc-color, oc-rich-text-editor, oc-textarea{
+/** input password **/
+oc-input, oc-password, oc-select, oc-video-url, oc-color, oc-rich-text-editor, oc-textarea{
     &.ng-invalid{
       input.ng-touched, select.ng-touched , textarea.ng-touched{
         border-color: $danger;
@@ -351,9 +348,9 @@ oc-input, oc-password, oc-app-category-select , oc-select, oc-video-url, oc-colo
   background-image: url("/assets/img/radio.svg");
 }
 .custom-control-input:checked ~ .custom-control-label::before {
-    color: #fff;
+    color: $light;
     border-color: $primary;
-    background-color: #ffffff;
+    background-color: $light;
 }
 /** input radio **/
 
@@ -373,71 +370,50 @@ select::-ms-expand { display: none; }
 /** input select **/
 
 .menu-edit{
-  background: url(~oc-ng-common-component/assets/img/edit_icon.svg) left center no-repeat;
-  background-position: 15px;
+  background: url(~oc-ng-common-component/assets/img/edit_icon.svg) no-repeat 15px;
 }
 .menu-edit:hover{
-  background: url(~oc-ng-common-component/assets/img/edit_icon_h.svg) left center no-repeat;
-  background-position: 15px;
+  background: url(~oc-ng-common-component/assets/img/edit_icon_h.svg) no-repeat 15px;
 }
 .menu-delete{
-  background: url(~oc-ng-common-component/assets/img/delete.svg) left center no-repeat;
-  background-position: 15px;
+  background: url(~oc-ng-common-component/assets/img/delete.svg) no-repeat 15px;
 }
 .menu-delete:hover{
-  background: url(~oc-ng-common-component/assets/img/delete_h.svg) left center no-repeat;
-  background-position: 15px;
+  background: url(~oc-ng-common-component/assets/img/delete_h.svg) no-repeat 15px;
 }
 
 .menu-suspend{
-  background: url(~oc-ng-common-component/assets/img/suspend_icon.svg) left center no-repeat;
-  background-position: 15px;
+  background: url(~oc-ng-common-component/assets/img/suspend_icon.svg) no-repeat 15px;
 }
 .menu-suspend:hover{
-  background: url(~oc-ng-common-component/assets/img/suspend_icon_h.svg) left center no-repeat;
-  background-position: 15px;
+  background: url(~oc-ng-common-component/assets/img/suspend_icon_h.svg) no-repeat 15px;
 }
 .menu-unsuspend{
-  background: url(~oc-ng-common-component/assets/img/suspend_icon.svg) left center no-repeat;
-  background-position: 15px;
+  background: url(~oc-ng-common-component/assets/img/suspend_icon.svg) no-repeat 15px;
 }
 .menu-unsuspend:hover{
-  background: url(~oc-ng-common-component/assets/img/suspend_icon_h.svg) left center no-repeat;
-  background-position: 15px;
+  background: url(~oc-ng-common-component/assets/img/suspend_icon_h.svg) no-repeat 15px;
 }
 
 .menu-publish{
-  background: url(~oc-ng-common-component/assets/img/submit_icon.svg) left center no-repeat;
-  background-position: 15px;
+  background: url(~oc-ng-common-component/assets/img/submit_icon.svg) no-repeat 15px;
 }
 .menu-publish:hover{
-  background: url(~oc-ng-common-component/assets/img/submit_icon_h.svg) left center no-repeat;
-  background-position: 15px;
+  background: url(~oc-ng-common-component/assets/img/submit_icon_h.svg) no-repeat 15px;
 }
 
 .menu-submit{
-  background: url(~oc-ng-common-component/assets/img/submit_icon.svg) left center no-repeat;
-  background-position: 15px;
+  background: url(~oc-ng-common-component/assets/img/submit_icon.svg) no-repeat 15px;
 }
 .menu-submit:hover{
-  background: url(~oc-ng-common-component/assets/img/submit_icon_h.svg) left center no-repeat;
-  background-position: 15px;
+  background: url(~oc-ng-common-component/assets/img/submit_icon_h.svg) no-repeat 15px;
 }
 
 .menu-preview{
-  background: url(~oc-ng-common-component/assets/img/view.svg) left center no-repeat;
-  background-position: 15px;
+  background: url(~oc-ng-common-component/assets/img/view.svg) no-repeat 15px;
 }
 .menu-preview:hover{
-  background: url(~oc-ng-common-component/assets/img/view.svg) left center no-repeat;
-  background-position: 15px;
-}
-
-.popover{
-  color: $body-color;
-  .popover-body{
-    font-size: 14px;
-  }
+  background: url(~oc-ng-common-component/assets/img/view.svg) no-repeat 15px;
 }
 
 .min-vw-auto {
@@ -463,10 +439,6 @@ select::-ms-expand { display: none; }
       height: 8px;
     }
   }
-}
-
-.alert-dismissible .close {
-  padding: 8px 15px;
 }
 
 a.link {
