@@ -31,8 +31,8 @@ const statElement: StatElement = {
 
 const featuredApp: FullAppData = {
   appId: '34343-jjo-sgs-353-fgi-3423',
-  icon: 'https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download',
-  logo: 'https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download',
+  icon: './assets/img/get-started.svg',
+  logo: './assets/img/get-started.svg',
   name: 'Test App 1',
   model: [{
     type: 'recurring',
