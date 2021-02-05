@@ -31,7 +31,6 @@
     position: absolute;
     top: calc(50% - 10px);
     z-index: 2;
-    color: $primary;
     cursor: pointer;
     font-size: 20px;
   }
@@ -51,4 +50,12 @@
 
 .long-card {
   width: 90%;
+}
+
+.icon-recolor {
+  fill: $primary;
+}
+
+svg {
+  vertical-align: top;
 }

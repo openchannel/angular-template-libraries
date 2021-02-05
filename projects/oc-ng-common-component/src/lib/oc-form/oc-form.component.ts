@@ -96,19 +96,15 @@ export class OcFormComponent implements OnInit, OnDestroy {
             break;
           case 'text':
           case 'longText':
-            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
-              inputTemplate?.defaultValue : '');
-            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
-            break
-          case 'password':
-            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
-              inputTemplate?.defaultValue : '');
-            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isPassword: true});
-            break;
           case 'dropdownList':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
               inputTemplate?.defaultValue : '');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
+            break;
+          case 'password':
+            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
+              inputTemplate?.defaultValue : '');
+            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isPassword: true});
             break;
           case 'tags':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue
@@ -139,6 +135,7 @@ export class OcFormComponent implements OnInit, OnDestroy {
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isEmail: true});
             break;
           case 'websiteUrl':
+          case 'videoUrl':
             group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
               inputTemplate?.defaultValue : '');
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isUrl: true});
@@ -164,11 +161,6 @@ export class OcFormComponent implements OnInit, OnDestroy {
                 inputTemplate?.defaultValue : [1, 2, 3]);
             }
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
-            break;
-          case 'videoUrl':
-            group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
-              inputTemplate?.defaultValue : '');
-            this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, {isUrl: true});
             break;
           case 'date':
           case 'datetime':

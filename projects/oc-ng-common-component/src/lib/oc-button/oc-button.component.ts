@@ -8,7 +8,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 })
 export class OcButtonComponent implements OnChanges, AfterViewInit {
 
-  buttonType: string;
+  buttonType: string = 'primary';
   showButton = false;
   buttonTypeClass: string;
 

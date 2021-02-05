@@ -34,37 +34,19 @@ export class OcDynamicArrayItemComponent implements OnInit {
   /** Sending data from */
   @Output() sendFieldData: EventEmitter<any> = new EventEmitter<any>();
 
-  /** show fields values */
-  public showDetail: boolean = false;
   public subFieldDefinition: any [] = [];
 
-  constructor(private modal: NgbModal) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  changeDetailStatus(): void {
-    this.showDetail = !this.showDetail;
-  }
-
-  copyCurrentItem() {
-    this.copyField.emit(this.updateFieldsDefinitions());
-  }
-
   deleteCurrentItem() {
-    this.deleteField.emit(true);
+    this.deleteField.emit(false);
   }
 
   editFieldsData() {
-    const modalRef = this.modal.open(OcFormModalComponent, {size: 'lg'});
-    modalRef.componentInstance.formJSONData = {
-      fields: this.updateFieldsDefinitions()
-    };
-    modalRef.result.then(result => {
-      if (result.status === 'success') {
-        this.sendFieldData.emit(result.data);
-      }
-    });
+    this.sendFieldData.emit(this.updateFieldsDefinitions());
   }
 
   updateFieldsDefinitions() {
@@ -75,15 +57,19 @@ export class OcDynamicArrayItemComponent implements OnInit {
     });
   }
 
-  parseFieldData(fieldData): string | string [] {
+  getFieldData(fieldData): string | 'object' [] {
     if (Array.isArray(fieldData)) {
       if (typeof fieldData[0] === 'object') {
-        return fieldData.map(item => JSON.stringify(item));
+        return 'object';
       } else {
         return fieldData.join();
       }
     } else {
       return fieldData;
     }
+  }
+
+  getSubFieldsOfItem(fieldId: string) {
+    return this.subFieldDefinition.find(field => field.id === fieldId && field.type === 'dynamicFieldArray');
   }
 }
