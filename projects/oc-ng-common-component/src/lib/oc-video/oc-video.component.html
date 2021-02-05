@@ -1,5 +1,7 @@
-<div *ngIf="showVideoLoader" class="video-loader-div edit">
-    <fa-icon icon="spinner" [pulse]="true" class="inline-loader"></fa-icon>
+<div *ngIf="showVideoLoader" class="video-loader-div">
+    <ngx-spinner type="ball-spin" bdColor="" color="black"
+                 [fullScreen]="false" size="small">
+    </ngx-spinner>
 </div>
 <div *ngIf="!showVideoLoader" class="w-100">
     <div class="d-flex justify-content-center">

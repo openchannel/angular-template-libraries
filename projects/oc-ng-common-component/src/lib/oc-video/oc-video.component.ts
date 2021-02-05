@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {EmbedVideoService} from 'ngx-embed-video';
 import {SafeHtml} from '@angular/platform-browser';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
     selector: 'oc-video',
@@ -21,10 +22,12 @@ export class OcVideoComponent {
     showVideoLoader = false;
     previewData: SafeHtml;
 
-    constructor(private embedService: EmbedVideoService) {
+    constructor(private embedService: EmbedVideoService,
+                private spinner: NgxSpinnerService) {
     }
 
     loadVideo() {
+        this.spinner.show().then();
         this.showVideoLoader = true;
 
         this.previewData = this.embedService.embed(this.url);
@@ -38,6 +41,8 @@ export class OcVideoComponent {
             this.loadInIframe = false;
             this.loadInVideo = false;
         }
+
+        this.spinner.hide().then();
         this.showVideoLoader = false;
     }
 }

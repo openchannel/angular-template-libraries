@@ -3,6 +3,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {OcTextSearchComponent} from './oc-text-search.component';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import {AngularSvgIconModule} from 'angular-svg-icon';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('OcTextSearchComponent', () => {
   let component: OcTextSearchComponent;
@@ -11,7 +13,7 @@ describe('OcTextSearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [OcTextSearchComponent],
-      imports: [FormsModule]
+      imports: [FormsModule, AngularSvgIconModule.forRoot(), HttpClientTestingModule],
     })
       .compileComponents();
   }));
@@ -53,7 +55,7 @@ describe('OcTextSearchComponent', () => {
 
   it('should emit text value on click', () => {
     const input: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
-    const img: HTMLImageElement = fixture.debugElement.query(By.css('img')).nativeElement;
+    const img: HTMLImageElement = fixture.debugElement.query(By.css('svg-icon')).nativeElement;
     input.value = 'Hello test!';
 
     spyOn(component.enterSearch, 'emit');

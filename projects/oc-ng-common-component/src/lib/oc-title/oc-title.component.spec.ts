@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OcTitleComponent } from './oc-title.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 describe('OcTitleComponent', () => {
   let component: OcTitleComponent;
@@ -8,7 +9,8 @@ describe('OcTitleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcTitleComponent ]
+      declarations: [ OcTitleComponent ],
+      imports: [NgbModule]
     })
     .compileComponents();
   }));
