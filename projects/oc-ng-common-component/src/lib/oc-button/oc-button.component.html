@@ -1,4 +1,4 @@
-<button *ngIf="_showButton" #button [disabled]="disabled" class="btn {{_buttonTypeClass}} {{class}} {{customClass}}" style="{{style}}">
+<button *ngIf="showButton" #button [disabled]="disabled" class="btn {{buttonTypeClass}} {{class}} {{customClass}}" style="{{style}}">
     <ng-template *ngIf="customTemplate; else defaultButtonText" [ngTemplateOutlet]="customTemplate"></ng-template>
 </button>
 
