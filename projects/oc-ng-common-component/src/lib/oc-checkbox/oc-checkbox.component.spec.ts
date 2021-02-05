@@ -30,11 +30,6 @@ describe('OcCheckboxComponent', () => {
     expect(component.checked).toEqual(true);
   });
 
-  it('should set status value', () => {
-    component.isChecked = true;
-    expect(component.checked).toEqual(true);
-  });
-
   it('should change status value', async () => {
     component.writeValue(true);
 
