@@ -79,6 +79,12 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
+
+  &__upload-images{
+    height: 64px;
+    width: 64px;
+  }
 }
 
 .browse-file {

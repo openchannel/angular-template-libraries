@@ -16,7 +16,7 @@ export class OcLoginComponent {
   @Input() loginButtonText = 'Log In';
   @Input() forgotPwdUrl;
   @Input() signupUrl;
-  @Input() companyLogoUrl = './assets/img/company_logo.svg';
+  @Input() companyLogoUrl = './assets/img/logo-company.png';
   @Input() process;
   @Input() loginType;
   @Input() incorrectEmailErrorCode = 'email_is_incorrect';

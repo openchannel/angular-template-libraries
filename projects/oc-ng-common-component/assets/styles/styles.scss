@@ -156,7 +156,6 @@ h6 {
   width: 412px;
   border: 1px solid $info;
   border-radius: 4px;
-  margin: auto;
   .card-body {
     padding: 40px 30px 38px;
     font-size: 14px;
@@ -345,7 +344,7 @@ oc-input, oc-password, oc-select, oc-video-url, oc-color, oc-rich-text-editor, o
 }
 
 .custom-radio .custom-control-input:checked ~ .custom-control-label::after {
-  background-image: url("/assets/img/radio.svg");
+  background-image: url(~oc-ng-common-component/assets/img/radio.svg);
 }
 .custom-control-input:checked ~ .custom-control-label::before {
     color: $light;
@@ -353,21 +352,6 @@ oc-input, oc-password, oc-select, oc-video-url, oc-color, oc-rich-text-editor, o
     background-color: $light;
 }
 /** input radio **/
-
-/** input select **/
-
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  /* Some browsers will not display the caret when using calc, so we put the fallback first */
-  background: url(~oc-ng-common-component/assets/img/dropdown-icon.svg) white no-repeat 98.5%; /* !important used for overriding all other customisations */
-  background: url(~oc-ng-common-component/assets/img/dropdown-icon.svg) white no-repeat calc(100% - 16px); /* Better placement regardless of input width */
-}
-/*For IE*/
-select::-ms-expand { display: none; }
-
-/** input select **/
 
 .menu-edit{
   background: url(~oc-ng-common-component/assets/img/edit_icon.svg) no-repeat 15px;

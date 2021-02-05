@@ -24,11 +24,9 @@ storiesOf('Input', module)
         },
         moduleMetadata: modules,
     })).add('Checkbox', () => ({
-    component: OcCheckboxComponent,
-    props: {
-        labelText: 'Custom Checkbox',
-        requiredIndicator: true,
+        component: OcCheckboxComponent,
+        props: {
+            labelText: 'Custom Checkbox',
+            requiredIndicator: true,
     },
-})).add('Text search', () => ({
-    component: OcTextSearchComponent,
-}));
+    }));

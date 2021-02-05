@@ -1,9 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {OcSelectComponent} from './oc-select.component';
-import {FormsModule, NgModel} from '@angular/forms';
+import {NgModel} from '@angular/forms';
 import {CommonModule} from '@angular/common';
-import { BrowserModule, By } from '@angular/platform-browser';
+import {BrowserModule, By} from '@angular/platform-browser';
 import {NgbDropdownItem, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 describe('OcSelectComponent', () => {

@@ -3,7 +3,7 @@
      class="file-container without-files"
      ocFileDragDrop>
     <img [src]="uploadIconUrl" alt="upload-icon"
-         class="mb-2">
+         class="mb-2 without-files__upload-images">
     <input #fileDropRef (change)="fileBrowseHandler($event,cropperModal)" [accept]="getAcceptTypes()"
            class="cursor-pointer"
            id="fileDropRef" type="file"/>

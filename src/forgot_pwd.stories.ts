@@ -34,14 +34,16 @@ export const Empty = ForgotPasswordComponent.bind({});
 Empty.args = {
   loginModel: pwdEmpty,
   loginUrl: 'login',
-  signupUrl: 'signup'
+  signupUrl: 'signup',
+  companyLogoUrl: './assets/img/logo-company.png',
 };
 
 export const Filled = ForgotPasswordComponent.bind({});
 Filled.args = {
   loginModel: pwdFilled,
   loginUrl: 'login',
-  signupUrl: 'signup'
+  signupUrl: 'signup',
+  companyLogoUrl: './assets/img/logo-company.png',
 };
 
 export const ResultPage = ForgotPasswordComponent.bind({});
@@ -49,5 +51,6 @@ ResultPage.args = {
   loginModel: pwdFilled,
   loginUrl: 'login',
   signupUrl: 'signup',
+  companyLogoUrl: './assets/img/logo-company.png',
   showResultPage: true
 };
