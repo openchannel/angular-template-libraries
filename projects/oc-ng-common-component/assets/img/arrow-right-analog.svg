@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12">
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <path d="M0 0L16 0 16 16 0 16z" transform="translate(-5 -2)"/>
+            <path class="icon-recolor" fill="#333" fill-rule="nonzero" d="M2.73 4.737c.277-.287.712-.313 1.018-.079l.088.079L8.5 9.55l4.664-4.813c.278-.287.713-.313 1.019-.079l.088.079c.278.286.303.735.076 1.051l-.076.09-5.218 5.385c-.277.287-.712.313-1.019.079l-.087-.079L2.729 5.88c-.305-.316-.305-.827 0-1.142z" transform="translate(-5 -2) rotate(-90 8.5 8)"/>
+        </g>
+    </g>
+</svg>

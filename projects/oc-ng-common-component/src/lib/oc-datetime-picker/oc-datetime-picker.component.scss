@@ -1,9 +1,19 @@
 @import "../../../assets/styles/theme.scss";
 
 .calendar-header {
-  color: #333;
+  color: $body-color;
   background: #fff;
   border-bottom: 1px solid $gray-400;
+}
+
+.recolor-icon {
+  fill: $body-color;
+}
+
+.calendar-icon-size {
+  height: 16px;
+  width: 16px;
+  vertical-align: top;
 }
 
 .time > .hour,
@@ -14,6 +24,12 @@
 
 .hour {
   margin-right: 8px;
+}
+
+.wc-date-container {
+  span {
+    font-family: "Rubik Regular";
+  }
 }
 
 .minutes {
@@ -40,21 +56,21 @@
   background: #fff;
   width: 100%;
   z-index: 1;
-  padding: 0 15px;
+  padding: 0 16px 16px;
 }
 
 .time-view .time {
   font-size: 36px;
   width: 100%;
   margin: 0 auto;
-  //display: inline-block;
-  padding: 13px 0;
+  padding-top: 16px;
   font-weight: 300;
   display: flex;
   border-top: 1px solid $gray-400;
 
   &__header{
     text-align: center;
+    font-size: 14px;
   }
   &__manipulators{
     display: flex;
@@ -71,13 +87,13 @@
 .wc-time-sec .time input,
 .time-view .time input {
   display: inline-block;
-  width: 100%;
+  width: calc(100% - 32px);
   background: none;
   border: none;
   text-align: center;
   cursor: pointer;
   font-family: inherit;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 300;
   padding: 0 10px;
   &:focus {
@@ -95,12 +111,12 @@
 
 .calendar-header td {
   padding: 5px 0 !important;
-  font-size: 14px;
-  color: $gray-500;
+  font-size: 12px;
+  color: $secondary;
 }
 
 td.calendar-day.prev-month {
-  color: $gray-500;
+  color: $secondary;
   &:hover {
     background: #fff;
     cursor: default;
@@ -128,14 +144,24 @@ input[type='number']::-webkit-outer-spin-button {
 
 .date-picker-dd-toggle {
   font-size: 14px;
+  border-radius: 4px;
 
   &::after {
     display: none;
   }
+  &:focus {
+    border: 1px solid $primary !important;
+    outline: none;
+  }
+  &:not(:disabled):not(.disabled):active {
+    border: 1px solid $primary !important;
+    background-color: #fff !important;
+    outline: none;
+  }
 }
 
 .wc-date-popover {
-  height: 375px;
+  height: auto;
   width: 250px;
   font-size: 14px;
 
@@ -148,16 +174,12 @@ input[type='number']::-webkit-outer-spin-button {
   height: 30px;
   display: flex;
   color: black;
-  padding: 13px 21px 0px 21px;
+  padding: 16px 16px 0px;
   justify-content: space-between;
 
   &__detail {
-    font-size: 14px;
+    font-size: 12px;
   }
-}
-
-.angle {
-  color: $primary;
 }
 
 .wc-details {
@@ -167,7 +189,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .wc-content {
-  padding: 13px 15px 0;
+  padding: 16px 16px 0;
   font-size: 14px;
 
   .calendar-header,
@@ -182,7 +204,7 @@ input[type='number']::-webkit-outer-spin-button {
       padding: 5px 0;
       span {
         display: block;
-        font-size: 14px;
+        font-size: 12px;
       }
     }
   }
@@ -196,14 +218,13 @@ input[type='number']::-webkit-outer-spin-button {
   border: 1px solid transparent;
 
   &:hover {
-    background: $gray-400;
-    border-radius: 5px;
+    background: $light;
+    border-radius: 4px;
   }
-}
-
-.today {
 }
 
 .selected-day {
   color: $primary;
+  background-color: $light;
+  border-radius: 4px;
 }

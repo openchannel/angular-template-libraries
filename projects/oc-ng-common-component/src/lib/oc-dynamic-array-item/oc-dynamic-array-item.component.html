@@ -1,49 +1,27 @@
-<div class="w-100">
-  <div class="card pl-2 pr-2 pt-1 pb-1">
-    <div class="row m-0 cursor-pointer align-items-center" >
-      <div class="col-md-4 pr-0 row justify-content-end flex-nowrap order-md-2">
-        <button id="editBtn" class="main-item-button mr-1" (click)="editFieldsData()">
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-          </svg>
-          <span>
-            Edit
-          </span>
-        </button>
-        <button id="copyBtn" class="main-item-button mr-1" (click)="copyCurrentItem()">
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M4 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z"/>
-            <path d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z"/>
-          </svg>
-          <span>
-            Copy
-          </span>
-        </button>
-        <button id="deleteBtn" class="main-item-button item-delete-button" (click)="deleteCurrentItem()">
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-          </svg>
-          <span>
-            Delete
-          </span>
-        </button>
+<div class="form-card mb-3">
+  <div class="form-card-header pt-3 px-5 pb-2">
+    <h3 class="mb-0">
+      {{fieldLabelId ? formFieldsData[fieldLabelId] : 'Item ' + (index + 1)}}
+    </h3>
+    <div>
+      <svg-icon src="../../../assets/img/edit.svg" svgClass="icon-size"
+                (click)="editFieldsData()" class="mr-2"></svg-icon>
+      <svg-icon src="../../../assets/img/trash-icon.svg" svgClass="icon-size"
+                (click)="deleteCurrentItem()"></svg-icon>
+    </div>
+  </div>
+  <div class="form-card-body pt-3 px-5 pb-4">
+    <div *ngFor="let field of formFieldsData | keyvalue">
+      <div class="w-100">
+        <oc-title [title]="field.key"
+                  [customStyle]="{fontSize: '14px'}"></oc-title>
       </div>
-      <div id="itemLabel" class="col-md-8 pl-0 order-md-1" (click)="changeDetailStatus()">
-        <span *ngIf="!fieldLabelId">Item {{index + 1}}</span>
-        <span *ngIf="fieldLabelId">{{formFieldsData[fieldLabelId]}}</span>
+      <div id="fieldValue" class="w-100 mb-3">
+        <oc-dynamic-field-array *ngIf="getFieldData(field.value) === 'object' && getSubFieldsOfItem(field.key)"
+                               [fieldDefinitionData]="getSubFieldsOfItem(field.key)"
+                               [(ngModel)]="field.value"></oc-dynamic-field-array>
+        <span *ngIf="getFieldData(field.value) !== 'object'">{{getFieldData(field.value)}}</span>
       </div>
     </div>
-    <section class="mt-2" *ngIf="showDetail">
-      <div class="row m-0 fields-details-text" *ngFor="let field of formFieldsData | keyvalue">
-        <div class="col-3 pl-0">
-          <oc-title [title]="field.key"
-                    [customStyle]="{fontSize: '1rem'}"></oc-title>
-        </div>
-        <div id="fieldValue" class="col-9 pl-0">
-         {{parseFieldData(field.value)}}
-        </div>
-      </div>
-    </section>
   </div>
 </div>

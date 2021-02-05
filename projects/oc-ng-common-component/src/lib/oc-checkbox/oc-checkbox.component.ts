@@ -1,5 +1,5 @@
-import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'oc-checkbox',
@@ -19,9 +19,10 @@ export class OcCheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() requiredIndicator: boolean = false;
   /** Disable checkbox */
   @Input() disabled: boolean = false;
-  /** Set checkbox status value */
-  @Input() set isChecked(value) {
-    this.checked = value;
+  /** Set value from AbstractControl */
+  @Input() set value(val) {
+    this.checked = val;
+    this.onChange(this.checked);
   }
   /**
    * Output event with checkbox state.
@@ -40,7 +41,7 @@ export class OcCheckboxComponent implements OnInit, ControlValueAccessor {
   ngOnInit(): void {
   }
 
-  changeModelVal(event): void {
+  changeModelVal(): void {
     this.onTouched();
     this.onChange(this.checked);
     this.isCheckedChange.emit(this.checked);

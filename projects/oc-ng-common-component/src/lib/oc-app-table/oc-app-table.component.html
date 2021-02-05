@@ -12,10 +12,10 @@
            alt="icon" class="icon-down"
            *ngIf="ascendingSortIcon || descendingSortIcon"
            [class.icon-up]="!ascendingSortIcon && sortingObjects[0].ascending">
-        <fa-icon icon="angle-down" class="angle"
-               *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[0].ascending"></fa-icon>
-      <fa-icon icon="angle-up" class="angle"
-               *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[0].ascending"></fa-icon>
+        <svg-icon src="../../assets/img/select-down.svg"
+               *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[0].ascending"></svg-icon>
+      <svg-icon src="../../assets/img/select-up.svg"
+               *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[0].ascending"></svg-icon>
       </th>
       <th class="summary">Summary</th>
     <th class="data" (click)="sortAppsBy('created')">Created
@@ -24,10 +24,10 @@
            alt="icon" class="cursor-pointer icon-down"
            *ngIf="ascendingSortIcon || descendingSortIcon"
            [class.icon-up]="!ascendingSortIcon && sortingObjects[1].ascending">
-      <fa-icon icon="angle-down" class="angle"
-               *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[1].ascending"></fa-icon>
-      <fa-icon icon="angle-up" class="angle"
-               *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[1].ascending"></fa-icon>
+      <svg-icon src="../../assets/img/select-down.svg"
+               *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[1].ascending"></svg-icon>
+      <svg-icon src="../../assets/img/select-up.svg"
+               *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[1].ascending"></svg-icon>
       </th>
       <th class="status cursor-pointer" (click)="sortAppsBy('status')">Status
       <img [src]="sortingObjects[2].ascending ? ascendingSortIcon ? ascendingSortIcon
@@ -35,10 +35,10 @@
            alt="icon" class="icon-down"
            *ngIf="ascendingSortIcon || descendingSortIcon"
            [class.icon-up]="!ascendingSortIcon && sortingObjects[2].ascending">
-        <fa-icon icon="angle-down" class="angle"
-               *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[2].ascending"></fa-icon>
-      <fa-icon icon="angle-up" class="angle"
-               *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[2].ascending"></fa-icon>
+        <svg-icon src="../../assets/img/select-down.svg"
+               *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[2].ascending"></svg-icon>
+      <svg-icon src="../../assets/img/select-up.svg"
+               *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[2].ascending"></svg-icon>
       </th>
       <th class="action"></th>
       <th class="placeholder"></th>
