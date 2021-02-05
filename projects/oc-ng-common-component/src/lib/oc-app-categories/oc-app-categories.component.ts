@@ -1,8 +1,8 @@
-import { Component, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {AppCategoryDetail} from 'oc-ng-common-service';
-import { DomSanitizer, SafeResourceUrl, SafeStyle } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
+import {DomSanitizer, SafeResourceUrl, SafeStyle} from '@angular/platform-browser';
+import {Router} from '@angular/router';
+import {CarouselComponent, OwlOptions} from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'oc-app-categories',

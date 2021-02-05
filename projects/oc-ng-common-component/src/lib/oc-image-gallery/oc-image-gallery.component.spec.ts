@@ -10,7 +10,7 @@ describe('OcImageGalleryComponent', () => {
   let fixture: ComponentFixture<OcImageGalleryComponent>;
 
   const imageItem: GalleryItem = {
-    image: 'https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download',
+    image: '',
     title: 'Test Image',
     description: 'Improve and extend your experience right from your own UI'
   };

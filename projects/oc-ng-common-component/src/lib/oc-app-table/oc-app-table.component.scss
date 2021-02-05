@@ -5,7 +5,7 @@
   overflow-x: auto;
 }
 .table {
-  border: 1px solid #c9d5ea;
+  border: 1px solid $info;
   border-radius: 4px;
   width: 1110px;
   vertical-align: middle;
@@ -17,15 +17,14 @@
   thead {
     th {
       font-size: 14px;
-      border-bottom: 1px solid #c9d5ea;
-      border-top: 1px solid #c9d5ea;
+      border-bottom: 1px solid $info;
+      border-top: 1px solid $info;
       padding: 1.5rem 0;
       vertical-align: middle;
     }
 
     th:first-child,
     th:last-child {
-      // padding: 1.5rem 2.5rem;
       width: 2.5rem;
     }
 
@@ -58,7 +57,7 @@
   }
 
   td:last-child {
-    border-top: 1px solid #c9d5ea;
+    border-top: 1px solid $info;
   }
 
   td {
@@ -67,7 +66,7 @@
     border-top: 1px solid rgba(201, 213, 234, 0.5);
 
     .summary-text {
-      -webkit-line-clamp: 2;
+      --webkit-line-clamp: 2;
       max-height: 40px;
       overflow: hidden;
       word-break: break-word;
@@ -126,10 +125,9 @@
 
 // Dropdown menu style
 .dropdown-menu {
-  top: 48px;
   padding: 0;
   min-width: 136px;
-  border: 1px solid #c9d5ea;
+  border: 1px solid $info;
   top: 70px;
   left: 76px;
   transform: translate(0px, 44px);
@@ -137,19 +135,19 @@
   .dropdown-item {
     font-size: 14px;
     padding: 14px 42px;
-    border-bottom: 1px solid #c9d5ea;
+    border-bottom: 1px solid $info;
   }
 
   .dropdown-item:hover,
   .dropdown-item:focus {
     background-color: rgba(201, 213, 234, 0.1);
-    color: #537cfd;
+    color: $primary;
     outline: none;
   }
 
   .dropdown-item:active {
-    color: #537cfd;
-    box-shadow: 0 1px 0 #c9d5ea;
+    color: $primary;
+    box-shadow: 0 1px 0 $info;
   }
 
 }

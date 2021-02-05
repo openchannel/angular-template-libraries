@@ -13,7 +13,7 @@
             <div class="form-group">
                 <oc-label text="Email"></oc-label>
                 <oc-input #email=ngModel [(ngModel)]="activationModel.email" placeholder="Email"
-                          name="code" ngDefaultControl required="true" emailValidator></oc-input>
+                          name="code" ngDefaultControl required="true" ocEmailValidator></oc-input>
                 <oc-error [control]="email"></oc-error>
             </div>
             <oc-button (click)="submitForm(activationForm)"

@@ -3,7 +3,7 @@ import {FormControl, NG_VALIDATORS, ValidationErrors, Validator} from '@angular/
 
 
 @Directive({
-  selector: '[passwordValidator]',
+  selector: '[ocPasswordValidator]',
   providers: [{provide: NG_VALIDATORS, useExisting: PasswordValidatorDirective, multi: true}]
 })
 export class PasswordValidatorDirective implements Validator {

@@ -1,7 +1,7 @@
 <div (fileDropped)="onFileDropped($event,cropperModal)"
      *ngIf="(!fileDetailArr || fileDetailArr.length == 0) ;else fileList"
      class="file-container without-files"
-     fileDragDrop>
+     ocFileDragDrop>
     <img [src]="uploadIconUrl" alt="upload-icon"
          class="mb-2">
     <input #fileDropRef (change)="fileBrowseHandler($event,cropperModal)" [accept]="getAcceptTypes()"

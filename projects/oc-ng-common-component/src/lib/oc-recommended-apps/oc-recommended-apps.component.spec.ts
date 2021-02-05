@@ -1,13 +1,10 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {OcRecommendedAppsComponent} from './oc-recommended-apps.component';
-import { Component, Input } from '@angular/core';
-import { FullAppData } from 'oc-ng-common-service';
-import { StatElement } from 'oc-ng-common-service/lib/model/app-data-model';
-import { RouterTestingModule } from '@angular/router/testing';
-import { By } from '@angular/platform-browser';
-import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import {Component, Input} from '@angular/core';
+import {FullAppData} from 'oc-ng-common-service';
+import {StatElement} from 'oc-ng-common-service/lib/model/app-data-model';
+import {By} from '@angular/platform-browser';
 
 @Component({
   selector: 'oc-app-card',
@@ -24,7 +21,7 @@ const stat: StatElement = {
   total: 40
 };
 
-const app = {
+const app: FullAppData = {
   appId: '344gf-43s3j-gi3423',
   icon: '',
   name: 'Test App',
@@ -48,7 +45,7 @@ const app = {
   submittedDate: new Date(),
   created: new Date().getMonth() - 2,
   status: {
-    value: '',
+    value: 'pending',
     lastUpdated: 1.1,
     modifiedBy: '',
     reason: ''

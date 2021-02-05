@@ -36,7 +36,7 @@ export class OcForgotPasswordComponent implements OnInit {
   }
 
   goBackToLogin() {
-    this.router.navigateByUrl(this.loginUrl);
+    this.router.navigateByUrl(this.loginUrl).then();
   }
 
 }

@@ -27,7 +27,7 @@ export class MockRoutingComponent {
 
 const appCategory1: AppCategoryDetail = {
   categoryCardClass: 'category-card',
-  categoryLogo: 'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png',
+  categoryLogo: '',
   categoryName: 'All Apps',
   categoryTitleColor: 'orange',
   categoryQuery: null

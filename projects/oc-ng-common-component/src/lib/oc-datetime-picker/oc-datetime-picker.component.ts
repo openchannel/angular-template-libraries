@@ -122,15 +122,10 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         }
         const dateCell = day;
         day++;
-        dateRow.push({ day: dateCell, date: new Date(month + 1 + '-' + dateCell + '-' + date.getFullYear()) });
+        dateRow.push({ day: dateCell, date: new Date(date.getFullYear(), month, dateCell) });
       }
       // stop making rows if we've run out of days
-      if (day > monthLength) {
-        dateArr.push(dateRow);
-        // break;
-      } else {
-        dateArr.push(dateRow);
-      }
+      dateArr.push(dateRow);
     }
     return dateArr;
   }
@@ -276,7 +271,7 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
   }
 
   composeDate(date: Date) {
-    return date.getMonth() + 1 + '-' + date.getDate() + '-' + date.getFullYear();
+    return date.toDateString();
   }
 
   clearDate() {

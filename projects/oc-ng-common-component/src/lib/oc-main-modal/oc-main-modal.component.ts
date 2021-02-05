@@ -1,5 +1,5 @@
-import {Component, ElementRef, OnInit, Output} from '@angular/core';
-import {NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {Component, OnInit} from '@angular/core';
+import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'oc-main-modal',

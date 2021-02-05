@@ -20,7 +20,7 @@
             <div class="form-group" [ngClass]="{'mt-5': !isServerErrorExist()}">
                 <oc-label text="Email"></oc-label>
                 <oc-input #email=ngModel (ngModelChange)="onchange()" [(ngModel)]="loginModel.email"
-                          placeholder="Email" emailValidator name="email" ngDefaultControl
+                          placeholder="Email" ocEmailValidator name="email" ngDefaultControl
                           required="true"></oc-input>
                 <oc-error [control]="email" field="email"></oc-error>
             </div>

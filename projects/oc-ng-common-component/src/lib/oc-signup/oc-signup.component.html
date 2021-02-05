@@ -11,20 +11,20 @@
             <div class="form-group">
                 <oc-label text="Name"></oc-label>
                 <oc-input #uname=ngModel [(ngModel)]="signupModel.uname"
-                          placeholder="Name" name="uname" ngDefaultControl required="true" whiteSpaceValidator></oc-input>
+                          placeholder="Name" name="uname" ngDefaultControl required="true" ocWhiteSpaceValidator></oc-input>
                 <oc-error [control]="uname" field="uname"></oc-error>
             </div>
             <div class="form-group" *ngIf="withCompany">
                 <oc-label text="Company"></oc-label>
                 <oc-input #company=ngModel [(ngModel)]="signupModel.company"
                           placeholder="Company" name="company" ngDefaultControl required="true"
-                          whiteSpaceValidator></oc-input>
+                          ocWhiteSpaceValidator></oc-input>
                 <oc-error [control]="company" field="company"></oc-error>
             </div>
             <div class="form-group">
                 <oc-label text="Email"></oc-label>
                 <oc-input #email=ngModel [(ngModel)]="signupModel.email"
-                          placeholder="Email" emailValidator name="email" ngDefaultControl
+                          placeholder="Email" ocEmailValidator name="email" ngDefaultControl
                           required="true"></oc-input>
                 <oc-error [control]="email" field="email"></oc-error>
             </div>
@@ -32,7 +32,7 @@
                 <oc-label text="Password"></oc-label>
                 <oc-password #password=ngModel [(ngModel)]="signupModel.password"
                              placeholder="Password" class="mb-2" name="password"
-                             ngDefaultControl passwordValidator></oc-password>
+                             ngDefaultControl ocPasswordValidator></oc-password>
                 <oc-error [control]="password" field="password"></oc-error>
             </div>
             <div class="form-group">

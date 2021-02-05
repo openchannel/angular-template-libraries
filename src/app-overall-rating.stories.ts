@@ -1,15 +1,10 @@
-import {
-  OcAppListGridComponent,
-  OcCommonLibModule,
-  OcOverallRatingComponent
-} from "projects/oc-ng-common-component/src/public-api";
+import {OcCommonLibModule, OcOverallRatingComponent} from 'projects/oc-ng-common-component/src/public-api';
 import {storiesOf} from '@storybook/angular';
 import {withA11y} from '@storybook/addon-a11y';
-import {OverallRatingSummary} from 'oc-ng-common-service';
 
 const modules = {
   imports: [OcCommonLibModule]
-}
+};
 
 const overAllRatingSummaryEmpty = {
   rating: 0,
