@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {SellerActivation} from 'oc-ng-common-service';
+import {UserActivationModel} from 'oc-ng-common-service';
 
 
 @Component({
@@ -13,7 +13,7 @@ export class OcActivationComponent {
   @Input() signupUrl;
   @Input() companyLogoUrl;
   @Input() process;
-  @Input() activationModel = new SellerActivation();
+  @Input() activationModel = new UserActivationModel();
   @Output() submit = new EventEmitter<any>();
 
   constructor() {

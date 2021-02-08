@@ -1,7 +1,7 @@
 @import "../../../assets/styles/theme.scss";
 
 .card.app-list-card {
-  border: 1px solid rgba(201, 213, 234, 0.5);
+  border: 1px solid rgba($info, 0.5);
   padding: 16px 23px 16px 16px;
   margin-bottom: 16px;
   line-height: 1;

@@ -1,6 +1,5 @@
 import {OcCommonLibModule} from '../projects/oc-ng-common-component/src/lib/oc-ng-common-component.module';
 import {moduleMetadata} from '@storybook/angular';
-import {OcRichTextEditorComponent} from '../projects/oc-ng-common-component/src/lib/oc-rich-text-editor/oc-rich-text-editor.component';
 import {OcAppDescriptionComponent} from '../projects/oc-ng-common-component/src/lib/oc-app-description/oc-app-description.component';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */

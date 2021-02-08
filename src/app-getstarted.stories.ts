@@ -28,7 +28,6 @@ const GetStartedComponent = (args: OcAppGetStartedComponent) => ({
 export const DefaultHomPage = GetStartedComponent.bind({});
 
 DefaultHomPage.args = {
-  getStartedImage: 'https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download',
   getStartedHeader: 'List Your App in our App Store',
   getStartedDescription: 'Register as an app developer and submit your app easily with our App Store Developer Portal',
   getStartedButtonText: 'Get Started As An App Developer',

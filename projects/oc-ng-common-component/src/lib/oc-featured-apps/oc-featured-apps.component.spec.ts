@@ -23,8 +23,8 @@ const statElement: StatElement = {
 
 const featuredApp: FullAppData = {
   appId: '34343-jojo-s353-fg3423',
-  icon: 'https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download',
-  logo: 'https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download',
+  icon: './assets/img/get-started.svg',
+  logo: './assets/img/get-started.svg',
   name: 'Test App',
   model: [{
     type: 'recurring',
@@ -46,7 +46,7 @@ const featuredApp: FullAppData = {
   submittedDate: new Date(),
   created: new Date().getMonth() - 2,
   status: {
-    value: '',
+    value: 'approved',
     lastUpdated: 1.1,
     modifiedBy: '',
     reason: ''
@@ -107,7 +107,7 @@ describe('OcFeaturedAppsComponent', () => {
     expect(appName.textContent).toContain('Test App');
     expect(appDescription.textContent).toContain('With this plugin you can collaborate with teammates at any time.');
     expect(appImage).toBeTruthy();
-    expect(appImage.src).toContain('https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download');
+    expect(appImage.src).toContain('./assets/img/get-started.svg');
   });
 
   it('should show no data message', () => {

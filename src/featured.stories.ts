@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { OcCommonLibModule, OcFeaturedAppsComponent } from 'projects/oc-ng-common-component/src/public-api';
 import { FullAppData } from 'oc-ng-common-service';
-import { StatElement } from 'oc-ng-common-service/lib/model/app-data-model';
+import { StatElement } from 'oc-ng-common-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -31,8 +31,8 @@ const statElement: StatElement = {
 
 const featuredApp: FullAppData = {
   appId: '34343-jjo-sgs-353-fgi-3423',
-  icon: 'https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download',
-  logo: 'https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download',
+  icon: './assets/img/get-started.svg',
+  logo: './assets/img/get-started.svg',
   name: 'Test App 1',
   model: [{
     type: 'recurring',

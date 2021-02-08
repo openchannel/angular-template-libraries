@@ -26,6 +26,6 @@ export class OcConfirmationModalComponent implements OnInit {
   }
 
   closeModal(result?: boolean) {
-    this.ngbModalRef.close(result)
+    this.ngbModalRef.close(result);
   }
 }

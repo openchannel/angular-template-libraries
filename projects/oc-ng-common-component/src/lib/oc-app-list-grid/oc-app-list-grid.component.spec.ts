@@ -79,7 +79,7 @@ describe('OcAppListGridComponent', () => {
 
     component.appList = [{
       appId: '344gf-43s3j-gi3423',
-      icon: 'https://drive.google.com/u/0/uc?id=19l7Znd-iPPYUhM6zaiQZ01rE2NpkDFyk&export=download',
+      icon: './assets/img/get-started.svg',
       name: 'Plugin',
       model: [{
         type: 'free',
@@ -145,7 +145,7 @@ describe('OcAppListGridComponent', () => {
     await fixture.whenStable().then(() => {
       expect(appTitle.textContent).toContain('Plugin');
       expect(appPrice.textContent).toContain('Free');
-      expect(appIcon.src).toContain('https://drive.google.com/u/0/uc?id=19l7Znd-iPPYUhM6zaiQZ01rE2NpkDFyk&export=download');
+      expect(appIcon.src).toContain('./assets/img/get-started.svg');
     });
   });
 

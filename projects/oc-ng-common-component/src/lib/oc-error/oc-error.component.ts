@@ -38,6 +38,7 @@ export class OcErrorComponent implements OnInit {
     colorValidator: () => 'Please enter a valid Color value.',
     booleanTagsValidator: (params) => params.fieldTitle + ' can only contain boolean values (\'true\' or \'false\')',
     numberTagsValidator: (params) => params.fieldTitle + ' can only contain numeric values',
+    // tslint:disable-next-line:max-line-length
     passwordValidator: () => 'Password must contains 1 uppercase, 1 lowercase, 1 digit, 1 special char (one of @#$%!^&) and at least 8 character long'
   };
 
@@ -76,15 +77,15 @@ export class OcErrorComponent implements OnInit {
           this.errorService.clearError(error);
           // create error validation object an pass it to control
           const errors = { serverErrorValidator: error};
-          if(this.control instanceof AbstractControlDirective) {
+          if (this.control instanceof AbstractControlDirective) {
             (this.control as AbstractControlDirective).control.setErrors(errors);
             (this.control as AbstractControlDirective).control.markAsTouched();
-          } else if(this.control instanceof NgModel) {
+          } else if (this.control instanceof NgModel) {
             (this.control as NgModel).control.setErrors(errors);
             (this.control as NgModel).control.markAsTouched();
-          } else if(this.control as AbstractControl) {
-            (this.control as AbstractControl).setErrors(errors);
-            (this.control as AbstractControl).markAsTouched();
+          } else if (this.control) {
+            this.control.setErrors(errors);
+            this.control.markAsTouched();
           } else {
             console.error('Invalid control type');
           }
@@ -111,9 +112,9 @@ export class OcErrorComponent implements OnInit {
   }
 
   private getMessage(type: string, params: any) {
-    if(this.modifyErrors) {
+    if (this.modifyErrors) {
       const errorMsg = this.modifyErrors.filter(update => update.validator === type)[0];
-      if(errorMsg) {
+      if (errorMsg) {
         // clean up an error message
         return errorMsg?.message;
       }

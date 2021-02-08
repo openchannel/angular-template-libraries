@@ -10,6 +10,10 @@ import {OcButtonComponent} from '../oc-button/oc-button.component';
 import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {By} from '@angular/platform-browser';
+import {OcSelectComponent} from '../oc-select/oc-select.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
+import {AngularSvgIconModule} from 'angular-svg-icon';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('OcTagsComponent', () => {
   let component: OcTagsComponent;
@@ -17,9 +21,9 @@ describe('OcTagsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [OcTagsComponent, OcTitleComponent, OcInputComponent,
+      declarations: [OcTagsComponent, OcTitleComponent, OcInputComponent, OcSelectComponent,
         OcButtonComponent, OcTagElementComponent, OcDropboxComponent, OcErrorComponent],
-      imports: [FormsModule, NgbModule]
+      imports: [FormsModule, NgbModule, NgxSpinnerModule, AngularSvgIconModule.forRoot(), HttpClientTestingModule]
     }).compileComponents();
   }));
 

@@ -23,7 +23,7 @@ const ImageGalleryComponent = (args: OcImageGalleryComponent) => ({
 });
 
 const imageItem: GalleryItem = {
-  image: 'https://drive.google.com/u/0/uc?id=1AZ2zszice2XcGojhCLz1A2TideF_cev_&export=download',
+  image: './assets/img/get-started.svg',
   title: 'Test App Image',
   description: 'Improve and extend your experience right from your own UI'
 };

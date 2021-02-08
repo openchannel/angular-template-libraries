@@ -8,5 +8,5 @@ export class OCComponentConstants {
     MULTI_PUBLIC_IMAGE: 'multiImage',
     MULTI_PRIVATE_IMAGE: 'multiPrivateImage',
     MULTI_PRIVATE_FILE: 'multiPrivateFile'
-  }
+  };
 }

@@ -7,7 +7,7 @@ import {Observable, of} from 'rxjs';
 import {By} from '@angular/platform-browser';
 import {EmbedVideoService} from 'ngx-embed-video';
 import {OcVideoComponent} from '../oc-video/oc-video.component';
-import {AppIconsModule} from '../app-icon-module/app-icons.module';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 describe('OcVideoUrlComponent', () => {
   let component: OcVideoUrlComponent;
@@ -15,8 +15,8 @@ describe('OcVideoUrlComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcVideoUrlComponent, OcVideoComponent ],
-      imports: [FormsModule, HttpClientTestingModule, AppIconsModule ],
+      declarations: [OcVideoUrlComponent, OcVideoComponent],
+      imports: [FormsModule, HttpClientTestingModule, NgxSpinnerModule],
       providers: [EmbedVideoService]
     })
     .compileComponents();

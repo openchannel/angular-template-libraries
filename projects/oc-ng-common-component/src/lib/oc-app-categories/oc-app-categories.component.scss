@@ -1,7 +1,6 @@
 @import "../../../assets/styles/theme.scss";
 
 .category-card {
-  background-image: url("https://drive.google.com/u/0/uc?id=1UMmg66jwVemAqyUA17TlXWDe1K3Pmux8&export=download");
   width: 160px;
   height: 120px;
   background-position: center;
@@ -21,7 +20,7 @@
   top: 60%;
   left: 50%;
   color: $primary;
-  font-family: "Rubik-Medium";
+  font-family: "Rubik-Medium", serif;
   margin-top: 16px;
   transform: translate(-50%, -50%);
 }
