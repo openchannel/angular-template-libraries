@@ -24,17 +24,16 @@ export class OcSignupComponent {
   @Input() showSignupFeedbackPage;
   @Input() withCompany = false;
 
-  @Output() submit = new EventEmitter<any>();
+  @Output() submitClick = new EventEmitter<any>();
 
   constructor(private router: Router) {
   }
 
   submitForm(form: NgForm) {
+    form.form.markAllAsTouched();
+
     if (this.signupModel.isChecked && !this.process) {
-      if (!form.valid) {
-        form.form.markAllAsTouched();
-      }
-      this.submit.emit(form.valid);
+      this.submitClick.emit(form.valid);
     }
   }
 
