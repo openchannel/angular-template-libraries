@@ -16,19 +16,19 @@
             <span *ngIf="date">{{ date | date: settings.format }}</span>
             <span *ngIf="!date">{{settings.format | uppercase}}</span>
         </div>
-        <svg-icon src="../../assets/img/calendar-icon.svg" svgClass="calendar-icon-size" style="height: 16px">
+        <svg-icon src="assets/oc-ng-common-component/calendar-icon.svg" svgClass="calendar-icon-size" style="height: 16px">
         </svg-icon>
     </button>
     <div ngbDropdownMenu aria-labelledby="datePickerDD" class="p-0">
         <div class="wc-date-popover" [ngClass]="{'wc-date-popover__date': !isDateTime}">
             <div class="wc-banner">
-                <svg-icon id="prevMonth" src="../../assets/img/arrow-left-analog.svg"
+                <svg-icon id="prevMonth" src="assets/oc-ng-common-component/arrow-left-analog.svg"
                           svgClass="calendar-icon-size" class="cursor-pointer"
                           (click)="prevMonth($event)"></svg-icon>
                 <div class="wc-banner__detail">
                     {{ date | date: 'MMMM' }}, {{ date | date: 'yyyy' }}
                 </div>
-                <svg-icon id="nextMonth" src="../../assets/img/arrow-right-analog.svg"
+                <svg-icon id="nextMonth" src="assets/oc-ng-common-component/arrow-right-analog.svg"
                           svgClass="calendar-icon-size" class="cursor-pointer"
                           (click)="nextMonth($event)"></svg-icon>
             </div>
@@ -70,13 +70,13 @@
                     <div class="hour">
                         <div class="time__header">Hours</div>
                         <div class="time__manipulators">
-                            <svg-icon src="../../assets/img/arrow-left-analog.svg"
+                            <svg-icon src="assets/oc-ng-common-component/arrow-left-analog.svg"
                                       svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
                                       (click)="decHour()"></svg-icon>
                             <input #hourInput type="text" [value]="hourValue < 10 ? '0' + hourStr : hourStr"
                                    (input)="onHourChange($event)" ocOnlyNumber
                                    (click)="hourInput.select()" />
-                            <svg-icon src="../../assets/img/arrow-right-analog.svg"
+                            <svg-icon src="assets/oc-ng-common-component/arrow-right-analog.svg"
                                       svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
                                       (click)="incHour()"></svg-icon>
                         </div>
@@ -84,13 +84,13 @@
                     <div class="minutes">
                         <div class="time__header">Minutes</div>
                         <div class="time__manipulators">
-                            <svg-icon src="../../assets/img/arrow-left-analog.svg"
+                            <svg-icon src="assets/oc-ng-common-component/arrow-left-analog.svg"
                                       svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
                                       (click)="decMinutes()"></svg-icon>
                             <input #minInput type="text" [value]="minuteValue < 10 ? '0' + minuteStr : minuteStr"
                                    (input)="onMinChange($event)"
                                    ocOnlyNumber (click)="minInput.select()"/>
-                            <svg-icon src="../../assets/img/arrow-right-analog.svg"
+                            <svg-icon src="assets/oc-ng-common-component/arrow-right-analog.svg"
                                       svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
                                       (click)="incMinutes()"></svg-icon>
                         </div>

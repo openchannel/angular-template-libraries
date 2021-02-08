@@ -13,9 +13,9 @@ export class OcSidebarComponent implements OnInit {
   /** Sidebar config */
   @Input() sidebarModel: SidebarValue[];
   /** Path to the custom toggle icon up */
-  @Input() toggleIconDown: string = '../../../assets/img/down-arrow.svg';
+  @Input() toggleIconDown: string = 'assets/oc-ng-common-component/down-arrow.svg';
   /** Path to the custom toggle icon down */
-  @Input() toggleIconUp: string = '../../../assets/img/select-up.svg';
+  @Input() toggleIconUp: string = 'assets/oc-ng-common-component/select-up.svg';
   /** Return changed model */
   @Output() selectedLabelChange: EventEmitter<SidebarValue> = new EventEmitter<SidebarValue>();
 

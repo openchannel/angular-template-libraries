@@ -11,7 +11,7 @@ import {
 
 
 const chartPoint = new Image();
-chartPoint.src = '../../../assets/img/chart_point.svg';
+chartPoint.src = 'assets/oc-ng-common-component/chart_point.svg';
 
 @Component({
   selector: 'oc-chart',
