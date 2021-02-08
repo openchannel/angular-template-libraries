@@ -45,7 +45,7 @@ export * from './lib/oc-app-description/oc-app-description.component';
 export * from './lib/oc-resend-activation/oc-resend-activation.component';
 export * from './lib/oc-tooltip-label/oc-tooltip-label.component';
 export * from './lib/oc-app-short-info/oc-app-short-info.component';
-export * from './lib/oc-main-modal/oc-main-modal.component';
+export * from './lib/oc-modal-header/oc-modal-header.component';
 export * from './lib/oc-invite-modal/oc-invite-modal.component';
 export * from './lib/oc-confirmation-modal/oc-confirmation-modal.component';
 export * from './lib/oc-sidebar/oc-sidebar.component';
