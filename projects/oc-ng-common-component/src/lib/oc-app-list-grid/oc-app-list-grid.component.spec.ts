@@ -79,7 +79,7 @@ describe('OcAppListGridComponent', () => {
 
     component.appList = [{
       appId: '344gf-43s3j-gi3423',
-      icon: './assets/img/get-started.svg',
+      icon: 'assets/oc-ng-common-component/get-started.svg',
       name: 'Plugin',
       model: [{
         type: 'free',
@@ -145,7 +145,7 @@ describe('OcAppListGridComponent', () => {
     await fixture.whenStable().then(() => {
       expect(appTitle.textContent).toContain('Plugin');
       expect(appPrice.textContent).toContain('Free');
-      expect(appIcon.src).toContain('./assets/img/get-started.svg');
+      expect(appIcon.src).toContain('assets/oc-ng-common-component/get-started.svg');
     });
   });
 

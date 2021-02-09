@@ -12,9 +12,9 @@
            alt="icon" class="icon-down"
            *ngIf="ascendingSortIcon || descendingSortIcon"
            [class.icon-up]="!ascendingSortIcon && sortingObjects[0].ascending">
-        <svg-icon src="../../assets/img/select-down.svg"
+        <svg-icon src="assets/oc-ng-common-component/select-down.svg"
                *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[0].ascending"></svg-icon>
-      <svg-icon src="../../assets/img/select-up.svg"
+      <svg-icon src="assets/oc-ng-common-component/select-up.svg"
                *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[0].ascending"></svg-icon>
       </th>
       <th class="summary">Summary</th>
@@ -24,9 +24,9 @@
            alt="icon" class="cursor-pointer icon-down"
            *ngIf="ascendingSortIcon || descendingSortIcon"
            [class.icon-up]="!ascendingSortIcon && sortingObjects[1].ascending">
-      <svg-icon src="../../assets/img/select-down.svg"
+      <svg-icon src="assets/oc-ng-common-component/select-down.svg"
                *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[1].ascending"></svg-icon>
-      <svg-icon src="../../assets/img/select-up.svg"
+      <svg-icon src="assets/oc-ng-common-component/select-up.svg"
                *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[1].ascending"></svg-icon>
       </th>
       <th class="status cursor-pointer" (click)="sortAppsBy('status')">Status
@@ -35,9 +35,9 @@
            alt="icon" class="icon-down"
            *ngIf="ascendingSortIcon || descendingSortIcon"
            [class.icon-up]="!ascendingSortIcon && sortingObjects[2].ascending">
-        <svg-icon src="../../assets/img/select-down.svg"
+        <svg-icon src="assets/oc-ng-common-component/select-down.svg"
                *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[2].ascending"></svg-icon>
-      <svg-icon src="../../assets/img/select-up.svg"
+      <svg-icon src="assets/oc-ng-common-component/select-up.svg"
                *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[2].ascending"></svg-icon>
       </th>
       <th class="action"></th>

@@ -8,7 +8,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class OcAppGetStartedComponent implements OnInit {
 
-  @Input() getStartedImage: string = './assets/img/get-started.svg';
+  @Input() getStartedImage: string = 'assets/oc-ng-common-component/get-started.svg';
 
   @Input() getStartedHeader: string = 'List Your App in our App Store';
 
