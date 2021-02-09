@@ -20,7 +20,7 @@ export class OcTagElementComponent implements OnInit {
     /**
      * deleteTagImgUrl (optional) - path to the SVG icon on the right title side.
      */
-    @Input() deleteTagImgUrl: string = '../../assets/img/close-icon.svg';
+    @Input() deleteTagImgUrl: string = 'assets/oc-ng-common-component/close-icon.svg';
     /**
      * clickEmitter - return title by click event on this component.
      */

@@ -5,8 +5,7 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { StatElement } from 'oc-ng-common-service/lib/model/app-data-model';
-import { FullAppData } from 'oc-ng-common-service';
+import { FullAppData, StatElement } from 'oc-ng-common-service';
 import { By } from '@angular/platform-browser';
 
 @Component({
@@ -23,8 +22,8 @@ const statElement: StatElement = {
 
 const featuredApp: FullAppData = {
   appId: '34343-jojo-s353-fg3423',
-  icon: './assets/img/get-started.svg',
-  logo: './assets/img/get-started.svg',
+  icon: 'assets/oc-ng-common-component/get-started.svg',
+  logo: 'assets/oc-ng-common-component/get-started.svg',
   name: 'Test App',
   model: [{
     type: 'recurring',
@@ -107,7 +106,7 @@ describe('OcFeaturedAppsComponent', () => {
     expect(appName.textContent).toContain('Test App');
     expect(appDescription.textContent).toContain('With this plugin you can collaborate with teammates at any time.');
     expect(appImage).toBeTruthy();
-    expect(appImage.src).toContain('./assets/img/get-started.svg');
+    expect(appImage.src).toContain('assets/oc-ng-common-component/get-started.svg');
   });
 
   it('should show no data message', () => {
@@ -120,16 +119,4 @@ describe('OcFeaturedAppsComponent', () => {
     expect(noAppsHeading.textContent).toContain('No Featured Apps');
   });
 
-  it('should redirect by router link', async () => {
-    component.data = [featuredApp, featuredApp];
-    component.mainRouterLink = 'mock-router';
-    fixture.detectChanges();
-
-    const appCardLink: HTMLLinkElement = fixture.debugElement.query(By.css('a')).nativeElement;
-    appCardLink.click();
-
-    await fixture.whenStable().then(() => {
-      expect(location.path()).toEqual('/mock-router/34343-jojo-s353-fg3423');
-    });
-  });
 });

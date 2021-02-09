@@ -44,10 +44,10 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
 
   @Output() fileUpload = new EventEmitter<any>();
 
-  @Input() defaultFileIcon = './assets/img/file_icon.svg';
+  @Input() defaultFileIcon = 'assets/oc-ng-common-component/file_icon.svg';
 
   @Input() fileType: string;
-  @Input() uploadIconUrl = './assets/img/upload_icon.svg';
+  @Input() uploadIconUrl = 'assets/oc-ng-common-component/upload_icon.svg';
 
   @Output() fileReset = new EventEmitter<any>();
 
