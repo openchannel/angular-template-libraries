@@ -1,21 +1,20 @@
-<oc-main-modal [modalTitle]="this.modalData.modalTitle" [ngbModalRef]="ngbModalRef">
+<oc-modal-header [modalTitle]="this.modalData.modalTitle" [ngbModalRef]="ngbModalRef">
     <div modalContent class="pl-3 pr-3 pt-2 pb-5">
-        <oc-form #customForm [formJsonData]="_formConfig"
+        <oc-form [formJsonData]="formConfig"
                  [showButton]="false"
-                 (isFormInvalid)="getFormStatus($event)"
-                 (formDataUpdated)="getDataFromForm($event)"></oc-form>
+                 (createdForm)="setCreatedForm($event)"
+                 (formDataUpdated)="setDataFromForm($event)"></oc-form>
         <div class="d-flex justify-content-between flex-column-reverse flex-sm-row mt-4">
             <div class="button-container">
-                <oc-button type="secondary" text="Cancel" class="w-100"
-                           (click)="closeModal()"></oc-button>
+                <oc-button type="secondary" text="Cancel" class="w-100" (click)="onClose()"></oc-button>
             </div>
             <div class="button-container mb-2 mb-sm-0">
                 <oc-button type="primary"
                            [text]="this.modalData.successButtonText"
                            class="w-100"
-                           [process]="_inviteInProcess"
-                           (click)="process(customForm)"></oc-button>
+                           [process]="inProcess"
+                           (click)="onClickConfirmButton()"></oc-button>
             </div>
         </div>
     </div>
-</oc-main-modal>
+</oc-modal-header>

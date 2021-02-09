@@ -1,31 +1,29 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {
-  ModalInviteUserModel,
-  ModalUpdateUserModel
-} from 'oc-ng-common-service';
+import {ModalInviteUserModel, ModalUpdateUserModel} from 'oc-ng-common-service';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'oc-invite-modal',
   templateUrl: './oc-invite-modal.component.html',
-  styleUrls: ['./oc-invite-modal.component.scss'],
-  inputs: ['ngbModalRef', 'modalTitle']
+  styleUrls: ['./oc-invite-modal.component.scss']
 })
 export class OcInviteModalComponent implements OnInit {
 
-  ngbModalRef: NgbModalRef;
-  modalData: ModalInviteUserModel | ModalUpdateUserModel;
+  @Input() ngbModalRef: NgbModalRef;
+
+  @Input() modalData: ModalInviteUserModel | ModalUpdateUserModel;
 
   // config for custom form generation
-  public _formConfig: any = {};
+  public formConfig: any = {};
   // array of developer types id
-  public _userTypes: string [] = [];
-  // custom form validity
-  public _formInvalid = true;
+  public userTypes: string [] = [];
+  // custom form
+  public formGroup: FormGroup;
   // data from custom form
-  public _formData: any;
+  public formData: any;
   // show spinner while inviting requests
-  public _inviteInProcess = false;
+  public inProcess = false;
 
   constructor() {
   }
@@ -36,7 +34,7 @@ export class OcInviteModalComponent implements OnInit {
   }
 
   makeFormConfig() {
-    this._formConfig.fields = [
+    this.formConfig.fields = [
       {
         id: 'name',
         label: 'Name',
@@ -83,7 +81,7 @@ export class OcInviteModalComponent implements OnInit {
     ];
     if (this.modalData instanceof ModalUpdateUserModel) {
       const updateUserData: ModalUpdateUserModel = this.modalData;
-      this._formConfig.fields.forEach(field => {
+      this.formConfig.fields.forEach(field => {
         field.defaultValue = updateUserData.userData[field.id];
       });
     }
@@ -94,14 +92,14 @@ export class OcInviteModalComponent implements OnInit {
       if (result.list && result.list.length > 0) {
         result.list.forEach((type: any) => {
           if (type?.developerAccountTypeId) {
-            this._userTypes.push(type?.developerAccountTypeId);
+            this.userTypes.push(type?.developerAccountTypeId);
           } else if (type?.userAccountTypeId) {
-            this._userTypes.push(type.userAccountTypeId);
+            this.userTypes.push(type.userAccountTypeId);
           }
         });
-        this._formConfig.fields.find(field => field.id === 'type').options = [...this._userTypes];
+        this.formConfig.fields.find(field => field.id === 'type').options = [...this.userTypes];
         if (!(this.modalData instanceof ModalUpdateUserModel)) {
-          this._formConfig.fields.find(field => field.id === 'type').defaultValue = this._userTypes[0];
+          this.formConfig.fields.find(field => field.id === 'type').defaultValue = this.userTypes[0];
         }
       } else {
         this.ngbModalRef.close();
@@ -111,24 +109,24 @@ export class OcInviteModalComponent implements OnInit {
     });
   }
 
-
-  getFormStatus(status) {
-    this._formInvalid = status;
+  setCreatedForm(createdForm: FormGroup) {
+    this.formGroup = createdForm;
   }
 
-  getDataFromForm(data) {
-    this._formData = data;
+  setDataFromForm(data: any) {
+    this.formData = data;
   }
 
-  process(generatedForm: any) {
-    generatedForm.customForm.markAllAsTouched();
-    if (!this._formInvalid) {
-      this._inviteInProcess = true;
-      this._formInvalid = true;
-      if (this.modalData instanceof ModalUpdateUserModel) {
-        this.updateUser(this.modalData);
-      } else {
-        this.inviteUser(this.modalData);
+  onClickConfirmButton() {
+    if (this.formGroup) {
+      this.formGroup.markAllAsTouched();
+      if (this.formGroup.valid && this.formData && !this.inProcess) {
+        this.inProcess = true;
+        if (this.modalData instanceof ModalUpdateUserModel) {
+          this.updateUser(this.modalData);
+        } else {
+          this.inviteUser(this.modalData);
+        }
       }
     }
   }
@@ -137,26 +135,23 @@ export class OcInviteModalComponent implements OnInit {
     updateModalData.requestUpdateAccount(this.getAccountId(updateModalData.userData),
       {
         ...updateModalData.userData,
-        ...this._formData
-      }).subscribe(response => {
-      this._formInvalid = false;
-      this._inviteInProcess = false;
+        ...this.formData
+      }).subscribe(() => {
+      this.inProcess = false;
       this.ngbModalRef.close(true);
     }, () => {
-      this._formInvalid = false;
-      this._inviteInProcess = false;
+      this.inProcess = false;
     });
   }
 
   private inviteUser(inviteModalData: ModalInviteUserModel): void {
-    inviteModalData.requestSendInvite(this._formData).subscribe(response => {
-      this._formInvalid = false;
-      this._inviteInProcess = false;
-      this.ngbModalRef.close(true);
-    }, () => {
-      this._formInvalid = false;
-      this._inviteInProcess = false;
-    });
+    inviteModalData.requestSendInvite(this.formData)
+      .subscribe(() => {
+        this.inProcess = false;
+        this.ngbModalRef.close(true);
+      }, () => {
+        this.inProcess = false;
+      });
   }
 
   private getAccountId(userData: any): string {
@@ -168,7 +163,7 @@ export class OcInviteModalComponent implements OnInit {
     return null;
   }
 
-  closeModal() {
+  onClose() {
     this.ngbModalRef.close();
   }
 }

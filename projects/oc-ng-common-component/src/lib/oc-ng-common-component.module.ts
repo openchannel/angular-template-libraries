@@ -72,7 +72,7 @@ import {OcAppTableComponent} from './oc-app-table/oc-app-table.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {AngularSvgIconModule} from 'angular-svg-icon';
 import {HttpClientModule} from '@angular/common/http';
-import {OcMainModalComponent} from './oc-main-modal/oc-main-modal.component';
+import {OcModalHeaderComponent} from './oc-modal-header/oc-modal-header.component';
 import {OcInviteModalComponent} from './oc-invite-modal/oc-invite-modal.component';
 import {OcSidebarComponent} from './oc-sidebar/oc-sidebar.component';
 import {OcConfirmationModalComponent} from './oc-confirmation-modal/oc-confirmation-modal.component';
@@ -141,7 +141,7 @@ import {OcConfirmationModalComponent} from './oc-confirmation-modal/oc-confirmat
         OcResendActivationComponent,
         OcTooltipLabelComponent,
         OcAppShortInfoComponent,
-        OcMainModalComponent,
+        OcModalHeaderComponent,
         OcInviteModalComponent,
         OcSidebarComponent,
         OcConfirmationModalComponent,
@@ -219,7 +219,7 @@ import {OcConfirmationModalComponent} from './oc-confirmation-modal/oc-confirmat
         OcResendActivationComponent,
         OcMenuUserGridComponent,
         OcAppShortInfoComponent,
-        OcMainModalComponent,
+        OcModalHeaderComponent,
         OcInviteModalComponent,
         OcSidebarComponent,
         OcConfirmationModalComponent,
@@ -230,7 +230,7 @@ import {OcConfirmationModalComponent} from './oc-confirmation-modal/oc-confirmat
     entryComponents: [
         OcFormModalComponent,
         OcInviteModalComponent,
-        OcMainModalComponent,
+        OcModalHeaderComponent,
     ],
 
 })
