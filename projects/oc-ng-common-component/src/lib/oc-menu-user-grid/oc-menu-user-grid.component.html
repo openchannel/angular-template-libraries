@@ -110,7 +110,7 @@
     <div class="th-row cursor-pointer" (click)="sortAppsBy(column.field)">{{column.name}}
         <div [ngClass]="currentSortField !== column.field ? 'invisible' : ''" >
             <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon">
-            <svg-icon src="../../assets/img/select-down.svg" class="cursor-pointer" *ngIf="!sortIcon"></svg-icon>
+            <svg-icon src="assets/oc-ng-common-component/select-down.svg" class="cursor-pointer" *ngIf="!sortIcon"></svg-icon>
         </div>
     </div>
 </ng-template>

@@ -40,7 +40,7 @@ export class OcAppGalleryComponent implements OnInit {
   /**
    * Path to the custom icon near 'See All'
    */
-  @Input() routerIcon: string = '../../../../assets/img/arrow.svg';
+  @Input() routerIcon: string = 'assets/oc-ng-common-component/arrow.svg';
 
   constructor() {
   }
