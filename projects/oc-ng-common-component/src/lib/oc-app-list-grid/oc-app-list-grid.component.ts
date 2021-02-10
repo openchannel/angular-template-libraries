@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {BasicAppDetails} from 'oc-ng-common-service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FullAppData} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-app-list-grid',
@@ -8,18 +8,20 @@ import {BasicAppDetails} from 'oc-ng-common-service';
 })
 export class OcAppListGridComponent implements OnInit {
 
-  @Input() appList : BasicAppDetails[] = [];
+  @Input() appList: FullAppData[] = [];
 
-  @Input() noAppMessage ='';
-  
-  @Output() gotoDetails = new EventEmitter<any>();
+  @Input() noAppMessage = '';
+  @Input() defaultAppIcon = 'assets/oc-ng-common-component/standard-app-icon.svg';
 
-  constructor() { }
+  @Output() gotoDetails = new EventEmitter<FullAppData>();
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
-  viewDetails(app){
+  viewDetails(app) {
     this.gotoDetails.emit(app);
   }
 }

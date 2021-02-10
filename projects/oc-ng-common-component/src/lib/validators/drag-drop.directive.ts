@@ -1,14 +1,7 @@
-import {
-  Directive,
-  Output,
-  Input,
-  EventEmitter,
-  HostBinding,
-  HostListener
-} from '@angular/core';
+import {Directive, EventEmitter, HostBinding, HostListener, Output} from '@angular/core';
 
 @Directive({
-  selector: '[fileDragDrop]'
+  selector: '[ocFileDragDrop]',
 })
 export class DragDropDirective {
   @HostBinding('class.fileover') fileOver: boolean;
@@ -22,14 +15,16 @@ export class DragDropDirective {
   }
 
   // Dragleave listener
-  @HostListener('dragleave', ['$event']) public onDragLeave(evt) {
+  @HostListener('dragleave', ['$event'])
+  public onDragLeave(evt) {
     evt.preventDefault();
     evt.stopPropagation();
     this.fileOver = false;
   }
 
   // Drop listener
-  @HostListener('drop', ['$event']) public ondrop(evt) {
+  @HostListener('drop', ['$event'])
+  public ondrop(evt) {
     evt.preventDefault();
     evt.stopPropagation();
     this.fileOver = false;

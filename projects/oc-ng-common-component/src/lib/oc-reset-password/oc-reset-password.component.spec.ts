@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OcResetPasswordComponent } from './oc-reset-password.component';
+import {OcResetPasswordComponent} from './oc-reset-password.component';
 
 describe('OcResetPasswordComponent', () => {
   let component: OcResetPasswordComponent;
@@ -8,9 +8,9 @@ describe('OcResetPasswordComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcResetPasswordComponent ]
+      declarations: [OcResetPasswordComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

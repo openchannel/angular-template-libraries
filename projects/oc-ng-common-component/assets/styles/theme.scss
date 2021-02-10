@@ -1,10 +1,26 @@
-$body-color: #333333; //this is the text color
-$primary: #3A68FD;
-$secondary: #727272; 
+$light-blue: #e6f3fc;
+$body-color: #333333 !default; //this is the text color
+$primary: #537cfd !default;
+$secondary: #727272 !default;
 
-$danger: #ff6262;
-$info: #c9d5ea;
-$light: #f4f7fc;
+$focus-border: #a9befe !default;
+$danger: #ff6262 !default;
+$info: #c9d5ea !default;
+$light: #f4f7fc !default;
+$yellow: #ffc820 !default;
+$green-alert: #74b675 !default;
+$black: #000000 !default;
+// apps status color indicator
+$approved: #81cf7c !default;
+$draft: #dcdcdc !default;
+$pending: #69dbff !default;
+$suspended: #f8be1c !default;
+$rejected: #ff6262 !default;
+$review: #537cfd !default;
+
+$error-bg: #ffe0e0 !default;
+$error: #6e2c2c;
+
 $spacer: 1rem;
 $spacers: (
   0_5: (
@@ -34,9 +50,17 @@ $spacers: (
   )
 );
 
+@mixin root-prop($prop: null, $value: null) {
+  @if ($prop and $value) {
+    #{$prop}: $value;
+  }
+}
+
 /* Variable for Image cropper*/
 :root{
-  --cropper-outline-color: rgba(0, 0, 0, 0.5);
+  @include root-prop(--root-prop, rgba(0, 0, 0, 0.5));
 }
+
+
 
 @import "~bootstrap/scss/bootstrap-reboot";

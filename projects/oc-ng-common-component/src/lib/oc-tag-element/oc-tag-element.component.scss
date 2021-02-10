@@ -1,0 +1,24 @@
+@import "../../../assets/styles/theme.scss";
+
+.tag {
+  border-radius: 4px;
+}
+
+.tag-colors {
+  background-color: $light;
+  color: $body-color;
+}
+
+.tag-label {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.tag-close {
+  height: 16px;
+  width: 16px;
+}
+
+.fill-close-icon {
+  fill: $body-color;
+}

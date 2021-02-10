@@ -1,2 +1,9 @@
 dist
 node_modules/
+
+*.iml
+*.log
+documentation.json
+.idea
+
+coverage/

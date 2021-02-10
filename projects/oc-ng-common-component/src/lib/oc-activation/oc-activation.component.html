@@ -1,47 +1,32 @@
-
-<form novalidate #activationForm="ngForm">
+<form #activationForm="ngForm" novalidate>
     <div class="card oc-card-with-border">
-        <div class="card-body mb-2">
-            <!-- <a href="/"> -->
+        <div class="card-body">
             <div class="text-center">
-                <!-- <img class="img-fluid mb-4" src="{{companyLogoUrl}}" alt="logo" /> -->
-                <img class="img-fluid mb-4 company-logo"
-                    src="{{companyLogoUrl}}"
-                    alt="logo">
+                <img alt="logo"
+                     class="img-fluid mb-5 company-logo"
+                     [src]="companyLogoUrl">
             </div>
-            <!-- </a> -->
-            <div class="text-center">
+            <div class="text-center mb-5">
                 <h4>Activate Account</h4>
-                <oc-label [text]="getValue('Check your inbox for the activation code')" class="mb-3"></oc-label>
+                <oc-label text="Check your inbox for the activation code"></oc-label>
             </div>
             <div class="form-group">
-                <oc-label [text]="getValue('Email')" [for]="getValue('email')"></oc-label>
-                <oc-input emailValidator [(modelName)]="activationModel.email" name="email" #email=ngModel
-                [ngModel]="activationModel.email" ngDefaultControl required="true" [placeholder]="'Email'" (modelNameChange)="onchange(activationForm)" [id]="getValue('email')"></oc-input>
-                <oc-error [control]="email" [field]="'email'"> </oc-error>
+                <oc-label text="Activation Code"></oc-label>
+                <oc-input #code=ngModel [(ngModel)]="activationModel.code" placeholder="Activation Code"
+                          name="code" ngDefaultControl required="true"></oc-input>
+                <oc-error [control]="code" field="code"></oc-error>
             </div>
-            <div class="form-group">
-                <oc-label [text]="getValue('Password')" [for]="getValue('password')"></oc-label>
-                <oc-password [(modelName)]="activationModel.password" class="mb-2" name="password" #password=ngModel
-                [ngModel]="activationModel.password" ngDefaultControl required="true" [placeholder]="'Password'" (modelNameChange)="onchange(activationForm)" [id]="getValue('password')"></oc-password>
-                <oc-error [control]="password" [field]="'password'"> </oc-error>
-            </div>
-            <div class="form-group">
-                <oc-label [text]="getValue('Activation Code')" [for]="getValue('code')"></oc-label>
-                <oc-input [(modelName)]="activationModel.code" name="code" #code=ngModel aria-autocomplete="off" 
-                [ngModel]="activationModel.code" ngDefaultControl required="true" [placeholder]="'Activation Code'" [id]="getValue('code')"></oc-input>
-                <oc-error [control]="code" [field]="'code'"> </oc-error>
-            </div> 
-            <oc-button [text]="getValue('Activate')"
-                [type]="getValue('primary')" (click)="submitForm(activationForm)" class="btn-block mt-5 mb-5" [process]="process" [disabled]="process || !activationForm.valid">
+            <oc-button (click)="submitForm(activationForm)"
+                       [process]="process" text="Activate"
+                       type="primary" class="btn-block mt-5 mb-4">
             </oc-button>
             <div class="text-center mb-2">
-                <oc-label [text]="getValue('Didn’t get the activation code?')"></oc-label>
-                <a href={{activationUrl}} class="font-m font-med"> Resend it </a>
-            </div>    
+                <oc-label class="mb-0" text="Didn’t get the activation code?"></oc-label>
+                <a id="reactivation" class="font-m font-med" [routerLink]="resendActivationUrl"> Resend it </a>
+            </div>
             <div class="text-center">
-                <oc-label [text]="getValue('Dont have an account yet?')"></oc-label>
-                <a href={{signupUrl}} class="font-m font-med"> Sign Up </a>
+                <oc-label class="mb-0" text="Dont have an account yet?"></oc-label>
+                <a id="signup" class="font-m font-med" [routerLink]="signupUrl"> Sign Up </a>
             </div>
         </div>
     </div>

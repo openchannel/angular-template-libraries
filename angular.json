@@ -26,11 +26,11 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-builders/jest:run",
           "options": {
-            "main": "projects/oc-ng-common-component/src/test.ts",
+            "jestConfig": "projects/oc-ng-common-component/jest.config.js",
             "tsConfig": "projects/oc-ng-common-component/tsconfig.spec.json",
-            "karmaConfig": "projects/oc-ng-common-component/karma.conf.js"
+            "setupFile": "projects/oc-ng-common-component/src/test-setup.ts"
           }
         },
         "lint": {

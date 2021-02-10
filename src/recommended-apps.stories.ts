@@ -1,58 +1,114 @@
-import { storiesOf } from '@storybook/angular';
-import { withA11y } from '@storybook/addon-a11y';
-import { OcCommonLibModule, OcRecommendedAppsComponent } from 'projects/oc-ng-common-component/src/public-api';
-import { BasicAppDetails } from 'oc-ng-common-service';
-import { action } from '@storybook/addon-actions';
+import {moduleMetadata} from '@storybook/angular';
+import {
+  OcCommonLibModule,
+  OcNumberComponent,
+  OcRecommendedAppsComponent,
+} from 'projects/oc-ng-common-component/src/public-api';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterTestingModule} from '@angular/router/testing';
+import {StatElement} from 'oc-ng-common-service';
 
 const modules = {
-    imports: [OcCommonLibModule]
+  imports: [OcCommonLibModule, BrowserAnimationsModule, RouterTestingModule]
 };
 
-const app1 = new BasicAppDetails();
-app1.appCardClass="col-md-12";
-app1.appDescription="With this plugin you can communicate with your teammates any time";
-app1.appLogoUrl="https://drive.google.com/u/0/uc?id=19l7Znd-iPPYUhM6zaiQZ01rE2NpkDFyk&export=download";
-app1.appName="Plugin";
-app1.appPrice="Free";
-app1.rating=3.5;
-app1.reviewCount=12;
+const stat: StatElement = {
+  '90day': 10,
+  '30day': 20,
+  total: 20
+};
 
-const app2 = new BasicAppDetails();
-app2.appCardClass="col-md-12";
-app2.appDescription="Integrate directly with your account and make customer updates a breeze";
-app2.appLogoUrl="https://drive.google.com/u/0/uc?id=1vDDzbS--o_UIgXFE_LmMfVmSAKuprCyb&export=download";
-app2.appName="Application";
-app2.appPrice="$11.99";
-app2.rating=0;
-app2.reviewCount=0;
+const app = {
+  appId: '344gf-s3j-gi3423',
+  icon: '',
+  name: 'Test App',
+  model: [{
+    type: 'recurring',
+    price: 5,
+    trial: 1,
+    license: 'single',
+    modelId: '23235hfg4',
+    currency: 'EUR',
+    billingPeriod: 'monthly'
+  }],
+  rating: 4.2,
+  reviewCount: 20,
+  summary: 'Some test summary',
+  description: 'Some Description',
+  lastUpdated: new Date(),
+  version: 1.1,
+  safeName: ['test-app'],
+  developerId: '44555-3232gvdfdf',
+  submittedDate: new Date(),
+  created: new Date().getMonth() - 2,
+  status: {
+    value: '',
+    lastUpdated: 1.1,
+    modifiedBy: '',
+    reason: ''
+  },
+  statistics: {
+    views: stat,
+    downloads: stat,
+    developerSales: stat,
+    totalSales: stat,
+    ownerships: stat,
+    reviews: stat
+  },
+  isLive: true
+};
 
-const app3 = new BasicAppDetails();
-app3.appCardClass="col-md-12";
-app3.appDescription="Improve and extend your experience right from your own UI";
-app3.appLogoUrl="https://drive.google.com/u/0/uc?id=1KipwDw0K8xJC_StaAhsyDTEgcAoVHqDp&export=download";
-app3.appName="Integration";
-app3.appPrice="$4.99";
-app3.rating=4.9;
-app3.reviewCount=87;
+const app1 = {...app};
+app1.description = 'With this plugin you can communicate with your teammates any time';
+app1.summary = 'With this plugin you can communicate with your teammates any time';
+app1.icon = './assets/img/standard-app-icon.svg';
+app1.name = 'Plugin';
+app1.model[0].type = 'free';
+app1.rating = 3.5;
+app1.reviewCount = 12;
 
+const app2 = {...app};
+app2.description = app2.summary = 'Integrate directly with your account and make customer updates a breeze';
+app2.icon = './assets/img/standard-app-icon.svg';
+app2.name = 'Application';
+app2.model[0].price = 11.99;
+app2.rating = 0;
+app2.reviewCount = 0;
 
+const app3 = {...app};
+app3.description = app2.summary = 'Improve and extend your experience right from your own UI';
+app3.icon = './assets/img/standard-app-icon.svg';
+app3.name = 'Integration';
+app3.model[0].price = 4.99;
+app3.rating = 4.9;
+app3.reviewCount = 87;
 
-storiesOf('Recommended Apps', module)
-    .addDecorator(withA11y)
-    .add('Empty List', () => ({
-        component: OcRecommendedAppsComponent,
-        moduleMetadata: modules,
-        props:{
-            appList: [],
-            noAppMessage: "No App Found", 
-            recommendedAppTitle: "Recommended For You"
-           }
-    })).add('Recommended Apps With Data', () => ({
-        component: OcRecommendedAppsComponent,
-        moduleMetadata: modules,
-        props:{
-            appList: [app1,app2,app3],
-            noAppMessage: "No App Found",
-            recommendedAppTitle: "Recommended For You"
-        }
-    }));
+export default {
+  title: 'Recommended Apps',
+  component: OcRecommendedAppsComponent,
+  decorators: [
+    moduleMetadata(modules),
+  ]
+};
+
+const RecommendedAppsComponent = (args: OcNumberComponent) => ({
+  component: OcRecommendedAppsComponent,
+  moduleMetadata: modules,
+  props: args
+});
+
+export const EmptyList = RecommendedAppsComponent.bind({});
+
+EmptyList.args = {
+  appList: [],
+  noAppMessage: 'No App Found',
+  recommendedAppTitle: 'Recommended For You'
+};
+
+export const RecommendedAppsWithData = RecommendedAppsComponent.bind({});
+
+RecommendedAppsWithData.args = {
+  appList: [app1, app2, app3],
+  noAppMessage: 'No App Found',
+  recommendedAppTitle: 'Recommended For You'
+};

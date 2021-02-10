@@ -1,40 +1,61 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { OCReviewDetails } from 'oc-ng-common-service';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import {OCReviewDetails} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-review-list',
   templateUrl: './oc-review-list.component.html',
   styleUrls: ['./oc-review-list.component.scss']
 })
-export class OcReviewListComponent implements OnInit {
+export class OcReviewListComponent implements OnChanges {
 
-  @Input() reviewsList :OCReviewDetails[] = [];
+  baseReviewsList: OCReviewDetails[] = [];
 
   @Input() reviewListTitle = 'Most recent reviews';
 
   @Input() totalReview: number;
 
-  @Input() maxReviewDisplay=3;
+  @Input() maxReviewDisplay: number = 3;
 
-  @Input() canWriteReview=false;
-  
-  @Input() noReviewMessage='There is no review for this app.';
+  @Input() canWriteReview = false;
+
+  @Input() noReviewMessage = 'There is no review for this app.';
+
+  @Input()
+  set reviewsList(list: OCReviewDetails[]) {
+    if (list) {
+      this.baseReviewsList = list;
+      this.displayedReviews = [...list];
+    }
+    if (this.baseReviewsList && this.baseReviewsList.length > 0) {
+      this.toggleDisplay();
+    }
+  }
 
   @Output() writeAReview = new EventEmitter<any>();
 
-  constructor() { }
+  displayedReviews: OCReviewDetails[] = [];
 
-  ngOnInit(): void {
-    this.setReviewsDisplayList();
+  constructor() {
   }
 
-  writeReview(){
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.maxReviewDisplay && this.maxReviewDisplay) {
+      if (changes.maxReviewDisplay.previousValue !== changes.maxReviewDisplay.currentValue) {
+        this.displayedReviews = [...this.baseReviewsList];
+        this.toggleDisplay();
+      }
+    }
+  }
+
+  writeReview() {
     this.writeAReview.emit();
   }
 
-  setReviewsDisplayList(){
-    if(this.reviewsList && this.reviewsList.length> this.maxReviewDisplay){
-      this.reviewsList.splice(this.maxReviewDisplay);
+  toggleDisplay(): void {
+    if (this.displayedReviews.length === this.maxReviewDisplay) {
+      this.displayedReviews = [...this.baseReviewsList];
+    } else {
+      this.displayedReviews.splice(this.maxReviewDisplay);
     }
   }
 }

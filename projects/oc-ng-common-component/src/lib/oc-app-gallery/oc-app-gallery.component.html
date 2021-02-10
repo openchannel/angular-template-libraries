@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-9 col-md">
+        <h4>{{appGalleryTitle}}</h4>
+        <span id="description" class="text-secondary font-m">{{appGalleryDescription}}</span>
+    </div>
+    <div *ngIf="seeAllUrl && seeAllUrl.length > 0" class="col-3 col-md-auto">
+        <a  [routerLink]="[seeAllUrl]" [queryParams]="seeAllLinkQuery ? seeAllLinkQuery : ''" class="cursor-pointer" id="seeAllLink">
+            <span class="text-primary font-m font-med pr-1">See All</span>
+            <svg-icon [src]="routerIcon" svgClass="svg-primary"
+                      [svgStyle]="{'height': '10px', 'width': 'auto'}"></svg-icon>
+        </a>
+    </div>
+</div>
+<div *ngIf="appsArr && appsArr.length > 0; else emptyData" class="row pt-5">
+    <div  *ngFor="let app of appsArr;"class="card-margins col-md-6 p-2">
+        <oc-app-card [app]="app"
+                     (clickByAppCard)="clickByAppCard.emit($event)">
+        </oc-app-card>
+    </div>
+</div>
+<ng-template #emptyData>
+    <div class="row mx-0 mt-5">
+        <h5 class="col-md-12">{{noAppMessage}}</h5>
+    </div>
+</ng-template>

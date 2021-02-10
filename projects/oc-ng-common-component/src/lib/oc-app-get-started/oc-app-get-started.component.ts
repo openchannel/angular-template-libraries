@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'oc-app-get-started',
@@ -7,24 +8,29 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 })
 export class OcAppGetStartedComponent implements OnInit {
 
-  @Input() getStartedImage='';
+  @Input() getStartedImage: string = 'assets/oc-ng-common-component/get-started.svg';
 
-  @Input() getStartedHeader='';
+  @Input() getStartedHeader: string = 'List Your App in our App Store';
 
-  @Input() getStartedDescription='';
+  @Input() getStartedDescription: string = '';
 
-  @Input() getStartedButtonText='';
+  @Input() getStartedButtonText: string = '';
 
   @Output() getStarted = new EventEmitter<any>();
 
-  @Input() getStartedType :'home' | 'search' = 'home';
-  
-  constructor() { }
+  @Input() getStartedType: 'home' | 'search' = 'home';
+
+  constructor(private sanitizer: DomSanitizer) {
+  }
 
   ngOnInit(): void {
   }
 
-  listAppGetStarted(){
+  listAppGetStarted() {
     this.getStarted.emit();
+  }
+
+  sanitizeImage(): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.getStartedImage);
   }
 }

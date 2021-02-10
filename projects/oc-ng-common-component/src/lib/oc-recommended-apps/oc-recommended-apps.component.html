@@ -1,17 +1,12 @@
-<div class="row">
-    <div class="col-md">
-        <h1>{{recommendedAppTitle}}</h1>
-    </div>
-</div>
-<div class="row mx-0 mt-5" *ngIf="appList && appList.length > 0; else emptyData">
-    <div *ngFor="let app of appList;">
-        <oc-app-card [app]="app"></oc-app-card>
+<h1>{{recommendedAppTitle}}</h1>
+<div *ngIf="appList && appList.length > 0; else emptyData"
+     class="d-flex mx-0 mt-5 w-100 flex-wrap justify-content-center justify-content-lg-start">
+    <div class="recommended-card px-2 py-2 card-margin" *ngFor="let app of appList;">
+        <oc-app-card [app]="app" (clickByAppCard)="this.clickByAppCard.emit($event)"></oc-app-card>
     </div>
 </div>
 <ng-template #emptyData>
     <div class="row mx-0 mt-5">
-        <span class="col-md-12">
-            <h5>{{noAppMessage}}</h5>
-        </span>
+        <h5 class="col-md-12">{{noAppMessage}}</h5>
     </div>
 </ng-template>

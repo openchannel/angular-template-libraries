@@ -1,99 +1,144 @@
-import { storiesOf } from '@storybook/angular';
-import { withA11y } from '@storybook/addon-a11y';
-import { OcCommonLibModule, OcAppGalaryComponent } from 'projects/oc-ng-common-component/src/public-api';
-import { BasicAppDetails } from 'oc-ng-common-service';
+import { moduleMetadata } from '@storybook/angular';
+import { OcAppGalleryComponent, OcCommonLibModule } from 'projects/oc-ng-common-component/src/public-api';
+import { FullAppData } from 'oc-ng-common-service';
+import { StatElement } from 'oc-ng-common-service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const modules = {
-    imports: [OcCommonLibModule]
+  imports: [OcCommonLibModule, BrowserAnimationsModule, RouterTestingModule]
 };
 
-const app1 = new BasicAppDetails();
-app1.appCardClass="col-md-12";
-app1.appDescription="With this plugin you can communicate with your teammates any time";
-app1.appLogoUrl="https://drive.google.com/u/0/uc?id=19l7Znd-iPPYUhM6zaiQZ01rE2NpkDFyk&export=download";
-app1.appName="Plugin";
-app1.appPrice="Free";
-app1.rating=3.5;
-app1.reviewCount=12;
+const stat: StatElement = {
+  '90day': 10,
+  '30day': 20,
+  total: 20
+};
 
-const app2 = new BasicAppDetails();
-app2.appCardClass="col-md-12";
-app2.appDescription="Integrate directly with your account and make customer updates a breeze";
-app2.appLogoUrl="https://drive.google.com/u/0/uc?id=1vDDzbS--o_UIgXFE_LmMfVmSAKuprCyb&export=download";
-app2.appName="Application";
-app2.appPrice="$11.99";
-app2.rating=0;
-app2.reviewCount=0;
+const app: FullAppData = {
+  appId: '344gfs3jfgi3423',
+  icon: '',
+  name: 'Test App',
+  model: [{
+    type: 'recurring',
+    price: 5,
+    trial: 1,
+    license: 'single',
+    modelId: '23235hfg4',
+    currency: 'EUR',
+    billingPeriod: 'monthly'
+  }],
+  rating: 4.2,
+  reviewCount: 20,
+  summary: 'Some test summary',
+  lastUpdated: new Date(),
+  version: 1.1,
+  safeName: ['test-app'],
+  developerId: '44555-3232gvdfdf',
+  submittedDate: new Date(),
+  created: new Date().getMonth() - 2,
+  status: {
+    value: 'approved',
+    lastUpdated: 1.1,
+    modifiedBy: '',
+    reason: ''
+  },
+  statistics: {
+    views: stat,
+    downloads: stat,
+    developerSales: stat,
+    totalSales: stat,
+    ownerships: stat,
+    reviews: stat
+  },
+  isLive: true
+};
 
-const app3 = new BasicAppDetails();
-app3.appCardClass="col-md-12";
-app3.appDescription="With this plugin you can communicate with your teammates any time";
-app3.appLogoUrl="https://drive.google.com/u/0/uc?id=1fWkPPXp3tmkYRBy-GtCm_9PkP7fmConE&export=download";
-app3.appName="Plugin";
-app3.appPrice="Free";
-app3.rating=3.5;
-app3.reviewCount=12;
+const app1 = {...app};
+const app2 = {...app};
+app2.description = 'Integrate directly with your account and make customer updates a breeze';
+app2.logo = './assets/img/get-started.svg';
+app2.name = 'Application';
+app2.model[0].price = 11.99;
+app2.rating = 0;
+app2.reviewCount = 0;
 
-const app4 = new BasicAppDetails();
-app4.appCardClass="col-md-12";
-app4.appDescription="Improve and extend your experience right from your own UI";
-app4.appLogoUrl="https://drive.google.com/u/0/uc?id=1KipwDw0K8xJC_StaAhsyDTEgcAoVHqDp&export=download";
-app4.appName="Integration";
-app4.appPrice="$4.99";
-app4.rating=4.9;
-app4.reviewCount=87;
+const app3 = {...app};
+app3.description = 'With this plugin you can communicate with your teammates any time';
+app3.logo = './assets/img/get-started.svg';
+app3.name = 'Plugin';
+app3.model[0].price = 0;
+app3.model[0].type = 'free';
+app3.rating = 3.5;
+app3.reviewCount = 12;
 
+const app4 = {...app};
+app4.description = 'Improve and extend your experience right from your own UI';
+app4.logo = './assets/img/get-started.svg';
+app4.name = 'Integration';
+app4.model[0].price = 4.99;
+app4.rating = 4.9;
+app4.reviewCount = 87;
 
+export default {
+  title: 'App Gallery',
+  component: OcAppGalleryComponent,
+  decorators: [
+    moduleMetadata(modules),
+  ]
+};
 
-storiesOf('App Galary', module)
-    .addDecorator(withA11y)
-    .add('Recently Added Empty', () => ({
-        component: OcAppGalaryComponent,
-        moduleMetadata: modules,
-        props:{
-            appsArr: [],
-            noAppMessage: "No App Found",
-            appGalaryTitle:'Recently Added',
-            appGalaryDescription:'The latest apps that help you team work and build faster'
-        }
-    })).add('Recently Added Some', () => ({
-        component: OcAppGalaryComponent,
-        moduleMetadata: modules,
-        props:{
-            appsArr: [app1,app2,app3],
-            noAppMessage: "No App Found",
-            seeAllUrl:'',
-            appGalaryTitle:'Recently Added',
-            appGalaryDescription:'The latest apps that help you team work and build faster'
-        }
-    })).add('Recently Added Max', () => ({
-        component: OcAppGalaryComponent,
-        moduleMetadata: modules,
-        props:{
-            appsArr: [app1,app2,app3, app4, app1, app2],
-            noAppMessage: "No App Found",
-            seeAllUrl:'https://google.com',
-            appGalaryTitle:'Recently Added',
-            appGalaryDescription:'The latest apps that help you team work and build faster'
-        }
-    })).add('Most Popular', () => ({
-        component: OcAppGalaryComponent,
-        moduleMetadata: modules,
-        props:{
-            appsArr: [app1,app2,app3, app4, app1, app2],
-            noAppMessage: "No App Found",
-            seeAllUrl:'https://google.com',
-            appGalaryTitle:'Most Popular',
-            appGalaryDescription:'The most used apps that help you and your team get more done'
-        }
-    })).add('Apps For Analytics', () => ({
-        component: OcAppGalaryComponent,
-        moduleMetadata: modules,
-        props:{
-            appsArr: [app1,app2,app3, app4, app1, app2],
-            noAppMessage: "No App Found",
-            seeAllUrl:'https://google.com',
-            appGalaryTitle:'Apps for Analytics',
-            appGalaryDescription:'Get insights and analytics to make the better decisions'
-        }
-    }));
+const AppGalleryComponent = (args: OcAppGalleryComponent) => ({
+  component: OcAppGalleryComponent,
+  moduleMetadata: modules,
+  props: args
+});
+
+export const RecentlyAddedEmpty = AppGalleryComponent.bind({});
+
+RecentlyAddedEmpty.args = {
+  noAppMessage: 'No App Found',
+  appGalleryTitle: 'Recently Added',
+  appGalleryDescription: 'The latest apps that help you team work and build faster',
+  appsArr: []
+};
+
+export const RecentlyAddedSome = AppGalleryComponent.bind({});
+
+RecentlyAddedSome.args = {
+  noAppMessage: 'No App Found',
+  appGalleryTitle: 'Recently Added',
+  appGalleryDescription: 'The latest apps that help you team work and build faster',
+  appsArr: [app1, app2, app3],
+  seeAllUrl: ''
+};
+
+export const RecentlyAddedMax = AppGalleryComponent.bind({});
+
+RecentlyAddedMax.args = {
+  noAppMessage: 'No App Found',
+  appGalleryTitle: 'Recently Added',
+  appGalleryDescription: 'The latest apps that help you team work and build faster',
+  appsArr: [app1, app2, app3, app4],
+  seeAllUrl: ''
+};
+
+export const MostPopular = AppGalleryComponent.bind({});
+
+MostPopular.args = {
+  noAppMessage: 'No App Found',
+  appGalleryTitle: 'Most Popular',
+  appGalleryDescription: 'The most used apps that help you and your team get more done',
+  appsArr: [app1, app2, app3, app4, app1, app2],
+  seeAllUrl: ''
+};
+
+export const AppsForAnalytics = AppGalleryComponent.bind({});
+
+AppsForAnalytics.args = {
+  noAppMessage: 'No App Found',
+  appGalleryTitle: 'Apps for Analytics',
+  appGalleryDescription: 'Get insights and analytics to make the better decisions',
+  appsArr: [app1, app2, app3, app4, app1, app2],
+  seeAllUrl: ''
+};

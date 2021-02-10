@@ -1,1 +1,3 @@
-<label [for]="for" class="{{class}}">{{text}}<span class="required" *ngIf="required">*</span> </label>
+<label [ngClass]="class">{{text}}<span *ngIf="required" class="required">*</span>
+</label>
+

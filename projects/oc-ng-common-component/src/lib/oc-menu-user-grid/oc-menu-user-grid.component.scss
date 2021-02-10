@@ -1,0 +1,169 @@
+@import "../../../assets/styles/theme.scss";
+
+.dropup, .dropright, .dropdown, .dropleft {
+  position: initial;
+}
+
+// Dropdown menu style
+.dropdown-menu {
+  padding: 0;
+  min-width: 136px;
+  border: 1px solid #c9d5ea;
+  top: 70px;
+  left: 76px;
+  transform: translate(0px, 44px);
+
+  .dropdown-item {
+    font-size: 14px;
+    padding: 14px 42px;
+    border-bottom: 1px solid #c9d5ea;
+  }
+
+  .dropdown-item:hover, .dropdown-item:focus {
+    background-color: rgba(201, 213, 234, 0.1);
+    color: #537cfd;
+    outline: none;
+    box-shadow: 0 1px 0 #c9d5ea;
+  }
+
+  .dropdown-item:active {
+    color: $primary;
+    box-shadow: 0 1px 0 #c9d5ea;
+  }
+}
+
+.table {
+  border: 1px solid #c9d5ea;
+  border-radius: 4px;
+  vertical-align: middle;
+  background-color: white;
+  border-spacing: 0;
+  border-collapse: inherit;
+  thead {
+    th {
+      align-items: center;
+      border-bottom: 1px solid #c9d5ea;
+      border-top: 1px solid #c9d5ea;
+      padding: 1.5rem 5px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .th-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-size: 14px;
+
+      :first-child {
+        margin-left: 0.5rem;
+      }
+    }
+
+    th.name {
+      max-width: 15%;
+      padding-left: 16px;
+    }
+
+    th.email {
+      max-width: 15%;
+    }
+
+    th.data {
+      max-width: 15%;
+    }
+
+    th.role {
+      max-width: 11.3%;
+    }
+
+    th.status {
+      max-width: 11.3%;
+    }
+
+    th.action {
+      max-width: 7%;
+      padding-right: 16px;
+    }
+  }
+
+  tr:first-child {
+    th,
+    td {
+      border-top: none;
+    }
+  }
+
+  td {
+    padding: 1rem 0;
+    vertical-align: middle;
+    border-top: 1px solid $gray-300;
+  }
+
+  td.col-blank {
+    width: 5%;
+    border-top: none;
+  }
+
+  .td-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 10px 0;
+    &:nth-child(1) {
+      padding-left: 16px;
+    }
+    span {
+      font-size: 14px;
+    }
+  }
+
+  .action-menu {
+    padding-right: 16px;
+  }
+
+  .c-dark {
+    color: $body-color;
+  }
+
+  .c-blue {
+    color: $primary;
+  }
+
+  .c-gray {
+    color: $secondary;
+  }
+
+  .icon-dots {
+    padding: 19px;
+    border: 1px solid $info;
+    border-radius: 4px;
+  }
+
+  .icon-down {
+    padding-left: 8px;
+  }
+
+  .last-grid-row {
+    border-top: 1px solid #c9d5ea;
+  }
+}
+
+.profile {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  margin: 0 12px 0 0;
+  padding: 8px 0;
+  text-align: center;
+  border-radius: 20px;
+  background-image: linear-gradient(to bottom, #eeebff, #f8f7ff);
+}
+
+.highlight-user {
+  background-color: rgba($light, .5);
+}
+
+.icon-recolor {
+  fill: $body-color;
+}

@@ -1,14 +1,14 @@
-<div *ngIf="type === 'single-star'" class="d-inline">
-    <img src="https://drive.google.com/u/0/uc?id=1Jj7A61PoiIzuVXII-eI5dmO50HsDa1PJ&export=download" alt="rating">
-    <span>{{rating}} ({{reviewCount}})</span>
+<div *ngIf="type === 'single-star'" class="d-flex align-items-center">
+    <svg-icon svgClass="rating-star" src="assets/oc-ng-common-component/star.svg"></svg-icon>
+    <span class="{{labelClass}} ml-1">{{rating}} ({{reviewCount}}{{label ? ' ' + label : ''}})</span>
 </div>
 
 <div *ngIf="type === 'multi-star'">
     <ng-template #t let-fill="fill">
-        <span class="star" [class.full]="fill === 100">
-            <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+        <span [class.full]="fill === 100" class="star">
+            <span [style.width.%]="fill" class="half">&#9733;</span>&#9733;
         </span>
     </ng-template>
 
-    <ngb-rating [(rate)]="rating" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+    <ngb-rating [(rate)]="rating" [max]="5" [readonly]="true" [starTemplate]="t"></ngb-rating>
 </div>

@@ -1,2 +1,13 @@
-<input type="number" class="form-control" [(ngModel)]="modelName" (ngModelChange)="changeModelVal()"
-    [placeholder]="placeholder" [disabled]="disabled" class="form-control" (blur)="onblur()">
+<input
+        (focus)="onFocus()"
+        (paste)="onPaste($event)"
+        (input)="changeModelVal()"
+        [(ngModel)]="inputNumber"
+        [ngModelOptions]="{standalone: true}"
+        [disabled]="disabled"
+        placeholder="{{placeholder}}"
+        [ngStyle]="customStyle"
+        class="form-control {{customClass}}"
+        type="number"
+        ocOnlyNumber
+        inputmode="numeric">

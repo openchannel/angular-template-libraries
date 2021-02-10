@@ -1,13 +1,13 @@
-<select *ngIf="!stringVal" required class="form-control select-control selectpicker" name="delServiceOption"
-    placeholder="Please select an application" (blur)="onblur()" [(ngModel)]="value" [disabled]="disabled"
-    (ngModelChange)="onSelectionChange($event)" [id]="id">
-    <option [ngValue]="undefined" selected>{{defaultBlankValue}}</option>
-    <option *ngFor="let val of selectValArr;" [value]="val.value">{{val.key}}</option>
-</select>
+<div ngbDropdown #myDrop="ngbDropdown">
+    <button class="btn btn-secondary w-100 d-flex justify-content-between align-items-center"
+            ngbDropdownToggle [disabled]="disabled"
+            (blur)="onblur()">
+        <div class="text-dark select-text">{{ labelField ? selectedValue[labelField] : selectedValue }}</div>
+    </button>
 
-<select *ngIf="stringVal" required class="form-control select-control selectpicker" name="delServiceOption"
-    placeholder="Please select an application" (blur)="onblur()" [(ngModel)]="value" [disabled]="disabled"
-    (ngModelChange)="onSelectionChange($event)" [id]="id">
-    <option [ngValue]=null selected>{{defaultBlankValue}}</option>
-    <option *ngFor="let val of selectValArr;" [value]="val">{{val}}</option>
-</select> 
+    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button ngbDropdownItem class="p-2 border-info border-bottom select-text"
+                (click)="onSelectionChange(val)"
+                *ngFor="let val of selectValArr">{{ labelField ? val[labelField] : val }}</button>
+    </div>
+</div>

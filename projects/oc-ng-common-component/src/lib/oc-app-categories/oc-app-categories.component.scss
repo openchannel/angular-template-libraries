@@ -1,17 +1,17 @@
 @import "../../../assets/styles/theme.scss";
+
 .category-card {
-  background-image: url("https://drive.google.com/u/0/uc?id=1UMmg66jwVemAqyUA17TlXWDe1K3Pmux8&export=download");
-  width: 350px;
-  height: 192px;
+  width: 160px;
+  height: 120px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 53px;
+  padding-top: 28px;
   position: relative;
   text-align: center;
   color: $primary;
-  img{
-    max-height: 52px;
+  @include media-breakpoint-down(sm) {
+    width: 100%;
   }
 }
 
@@ -20,7 +20,41 @@
   top: 60%;
   left: 50%;
   color: $primary;
-  font-family: "Rubik-Medium";
+  font-family: "Rubik-Medium", serif;
   margin-top: 16px;
   transform: translate(-50%, -50%);
+}
+
+.carousel {
+  &-nav {
+    position: absolute;
+    top: calc(50% - 10px);
+    z-index: 2;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  &-right {
+    right: 0;
+  }
+  &-left {
+    left: 0;
+  }
+}
+
+.logo-container {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto;
+}
+
+.long-card {
+  width: 90%;
+}
+
+.icon-recolor {
+  fill: $primary;
+}
+
+svg {
+  vertical-align: top;
 }

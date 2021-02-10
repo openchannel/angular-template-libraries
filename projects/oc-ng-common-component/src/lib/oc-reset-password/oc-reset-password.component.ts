@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { SellerResetPassword } from 'oc-ng-common-service'
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {UserResetPassword} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-reset-password',
@@ -7,37 +7,35 @@ import { SellerResetPassword } from 'oc-ng-common-service'
   styleUrls: ['./oc-reset-password.component.scss']
 })
 export class OcResetPasswordComponent implements OnInit {
-  constructor() { }
 
-  @Input() resetUrl;
   @Input() companyLogoUrl;
   @Input() process;
-  @Input() resetModel = new SellerResetPassword();
-
+  @Input() loginUrl;
+  @Input() signupUrl;
+  @Input() resetModel = new UserResetPassword();
   @Output() submit = new EventEmitter<any>();
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
-  
-  getValue(label: string) {
-    return label;
-  }
-
   submitForm(form) {
-    if (!form.valid) {
+    if (!form.valid || this.process) {
       form.control.markAllAsTouched();
       this.submit.emit(false);
-      return false;
+    } else {
+      this.submit.emit(true);
     }
-    this.submit.emit(true);  
-    return false;    
   }
-  onchange(form){
-    if(form.form.controls.email.errors && form.form.controls.email.errors.serverErrorValidator){
+
+  onchange(form) {
+    if (form.form.controls.email.errors && form.form.controls.email.errors.serverErrorValidator) {
       form.form.controls.email.setErrors(null);
     }
-    if(form.form.controls.newPassword.errors && form.form.controls.newPassword.errors.serverErrorValidator){
+    if (form.form.controls.newPassword.errors && form.form.controls.newPassword.errors.serverErrorValidator) {
       form.form.controls.newPassword.setErrors(null);
     }
-  }}
+  }
+}

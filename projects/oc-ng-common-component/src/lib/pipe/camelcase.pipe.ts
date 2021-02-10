@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'camelcase'
@@ -9,7 +9,8 @@ export class CamelcasePipe implements PipeTransform {
     if (!input) {
       return '';
     } else {
-      return input.split(/(?=[A-Z])/).join(' ');
+      const spacedStr = input.split(/(?=[A-Z])/).join(' ');
+      return spacedStr.substring(0, 1).toUpperCase() + spacedStr.substring(1, spacedStr.length);
     }
   }
 
