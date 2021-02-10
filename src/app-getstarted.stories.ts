@@ -28,7 +28,6 @@ const GetStartedComponent = (args: OcAppGetStartedComponent) => ({
 export const DefaultHomPage = GetStartedComponent.bind({});
 
 DefaultHomPage.args = {
-  getStartedImage: 'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png',
   getStartedHeader: 'List Your App in our App Store',
   getStartedDescription: 'Register as an app developer and submit your app easily with our App Store Developer Portal',
   getStartedButtonText: 'Get Started As An App Developer',

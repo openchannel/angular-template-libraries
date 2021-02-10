@@ -1,0 +1,116 @@
+<table class="table"
+       [infiniteScrollThrottle]="50"
+       (scrolled)="onScrollDown()"
+       infiniteScroll>
+    <thead>
+        <tr>
+            <th class="name">
+                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Name', field: 'name'}}"
+                              [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+            </th>
+            <th class="email">
+                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Email', field: 'email'}}"
+                              [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+            </th>
+            <th class="data">
+                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Date Added', field: 'date'}}"
+                              [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+            </th>
+            <th class="role">
+                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Role', field: 'role'}}"
+                              [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+            </th>
+            <th class="status">
+                <div class="th-row">Status</div>
+            </th>
+            <th class="action"></th>
+        </tr>
+    </thead>
+    <tbody>
+    <ng-template [ngForOf]="properties.data.list" let-user let-i="index" ngFor>
+        <tr [class.highlight-user]="user.inviteStatus === 'INVITED'">
+            <!-- Name -->
+            <td>
+                <div class="td-row">
+                    <div class="profile text-primary">{{initials(user)}}</div>
+                    <span class="c-dark font-weight-bold">{{user.name}}</span>
+                </div>
+            </td>
+            <!-- Email -->
+            <td>
+                <div class="td-row">
+                    <span class="c-gray">{{user.email}}</span>
+                </div>
+            </td>
+            <!-- Date Added -->
+            <td>
+                <div class="td-row">
+                    <span class="c-gray">{{user.created | date:'M/d/yyyy'}}</span>
+                </div>
+            </td>
+            <!-- Role -->
+            <td>
+                <div class="td-row">
+                    <span class="c-blue text-capitalize font-weight-bold">{{user.type | lowercase}}</span>
+                </div>
+            </td>
+            <!-- Status-->
+            <td>
+                <div class="td-row"
+                     [ngClass]="user.inviteStatus === 'ACTIVE' ? 'c-dark' : 'c-gray'">
+                    <span class="text-capitalize font-weight-bold"
+                          [class.font-weight-bold]="user.inviteStatus === 'ACTIVE'">
+                        {{user.inviteStatus | lowercase}}
+                    </span>
+                </div>
+            </td>
+            <!-- Options -->
+            <td class="action-menu">
+                <ng-container [ngTemplateOutletContext]="{ $implicit: {data: user, child: false, index: i} }"
+                              [ngTemplateOutlet]="appMenuTemplate">
+                </ng-container>
+            </td>
+        </tr>
+    </ng-template>
+    <tr *ngIf="!properties.data.list || properties.data.list.length == 0">
+        <td class="text-center last-grid-row" colspan="8">
+            <span>No Users Found</span>
+        </td>
+    </tr>
+    <tr *ngIf="properties.data.list.length > 0">
+        <td class="text-center last-grid-row pb-5" colspan="8">
+            <span></span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<ng-template #appMenuTemplate let-user>
+    <div class="text-right ellipsis cursor-pointer">
+        <div ngbDropdown placement="bottom-right top-right">
+            <img [src]="menuUrl" alt="more-icon" class="icon-dots" ngbDropdownToggle>
+            <div ngbDropdownMenu>
+                <ng-container *ngFor="let menuAction of properties.options">
+                    <button (click)="action(menuAction, user.data)"
+                            ngbDropdownItem
+                            class="menu" [ngClass]="'menu-' + menuAction | lowercase">
+                        {{menuAction | titlecase}}
+                    </button>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #sortIconTemplate let-column>
+    <div class="th-row cursor-pointer" (click)="sortAppsBy(column.field)">{{column.name}}
+        <div [ngClass]="currentSortField !== column.field ? 'invisible' : ''" >
+            <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon">
+            <svg-icon src="assets/oc-ng-common-component/select-down.svg" class="cursor-pointer" *ngIf="!sortIcon"></svg-icon>
+        </div>
+    </div>
+</ng-template>

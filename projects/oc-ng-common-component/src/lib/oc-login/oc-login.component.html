@@ -2,48 +2,57 @@
     <div class="card oc-card-with-border">
         <div class="card-body">
             <div class="text-center">
-                <!-- <img class="img-fluid mb-4" src="{{companyLogoUrl}}" alt="logo" /> -->
                 <img alt="logo"
-                     class="img-fluid mb-4 company-logo"
-                     src="{{companyLogoUrl}}">
+                     class="img-fluid company-logo"
+                     [src]="companyLogoUrl">
             </div>
             <div class="text-center">
                 <h4>Log In</h4>
-                <oc-label [text]="getValue('Log in into your account')" class="mb-3"></oc-label>
+                <oc-label text="Log in into your account" class="invitation"></oc-label>
             </div>
-            <div class="form-group">
-                <oc-label [text]="getValue('Email')"></oc-label>
-                <oc-input #email=ngModel (modelNameChange)="onchange(loginForm)" [(modelName)]="loginModel.email" [autocomplete]="'off'"
-                          [ngModel]="loginModel.email" [placeholder]="'Email'" emailValidator
-                          name="email" ngDefaultControl
+            <div class="error-container font-s" *ngIf="hasServerError(email, incorrectEmailErrorCode)">
+                The email and password you have provided is incorrect.
+            </div>
+            <div class="error-container font-s" *ngIf="hasServerError(email, notVerifiedEmailErrorCode)">
+                This account has not been activated yet. <br>
+                Please check your inbox for an activation email or <a (click)="onActivationLinkClick(email)" class="font-s font-med resend-link">resend the activation email</a>.
+            </div>
+            <div class="form-group" [ngClass]="{'mt-5': !isServerErrorExist()}">
+                <oc-label text="Email"></oc-label>
+                <oc-input #email=ngModel (ngModelChange)="onchange()" [(ngModel)]="loginModel.email"
+                          placeholder="Email" ocEmailValidator name="email" ngDefaultControl
                           required="true"></oc-input>
-                <oc-error [control]="email" [field]="'email'"></oc-error>
+                <oc-error [control]="email" field="email"></oc-error>
             </div>
             <div class="form-group mb-2">
-                <oc-label [text]="getValue('Password')"></oc-label>
-                <oc-password #password=ngModel (modelNameChange)="onchange(loginForm)" [(modelName)]="loginModel.password" [autocomplete]="'off'"
-                             [ngModel]="loginModel.password" [placeholder]="'Password'" class="mb-2" name="password"
-                             ngDefaultControl
-                             required="true" whiteSpaceValidator></oc-password>
-                <oc-error [control]="password" [field]="'password'"></oc-error>
+                <oc-label text="Password"></oc-label>
+                <oc-password #password=ngModel (ngModelChange)="onchange()" [(ngModel)]="loginModel.password"
+                             placeholder="Password" class="mb-2" name="password" ngDefaultControl
+                             required="true"></oc-password>
+                <oc-error [control]="password" field="password"></oc-error>
             </div>
-            <div class="form-group row">
-                <div class="col-md">
-                    <oc-checkbox [(isChecked)]="loginModel.isChecked"></oc-checkbox>
-                    <oc-label [text]="getValue(' Remember Me ')" class="label-s"></oc-label>
+            <div class="forgot__block row">
+                <div class="remember col-md">
+                    <label>
+                        <input class="remember__checkbox" type="checkbox"
+                               [(ngModel)]="loginModel.isChecked"
+                               [ngModelOptions]="{standalone: true}"/>
+                    </label>
+                    <span class="remember__label">Remember Me</span>
                 </div>
-                <div class="col-md-auto">
-                    <a class="font-s font-med" href={{forgotPwdUrl}}> Forgot password? </a>
+                <div class="col-md-auto forgot" [hidden]="!forgotPwdUrl">
+                    <a class="font-s font-med" [routerLink]="forgotPwdUrl"> Forgot password? </a>
                 </div>
             </div>
             <oc-button (click)="submitForm(loginForm)"
-                       [disabled]="process || !loginForm.valid" [process]="process" [text]="getValue('Log In')"
-                       [type]="getValue('primary')"
-                       class="btn-block mt-4 mb-3">
+                       [process]="process"
+                       [text]="loginButtonText"
+                       type="primary"
+                       class="btn-block login-btn mt-4 mb-3">
             </oc-button>
-            <div class="text-center">
-                <oc-label [text]="getValue('Dont have an account yet?')"></oc-label>
-                <a class="font-m font-med" href={{signupUrl}}> Sign Up</a>
+            <div class="text-center font-m">
+                Dont have an account yet?
+                <a *ngIf="signupUrl" class="font-m font-med" [routerLink]="signupUrl">Sign Up</a>
             </div>
         </div>
     </div>

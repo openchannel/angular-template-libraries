@@ -1,22 +1,28 @@
 @import "../../../assets/styles/theme.scss";
 
+.rating-star {
+  height: 16px;
+  vertical-align: unset;
+  width: 16px;
+}
+
 span {
   color: $secondary;
 }
 
 .star {
   position: relative;
-  color: rgba(114, 114, 114, 0.4);
+  color: $secondary;
 }
 
 .full {
-  color: #ffc820;
+  color: $yellow;
 }
 
 .half {
   position: absolute;
   overflow: hidden;
-  color: #ffc820;
+  color: $yellow;
   bottom: -2px;
   left: 0px;
 }

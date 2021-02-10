@@ -1,8 +1,8 @@
 import {storiesOf} from '@storybook/angular';
 import {
-  OcAppListGridComponent,
   OcCommonLibModule,
-  OcLabelComponent
+  OcLabelComponent,
+  OcTooltipLabelComponent
 } from 'projects/oc-ng-common-component/src/public-api';
 import {withA11y} from '@storybook/addon-a11y';
 
@@ -16,9 +16,17 @@ storiesOf('Label', module)
   .addParameters({
     component: OcLabelComponent,
   })
-  .add('Label', () => ({
+  .add('Simple Label', () => ({
     component: OcLabelComponent,
     props: {
-      text: "Name"
-    }
-  }));
+      text: 'Name'
+    },
+    moduleMetadata: modules
+  })).add('Tooltip Label', () => ({
+  component: OcTooltipLabelComponent,
+  props: {
+    text: 'Label',
+    description: 'It\'s tooltip text'
+  },
+  moduleMetadata: modules
+}));

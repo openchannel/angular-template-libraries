@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {SellerSignin} from 'oc-ng-common-service';
+import {UserLoginModel} from 'oc-ng-common-service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -8,13 +8,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./oc-forgot-password.component.scss']
 })
 export class OcForgotPasswordComponent implements OnInit {
-  @Input() loginModel = new SellerSignin();
 
+  @Input() loginModel = new UserLoginModel();
   @Input() loginUrl;
   @Input() signupUrl;
-  @Input() companayLogoUrl;
-  @Input() forgotPasswordDoneUrl;
-  @Input() ForgotPwdPageState;
+  /** Path to the email sent icon in .svg format */
+  @Input() forgotPasswordDoneUrl: string = 'assets/oc-ng-common-component/email_done.svg';
+  @Input() showResultPage;
   @Input() companyLogoUrl;
   @Input() process;
   @Output() submit = new EventEmitter<any>();
@@ -25,20 +25,18 @@ export class OcForgotPasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getValue(label: string) {
-    return label;
-  }
-
   submitForm(form) {
-    if (!form.valid) {
-      form.control.markAllAsTouched();
-      return;
+    if (!this.process) {
+      if (!form.valid) {
+        form.control.markAllAsTouched();
+      } else {
+        this.submit.emit(true);
+      }
     }
-    this.submit.emit(true);
   }
 
   goBackToLogin() {
-    this.router.navigateByUrl(this.loginUrl);
+    this.router.navigateByUrl(this.loginUrl).then();
   }
 
 }

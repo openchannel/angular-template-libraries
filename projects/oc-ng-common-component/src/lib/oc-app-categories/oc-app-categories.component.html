@@ -1,25 +1,32 @@
 <div class="row">
     <div class="col-md-12 text-center mb-4">
-        <!-- <h1>Categories to Explore</h1> -->
         <h1>{{categoryHeaderTitle}}</h1>
     </div>
 </div>
-<div *ngIf="data && data.length > 0; else emptyData" class="row">
-    <div *ngFor="let appCategory of data;index as i;" class="col-md-auto">
-        <div class="category-card card-{{i}}">
-            <img alt="category-icon"
-                 src="https://drive.google.com/u/0/uc?id=1b0lLlbQrVS0Lc-hey6KC6YCZkJrn07Qe&export=download">
-            <div class="content-centered">All Apps</div>
-        </div>
-
-        <!-- <div [class]="appCategory.categoryCardClass">
-            <img [src]="appCategory.categoryLogo" alt="category-icon">
-            <div class="content-centered">{{appCategory.categoryName}}</div>
-        </div> -->
-    </div>
+<div class="position-relative">
+    <svg-icon src="assets/oc-ng-common-component/arrow-left-analog.svg" class="carousel-nav carousel-left" id="iconLeft"
+             (click)="prevSlide()"
+             *ngIf="data.length > 5"></svg-icon>
+    <owl-carousel-o [options]="customOptions" #carousel>
+        <ng-template carouselSlide [width]="data.length < 4 ? 320 : 200"
+                     *ngFor="let appCategory of data; index as i;" class="card-box">
+            <div class="cursor-pointer category-card"
+                 [ngClass]="appCategory.categoryCardClass ? appCategory.categoryCardClass : ''"
+                 [style.background-image]="appCategory.categoryBackgroundImage ? safeStyle(appCategory.categoryBackgroundImage) : ''"
+                 [class.long-card]="data.length < 4"
+                 (click)="navigateToCategory(appCategory.categoryQuery)">
+                <div class="logo-container">
+                    <img *ngIf="appCategory.categoryLogo"
+                         [src]="safeImage(appCategory.categoryLogo)" alt="category-icon">
+                </div>
+                <div class="content-centered category-text"
+                     [style.color]="appCategory.categoryTitleColor ? appCategory.categoryTitleColor : ''">
+                    {{appCategory.categoryName ? appCategory.categoryName : 'All Apps'}}
+                </div>
+            </div>
+        </ng-template>
+    </owl-carousel-o>
+    <svg-icon src="assets/oc-ng-common-component/arrow-right-analog.svg" class="carousel-nav carousel-right" id="iconRight"
+             (click)="nextSlide()"
+             *ngIf="data.length > 5"></svg-icon>
 </div>
-<ng-template #emptyData>
-    <span class="col-md-12">
-        <h5>{{noDataMsg}}</h5>
-    </span>
-</ng-template>

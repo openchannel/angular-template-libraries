@@ -6,10 +6,12 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./oc-label.component.scss']
 })
 export class OcLabelComponent implements OnInit {
-  @Input() text;
-  @Input() class;
-  @Input() required;
-
+  /** Label text */
+  @Input() text: string = '';
+  /** Show indicator of required field */
+  @Input() required: boolean = false;
+  /** Set global classes for label */
+  @Input() class: string = '';
   constructor() {
   }
 

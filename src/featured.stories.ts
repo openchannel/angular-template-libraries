@@ -1,56 +1,103 @@
-import {storiesOf} from '@storybook/angular';
-import {withA11y} from '@storybook/addon-a11y';
-import {
-  OcAppListGridComponent,
-  OcCommonLibModule,
-  OcFeaturedAppsComponent
-} from 'projects/oc-ng-common-component/src/public-api';
+import { moduleMetadata } from '@storybook/angular';
+import { OcCommonLibModule, OcFeaturedAppsComponent } from 'projects/oc-ng-common-component/src/public-api';
+import { FullAppData } from 'oc-ng-common-service';
+import { StatElement } from 'oc-ng-common-service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const modules = {
-  imports: [OcCommonLibModule]
+  imports: [OcCommonLibModule, BrowserAnimationsModule, RouterTestingModule]
 };
 
-const featuredApp = {
-  logoUrl: '//d3grfap2l5ikgv.cloudfront.net/56f5e021f9608742f3454057/public/5f045efec800a4175058b649.png',
-  appName: 'Test App 1',
-  appDescription: 'With this plugin you can collaborate with teammates at any time.'
+export default {
+  title: 'Featured Apps',
+  component: OcFeaturedAppsComponent,
+  decorators: [
+    moduleMetadata(modules),
+  ],
 };
 
-storiesOf('Featured Apps', module)
-  .addDecorator(withA11y)
-  .addParameters({
-    component: OcFeaturedAppsComponent,
-  })
-  .add('Empty', () => ({
-    component: OcFeaturedAppsComponent,
-    moduleMetadata: modules,
-    props: {
-      data: [],
-      label: 'Featured',
-      emptyDataMessage: 'No Featured App'
-    }
-  })).add('Single App', () => ({
+const FeaturedAppsComponent = (args: OcFeaturedAppsComponent) => ({
   component: OcFeaturedAppsComponent,
   moduleMetadata: modules,
-  props: {
-    data: [featuredApp],
-    label: 'Featured',
-    emptyDataMessage: 'No Featured App'
-  }
-})).add('Some Apps', () => ({
-  component: OcFeaturedAppsComponent,
-  moduleMetadata: modules,
-  props: {
-    data: [featuredApp, featuredApp],
-    label: 'Featured',
-    emptyDataMessage: 'No Featured App'
-  }
-})).add('Max Apps', () => ({
-  component: OcFeaturedAppsComponent,
-  moduleMetadata: modules,
-  props: {
-    data: [featuredApp, featuredApp, featuredApp, featuredApp],
-    label: 'Featured',
-    emptyDataMessage: 'No Featured App'
-  }
-}));
+  props: args
+});
+
+const statElement: StatElement = {
+  '90day': 20,
+  '30day': 10,
+  total: 20
+};
+
+const featuredApp: FullAppData = {
+  appId: '34343-jjo-sgs-353-fgi-3423',
+  icon: './assets/img/get-started.svg',
+  logo: './assets/img/get-started.svg',
+  name: 'Test App 1',
+  model: [{
+    type: 'recurring',
+    price: 5,
+    trial: 1,
+    license: 'single',
+    modelId: '23235hfg4',
+    currency: 'EUR',
+    billingPeriod: 'monthly'
+  }],
+  rating: 4.2,
+  reviewCount: 20,
+  summary: '',
+  description: 'With this plugin you can collaborate with teammates at any time.',
+  lastUpdated: new Date(),
+  version: 1.1,
+  safeName: ['test-app'],
+  developerId: '44555-3232gvdfdf',
+  submittedDate: new Date(),
+  created: new Date().getMonth() - 2,
+  status: {
+    value: 'approved',
+    lastUpdated: 1.1,
+    modifiedBy: '',
+    reason: ''
+  },
+  statistics: {
+    views: statElement,
+    downloads: statElement,
+    developerSales: statElement,
+    totalSales: statElement,
+    ownerships: statElement,
+    reviews: statElement
+  },
+  isLive: true
+};
+
+export const Empty = FeaturedAppsComponent.bind({});
+
+Empty.args = {
+  data: [],
+  label: 'Featured',
+  emptyDataMessage: 'No Featured App'
+};
+
+export const SingleApp = FeaturedAppsComponent.bind({});
+
+SingleApp.args = {
+  data: [featuredApp],
+  label: 'Featured',
+  emptyDataMessage: 'No Featured App'
+};
+
+export const SomeApps = FeaturedAppsComponent.bind({});
+
+SomeApps.args = {
+  data: [featuredApp, featuredApp],
+  label: 'Featured',
+  emptyDataMessage: 'No Featured App'
+};
+
+export const MaxApps = FeaturedAppsComponent.bind({});
+
+MaxApps.args = {
+  data: [featuredApp, featuredApp, featuredApp, featuredApp],
+  label: 'Featured',
+  emptyDataMessage: 'No Featured App'
+};

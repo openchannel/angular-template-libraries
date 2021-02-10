@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'oc-app-get-started',
@@ -7,9 +8,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class OcAppGetStartedComponent implements OnInit {
 
-  @Input() getStartedImage: string = '';
+  @Input() getStartedImage: string = 'assets/oc-ng-common-component/get-started.svg';
 
-  @Input() getStartedHeader: string = '';
+  @Input() getStartedHeader: string = 'List Your App in our App Store';
 
   @Input() getStartedDescription: string = '';
 
@@ -19,7 +20,7 @@ export class OcAppGetStartedComponent implements OnInit {
 
   @Input() getStartedType: 'home' | 'search' = 'home';
 
-  constructor() {
+  constructor(private sanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {
@@ -27,5 +28,9 @@ export class OcAppGetStartedComponent implements OnInit {
 
   listAppGetStarted() {
     this.getStarted.emit();
+  }
+
+  sanitizeImage(): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.getStartedImage);
   }
 }

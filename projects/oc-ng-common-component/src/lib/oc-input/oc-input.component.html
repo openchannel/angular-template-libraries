@@ -1,2 +1,8 @@
-<input (blur)="onblur()" (ngModelChange)="changeModelVal()" [(ngModel)]="modelName" [disabled]="disabled"
-       [placeholder]="placeholder" class="form-control" type="text" whiteSpaceValidator>
+<input  [disabled]="disabled"
+        placeholder="{{placeholder}}"
+        [(ngModel)]="inputValue"
+        (blur)="onTouched()"
+        (ngModelChange)="changeModelVal()"
+        [ngModelOptions]="{standalone: true}"
+        class="form-control {{class}}"
+        [type]="inputType" ocWhiteSpaceValidator>

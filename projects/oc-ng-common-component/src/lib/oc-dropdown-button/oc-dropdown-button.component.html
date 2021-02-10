@@ -1,0 +1,14 @@
+<div ngbDropdown placement="bottom" #myDrop="ngbDropdown" class="w-100 h-100 m-auto" [ngStyle]="minWidthModel">
+    <div class="d-flex flex-row align-items-center font-m font-med disable-after w-100 h-100 m-auto"
+         (click)="$event.preventDefault(); myDrop.isOpen() ? myDrop.close() : myDrop.open()"
+         ngbDropdownAnchor id="customDropdownManual">
+        <ng-content select="[customPlaceholder]"></ng-content>
+        <ng-content *ngIf="myDrop._open" select="[defaultPlaceholderIcon]"></ng-content>
+        <ng-content *ngIf="!myDrop._open" select="[activePlaceholderIcon]"></ng-content>
+    </div>
+    <div ngbDropdownMenu aria-labelledby="customDropdownManual" [ngStyle]="minWidthModel">
+        <button ngbDropdownItem
+                (click)="onSelect(option)"
+                *ngFor="let option of this.options">{{option.label}}</button>
+    </div>
+</div>

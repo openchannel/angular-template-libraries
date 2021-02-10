@@ -1,26 +1,24 @@
-<div class="row">
-    <div class="col-md-12">
-        <h1 style="display: inline;">{{reviewListTitle}}</h1>
-        <oc-button (click)="writeReview()" class="float-right" style="display: inline;" text="Write a Review"
+<div class="f-flex flex-column">
+    <div class="d-flex justify-content-between align-items-center mb-1">
+        <h1 class="mb-0">{{reviewListTitle}}</h1>
+        <oc-button (click)="writeReview()" text="Write a Review"
                    type="primary">
         </oc-button>
     </div>
-    <div class="col-md-12">
-        <span class="drop-down">Sort by Recent</span>
-        <span class="drop-down">Show All Ratings</span>
-    </div>
-    <div *ngIf="reviewsList && reviewsList.length>0 ; else emptyList" class="cold-md-12">
-        <div *ngFor="let review of reviewsList" class="col-md-12">
-            <h6>{{review.reviewOwnerName}}</h6>
-            <oc-rating [rating]="review.rating" type="multi-star"></oc-rating>
-            <oc-label [text]="review.review" class="label-s"></oc-label>
+    <ng-content></ng-content>
+    <div *ngIf="displayedReviews && displayedReviews.length>0 ; else emptyList">
+        <div *ngFor="let review of displayedReviews" class="mt-5">
+            <h4 class="font-reg">{{review.reviewOwnerName}}</h4>
+            <div class="font-s rating-label mb-1">Rating</div>
+            <oc-rating [rating]="review.rating/100" type="multi-star" class="mb-2 d-block"></oc-rating>
+            <div id="reviewText">{{review.review}}</div>
             <hr/>
         </div>
-        <span class="drop-down">View all reviews ({{totalReview}})</span>
+        <span class="drop-down" (click)="toggleDisplay()"
+              *ngIf="totalReview > maxReviewDisplay">
+            {{ displayedReviews?.length === maxReviewDisplay ? 'View all reviews (' + totalReview + ')' : 'Collapse' }}</span>
     </div>
     <ng-template #emptyList>
-        <div class="col-md-12">
-            <h4>{{noReviewMessage}}</h4>
-        </div>
+        <h4 class="mt-5">{{noReviewMessage}}</h4>
     </ng-template>
 </div>

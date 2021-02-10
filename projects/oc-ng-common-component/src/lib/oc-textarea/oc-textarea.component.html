@@ -1,2 +1,10 @@
-<textarea class="form-control" name="description" placeholder="placeholder" required rows="5">
+<textarea
+        class="form-control {{customClass}}"
+        [placeholder]="placeholderValue"
+        [required]="required"
+        [disabled]="disabled"
+        [rows]="rows"
+        [(ngModel)]="textAreaValue"
+        (ngModelChange)="changeModelVal()"
+        (focus)="onFocus()">
 </textarea>

@@ -3,7 +3,7 @@ import {FormControl, NG_VALIDATORS, ValidationErrors, Validator} from '@angular/
 
 
 @Directive({
-  selector: '[whiteSpaceValidator]',
+  selector: '[ocWhiteSpaceValidator]',
   providers: [{provide: NG_VALIDATORS, useExisting: WhiteSpaceValidatorDirective, multi: true}]
 })
 export class WhiteSpaceValidatorDirective implements Validator {

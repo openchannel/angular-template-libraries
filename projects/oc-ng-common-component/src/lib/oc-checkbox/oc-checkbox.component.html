@@ -1,7 +1,15 @@
-<!-- <input type="checkbox"> -->
-<div class="custom-control custom-checkbox">
-    <input (ngModelChange)="changeModelVal()" [(ngModel)]="isChecked" [ngModelOptions]="{standalone: true}"
-           autocomplete="off" class="custom-control-input" class="form-control" id="customCheck"
-           name="example1" type="checkbox">
-    <label class="custom-control-label" for="customCheck"></label>
-</div>
+<label class="custom-checkbox">
+    <input (change)="changeModelVal()"
+           [(ngModel)]="checked"
+           [ngModelOptions]="{standalone: true}"
+           [disabled]="disabled"
+           (focus)="onFocus()"
+           autocomplete="off"
+           class="hide-checkbox"
+           id="customCheck"
+           type="checkbox">
+    <span class="checkmark"></span>
+    <span class="checkbox-text">{{labelText}}
+        <span *ngIf="requiredIndicator" class="required">*</span>
+    </span>
+</label>
