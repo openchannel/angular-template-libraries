@@ -4,8 +4,7 @@
   border: none;
   padding-right: 0;
   padding-left: 0;
-  min-width: 350px;
-  max-width: 382px;
+  width: 100%;
   line-height: 1;
   background-color: white;
   @include media-breakpoint-down(sm) {
