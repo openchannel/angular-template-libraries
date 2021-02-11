@@ -1,0 +1,19 @@
+<div class="d-flex">
+  <div class="profile text-primary">{{initials}}</div>
+  <div class="nav-item dropdown" ngbDropdown placement="left">
+    <div class="dropdown-toggle pr-0 d-flex align-items-center" id="navbarDropdown" role="button"
+         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+      <div class="d-flex flex-column mr-1">
+        <span class="font-m font-med text-dark">{{username}}</span>
+        <span class="font-s text-muted">{{role}}</span>
+      </div>
+    </div>
+    <div ngbDropdownMenu aria-labelledby="navbarDropdown" class="mt-2">
+      <div class="dropdown-item cursor-pointer" *ngFor="let dpItem of dropdownItems"
+           (click)="chosenDropdownItem.emit(dpItem)">
+        {{dpItem.label}}
+      </div>
+      <div class="dropdown-item cursor-pointer" (click)="logout.emit(true)">Logout</div>
+    </div>
+  </div>
+</div>
