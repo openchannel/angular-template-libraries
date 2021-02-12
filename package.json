@@ -81,13 +81,13 @@
     "jasmine-spec-reporter": "~4.2.1",
     "jest": "^26.5.3",
     "jest-preset-angular": "^8.3.1",
+    "jwt-decode": "^3.1.2",
     "ng-packagr": "^9.0.0",
     "protractor": "^7.0.0",
     "sass-lint": "^1.13.1",
     "ts-jest": "^26.4.1",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
-    "typescript": "~3.7.5",
-    "jwt-decode": "^3.1.2"
+    "typescript": "~3.7.5"
   }
 }
