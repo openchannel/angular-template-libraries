@@ -12,12 +12,12 @@
 }
 
 .dropdown-toggle[aria-expanded="true"]::after {
-  content: url(assets/oc-ng-common-component/select-up.svg);
+  content: url(~oc-ng-common-component/assets/img/select-up.svg);
   border: none;
 }
 
 .dropdown-toggle[aria-expanded="false"]::after {
-  content: url(assets/oc-ng-common-component/select-down.svg);
+  content: url(~oc-ng-common-component/assets/img/select-down.svg);
   border: none;
 }
 
