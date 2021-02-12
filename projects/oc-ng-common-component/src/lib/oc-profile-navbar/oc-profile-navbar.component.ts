@@ -23,23 +23,6 @@ export class OcProfileNavbarComponent implements OnInit {
    * If not set - role text will not be shown
    */
   @Input() role: string;
-  /**
-   * Items for the dropdown list
-   */
-  @Input() dropdownItems: DropdownModel<string>[];
-  /**
-   * Set this property to 'true' to hid the dropdown menu.
-   * Default: 'false'
-   */
-  @Input() hidDropdown: boolean = false;
-  /**
-   * Emit event when user click the logout button
-   */
-  @Output() logout: EventEmitter<boolean> = new EventEmitter<boolean>();
-  /**
-   * Emit event with chosen dropdown item
-   */
-  @Output() chosenDropdownItem: EventEmitter<DropdownModel<string>> = new EventEmitter<DropdownModel<string>>();
 
   constructor() {
   }
