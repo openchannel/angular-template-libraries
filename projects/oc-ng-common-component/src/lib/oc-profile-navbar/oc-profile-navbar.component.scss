@@ -21,10 +21,6 @@
   border: none;
 }
 
-.hid-toggle.dropdown-toggle::after {
-  display: none;
-}
-
 .dropdown-toggle::after {
   display: flex;
   height: 16px;
