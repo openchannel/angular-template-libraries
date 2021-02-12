@@ -23,7 +23,9 @@
 
 .dropdown-toggle::after {
   display: flex;
+  font-size: 16px;
   height: 16px;
+  line-height: 14px;
   width: 16px;
 }
 
