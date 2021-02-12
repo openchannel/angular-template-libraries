@@ -76,6 +76,7 @@ import {OcModalHeaderComponent} from './oc-modal-header/oc-modal-header.componen
 import {OcInviteModalComponent} from './oc-invite-modal/oc-invite-modal.component';
 import {OcSidebarComponent} from './oc-sidebar/oc-sidebar.component';
 import {OcConfirmationModalComponent} from './oc-confirmation-modal/oc-confirmation-modal.component';
+import {OcProfileNavbarComponent} from './oc-profile-navbar/oc-profile-navbar.component';
 
 @NgModule({
     declarations: [
@@ -145,6 +146,7 @@ import {OcConfirmationModalComponent} from './oc-confirmation-modal/oc-confirmat
         OcInviteModalComponent,
         OcSidebarComponent,
         OcConfirmationModalComponent,
+        OcProfileNavbarComponent,
     ],
     imports: [
         NgbModule,
@@ -223,6 +225,7 @@ import {OcConfirmationModalComponent} from './oc-confirmation-modal/oc-confirmat
         OcInviteModalComponent,
         OcSidebarComponent,
         OcConfirmationModalComponent,
+        OcProfileNavbarComponent
     ],
     providers: [
         NgbActiveModal,
