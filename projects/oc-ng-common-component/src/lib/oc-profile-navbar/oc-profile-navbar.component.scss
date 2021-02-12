@@ -1,0 +1,44 @@
+@import "../../../assets/styles/theme";
+
+.profile-navbar {
+  &__initials {
+    background-image: linear-gradient(to bottom, #eeebff, #f8f7ff);
+    border-radius: 20px;
+    height: 40px;
+    margin: 0 12px 0 0;
+    padding: 8px 10px;
+    width: 40px;
+  }
+}
+
+.dropdown-toggle[aria-expanded="true"]::after {
+  content: url(assets/oc-ng-common-component/select-up.svg);
+  border: none;
+}
+
+.dropdown-toggle[aria-expanded="false"]::after {
+  content: url(assets/oc-ng-common-component/select-down.svg);
+  border: none;
+}
+
+.hid-toggle.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-toggle::after {
+  display: flex;
+  height: 16px;
+  width: 16px;
+}
+
+.dropdown-menu {
+  left: unset;
+  right: 0;
+  top: 100%;
+}
+
+li.nav-item.dropdown:hover{
+  .dropdown-menu{
+    display: block;
+  }
+}

@@ -49,6 +49,7 @@ export * from './lib/oc-modal-header/oc-modal-header.component';
 export * from './lib/oc-invite-modal/oc-invite-modal.component';
 export * from './lib/oc-confirmation-modal/oc-confirmation-modal.component';
 export * from './lib/oc-sidebar/oc-sidebar.component';
+export * from './lib/oc-profile-navbar/oc-profile-navbar.component';
 
 // validators
 export * from './lib/validators/white-space-validator';
