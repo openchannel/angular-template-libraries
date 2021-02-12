@@ -38,14 +38,4 @@ describe('OcProfileNavbarComponent', () => {
     expect(initialsField.textContent).toEqual('TU');
     expect(roleField.textContent).toEqual('admin');
   });
-
-  it('should show dropdown', () => {
-    component.username = 'Test Username';
-    fixture.detectChanges();
-    const toggle = fixture.debugElement.query(By.css('#navbarDropdown')).nativeElement;
-    toggle.click();
-
-    const dropdown = fixture.debugElement.query(By.css('.dropdown-item')).nativeElement;
-    expect(dropdown).toBeTruthy();
-  });
 });
