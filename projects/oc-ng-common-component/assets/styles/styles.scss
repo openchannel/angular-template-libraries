@@ -550,3 +550,13 @@ oc-select {
     fill: $primary;
   }
 }
+
+.dropdown-toggle[aria-expanded="true"]::after {
+  content: url(~oc-ng-common-component/assets/img/select-up.svg);
+  border: none;
+}
+
+.dropdown-toggle[aria-expanded="false"]::after {
+  content: url(~oc-ng-common-component/assets/img/select-down.svg);
+  border: none;
+}
