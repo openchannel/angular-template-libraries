@@ -9,21 +9,29 @@ import {DropdownModel} from 'oc-ng-common-service';
 export class OcProfileNavbarComponent implements OnInit {
 
   /**
-   * Username initials that will be shown in the avatar circle
+   * Username initials that will be shown in the avatar circle.
+   * If not set - avatar circle will not be shown
    */
   @Input() initials: string;
   /**
-   * Name of the user that will be shown at the top near the avatar circle
+   * Name of the user that will be shown at the top near the avatar circle.
+   * If not set - username text will not be shown
    */
   @Input() username: string;
   /**
-   * Role of the user that will be shown at the bottom near the avatar circle
+   * Role of the user that will be shown at the bottom near the avatar circle.
+   * If not set - role text will not be shown
    */
   @Input() role: string;
   /**
    * Items for the dropdown list
    */
   @Input() dropdownItems: DropdownModel<string>[];
+  /**
+   * Set this property to 'true' to hid the dropdown menu.
+   * Default: 'false'
+   */
+  @Input() hidDropdown: boolean = false;
   /**
    * Emit event when user click the logout button
    */
