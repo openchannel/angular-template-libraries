@@ -5,8 +5,8 @@
          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle
          [class.hid-toggle]="hidDropdown">
       <div class="d-flex flex-column mr-2">
-        <span class="font-m font-med text-dark" *ngIf="username">{{username}}</span>
-        <span class="font-s text-muted" *ngIf="role">{{role}}</span>
+        <span class="profile-navbar__username font-m font-med text-dark" *ngIf="username">{{username}}</span>
+        <span class="profile-navbar__role font-s text-muted" *ngIf="role">{{role}}</span>
       </div>
     </div>
     <div ngbDropdownMenu aria-labelledby="navbarDropdown" class="mt-2" *ngIf="!hidDropdown">
