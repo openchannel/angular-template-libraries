@@ -108,7 +108,7 @@
 
 <ng-template #sortIconTemplate let-column>
     <div class="th-row cursor-pointer" (click)="sortAppsBy(column.field)">{{column.name}}
-        <div [ngClass]="currentSortField !== column.field ? 'invisible' : ''" class="sort-icon">
+        <div class="sort-icon">
             <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon">
             <svg-icon src="assets/oc-ng-common-component/dropdown.svg" class="cursor-pointer" *ngIf="!sortIcon"></svg-icon>
         </div>
