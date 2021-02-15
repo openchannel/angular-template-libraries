@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SelectModel, SidebarValue } from 'oc-ng-common-service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {OcSidebarSelectModel, SidebarValue} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-sidebar',
@@ -17,22 +17,15 @@ export class OcSidebarComponent implements OnInit {
   /** Path to the custom toggle icon down */
   @Input() toggleIconUp: string = 'assets/oc-ng-common-component/select-up.svg';
   /** Return changed model */
-  @Output() selectedLabelChange: EventEmitter<SidebarValue> = new EventEmitter<SidebarValue>();
+  @Output() sidebarChange: EventEmitter<OcSidebarSelectModel> = new EventEmitter<OcSidebarSelectModel>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
-  onChange(selectedValue: SidebarValue, chosenId: string) {
-    this.sidebarModel.forEach(item => {
-      item.checked = item.id === chosenId && (!selectedValue.values || selectedValue.values.length === 0);
-      if (item.values && item.values.length > 0) {
-        item.values.forEach(subItem => {
-          subItem.checked = subItem.id === chosenId;
-        });
-      }
-    });
-    this.selectedLabelChange.emit(selectedValue);
+  onClickSidebar(parentSidebar: SidebarValue, childSidebar?: SidebarValue) {
+    this.sidebarChange.emit({parent: parentSidebar, child: childSidebar});
   }
 }
