@@ -85,9 +85,21 @@ Run `cd ./dist/oc-ng-common-component && npm publish`
 <!-- STORYBOOK -->
 # Storybook
 
-Install and run
-   * Run `npm install`<br>
-   * Run `npm run storybook`
+* Install npm dependencies
+
+  ``npm install``
+
+
+* Run Storybook
+
+  ``npm run storybook``
+
+Note: 
+* When you can't start the Storybook. Try Update his version:
+  ``npx sb@latest upgrade``
+
+* When updating the storybook version did not help. Try this:
+  ``npm run storybook-update-and-run``
    
 Usage :
    * Open [http://localhost:6006](http://localhost:6006)
