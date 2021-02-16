@@ -7,7 +7,8 @@
       <ul class="nav flex-column mt-4">
         <li class="cursor-pointer mb-3" *ngFor="let select of sidebarModel">
           <div class="expand-line">
-            <span class="font-m sidebar-item" [class.font-weight-bold]="select.checked" (click)="onChange(select, select.id)">
+            <span class="font-m sidebar-item" [class.font-weight-bold]="select.checked"
+                  (click)="onClickSidebar(select)">
               {{select.label}}
             </span>
             <svg-icon *ngIf="select.values && select.values.length > 0"
@@ -20,7 +21,7 @@
             <li *ngFor="let subValue of select.values"
                 class="font-m cursor-pointer mt-2 sidebar-item"
                 [class.font-weight-bold]="subValue.checked"
-                (click)="onChange(select, subValue.id)">
+                (click)="onClickSidebar(select, subValue)">
               {{subValue.label}}
             </li>
           </ul>
