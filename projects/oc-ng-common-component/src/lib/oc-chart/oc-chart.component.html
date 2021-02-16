@@ -1,0 +1,40 @@
+<div>
+    <div class="chart-options-container border radius bg-white p-1 mb-2">
+        <div *ngFor="let period of chartData?.periods"
+             [class.active]="period.active"
+             class="stats-period custom-radio time-selection radius d-flex flex-row pl-5 pr-2">
+            <input type="radio"
+                   [id]="period.id"
+                   [checked]="period.active"
+                   class="custom-control-input">
+            <label [for]="period.id"
+                   (click)="updateChartPeriod(period)"
+                   class="custom-control-label cursor-pointer m-auto">{{period.label}}</label>
+        </div>
+        <oc-dropdown-button [minDropdownWidth]="minDropdownWidth"
+                            [options]="dropdownTypes"
+                            (selectedChange)="updateChartFiled($event)"
+                            class="type-section radius cursor-pointer">
+            <div customPlaceholder
+                 class="d-flex align-items-center h-100 pl-2">
+                <label class="m-auto mr-0 dropdown-label">
+                    {{dropdownSelectedType?.label ? dropdownSelectedType?.label : ''}}
+                </label>
+            </div>
+            <svg-icon defaultPlaceholderIcon src="assets/oc-ng-common-component/select-down.svg" class="cursor-pointer angle ml-auto mr-0 pr-2"></svg-icon>
+            <svg-icon activePlaceholderIcon src="assets/oc-ng-common-component/select-up.svg" class="cursor-pointer angle ml-auto mr-0 pr-2"></svg-icon>
+        </oc-dropdown-button>
+    </div>
+    <div class="chart-container border radius bg-white">
+        <div class="chart-statistic w-100 p-0">
+            <canvas #myCanvas height="123" class="w-100"></canvas>
+        </div>
+        <div *ngIf="count >= 0" class="description-statistic d-flex flex-column justify-content-center mt-0 mb-0 p-1">
+            <div class="d-flex flex-column mt-auto">
+                <img class="m-auto" *ngIf="downloadUrl" alt="cloud" src="{{downloadUrl}}">
+                <h4 class="text-center">{{count}}</h4>
+            </div>
+            <span class="text-center mt-auto mb-0 pt-1 mb-2">{{countText}}</span>
+        </div>
+    </div>
+</div>

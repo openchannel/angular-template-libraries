@@ -1,0 +1,54 @@
+@import "../../../assets/styles/theme.scss";
+
+.featured-card.card {
+  border-radius: 4px;
+  border: 1px solid white;
+  margin-bottom: 68px;
+  min-height: 330px;
+  max-height: 330px;
+  min-width: 255px;
+  max-width: 255px;
+
+  @include media-breakpoint-down(sm) {
+    margin: 0 auto 1rem;
+  }
+  .card-body {
+    padding: 0 16px 16px;
+    font-size: 14px;
+    text-align: center;
+
+    span {
+      font-size: 12px;
+    }
+
+    h5 {
+      margin-bottom: 51px;
+      font-family: "Rubik-Medium";
+    }
+
+    h4 {
+      font-family: "Rubik-Medium";
+    }
+
+    img {
+      margin-top: 74px;
+      margin-bottom: 13px;
+      min-height: 110px;
+      max-height: 110px;
+    }
+  }
+}
+
+.featured-card.card:hover {
+  border: 1px solid $primary;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: $body-color;
+  &:hover {
+    text-decoration: none;
+    color: $body-color;
+  }
+}

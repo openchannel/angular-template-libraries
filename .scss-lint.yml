@@ -1,0 +1,12 @@
+scss_files: 'projects/oc-ng-common-component/**/*.css.scss'
+
+files:
+  include: 'projects/oc-ng-common-component/**/*.s+(a|c)ss'
+
+linters:
+  PropertySortOrder:
+    enabled: false
+  Indentation:
+    severity: warning
+    width: 2
+

@@ -1,0 +1,83 @@
+@import "../../../assets/styles/theme.scss";
+@import "../../../assets/styles/mixins";
+
+.chart-options-container {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+
+  .time-selection {
+    padding: 0.2rem;
+    height: 3rem;
+    width: 9rem;
+    margin-right: 0.2rem;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .time-selection.active {
+    border: 1px solid $gray-200;
+    background-color: white;
+  }
+
+  .type-section {
+    border: 1px solid $gray-200;
+    height: 3rem;
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: row;
+  max-height: 300px;
+  padding: 40px;
+
+  .chart-statistic {
+    min-height: 20rem;
+    max-height: 220px;
+  }
+
+  .description-statistic {
+    min-width: 12rem;
+  }
+
+  span {
+    border-top: 1px solid $gray-200;
+    color: $gray-600;
+    font-size: 14px;
+  }
+}
+
+.border {
+  border: 1px solid $gray-200;
+}
+
+.radius {
+  border-radius: 0.3rem;
+}
+
+.dropdown-label {
+  font-size: 14px;
+}
+
+@include media-breakpoint-md {
+  .chart-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@include media-breakpoint-sm {
+  .chart-options-container {
+    display: flex;
+    flex-direction: column;
+    .time-selection {
+      margin: auto auto 0.2rem;
+    }
+    .type-section {
+      margin: auto;
+    }
+  }
+}

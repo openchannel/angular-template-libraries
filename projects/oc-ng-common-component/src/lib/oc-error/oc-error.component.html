@@ -1,0 +1,5 @@
+<div *ngIf="shouldShowErrors()">
+  <span *ngFor="let error of listOfErrors()" class="invalid-feedback">
+    {{error}}
+  </span>
+</div>

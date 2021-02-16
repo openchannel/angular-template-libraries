@@ -1,0 +1,31 @@
+<ng-container *ngIf="appList && appList.length > 0">
+    <div class="row mx-0" *ngFor="let app of appList">
+        <div class="col-md card app-list-card">
+            <div id="appCard" class="row mx-0 cursor-pointer" (click)="viewDetails(app)">
+                <div>
+                    <img alt="app-icon"
+                         class="img-fluid"
+                         id="appImage"
+                         [src]="app.icon ? app.icon : defaultAppIcon">
+                </div>
+                <div class="px-0">
+                    <p class="mb-1 font-med app-name">{{app.name}}</p>
+                    <div class="d-flex align-items-center">
+                        <span class="app-price">{{app.model[0] | price}}</span>
+                        <oc-rating *ngIf="app.rating"
+                                   [rating]="app.rating/100"
+                                   type="single-star"
+                                   [reviewCount]="app.reviewCount"></oc-rating>
+                    </div>
+                </div>
+                <svg-icon src="assets/oc-ng-common-component/right-arrow.svg" class="icon-arrow"
+                          (click)="viewDetails(app)"></svg-icon>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<div *ngIf="!appList || appList.length === 0"
+     class="row mx-0 mt-5">
+        <h5>{{noAppMessage}}</h5>
+</div>

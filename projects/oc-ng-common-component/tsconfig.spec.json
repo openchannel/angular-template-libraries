@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/spec",
+    "emitDecoratorMetadata": true,
+    "types": [
+      "jest",
+      "node"
+    ],
+    "allowJs": true
+  },
+  "files": [],
+  "include": [
+    "**/*.spec.ts",
+    "**/*.d.ts"
+  ]
+}

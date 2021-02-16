@@ -1,0 +1,138 @@
+<div (fileDropped)="onFileDropped($event,cropperModal)"
+     *ngIf="(!fileDetailArr || fileDetailArr.length == 0) ;else fileList"
+     class="file-container without-files"
+     ocFileDragDrop>
+    <img [src]="uploadIconUrl" alt="upload-icon"
+         class="mb-2 without-files__upload-images">
+    <input #fileDropRef (change)="fileBrowseHandler($event,cropperModal)" [accept]="getAcceptTypes()"
+           class="cursor-pointer"
+           id="fileDropRef" type="file"/>
+    <div class="placeholder-text-container">
+        <span class="d-block text-secondary font-m">{{fileUploadText}}</span>
+        <span class="text-secondary font-m">or</span> <a (click)="fileDropRef.click()"
+                                                         class="font-m font-bold browse-file"> Browse File</a>
+    </div>
+</div>
+
+<ng-template #fileList>
+    <div class="file-container">
+        <div class="row justify-content-center mb-3" *ngIf="isMultiFileSupport()">
+            <div class="col-md-auto">
+                <img [src]="uploadIconUrl" alt="upload-icon"
+                     class="upload-s">
+                <a (click)="fileDropRef.click()" class="font-m font-bold browse-file">
+                    <input #fileDropRef (change)="fileBrowseHandler($event,cropperModal)" [accept]="getAcceptTypes()"
+                           style="display: none;" type="file"/>
+                    Browse File
+                </a>
+            </div>
+        </div>
+
+        <div *ngFor="let file of fileDetailArr; let i = index" class="row">
+            <div class="col-md-auto pr-0">
+                <img [ngClass]="getFileIconClass(file)" [src]="getUrl(file)" alt="app-icon">
+            </div>
+            <div *ngIf="file" class="col-md-auto ml-n1">
+                <a (click)="downloadFile(file)" class="cursor-pointer" id="downloadFile">
+                    <span id="fileName" class="font-med font-m d-block"> {{file.name}}</span></a>
+                <span class="text-secondary font-s">{{file.fileUploadProgress === 100 ? "Complete" : "Uploading"}}</span>
+            </div>
+            <div *ngIf="file" class="col-md text-right pt-3">
+                <a (click)="cancelUploading(i)" id="closeLink" class="cursor-pointer">
+                    <img alt="close-icon"
+                         [src]="closeIconUrl">
+                </a>
+            </div>
+            <div class="col-12 pt-1 mb-2 progressbar-wrapper">
+                <ngb-progressbar *ngIf="file?.fileUploadProgress === 100" [value]="file?.fileUploadProgress"
+                                 class="file-upload-progress"
+                                 type="info">
+                </ngb-progressbar>
+                <ngb-progressbar *ngIf="file?.fileUploadProgress < 100" [value]="file?.fileUploadProgress"
+                                 class="file-upload-progress"
+                                 type="primary">
+                </ngb-progressbar>
+            </div>
+
+        </div>
+    </div>
+</ng-template>
+
+
+<!--cropper modal for bulk edit-->
+<ng-template #cropperModal let-c="close" let-d="dismiss">
+    <div class="modal-header p-3">
+        <h4 class="flex-grow-1 text-center mb-0">Edit Image</h4>
+        <img (click)="d('Cross click'); resetSelection()"
+             class="cursor-pointer" [src]="closeIconUrl" alt="close-icon">
+    </div>
+    <div class="modal-body d-flex flex-column p-5">
+        <div class="file-cropper-body w-100 d-flex flex-column">
+
+            <div class="d-flex justify-content-between mb-2">
+                <div class="font-m">{{croppedImageHeight}}p X {{croppedImageWidth}}p</div>
+                <div>
+                    <a class="cursor-pointer" (click)="zoomIn()">
+                        <img class="zoom-icon mr-2" [src]="zoomInIconUrl"></a>
+                    <a class="cursor-pointer" (click)="zoomOut()">
+                        <img class="zoom-icon" [src]="zoomOutIconUrl"></a>
+                </div>
+            </div>
+            <image-cropper (imageCropped)="imageCropped($event)"
+                           (loadImageFailed)="loadImageFailed()"
+                           [aspectRatio]="aspectRatio"
+                           [imageChangedEvent]="browsedFileEvent"
+                           [maintainAspectRatio]="maintainAspectRatio" [resizeToHeight]="resizeToHeight"
+                           [resizeToWidth]="resizeToWidth"
+                           [transform]="transform" format="png" style="padding: 0px;">
+            </image-cropper>
+
+            <div class="w-100 my-2 text-center" *ngIf="hasImageLoadError">
+                {{ imageLoadErrorMessage }}
+            </div>
+            <div *ngIf="uploadImageInProcess" class="fileUploader-new">
+                <div class="controls upload-progress">
+                    <div class="row">
+                        <div class="col">
+                            <div class="">
+                                {{fileName}}
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" [style.width.%]="[loaderValue]"
+                                     aria-valuenow="[loaderValue]" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer px-0 pt-5 pb-0 d-flex justify-content-center">
+                <oc-button type="secondary" [disabled]="uploadImageInProcess" [class]="'modal-button'"
+                           (click)="d('Cross click'); resetSelection()" text="Cancel"></oc-button>
+                <oc-button type="primary" [class]="'modal-button ml-2'" id="modalAgreeButton"
+                           [disabled]="hasImageLoadError || uploadImageInProcess"
+                           (click)="uploadImageFile();"
+                           [process]="uploadImageInProcess" text="Confirm"
+                ></oc-button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="hasImageLoadError" class="w-100 my-2 text-center">
+        {{ imageLoadErrorMessage }}
+    </div>
+    <div *ngIf="uploadImageInProcess" class="fileUploader-new">
+        <div class="controls upload-progress">
+            <div class="row">
+                <div class="col">
+                    <div class="">
+                        {{fileName}}
+                    </div>
+                    <div class="progress">
+                        <div [style.width.%]="[loaderValue]" aria-valuemax="100" aria-valuemin="0"
+                             aria-valuenow="[loaderValue]" class="progress-bar" role="progressbar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<!--end cropper modal for bulk edit-->
