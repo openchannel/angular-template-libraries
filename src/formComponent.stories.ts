@@ -1,6 +1,6 @@
-import { OcCommonLibModule } from '../projects/oc-ng-common-component/src/lib/oc-ng-common-component.module';
+import { OcCommonLibModule, OcFormComponentsModule } from 'oc-ng-common-component';
 import { moduleMetadata } from '@storybook/angular';
-import { OcFormComponent } from '../projects/oc-ng-common-component/src/lib/oc-form/oc-form.component';
+import { OcFormComponent } from 'oc-ng-common-component';
 import {FileDetails, FileUploadDownloadService} from 'oc-ng-common-service';
 import {Observable, of} from 'rxjs';
 import {EmbedVideoService} from 'ngx-embed-video';
@@ -92,7 +92,7 @@ class StubFileUploadDownloadService {
 }
 
 const modules = {
-  imports: [OcCommonLibModule, HttpClientModule],
+  imports: [OcFormComponentsModule, HttpClientModule],
   providers: [
     HttpClient,
     {provide: FileUploadDownloadService, useClass: StubFileUploadDownloadService}, EmbedVideoService

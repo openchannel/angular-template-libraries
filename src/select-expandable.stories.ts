@@ -1,12 +1,9 @@
-import {OcCommonLibModule} from '../projects/oc-ng-common-component/src/lib/oc-ng-common-component.module';
-import {moduleMetadata} from '@storybook/angular';
-import {OcRichTextEditorComponent} from '../projects/oc-ng-common-component/src/lib/oc-rich-text-editor/oc-rich-text-editor.component';
-import { OcNumberComponent } from '../projects/oc-ng-common-component/src/lib/oc-number/oc-number.component';
-import { OcSelectExpandableComponent } from '../projects/oc-ng-common-component/src/lib/oc-select-expandable/oc-select-expandable.component';
+import { OcCommonLibModule, OcSelectExpandableComponent } from 'oc-ng-common-component';
+import { moduleMetadata } from '@storybook/angular';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
-  imports: [OcCommonLibModule]
+  imports: [OcCommonLibModule],
 };
 
 export default {
@@ -14,13 +11,13 @@ export default {
   component: OcSelectExpandableComponent,
   decorators: [
     moduleMetadata(modules),
-  ]
+  ],
 };
 
 const SelectComponent = (args: OcSelectExpandableComponent) => ({
   component: OcSelectExpandableComponent,
   moduleMetadata: modules,
-  props: args
+  props: args,
 });
 
 export const CollapsedSelect = SelectComponent.bind({});
@@ -43,8 +40,8 @@ CollapsedSelect.args = {
     {
       label: 'Category 4',
       checked: true,
-    }
-  ]
+    },
+  ],
 };
 
 export const ExpandedSelect = SelectComponent.bind({});
@@ -69,8 +66,8 @@ ExpandedSelect.args = {
     {
       label: 'Category 4',
       checked: true,
-    }
-  ]
+    },
+  ],
 };
 
 

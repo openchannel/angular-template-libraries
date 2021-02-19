@@ -1,12 +1,10 @@
 import { moduleMetadata } from '@storybook/angular';
-import {
-  OcCommonLibModule,
-} from 'projects/oc-ng-common-component/src/public-api';
-import { OcMenuUserGridComponent } from 'projects/oc-ng-common-component/src/lib/oc-menu-user-grid/oc-menu-user-grid.component';
-import {UsersGridParametersModel} from 'oc-ng-common-service';
+import { OcMenuUserGridComponent } from 'oc-ng-common-component';
+import { UsersGridParametersModel } from 'oc-ng-common-service';
+import { OcManagementComponentsModule } from 'oc-ng-common-component/src/lib/management-components';
 
 const modules = {
-  imports: [OcCommonLibModule]
+  imports: [OcManagementComponentsModule]
 };
 
 export default {

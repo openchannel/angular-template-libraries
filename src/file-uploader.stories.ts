@@ -3,12 +3,13 @@ import {withA11y} from '@storybook/addon-a11y';
 import {OcCommonLibModule, OcFileUploadComponent} from 'projects/oc-ng-common-component/src/public-api';
 import {FileDetails, FileUploadDownloadService, OcCommonServiceModule} from 'oc-ng-common-service';
 import {action} from '@storybook/addon-actions';
-import {OCComponentConstants} from 'projects/oc-ng-common-component/src/lib/model/oc-constants';
+import {OCComponentConstants} from 'oc-ng-common-component/src/lib/form-components/model/oc-constants';
 import {HttpClientModule} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import { OcFormComponentsModule } from 'oc-ng-common-component/src/lib/form-components';
 
 const modules = {
-    imports: [OcCommonLibModule, OcCommonServiceModule.forRoot({}), HttpClientModule],
+    imports: [OcFormComponentsModule, OcCommonServiceModule.forRoot({}), HttpClientModule],
 };
 
 const file1 = new FileDetails();

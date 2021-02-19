@@ -1,0 +1,230 @@
+@import "../../../../assets/styles/theme.scss";
+
+.calendar-header {
+  color: $body-color;
+  background: #fff;
+  border-bottom: 1px solid $gray-400;
+}
+
+.recolor-icon {
+  fill: $body-color;
+}
+
+.calendar-icon-size {
+  height: 16px;
+  width: 16px;
+  vertical-align: top;
+}
+
+.time > .hour,
+.time > .minutes {
+  display: flex;
+  flex-direction: column;
+}
+
+.hour {
+  margin-right: 8px;
+}
+
+.wc-date-container {
+  span {
+    font-family: "Rubik Regular";
+  }
+}
+
+.minutes {
+  margin-left: 8px;
+}
+
+.wc-time-sec {
+  color: white;
+  text-align: center;
+  padding: 0 10px 10px;
+  float: left;
+  width: 100%;
+}
+
+.wc-time-sec > .time {
+  font-size: 38px;
+  font-weight: 300;
+  width: 100%;
+  text-align: center;
+  float: left;
+}
+
+.time-view {
+  background: #fff;
+  width: 100%;
+  z-index: 1;
+  padding: 0 16px 16px;
+}
+
+.time-view .time {
+  font-size: 36px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 16px;
+  font-weight: 300;
+  display: flex;
+  border-top: 1px solid $gray-400;
+
+  &__header{
+    text-align: center;
+    font-size: 14px;
+  }
+  &__manipulators{
+    display: flex;
+    align-items: center;
+    padding: 8px 2px;
+    border-bottom: 1px solid $gray-400;
+  }
+}
+
+.time-view .time-divider {
+  padding: 16px 0;
+}
+
+.wc-time-sec .time input,
+.time-view .time input {
+  display: inline-block;
+  width: calc(100% - 32px);
+  background: none;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 0 10px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.inc-btn,
+.dec-btn {
+  font-size: 20px;
+  display: block;
+  color: $primary;
+  cursor: pointer;
+}
+
+.calendar-header td {
+  padding: 5px 0 !important;
+  font-size: 12px;
+  color: $secondary;
+}
+
+td.calendar-day.prev-month {
+  color: $secondary;
+  &:hover {
+    background: #fff;
+    cursor: default;
+  }
+}
+
+.time-view h5 {
+  text-align: left;
+  width: 80%;
+  margin: 0 auto;
+  padding: 5px 0;
+  font-weight: 400;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* Webkit browsers like Safari and Chrome */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.date-picker-dd-toggle {
+  font-size: 14px;
+  border-radius: 4px;
+
+  &::after {
+    display: none;
+  }
+  &:focus {
+    border: 1px solid $primary !important;
+    outline: none;
+  }
+  &:not(:disabled):not(.disabled):active {
+    border: 1px solid $primary !important;
+    background-color: #fff !important;
+    outline: none;
+  }
+}
+
+.wc-date-popover {
+  height: auto;
+  width: 250px;
+  font-size: 14px;
+
+ &__date {
+   height: 280px;
+ }
+}
+
+.wc-banner {
+  height: 30px;
+  display: flex;
+  color: black;
+  padding: 16px 16px 0px;
+  justify-content: space-between;
+
+  &__detail {
+    font-size: 12px;
+  }
+}
+
+.wc-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wc-content {
+  padding: 16px 16px 0;
+  font-size: 14px;
+
+  .calendar-header,
+  .calendar-days {
+    width: 100%;
+
+    td {
+      cursor: pointer;
+      width: 33px;
+      height: 32px;
+      text-align: center;
+      padding: 5px 0;
+      span {
+        display: block;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.calendar-days {
+  background: #fff
+}
+
+.calendar-day {
+  border: 1px solid transparent;
+
+  &:hover {
+    background: $light;
+    border-radius: 4px;
+  }
+}
+
+.selected-day {
+  color: $primary;
+  background-color: $light;
+  border-radius: 4px;
+}

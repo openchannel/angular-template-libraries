@@ -1,13 +1,11 @@
-import {
-  OcAppListGridComponent,
-  OcCommonLibModule,
-  OcRatingComponent
-} from 'projects/oc-ng-common-component/src/public-api';
-import {storiesOf} from '@storybook/angular';
-import {withA11y} from '@storybook/addon-a11y';
+import { OcRatingComponent } from 'projects/oc-ng-common-component/src/public-api';
+import { storiesOf } from '@storybook/angular';
+import { withA11y } from '@storybook/addon-a11y';
+import { OcMarketComponentsModule } from 'oc-ng-common-component/src/lib/market-components';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const modules = {
-  imports: [OcCommonLibModule]
+  imports: [OcMarketComponentsModule, NgbModule],
 };
 storiesOf('Rating', module)
   .addDecorator(withA11y)
@@ -18,15 +16,15 @@ storiesOf('Rating', module)
     component: OcRatingComponent,
     moduleMetadata: modules,
     props: {
-      type: "multi-star",
-      rating: 4
-    }
+      type: 'multi-star',
+      rating: 4,
+    },
   })).add('signle star', () => ({
   component: OcRatingComponent,
   moduleMetadata: modules,
   props: {
-    type: "single-star",
+    type: 'single-star',
     rating: 4.5,
-    reviewCount: 50
-  }
+    reviewCount: 50,
+  },
 }));

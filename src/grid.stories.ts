@@ -1,10 +1,9 @@
 import { moduleMetadata } from '@storybook/angular';
 import { AppListing, FullAppData } from 'oc-ng-common-service';
-import { OcCommonLibModule } from '../projects/oc-ng-common-component/src/lib/oc-ng-common-component.module';
-import { OcAppTableComponent } from '../projects/oc-ng-common-component/src/lib/oc-app-table/oc-app-table.component';
+import { OcAppTableComponent, OcPortalComponentsModule } from 'oc-ng-common-component/src/lib/portal-components';
 
 const modules = {
-  imports: [OcCommonLibModule]
+  imports: [OcPortalComponentsModule]
 };
 
 export default {

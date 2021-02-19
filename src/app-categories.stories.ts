@@ -1,10 +1,9 @@
-import {moduleMetadata, storiesOf} from '@storybook/angular';
-import {
-  OcAppCategoriesComponent,
-  OcCommonLibModule} from 'projects/oc-ng-common-component/src/public-api';
-import {AppCategoryDetail} from 'oc-ng-common-service';
-import {RouterTestingModule} from '@angular/router/testing';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { moduleMetadata } from '@storybook/angular';
+import { OcAppCategoriesComponent, OcAppCategoriesModule } from 'projects/oc-ng-common-component/src/public-api';
+import { AppCategoryDetail } from 'oc-ng-common-service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 const appCategory1 = new AppCategoryDetail();
 appCategory1.categoryCardClass = 'category-card';
@@ -25,7 +24,7 @@ appCategory3.categoryName = 'Communication';
 appCategory3.categoryTitleColor = 'green';
 
 const modules = {
-  imports: [OcCommonLibModule, RouterTestingModule.withRoutes([]), BrowserAnimationsModule],
+  imports: [OcAppCategoriesModule, HttpClientTestingModule, RouterTestingModule.withRoutes([]), BrowserAnimationsModule],
 };
 
 export default {
@@ -39,31 +38,31 @@ export default {
 const AppCategoriesComponent = (args: OcAppCategoriesComponent) => ({
   component: OcAppCategoriesComponent,
   moduleMetadata: modules,
-  props: args
+  props: args,
 });
 
 export const Empty = AppCategoriesComponent.bind({});
 Empty.args = {
   categoryHeaderTitle: 'Categories to Explore',
   data: [],
-  noDataMsg: 'No Category Found'
+  noDataMsg: 'No Category Found',
 };
 
 export const Some = AppCategoriesComponent.bind({});
 Some.args = {
   categoryHeaderTitle: 'Categories to Explore',
   categoryRouterLink: 'test/category',
-  data: [appCategory1]
+  data: [appCategory1],
 };
 
 export const All = AppCategoriesComponent.bind({});
 All.args = {
   categoryHeaderTitle: 'Categories to Explore',
   categoryRouterLink: 'test/category',
-  data: duplicate(5, appCategory1, appCategory2, appCategory3)
+  data: duplicate(5, appCategory1, appCategory2, appCategory3),
 };
 
-function duplicate<T>(count: number, ... items: T[]): T[] {
+function duplicate<T>(count: number, ...items: T[]): T[] {
   const result: T[] = [];
   while (count-- >= 0) {
     result.push(...items);

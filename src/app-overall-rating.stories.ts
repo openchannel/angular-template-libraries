@@ -1,9 +1,10 @@
-import {OcCommonLibModule, OcOverallRatingComponent} from 'projects/oc-ng-common-component/src/public-api';
-import {storiesOf} from '@storybook/angular';
-import {withA11y} from '@storybook/addon-a11y';
+import { OcOverallRatingComponent } from 'projects/oc-ng-common-component/src/public-api';
+import { storiesOf } from '@storybook/angular';
+import { withA11y } from '@storybook/addon-a11y';
+import { OcMarketComponentsModule } from 'oc-ng-common-component/src/lib/market-components';
 
 const modules = {
-  imports: [OcCommonLibModule]
+  imports: [OcMarketComponentsModule],
 };
 
 const overAllRatingSummaryEmpty = {
@@ -36,13 +37,13 @@ storiesOf('Overall Rating', module)
     moduleMetadata: modules,
     props: {
       overallReviewLabel: 'Overall rating',
-      allReviewSummary: overAllRatingSummaryEmpty
-    }
+      allReviewSummary: overAllRatingSummaryEmpty,
+    },
   })).add('Rating Summary', () => ({
   component: OcOverallRatingComponent,
   moduleMetadata: modules,
   props: {
     overallReviewLabel: 'Overall rating',
-    allReviewSummary: overAllRatingSummary1
-  }
+    allReviewSummary: overAllRatingSummary1,
+  },
 }));
