@@ -1,18 +1,17 @@
 <a class="card app-card cursor-pointer" (click)="clickByApp()">
     <div class="row mx-0 card-height-fixed">
         <div class="pl-0">
-            <img [src]="app.icon ? safeLink(app.icon) : 'assets/oc-ng-common-component/standard-app-icon.svg'" alt=""
-                 class="img-fluid">
+            <img [src]="appIcon" alt="" class="img-fluid">
         </div>
         <div class="col-9 ml-2 px-0 w-auto">
-            <p class="mb-1 font-med app-name">{{app.name}}</p>
+            <p class="mb-1 font-med app-name">{{appData.name}}</p>
             <div class="d-flex mb-1">
-                <span class="app-price mb-0">{{app.model[0] | price}}</span>
-                <oc-rating [rating]="app.rating"
-                           [reviewCount]="app.reviewCount"
+                <span class="app-price mb-0">{{appData.model[0] | price}}</span>
+                <oc-rating [rating]="appData.rating"
+                           [reviewCount]="appData.reviewCount"
                            type="single-star"></oc-rating>
             </div>
-            <p class="text-secondary font-m mb-0 line-space text-summary-hidden">{{app.summary ? app.summary : app.description}}</p>
+            <p class="text-secondary font-m mb-0 line-space text-summary-hidden">{{appData.summary ? appData.summary : appData.description}}</p>
         </div>
     </div>
 </a>
