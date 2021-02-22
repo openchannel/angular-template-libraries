@@ -1,14 +1,14 @@
-<div>
-  <div class="modal-header">
-    <h4 class="modal-title">Add Item Fields</h4>
-    <button type="button" class="close" aria-label="Close" (click)="close()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <oc-form [formJsonData]="modalJSONData"
-             successButtonText="SAVE"
-             (formSubmitted)="catchFormData($event)"
-             (cancelSubmit)="close()"></oc-form>
-  </div>
-</div>
+<oc-modal-header [modalTitle]="modalTitle" [ngbModalRef]="ngbModalRef">
+    <div modalContent class="pl-3 pr-3 pt-2 pb-5">
+        <oc-form [formJsonData]="formJsonData"
+                 [showButton]="false"
+                 (createdForm)="setCreatedForm($event)"
+                 (formDataUpdated)="setDataFromForm($event)"></oc-form>
+        <div class="d-flex justify-content-between mt-5 flex-nowrap w-100">
+            <ng-container [ngTemplateOutlet]="rejectButton"></ng-container>
+            <div (click)="onClickConfirmButton()">
+                <ng-container [ngTemplateOutlet]="confirmButton"></ng-container>
+            </div>
+        </div>
+    </div>
+</oc-modal-header>
