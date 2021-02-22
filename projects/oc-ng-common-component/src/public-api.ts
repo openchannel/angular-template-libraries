@@ -45,11 +45,15 @@ export * from './lib/oc-app-description/oc-app-description.component';
 export * from './lib/oc-resend-activation/oc-resend-activation.component';
 export * from './lib/oc-tooltip-label/oc-tooltip-label.component';
 export * from './lib/oc-app-short-info/oc-app-short-info.component';
+
+export * from './lib/oc-sidebar/oc-sidebar.component';
+export * from './lib/oc-profile-navbar/oc-profile-navbar.component';
+
+// modals
 export * from './lib/oc-modal-header/oc-modal-header.component';
 export * from './lib/oc-invite-modal/oc-invite-modal.component';
 export * from './lib/oc-confirmation-modal/oc-confirmation-modal.component';
-export * from './lib/oc-sidebar/oc-sidebar.component';
-export * from './lib/oc-profile-navbar/oc-profile-navbar.component';
+export * from './lib/oc-form-modal/oc-form-modal.component';
 
 // validators
 export * from './lib/validators/white-space-validator';

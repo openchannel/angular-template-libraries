@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {Component, Input, OnInit, TemplateRef} from '@angular/core';
+import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {FormGroup} from '@angular/forms';
+import {OcButtonComponent} from '../oc-button/oc-button.component';
 
 @Component({
   selector: 'oc-form-modal',
@@ -8,27 +10,40 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class OcFormModalComponent implements OnInit {
 
-  @Input() formJSONData: any;
+  @Input() ngbModalRef: NgbModalRef;
+  @Input() modalTitle: string;
+  @Input() formJsonData: any;
 
-  public modalJSONData: any;
-  constructor(private activeModal: NgbActiveModal) { }
+  @Input() confirmButton: TemplateRef<OcButtonComponent>;
+  @Input() rejectButton: TemplateRef<OcButtonComponent>;
+
+  private formGroup: FormGroup;
+  private formData: any;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
-    this.modalJSONData = Object.assign({}, this.formJSONData);
   }
 
   close(): void {
-    this.modalJSONData = null;
-    this.activeModal.close({
-      status: 'cancel'
-    });
+    this.ngbModalRef.close();
   }
 
-  catchFormData(data) {
-    this.modalJSONData = null;
-    this.activeModal.close({
-      status: 'success',
-      data
-    });
+  setCreatedForm(createdForm: FormGroup) {
+    this.formGroup = createdForm;
+  }
+
+  setDataFromForm(data: any) {
+    this.formData = data;
+  }
+
+  onClickConfirmButton(): void {
+    if (this.formGroup) {
+      this.formGroup.markAllAsTouched();
+      if (this.formGroup.valid && this.formData) {
+        this.ngbModalRef.close(this.formData);
+      }
+    }
   }
 }
