@@ -1,7 +1,6 @@
 import {Component, Input, OnInit, TemplateRef} from '@angular/core';
 import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {FormGroup} from '@angular/forms';
-import {OcButtonComponent} from '../oc-button/oc-button.component';
 
 @Component({
   selector: 'oc-form-modal',
@@ -14,8 +13,8 @@ export class OcFormModalComponent implements OnInit {
   @Input() modalTitle: string;
   @Input() formJsonData: any;
 
-  @Input() confirmButton: TemplateRef<OcButtonComponent>;
-  @Input() rejectButton: TemplateRef<OcButtonComponent>;
+  @Input() confirmButton: TemplateRef<any>;
+  @Input() rejectButton: TemplateRef<any>;
 
   private formGroup: FormGroup;
   private formData: any;
