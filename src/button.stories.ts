@@ -1,6 +1,6 @@
 import { moduleMetadata, storiesOf } from '@storybook/angular';
-import {OcButtonComponent} from 'projects/oc-ng-common-component/src/lib/oc-button/oc-button.component';
-import { OcCommonLibModule } from '../projects/oc-ng-common-component/src/lib/oc-ng-common-component.module';
+import {OcButtonComponent} from 'oc-ng-common-component';
+import { OcCommonLibModule } from 'oc-ng-common-component';
 
 const modules = {
   imports: [OcCommonLibModule]

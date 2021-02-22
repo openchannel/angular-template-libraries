@@ -1,6 +1,6 @@
 import {moduleMetadata} from '@storybook/angular';
-import {OcCommonLibModule} from 'projects/oc-ng-common-component/src/public-api';
-import {OcTitleComponent} from '../projects/oc-ng-common-component/src/lib/oc-title/oc-title.component';
+import {OcCommonLibModule} from 'oc-ng-common-component';
+import {OcTitleComponent} from 'oc-ng-common-component';
 
 const modules = {
     imports: [OcCommonLibModule]
