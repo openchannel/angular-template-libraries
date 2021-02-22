@@ -1,25 +1,25 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { OcColorComponent } from './oc-color/oc-color.component';
-import { OcDatetimePickerComponent } from './oc-datetime-picker/oc-datetime-picker.component';
-import { OcFileUploadComponent } from './oc-file-upload/oc-file-upload.component';
-import { OcFormComponent } from './oc-form/oc-form.component';
-import { OcMultiSelectListComponent } from './oc-multi-select-list/oc-multi-select-list.component';
-import { OcNumberComponent } from './oc-number/oc-number.component';
-import { OcRichTextEditorComponent } from './oc-rich-text-editor/oc-rich-text-editor.component';
-import { OcTagsComponent } from './oc-tags/oc-tags.component';
-import { OcTextareaComponent } from './oc-textarea/oc-textarea.component';
-import { OcVideoUrlComponent } from './oc-video-url/oc-video-url.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ImageCropperModule } from 'ngx-image-cropper';
-import { ColorPickerModule } from 'ngx-color-picker';
-import { EditorModule } from '@tinymce/tinymce-angular';
-import { AngularSvgIconModule } from 'angular-svg-icon';
-import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
-import { OcDynamicArrayItemComponent } from './oc-dynamic-array-item/oc-dynamic-array-item.component';
-import { OcDynamicFieldArrayComponent } from './oc-dynamic-field-array/oc-dynamic-field-array.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { OcTooltipLabelComponent } from './oc-tooltip-label/oc-tooltip-label.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {OcColorComponent} from './oc-color/oc-color.component';
+import {OcDatetimePickerComponent} from './oc-datetime-picker/oc-datetime-picker.component';
+import {OcFileUploadComponent} from './oc-file-upload/oc-file-upload.component';
+import {OcFormComponent} from './oc-form/oc-form.component';
+import {OcMultiSelectListComponent} from './oc-multi-select-list/oc-multi-select-list.component';
+import {OcNumberComponent} from './oc-number/oc-number.component';
+import {OcRichTextEditorComponent} from './oc-rich-text-editor/oc-rich-text-editor.component';
+import {OcTagsComponent} from './oc-tags/oc-tags.component';
+import {OcTextareaComponent} from './oc-textarea/oc-textarea.component';
+import {OcVideoUrlComponent} from './oc-video-url/oc-video-url.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ImageCropperModule} from 'ngx-image-cropper';
+import {ColorPickerModule} from 'ngx-color-picker';
+import {EditorModule} from '@tinymce/tinymce-angular';
+import {OcCommonLibModule} from 'oc-ng-common-component/src/lib/common-components';
+import {OcDynamicArrayItemComponent} from './oc-dynamic-array-item/oc-dynamic-array-item.component';
+import {OcDynamicFieldArrayComponent} from './oc-dynamic-field-array/oc-dynamic-field-array.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {OcTooltipLabelComponent} from './oc-tooltip-label/oc-tooltip-label.component';
+import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
 
 
 @NgModule({
@@ -37,6 +37,7 @@ import { OcTooltipLabelComponent } from './oc-tooltip-label/oc-tooltip-label.com
     OcDynamicArrayItemComponent,
     OcDynamicFieldArrayComponent,
     OcTooltipLabelComponent,
+    OcFormModalComponent,
   ],
   imports: [
     CommonModule,
@@ -61,6 +62,7 @@ import { OcTooltipLabelComponent } from './oc-tooltip-label/oc-tooltip-label.com
     OcVideoUrlComponent,
     OcDynamicArrayItemComponent,
     OcDynamicFieldArrayComponent,
+    OcFormModalComponent
   ],
 })
 export class OcFormComponentsModule {
