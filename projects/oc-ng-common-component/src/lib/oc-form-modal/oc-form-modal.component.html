@@ -5,7 +5,9 @@
                  (createdForm)="setCreatedForm($event)"
                  (formDataUpdated)="setDataFromForm($event)"></oc-form>
         <div class="d-flex justify-content-between mt-5 flex-nowrap w-100">
-            <ng-container [ngTemplateOutlet]="rejectButton"></ng-container>
+            <div (click)="close()">
+                <ng-container [ngTemplateOutlet]="rejectButton"></ng-container>
+            </div>
             <div (click)="onClickConfirmButton()">
                 <ng-container [ngTemplateOutlet]="confirmButton"></ng-container>
             </div>
