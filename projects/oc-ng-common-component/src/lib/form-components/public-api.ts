@@ -12,3 +12,4 @@ export * from './oc-tags/oc-tags.component';
 export * from './oc-textarea/oc-textarea.component';
 export * from './oc-tooltip-label/oc-tooltip-label.component';
 export * from './oc-video-url/oc-video-url.component';
+export * from './oc-form-modal/oc-form-modal.component';
