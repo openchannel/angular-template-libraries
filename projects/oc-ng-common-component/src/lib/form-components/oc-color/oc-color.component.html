@@ -1,6 +1,6 @@
-<div class="w-100 d-flex">
+<div class="oc-w-100 oc-d-flex">
 <!--  Color demonstration and input section-->
-  <section class="d-flex flex-nowrap w-100">
+  <section class="oc-d-flex oc-flex-nowrap oc-w-100">
     <span class="form-control color-display" [style.background-color]="colorValue"></span>
     <input  [disabled]="disabled"
             [placeholder]="placeholder"
@@ -8,11 +8,11 @@
             (ngModelChange)="onValueChange()"
             [ngModelOptions]="{standalone: true}"
             (focus)="onFocus()"
-            class="form-control w-100 color-input">
+            class="form-control oc-w-100 color-input">
   </section>
 <!--  Toggle Color picker button-->
   <div class="form-control picker-btn">
-    <span class="w-100 h-100">
+    <span class="oc-w-100 oc-h-100">
       <svg fill="currentColor" aria-hidden="true" focusable="false" data-prefix="far"
            data-icon="eye-dropper" role="img" xmlns="http://www.w3.org/2000/svg"
            viewBox="0 0 512 512" class="svg-inline--fa fa-eye-dropper fa-w-16 fa-9x">

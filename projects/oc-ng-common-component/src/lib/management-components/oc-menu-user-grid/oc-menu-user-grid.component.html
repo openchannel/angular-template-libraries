@@ -37,7 +37,7 @@
             <td>
                 <div class="td-row">
                     <div class="profile" [class.profile--invited]="user.inviteStatus === 'INVITED'">{{initials(user)}}</div>
-                    <span class="c-dark font-weight-bold">{{user.name}}</span>
+                    <span class="c-dark oc-font-weight-bold">{{user.name}}</span>
                 </div>
             </td>
             <!-- Email -->
@@ -55,14 +55,14 @@
             <!-- Role -->
             <td>
                 <div class="td-row">
-                    <span class="c-blue text-capitalize font-weight-bold">{{user.type | lowercase}}</span>
+                    <span class="c-blue oc-text-capitalize font-weight-bold">{{user.type | lowercase}}</span>
                 </div>
             </td>
             <!-- Status-->
             <td>
                 <div class="td-row"
                      [ngClass]="user.inviteStatus === 'ACTIVE' ? 'c-dark' : 'c-gray'">
-                    <span class="text-capitalize font-weight-bold"
+                    <span class="oc-text-capitalize oc-font-weight-bold"
                           [class.font-weight-bold]="user.inviteStatus === 'ACTIVE'">
                         {{user.inviteStatus | lowercase}}
                     </span>
@@ -77,12 +77,12 @@
         </tr>
     </ng-template>
     <tr *ngIf="!properties.data.list || properties.data.list.length == 0">
-        <td class="text-center last-grid-row" colspan="8">
+        <td class="oc-text-center last-grid-row" colspan="8">
             <span>No Users Found</span>
         </td>
     </tr>
     <tr *ngIf="properties.data.list.length > 0">
-        <td class="text-center last-grid-row pb-5" colspan="8">
+        <td class="oc-text-center last-grid-row oc-pb-5" colspan="8">
             <span></span>
         </td>
     </tr>
@@ -90,7 +90,7 @@
 </table>
 
 <ng-template #appMenuTemplate let-user>
-    <div class="text-right ellipsis cursor-pointer">
+    <div class="oc-text-right ellipsis cursor-pointer">
         <div ngbDropdown placement="bottom-right top-right">
             <img [src]="menuUrl" alt="more-icon" class="icon-dots" ngbDropdownToggle>
             <div ngbDropdownMenu>
