@@ -1,6 +1,6 @@
-import { moduleMetadata, storiesOf } from '@storybook/angular';
-import { OcChartComponent, OcCommonLibModule, OcFormComponent } from 'projects/oc-ng-common-component/src/public-api';
-import {withA11y} from '@storybook/addon-a11y';
+import { moduleMetadata } from '@storybook/angular';
+import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
+import { OcChartComponent } from 'oc-ng-common-component/src/lib/portal-components';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {

@@ -1,8 +1,6 @@
-import { moduleMetadata, storiesOf } from '@storybook/angular';
-import {
-  OcCommonLibModule,
-  OcSelectComponent,
-} from 'projects/oc-ng-common-component/src/public-api';
+import { moduleMetadata } from '@storybook/angular';
+import { OcCommonLibModule, OcSelectComponent } from 'oc-ng-common-component';
+
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {

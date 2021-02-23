@@ -1,5 +1,6 @@
 import {moduleMetadata} from '@storybook/angular';
-import {OcCommonLibModule, OcSignupComponent} from 'projects/oc-ng-common-component/src/public-api';
+import {OcSignupComponent} from 'oc-ng-common-component/src/lib/auth-components';
+import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
 import {UserRegistrationModel} from 'oc-ng-common-service';
 import {action} from '@storybook/addon-actions';
 import {RouterTestingModule} from '@angular/router/testing';

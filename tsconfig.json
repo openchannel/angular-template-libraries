@@ -7,7 +7,7 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "module": "esnext",
+    "module": "es2020",
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
@@ -24,7 +24,7 @@
       "oc-ng-common-component/*": [
         "projects/oc-ng-common-component/*",
         "projects/oc-ng-common-component"
-      ],
+      ]
     }
   },
   "angularCompilerOptions": {
