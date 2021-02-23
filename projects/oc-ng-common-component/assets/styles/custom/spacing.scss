@@ -1,0 +1,67 @@
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $prop, $abbrev in (margin: m, padding: p) {
+      @each $size, $length in $spacers {
+        .oc-#{$abbrev}#{$infix}-#{$size} { #{$prop}: $length; }
+        .oc-#{$abbrev}t#{$infix}-#{$size},
+        .oc-#{$abbrev}y#{$infix}-#{$size} {
+          #{$prop}-top: $length;
+        }
+        .oc-#{$abbrev}r#{$infix}-#{$size},
+        .oc-#{$abbrev}x#{$infix}-#{$size} {
+          #{$prop}-right: $length;
+        }
+        .oc-#{$abbrev}b#{$infix}-#{$size},
+        .oc-#{$abbrev}y#{$infix}-#{$size} {
+          #{$prop}-bottom: $length;
+        }
+        .oc-#{$abbrev}l#{$infix}-#{$size},
+        .oc-#{$abbrev}x#{$infix}-#{$size} {
+          #{$prop}-left: $length;
+        }
+      }
+    }
+
+    @each $size, $length in $spacers {
+      @if $size != 0 {
+        .oc-m#{$infix}-n#{$size} { margin: -$length; }
+        .oc-mt#{$infix}-n#{$size},
+        .oc-my#{$infix}-n#{$size} {
+          margin-top: -$length;
+        }
+        .oc-mr#{$infix}-n#{$size},
+        .oc-mx#{$infix}-n#{$size} {
+          margin-right: -$length;
+        }
+        .oc-mb#{$infix}-n#{$size},
+        .oc-my#{$infix}-n#{$size} {
+          margin-bottom: -$length;
+        }
+        .oc-ml#{$infix}-n#{$size},
+        .oc-mx#{$infix}-n#{$size} {
+          margin-left: -$length;
+        }
+      }
+    }
+
+    .oc-m#{$infix}-auto { margin: auto; }
+    .oc-mt#{$infix}-auto,
+    .oc-my#{$infix}-auto {
+      margin-top: auto;
+    }
+    .oc-mr#{$infix}-auto,
+    .oc-mx#{$infix}-auto {
+      margin-right: auto;
+    }
+    .oc-mb#{$infix}-auto,
+    .oc-my#{$infix}-auto {
+      margin-bottom: auto;
+    }
+    .oc-ml#{$infix}-auto,
+    .oc-mx#{$infix}-auto {
+      margin-left: auto;
+    }
+  }
+}

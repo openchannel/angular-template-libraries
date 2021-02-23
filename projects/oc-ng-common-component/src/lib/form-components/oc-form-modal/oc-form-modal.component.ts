@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, TemplateRef} from '@angular/core';
 import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {FormGroup} from '@angular/forms';
-import {OcButtonComponent} from '../oc-button/oc-button.component';
+import {OcButtonComponent} from 'oc-ng-common-component/src/lib/common-components';
 
 @Component({
   selector: 'oc-form-modal',

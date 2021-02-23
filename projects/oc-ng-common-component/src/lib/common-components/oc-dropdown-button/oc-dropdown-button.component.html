@@ -1,5 +1,5 @@
-<div ngbDropdown placement="bottom" #myDrop="ngbDropdown" class="w-100 h-100 m-auto" [ngStyle]="minWidthModel">
-    <div class="d-flex flex-row align-items-center font-m font-med disable-after w-100 h-100 m-auto"
+<div ngbDropdown placement="bottom" #myDrop="ngbDropdown" class="oc-w-100 oc-h-100 oc-m-auto" [ngStyle]="minWidthModel">
+    <div class="oc-d-flex oc-flex-row oc-align-items-center font-m font-med disable-after oc-w-100 oc-h-100 oc-m-auto"
          (click)="$event.preventDefault(); myDrop.isOpen() ? myDrop.close() : myDrop.open()"
          ngbDropdownAnchor id="customDropdownManual">
         <ng-content select="[customPlaceholder]"></ng-content>
