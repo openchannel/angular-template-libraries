@@ -1,12 +1,12 @@
 <div
         ngbDropdown
-        class="d-inline-block w-100"
+        class="oc-d-inline-block oc-w-100"
         placement="bottom-left top-left"
         #myDrop="ngbDropdown"
         (openChange)="done($event)"
 >
     <button
-            class="btn btn-secondary w-100 d-flex justify-content-between align-items-center date-picker-dd-toggle"
+            class="btn btn-secondary oc-w-100 oc-d-flex oc-justify-content-between oc-align-items-center date-picker-dd-toggle"
             id="datePickerDD"
             ngbDropdownToggle
             [disabled]="disabled"
@@ -19,7 +19,7 @@
         <svg-icon src="assets/oc-ng-common-component/calendar-icon.svg" svgClass="calendar-icon-size" style="height: 16px">
         </svg-icon>
     </button>
-    <div ngbDropdownMenu aria-labelledby="datePickerDD" class="p-0">
+    <div ngbDropdownMenu aria-labelledby="datePickerDD" class="oc-p-0">
         <div class="wc-date-popover" [ngClass]="{'wc-date-popover__date': !isDateTime}">
             <div class="wc-banner">
                 <svg-icon id="prevMonth" src="assets/oc-ng-common-component/arrow-left-analog.svg"

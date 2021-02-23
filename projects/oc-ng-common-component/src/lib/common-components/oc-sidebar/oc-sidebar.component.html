@@ -1,11 +1,11 @@
-<div class="row mx-0">
+<div class="row oc-mx-0">
   <nav class="sidebar">
     <div class="sidebar-sticky">
       <span class="sidebar-heading">
         {{title}}
       </span>
-      <ul class="nav flex-column mt-4">
-        <li class="cursor-pointer mb-3" *ngFor="let select of sidebarModel">
+      <ul class="nav oc-flex-column oc-mt-4">
+        <li class="cursor-pointer oc-mb-3" *ngFor="let select of sidebarModel">
           <div class="expand-line">
             <span class="font-m sidebar-item" [class.font-weight-bold]="select.checked"
                   (click)="onClickSidebar(select)">
@@ -16,10 +16,10 @@
                       [src]="select.expanded ? toggleIconUp : toggleIconDown"
                       svgClass="recolor-svg"></svg-icon>
           </div>
-          <ul class="list-unstyled pl-3" *ngIf="select.values && select.values.length > 0"
+          <ul class="list-unstyled oc-pl-3" *ngIf="select.values && select.values.length > 0"
               [ngbCollapse]="!select.expanded">
             <li *ngFor="let subValue of select.values"
-                class="font-m cursor-pointer mt-2 sidebar-item"
+                class="font-m cursor-pointer oc-mt-2 sidebar-item"
                 [class.font-weight-bold]="subValue.checked"
                 (click)="onClickSidebar(select, subValue)">
               {{subValue.label}}

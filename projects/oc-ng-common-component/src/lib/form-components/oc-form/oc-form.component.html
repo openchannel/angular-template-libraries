@@ -1,15 +1,15 @@
 <form [formGroup]="customForm" *ngIf="customForm">
   <ng-container *ngFor="let formElement of formJsonData?.fields; trackBy:trackByFieldId">
-    <div class="mt-2 mb-2 d-flex flex-column" [ngClass]="labelPosition === 'right' ?
-         'flex-md-row-reverse'
-         : labelPosition === 'left' ? 'flex-md-row' : ''">
-      <oc-tooltip-label [text]="formElement?.label" class="mb-2" [required]="formElement?.attributes?.required"
-                [ngClass]="labelPosition === 'left' ? 'col-md-3 mr-2 pl-0 mb-md-0 form-label' :
-                labelPosition === 'right' ? 'col-md-3 ml-2 pr-0 mb-md-0 form-label' : ''"
+    <div class="oc-mt-2 oc-mb-2 oc-d-flex oc-flex-column" [ngClass]="labelPosition === 'right' ?
+         'oc-flex-md-row-reverse'
+         : labelPosition === 'left' ? 'oc-flex-md-row' : ''">
+      <oc-tooltip-label [text]="formElement?.label" class="oc-mb-2" [required]="formElement?.attributes?.required"
+                [ngClass]="labelPosition === 'left' ? 'col-md-3 oc-mr-2 oc-pl-0 oc-mb-md-0 form-label' :
+                labelPosition === 'right' ? 'col-md-3 oc-ml-2 oc-pr-0 oc-mb-md-0 form-label' : ''"
                 [description]="formElement?.description ? formElement?.description : ''"
                 >
       </oc-tooltip-label>
-      <div class="w-100">
+      <div class="oc-w-100">
         <div [ngSwitch]="formElement?.type">
           <oc-rich-text-editor *ngSwitchCase="'richText'"
                                formControlName="{{formElement?.id}}"
@@ -119,12 +119,12 @@
       </div>
     </div>
   </ng-container>
-  <div class="mt-3 mb-2 row mr-0 ml-0" *ngIf="showButton" [ngClass]="buttonPosition === 'center' ? 'justify-content-center'
-           : buttonPosition === 'left' ? 'justify-content-start' : 'justify-content-start flex-row-reverse'">
+  <div class="oc-mt-3 oc-mb-2 row oc-mr-0 oc-ml-0" *ngIf="showButton" [ngClass]="buttonPosition === 'center' ? 'oc-justify-content-center'
+           : buttonPosition === 'left' ? 'oc-justify-content-start' : 'oc-justify-content-start oc-flex-row-reverse'">
     <oc-button (click)="sendData()"
                [process]="process"
                [text]="successButtonText"
-               type="primary" [class]="buttonPosition === 'right' ? 'ml-1' : 'mr-1'"
+               type="primary" [class]="buttonPosition === 'right' ? 'oc-ml-1' : 'oc-mr-1'"
                id="successBtn"></oc-button>
     <oc-button (click)="cancelForm()"
                text="Cancel"

@@ -1,14 +1,14 @@
 <oc-modal-header [modalTitle]="modalTitle" [ngbModalRef]="ngbModalRef">
-    <div modalContent class="modal-body p-5">
-        <h5 class="text-center modal-title">{{modalText}}</h5>
-        <div class="d-flex justify-content-center mt-5 pl-3 pr-3 flex-nowrap w-100">
-            <oc-button class="ml-1 mr-1 w-100" *ngIf="!rejectButtonHide"
+    <div modalContent class="modal-body oc-p-5">
+        <h5 class="oc-text-center modal-title">{{modalText}}</h5>
+        <div class="oc-d-flex oc-justify-content-center oc-mt-5 oc-pl-3 oc-pr-3 oc-flex-nowrap oc-w-100">
+            <oc-button class="oc-ml-1 oc-mr-1 oc-w-100" *ngIf="!rejectButtonHide"
                        [type]="rejectButtonType" [text]="rejectButtonText"
-                       customClass="w-100"
+                       customClass="oc-w-100"
                        (click)="closeModal()"></oc-button>
-            <oc-button class="ml-1 mr-1 w-100" *ngIf="!confirmButtonHide"
+            <oc-button class="oc-ml-1 oc-mr-1 oc-w-100" *ngIf="!confirmButtonHide"
                        [type]="confirmButtonType" [text]="confirmButtonText"
-                       customClass="w-100"
+                       customClass="oc-w-100"
                        (click)="closeModal(true)"></oc-button>
         </div>
     </div>
