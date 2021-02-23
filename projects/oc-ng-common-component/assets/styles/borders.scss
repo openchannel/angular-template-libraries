@@ -1,0 +1,65 @@
+.oc-border         { border: $border-width solid $border-color; }
+.oc-border-top     { border-top: $border-width solid $border-color; }
+.oc-border-right   { border-right: $border-width solid $border-color; }
+.oc-border-bottom  { border-bottom: $border-width solid $border-color; }
+.oc-border-left    { border-left: $border-width solid $border-color; }
+
+.oc-border-0        { border: 0; }
+.oc-border-top-0    { border-top: 0; }
+.oc-border-right-0  { border-right: 0; }
+.oc-border-bottom-0 { border-bottom: 0; }
+.oc-border-left-0   { border-left: 0; }
+
+@each $color, $value in $theme-colors {
+  .oc-border-#{$color} {
+    border-color: $value;
+  }
+}
+
+.oc-border-white {
+  border-color: $white;
+}
+
+.oc-rounded-sm {
+  border-radius: $border-radius-sm;
+}
+
+.oc-rounded {
+  border-radius: $border-radius;
+}
+
+.oc-rounded-top {
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
+
+.oc-rounded-right {
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+}
+
+.oc-rounded-bottom {
+  border-bottom-right-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+}
+
+.oc-rounded-left {
+  border-top-left-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+}
+
+.oc-rounded-lg {
+  border-radius: $border-radius-lg;
+}
+
+.oc-rounded-circle {
+  border-radius: 50%;
+}
+
+.oc-rounded-pill {
+  border-radius: $rounded-pill;
+}
+
+.oc-rounded-0 {
+  border-radius: 0;
+}
