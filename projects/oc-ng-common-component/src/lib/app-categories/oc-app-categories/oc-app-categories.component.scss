@@ -1,4 +1,5 @@
-@import "../../../../assets/styles/theme.scss";
+@import 'projects/oc-ng-common-component/assets/styles/theme.scss';
+@import 'projects/oc-ng-common-component/assets/styles/mixins.scss';
 
 .category-card {
   width: 160px;
@@ -10,7 +11,7 @@
   position: relative;
   text-align: center;
   color: $primary;
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-sm() {
     width: 100%;
   }
 }

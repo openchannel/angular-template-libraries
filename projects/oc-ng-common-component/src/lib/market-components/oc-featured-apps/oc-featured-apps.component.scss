@@ -1,4 +1,5 @@
 @import "../../../../assets/styles/theme.scss";
+@import "../../../../assets/styles/mixins.scss";
 
 .featured-card.card {
   border-radius: 4px;
@@ -9,7 +10,7 @@
   min-width: 255px;
   max-width: 255px;
 
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-sm() {
     margin: 0 auto 1rem;
   }
   .card-body {

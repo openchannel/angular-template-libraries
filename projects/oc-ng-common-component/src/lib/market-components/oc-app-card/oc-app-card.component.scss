@@ -1,4 +1,5 @@
 @import "../../../../assets/styles/theme.scss";
+@import "../../../../assets/styles/mixins.scss";
 
 .card.app-card {
   border: none;
@@ -7,7 +8,7 @@
   width: 100%;
   line-height: 1;
   background-color: white;
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-sm() {
     max-width: 100%;
     min-width: 100%;
   }
