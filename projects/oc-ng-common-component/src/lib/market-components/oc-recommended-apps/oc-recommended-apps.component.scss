@@ -28,7 +28,7 @@
   margin-bottom: 1rem;
   margin-right: 30px;
   &:last-child {
-    @include media-breakpoint-lg() {
+    @include media-breakpoint-lg {
       margin-right: 0;
     }
   }
@@ -40,7 +40,7 @@
   max-width: 382px;
   min-width: 350px;
   background-color: #fff;
-  @include media-breakpoint-sm() {
+  @include media-breakpoint-sm {
     max-width: 100%;
   }
 }

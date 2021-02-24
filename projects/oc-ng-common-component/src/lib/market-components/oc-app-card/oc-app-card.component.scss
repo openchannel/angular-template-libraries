@@ -8,7 +8,7 @@
   width: 100%;
   line-height: 1;
   background-color: white;
-  @include media-breakpoint-sm() {
+  @include media-breakpoint-sm {
     max-width: 100%;
     min-width: 100%;
   }
