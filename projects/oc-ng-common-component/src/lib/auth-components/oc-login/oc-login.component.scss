@@ -1,38 +1,37 @@
-.remember {
-  height: 16px;
-  display: flex;
-  &__checkbox {
-    width: 16px;
+.login {
+  &__logo {
+    margin-bottom: 30px;
+  }
+
+  &__error {
+    border-radius: 4px;
+    margin: 12px 0;
+    padding: 15px 10px 15px 9px;
+    text-align: center;
+  }
+
+  &__forgot-block {
     height: 16px;
+    margin-bottom: 40px;
+  }
+
+  &__button {
+    margin: 0 0 24px;
+  }
+}
+
+.remember {
+  display: flex;
+  height: 16px;
+  &__checkbox {
+    height: 16px;
+    width: 16px;
   }
 
   &__label {
     font-size: 12px;
     margin-left: 8px;
   }
-}
-
-.forgot {
-  height: 16px;
-
-  &__block{
-    margin-bottom: 40px;
-  }
-}
-
-.login-btn {
-  margin: 0 0 24px;
-}
-
-.company-logo {
-  margin-bottom: 30px;
-}
-
-.error-container {
-  margin: 12px 0;
-  padding: 15px 10px 15px 9px;
-  border-radius: 4px;
-  text-align: center;
 }
 
 .resend-link {
