@@ -1,6 +1,6 @@
 import { moduleMetadata } from '@storybook/angular';
 import { OcCommonLibModule } from 'projects/oc-ng-common-component/src/public-api';
-import { OcMultiSelectListComponent } from '../projects/oc-ng-common-component/src/lib/oc-multi-select-list/oc-multi-select-list.component';
+import { OcMultiSelectListComponent } from 'oc-ng-common-component';
 
 const modules = {
   imports: [OcCommonLibModule]

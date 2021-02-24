@@ -18,9 +18,13 @@
     ],
     "paths": {
       "oc-ng-common-component": [
-        "dist/oc-ng-common-component/oc-ng-common-component",
+        "dist/oc-ng-common-component/*",
         "dist/oc-ng-common-component"
-      ]
+      ],
+      "oc-ng-common-component/*": [
+        "projects/oc-ng-common-component/*",
+        "projects/oc-ng-common-component"
+      ],
     }
   },
   "angularCompilerOptions": {

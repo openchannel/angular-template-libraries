@@ -1,5 +1,5 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
-import {OcAppGetStartedComponent} from 'projects/oc-ng-common-component/src/lib/oc-app-get-started/oc-app-get-started.component';
+import {OcAppGetStartedComponent} from 'oc-ng-common-component';
 import {
   OcCommonLibModule
 } from 'projects/oc-ng-common-component/src/public-api';

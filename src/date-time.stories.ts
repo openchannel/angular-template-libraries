@@ -1,9 +1,8 @@
-import {OcCommonLibModule} from '../projects/oc-ng-common-component/src/lib/oc-ng-common-component.module';
-import {moduleMetadata} from '@storybook/angular';
-import {OcDatetimePickerComponent} from '../projects/oc-ng-common-component/src/lib/oc-datetime-picker/oc-datetime-picker.component';
+import { OcDatetimePickerComponent, OcFormComponentsModule } from 'oc-ng-common-component/src/lib/form-components';
+import { moduleMetadata } from '@storybook/angular';
 
 const modules = {
-    imports: [OcCommonLibModule]
+    imports: [OcFormComponentsModule]
 };
 
 export default {

@@ -1,0 +1,11 @@
+<div class="oc-d-flex oc-align-items-center">
+  <label [ngClass]="labelClass">{{text}}<span *ngIf="required" class="required">*</span>
+  </label>
+    <div *ngIf="description"
+         ngbTooltip="{{description}}"
+         placement="right"
+         container="body" class="oc-ml-1">
+      <svg-icon [src]="infoTitleIconCsv" svgClass="description-icon"></svg-icon>
+    </div>
+</div>
+

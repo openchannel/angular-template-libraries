@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md-12 oc-text-center oc-mb-4">
+        <h1>{{categoryHeaderTitle}}</h1>
+    </div>
+</div>
+<div class="position-relative">
+    <svg-icon src="assets/oc-ng-common-component/arrow-left-analog.svg" class="carousel-nav carousel-left" id="iconLeft"
+             (click)="prevSlide()"
+             *ngIf="data.length > 5"></svg-icon>
+    <owl-carousel-o [options]="customOptions" #carousel>
+        <ng-template carouselSlide [width]="data.length < 4 ? 320 : 200"
+                     *ngFor="let appCategory of data; index as i;" class="card-box">
+            <div class="cursor-pointer category-card"
+                 [ngClass]="appCategory.categoryCardClass ? appCategory.categoryCardClass : ''"
+                 [style.background-image]="appCategory.categoryBackgroundImage ? safeStyle(appCategory.categoryBackgroundImage) : ''"
+                 [class.long-card]="data.length < 4"
+                 (click)="navigateToCategory(appCategory.categoryQuery)">
+                <div class="logo-container">
+                    <img *ngIf="appCategory.categoryLogo"
+                         [src]="safeImage(appCategory.categoryLogo)" alt="category-icon">
+                </div>
+                <div class="content-centered category-text"
+                     [style.color]="appCategory.categoryTitleColor ? appCategory.categoryTitleColor : ''">
+                    {{appCategory.categoryName ? appCategory.categoryName : 'All Apps'}}
+                </div>
+            </div>
+        </ng-template>
+    </owl-carousel-o>
+    <svg-icon src="assets/oc-ng-common-component/arrow-right-analog.svg" class="carousel-nav carousel-right" id="iconRight"
+             (click)="nextSlide()"
+             *ngIf="data.length > 5"></svg-icon>
+</div>

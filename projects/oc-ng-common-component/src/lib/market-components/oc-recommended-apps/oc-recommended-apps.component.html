@@ -1,0 +1,12 @@
+<h1>{{recommendedAppTitle}}</h1>
+<div *ngIf="appList && appList.length > 0; else emptyData"
+     class="oc-d-flex oc-mx-0 oc-mt-5 oc-w-100 oc-flex-wrap oc-justify-content-center oc-justify-content-lg-start">
+    <div class="recommended-card oc-px-2 oc-py-2 card-margin" *ngFor="let app of appList;">
+        <oc-app-card [app]="app" (clickByAppCard)="this.clickByAppCard.emit($event)"></oc-app-card>
+    </div>
+</div>
+<ng-template #emptyData>
+    <div class="row oc-mx-0 oc-mt-5">
+        <h5 class="col-md-12">{{noAppMessage}}</h5>
+    </div>
+</ng-template>

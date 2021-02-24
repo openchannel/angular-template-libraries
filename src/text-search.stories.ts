@@ -1,6 +1,6 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcCommonLibModule } from '../projects/oc-ng-common-component/src/lib/oc-ng-common-component.module';
-import { OcTextSearchComponent } from 'projects/oc-ng-common-component/src/lib/oc-text-search/oc-text-search.component';
+import { OcCommonLibModule } from 'oc-ng-common-component';
+import { OcTextSearchComponent } from 'oc-ng-common-component';
 
 const modules = {
   imports: [OcCommonLibModule]
