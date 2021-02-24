@@ -18,7 +18,7 @@ loginFilled.password = 'Tenup123#';
 loginFilled.isChecked = true;
 
 export default {
-  title: 'Login',
+  title: 'Login [BEM]',
   component: OcLoginComponent,
   decorators: [
     moduleMetadata(modules),
@@ -35,6 +35,7 @@ const defaultProps = {
   submit: action('clicked event'),
   forgotPwdUrl: 'forgotPwd',
   signupUrl: 'signup',
+  companyLogoUrl: 'assets/img/logo-company.png',
   loginModelChange: action('model changed'),
 };
 
