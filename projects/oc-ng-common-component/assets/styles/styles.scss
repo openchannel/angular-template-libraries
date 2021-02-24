@@ -152,16 +152,19 @@ h6 {
   margin-top: 6px;
 }
 
-.card.oc-card-with-border {
-  margin: auto;
-  width: 412px;
-  border: 1px solid $info;
+.card {
   border-radius: 4px;
-  .card-body {
-    padding: 40px 30px 38px;
-    font-size: 14px;
-    line-height: 16px;
-  }
+  width: 412px;
+}
+
+.oc-card-with-border {
+  border: 1px solid $info;
+}
+
+.card-body {
+  font-size: 14px;
+  line-height: 16px;
+  padding: 40px 30px 38px;
 }
 
 .sidebar {
