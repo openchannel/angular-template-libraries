@@ -1,6 +1,6 @@
-import {OcCommonLibModule} from '../projects/oc-ng-common-component/src/lib/oc-ng-common-component.module';
+import {OcCommonLibModule} from 'oc-ng-common-component';
 import {moduleMetadata} from '@storybook/angular';
-import { OcSidebarComponent } from '../projects/oc-ng-common-component/src/lib/oc-sidebar/oc-sidebar.component';
+import { OcSidebarComponent } from 'oc-ng-common-component';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {

@@ -1,0 +1,40 @@
+<div>
+    <div class="chart-options-container oc-border radius oc-bg-white oc-p-1 oc-mb-2">
+        <div *ngFor="let period of chartData?.periods"
+             [class.active]="period.active"
+             class="stats-period custom-radio time-selection radius oc-d-flex oc-flex-row oc-pl-5 oc-pr-2">
+            <input type="radio"
+                   [id]="period.id"
+                   [checked]="period.active"
+                   class="custom-control-input">
+            <label [for]="period.id"
+                   (click)="updateChartPeriod(period)"
+                   class="custom-control-label cursor-pointer oc-m-auto">{{period.label}}</label>
+        </div>
+        <oc-dropdown-button [minDropdownWidth]="minDropdownWidth"
+                            [options]="dropdownTypes"
+                            (selectedChange)="updateChartFiled($event)"
+                            class="type-section radius cursor-pointer">
+            <div customPlaceholder
+                 class="oc-d-flex oc-align-items-center oc-h-100 oc-pl-2">
+                <label class="oc-m-auto oc-mr-0 dropdown-label">
+                    {{dropdownSelectedType?.label ? dropdownSelectedType?.label : ''}}
+                </label>
+            </div>
+            <svg-icon defaultPlaceholderIcon src="assets/oc-ng-common-component/select-down.svg" class="cursor-pointer angle oc-ml-auto oc-mr-0 oc-pr-2"></svg-icon>
+            <svg-icon activePlaceholderIcon src="assets/oc-ng-common-component/select-up.svg" class="cursor-pointer angle oc-ml-auto oc-mr-0 oc-pr-2"></svg-icon>
+        </oc-dropdown-button>
+    </div>
+    <div class="chart-container oc-border radius oc-bg-white">
+        <div class="chart-statistic oc-w-100 oc-p-0">
+            <canvas #myCanvas height="123" class="oc-w-100"></canvas>
+        </div>
+        <div *ngIf="count >= 0" class="description-statistic oc-d-flex oc-flex-column oc-justify-content-center oc-mt-0 oc-mb-0 oc-p-1">
+            <div class="oc-d-flex oc-flex-column oc-mt-auto">
+                <img class="oc-m-auto" *ngIf="downloadUrl" alt="cloud" src="{{downloadUrl}}">
+                <h4 class="oc-text-center">{{count}}</h4>
+            </div>
+            <span class="oc-text-center oc-mt-auto oc-mb-0 oc-pt-1 oc-mb-2">{{countText}}</span>
+        </div>
+    </div>
+</div>

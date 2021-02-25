@@ -1,11 +1,8 @@
 import { moduleMetadata } from '@storybook/angular';
-import {
-  OcColorComponent,
-  OcCommonLibModule,
-} from 'projects/oc-ng-common-component/src/public-api';
+import { OcColorComponent, OcFormComponentsModule } from 'oc-ng-common-component/src/lib/form-components';
 
 const modules = {
-  imports: [OcCommonLibModule]
+  imports: [OcFormComponentsModule]
 };
 
 export default {

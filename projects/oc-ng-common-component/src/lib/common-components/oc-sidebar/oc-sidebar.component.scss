@@ -1,0 +1,33 @@
+@import "../../../../assets/styles/theme";
+
+.recolor-svg {
+  path {
+    fill: $body-color;
+  }
+}
+
+.sidebar {
+  max-width: 265px;
+  background-color: #fff;
+  .sidebar-heading {
+    font-size: 16px;
+    font-family: "Rubik-Medium";
+  }
+}
+
+.expand-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-item {
+  padding: 2px;
+  border-radius: 4px;
+  &:hover {
+    font-weight: 700;
+  }
+  &:focus {
+    border: 1px solid $focus-border;
+  }
+}

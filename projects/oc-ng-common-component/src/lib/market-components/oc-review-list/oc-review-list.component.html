@@ -1,0 +1,24 @@
+<div class="oc-d-flex oc-flex-column">
+    <div class="oc-d-flex oc-justify-content-between oc-align-items-center oc-mb-1">
+        <h1 class="oc-mb-0">{{reviewListTitle}}</h1>
+        <oc-button (click)="writeReview()" text="Write a Review"
+                   type="primary">
+        </oc-button>
+    </div>
+    <ng-content></ng-content>
+    <div *ngIf="displayedReviews && displayedReviews.length>0 ; else emptyList">
+        <div *ngFor="let review of displayedReviews" class="oc-mt-5">
+            <h4 class="font-reg">{{review.reviewOwnerName}}</h4>
+            <div class="font-s rating-label oc-mb-1">Rating</div>
+            <oc-rating [rating]="review.rating/100" type="multi-star" class="oc-mb-2 oc-d-block"></oc-rating>
+            <div id="reviewText">{{review.review}}</div>
+            <hr/>
+        </div>
+        <span class="drop-down" (click)="toggleDisplay()"
+              *ngIf="totalReview > maxReviewDisplay">
+            {{ displayedReviews?.length === maxReviewDisplay ? 'View all reviews (' + totalReview + ')' : 'Collapse' }}</span>
+    </div>
+    <ng-template #emptyList>
+        <h4 class="oc-mt-5">{{noReviewMessage}}</h4>
+    </ng-template>
+</div>

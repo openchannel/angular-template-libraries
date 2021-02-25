@@ -1,0 +1,9 @@
+<div class="tag tag-colors row oc-flex-nowrap oc-h-100 oc-m-0 oc-px-2 oc-py-1 oc-justify-content-between oc-align-items-center">
+    <div class="oc-text-wrap oc-text-truncate tag-label">{{title}}</div>
+    <svg-icon *ngIf="closeMarker"
+              [src]="deleteTagImgUrl"
+              class="cursor-pointer oc-pl-1"
+              svgClass="tag-close"
+              (click)="sentCurrentTag()"></svg-icon>
+</div>
+

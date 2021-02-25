@@ -1,6 +1,6 @@
-import {OcCommonLibModule} from '../projects/oc-ng-common-component/src/lib/oc-ng-common-component.module';
+import {OcCommonLibModule} from 'oc-ng-common-component';
 import {moduleMetadata} from '@storybook/angular';
-import { OcImageGalleryComponent } from '../projects/oc-ng-common-component/src/lib/oc-image-gallery/oc-image-gallery.component';
+import { OcImageGalleryComponent } from 'oc-ng-common-component';
 import { GalleryItem } from 'oc-ng-common-service';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */

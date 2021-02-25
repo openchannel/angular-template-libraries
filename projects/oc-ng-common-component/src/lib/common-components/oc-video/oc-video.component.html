@@ -1,0 +1,13 @@
+<div *ngIf="showVideoLoader" class="video-loader-div">
+    <ngx-spinner type="ball-spin" bdColor="" color="black"
+                 [fullScreen]="false" size="small">
+    </ngx-spinner>
+</div>
+<div *ngIf="!showVideoLoader" class="oc-w-100">
+    <div class="oc-d-flex oc-justify-content-center">
+        <div [innerHTML]="previewData" class="col-12 oc-p-0 vid-preview"></div>
+    </div>
+    <div class="col-12 oc-d-flex oc-justify-content-center oc-flex-column oc-align-items-center" *ngIf="!loadInIframe">
+        <video width="300" *ngIf="loadInVideo" [src]="url" controls></video>
+    </div>
+</div>

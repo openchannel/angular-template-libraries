@@ -1,14 +1,11 @@
-import {storiesOf} from '@storybook/angular';
-import {withA11y} from '@storybook/addon-a11y';
-import {
-  OcAppListGridComponent,
-  OcCommonLibModule,
-  OcReviewListComponent
-} from 'projects/oc-ng-common-component/src/public-api';
-import {OCReviewDetails} from 'oc-ng-common-service';
+import { storiesOf } from '@storybook/angular';
+import { withA11y } from '@storybook/addon-a11y';
+import { OcReviewListComponent } from 'projects/oc-ng-common-component/src/public-api';
+import { OCReviewDetails } from 'oc-ng-common-service';
+import { OcMarketComponentsModule } from 'oc-ng-common-component/src/lib/market-components';
 
 const modules = {
-  imports: [OcCommonLibModule]
+  imports: [OcMarketComponentsModule],
 };
 const appReview1 = new OCReviewDetails();
 appReview1.rating = 5;
@@ -44,8 +41,8 @@ storiesOf('Review List', module)
     props: {
       reviewListTitle: 'Most recent reviews',
       reviewsList: [],
-      noReviewMessage: 'No Review for this app'
-    }
+      noReviewMessage: 'No Review for this app',
+    },
   })).add('Some reviews', () => ({
   component: OcReviewListComponent,
   moduleMetadata: modules,
@@ -54,7 +51,7 @@ storiesOf('Review List', module)
     totalReview: 1,
     maxReviewDisplay: 3,
     canWriteReview: true,
-  }
+  },
 })).add('All', () => ({
   component: OcReviewListComponent,
   moduleMetadata: modules,
@@ -63,5 +60,5 @@ storiesOf('Review List', module)
     totalReview: 7,
     maxReviewDisplay: 4,
     canWriteReview: true,
-  }
+  },
 }));

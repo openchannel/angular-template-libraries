@@ -1,0 +1,20 @@
+<oc-modal-header [modalTitle]="this.modalData.modalTitle" [ngbModalRef]="ngbModalRef">
+    <div modalContent class="oc-pl-3 oc-pr-3 oc-pt-2 oc-pb-5">
+        <oc-form [formJsonData]="formConfig"
+                 [showButton]="false"
+                 (createdForm)="setCreatedForm($event)"
+                 (formDataUpdated)="setDataFromForm($event)"></oc-form>
+        <div class="oc-d-flex oc-justify-content-between oc-flex-column-reverse oc-flex-sm-row oc-mt-4">
+            <div class="button-container">
+                <oc-button type="secondary" text="Cancel" class="oc-w-100" (click)="onClose()"></oc-button>
+            </div>
+            <div class="button-container oc-mb-2 oc-mb-sm-0">
+                <oc-button type="primary"
+                           [text]="this.modalData.successButtonText"
+                           class="oc-w-100"
+                           [process]="inProcess"
+                           (click)="onClickConfirmButton()"></oc-button>
+            </div>
+        </div>
+    </div>
+</oc-modal-header>
