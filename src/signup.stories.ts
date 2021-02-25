@@ -19,7 +19,7 @@ const signupFilled: UserRegistrationModel = {
 };
 
 export default {
-    title: 'User signup',
+    title: 'User signup [BEM]',
     component: OcSignupComponent,
     decorators: [
         moduleMetadata(modules),
