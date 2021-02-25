@@ -1,51 +1,51 @@
-<form #signUpForm="ngForm" *ngIf="!showSignupFeedbackPage" novalidate>
-    <div class="card oc-card-with-border">
+<div class="sign-up">
+    <form #signUpForm="ngForm" *ngIf="!showSignupFeedbackPage" novalidate>
         <div class="card-body">
-            <div class="oc-text-center">
-                <img alt="logo" class="img-fluid oc-mb-4 company-logo" [src]="companyLogoUrl">
+            <div class="sign-up__logo">
+                <img alt="logo" class="company-logo" [src]="companyLogoUrl">
             </div>
-            <div class="oc-text-center">
+            <div class="sign-up__header">
                 <h4>Sign Up</h4>
-                <oc-label text="Enter your account details below" class="oc-mb-3"></oc-label>
+                <oc-label text="Enter your account details below" class="sign-up__header-invitation"></oc-label>
             </div>
-            <div class="form-group">
+            <div class="sign-up__form-group sign-up__name">
                 <oc-label text="Name"></oc-label>
                 <oc-input #uname=ngModel [(ngModel)]="signupModel.uname"
                           placeholder="Name" name="uname" ngDefaultControl required="true" ocWhiteSpaceValidator></oc-input>
                 <oc-error [control]="uname" field="uname"></oc-error>
             </div>
-            <div class="form-group" *ngIf="withCompany">
+            <div class="sign-up__form-group sign-up__company" *ngIf="withCompany">
                 <oc-label text="Company"></oc-label>
                 <oc-input #company=ngModel [(ngModel)]="signupModel.company"
                           placeholder="Company" name="company" ngDefaultControl required="true"
                           ocWhiteSpaceValidator></oc-input>
                 <oc-error [control]="company" field="company"></oc-error>
             </div>
-            <div class="form-group">
+            <div class="sign-up__form-group sign-up__email">
                 <oc-label text="Email"></oc-label>
                 <oc-input #email=ngModel [(ngModel)]="signupModel.email"
                           placeholder="Email" ocEmailValidator name="email" ngDefaultControl
                           required="true"></oc-input>
                 <oc-error [control]="email" field="email"></oc-error>
             </div>
-            <div class="form-group oc-mb-2">
+            <div class="sign-up__form-group sign-up__password">
                 <oc-label text="Password"></oc-label>
                 <oc-password #password=ngModel [(ngModel)]="signupModel.password"
                              placeholder="Password" class="oc-mb-2" name="password"
                              ngDefaultControl ocPasswordValidator></oc-password>
                 <oc-error [control]="password" field="password"></oc-error>
             </div>
-            <div class="form-group">
-                <div class="oc-d-flex oc-align-items-center">
+            <div class="consent">
+                <div class="consent__checkbox">
                     <oc-checkbox #isChecked=ngModel
                                  required="true"
                                  name="isChecked"
                                  [(ngModel)]="signupModel.isChecked"></oc-checkbox>
-                    <div class="font-s">
+                    <div class="consent__label">
                         I agree to
-                        <a class="font-s font-med" [href]="termsUrl" target="_blank"> Terms of Service</a>
+                        <a class="consent__link" [href]="termsUrl" target="_blank"> Terms of Service</a>
                         and
-                        <a class="font-s font-med" [href]="policyUrl" target="_blank"> Data Processing Policy</a>
+                        <a class="consent__link" [href]="policyUrl" target="_blank"> Data Processing Policy</a>
                     </div>
                 </div>
                 <oc-error [control]="isChecked"
@@ -53,14 +53,14 @@
             </div>
             <oc-button (click)="submitForm(signUpForm)"
                        [process]="process" text="Sign Up" type="primary"
-                       class="btn-block oc-mt-5 oc-mb-3">
+                       class="sign-up__button">
             </oc-button>
-            <div class="oc-text-center font-m">
-                Already have an account? <a class="font-m font-med" [routerLink]="loginUrl">Log In</a>
+            <div class="sign-up__login">
+                Already have an account? <a class="sign-up__login-link" [routerLink]="loginUrl">Log In</a>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>
 
 
 <form *ngIf="showSignupFeedbackPage" novalidate>
