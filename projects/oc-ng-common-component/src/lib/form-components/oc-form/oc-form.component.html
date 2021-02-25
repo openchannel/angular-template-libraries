@@ -1,26 +1,25 @@
-<form [formGroup]="customForm" *ngIf="customForm">
+<form class="form" [formGroup]="customForm" *ngIf="customForm">
   <ng-container *ngFor="let formElement of formJsonData?.fields; trackBy:trackByFieldId">
-    <div class="oc-mt-2 oc-mb-2 oc-d-flex oc-flex-column" [ngClass]="labelPosition === 'right' ?
-         'oc-flex-md-row-reverse'
-         : labelPosition === 'left' ? 'oc-flex-md-row' : ''">
-      <oc-tooltip-label [text]="formElement?.label" class="oc-mb-2" [required]="formElement?.attributes?.required"
-                [ngClass]="labelPosition === 'left' ? 'col-md-3 oc-mr-2 oc-pl-0 oc-mb-md-0 form-label' :
-                labelPosition === 'right' ? 'col-md-3 oc-ml-2 oc-pr-0 oc-mb-md-0 form-label' : ''"
-                [description]="formElement?.description ? formElement?.description : ''"
-                >
-      </oc-tooltip-label>
-      <div class="oc-w-100">
+    <div class="form__field" [ngClass]="labelPosition === 'right' ?
+         'form__field_direction_row_reverse'
+         : labelPosition === 'left' ? 'form__field_direction_row_normal' : ''">
+      <oc-tooltip-label [text]="formElement?.label" class="form__field-label" [required]="formElement?.attributes?.required"
+                [ngClass]="labelPosition === 'left' ? 'form__field-label_position_left form__field-label_row' :
+                labelPosition === 'right' ? 'form__field-label_position_right form__field-label_row' : ''"
+                [description]="formElement?.description ? formElement?.description : ''"></oc-tooltip-label>
+      <div class="form__field-input">
         <div [ngSwitch]="formElement?.type">
           <oc-rich-text-editor *ngSwitchCase="'richText'"
                                formControlName="{{formElement?.id}}"
                                [placeholder]="formElement?.placeholder"></oc-rich-text-editor>
-          <oc-input *ngSwitchCase="'text'"  formControlName="{{formElement?.id}}"
-                    [placeholder]="formElement?.placeholder"
-          ></oc-input>
-          <oc-textarea *ngSwitchCase="'longText'"  formControlName="{{formElement?.id}}"
-                       [placeholder]="formElement?.placeholder"
-          ></oc-textarea>
-          <oc-select *ngSwitchCase="'dropdownList'" formControlName="{{formElement?.id}}"
+          <oc-input *ngSwitchCase="'text'"
+                    formControlName="{{formElement?.id}}"
+                    [placeholder]="formElement?.placeholder"></oc-input>
+          <oc-textarea *ngSwitchCase="'longText'"
+                       formControlName="{{formElement?.id}}"
+                       [placeholder]="formElement?.placeholder"></oc-textarea>
+          <oc-select *ngSwitchCase="'dropdownList'"
+                     formControlName="{{formElement?.id}}"
                      [selectValArr]="formElement?.options"></oc-select>
           <oc-tags *ngSwitchCase="'tags'"
                    placeHolderInputName="Choose your tags"
@@ -33,44 +32,35 @@
           <oc-file-upload *ngSwitchCase="'singleFile'"
                           formControlName="{{formElement?.id}}"
                           isMultiFile="true"
-                          fileType="singleFile">
-          </oc-file-upload>
+                          fileType="singleFile"></oc-file-upload>
           <oc-file-upload *ngSwitchCase="'multiFile'"
                           formControlName="{{formElement?.id}}"
                           isMultiFile="true"
-                          fileType="multiFile">
-          </oc-file-upload>
+                          fileType="multiFile"></oc-file-upload>
           <oc-file-upload *ngSwitchCase="'multiImage'"
                           formControlName="{{formElement?.id}}"
                           isMultiFile="true"
-                          fileType="multiImage">
-          </oc-file-upload>
+                          fileType="multiImage"></oc-file-upload>
           <oc-file-upload *ngSwitchCase="'singleImage'"
                           formControlName="{{formElement?.id}}"
-                          fileType="singleImage">
-          </oc-file-upload>
+                          fileType="singleImage"></oc-file-upload>
           <oc-number *ngSwitchCase="'number'"
                      formControlName="{{formElement?.id}}"
-                     [placeholder]="formElement?.placeholder"
-          ></oc-number>
+                     [placeholder]="formElement?.placeholder"></oc-number>
           <oc-checkbox *ngSwitchCase="'checkbox'"
                        formControlName="{{formElement?.id}}"
                        [labelText]="formElement?.label"
-                       [requiredIndicator]="formElement?.attributes.required"
-          ></oc-checkbox>
+                       [requiredIndicator]="formElement?.attributes.required"></oc-checkbox>
           <oc-input *ngSwitchCase="'emailAddress'"
                     formControlName="{{formElement?.id}}"
                     inputType="email"
-                    [placeholder]="formElement?.placeholder? formElement.placeholder : 'myemail@example.com'"
-          ></oc-input>
+                    [placeholder]="formElement?.placeholder ? formElement.placeholder : 'myemail@example.com'"></oc-input>
           <oc-input *ngSwitchCase="'websiteUrl'"
                     formControlName="{{formElement?.id}}" inputType="url"
-                    [placeholder]="formElement?.placeholder ? formElement.placeholder : 'https://my.website.com'"
-          ></oc-input>
+                    [placeholder]="formElement?.placeholder ? formElement.placeholder : 'https://my.website.com'"></oc-input>
           <oc-color  *ngSwitchCase="'color'"
                      formControlName="{{formElement?.id}}"
-                     [placeholder]="formElement?.placeholder"
-          ></oc-color>
+                     [placeholder]="formElement?.placeholder"></oc-color>
           <oc-tags *ngSwitchCase="'booleanTags'"
                    placeHolderInputName="Choose your tags"
                    formControlName="{{formElement?.id}}"
@@ -91,8 +81,7 @@
                    tagsType="number"></oc-tags>
           <oc-video-url *ngSwitchCase="'videoUrl'"
                         [formControlName]="formElement?.id"
-                        [placeholder]="formElement?.placeholder ? formElement.placeholder : 'https://my.website.com'">
-          </oc-video-url>
+                        [placeholder]="formElement?.placeholder ? formElement.placeholder : 'https://my.website.com'"></oc-video-url>
           <oc-datetime-picker *ngSwitchCase="'date'"
                               formControlName="{{formElement?.id}}"
                               [type]="formElement?.type"
@@ -103,15 +92,13 @@
           <oc-multi-select-list  *ngSwitchCase="'multiselectList'"
                                  formControlName="{{formElement?.id}}"
                                  [availableItemsList]="formElement?.options ? formElement?.options : ['']"
-                                 [label]="formElement?.label"
-          ></oc-multi-select-list>
+                                 [label]="formElement?.label"></oc-multi-select-list>
           <oc-dynamic-field-array  *ngSwitchCase="'dynamicFieldArray'"
                                    formControlName="{{formElement?.id}}"
-                                   [fieldDefinitionData]="formElement"
-          ></oc-dynamic-field-array>
-          <oc-password *ngSwitchCase="'password'" formControlName="{{formElement?.id}}"
-                        [placeholder]="formElement?.placeholder">
-          </oc-password>
+                                   [fieldDefinitionData]="formElement"></oc-dynamic-field-array>
+          <oc-password *ngSwitchCase="'password'"
+                       formControlName="{{formElement?.id}}"
+                       [placeholder]="formElement?.placeholder"></oc-password>
         </div>
         <oc-error *ngIf="formElement?.type !== 'tags'"
                   [field]="formElement?.id"
@@ -119,12 +106,17 @@
       </div>
     </div>
   </ng-container>
-  <div class="oc-mt-3 oc-mb-2 row oc-mr-0 oc-ml-0" *ngIf="showButton" [ngClass]="buttonPosition === 'center' ? 'oc-justify-content-center'
-           : buttonPosition === 'left' ? 'oc-justify-content-start' : 'oc-justify-content-start oc-flex-row-reverse'">
-    <oc-button (click)="sendData()"
+  <div class="form__buttons"
+       *ngIf="showButton"
+       [ngClass]="buttonPosition === 'center' ? 'form__buttons_justify_center'
+       : buttonPosition === 'left' ? 'form__buttons_justify_start'
+       : 'form__buttons_justify_start form__buttons_direction_row_reverse'">
+    <oc-button class="form__button"
+               (click)="sendData()"
                [process]="process"
                [text]="successButtonText"
-               type="primary" [class]="buttonPosition === 'right' ? 'oc-ml-1' : 'oc-mr-1'"
+               [class]="buttonPosition === 'right' ? 'form__button_position_right' : 'form__button_position_left'"
+               type="primary"
                id="successBtn"></oc-button>
     <oc-button (click)="cancelForm()"
                text="Cancel"

@@ -6,7 +6,7 @@ const modules = {
 };
 
 export default {
-  title: 'Color',
+  title: 'Color [BEM]',
   component: OcColorComponent,
   decorators: [
     moduleMetadata(modules),

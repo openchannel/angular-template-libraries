@@ -1,5 +1,7 @@
-<div class="oc-w-100 oc-d-flex oc-flex-column">
-  <div *ngFor="let field of fieldsDataArray; let i = index" class="oc-mb-2" [class.hid-item]="getHiddenItemIndex(i)">
+<div class="cards-interface">
+  <div class="cards-interface__added-item"
+       *ngFor="let field of fieldsDataArray; let i = index"
+       [class.hid-item]="getHiddenItemIndex(i)">
     <oc-dynamic-array-item
             [subFields]="fieldDefinition?.subFieldDefinitions"
             [index]="i"
@@ -8,23 +10,24 @@
             (sendFieldData)="editDFAItemData($event, i)"
             (deleteField)="deleteDynamicItem($event, i)"></oc-dynamic-array-item>
   </div>
-  <div *ngFor="let form of formsArray; let j = index" class="form-card oc-mb-3">
-    <div class="form-card-header oc-pt-3 oc-px-5 oc-pb-2">
-      <h3 class="oc-mb-0">
-        {{!form.new && fieldDefinition?.attributes.rowLabel ?
+  <div class="cards-interface__preview"
+       *ngFor="let form of formsArray; let j = index">
+    <div class="cards-interface__preview-header">
+      <h3 class="cards-interface__preview-header-text">{{!form.new && fieldDefinition?.attributes.rowLabel ?
           getLabelValue(fieldsDataArray[form.index], fieldDefinition?.attributes.rowLabel)
           : 'Item ' + (form.index + 1)}}
       </h3>
-      <svg-icon src="assets/oc-ng-common-component/trash-icon.svg" svgClass="icon-size"
+      <svg-icon class="cards-interface__preview-icon"
+                src="assets/img/trash-icon.svg"
                 (click)="deleteDynamicItem(form.new, j)"></svg-icon>
     </div>
-    <div class="form-card-body oc-pt-3 oc-px-5 oc-pb-4">
+    <div class="cards-interface__preview-content">
       <oc-form [formJsonData]="form"
                [showButton]="false"
                (formDataUpdated)="onFieldDataUpdates($event, form)"
                successButtonText="Save"></oc-form>
     </div>
-    <div class="form-card-buttons oc-px-5 oc-pb-5">
+    <div class="cards-interface__preview-buttons">
       <oc-button type="secondary" text="Cancel" (click)="cancelArrayItemAdding(j)"></oc-button>
       <oc-button type="primary" text="Save" (click)="saveItemFieldsData(form, j)"></oc-button>
     </div>

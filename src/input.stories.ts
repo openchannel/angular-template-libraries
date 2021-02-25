@@ -23,7 +23,7 @@ storiesOf('Input', module)
             focus: true,
         },
         moduleMetadata: modules,
-    })).add('Checkbox', () => ({
+    })).add('Checkbox [BEM]', () => ({
         component: OcCheckboxComponent,
         props: {
             labelText: 'Custom Checkbox',

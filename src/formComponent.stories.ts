@@ -5,6 +5,7 @@ import {FileDetails, FileUploadDownloadService} from 'oc-ng-common-service';
 import {Observable, of} from 'rxjs';
 import {EmbedVideoService} from 'ngx-embed-video';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 class StubFileUploadDownloadService {
   constructor() {}
@@ -92,7 +93,7 @@ class StubFileUploadDownloadService {
 }
 
 const modules = {
-  imports: [OcFormComponentsModule, HttpClientModule],
+  imports: [OcFormComponentsModule, HttpClientModule, BrowserAnimationsModule],
   providers: [
     HttpClient,
     {provide: FileUploadDownloadService, useClass: StubFileUploadDownloadService}, EmbedVideoService
