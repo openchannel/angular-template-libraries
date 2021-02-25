@@ -27,7 +27,7 @@
 // font settings
 
 @mixin font-family-rubik($type: 'Medium') {
-  font-family: 'Rubik-' + $type, serif;
+  font-family: 'Rubik-' + $type, sans-serif;
 }
 
 @mixin font-size-breakpoint($breakpoint: md) {
