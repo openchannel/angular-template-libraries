@@ -1,98 +1,97 @@
-@import "./theme.scss";
-@import "~bootstrap/scss/bootstrap";
+@import 'theme.scss';
+@import 'mixins';
+@import '~bootstrap/scss/bootstrap';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
-@import "./custom";
+@import 'custom';
 
 @font-face {
-  font-family: "Rubik-Black";
+  font-family: 'Rubik-Black';
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-Black.ttf")
-    format("truetype");
-}
-
-@font-face {
-  font-family: "Rubik-BlackItalic";
-  font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-BlackItalic.ttf")
-    format("truetype");
+  src: url('~oc-ng-common-component/assets/fonts/Rubik-Black.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Rubik-Bold";
+  font-family: 'Rubik-Black-Italic';
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-Bold.ttf")
-    format("truetype");
+  src: url('~oc-ng-common-component/assets/fonts/Rubik-BlackItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rubik-Bold';
+  font-weight: normal;
+  src: url('~oc-ng-common-component/assets/fonts/Rubik-Bold.ttf') format('truetype');
 }
 @font-face {
-  font-family: "Rubik-BoldItalic";
+  font-family: 'Rubik-Bold-Italic';
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-BoldItalic.ttf")
-    format("truetype");
+  src: url('~oc-ng-common-component/assets/fonts/Rubik-BoldItalic.ttf') format('truetype');
 }
 @font-face {
-  font-family: "Rubik-Italic";
+  font-family: 'Rubik-Italic';
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-Italic.ttf")
-    format("truetype");
+  src: url('~oc-ng-common-component/assets/fonts/Rubik-Italic.ttf') format('truetype');
 }
 @font-face {
-  font-family: "Rubik-Light";
+  font-family: 'Rubik-Light';
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-Light.ttf")
-    format("truetype");
+  src: url('~oc-ng-common-component/assets/fonts/Rubik-Light.ttf') format('truetype');
 }
 @font-face {
-  font-family: "Rubik-LightItalic";
+  font-family: 'Rubik-Light-Italic';
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-LightItalic.ttf")
-    format("truetype");
+  src: url('~oc-ng-common-component/assets/fonts/Rubik-LightItalic.ttf') format('truetype');
 }
 @font-face {
-  font-family: "Rubik-Medium";
+  font-family: 'Rubik-Medium';
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-Medium.ttf")
-    format("truetype");
+  src: url('~oc-ng-common-component/assets/fonts/Rubik-Medium.ttf') format('truetype');
 }
 @font-face {
-  font-family: "Rubik-MediumItalic";
+  font-family: 'Rubik-Medium-Italic';
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-MediumItalic.ttf")
-    format("truetype");
+  src: url('~oc-ng-common-component/assets/fonts/Rubik-MediumItalic.ttf') format('truetype');
 }
 @font-face {
-  font-family: "Rubik Regular";
+  font-family: 'Rubik-Regular';
   font-weight: normal;
-  src: url("~oc-ng-common-component/assets/fonts/Rubik-Regular.ttf")
-    format("truetype");
+  src: url('~oc-ng-common-component/assets/fonts/Rubik-Regular.ttf') format('truetype');
 }
 
 .font-light {
-  font-family: "Rubik-Light";
+  @include font-family-rubik('Light');
 }
+
 .font-reg {
-  font-family: "Rubik Regular";
+  @include font-family-rubik('Regular');
 }
+
 .font-med {
-  font-family: "Rubik-Medium";
+  @include font-family-rubik('Medium');
 }
+
 .font-bold {
-  font-family: "Rubik-Bold";
+  @include font-family-rubik('Bold');
 }
+
 .font-s {
   font-size: 12px;
 }
+
 .font-m {
   font-size: 14px;
 }
+
 .font-l {
   font-size: 18px;
 }
-h1{
+
+h1 {
   font-size: 38px;
 }
+
 * {
-  font-family: "Rubik Regular";
+  @include font-family-rubik('Regular');
   font-size: 16px;
   font-weight: normal;
 }
@@ -104,9 +103,9 @@ a {
     text-decoration: none;
   }
   &:focus {
-    outline:none
+    outline: none;
   }
-  b{
+  b {
     font-size: inherit;
   }
 }
@@ -118,7 +117,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Rubik-Medium";
+  @include font-family-rubik('Medium');
 }
 
 .cursor-pointer {
@@ -131,24 +130,24 @@ h6 {
 .form-control {
   border: 1px solid $info;
   border-radius: 4px;
+  font-size: 14px;
   height: 46px;
   padding: 12px 16px;
-  font-size: 14px;
 }
 .form-control:focus {
-  box-shadow: none;
   border: 1px solid $primary;
+  box-shadow: none;
 }
 
 .form-control::placeholder {
-  opacity: 0.5;
   color: $body-color;
+  opacity: 0.5;
 }
 
 .invalid-feedback {
   color: $danger;
-  font-size: 12px;
   display: block;
+  font-size: 12px;
   margin-top: 6px;
 }
 
@@ -165,15 +164,15 @@ h6 {
 }
 
 .sidebar {
-  min-width: 255px;
   background-color: $light;
   border-radius: 4px;
+  min-width: 255px;
   h6 {
-    padding: 16px 0;
-    font-family: "Rubik-Medium";
+    @include font-family-rubik('Medium');
     display: inline-block;
     line-height: 18px;
     margin-bottom: 0;
+    padding: 16px 0;
   }
   span {
     font-size: 14px;
@@ -181,17 +180,17 @@ h6 {
   }
   .nav {
     .nav-item {
-      padding: 11px 0;
       display: inline-block;
+      padding: 11px 0;
     }
   }
 }
 
 /* oc-file-upload */
-.file-upload-progress[type="primary"]{
+.file-upload-progress[type='primary']{
   .progress {
-    height: 4px;
     background-color: $info;
+    height: 4px;
   }
 }
 
@@ -219,10 +218,10 @@ h6 {
   border-radius: 4px;
   font-weight: 300;
   position: relative;
-  font-family: "Rubik-Medium";
+  font-family: 'Rubik-Medium';
   span {
     font-size: 14px;
-    font-family: "Rubik-Medium";
+    font-family: 'Rubik-Medium';
   }
 }
 .btn:focus{
@@ -552,12 +551,12 @@ oc-select {
   }
 }
 
-.dropdown-toggle[aria-expanded="true"]::after {
+.dropdown-toggle[aria-expanded='true']::after {
   content: url(~oc-ng-common-component/assets/img/select-up.svg);
   border: none;
 }
 
-.dropdown-toggle[aria-expanded="false"]::after {
+.dropdown-toggle[aria-expanded='false']::after {
   content: url(~oc-ng-common-component/assets/img/select-down.svg);
   border: none;
 }

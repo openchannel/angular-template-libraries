@@ -1,44 +1,64 @@
-@import "../../../../assets/styles/theme.scss";
+@import '../../../../assets/styles/theme';
 
-.color-display {
-  width: 46px;
-  background-color: #e4e8ec;
-  border-right: none;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
+.color-adjust {
+  width: 100%;
+  display: flex;
 
-.color-input {
-  border-left: none;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.picker-btn {
-  width: 46px;
-  margin-left: 2rem;
-  padding: 0.5rem 0.7rem;
-  background-color: #fff;
-  position: relative;
-  color: $body-color;
-  &:hover {
-    background-color: rgba(201, 213, 234, .11);
-  }
-  &:focus {
-    border-color: #c9d5ea;
-  }
-  svg {
+  &__demonstration {
     width: 100%;
-    height: 100%;
+    display: flex;
   }
-  input {
+
+  &__display {
+    width: 46px;
+    background-color: #e4e8ec;
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &__input {
     width: 100%;
-    height: 100%;
-    position: absolute;
-    opacity: 0;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    cursor: pointer;
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &__picker {
+    width: 46px;
+    margin-left: 2rem;
+    padding: 0.5rem 0.7rem;
+    background-color: #fff;
+    position: relative;
+    color: $body-color;
+
+    &:hover {
+      background-color: rgba(201, 213, 234, .11);
+    }
+
+    &:focus {
+      border-color: #c9d5ea;
+    }
+
+    &-icon {
+      width: 100%;
+      height: 100%;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      opacity: 0;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+    }
   }
 }

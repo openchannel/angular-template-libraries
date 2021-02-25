@@ -1,18 +1,18 @@
-<div class="oc-w-100 oc-d-flex">
+<div class="color-adjust">
 <!--  Color demonstration and input section-->
-  <section class="oc-d-flex oc-flex-nowrap oc-w-100">
-    <span class="form-control color-display" [style.background-color]="colorValue"></span>
-    <input  [disabled]="disabled"
-            [placeholder]="placeholder"
-            [(ngModel)]="colorValue"
-            (ngModelChange)="onValueChange()"
-            [ngModelOptions]="{standalone: true}"
-            (focus)="onFocus()"
-            class="form-control oc-w-100 color-input">
-  </section>
-<!--  Toggle Color picker button-->
-  <div class="form-control picker-btn">
-    <span class="oc-w-100 oc-h-100">
+  <div class="color-adjust__demonstration">
+    <span class="color-adjust__display form-control" [style.background-color]="colorValue"></span>
+    <input [disabled]="disabled"
+           [placeholder]="placeholder"
+           [(ngModel)]="colorValue"
+           (ngModelChange)="onValueChange()"
+           [ngModelOptions]="{standalone: true}"
+           (focus)="onFocus()"
+           class="color-adjust__input form-control">
+  </div>
+<!-- Toggle Color picker button -->
+  <div class="color-adjust__picker form-control">
+    <span class="color-adjust__picker-icon">
       <svg fill="currentColor" aria-hidden="true" focusable="false" data-prefix="far"
            data-icon="eye-dropper" role="img" xmlns="http://www.w3.org/2000/svg"
            viewBox="0 0 512 512" class="svg-inline--fa fa-eye-dropper fa-w-16 fa-9x">

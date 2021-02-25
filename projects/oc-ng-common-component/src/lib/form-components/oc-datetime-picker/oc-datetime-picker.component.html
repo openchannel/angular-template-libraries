@@ -1,97 +1,96 @@
-<div
-        ngbDropdown
-        class="oc-d-inline-block oc-w-100"
-        placement="bottom-left top-left"
-        #myDrop="ngbDropdown"
-        (openChange)="done($event)"
->
-    <button
-            class="btn btn-secondary oc-w-100 oc-d-flex oc-justify-content-between oc-align-items-center date-picker-dd-toggle"
+<div ngbDropdown
+     class="date-picker"
+     placement="bottom-left top-left"
+     #myDrop="ngbDropdown"
+     (openChange)="done($event)">
+    <button class="date-picker__click-zone btn btn-secondary"
             id="datePickerDD"
             ngbDropdownToggle
             [disabled]="disabled"
             (click)="disabled ? myDrop.close() : (myDrop.isOpen() ? initCal() : null)">
-        <input type="hidden" class="wc-input" value="{{ date }}" />
-        <div class="wc-date-container">
+        <input type="hidden" value="{{ date }}"/>
+        <div class="date-picker__format">
             <span *ngIf="date">{{ date | date: settings.format }}</span>
             <span *ngIf="!date">{{settings.format | uppercase}}</span>
         </div>
-        <svg-icon src="assets/oc-ng-common-component/calendar-icon.svg" svgClass="calendar-icon-size" style="height: 16px">
-        </svg-icon>
+        <svg-icon src="assets/oc-ng-common-component/calendar-icon.svg" svgClass="calendar-icon-size" style="height: 16px"></svg-icon>
     </button>
-    <div ngbDropdownMenu aria-labelledby="datePickerDD" class="oc-p-0">
-        <div class="wc-date-popover" [ngClass]="{'wc-date-popover__date': !isDateTime}">
-            <div class="wc-banner">
+    <div class="date-picker__dropdown" ngbDropdownMenu aria-labelledby="datePickerDD">
+        <div class="date-picker__dropdown-popover" [ngClass]="{'date-picker__dropdown-popover-date': !isDateTime}">
+            <div class="date-picker__dropdown-banner">
                 <svg-icon id="prevMonth" src="assets/oc-ng-common-component/arrow-left-analog.svg"
-                          svgClass="calendar-icon-size" class="cursor-pointer"
-                          (click)="prevMonth($event)"></svg-icon>
-                <div class="wc-banner__detail">
+                          svgClass="calendar-icon-size"
+                          (click)="prevMonth($event)">
+                </svg-icon>
+                <div class="date-picker__dropdown-detail">
                     {{ date | date: 'MMMM' }}, {{ date | date: 'yyyy' }}
                 </div>
                 <svg-icon id="nextMonth" src="assets/oc-ng-common-component/arrow-right-analog.svg"
-                          svgClass="calendar-icon-size" class="cursor-pointer"
-                          (click)="nextMonth($event)"></svg-icon>
+                          svgClass="calendar-icon-size"
+                          (click)="nextMonth($event)">
+                </svg-icon>
             </div>
-            <div class="wc-content">
-                <table class="calendar-header">
+            <div class="date-picker__dropdown-content">
+                <table class="date-picker__calendar-header">
                     <tr>
-                        <td class="calendar-header-day">M</td>
-                        <td class="calendar-header-day">T</td>
-                        <td class="calendar-header-day">W</td>
-                        <td class="calendar-header-day">T</td>
-                        <td class="calendar-header-day">F</td>
-                        <td class="calendar-header-day">S</td>
-                        <td class="calendar-header-day">S</td>
+                        <td>M</td>
+                        <td>T</td>
+                        <td>W</td>
+                        <td>T</td>
+                        <td>F</td>
+                        <td>S</td>
+                        <td>S</td>
                     </tr>
                 </table>
 
-                <table class="calendar-days" (click)="setDay($event)">
+                <table class="date-picker__calendar-days" (click)="setDay($event)">
                     <tr *ngFor="let week of monthDays">
-                        <td
-                                [ngClass]="{
-                'calendar-day': day.day != null,
-                today:
-                  day.day === today.getDate() &&
-                  day.date?.getMonth() === today.getMonth() &&
-                  day.date?.getFullYear() === today.getFullYear(),
-                'selected-day': day.day === date?.getDate() &&
-                  day.date?.getMonth() === date?.getMonth(),
-                'prev-month': day.date?.getMonth() !== date?.getMonth()
-              }"
-                                *ngFor="let day of week"
-                        >
+                        <td [ngClass]="{
+                            'date-picker__calendar-day':
+                                day.day != null,
+                                today:day.day === today.getDate() &&
+                                      day.date?.getMonth() === today.getMonth() &&
+                                      day.date?.getFullYear() === today.getFullYear(),
+                            'date-picker__selected-day': day.day === date?.getDate() &&
+                                            day.date?.getMonth() === date?.getMonth(),
+                            'date-picker__prev-month': day.date?.getMonth() !== date?.getMonth()}"
+                            *ngFor="let day of week">
                             <span [attr.data-label]="composeDate(day.date)">{{ day.day }}</span>
                         </td>
                     </tr>
                 </table>
             </div>
-            <div class="time-view" *ngIf="type === 'datetime'">
-                <div class="time">
-                    <div class="hour">
-                        <div class="time__header">Hours</div>
-                        <div class="time__manipulators">
-                            <svg-icon src="assets/oc-ng-common-component/arrow-left-analog.svg"
-                                      svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
+            <div class="date-picker__time-view" *ngIf="type === 'datetime'">
+                <div class="date-picker__time">
+                    <div class="date-picker__time-hours">
+                        <div class="date-picker__time-header">Hours</div>
+                        <div class="date-picker__time-manipulators">
+                            <svg-icon src="assets/img/arrow-left-analog.svg"
+                                      svgClass="date-picker__time-calendar-icon"
+                                      class="date-picker__time-calendar-icon"
                                       (click)="decHour()"></svg-icon>
                             <input #hourInput type="text" [value]="hourValue < 10 ? '0' + hourStr : hourStr"
                                    (input)="onHourChange($event)" ocOnlyNumber
-                                   (click)="hourInput.select()" />
-                            <svg-icon src="assets/oc-ng-common-component/arrow-right-analog.svg"
-                                      svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
+                                   (click)="hourInput.select()"/>
+                            <svg-icon src="assets/img/arrow-right-analog.svg"
+                                      svgClass="date-picker__time-calendar-icon"
+                                      class="date-picker__time-calendar-icon"
                                       (click)="incHour()"></svg-icon>
                         </div>
                     </div>
-                    <div class="minutes">
-                        <div class="time__header">Minutes</div>
-                        <div class="time__manipulators">
-                            <svg-icon src="assets/oc-ng-common-component/arrow-left-analog.svg"
-                                      svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
+                    <div class="date-picker__time-minutes">
+                        <div class="date-picker__time-header">Minutes</div>
+                        <div class="date-picker__time-manipulators">
+                            <svg-icon src="assets/img/arrow-left-analog.svg"
+                                      svgClass="date-picker__time-calendar-icon"
+                                      class="date-picker__time-calendar-icon"
                                       (click)="decMinutes()"></svg-icon>
                             <input #minInput type="text" [value]="minuteValue < 10 ? '0' + minuteStr : minuteStr"
                                    (input)="onMinChange($event)"
                                    ocOnlyNumber (click)="minInput.select()"/>
-                            <svg-icon src="assets/oc-ng-common-component/arrow-right-analog.svg"
-                                      svgClass="calendar-icon-size" class="cursor-pointer calendar-icon-size"
+                            <svg-icon src="assets/img/arrow-right-analog.svg"
+                                      svgClass="date-picker__time-calendar-icon"
+                                      class="date-picker__time-calendar-icon"
                                       (click)="incMinutes()"></svg-icon>
                         </div>
                     </div>
