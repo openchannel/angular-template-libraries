@@ -124,6 +124,10 @@ h6 {
   @include font-family-rubik('Medium');
 }
 
+h4 {
+  font-size: 3rem;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

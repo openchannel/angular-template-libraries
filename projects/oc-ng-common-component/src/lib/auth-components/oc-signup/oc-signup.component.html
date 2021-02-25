@@ -60,30 +60,27 @@
             </div>
         </div>
     </form>
-</div>
 
-
-<form *ngIf="showSignupFeedbackPage" novalidate>
-    <div class="card oc-card-with-border">
-        <div class="card-body">
-            <div class="oc-text-center">
+    <form *ngIf="showSignupFeedbackPage" novalidate>
+        <div class="card-body result">
+            <div class="sign-up__logo result__logo">
                 <img alt="logo"
-                     class="img-fluid oc-mb-5 company-logo"
+                     class="company-logo"
                      [src]="companyLogoUrl">
             </div>
-            <div class="oc-text-center">
+            <div class="result__message">
                 <img alt="dropdown-icon"
-                     class="oc-mb-3" [src]="forgotPasswordDoneUrl">
+                     [src]="forgotPasswordDoneUrl">
                 <h4>Done!</h4>
                 <oc-label text="An activation email has been sent to your inbox."></oc-label>
             </div>
-            <div class="oc-text-center">
-                <oc-button (click)="goToActivationPage()" [disabled]="false"
-                           text="Activate account" type="primary" class="btn-block oc-mt-5 oc-mb-3">
-                </oc-button>
+            <oc-button (click)="goToActivationPage()" [disabled]="false"
+                       text="Activate account" type="primary" class="sign-up__button">
+            </oc-button>
+            <div class="result__sign-up-message">
                 <oc-label text="Don't have an account yet?"></oc-label>
-                <a class="font-m font-med link" (click)="showSignupFeedbackPage = !showSignupFeedbackPage"> Sign Up</a>
+                <a class="result__link" (click)="showSignupFeedbackPage = !showSignupFeedbackPage"> Sign Up</a>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>

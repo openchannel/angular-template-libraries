@@ -56,6 +56,33 @@
   }
 }
 
+.result {
+  &__logo {
+    margin-bottom: 4rem;
+  }
+  &__message {
+    text-align: center;
+    img {
+      margin-bottom: 3rem;
+    }
+    h4 {
+      margin-bottom: 1rem;
+    }
+  }
+  &__sign-up-message {
+    text-align: center;
+  }
+  &__link {
+    @include font-size-breakpoint(md);
+    @include font-family-rubik('Medium');
+    color: $primary;
+    cursor: pointer;
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
 oc-checkbox {
   height: 16px;
 }
