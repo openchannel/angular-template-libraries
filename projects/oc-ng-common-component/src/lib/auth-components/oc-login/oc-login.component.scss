@@ -1,22 +1,64 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
 .login {
+  @include media-breakpoint-sm {
+    width: 100%;
+  }
+  border: 1px solid $info;
+  border-radius: 4px;
+  width: 412px;
   &__logo {
     margin-bottom: 30px;
+    text-align: center;
+  }
+
+  &__header {
+    text-align: center;
+  }
+
+  &__email {
+    margin-bottom: 3rem;
+    &_margin_top {
+      margin-top: 4rem;
+    }
+  }
+
+  &__password {
+    margin-bottom: 2rem;
   }
 
   &__error {
+    @include font-size-breakpoint(sm);
+    background-color: $error-bg;
     border-radius: 4px;
-    margin: 12px 0;
+    color: $error;
+    margin: 2rem 0 3rem;
     padding: 15px 10px 15px 9px;
     text-align: center;
   }
 
   &__forgot-block {
+    display: flex;
+    flex-wrap: wrap;
     height: 16px;
+    justify-content: space-between;
     margin-bottom: 40px;
   }
 
   &__button {
+    display: block;
     margin: 0 0 24px;
+    width: 100%;
+  }
+
+  &__sign-up {
+    @include font-size-breakpoint(md);
+    text-align: center;
+    &-link {
+      @include font-size-breakpoint(md);
+      @include font-family-rubik('Medium');
+    }
   }
 }
 
@@ -24,13 +66,25 @@
   display: flex;
   height: 16px;
   &__checkbox {
+    flex-basis: 0;
+    flex-grow: 1;
     height: 16px;
+    max-width: 100%;
     width: 16px;
   }
 
   &__label {
-    font-size: 12px;
+    @include font-size-breakpoint(sm);
     margin-left: 8px;
+  }
+}
+
+.forgot {
+  max-width: 100%;
+  width: auto;
+  &__link {
+    @include  font-size-breakpoint(sm);
+    @include font-family-rubik('Medium');
   }
 }
 
