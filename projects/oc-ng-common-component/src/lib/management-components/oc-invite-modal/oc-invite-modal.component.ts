@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalInviteUserModel, ModalUpdateUserModel} from 'oc-ng-common-service';
 import {FormGroup} from '@angular/forms';
-import {isString} from 'lodash';
+import {get, isString, set} from 'lodash';
 
 @Component({
   selector: 'oc-invite-modal',
@@ -90,7 +90,7 @@ export class OcInviteModalComponent implements OnInit {
     this.modalData.requestFindUserRoles().subscribe(result => {
       if (result.list && result.list.length > 0) {
         const roles: string [] = [];
-        result.list.forEach((role: {developerRoleId?: string, userRoleId?: string}) => {
+        result.list.forEach((role: { developerRoleId?: string, userRoleId?: string }) => {
           if (role?.developerRoleId) {
             roles.push(role?.developerRoleId);
           } else if (role?.userRoleId) {
@@ -122,7 +122,11 @@ export class OcInviteModalComponent implements OnInit {
       this.formGroup.markAllAsTouched();
       if (this.formGroup.valid && this.formData && !this.inProcess) {
         this.inProcess = true;
-        this.formData.roles = isString(this.formData?.roles) ? [this.formData.roles] : this.formData?.roles;
+
+        const roles = isString(this.formData?.roles) ? [this.formData.roles] : this.formData?.roles;
+        this.formData.roles = roles;
+        this.formData.customData = set(get(this.formData, 'customData', {}), 'roles', roles);
+
         if (this.modalData instanceof ModalUpdateUserModel) {
           this.updateUser(this.modalData);
         } else {
@@ -133,11 +137,16 @@ export class OcInviteModalComponent implements OnInit {
   }
 
   private updateUser(updateModalData: ModalUpdateUserModel): void {
-    updateModalData.requestUpdateAccount(this.getAccountId(updateModalData.userData),
-      {
-        ...updateModalData.userData,
-        ...this.formData
-      }).subscribe(() => {
+    updateModalData.requestUpdateAccount(this.getAccountId(updateModalData.userData), {
+      ...updateModalData.userData,
+      ...this.formData,
+      ...{
+        customData: {
+          ...get(updateModalData.userData, 'customData', {}),
+          ...get(this.formData, 'customData', {})
+        }
+      }
+    }).subscribe(() => {
       this.inProcess = false;
       this.ngbModalRef.close(true);
     }, () => {
