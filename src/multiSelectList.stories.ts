@@ -7,7 +7,7 @@ const modules = {
 };
 
 export default {
-  title: 'Multi Select List',
+  title: 'Multi Select List [BEM]',
   component: OcMultiSelectListComponent,
   decorators: [
     moduleMetadata(modules),

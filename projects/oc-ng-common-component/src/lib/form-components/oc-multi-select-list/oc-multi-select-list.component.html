@@ -1,11 +1,11 @@
-<div class="oc-w-100 oc-d-flex">
-  <oc-tag-element class="oc-mr-2 oc-mt-2 "
+<div class="multiselect">
+  <oc-tag-element class="tag"
                   *ngFor="let tag of resultItems; index as i"
                   [closeMarker]="true"
                   [title]="tag"
                   (clickEmitter)="removeItem(i)">
   </oc-tag-element>
-  <oc-dropbox class="oc-m-0 oc-mr-2 oc-mt-2"
+  <oc-dropbox class="dropbox"
               *ngIf="dropBoxItems?.length > 0"
               [items]="dropBoxItems"
               [placeHolder]="'Select ' + label"
@@ -16,7 +16,7 @@
 </div>
 
 <ng-template #dropElementTemplate let-result="result">
-  <div class="oc-d-flex oc-flex-row oc-flex-nowrap oc-align-items-center dropdown-element oc-p-2">
+  <div class="dropbox__element">
     <div class="custom-text">{{result}}</div>
   </div>
 </ng-template>

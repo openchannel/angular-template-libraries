@@ -17,7 +17,7 @@ storiesOf('Input', module)
     .addParameters({
         component: OcInputComponent,
     })
-    .add('Text', () => ({
+    .add('Text [BEM]', () => ({
         component: OcInputComponent,
         props: {
             focus: true,

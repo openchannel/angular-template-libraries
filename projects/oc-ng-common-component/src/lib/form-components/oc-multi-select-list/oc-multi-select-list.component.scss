@@ -1,0 +1,21 @@
+.multiselect {
+  width: 100%;
+  display: flex;
+
+  .tag {
+    margin-right: 1rem;
+    margin-top: 1rem;
+  }
+
+  .dropbox {
+    margin: 1rem 1rem 0 0;
+
+    &__element {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      padding: 1rem;
+    }
+  }
+}
