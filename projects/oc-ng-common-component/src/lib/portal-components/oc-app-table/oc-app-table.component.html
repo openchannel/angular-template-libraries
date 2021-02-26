@@ -54,7 +54,7 @@
               <img [src]="app.customData.icon ? app.customData.icon : defaultAppIcon" alt="" class="app-icon">
             </div>
             <div class="col-md oc-pl-0">
-              <h6 class="oc-mb-0 cursor-pointer oc-pr-2 word-break"
+              <h6 class="app-name cursor-pointer oc-pr-2 word-break"
                   (click)="action('PREVIEW', app.appId, app.version, false)"
               >{{app.name}} </h6>
               <small> v {{app.version}}</small>
