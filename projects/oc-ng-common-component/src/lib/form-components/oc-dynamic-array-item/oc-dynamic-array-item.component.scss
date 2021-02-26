@@ -1,0 +1,55 @@
+@import "../../../../assets/styles/theme.scss";
+
+//.main-item-button {
+//  background-color: lighten($primary, 30%);
+//  border: 0;
+//  padding: 4px 10px;
+//  border-radius: .25rem;
+//  color: $primary;
+//
+//  span {
+//    font-size: 1rem;
+//    text-transform: uppercase;
+//  }
+//}
+//
+//.item-delete-button {
+//  background-color: lighten($danger, 26%);
+//  color: $danger;
+//}
+//
+//.fields-details-text {
+//  color: lighten($body-color, 10%);
+//}
+
+.form-card {
+  border: 1px solid $info;
+  border-radius: 4px;
+
+  &-header {
+    align-items: center;
+    box-shadow: inset 0 -1px 0 0 $info;
+    display: flex;
+    justify-content: space-between;
+
+    h3 {
+      font-size: 24px;
+    }
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.recolor-icon {
+  fill: $body-color;
+}
+
+.icon-size {
+  cursor: pointer;
+  height: 16px;
+  vertical-align: top;
+  width: 16px;
+}

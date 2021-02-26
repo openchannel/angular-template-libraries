@@ -1,6 +1,6 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcCommonLibModule } from 'projects/oc-ng-common-component/src/lib/oc-ng-common-component.module';
-import { OcVideoUrlComponent } from 'projects/oc-ng-common-component/src/lib/oc-video-url/oc-video-url.component';
+import { OcCommonLibModule } from 'oc-ng-common-component';
+import { OcVideoUrlComponent } from 'oc-ng-common-component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 const modules = {

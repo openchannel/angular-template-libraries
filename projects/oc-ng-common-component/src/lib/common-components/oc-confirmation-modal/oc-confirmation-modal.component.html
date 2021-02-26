@@ -1,0 +1,15 @@
+<oc-modal-header [modalTitle]="modalTitle" [ngbModalRef]="ngbModalRef">
+    <div modalContent class="modal-body oc-p-5">
+        <h5 class="oc-text-center modal-title">{{modalText}}</h5>
+        <div class="oc-d-flex oc-justify-content-center oc-mt-5 oc-pl-3 oc-pr-3 oc-flex-nowrap oc-w-100">
+            <oc-button class="oc-ml-1 oc-mr-1 oc-w-100" *ngIf="!rejectButtonHide"
+                       [type]="rejectButtonType" [text]="rejectButtonText"
+                       customClass="oc-w-100"
+                       (click)="closeModal()"></oc-button>
+            <oc-button class="oc-ml-1 oc-mr-1 oc-w-100" *ngIf="!confirmButtonHide"
+                       [type]="confirmButtonType" [text]="confirmButtonText"
+                       customClass="oc-w-100"
+                       (click)="closeModal(true)"></oc-button>
+        </div>
+    </div>
+</oc-modal-header>

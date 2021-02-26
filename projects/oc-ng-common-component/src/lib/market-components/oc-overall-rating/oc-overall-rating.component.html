@@ -1,0 +1,28 @@
+    <div style="min-width: 255px;">
+        <div class="oc-d-flex oc-align-items-end oc-justify-content-between oc-mb-2">
+            <div class="oc-d-flex oc-align-items-end">
+                <h1 class="rating">{{allReviewSummary.rating}}</h1>
+                <span class="font-l font-med">/5.0</span>
+            </div>
+            <span id="reviewLabel" class="oc-float-right font-l font-med">{{overallReviewLabel}}</span>
+        </div>
+        <div class="oc-mb-2">
+            <oc-label class="font-m review-label" text="Based on"></oc-label>
+            <span id="reviewCount" class="label-blue font-m"> {{allReviewSummary.reviewCount}} reviews</span>
+        </div>
+
+        <ng-template #t let-fill="fill">
+            <span [class.full]="fill === 100" class="star">&#9733;</span>
+        </ng-template>
+
+
+
+        <div *ngFor="let rate of rates">
+            <div class="oc-d-flex oc-justify-content-between oc-align-items-center oc-mb-1">
+                <ngb-rating class="review__rate" [rate]="rate" [max]="5" [readonly]="true" [starTemplate]="t"></ngb-rating>
+                <span class="font-m progress-bar__label">{{allReviewSummary[rate]}}/{{allReviewSummary.reviewCount}}</span>
+            </div>
+            <ngb-progressbar class="review__progressbar oc-mb-2" [value]="(allReviewSummary[rate]/allReviewSummary.reviewCount)*100"
+                             type="primary"></ngb-progressbar>
+        </div>
+    </div>

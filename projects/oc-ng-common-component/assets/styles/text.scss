@@ -1,0 +1,51 @@
+.oc-text-monospace { font-family: $font-family-monospace; }
+
+.oc-text-justify  { text-align: justify; }
+.oc-text-wrap     { white-space: normal; }
+.oc-text-nowrap   { white-space: nowrap; }
+.oc-text-truncate { @include text-truncate(); }
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .oc-text#{$infix}-left   { text-align: left; }
+    .oc-text#{$infix}-right  { text-align: right; }
+    .oc-text#{$infix}-center { text-align: center; }
+  }
+}
+
+.oc-text-lowercase  { text-transform: lowercase; }
+.oc-text-uppercase  { text-transform: uppercase; }
+.oc-text-capitalize { text-transform: capitalize; }
+
+.oc-font-weight-light   { font-weight: $font-weight-light; }
+.oc-font-weight-lighter { font-weight: $font-weight-lighter; }
+.oc-font-weight-normal  { font-weight: $font-weight-normal; }
+.oc-font-weight-bold    { font-weight: $font-weight-bold; }
+.oc-font-weight-bolder  { font-weight: $font-weight-bolder; }
+.oc-font-italic         { font-style: italic; }
+
+.oc-text-white { color: $white; }
+
+@each $color, $value in $theme-colors {
+  @include text-emphasis-variant(".oc-text-#{$color}", $value, true);
+}
+
+.oc-text-body { color: $body-color; }
+.oc-text-muted { color: $text-muted; }
+
+.oc-text-black-50 { color: rgba($black, .5); }
+.oc-text-white-50 { color: rgba($white, .5); }
+
+.oc-text-hide {
+  @include text-hide($ignore-warning: true);
+}
+
+.oc-text-decoration-none { text-decoration: none; }
+
+.oc-text-break {
+  word-wrap: break-word;
+}
+
+.oc-text-reset { color: inherit; }

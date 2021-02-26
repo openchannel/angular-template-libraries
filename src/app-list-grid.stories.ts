@@ -1,12 +1,10 @@
 import { moduleMetadata } from '@storybook/angular';
-import {
-  OcAppListGridComponent,
-  OcCommonLibModule,
-} from 'projects/oc-ng-common-component/src/public-api';
+import { OcAppListGridComponent } from 'projects/oc-ng-common-component/src/public-api';
 import { StatElement } from 'oc-ng-common-service';
+import { OcMarketComponentsModule } from 'oc-ng-common-component/src/lib/market-components';
 
 const modules = {
-  imports: [OcCommonLibModule]
+  imports: [OcMarketComponentsModule]
 };
 
 const stat: StatElement = {

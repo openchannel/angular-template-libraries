@@ -1,15 +1,12 @@
-import {moduleMetadata} from '@storybook/angular';
-import {
-  OcCommonLibModule,
-  OcNumberComponent,
-  OcRecommendedAppsComponent,
-} from 'projects/oc-ng-common-component/src/public-api';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RouterTestingModule} from '@angular/router/testing';
-import {StatElement} from 'oc-ng-common-service';
+import { moduleMetadata } from '@storybook/angular';
+import { OcNumberComponent, OcRecommendedAppsComponent } from 'projects/oc-ng-common-component/src/public-api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { StatElement } from 'oc-ng-common-service';
+import { OcMarketComponentsModule } from 'oc-ng-common-component/src/lib/market-components';
 
 const modules = {
-  imports: [OcCommonLibModule, BrowserAnimationsModule, RouterTestingModule]
+  imports: [OcMarketComponentsModule, BrowserAnimationsModule, RouterTestingModule]
 };
 
 const stat: StatElement = {

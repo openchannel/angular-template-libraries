@@ -1,7 +1,7 @@
-import {OcCommonLibModule} from '../projects/oc-ng-common-component/src/lib/oc-ng-common-component.module';
+import {OcCommonLibModule} from 'oc-ng-common-component';
 import {moduleMetadata} from '@storybook/angular';
-import {OcDropdownComponent} from '../projects/oc-ng-common-component/src/lib/oc-dropdown/oc-dropdown.component';
-import { OcDropdownButtonComponent } from '../projects/oc-ng-common-component/src/lib/oc-dropdown-button/oc-dropdown-button.component';
+import {OcDropdownComponent} from 'oc-ng-common-component';
+import { OcDropdownButtonComponent } from 'oc-ng-common-component';
 
 const modules = {
     imports: [OcCommonLibModule],

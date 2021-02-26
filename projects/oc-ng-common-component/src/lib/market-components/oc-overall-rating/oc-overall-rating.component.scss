@@ -1,0 +1,34 @@
+@import "../../../../assets/styles/theme.scss";
+
+.label-blue {
+  color: $primary;
+  margin-bottom: 8px;
+  width: 130px;
+}
+
+.rating {
+  line-height: 38px;
+  margin-bottom: 0;
+}
+
+.review-label {
+  color: $secondary;
+}
+
+.star {
+  font-size: 14px;
+  line-height: 14px;
+  height: 14px;
+  position: relative;
+  color: rgba(114, 114, 114, 0.4);
+}
+
+.full {
+  color: $yellow;
+}
+
+.progress-bar__label {
+  color: $secondary;
+  line-height: 14px;
+  height: 14px;
+}

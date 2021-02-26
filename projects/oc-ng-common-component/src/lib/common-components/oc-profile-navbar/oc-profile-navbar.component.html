@@ -1,0 +1,15 @@
+<div class="oc-d-flex profile-navbar">
+  <div class="profile-navbar__initials text-primary" *ngIf="initials">{{initials}}</div>
+  <div class="nav-item dropdown" ngbDropdown placement="bottom-right">
+    <div class="dropdown-toggle oc-pr-0 oc-d-flex oc-align-items-center" id="navbarDropdown" role="button"
+         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+      <div class="oc-d-flex oc-flex-column oc-mr-2">
+        <span class="profile-navbar__username font-m font-med text-dark" *ngIf="username">{{username}}</span>
+        <span class="profile-navbar__role font-s text-muted" *ngIf="role">{{role}}</span>
+      </div>
+    </div>
+    <div ngbDropdownMenu aria-labelledby="navbarDropdown" class="oc-mt-2">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
