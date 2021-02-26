@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalInviteUserModel, ModalUpdateUserModel} from 'oc-ng-common-service';
 import {FormGroup} from '@angular/forms';
-import {get, isString, set} from 'lodash';
+import {isString, merge} from 'lodash';
 
 @Component({
   selector: 'oc-invite-modal',
@@ -124,8 +124,8 @@ export class OcInviteModalComponent implements OnInit {
         this.inProcess = true;
 
         const roles = isString(this.formData?.roles) ? [this.formData.roles] : this.formData?.roles;
+        this.formData = merge(this.formData, {customData: {roles}});
         this.formData.roles = roles;
-        this.formData.customData = set(get(this.formData, 'customData', {}), 'roles', roles);
 
         if (this.modalData instanceof ModalUpdateUserModel) {
           this.updateUser(this.modalData);
@@ -137,16 +137,10 @@ export class OcInviteModalComponent implements OnInit {
   }
 
   private updateUser(updateModalData: ModalUpdateUserModel): void {
-    updateModalData.requestUpdateAccount(this.getAccountId(updateModalData.userData), {
-      ...updateModalData.userData,
-      ...this.formData,
-      ...{
-        customData: {
-          ...get(updateModalData.userData, 'customData', {}),
-          ...get(this.formData, 'customData', {})
-        }
-      }
-    }).subscribe(() => {
+    updateModalData.requestUpdateAccount(
+      this.getAccountId(updateModalData.userData),
+      merge(updateModalData.userData, this.formData)
+    ).subscribe(() => {
       this.inProcess = false;
       this.ngbModalRef.close(true);
     }, () => {
