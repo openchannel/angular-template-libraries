@@ -1,6 +1,6 @@
 <div class="sign-up login-card login-card_borders">
     <form #signUpForm="ngForm" *ngIf="!showSignupFeedbackPage" novalidate>
-        <div class="card-body">
+        <div class="sign-up__card-body">
             <div class="sign-up__logo">
                 <img alt="logo" class="company-logo" [src]="companyLogoUrl">
             </div>
@@ -62,7 +62,7 @@
     </form>
 
     <form *ngIf="showSignupFeedbackPage" novalidate>
-        <div class="card-body result">
+        <div class="sign-up__card-body result">
             <div class="sign-up__logo result__logo">
                 <img alt="logo"
                      class="company-logo"

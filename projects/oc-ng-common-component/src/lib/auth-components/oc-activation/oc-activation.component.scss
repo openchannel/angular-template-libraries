@@ -2,6 +2,9 @@
 @import '../../../../assets/styles/mixins';
 
 .activation {
+  &__card-body {
+    @include card-body;
+  }
   &__logo {
     margin-bottom: 4rem;
     text-align: center;
