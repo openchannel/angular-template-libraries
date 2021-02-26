@@ -1,13 +1,13 @@
 import {moduleMetadata} from '@storybook/angular';
 import {OcCommonLibModule} from 'projects/oc-ng-common-component/src/public-api';
-import {OcTagsComponent} from "oc-ng-common-component";
+import {OcTagsComponent} from 'oc-ng-common-component';
 
 const modules = {
     imports: [OcCommonLibModule]
 };
 
 export default {
-    title: 'Tags',
+    title: 'Tags [BEM]',
     component: OcTagsComponent,
     decorators: [
         moduleMetadata(modules),
