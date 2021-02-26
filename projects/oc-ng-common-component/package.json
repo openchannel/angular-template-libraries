@@ -1,6 +1,6 @@
 {
   "name": "oc-ng-common-component",
-  "version": "0.0.1-152",
+  "version": "0.0.1-153",
   "peerDependencies": {
     "@angular/common": "^9.1.1",
     "@angular/core": "^9.1.1"
