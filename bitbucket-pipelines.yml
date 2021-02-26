@@ -22,10 +22,6 @@ definitions:
     - step: &build-and-push-new-version
         name: Push library to repository
         script:
-          - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
-          - npm run oc-ng-common-component-up-version
-          - git commit -a -m "Auto increment prerelease version [skip ci]"
-          - git push
           - npm install --quiet
           - npm run build-prod
           - npm run oc-ng-common-component-pack
@@ -37,20 +33,30 @@ definitions:
               PACKAGE_NPM_DIST_TAG: 'stable'
               PACKAGE_PATH: 'dist/oc-ng-common-component/*.tgz'
               REPUBLISH: 'true'
-
+    - step: &increase-version
+        name: Up library version
+        script:
+          - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
+          - npm run oc-ng-common-component-up-version
+          - git commit -a -m "Auto increment prerelease version [skip ci]"
+          - git push
 pipelines:
   pull-requests:
     '**':
       - step: *build-test-sonarcloud
+  custom:
+    publish:
+      - step: *build-and-push-new-version
   branches:
     develop:
       - step: *build-test-sonarcloud
       - step:
           trigger: manual
+          <<: *increase-version
           <<: *build-and-push-new-version
-
     AT-117_angular_templates:
       - step: *build-test-sonarcloud
       - step:
           trigger: manual
+          <<: *increase-version
           <<: *build-and-push-new-version

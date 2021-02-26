@@ -42,6 +42,6 @@ export class OcAppCardComponent implements OnInit {
   }
 
   clickByApp(): void {
-    this.clickByAppCard.emit(this.app);
+    this.clickByAppCard.emit(this.appData);
   }
 }
