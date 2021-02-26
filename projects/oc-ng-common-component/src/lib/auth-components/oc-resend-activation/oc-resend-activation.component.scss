@@ -1,0 +1,37 @@
+@import '../../../../assets/styles/mixins';
+
+.resend-activation {
+  @include media-breakpoint-sm {
+    width: 100%;
+  }
+  &__card-body {
+    @include card-body;
+  }
+  &__logo {
+    margin-bottom: 4rem;
+    text-align: center;
+    img {
+      max-width: 100%;
+    }
+  }
+  &__header {
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+  &__button {
+    display: block;
+    margin: 4rem 0 3rem;
+    width: 100%;
+  }
+  &__log-in, &__sign-up {
+    @include font-size-breakpoint(md);
+    text-align: center;
+  }
+  &__log-in {
+    margin-bottom: 2rem;
+  }
+  &__link {
+    @include font-size-breakpoint(md);
+    @include font-family-rubik('Medium');
+  }
+}
