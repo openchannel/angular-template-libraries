@@ -1,5 +1,6 @@
-import { Component, forwardRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {Component, forwardRef, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {difference} from 'lodash';
 
 @Component({
   selector: 'oc-multi-select-list',
@@ -26,11 +27,7 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
    * Default: empty string []
    */
   @Input() set availableItemsList(value: any[]) {
-    if (value && value.length > 0) {
-      this.availableItems = value;
-    } else {
-      throw Error('availableItemsList is required!');
-    }
+    this.availableItems = value;
   }
   /**
    * (optional)
@@ -63,7 +60,7 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.availableTags && changes.availableTags.previousValue !== changes.availableTags.currentValue) {
+    if (difference(changes.availableItemsList.currentValue, changes.availableItemsList.previousValue)?.length > 0) {
       this.dropBoxItems = this.findAvailableDropBoxItems();
     }
   }
