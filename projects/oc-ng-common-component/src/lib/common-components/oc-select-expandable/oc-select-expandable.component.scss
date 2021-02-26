@@ -1,19 +1,58 @@
-.sidebar-heading {
+@import '../../../../assets/styles/mixins';
+
+.select-expandable {
   cursor: pointer;
-}
+  user-select: none;
 
-.checkbox-input {
-  height: 16px;
-  width: 16px;
-  cursor: pointer;
-}
+  &__sidebar {
+    background-color: #f4f7fc;
+    border-radius: 4px;
+    min-width: 100%;
+    padding: 0 1rem;
+  }
 
-.checkbox__wrapper {
-  display: flex;
-  align-items: center;
-  height: 46px;
-}
+  &__heading {
+    @include font-family-rubik('Medium');
+    line-height: 18px;
+    margin-bottom: 0;
+    padding: 16px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-.sidebar-width {
-  min-width: 100%;
+    .select-expandable__icon {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+
+    &.collapse:not(.show) {
+      display: none;
+    }
+
+    .select-expandable__option {
+      display: flex;
+      align-items: center;
+      height: 46px;
+
+      &-input {
+        height: 16px;
+        width: 16px;
+        cursor: pointer;
+      }
+
+      &-label {
+        margin-left: 0.5rem;
+        @include font-size-breakpoint(md);
+      }
+    }
+  }
 }

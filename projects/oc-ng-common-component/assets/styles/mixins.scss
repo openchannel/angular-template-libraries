@@ -37,3 +37,11 @@
     font-size: 14px;
   }
 }
+
+// template elements
+
+@mixin card-body {
+  font-size: 14px;
+  line-height: 16px;
+  padding: 40px 30px 38px;
+}

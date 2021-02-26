@@ -164,16 +164,7 @@ h6 {
 }
 
 .sidebar {
-  background-color: $light;
-  border-radius: 4px;
-  min-width: 255px;
-  h6 {
-    @include font-family-rubik('Medium');
-    display: inline-block;
-    line-height: 18px;
-    margin-bottom: 0;
-    padding: 16px 0;
-  }
+
   span {
     font-size: 14px;
     line-height: 18px;

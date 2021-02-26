@@ -101,7 +101,7 @@ const modules = {
 };
 
 export default {
-  title: 'Form Group Component',
+  title: 'Form Group Component [BEM]',
   component: OcFormComponent,
   decorators: [
     moduleMetadata(modules),

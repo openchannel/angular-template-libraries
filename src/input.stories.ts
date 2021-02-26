@@ -12,18 +12,18 @@ const modules = {
     imports: [OcCommonLibModule],
 };
 
-storiesOf('Input', module)
+storiesOf('Input [BEM]', module)
     .addDecorator(withA11y)
     .addParameters({
         component: OcInputComponent,
     })
-    .add('Text [BEM]', () => ({
+    .add('Text', () => ({
         component: OcInputComponent,
         props: {
             focus: true,
         },
         moduleMetadata: modules,
-    })).add('Checkbox [BEM]', () => ({
+    })).add('Checkbox', () => ({
         component: OcCheckboxComponent,
         props: {
             labelText: 'Custom Checkbox',
