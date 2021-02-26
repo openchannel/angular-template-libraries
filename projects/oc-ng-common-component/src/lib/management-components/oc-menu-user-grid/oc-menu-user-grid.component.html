@@ -1,33 +1,26 @@
-<table class="table"
+<table aria-describedby="user-management-table"
+       class="table"
        [infiniteScrollThrottle]="50"
        (scrolled)="onScrollDown()"
        infiniteScroll>
     <thead>
         <tr>
-            <th class="name">
-                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Name', field: 'name'}}"
-                              [ngTemplateOutlet]="sortIconTemplate">
-                </ng-container>
-            </th>
-            <th class="email">
-                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Email', field: 'email'}}"
-                              [ngTemplateOutlet]="sortIconTemplate">
-                </ng-container>
-            </th>
-            <th class="data">
-                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Date Added', field: 'date'}}"
-                              [ngTemplateOutlet]="sortIconTemplate">
-                </ng-container>
-            </th>
-            <th class="role">
-                <ng-container [ngTemplateOutletContext]="{$implicit:{name: 'Role', field: 'role'}}"
-                              [ngTemplateOutlet]="sortIconTemplate">
-                </ng-container>
-            </th>
-            <th class="status">
+            <ng-container [ngTemplateOutletContext]="{$implicit:{width: 'name', name: 'Name', field: 'name'}}"
+                          [ngTemplateOutlet]="sortIconTemplate">
+            </ng-container>
+            <ng-container [ngTemplateOutletContext]="{$implicit:{width: 'email',name: 'Email', field: 'email'}}"
+                          [ngTemplateOutlet]="sortIconTemplate">
+            </ng-container>
+            <ng-container [ngTemplateOutletContext]="{$implicit:{width: 'data', name: 'Date Added', field: 'date'}}"
+                          [ngTemplateOutlet]="sortIconTemplate">
+            </ng-container>
+            <ng-container [ngTemplateOutletContext]="{$implicit:{width: 'role', name: 'Role', field: 'role'}}"
+                          [ngTemplateOutlet]="sortIconTemplate">
+            </ng-container>
+            <th class="status" scope="col">
                 <div class="th-row">Status</div>
             </th>
-            <th class="action"></th>
+            <th class="action" scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -55,7 +48,8 @@
             <!-- Role -->
             <td>
                 <div class="td-row">
-                    <span class="c-blue oc-text-capitalize font-weight-bold">{{user.type | lowercase}}</span>
+                    <span class="c-blue oc-text-capitalize font-weight-bold">
+                        {{(user?.roles?.length > 0 ? user.roles[0]: '') | lowercase}} </span>
                 </div>
             </td>
             <!-- Status-->
@@ -107,10 +101,12 @@
 </ng-template>
 
 <ng-template #sortIconTemplate let-column>
-    <div class="th-row cursor-pointer" (click)="sortAppsBy(column.field)">{{column.name}}
-        <div class="sort-icon">
-            <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon">
-            <svg-icon src="assets/oc-ng-common-component/dropdown.svg" class="cursor-pointer" *ngIf="!sortIcon"></svg-icon>
+    <th [ngClass]="column.width" scope="col">
+        <div class="th-row cursor-pointer" (click)="sortUsersBy(column.field)">{{column.name}}
+            <div class="sort-icon">
+                <img [src]="sortIcon" alt="icon" class="cursor-pointer icon-down" *ngIf="sortIcon">
+                <svg-icon *ngIf="!sortIcon" src="assets/oc-ng-common-component/dropdown.svg" class="cursor-pointer"></svg-icon>
+            </div>
         </div>
-    </div>
+    </th>
 </ng-template>

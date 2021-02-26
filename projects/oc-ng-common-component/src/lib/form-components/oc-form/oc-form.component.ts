@@ -172,9 +172,8 @@ export class OcFormComponent implements OnInit, OnDestroy {
               group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ?
                 inputTemplate?.defaultValue : [inputTemplate?.options[0]]);
             } else {
-              group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue
-              && inputTemplate?.defaultValue.length > 0 ?
-                inputTemplate?.defaultValue : ['item1', 'item2']);
+              group[inputTemplate?.id] = new FormControl(
+                inputTemplate?.defaultValue?.length > 0 ? inputTemplate?.defaultValue : []);
             }
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes, { isList: true});
             break;
