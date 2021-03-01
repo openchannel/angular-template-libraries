@@ -1,11 +1,11 @@
 <oc-modal-header [modalTitle]="modalTitle" [ngbModalRef]="ngbModalRef">
-    <div modalContent class="oc-pl-3 oc-pr-3 oc-pt-2 oc-pb-5">
+    <div modalContent class="modal-inner">
         <oc-form [formJsonData]="formJsonData"
                  [showButton]="false"
                  (createdForm)="setCreatedForm($event)"
                  (formDataUpdated)="setDataFromForm($event)"></oc-form>
 
-        <div class="oc-d-flex oc-justify-content-between oc-mt-5 oc-flex-nowrap oc-w-100">
+        <div class="modal-inner__buttons">
             <div (click)="close()">
                 <ng-container [ngTemplateOutlet]="rejectButton"></ng-container>
             </div>

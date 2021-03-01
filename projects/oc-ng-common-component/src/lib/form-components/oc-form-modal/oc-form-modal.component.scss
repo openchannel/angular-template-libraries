@@ -1,0 +1,11 @@
+.modal-inner {
+  padding: 1rem 1.5rem 2.5rem;
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    width: 100%;
+    margin-top: 2.5rem;
+  }
+}
