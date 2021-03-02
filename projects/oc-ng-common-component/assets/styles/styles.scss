@@ -183,14 +183,14 @@ h4 {
 }
 
 /* oc-file-upload */
-.file-upload-progress[type='primary']{
+.file-container__upload-item-progress[type='primary']{
   .progress {
     background-color: $info;
     height: 4px;
   }
 }
 
-.file-upload-progress {
+.file-container__upload-item-progress {
   .progress {
     height: 1px;
   }
@@ -203,86 +203,6 @@ h4 {
 
 .sign-up__text {
   margin-bottom: 0 !important;
-}
-
-/** buttons **/
-.btn{
-  font-size: 14px;
-  padding: 10px 20px;
-  min-width: 160px;
-  min-height: 52px;
-  border-radius: 4px;
-  font-weight: 300;
-  position: relative;
-  font-family: 'Rubik-Medium';
-  span {
-    font-size: 14px;
-    font-family: 'Rubik-Medium';
-  }
-}
-.btn:focus{
-  box-shadow: none !important;
-  outline: none;
-  border: 2px solid $focus-border;
-}
-.btn:disabled{
-  opacity: 0.35;
-}
-.btn-primary{
-  background-color: $primary !important;
-  border-color: $primary !important;
-  &:hover {
-    box-shadow: 1px 5px 30px 0 rgba(mix(#000, $primary, 10%), 0.5);
-  }
-  &:not(:disabled):not(.disabled):active {
-    background-color: mix(#000, $primary, 10%) !important;
-  }
-  &-spinner {
-    background-color: mix(#000, $primary, 10%) !important;
-  }
-}
-.btn-secondary{
-  background-color: white !important;
-  border-color: $info !important;
-  color: $body-color !important;
-  &:hover {
-    box-shadow: 1px 5px 30px 0 rgba(lighten($secondary, 34%), 0.5);
-  }
-  &:not(:disabled):not(.disabled):active {
-    background-color: $info !important;
-  }
-  &-spinner {
-    background-color: $info !important;
-  }
-}
-.btn-danger{
-  background-color: $danger !important;
-  border-color: $danger !important;
-  &:hover {
-    box-shadow: 1px 5px 30px 0 rgba(mix(#000, $danger, 10%), 0.5);
-  }
-  &:not(:disabled):not(.disabled):active {
-    background-color: mix(#000, $danger, 10%) !important;
-  }
-  &-spinner {
-    background-color: mix(#000, $danger, 10%) !important;
-  }
-}
-.btn-link{
-  color: $primary !important;
-  text-decoration: none;
-  width: auto;
-  height: auto;
-  min-width: unset;
-  min-height: unset;
-  padding: 2px;
-  &:hover {
-    text-decoration: underline;
-  }
-  &:not(:disabled):not(.disabled):active {
-    text-decoration: underline;
-    color: mix(#000, $primary, 10%) !important;
-  }
 }
 
 /** End buttons **/
@@ -416,7 +336,7 @@ oc-input, oc-password, oc-select, oc-video-url, oc-color, oc-rich-text-editor, o
   &__progressbar {
     display: block;
 
-    & .progress {
+    .progress {
       height: 8px;
     }
   }
@@ -506,11 +426,7 @@ oc-dropbox {
     }
   }
 }
-.editor-border-focus {
-  .tox-tinymce {
-    border-color: $primary;
-  }
-}
+
 // end of the Tiny Editor style customization
 
 

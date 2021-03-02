@@ -14,7 +14,6 @@ export class OcButtonComponent implements OnChanges, AfterViewInit {
 
   @Input() text: string = '';
   @Input() disabled: boolean = false;
-  @Input() class: string;
   @Input() style: string;
   @Input() customClass: string;
   @Input() customTemplate: TemplateRef<any>;
@@ -22,19 +21,21 @@ export class OcButtonComponent implements OnChanges, AfterViewInit {
 
   @Input() set type(type: 'primary' | 'secondary' | 'link' | 'danger' | 'none') {
     this.buttonType = type;
-    this.buttonTypeClass = type !== 'none' ? `btn-${this.buttonType}` : null;
+    this.buttonTypeClass = type !== 'none' ? `oc-button_${this.buttonType}` : null;
     this.showButton = true;
   }
 
   @ViewChild('button') button;
 
-  public spinnerColor: string;
+  public spinnerColor: string = '#fff';
 
   constructor(private spinner: NgxSpinnerService) {
   }
 
   ngAfterViewInit() {
-    this.spinnerColor = window.getComputedStyle(this.button.nativeElement).color;
+    if (this.process) {
+      this.spinnerColor = window.getComputedStyle(this.button.nativeElement).color;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -45,9 +46,9 @@ export class OcButtonComponent implements OnChanges, AfterViewInit {
 
   checkSpinner(): void {
     if (this.process && this.buttonType !== 'link') {
-      this.spinner.show();
+      this.spinner.show().then();
     } else {
-      this.spinner.hide();
+      this.spinner.hide().then();
     }
   }
 }
