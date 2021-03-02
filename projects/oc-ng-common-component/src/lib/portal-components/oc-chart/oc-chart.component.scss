@@ -53,7 +53,7 @@
       width: 0;
     }
     &-checkmark {
-      background-color: #fff;
+      background-color: $white;
       border: 1px solid $body-color;
       border-radius: 50%;
       height: 16px;
@@ -111,7 +111,7 @@
       flex-direction: column-reverse;
       max-height: unset;
     }
-    background-color: #fff;
+    background-color: $white;
     border: solid 1px $info;
     border-radius: 4px;
     display: flex;

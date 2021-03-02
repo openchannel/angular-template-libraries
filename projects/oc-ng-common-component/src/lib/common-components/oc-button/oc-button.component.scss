@@ -29,22 +29,22 @@
   &_primary {
     background-color: $primary;
     border-color: $primary;
-    color: #fff;
+    color: $white;
     &:hover {
-      box-shadow: 1px 5px 30px 0 rgba(mix(#000, $primary, 10%), 0.5);
+      box-shadow: 1px 5px 30px 0 rgba(mix($black, $primary, 10%), 0.5);
     }
     &:not(:disabled):not(.disabled):active {
-      background-color: mix(#000, $primary, 10%);
+      background-color: mix($black, $primary, 10%);
     }
     &-spinner {
-      background-color: mix(#000, $primary, 10%);
+      background-color: mix($black, $primary, 10%);
     }
     .oc-button__text {
-      color: #fff;
+      color: $white;
     }
     .oc-button__spinner {
       .la-ball-spin {
-        color: #fff;
+        color: $white;
       }
     }
   }
@@ -75,22 +75,22 @@
   &_danger {
     background-color: $danger;
     border-color: $danger;
-    color: #fff;
+    color: $white;
     &:hover {
-      box-shadow: 1px 5px 30px 0 rgba(mix(#000, $danger, 10%), 0.5);
+      box-shadow: 1px 5px 30px 0 rgba(mix($black, $danger, 10%), 0.5);
     }
     &:not(:disabled):not(.disabled):active {
-      background-color: mix(#000, $danger, 10%);
+      background-color: mix($black, $danger, 10%);
     }
     &-spinner {
-      background-color: mix(#000, $danger, 10%);
+      background-color: mix($black, $danger, 10%);
     }
     .oc-button__text {
-      color: #fff;
+      color: $white;
     }
     .oc-button__spinner {
       .la-ball-spin {
-        color: #fff;
+        color: $white;
       }
     }
   }
@@ -108,7 +108,7 @@
       text-decoration: underline;
     }
     &:not(:disabled):not(.disabled):active {
-      color: mix(#000, $primary, 10%);
+      color: mix($black, $primary, 10%);
       text-decoration: underline;
     }
   }

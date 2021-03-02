@@ -2,7 +2,7 @@
 
 .calendar-header {
   color: $body-color;
-  background: #fff;
+  background: $white;
   border-bottom: 1px solid $gray;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .time-view {
-  background: #fff;
+  background: $white;
   width: 100%;
   z-index: 1;
   padding: 0 16px 16px;
@@ -118,7 +118,7 @@
 td.calendar-day.prev-month {
   color: $secondary;
   &:hover {
-    background: #fff;
+    background: $white;
     cursor: default;
   }
 }
@@ -155,7 +155,7 @@ input[type='number']::-webkit-outer-spin-button {
   }
   &:not(:disabled):not(.disabled):active {
     border: 1px solid $primary !important;
-    background-color: #fff !important;
+    background-color: $white !important;
     outline: none;
   }
 }
@@ -211,7 +211,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .calendar-days {
-  background: #fff
+  background: $white;
 }
 
 .calendar-day {

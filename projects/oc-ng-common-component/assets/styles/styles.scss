@@ -416,10 +416,10 @@ oc-dropbox {
                   background: #f4f4f4;
                 }
                 svg {
-                  fill: mix(#000, $info, 38%);
+                  fill: mix($black, $info, 38%);
                 }
                 &__select-label {
-                  color: mix(#000, $info, 38%);
+                  color: mix($black, $info, 38%);
                 }
               }
             }

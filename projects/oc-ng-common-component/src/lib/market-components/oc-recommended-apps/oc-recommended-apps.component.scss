@@ -1,5 +1,5 @@
-@import "../../../../assets/styles/theme.scss";
-@import "../../../../assets/styles/mixins.scss";
+@import "../../../../assets/styles/theme";
+@import "../../../../assets/styles/mixins";
 
 .card.app-card {
   border: none;
@@ -39,7 +39,7 @@
   flex-basis: 250px;
   max-width: 382px;
   min-width: 350px;
-  background-color: #fff;
+  background-color: $white;
   @include media-breakpoint-sm {
     max-width: 100%;
   }
