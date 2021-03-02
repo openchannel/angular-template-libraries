@@ -47,3 +47,17 @@
   line-height: 16px;
   padding: 40px 30px 38px;
 }
+
+@mixin modal-body($background-color: '#fff', $shadow-color: #000, $border-color: 0) {
+  background-clip: padding-box;
+  background-color: $background-color;
+  border-radius: 4px;
+  box-shadow: 0 7px 22px 0 $shadow-color;
+  outline: 0;
+  pointer-events: auto;
+  position: relative;
+  width: 100%;
+  @if($border-color != 0) {
+    border: 1px solid $border-color;
+  }
+}
