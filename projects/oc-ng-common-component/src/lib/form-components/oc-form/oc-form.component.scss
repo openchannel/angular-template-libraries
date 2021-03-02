@@ -61,6 +61,13 @@
     flex-wrap: wrap;
     margin: 1.5rem 0 1rem;
 
+    .form__button {
+
+      & + .form__button {
+        margin-left: 1.5rem;
+      }
+    }
+
     &_justify_center {
       justify-content: center;
     }

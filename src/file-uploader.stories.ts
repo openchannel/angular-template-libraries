@@ -63,7 +63,7 @@ const metadata = moduleMetadata({
     ],
 });
 
-storiesOf('File Uploader', module)
+storiesOf('File Uploader [BEM]', module)
     .addParameters({
         component: OcFileUploadComponent,
     })

@@ -1,4 +1,16 @@
-.editor-container {
+@import '../../../../assets/styles/theme';
+
+.rich-editor {
   width: 100%;
-  height: auto;
+  max-height: 300px;
+
+  &_focus {
+
+    .rich-editor__custom {
+
+      .tox-tinymce {
+        border-color: $primary;
+      }
+    }
+  }
 }

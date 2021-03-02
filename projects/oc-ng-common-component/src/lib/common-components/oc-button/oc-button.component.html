@@ -1,11 +1,11 @@
-<button *ngIf="showButton" #button [disabled]="disabled" class="btn {{buttonTypeClass}} {{class}} {{customClass}}" style="{{style}}">
+<button *ngIf="showButton" #button [disabled]="disabled" class="oc-button {{buttonTypeClass}} {{customClass}}">
     <ng-template *ngIf="customTemplate; else defaultButtonText" [ngTemplateOutlet]="customTemplate"></ng-template>
 </button>
 
 <ng-template #defaultButtonText>
     <ngx-spinner *ngIf="process" type="ball-spin" bdColor=""
-                 [fullScreen]="false" size="small"
+                 [fullScreen]="false" size="small" class="oc-button__spinner"
                  [color]="spinnerColor">
     </ngx-spinner>
-    <span *ngIf="!process">{{text}}</span>
+    <span class="oc-button__text" *ngIf="!process">{{text}}</span>
 </ng-template>
