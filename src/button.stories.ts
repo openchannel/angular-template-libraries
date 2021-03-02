@@ -1,9 +1,10 @@
 import { moduleMetadata, storiesOf } from '@storybook/angular';
 import {OcButtonComponent} from 'oc-ng-common-component';
 import { OcCommonLibModule } from 'oc-ng-common-component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const modules = {
-  imports: [OcCommonLibModule]
+  imports: [OcCommonLibModule, BrowserAnimationsModule]
 };
 
 export default {

@@ -2,9 +2,10 @@ import {OcCommonLibModule} from 'oc-ng-common-component';
 import {moduleMetadata} from '@storybook/angular';
 import {OcDropdownComponent} from 'oc-ng-common-component';
 import { OcDropdownButtonComponent } from 'oc-ng-common-component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const modules = {
-    imports: [OcCommonLibModule],
+    imports: [OcCommonLibModule, NgbModule],
 };
 
 export default {

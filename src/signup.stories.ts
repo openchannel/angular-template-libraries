@@ -54,7 +54,7 @@ ResultPage.args = {
     signupModel: signupFilled,
     submit: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/oc-ng-common-component/logo-company.png',
     showSignupFeedbackPage: true,
-    forgotPasswordDoneUrl: './assets/img/email_done.svg'
+    forgotPasswordDoneUrl: './assets/oc-ng-common-component/email_done.svg'
 };

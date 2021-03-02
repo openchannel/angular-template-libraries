@@ -30,14 +30,15 @@ SimpleSelect.args = {
 export const ObjectSelect = SelectComponent.bind({});
 
 ObjectSelect.args = {
-  selectValArr: [{first: 1}, {second: 2}],
-  isObject: true
+  selectValArr: [{label: 1}, {label: 2}],
+  labelField: 'label'
 };
 
 export const SelectedObjectValue = SelectComponent.bind({});
 
 SelectedObjectValue.args = {
-  selectValArr: [{first: 1}, {second: 2}],
+  selectValArr: [{label: 1}, {label: 2}],
   isObject: true,
-  value: 1
+  labelField: 'label',
+  value: {label: 1}
 };

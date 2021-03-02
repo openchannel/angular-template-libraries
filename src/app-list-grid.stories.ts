@@ -1,9 +1,14 @@
 import { moduleMetadata } from '@storybook/angular';
 import { StatElement } from 'oc-ng-common-service';
-import { OcMarketComponentsModule, OcAppListGridComponent } from 'oc-ng-common-component/src/lib/market-components';
+import { OcAppListGridComponent, OcRatingComponent } from 'oc-ng-common-component/src/lib/market-components';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { PricePipe } from 'oc-ng-common-component/src/lib/common-components';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 const modules = {
-  imports: []
+  imports: [AngularSvgIconModule.forRoot(), NgbModule, HttpClientTestingModule],
+  declarations: [OcRatingComponent, PricePipe]
 };
 
 const stat: StatElement = {
