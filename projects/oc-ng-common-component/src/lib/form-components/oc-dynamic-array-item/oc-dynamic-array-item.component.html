@@ -1,22 +1,22 @@
-<div class="form-card mb-3">
-  <div class="form-card-header pt-3 px-5 pb-2">
-    <h3 class="mb-0">
+<div class="form-card oc-mb-3">
+  <div class="form-card-header oc-pt-3 oc-px-5 oc-pb-2">
+    <h3 class="oc-mb-0">
       {{fieldLabelId ? formFieldsData[fieldLabelId] : 'Item ' + (index + 1)}}
     </h3>
     <div>
       <svg-icon src="assets/oc-ng-common-component/edit.svg" svgClass="icon-size"
-                (click)="editFieldsData()" class="mr-2"></svg-icon>
+                (click)="editFieldsData()" class="oc-mr-2"></svg-icon>
       <svg-icon src="assets/oc-ng-common-component/trash-icon.svg" svgClass="icon-size"
                 (click)="deleteCurrentItem()"></svg-icon>
     </div>
   </div>
-  <div class="form-card-body pt-3 px-5 pb-4">
+  <div class="form-card-body oc-pt-3 oc-px-5 oc-pb-4">
     <div *ngFor="let field of formFieldsData | keyvalue">
-      <div class="w-100">
+      <div class="oc-w-100">
         <oc-title [title]="field.key"
                   [customStyle]="{fontSize: '14px'}"></oc-title>
       </div>
-      <div id="fieldValue" class="w-100 mb-3">
+      <div id="fieldValue" class="oc-w-100 oc-mb-3">
         <oc-dynamic-field-array *ngIf="getFieldData(field.value) === 'object' && getSubFieldsOfItem(field.key)"
                                [fieldDefinitionData]="getSubFieldsOfItem(field.key)"
                                [(ngModel)]="field.value"></oc-dynamic-field-array>

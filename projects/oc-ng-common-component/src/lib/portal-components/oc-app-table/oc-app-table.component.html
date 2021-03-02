@@ -1,5 +1,5 @@
 <div class="table-container">
-  <table class="table mb-0"
+  <table class="table oc-mb-0"
          [infiniteScrollThrottle]="50"
          (scrolled)="onScrollDown()"
          infiniteScroll>
@@ -53,8 +53,8 @@
             <div class="col-md-auto">
               <img [src]="app.customData.icon ? app.customData.icon : defaultAppIcon" alt="" class="app-icon">
             </div>
-            <div class="col-md pl-0">
-              <h6 class="mb-0 cursor-pointer pr-2 word-break"
+            <div class="col-md oc-pl-0">
+              <h6 class="app-name cursor-pointer oc-pr-2 word-break"
                   (click)="action('PREVIEW', app.appId, app.version, false)"
               >{{app.name}} </h6>
               <small> v {{app.version}}</small>
@@ -71,8 +71,8 @@
           <small *ngIf="app.status.reason">
             <span class="indicator" [ngClass]="app.status.value ? statusColor(app.status.value) : ''"></span>
             <span [ngbPopover]="popContent"
-                  class="cursor-pointer font-med text-body" placement="bottom"
-                  popoverClass="popover shadow-sm bg-white rounded"
+                  class="cursor-pointer font-med oc-text-body" placement="bottom"
+                  popoverClass="popover oc-shadow-sm oc-bg-white oc-rounded"
                   popoverTitle="Status Change Reason"
                   triggers="hover">
                 {{app.status.value === 'inDevelopment'? 'Draft'
@@ -84,7 +84,7 @@
           </ng-template>
           <small *ngIf="!app.status.reason">
             <span class="indicator" [ngClass]="app.status.value ? statusColor(app.status.value) : ''"></span>
-            <span class="cursor-pointer font-med text-body">
+            <span class="cursor-pointer font-med oc-text-body">
             {{app.status.value === 'inDevelopment'? 'Draft'
                 : app.status.value | camelcase}}</span>
           </small>
@@ -102,12 +102,12 @@
           <td>
             <div class="row">
               <div class="col-md-auto">
-                <img alt="icon" class="px-3" src="assets/img/line-arrow-down.svg" *ngIf="i === 0">
-                <span *ngIf="i > 0" class="px-4"></span>
+                <img alt="icon" class="oc-px-3" src="assets/img/line-arrow-down.svg" *ngIf="i === 0">
+                <span *ngIf="i > 0" class="oc-px-4"></span>
                 <img [src]="child.customData.icon ? child.customData.icon : defaultAppIcon" alt="" class="app-icon">
               </div>
-              <div class="col-md pl-0">
-                <h6 class="mb-0 cursor-pointer pr-2 word-break"
+              <div class="col-md oc-pl-0">
+                <h6 class="oc-mb-0 cursor-pointer oc-pr-2 word-break"
                     (click)="action('PREVIEW', child.appId, child.version, true)">{{child.name}}</h6>
                 <small>v {{child.version}}</small>
               </div>
@@ -123,8 +123,8 @@
             <small *ngIf="child.status.reason">
               <span class="indicator" [ngClass]="child.status.value ? statusColor(app.status.value) : ''"></span>
               <span [ngbPopover]="popContent"
-                    class="cursor-pointer font-med text-body" placement="bottom"
-                    popoverClass="popover shadow-sm bg-white rounded"
+                    class="cursor-pointer font-med oc-text-body" placement="bottom"
+                    popoverClass="popover oc-shadow-sm oc-bg-white oc-rounded"
                     popoverTitle="Status Change Reason"
                     triggers="hover">
                 {{child.status.value === 'inDevelopment'? 'Draft'
@@ -136,7 +136,7 @@
             </ng-template>
             <small *ngIf="!child.status.reason">
               <span class="indicator" [ngClass]="child.status.value ? statusColor(child.status.value) : ''"></span>
-              <span class="cursor-pointer font-med text-body">
+              <span class="cursor-pointer font-med oc-text-body">
               {{child.status.value === 'inDevelopment'? 'Draft'
                   : child.status.value | camelcase}}</span>
             </small>
@@ -151,12 +151,12 @@
       </ng-container>
     </ng-template>
     <tr *ngIf="!properties.data.list || properties.data.list.length == 0">
-      <td class="text-center" colspan="7">
+      <td class="oc-text-center" colspan="7">
         <span> No Applications Found</span>
       </td>
     </tr>
     <tr *ngIf="properties.data.list.length > 0">
-      <td class="text-center pb-5" colspan="7">
+      <td class="oc-text-center oc-pb-5" colspan="7">
         <span></span>
       </td>
     </tr>
@@ -165,7 +165,7 @@
 </div>
 
 <ng-template #appMenuTemplate let-app>
-  <div class="text-right ellipsis cursor-pointer">
+  <div class="oc-text-right ellipsis cursor-pointer">
     <div ngbDropdown
          [placement]="app?.index && properties.data.list.length > 5 && app?.index >= properties.data.list.length - 2 ?
           'top-right'

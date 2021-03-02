@@ -17,14 +17,13 @@ export class OcAppGalleryComponent implements OnInit {
    */
   @Input() noAppMessage: string = '';
   /**
-   * Redirect link for the 'See All'
+   * More apps.
    */
-  @Input() seeAllUrl: string;
+  @Input() moreAppsTitle: string = '';
   /**
-   * Object with router link query parameters.
-   * Example: {'some-query': 'some-value'}
+   * Emitter for click by moreAppsTitle.
    */
-  @Input() seeAllLinkQuery: any;
+  @Output() clickMoreApps: EventEmitter<void> = new EventEmitter<void>();
   /**
    * Title for the app list preview
    */
@@ -36,7 +35,7 @@ export class OcAppGalleryComponent implements OnInit {
   /**
    * Emitter for click by App card.
    */
-  @Output() clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
+  @Output() clickAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
   /**
    * Path to the custom icon near 'See All'
    */

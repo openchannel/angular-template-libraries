@@ -1,12 +1,12 @@
 <form #signUpForm="ngForm" *ngIf="!showSignupFeedbackPage" novalidate>
     <div class="card oc-card-with-border">
         <div class="card-body">
-            <div class="text-center">
-                <img alt="logo" class="img-fluid mb-4 company-logo" [src]="companyLogoUrl">
+            <div class="oc-text-center">
+                <img alt="logo" class="img-fluid oc-mb-4 company-logo" [src]="companyLogoUrl">
             </div>
-            <div class="text-center">
+            <div class="oc-text-center">
                 <h4>Sign Up</h4>
-                <oc-label text="Enter your account details below" class="mb-3"></oc-label>
+                <oc-label text="Enter your account details below" class="oc-mb-3"></oc-label>
             </div>
             <div class="form-group">
                 <oc-label text="Name"></oc-label>
@@ -28,15 +28,15 @@
                           required="true"></oc-input>
                 <oc-error [control]="email" field="email"></oc-error>
             </div>
-            <div class="form-group mb-2">
+            <div class="form-group oc-mb-2">
                 <oc-label text="Password"></oc-label>
                 <oc-password #password=ngModel [(ngModel)]="signupModel.password"
-                             placeholder="Password" class="mb-2" name="password"
+                             placeholder="Password" class="oc-mb-2" name="password"
                              ngDefaultControl ocPasswordValidator></oc-password>
                 <oc-error [control]="password" field="password"></oc-error>
             </div>
             <div class="form-group">
-                <div class="d-flex align-items-center">
+                <div class="oc-d-flex oc-align-items-center">
                     <oc-checkbox #isChecked=ngModel
                                  required="true"
                                  name="isChecked"
@@ -53,9 +53,9 @@
             </div>
             <oc-button (click)="submitForm(signUpForm)"
                        [process]="process" text="Sign Up" type="primary"
-                       class="btn-block mt-5 mb-3">
+                       class="btn-block oc-mt-5 oc-mb-3">
             </oc-button>
-            <div class="text-center font-m">
+            <div class="oc-text-center font-m">
                 Already have an account? <a class="font-m font-med" [routerLink]="loginUrl">Log In</a>
             </div>
         </div>
@@ -66,20 +66,20 @@
 <form *ngIf="showSignupFeedbackPage" novalidate>
     <div class="card oc-card-with-border">
         <div class="card-body">
-            <div class="text-center">
+            <div class="oc-text-center">
                 <img alt="logo"
-                     class="img-fluid mb-5 company-logo"
+                     class="img-fluid oc-mb-5 company-logo"
                      [src]="companyLogoUrl">
             </div>
-            <div class="text-center">
+            <div class="oc-text-center">
                 <img alt="dropdown-icon"
-                     class="mb-3" [src]="forgotPasswordDoneUrl">
+                     class="oc-mb-3" [src]="forgotPasswordDoneUrl">
                 <h4>Done!</h4>
                 <oc-label text="An activation email has been sent to your inbox."></oc-label>
             </div>
-            <div class="text-center">
+            <div class="oc-text-center">
                 <oc-button (click)="goToActivationPage()" [disabled]="false"
-                           text="Activate account" type="primary" class="btn-block mt-5 mb-3">
+                           text="Activate account" type="primary" class="btn-block oc-mt-5 oc-mb-3">
                 </oc-button>
                 <oc-label text="Don't have an account yet?"></oc-label>
                 <a class="font-m font-med link" (click)="showSignupFeedbackPage = !showSignupFeedbackPage"> Sign Up</a>

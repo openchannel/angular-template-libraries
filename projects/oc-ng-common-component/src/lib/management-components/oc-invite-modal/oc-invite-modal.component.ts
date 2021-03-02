@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ModalInviteUserModel, ModalUpdateUserModel} from 'oc-ng-common-service';
 import {FormGroup} from '@angular/forms';
+import {isString, merge} from 'lodash';
 
 @Component({
   selector: 'oc-invite-modal',
@@ -16,8 +17,6 @@ export class OcInviteModalComponent implements OnInit {
 
   // config for custom form generation
   public formConfig: any = {};
-  // array of developer types id
-  public userTypes: string [] = [];
   // custom form
   public formGroup: FormGroup;
   // data from custom form
@@ -30,7 +29,7 @@ export class OcInviteModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.makeFormConfig();
-    this.getUserType();
+    this.setUserRolesToForm();
   }
 
   makeFormConfig() {
@@ -68,12 +67,12 @@ export class OcInviteModalComponent implements OnInit {
         subFieldDefinitions: null
       },
       {
-        id: 'type',
-        label: 'Select Role',
+        id: 'roles',
+        label: 'Roles',
         description: '',
         defaultValue: '',
         type: 'dropdownList',
-        required: null,
+        required: true,
         attributes: {required: true},
         options: [],
         subFieldDefinitions: null
@@ -87,19 +86,20 @@ export class OcInviteModalComponent implements OnInit {
     }
   }
 
-  getUserType() {
-    this.modalData.requestFindUserTypes().subscribe(result => {
+  setUserRolesToForm() {
+    this.modalData.requestFindUserRoles().subscribe(result => {
       if (result.list && result.list.length > 0) {
-        result.list.forEach((type: any) => {
-          if (type?.developerAccountTypeId) {
-            this.userTypes.push(type?.developerAccountTypeId);
-          } else if (type?.userAccountTypeId) {
-            this.userTypes.push(type.userAccountTypeId);
+        const roles: string [] = [];
+        result.list.forEach((role: { developerRoleId?: string, userRoleId?: string }) => {
+          if (role?.developerRoleId) {
+            roles.push(role?.developerRoleId);
+          } else if (role?.userRoleId) {
+            roles.push(role?.userRoleId);
           }
         });
-        this.formConfig.fields.find(field => field.id === 'type').options = [...this.userTypes];
+        this.formConfig.fields.find(field => field.id === 'roles').options = roles;
         if (!(this.modalData instanceof ModalUpdateUserModel)) {
-          this.formConfig.fields.find(field => field.id === 'type').defaultValue = this.userTypes[0];
+          this.formConfig.fields.find(field => field.id === 'roles').defaultValue = roles[0];
         }
       } else {
         this.ngbModalRef.close();
@@ -122,6 +122,11 @@ export class OcInviteModalComponent implements OnInit {
       this.formGroup.markAllAsTouched();
       if (this.formGroup.valid && this.formData && !this.inProcess) {
         this.inProcess = true;
+
+        const roles = isString(this.formData?.roles) ? [this.formData.roles] : this.formData?.roles;
+        this.formData = merge(this.formData, {customData: {roles}});
+        this.formData.roles = roles;
+
         if (this.modalData instanceof ModalUpdateUserModel) {
           this.updateUser(this.modalData);
         } else {
@@ -132,11 +137,10 @@ export class OcInviteModalComponent implements OnInit {
   }
 
   private updateUser(updateModalData: ModalUpdateUserModel): void {
-    updateModalData.requestUpdateAccount(this.getAccountId(updateModalData.userData),
-      {
-        ...updateModalData.userData,
-        ...this.formData
-      }).subscribe(() => {
+    updateModalData.requestUpdateAccount(
+      this.getAccountId(updateModalData.userData),
+      merge(updateModalData.userData, this.formData)
+    ).subscribe(() => {
       this.inProcess = false;
       this.ngbModalRef.close(true);
     }, () => {
