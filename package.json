@@ -11,6 +11,7 @@
     "sass-lint": "node_modules/.bin/sass-lint -c .scss-lint.yml",
     "lint": "./node_modules/.bin/ng lint",
     "e2e": "./node_modules/.bin/ng e2e",
+    "postinstall": "ngcc",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "copy-assets": "mkdir -p storybook-assets/assets && cp -r projects/oc-ng-common-component/assets/img/ storybook-assets/assets/oc-ng-common-component/",
     "storybook": "npm run copy-assets && start-storybook -p 6006 -s ./projects/oc-ng-common-component,./storybook-assets",
