@@ -90,6 +90,10 @@ h1 {
   font-size: 38px;
 }
 
+h2 {
+  font-size: 28px;
+}
+
 html {
   font-size: 8px;
 }
@@ -183,18 +187,20 @@ h4 {
 }
 
 /* oc-file-upload */
-.file-container__upload-item-progress[type='primary']{
+.file-container__upload-item-progress {
   .progress {
     background-color: $info;
-    height: 4px;
+    height: 1px;
+  }
+  &[type='primary'] {
+
+    .progress {
+      background-color: #e9ecef;
+      height: 4px;
+    }
   }
 }
 
-.file-container__upload-item-progress {
-  .progress {
-    height: 1px;
-  }
-}
 /* end */
 
 .company-logo{
