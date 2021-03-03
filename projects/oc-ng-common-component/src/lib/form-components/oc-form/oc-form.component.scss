@@ -78,6 +78,14 @@
 
     &_direction_row_reverse {
       flex-direction: row-reverse;
+
+      .form__button {
+
+        & + .form__button {
+          margin-left: 0;
+          margin-right: 1.5rem;
+        }
+      }
     }
   }
 }

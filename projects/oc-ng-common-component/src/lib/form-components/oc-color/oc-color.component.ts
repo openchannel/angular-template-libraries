@@ -28,7 +28,6 @@ export class OcColorComponent implements OnInit, ControlValueAccessor {
   /** Chosen color value */
   public colorValue: string;
   /** Toggle Open or Close of the color picker dialog */
-  public toggleDialog: boolean = false;
 
   private onTouched = () => {};
   private onChange: (value: any) => void = () => {};

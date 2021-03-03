@@ -5,11 +5,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    &::after {
+      position: absolute;
+      right: 1rem;
+    }
   }
 
   &__text {
     color: #343a40;
     font-size: 14px;
+    text-align: left;
   }
 
   &__dropdown {

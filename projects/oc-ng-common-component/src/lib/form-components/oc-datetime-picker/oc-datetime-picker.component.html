@@ -13,15 +13,17 @@
     <div class="date-picker__dropdown" ngbDropdownMenu aria-labelledby="datePickerDD">
         <div class="date-picker__dropdown-popover" [ngClass]="{'date-picker__dropdown-popover-date': !isDateTime}">
             <div class="date-picker__dropdown-banner">
-                <svg-icon id="prevMonth" src="assets/img/arrow-left-analog.svg"
-                          svgClass="calendar-icon-size"
+                <svg-icon id="prevMonth"
+                          src="assets/oc-ng-common-component/arrow-left-analog.svg"
+                          class="calendar-icon-size"
                           (click)="prevMonth($event)">
                 </svg-icon>
                 <div class="date-picker__dropdown-detail">
                     {{ date | date: 'MMMM' }}, {{ date | date: 'yyyy' }}
                 </div>
-                <svg-icon id="nextMonth" src="assets/img/arrow-right-analog.svg"
-                          svgClass="calendar-icon-size"
+                <svg-icon id="nextMonth"
+                          src="assets/oc-ng-common-component/arrow-right-analog.svg"
+                          class="calendar-icon-size"
                           (click)="nextMonth($event)">
                 </svg-icon>
             </div>
@@ -60,15 +62,13 @@
                     <div class="date-picker__time-hours">
                         <div class="date-picker__time-header">Hours</div>
                         <div class="date-picker__time-manipulators">
-                            <svg-icon src="assets/img/arrow-left-analog.svg"
-                                      svgClass="date-picker__time-calendar-icon"
+                            <svg-icon src="assets/oc-ng-common-component/arrow-left-analog.svg"
                                       class="date-picker__time-calendar-icon"
                                       (click)="decHour()"></svg-icon>
                             <input #hourInput type="text" [value]="hourValue < 10 ? '0' + hourStr : hourStr"
                                    (input)="onHourChange($event)" ocOnlyNumber
                                    (click)="hourInput.select()"/>
-                            <svg-icon src="assets/img/arrow-right-analog.svg"
-                                      svgClass="date-picker__time-calendar-icon"
+                            <svg-icon src="assets/oc-ng-common-component/arrow-right-analog.svg"
                                       class="date-picker__time-calendar-icon"
                                       (click)="incHour()"></svg-icon>
                         </div>
@@ -76,15 +76,13 @@
                     <div class="date-picker__time-minutes">
                         <div class="date-picker__time-header">Minutes</div>
                         <div class="date-picker__time-manipulators">
-                            <svg-icon src="assets/img/arrow-left-analog.svg"
-                                      svgClass="date-picker__time-calendar-icon"
+                            <svg-icon src="assets/oc-ng-common-component/arrow-left-analog.svg"
                                       class="date-picker__time-calendar-icon"
                                       (click)="decMinutes()"></svg-icon>
                             <input #minInput type="text" [value]="minuteValue < 10 ? '0' + minuteStr : minuteStr"
                                    (input)="onMinChange($event)"
                                    ocOnlyNumber (click)="minInput.select()"/>
-                            <svg-icon src="assets/img/arrow-right-analog.svg"
-                                      svgClass="date-picker__time-calendar-icon"
+                            <svg-icon src="assets/oc-ng-common-component/arrow-right-analog.svg"
                                       class="date-picker__time-calendar-icon"
                                       (click)="incMinutes()"></svg-icon>
                         </div>
@@ -103,6 +101,6 @@
             <span *ngIf="!date">{{settings.format | uppercase}}</span>
         </div>
         <svg-icon class="date-picker__icon"
-                  src="assets/img/calendar-icon.svg"></svg-icon>
+                  src="assets/oc-ng-common-component/calendar-icon.svg"></svg-icon>
     </div>
 </ng-template>

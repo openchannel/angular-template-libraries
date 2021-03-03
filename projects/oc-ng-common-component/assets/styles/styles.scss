@@ -131,6 +131,7 @@ h6 {
 .form-group {
   margin-bottom: 1.5rem;
 }
+
 .form-control {
   border: 1px solid $info;
   border-radius: 4px;
@@ -138,6 +139,7 @@ h6 {
   height: 46px;
   padding: 12px 16px;
 }
+
 .form-control:focus {
   border: 1px solid $primary;
   box-shadow: none;
@@ -214,30 +216,10 @@ h6 {
   border-top: 1px solid $info;
 }
 
-/** Rich editor **/
-
-.rich-editor {
-  width: 100%;
-  max-height: 300px;
-  background-color: indianred;
-
-  &__custom {
-
-    &_focus {
-
-      .tox-tinymce {
-        border-color: $primary;
-      }
-    }
-  }
-}
-
-/** End rich editor **/
-
-/** input password **/
-oc-input, oc-password, oc-select, oc-video-url, oc-color, oc-rich-text-editor, oc-textarea{
-    &.ng-invalid{
-      input.ng-touched, select.ng-touched , textarea.ng-touched{
+/** form inputs validation style **/
+oc-input, oc-password, oc-select, oc-video-url, oc-color, oc-rich-text-editor, oc-textarea {
+    &.ng-invalid {
+      input.ng-touched, select.ng-touched , textarea.ng-touched {
         border-color: $danger;
       }
       .custom-editor.ng-touched {
@@ -407,7 +389,7 @@ oc-dropbox {
 }
 
 //Tiny Editor style customization
-.custom-editor {
+.rich-editor__custom {
   .tox-tinymce {
     border-radius: 4px;
     border-color: $info;
@@ -448,8 +430,12 @@ oc-dropbox {
       opacity: 0;
     }
   }
+  &_focus {
+    .tox-tinymce {
+      border-color: $primary;
+    }
+  }
 }
-
 // end of the Tiny Editor style customization
 
 

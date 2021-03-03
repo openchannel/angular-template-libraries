@@ -1,11 +1,5 @@
 <div class="multiselect">
-  <oc-tag-element class="tag"
-                  *ngFor="let tag of resultItems; index as i"
-                  [closeMarker]="true"
-                  [title]="tag"
-                  (clickEmitter)="removeItem(i)">
-  </oc-tag-element>
-  <oc-dropbox class="dropbox"
+  <oc-dropbox class="multiselect__dropbox"
               *ngIf="dropBoxItems?.length > 0"
               [items]="dropBoxItems"
               [placeHolder]="'Select ' + label"
@@ -13,10 +7,16 @@
               [dropElementTemplate]="dropElementTemplate"
               (selectedItem)="addTagToResultList($event)">
   </oc-dropbox>
+  <oc-tag-element class="multiselect__tag"
+                  *ngFor="let tag of resultItems; index as i"
+                  [closeMarker]="true"
+                  [title]="tag"
+                  (clickEmitter)="removeItem(i)">
+  </oc-tag-element>
 </div>
 
 <ng-template #dropElementTemplate let-result="result">
-  <div class="dropbox__element">
+  <div class="multiselect__dropbox-element">
     <div class="custom-text">{{result}}</div>
   </div>
 </ng-template>

@@ -1,7 +1,6 @@
 @import '../../../../assets/styles/mixins';
 
 .select-expandable {
-  cursor: pointer;
   user-select: none;
 
   &__sidebar {
@@ -13,6 +12,7 @@
 
   &__heading {
     @include font-family-rubik('Medium');
+    cursor: pointer;
     line-height: 18px;
     margin-bottom: 0;
     padding: 16px 0;
@@ -39,9 +39,15 @@
     }
 
     .select-expandable__option {
-      display: flex;
-      align-items: center;
       height: 46px;
+
+      label {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        margin: 0;
+        cursor: pointer;
+      }
 
       &-input {
         height: 16px;
