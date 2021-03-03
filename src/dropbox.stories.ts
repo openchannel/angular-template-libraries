@@ -7,7 +7,7 @@ const modules = {
 };
 
 export default {
-    title: 'Dropbox search',
+    title: 'Dropbox search [BEM]',
     component: OcDropboxComponent,
     decorators: [
         moduleMetadata(modules),

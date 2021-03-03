@@ -139,6 +139,7 @@ h4 {
 .form-group {
   margin-bottom: 1.5rem;
 }
+
 .form-control {
   border: 1px solid $info;
   border-radius: 4px;
@@ -146,6 +147,7 @@ h4 {
   height: 46px;
   padding: 12px 16px;
 }
+
 .form-control:focus {
   border: 1px solid $primary;
   box-shadow: none;
@@ -216,10 +218,10 @@ h4 {
   border-top: 1px solid $info;
 }
 
-/** input password **/
-oc-input, oc-password, oc-select, oc-video-url, oc-color, oc-rich-text-editor, oc-textarea{
-    &.ng-invalid{
-      input.ng-touched, select.ng-touched , textarea.ng-touched{
+/** form inputs validation style **/
+oc-input, oc-password, oc-select, oc-video-url, oc-color, oc-rich-text-editor, oc-textarea {
+    &.ng-invalid {
+      input.ng-touched, select.ng-touched , textarea.ng-touched {
         border-color: $danger;
       }
       .custom-editor.ng-touched {
@@ -365,23 +367,29 @@ a.link {
   color: $error;
 }
 
-oc-dropbox {
-  & .dropdown-menu {
+//Dropbox dropdown customization
+.oc-dropbox {
+  .dropdown-menu {
+    border-radius: 4px;
     max-height: 180px;
-    overflow-y: scroll;
-  }
-
-  & .dropdown-menu::-webkit-scrollbar {
-    display: none;
-  }
-
-  & .dropdown-menu .dropdown-item {
+    margin-top: 1rem;
+    overflow-y: auto;
     padding: 0;
-  }
-
-  & .dropdown-item.active, .dropdown-item:active {
-    background: none;
-    color: $gray-700;
+    width: 100%;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    & .dropdown-item {
+      border-bottom: 1px solid $info;
+      padding: 2rem;
+      &:last-child {
+        border-bottom: 0;
+      }
+      &.active, &:active {
+        background-color: rgba($info, .2);
+        color: $body-color;
+      }
+    }
   }
 }
 
