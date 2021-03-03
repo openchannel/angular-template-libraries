@@ -214,6 +214,26 @@ h6 {
   border-top: 1px solid $info;
 }
 
+/** Rich editor **/
+
+.rich-editor {
+  width: 100%;
+  max-height: 300px;
+  background-color: indianred;
+
+  &__custom {
+
+    &_focus {
+
+      .tox-tinymce {
+        border-color: $primary;
+      }
+    }
+  }
+}
+
+/** End rich editor **/
+
 /** input password **/
 oc-input, oc-password, oc-select, oc-video-url, oc-color, oc-rich-text-editor, oc-textarea{
     &.ng-invalid{

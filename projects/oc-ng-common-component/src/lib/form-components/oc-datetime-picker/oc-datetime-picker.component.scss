@@ -1,30 +1,19 @@
 @import '../../../../assets/styles/theme.scss';
 
 .date-picker {
-  display: inline-block;
   width: 100%;
 
-  &__click-zone {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    border-radius: 4px;
+  &__input {
+    outline: none;
+
+    &-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
     &::after {
       display: none;
-    }
-
-    &:focus {
-      border: 1px solid $primary !important;
-      outline: none;
-    }
-
-    &:not(:disabled):not(.disabled):active {
-      border: 1px solid $primary !important;
-      background-color: #fff !important;
-      outline: none;
     }
 
     .date-picker__format {
@@ -33,10 +22,17 @@
         font-family: 'Rubik Regular', sans-serif;
       }
     }
+
+    .date-picker__icon {
+      height: 24px;
+      margin-bottom: 1px;
+    }
   }
 
   &__dropdown {
     padding: 0;
+    margin-top: 1.5rem;
+    user-select: none;
 
     &-popover {
       height: auto;

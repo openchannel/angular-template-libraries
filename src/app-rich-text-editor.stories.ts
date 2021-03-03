@@ -7,7 +7,7 @@ const modules = {
 };
 
 export default {
-  title: 'Rich Text Editor Component',
+  title: 'Rich Text Editor Component [BEM]',
   component: OcRichTextEditorComponent,
   decorators: [
     moduleMetadata(modules),

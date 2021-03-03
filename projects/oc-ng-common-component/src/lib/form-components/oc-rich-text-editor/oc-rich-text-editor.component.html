@@ -1,7 +1,7 @@
 <div class="rich-editor">
   <editor [init]="tinyOptions"
           [(ngModel)]="editorContent"
-          [class.rich-editor_focus]="editorOnFocus"
+          [class.rich-editor__custom_focus]="editorOnFocus"
           (ngModelChange)="onModelChange()"
           (onBlur)="onTouched()"
           (onFocusIn)="changeEditorFocus(true)"

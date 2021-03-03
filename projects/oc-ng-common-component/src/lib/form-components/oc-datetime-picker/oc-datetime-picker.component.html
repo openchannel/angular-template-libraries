@@ -3,29 +3,24 @@
      placement="bottom-left top-left"
      #myDrop="ngbDropdown"
      (openChange)="done($event)">
-    <button class="date-picker__click-zone btn btn-secondary"
-            id="datePickerDD"
-            ngbDropdownToggle
-            [disabled]="disabled"
-            (click)="disabled ? myDrop.close() : (myDrop.isOpen() ? initCal() : null)">
-        <input type="hidden" value="{{ date }}"/>
-        <div class="date-picker__format">
-            <span *ngIf="date">{{ date | date: settings.format }}</span>
-            <span *ngIf="!date">{{settings.format | uppercase}}</span>
-        </div>
-        <svg-icon src="assets/oc-ng-common-component/calendar-icon.svg" svgClass="calendar-icon-size" style="height: 16px"></svg-icon>
-    </button>
+    <oc-button class="date-picker__input"
+               id="datePickerDD"
+               ngbDropdownToggle
+               type="secondary"
+               [customTemplate]="datePickerButton"
+               (click)="disabled ? myDrop.close() : (myDrop.isOpen() ? initCal() : null)">
+    </oc-button>
     <div class="date-picker__dropdown" ngbDropdownMenu aria-labelledby="datePickerDD">
         <div class="date-picker__dropdown-popover" [ngClass]="{'date-picker__dropdown-popover-date': !isDateTime}">
             <div class="date-picker__dropdown-banner">
-                <svg-icon id="prevMonth" src="assets/oc-ng-common-component/arrow-left-analog.svg"
+                <svg-icon id="prevMonth" src="assets/img/arrow-left-analog.svg"
                           svgClass="calendar-icon-size"
                           (click)="prevMonth($event)">
                 </svg-icon>
                 <div class="date-picker__dropdown-detail">
                     {{ date | date: 'MMMM' }}, {{ date | date: 'yyyy' }}
                 </div>
-                <svg-icon id="nextMonth" src="assets/oc-ng-common-component/arrow-right-analog.svg"
+                <svg-icon id="nextMonth" src="assets/img/arrow-right-analog.svg"
                           svgClass="calendar-icon-size"
                           (click)="nextMonth($event)">
                 </svg-icon>
@@ -99,3 +94,15 @@
         </div>
     </div>
 </div>
+
+<ng-template #datePickerButton>
+    <div class="date-picker__input-content">
+        <input type="hidden" value="{{ date }}"/>
+        <div class="date-picker__format">
+            <span *ngIf="date">{{ date | date: settings.format }}</span>
+            <span *ngIf="!date">{{settings.format | uppercase}}</span>
+        </div>
+        <svg-icon class="date-picker__icon"
+                  src="assets/img/calendar-icon.svg"></svg-icon>
+    </div>
+</ng-template>
