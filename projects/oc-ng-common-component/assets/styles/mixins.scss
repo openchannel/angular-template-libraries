@@ -61,3 +61,20 @@
     border: 1px solid $border-color;
   }
 }
+
+@mixin form-control($default-border-color, $focus-border-color, $placeholder-color) {
+  border: 1px solid $default-border-color;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 46px;
+  padding: 12px 16px;
+  width: 100%;
+  &:focus {
+    border: 1px solid $focus-border-color;
+    box-shadow: none;
+  }
+  &::placeholder {
+    color: $placeholder-color;
+    opacity: .5;
+  }
+}
