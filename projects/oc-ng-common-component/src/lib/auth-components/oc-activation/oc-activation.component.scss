@@ -8,14 +8,14 @@
   &__logo {
     margin-bottom: 4rem;
     text-align: center;
-    img {
+    &-img {
       max-width: 100%;
     }
   }
   &__header {
     text-align: center;
     margin-bottom: 4rem;
-    h4 {
+    &-heading {
       margin-bottom: 1rem;
     }
   }

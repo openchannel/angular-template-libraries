@@ -13,7 +13,7 @@ export class OcForgotPasswordComponent implements OnInit {
   @Input() loginUrl;
   @Input() signupUrl;
   /** Path to the email sent icon in .svg format */
-  @Input() forgotPasswordDoneUrl: string = 'assets/img/email_done.svg';
+  @Input() forgotPasswordDoneUrl: string = 'assets/oc-ng-common-component/email_done.svg';
   @Input() showResultPage;
   @Input() companyLogoUrl;
   @Input() process;

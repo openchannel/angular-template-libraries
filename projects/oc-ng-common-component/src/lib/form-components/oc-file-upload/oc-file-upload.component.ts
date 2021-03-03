@@ -110,9 +110,9 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
 
   @Input() uploadingIconUrl;
 
-  @Input() closeIconUrl = 'assets/img/close-icon.svg';
-  @Input() zoomInIconUrl = 'assets/img/zoom-in.svg';
-  @Input() zoomOutIconUrl = 'assets/img/zoom-out.svg';
+  @Input() closeIconUrl = 'assets/oc-ng-common-component/close-icon.svg';
+  @Input() zoomInIconUrl = 'assets/oc-ng-common-component/zoom-in.svg';
+  @Input() zoomOutIconUrl = 'assets/oc-ng-common-component/zoom-out.svg';
 
   @Input() hash: string[] = [];
 
