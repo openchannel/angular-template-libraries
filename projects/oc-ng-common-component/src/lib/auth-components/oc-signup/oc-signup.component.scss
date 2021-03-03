@@ -62,10 +62,10 @@
   }
   &__message {
     text-align: center;
-    img {
+    &-img {
       margin-bottom: 3rem;
     }
-    h4 {
+    &-heading {
       margin-bottom: 1rem;
     }
   }
