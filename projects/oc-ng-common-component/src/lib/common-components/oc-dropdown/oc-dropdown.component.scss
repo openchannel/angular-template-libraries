@@ -1,0 +1,16 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.dropdown-label {
+  display: inline-block;
+  &__text {
+    @include font-size-breakpoint(md);
+    @include font-family-rubik('Medium');
+    color: $primary;
+  }
+  &__dropdown {
+    &-item {
+      @include font-size-breakpoint(md);
+    }
+  }
+}
