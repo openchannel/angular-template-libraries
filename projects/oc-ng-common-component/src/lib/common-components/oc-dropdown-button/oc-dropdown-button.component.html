@@ -1,12 +1,12 @@
-<div ngbDropdown placement="bottom" #myDrop="ngbDropdown" class="oc-w-100 oc-h-100 oc-m-auto" [ngStyle]="minWidthModel">
-    <div class="oc-d-flex oc-flex-row oc-align-items-center font-m font-med disable-after oc-w-100 oc-h-100 oc-m-auto"
+<div ngbDropdown placement="bottom" #myDrop="ngbDropdown" class="dropdown-button" [ngStyle]="minWidthModel">
+    <div class="dropdown-button__placeholder-container"
          (click)="$event.preventDefault(); myDrop.isOpen() ? myDrop.close() : myDrop.open()"
          ngbDropdownAnchor id="customDropdownManual">
         <ng-content select="[customPlaceholder]"></ng-content>
         <ng-content *ngIf="myDrop._open" select="[defaultPlaceholderIcon]"></ng-content>
         <ng-content *ngIf="!myDrop._open" select="[activePlaceholderIcon]"></ng-content>
     </div>
-    <div ngbDropdownMenu aria-labelledby="customDropdownManual" [ngStyle]="minWidthModel">
+    <div ngbDropdownMenu aria-labelledby="customDropdownManual" [ngStyle]="minWidthModel" class="dropdown-button__menu">
         <button ngbDropdownItem
                 (click)="onSelect(option)"
                 *ngFor="let option of this.options">{{option.label}}</button>

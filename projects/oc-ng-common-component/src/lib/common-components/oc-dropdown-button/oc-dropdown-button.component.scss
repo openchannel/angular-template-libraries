@@ -1,3 +1,19 @@
-.disable-after:after {
-  display: none;
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.dropdown-button {
+  height: 100%;
+  position: relative;
+  width: 100%;
+  &__placeholder-container {
+    @include font-size-breakpoint(md);
+    @include font-family-rubik('Medium');
+    align-items: center;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    &:after {
+      display: none;
+    }
+  }
 }
