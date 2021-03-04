@@ -7,7 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 const modules = {
   imports: [OcMarketComponentsModule, NgbModule],
 };
-storiesOf('Rating', module)
+storiesOf('Rating [BEM]', module)
   .addDecorator(withA11y)
   .addParameters({
     component: OcRatingComponent,
