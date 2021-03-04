@@ -1,14 +1,14 @@
-<div class="oc-d-flex profile-navbar">
-  <div class="profile-navbar__initials text-primary" *ngIf="initials">{{initials}}</div>
-  <div class="nav-item dropdown" ngbDropdown placement="bottom-right">
-    <div class="dropdown-toggle oc-pr-0 oc-d-flex oc-align-items-center" id="navbarDropdown" role="button"
+<div class="profile-navbar">
+  <div class="profile-navbar__initials" *ngIf="initials">{{initials}}</div>
+  <div class="profile-navbar__dropdown-container" ngbDropdown placement="bottom-right">
+    <div class="profile-navbar__dropdown-toggle" id="navbarDropdown" role="button"
          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
-      <div class="oc-d-flex oc-flex-column oc-mr-2">
-        <span class="profile-navbar__username font-m font-med text-dark" *ngIf="username">{{username}}</span>
-        <span class="profile-navbar__role font-s text-muted" *ngIf="role">{{role}}</span>
+      <div class="profile-navbar__info-container">
+        <span class="profile-navbar__username" *ngIf="username">{{username}}</span>
+        <span class="profile-navbar__role" *ngIf="role">{{role}}</span>
       </div>
     </div>
-    <div ngbDropdownMenu aria-labelledby="navbarDropdown" class="oc-mt-2">
+    <div ngbDropdownMenu aria-labelledby="navbarDropdown" class="profile-navbar__dropdown">
       <ng-content></ng-content>
     </div>
   </div>
