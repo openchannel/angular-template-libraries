@@ -14,6 +14,7 @@ export class OcButtonComponent implements OnChanges, AfterViewInit {
 
   @Input() text: string = '';
   @Input() disabled: boolean = false;
+  @Input() style: string;
   @Input() customClass: string;
   @Input() customTemplate: TemplateRef<any>;
   @Input() process: boolean;

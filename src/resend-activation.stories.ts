@@ -1,6 +1,6 @@
 import {moduleMetadata} from '@storybook/angular';
-import {OcCommonLibModule, OcForgotPasswordComponent} from 'projects/oc-ng-common-component/src/public-api';
-import {UserLoginModel} from 'oc-ng-common-service';
+import {OcCommonLibModule, OcResendActivationComponent} from 'projects/oc-ng-common-component/src/public-api';
+import {UserActivationModel} from 'oc-ng-common-service';
 import {RouterTestingModule} from '@angular/router/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -9,27 +9,29 @@ const modules = {
   imports: [OcCommonLibModule, RouterTestingModule.withRoutes([]), BrowserAnimationsModule]
 };
 
-const pwdEmpty = new UserLoginModel();
-const pwdFilled = new UserLoginModel();
-pwdFilled.email = 'zmehta@tenupsoft.com';
+const activationEmpty = new UserActivationModel();
+const activationFilled = new UserActivationModel();
+activationFilled.email = 'zmehta@tenupsoft.com';
+activationFilled.code = 'fj45GHd34g';
+activationFilled.password = 'testpassword';
 
 export default {
-  title: 'Forgot Password [BEM]',
-  component: OcForgotPasswordComponent,
+  title: 'Resend Activation Code [BEM]',
+  component: OcResendActivationComponent,
   decorators: [
     moduleMetadata(modules),
   ],
 };
 
-const ForgotPasswordComponent = (args: OcForgotPasswordComponent) => ({
-  component: OcForgotPasswordComponent,
+const ForgotPasswordComponent = (args: OcResendActivationComponent) => ({
+  component: OcResendActivationComponent,
   moduleMetadata: modules,
   props: args
 });
 
 export const Empty = ForgotPasswordComponent.bind({});
 Empty.args = {
-  loginModel: pwdEmpty,
+  activationModel: activationEmpty,
   loginUrl: 'login',
   signupUrl: 'signup',
   companyLogoUrl: './assets/img/logo-company.png',
@@ -37,18 +39,8 @@ Empty.args = {
 
 export const Filled = ForgotPasswordComponent.bind({});
 Filled.args = {
-  loginModel: pwdFilled,
+  activationModel: activationFilled,
   loginUrl: 'login',
   signupUrl: 'signup',
   companyLogoUrl: './assets/img/logo-company.png',
-};
-
-export const ResultPage = ForgotPasswordComponent.bind({});
-ResultPage.args = {
-  loginModel: pwdFilled,
-  loginUrl: 'login',
-  signupUrl: 'signup',
-  companyLogoUrl: './assets/img/logo-company.png',
-  forgotPasswordDoneUrl: './assets/img/email_done.svg',
-  showResultPage: true
 };

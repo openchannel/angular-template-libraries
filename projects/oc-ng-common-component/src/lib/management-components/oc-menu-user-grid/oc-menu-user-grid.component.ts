@@ -1,6 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {UserGridActionModel, UserGridOptionTypeModel, UsersGridParametersModel} from 'oc-ng-common-service';
-import {UserAccountGridModel} from 'oc-ng-common-service';
+import {
+  UserAccountGridModel,
+  UserGridActionModel,
+  UserGridOptionTypeModel,
+  UsersGridParametersModel
+} from 'oc-ng-common-service';
 
 export declare type SortField = 'name' | 'email' | 'date' | 'role';
 
@@ -16,7 +20,7 @@ export class OcMenuUserGridComponent implements OnInit {
    * Path to the custom icon for the hidden menu toggle button.
    * Default: empty
    */
-  @Input() menuUrl: string = 'assets/img/dots-menu.svg';
+  @Input() menuUrl: string = 'assets/oc-ng-common-component/dots-menu.svg';
   /**
    * Path to the custom icon for the 'sort' button.
    * Default: empty
@@ -42,7 +46,8 @@ export class OcMenuUserGridComponent implements OnInit {
 
   private pageNumber: number = 1;
 
-  constructor(){}
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
@@ -63,7 +68,7 @@ export class OcMenuUserGridComponent implements OnInit {
     this.pageScrolled.emit(this.pageNumber);
   }
 
-  sortAppsBy(sortField: SortField): void {
+  sortUsersBy(sortField: SortField): void {
     this.sortChosen.emit(sortField);
     this.currentSortField = sortField;
     this.pageNumber = 1;

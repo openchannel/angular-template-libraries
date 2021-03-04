@@ -1,3 +1,5 @@
+//Media breakpoint
+
 @mixin media-breakpoint-sm {
   @media (max-width: 575.98px) {
     @content;
@@ -25,7 +27,7 @@
 // font settings
 
 @mixin font-family-rubik($type: 'Medium') {
-  font-family: 'Rubik-' + $type, serif;
+  font-family: 'Rubik-' + $type, sans-serif;
 }
 
 @mixin font-size-breakpoint($breakpoint: md) {
@@ -60,7 +62,7 @@
   }
 }
 
-@mixin form-control($default-border-color, $focus-border-color, $placeholder-color) {
+@mixin form-control($default-border-color: #c9d5ea, $focus-border-color: #537cfd, $placeholder-color: #333) {
   border: 1px solid $default-border-color;
   border-radius: 4px;
   font-size: 14px;

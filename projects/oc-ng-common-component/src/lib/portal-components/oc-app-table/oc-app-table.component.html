@@ -54,7 +54,7 @@
               <img [src]="app.customData.icon ? app.customData.icon : defaultAppIcon" alt="" class="app-icon">
             </div>
             <div class="col-md oc-pl-0">
-              <h6 class="oc-mb-0 cursor-pointer oc-pr-2 word-break"
+              <h6 class="app-name cursor-pointer oc-pr-2 word-break"
                   (click)="action('PREVIEW', app.appId, app.version, false)"
               >{{app.name}} </h6>
               <small> v {{app.version}}</small>
@@ -102,7 +102,7 @@
           <td>
             <div class="row">
               <div class="col-md-auto">
-                <img alt="icon" class="oc-px-3" src="assets/img/line-arrow-down.svg" *ngIf="i === 0">
+                <img alt="icon" class="oc-px-3" src="assets/oc-ng-common-component/line-arrow-down.svg" *ngIf="i === 0">
                 <span *ngIf="i > 0" class="oc-px-4"></span>
                 <img [src]="child.customData.icon ? child.customData.icon : defaultAppIcon" alt="" class="app-icon">
               </div>

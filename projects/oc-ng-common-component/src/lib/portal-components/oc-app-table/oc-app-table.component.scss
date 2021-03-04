@@ -162,7 +162,7 @@
   display: inline-block;
   border-radius: 50%;
   margin-right: 5px;
-  background-color: #fff;
+  background-color: $white;
 }
 
 .in-development {
@@ -191,5 +191,9 @@
 
 .icon-recolor {
   fill: $body-color;
+}
+
+.app-name {
+  margin-bottom: 0;
 }
 

@@ -8,3 +8,4 @@ documentation.json
 .idea
 
 coverage/
+storybook-assets/

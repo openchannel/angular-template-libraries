@@ -94,6 +94,10 @@ h2 {
   font-size: 28px;
 }
 
+html {
+  font-size: 8px;
+}
+
 * {
   @include font-family-rubik('Regular');
   font-size: 16px;
@@ -157,20 +161,16 @@ h6 {
   margin-top: 6px;
 }
 
-.card.oc-card-with-border {
-  margin: auto;
-  width: 412px;
-  border: 1px solid $info;
+.login-card {
   border-radius: 4px;
-  .card-body {
-    padding: 40px 30px 38px;
-    font-size: 14px;
-    line-height: 16px;
-  }
+  width: 412px;
+}
+
+.login-card_borders {
+  border: 1px solid $info;
 }
 
 .sidebar {
-
   span {
     font-size: 14px;
     line-height: 18px;
@@ -188,8 +188,8 @@ h6 {
 .file-container__upload-item-progress {
 
   .progress {
-    height: 1px;
     background-color: $info;
+    height: 1px;
   }
 
   &[type='primary'] {
@@ -258,6 +258,7 @@ oc-input, oc-password, oc-select, oc-video-url, oc-color, oc-rich-text-editor, o
   font-size: 14px;
   line-height: 28px;
   padding-left:4px;
+  margin: auto;
 }
 
 .custom-radio .custom-control-input ~ .custom-control-label::after,
@@ -364,23 +365,53 @@ a.link {
   color: $error;
 }
 
-oc-dropbox {
-  & .dropdown-menu {
-    max-height: 180px;
-    overflow-y: scroll;
-  }
+//Dropbox dropdown customization
+//.oc-dropbox {
+//  .dropdown-menu {
+//    border-radius: 4px;
+//    margin-top: 1rem;
+//    max-height: 180px;
+//    overflow-y: auto;
+//    padding: 0;
+//    width: 100%;
+//    &::-webkit-scrollbar {
+//      display: none;
+//    }
+//    & .dropdown-item {
+//      border-bottom: 1px solid $info;
+//      padding: 2rem;
+//      &:last-child {
+//        border-bottom: 0;
+//      }
+//      &.active, &:active {
+//        background-color: rgba($info, .2);
+//        color: $body-color;
+//      }
+//    }
+//  }
+//}
 
-  & .dropdown-menu::-webkit-scrollbar {
+.dropdown-menu {
+  border-radius: 4px;
+  margin-top: 1rem;
+  max-height: 180px;
+  overflow-y: auto;
+  padding: 0;
+  width: 100%;
+  &::-webkit-scrollbar {
     display: none;
   }
-
-  & .dropdown-menu .dropdown-item {
-    padding: 0;
-  }
-
-  & .dropdown-item.active, .dropdown-item:active {
-    background: none;
-    color: $gray-700;
+  & .dropdown-item {
+    @include font-size-breakpoint(md);
+    border-bottom: 1px solid $info;
+    padding: 2rem;
+    &:last-child {
+      border-bottom: 0;
+    }
+    &.active, &:active {
+      background-color: rgba($info, .2);
+      color: $body-color;
+    }
   }
 }
 
@@ -415,10 +446,10 @@ oc-dropbox {
                   background: #f4f4f4;
                 }
                 svg {
-                  fill: mix(#000, $info, 38%);
+                  fill: mix($black, $info, 38%);
                 }
                 &__select-label {
-                  color: mix(#000, $info, 38%);
+                  color: mix($black, $info, 38%);
                 }
               }
             }

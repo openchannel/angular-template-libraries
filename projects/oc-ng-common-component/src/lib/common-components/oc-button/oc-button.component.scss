@@ -11,19 +11,16 @@
   min-width: 160px;
   padding: 10px 20px;
   position: relative;
+  transition: all .3s ease;
   width: 100%;
-  transition: all 0.3s ease;
-
   &:focus {
     border: 2px solid $focus-border;
     box-shadow: none;
     outline: none;
   }
-
   &:disabled {
     opacity: .35;
   }
-
   &__text {
     @include font-family-rubik('Medium');
     @include font-size-breakpoint(md);
@@ -32,27 +29,22 @@
   &_primary {
     background-color: $primary;
     border-color: $primary;
-    color: #fff;
-
+    color: $white;
     &:hover {
-      box-shadow: 1px 5px 30px 0 rgba(mix(#000, $primary, 10%), 0.5);
+      box-shadow: 1px 5px 30px 0 rgba(mix($black, $primary, 10%), 0.5);
     }
-
     &:not(:disabled):not(.disabled):active {
-      background-color: mix(#000, $primary, 10%);
+      background-color: mix($black, $primary, 10%);
     }
-
     &-spinner {
-      background-color: mix(#000, $primary, 10%);
+      background-color: mix($black, $primary, 10%);
     }
-
     .oc-button__text {
-      color: #fff;
+      color: $white;
     }
-
     .oc-button__spinner {
       .la-ball-spin {
-        color: #fff;
+        color: $white;
       }
     }
   }
@@ -61,23 +53,18 @@
     background-color: white;
     border: 1px solid $info;
     color: $body-color;
-
     &:hover {
       box-shadow: 1px 5px 30px 0 rgba(lighten($secondary, 34%), 0.5);
     }
-
     &:not(:disabled):not(.disabled):active {
       background-color: $info;
     }
-
     &-spinner {
       background-color: $info;
     }
-
     .oc-button__text {
       color: $body-color;
     }
-
     .oc-button__spinner {
       .la-ball-spin {
         color: $body-color;
@@ -88,32 +75,27 @@
   &_danger {
     background-color: $danger;
     border-color: $danger;
-    color: #fff;
-
+    color: $white;
     &:hover {
-      box-shadow: 1px 5px 30px 0 rgba(mix(#000, $danger, 10%), 0.5);
+      box-shadow: 1px 5px 30px 0 rgba(mix($black, $danger, 10%), 0.5);
     }
-
     &:not(:disabled):not(.disabled):active {
-      background-color: mix(#000, $danger, 10%);
+      background-color: mix($black, $danger, 10%);
     }
-
     &-spinner {
-      background-color: mix(#000, $danger, 10%);
+      background-color: mix($black, $danger, 10%);
     }
-
     .oc-button__text {
-      color: #fff;
+      color: $white;
     }
-
     .oc-button__spinner {
       .la-ball-spin {
-        color: #fff;
+        color: $white;
       }
     }
   }
 
-  &_link {
+  &_link{
     background-color: transparent;
     color: $primary;
     height: auto;
@@ -122,13 +104,11 @@
     padding: 2px;
     text-decoration: none;
     width: auto;
-
     &:hover {
       text-decoration: underline;
     }
-
     &:not(:disabled):not(.disabled):active {
-      color: mix(#000, $primary, 10%);
+      color: mix($black, $primary, 10%);
       text-decoration: underline;
     }
   }

@@ -1,7 +1,7 @@
 import {OcCommonLibModule} from 'oc-ng-common-component';
 import {moduleMetadata} from '@storybook/angular';
-import { OcImageGalleryComponent } from 'oc-ng-common-component';
-import { GalleryItem } from 'oc-ng-common-service';
+import {OcImageGalleryComponent} from 'oc-ng-common-component';
+import {GalleryItem} from 'oc-ng-common-service';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
@@ -9,7 +9,7 @@ const modules = {
 };
 
 export default {
-  title: 'Image Gallery',
+  title: 'Image Gallery [BEM]',
   component: OcImageGalleryComponent,
   decorators: [
     moduleMetadata(modules),

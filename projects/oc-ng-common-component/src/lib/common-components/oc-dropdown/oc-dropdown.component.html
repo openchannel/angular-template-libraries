@@ -1,9 +1,11 @@
-<div class="oc-d-inline-block" ngbDropdown placement="bottom-right" #myDrop="ngbDropdown">
-    <a href="#" class="font-m font-med" (click)="$event.preventDefault(); myDrop.open()"
-       ngbDropdownAnchor id="dropdownManual">{{title}} {{selected?.label}}</a>
-    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+<div class="dropdown-label" ngbDropdown placement="bottom-right" #myDrop="ngbDropdown">
+    <span href="#" class="dropdown-label__text"
+       (click)="$event.preventDefault(); myDrop.isOpen() ? myDrop.close() :  myDrop.open()"
+       ngbDropdownAnchor id="dropdownManual">{{title}} {{selected?.label}}</span>
+    <div ngbDropdownMenu aria-labelledby="dropdownManual" class="dropdown-label__dropdown">
         <button ngbDropdownItem
                 (click)="onSelect(option)"
+                class="dropdown-label__dropdown-item"
                 *ngFor="let option of this.options">{{option.label}}</button>
     </div>
 </div>

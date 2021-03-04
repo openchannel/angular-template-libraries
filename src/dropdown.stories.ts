@@ -1,14 +1,14 @@
 import {OcCommonLibModule} from 'oc-ng-common-component';
 import {moduleMetadata} from '@storybook/angular';
 import {OcDropdownComponent} from 'oc-ng-common-component';
-import { OcDropdownButtonComponent } from 'oc-ng-common-component';
+import {AngularSvgIconModule} from 'angular-svg-icon';
 
 const modules = {
-    imports: [OcCommonLibModule],
+    imports: [OcCommonLibModule, AngularSvgIconModule.forRoot()],
 };
 
 export default {
-    title: 'Dropdown',
+    title: 'Dropdown [BEM]',
     component: OcDropdownComponent,
     decorators: [
         moduleMetadata(modules),
@@ -21,15 +21,10 @@ const DropdownComponent = (args: OcDropdownComponent) => ({
     props: args
 });
 
-const DropdownButtonComponent = (args: OcDropdownButtonComponent) => ({
-    component: OcDropdownButtonComponent,
-    moduleMetadata: modules,
-    props: args
-});
 
-export const DefaultDropdown = DropdownComponent.bind({});
+export const DefaultDropdownLabel = DropdownComponent.bind({});
 
-DefaultDropdown.args = {
+DefaultDropdownLabel.args = {
     selected: {
         label: 'popular'
     },
@@ -44,28 +39,4 @@ DefaultDropdown.args = {
             label: 'featured'
         }
     ],
-};
-
-export const DropdownButton = DropdownButtonComponent.bind({});
-
-DropdownButton.args = {
-    title: 'Chose item',
-    options: [
-        {
-            label: 'Developer',
-            value: 'developer'
-        },
-        {
-            label: 'Reviewer',
-            value: 'reviewer'
-        },
-        {
-            label: 'Designer',
-            value: 'designer'
-        }
-    ],
-    selected: {
-        label: 'Developer',
-        value: 'developer'
-    }
 };

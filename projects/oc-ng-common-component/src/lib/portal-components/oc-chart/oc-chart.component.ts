@@ -60,10 +60,11 @@ export class OcChartComponent implements OnChanges, OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.Chart = (await importChart).Chart;
+    await this.connectChartLib();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  async ngOnChanges(changes: SimpleChanges) {
+    await this.connectChartLib();
     if (changes.chartData.previousValue !== changes.chartData.currentValue) {
       this.reloadChart();
     }
@@ -227,6 +228,12 @@ export class OcChartComponent implements OnChanges, OnInit {
     this.dropdownTypes = this.chartData?.fields ? this.chartData.fields
       .map(field => new DropdownModel(field.label, field)) : [];
     this.dropdownSelectedType = this.dropdownTypes.filter(field => field.value.active)[0];
+  }
+
+  async connectChartLib() {
+    if (!this.Chart) {
+      this.Chart = (await importChart).Chart;
+    }
   }
 }
 
