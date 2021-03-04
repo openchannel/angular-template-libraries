@@ -4,19 +4,23 @@
 .tooltip-label {
   align-items: center;
   display: flex;
+
   &__text {
     @include font-size-breakpoint(md);
-    line-height: 14px;
     margin-bottom: 0;
   }
+
   &__required {
     color: $danger;
   }
+
   &__description {
     margin-left: 1rem;
+
     &-icon {
       height: 14px;
       width: 14px;
+      display: block;
     }
   }
 }
