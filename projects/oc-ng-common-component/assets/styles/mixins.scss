@@ -62,7 +62,7 @@
   }
 }
 
-@mixin form-control($default-border-color, $focus-border-color, $placeholder-color) {
+@mixin form-control($default-border-color: #c9d5ea, $focus-border-color: #537cfd, $placeholder-color: #333) {
   border: 1px solid $default-border-color;
   border-radius: 4px;
   font-size: 14px;
