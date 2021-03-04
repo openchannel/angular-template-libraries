@@ -9,27 +9,27 @@
                 <oc-label text="Enter your account details below" class="sign-up__header-invitation"></oc-label>
             </div>
             <div class="sign-up__form-group sign-up__name">
-                <oc-label text="Name"></oc-label>
+                <oc-label text="Name" class="sign-up__form-group-label"></oc-label>
                 <oc-input #uname=ngModel [(ngModel)]="signupModel.uname"
                           placeholder="Name" name="uname" ngDefaultControl required="true" ocWhiteSpaceValidator></oc-input>
                 <oc-error [control]="uname" field="uname"></oc-error>
             </div>
             <div class="sign-up__form-group sign-up__company" *ngIf="withCompany">
-                <oc-label text="Company"></oc-label>
+                <oc-label text="Company" class="sign-up__form-group-label"></oc-label>
                 <oc-input #company=ngModel [(ngModel)]="signupModel.company"
                           placeholder="Company" name="company" ngDefaultControl required="true"
                           ocWhiteSpaceValidator></oc-input>
                 <oc-error [control]="company" field="company"></oc-error>
             </div>
             <div class="sign-up__form-group sign-up__email">
-                <oc-label text="Email"></oc-label>
+                <oc-label text="Email" class="sign-up__form-group-label"></oc-label>
                 <oc-input #email=ngModel [(ngModel)]="signupModel.email"
                           placeholder="Email" ocEmailValidator name="email" ngDefaultControl
                           required="true"></oc-input>
                 <oc-error [control]="email" field="email"></oc-error>
             </div>
             <div class="sign-up__form-group sign-up__password">
-                <oc-label text="Password"></oc-label>
+                <oc-label text="Password" class="sign-up__form-group-label"></oc-label>
                 <oc-password #password=ngModel [(ngModel)]="signupModel.password"
                              placeholder="Password" class="oc-mb-2" name="password"
                              ngDefaultControl ocPasswordValidator></oc-password>

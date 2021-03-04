@@ -24,6 +24,10 @@
   }
   &__form-group {
     margin-bottom: 3rem;
+    &-label {
+      display: block;
+      margin-bottom: 1rem;
+    }
   }
   &__password {
     margin-bottom: 2rem;
