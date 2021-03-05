@@ -19,4 +19,26 @@
       }
     }
   }
+
+  &__info {
+    padding-left: 1rem;
+    margin-top: 1rem;
+    flex-grow: 1;
+    @include media-breakpoint-md {
+      padding-left: 0;
+      margin-top: 0;
+    }
+
+    &-desc {
+      font-size: 14px;
+      margin: 1rem 0;
+      width: 75%;
+      color: $secondary;
+    }
+  }
+
+  &_search {
+    flex-direction: column;
+    text-align: center;
+  }
 }
