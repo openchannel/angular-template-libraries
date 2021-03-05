@@ -82,7 +82,7 @@ app4.rating = 4.9;
 app4.reviewCount = 87;
 
 export default {
-  title: 'App Gallery',
+  title: 'App Gallery [BEM]',
   component: OcAppGalleryComponent,
   decorators: [
     moduleMetadata(modules),

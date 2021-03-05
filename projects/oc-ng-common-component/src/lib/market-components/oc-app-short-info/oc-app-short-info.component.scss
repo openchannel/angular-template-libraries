@@ -1,4 +1,4 @@
-@import "../../../../assets/styles/theme.scss";
+@import '../../../../assets/styles/theme.scss';
 
 .app-card {
   border: 1px solid $info;
@@ -12,19 +12,22 @@
   .app-price {
     font-size: 14px;
     line-height: 16px;
-    font-family: "Rubik-Medium";
+    font-family: "Rubik-Medium", sans-serif;
     display: inline-block;
     color: $primary;
     margin-bottom: 8px;
     width: 130px;
   }
+
   .line-space {
     line-height: 1.2rem;
   }
+
   .text-summary-hidden {
     max-height: 2.5rem;
     overflow: hidden;
   }
+
   .card-height-fixed {
     height: 99px
   }
@@ -34,6 +37,7 @@ a {
   display: block;
   text-decoration: none;
   color: $body-color;
+
   &:hover {
     text-decoration: none;
     color: $body-color;

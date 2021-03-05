@@ -1,7 +1,6 @@
-<div *ngIf="getStartedType == 'home'" class="row">
-    <div class="col-md-auto oc-pr-0 image-align">
-        <img alt="featured-logo"
-             [src]="getStartedImage">
+<div class="get-started" *ngIf="getStartedType == 'home'">
+    <div class="get-started__logo">
+        <img [src]="getStartedImage" alt="featured-logo">
     </div>
     <div class="col-md oc-pl-2 oc-pl-md-0 oc-mt-2 oc-mt-md-0">
         <h1>
