@@ -7,7 +7,7 @@ const modules = {
 };
 
 export default {
-  title: 'Search input',
+  title: 'Search input [BEM]',
   component: OcTextSearchComponent,
   decorators: [
     moduleMetadata(modules),
