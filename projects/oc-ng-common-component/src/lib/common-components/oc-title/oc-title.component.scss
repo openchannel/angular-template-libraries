@@ -2,9 +2,11 @@
 @import '../../../../assets/styles/mixins';
 
 .oc-title {
+  align-items: center;
   display: flex;
   justify-content: flex-start;
   &__text {
+    margin-bottom: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -16,6 +18,7 @@
   &__description {
     margin-left: 1rem;
     &-icon {
+      display: block;
     }
   }
 }
