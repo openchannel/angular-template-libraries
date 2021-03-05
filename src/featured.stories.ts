@@ -10,7 +10,7 @@ const modules = {
 };
 
 export default {
-  title: 'Featured Apps',
+  title: 'Featured Apps [BEM]',
   component: OcFeaturedAppsComponent,
   decorators: [
     moduleMetadata(modules),

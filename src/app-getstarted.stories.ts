@@ -11,7 +11,7 @@ const modules = {
 };
 
 export default {
-  title: 'Get Started',
+  title: 'Get Started [BEM]',
   component: OcAppGetStartedComponent,
   decorators: [
     moduleMetadata(modules),

@@ -174,7 +174,7 @@ const app4 = {
 };
 
 export default {
-  title: 'App List Grid',
+  title: 'App List Grid [BEM]',
   component: OcAppListGridComponent,
   decorators: [
     moduleMetadata(modules),

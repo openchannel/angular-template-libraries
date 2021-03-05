@@ -40,5 +40,20 @@
   &_search {
     flex-direction: column;
     text-align: center;
+
+    .get-started__button {
+      margin: 2.5rem auto 0;
+      padding: 0 2.5rem;
+      flex: 0 0 25%;
+      max-width: 25%;
+      @include media-breakpoint-md {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      &-wrapper {
+        display: block;
+      }
+    }
   }
 }
