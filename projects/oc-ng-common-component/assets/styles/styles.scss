@@ -329,23 +329,6 @@ oc-input, oc-password, oc-select, oc-video-url, oc-color, oc-rich-text-editor, o
   min-width: auto;
 }
 
-.review {
-  &__rate {
-    height: 14px;
-    & > span {
-      font-size: 14px;
-      display: inline-flex;
-    }
-  }
-  &__progressbar {
-    display: block;
-
-    .progress {
-      height: 8px;
-    }
-  }
-}
-
 a.link {
   cursor: pointer;
   color: $primary;
