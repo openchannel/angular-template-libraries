@@ -8,22 +8,22 @@ const modules = {
 };
 
 export default {
-  title: 'Sidebar',
+  title: 'Sidebar [BEM]',
   component: OcSidebarComponent,
   decorators: [
     moduleMetadata(modules),
   ]
 };
 
-const SelectComponent = (args: OcSidebarComponent) => ({
+const SidebarComponent = (args: OcSidebarComponent) => ({
   component: OcSidebarComponent,
   moduleMetadata: modules,
   props: args
 });
 
-export const SimpleSelect = SelectComponent.bind({});
+export const OneLevel = SidebarComponent.bind({});
 
-SimpleSelect.args = {
+OneLevel.args = {
   title: 'App Category',
   sidebarModel: [
     {
