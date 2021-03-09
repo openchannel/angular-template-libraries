@@ -1,5 +1,5 @@
 import {moduleMetadata} from '@storybook/angular';
-import {OcCommonLibModule} from 'projects/oc-ng-common-component/src/public-api';
+import {OcCommonLibModule} from 'oc-ng-common-component/src/lib/common-components';
 import {OcDropboxComponent} from 'oc-ng-common-component';
 
 const modules = {

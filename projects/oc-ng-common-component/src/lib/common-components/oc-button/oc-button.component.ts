@@ -46,9 +46,9 @@ export class OcButtonComponent implements OnChanges, AfterViewInit {
 
   checkSpinner(): void {
     if (this.process && this.buttonType !== 'link') {
-      this.spinner.show().then();
+      this.spinner.show();
     } else {
-      this.spinner.hide().then();
+      this.spinner.hide();
     }
   }
 }

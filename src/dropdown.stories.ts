@@ -2,9 +2,10 @@ import {OcCommonLibModule} from 'oc-ng-common-component';
 import {moduleMetadata} from '@storybook/angular';
 import {OcDropdownComponent} from 'oc-ng-common-component';
 import {AngularSvgIconModule} from 'angular-svg-icon';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const modules = {
-    imports: [OcCommonLibModule, AngularSvgIconModule.forRoot()],
+    imports: [OcCommonLibModule, AngularSvgIconModule.forRoot(), NgbModule],
 };
 
 export default {
