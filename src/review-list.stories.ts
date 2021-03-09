@@ -1,11 +1,16 @@
 import { storiesOf } from '@storybook/angular';
 import { withA11y } from '@storybook/addon-a11y';
-import { OcReviewListComponent } from 'projects/oc-ng-common-component/src/public-api';
 import { OCReviewDetails } from 'oc-ng-common-service';
-import { OcMarketComponentsModule } from 'oc-ng-common-component/src/lib/market-components';
+import { OcMarketComponentsModule, OcRatingComponent, OcReviewListComponent } from 'oc-ng-common-component/src/lib/market-components';
+import { OcButtonComponent } from 'oc-ng-common-component/src/lib/common-components';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 const modules = {
-  imports: [OcMarketComponentsModule],
+  imports: [NgbModule, AngularSvgIconModule.forRoot(), HttpClientTestingModule, NgxSpinnerModule],
+  declarations: [OcRatingComponent, OcButtonComponent]
 };
 const appReview1 = new OCReviewDetails();
 appReview1.rating = 5;

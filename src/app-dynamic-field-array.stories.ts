@@ -1,10 +1,56 @@
-import { OcCommonLibModule, OcFormComponentsModule } from 'oc-ng-common-component';
+import {
+  OcColorComponent,
+  OcCommonLibModule,
+  OcDatetimePickerComponent,
+  OcDynamicArrayItemComponent,
+  OcDynamicFieldArrayComponent,
+  OcFileUploadComponent,
+  OcFormComponent,
+  OcMultiSelectListComponent,
+  OcNumberComponent,
+  OcRichTextEditorComponent,
+  OcTagsComponent,
+  OcTextareaComponent,
+  OcTooltipLabelComponent,
+  OcVideoUrlComponent,
+} from 'oc-ng-common-component';
 import { moduleMetadata } from '@storybook/angular';
-import { OcDynamicFieldArrayComponent } from 'oc-ng-common-component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
-  imports: [OcFormComponentsModule]
+  imports: [
+    OcCommonLibModule,
+    AngularSvgIconModule.forRoot(),
+    HttpClientTestingModule,
+    NgxSpinnerModule,
+    ReactiveFormsModule,
+    NgbModule,
+    EditorModule,
+    ImageCropperModule,
+    ColorPickerModule
+  ],
+  declarations: [
+    OcFormComponent,
+    OcDynamicArrayItemComponent,
+    OcTooltipLabelComponent,
+    OcRichTextEditorComponent,
+    OcTextareaComponent,
+    OcTagsComponent,
+    OcFileUploadComponent,
+    OcNumberComponent,
+    OcColorComponent,
+    OcVideoUrlComponent,
+    OcDatetimePickerComponent,
+    OcMultiSelectListComponent,
+  ],
 };
 
 export default {
@@ -18,19 +64,19 @@ export default {
 const DynamicFieldsArrayComponent = (args: OcDynamicFieldArrayComponent) => ({
   component: OcDynamicFieldArrayComponent,
   moduleMetadata: modules,
-  props: args
+  props: args,
 });
 
 export const DynamicFieldsArrayComponentAppendOrdering = DynamicFieldsArrayComponent.bind({});
 
 DynamicFieldsArrayComponentAppendOrdering.args = {
   fieldDefinition: {
-    attributes:    {
+    attributes: {
       maxCount: null,
       minCount: null,
       ordering: 'append',
-      required:	null,
-      rowLabel:	'field1'
+      required: null,
+      rowLabel: 'field1',
     },
     required: null,
     rowLabel: null,
@@ -42,12 +88,12 @@ DynamicFieldsArrayComponentAppendOrdering.args = {
     isValid: true,
     label: 'Test Dynamic field array',
     placeholder: null,
-    subFieldDefinitions:   [
+    subFieldDefinitions: [
       {
         attributes: {
           maxChars: null,
           minChars: null,
-          required: null
+          required: null,
         },
         category: 'CUSTOM',
         defaultValue: null,
@@ -57,38 +103,38 @@ DynamicFieldsArrayComponentAppendOrdering.args = {
         isValid: true,
         label: 'field1',
         placeholder: 'write some text',
-        type: 'text'
+        type: 'text',
       },
       {
-        id:	'long-text-example',
+        id: 'long-text-example',
         label: 'Long Text Example',
-        type:	'longText',
+        type: 'longText',
         placeholder: 'Write your text here...',
         category: 'CUSTOM',
         defaultValue: null,
         attributes: {
-          maxChars:	200,
-          required:	null,
-          minChars:	2
+          maxChars: 200,
+          required: null,
+          minChars: 2,
         },
-      }
+      },
     ],
-    type: 'dynamicFieldArray'
+    type: 'dynamicFieldArray',
   },
   maxCount: 3,
-  required: true
+  required: true,
 };
 
 export const DynamicFieldsArrayComponentPrependOrdering = DynamicFieldsArrayComponent.bind({});
 
 DynamicFieldsArrayComponentPrependOrdering.args = {
   fieldDefinition: {
-    attributes:    {
+    attributes: {
       maxCount: null,
       minCount: null,
       ordering: 'prepend',
-      required:	null,
-      rowLabel:	'field1'
+      required: null,
+      rowLabel: 'field1',
     },
     required: null,
     rowLabel: null,
@@ -100,12 +146,12 @@ DynamicFieldsArrayComponentPrependOrdering.args = {
     isValid: true,
     label: 'Test Dynamic field array',
     placeholder: null,
-    subFieldDefinitions:   [
+    subFieldDefinitions: [
       {
         attributes: {
           maxChars: null,
           minChars: null,
-          required: null
+          required: null,
         },
         category: 'CUSTOM',
         defaultValue: null,
@@ -115,24 +161,24 @@ DynamicFieldsArrayComponentPrependOrdering.args = {
         isValid: true,
         label: 'field1',
         placeholder: 'write some text',
-        type: 'text'
+        type: 'text',
       },
       {
-        id:	'long-text-example',
+        id: 'long-text-example',
         label: 'Long Text Example',
-        type:	'longText',
+        type: 'longText',
         placeholder: 'Write your text here...',
         category: 'CUSTOM',
         defaultValue: null,
         attributes: {
-          maxChars:	200,
-          required:	null,
-          minChars:	2
+          maxChars: 200,
+          required: null,
+          minChars: 2,
         },
-      }
+      },
     ],
-    type: 'dynamicFieldArray'
+    type: 'dynamicFieldArray',
   },
   maxCount: 3,
-  required: true
+  required: true,
 };

@@ -43,7 +43,16 @@
                           fileType="multiImage"></oc-file-upload>
           <oc-file-upload *ngSwitchCase="'singleImage'"
                           formControlName="{{formElement?.id}}"
-                          fileType="singleImage"></oc-file-upload>
+                          fileType="singleImage">
+          </oc-file-upload>
+          <oc-file-upload *ngSwitchCase="'privateSingleFile'"
+                          formControlName="{{formElement?.id}}"
+                          fileType="privateSingleFile">
+          </oc-file-upload>
+          <oc-file-upload *ngSwitchCase="'multiPrivateFile'"
+                          formControlName="{{formElement?.id}}"
+                          fileType="multiPrivateFile">
+          </oc-file-upload>
           <oc-number *ngSwitchCase="'number'"
                      formControlName="{{formElement?.id}}"
                      [placeholder]="formElement?.placeholder"></oc-number>

@@ -893,6 +893,30 @@ FormWithFileUpload.args = {
         },
         options: null,
         subFieldDefinitions: null
+      },
+      {
+        id: 'file-upload-1',
+        label: 'private single File Upload',
+        description: '',
+        defaultValue: null,
+        type: 'privateSingleFile',
+        required: null,
+        attributes: {
+        },
+        options: null,
+        subFieldDefinitions: null
+      },
+      {
+        id: 'file-upload-2',
+        label: 'private multi File Upload',
+        description: '',
+        defaultValue: null,
+        type: 'multiPrivateFile',
+        required: null,
+        attributes: {
+        },
+        options: null,
+        subFieldDefinitions: null
       }
     ]
   }
