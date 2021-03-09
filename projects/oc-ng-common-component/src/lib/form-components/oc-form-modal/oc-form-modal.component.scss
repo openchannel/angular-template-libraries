@@ -1,11 +1,38 @@
-.modal-inner {
-  padding: 1rem 1.5rem 2.5rem;
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.form-modal {
+  @include modal-body($white, $info);
+  &__header {
+    align-items: flex-start;
+    border-bottom: 1px solid $info;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 3rem;
+    &-heading {
+      margin-bottom: 0;
+      text-align: center;
+      width: 100%;
+    }
+    &-close-icon {
+      cursor: pointer;
+      fill: $black;
+      height: 16px;
+      outline: none;
+      width: 16px;
+    }
+  }
+
+  &__modal-inner {
+    padding: 1rem 1.5rem 2.5rem;
+  }
 
   &__buttons {
     display: flex;
-    justify-content: space-between;
     flex-wrap: nowrap;
-    width: 100%;
+    justify-content: space-between;
     margin-top: 2.5rem;
+    width: 100%;
   }
 }

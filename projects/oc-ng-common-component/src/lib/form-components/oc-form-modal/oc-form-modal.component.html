@@ -1,11 +1,16 @@
-<oc-modal-header [modalTitle]="modalTitle" [ngbModalRef]="ngbModalRef">
-    <div modalContent class="modal-inner">
+<div class="form-modal">
+    <div class="form-modal__header">
+        <h5 class="form-modal__header-heading">{{modalTitle}}</h5>
+        <svg-icon class="form-modal__header-close-icon" src="assets/oc-ng-common-component/close-icon.svg"
+                  (click)="close()"></svg-icon>
+    </div>
+    <div modalContent class="form-modal__modal-inner">
         <oc-form [formJsonData]="formJsonData"
                  [showButton]="false"
                  (createdForm)="setCreatedForm($event)"
                  (formDataUpdated)="setDataFromForm($event)"></oc-form>
 
-        <div class="modal-inner__buttons">
+        <div class="form-modal__buttons">
             <div (click)="close()">
                 <ng-container [ngTemplateOutlet]="rejectButton"></ng-container>
             </div>
@@ -14,4 +19,4 @@
             </div>
         </div>
     </div>
-</oc-modal-header>
+</div>
