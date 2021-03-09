@@ -22,6 +22,7 @@
     </span>
     <input [(colorPicker)]="colorValue"
            [cpPosition]="colorPickerPosition"
+           [(cpToggle)]="toggleDialog"
            (colorPickerChange)="onValueChange()"
            cpOutputFormat="hex"
            readonly>

@@ -197,7 +197,7 @@ h6 {
 
   .progress {
     background-color: $info;
-    height: 1px;
+    height: 4px;
   }
 
   &[type='primary'] {
@@ -375,6 +375,14 @@ a.link {
       background-color: rgba($info, .2);
       color: $body-color;
     }
+  }
+}
+
+// Special dropdown menu for the Text search component
+.oc-dropbox {
+  .dropdown-menu {
+    max-height: 229px;
+    width: 100%;
   }
 }
 
