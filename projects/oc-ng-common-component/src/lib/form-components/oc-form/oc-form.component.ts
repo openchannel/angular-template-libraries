@@ -116,6 +116,8 @@ export class OcFormComponent implements OnInit, OnDestroy {
           case 'singleFile':
           case 'multiImage':
           case 'singleImage':
+          case 'privateSingleFile':
+          case 'multiPrivateFile':
             group[inputTemplate?.id] = new FormControl(inputTemplate.defaultValue);
             this.setValidators(group[inputTemplate?.id], inputTemplate?.attributes);
             break;
