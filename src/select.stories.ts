@@ -1,8 +1,6 @@
-import { moduleMetadata, storiesOf } from '@storybook/angular';
-import {
-  OcCommonLibModule,
-  OcSelectComponent,
-} from 'projects/oc-ng-common-component/src/public-api';
+import { moduleMetadata } from '@storybook/angular';
+import { OcCommonLibModule, OcSelectComponent } from 'oc-ng-common-component';
+
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
@@ -32,14 +30,15 @@ SimpleSelect.args = {
 export const ObjectSelect = SelectComponent.bind({});
 
 ObjectSelect.args = {
-  selectValArr: [{first: 1}, {second: 2}],
-  isObject: true
+  selectValArr: [{label: 1}, {label: 2}],
+  labelField: 'label'
 };
 
 export const SelectedObjectValue = SelectComponent.bind({});
 
 SelectedObjectValue.args = {
-  selectValArr: [{first: 1}, {second: 2}],
+  selectValArr: [{label: 1}, {label: 2}],
   isObject: true,
-  value: 1
+  labelField: 'label',
+  value: {label: 1}
 };

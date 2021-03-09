@@ -22,15 +22,15 @@ This project store elastic patterns for many components
 Every component you can customize by your style. 
 
 ### Built With
-* [Angular](https://angular.io) v. 9.1.1
+* [Angular](https://angular.io) v. 11.2.3
 * [Bootstrap](https://getbootstrap.com) v. 4.4.1
-* [Storybook](https://storybook.js.org/) v. 6.0.26
+* [Storybook](https://storybook.js.org/) v. 6.1.20
 
 <!-- GETTING STARTED -->
 ## Getting Started
 ### Prerequisites
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
 
 ### Installation (creating global link)
 1. `npm install`

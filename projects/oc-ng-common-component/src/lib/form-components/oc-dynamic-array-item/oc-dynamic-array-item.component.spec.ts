@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OcDynamicArrayItemComponent } from './oc-dynamic-array-item.component';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Directive } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -133,6 +133,7 @@ describe('OcDynamicArrayItemComponent', () => {
   });
 });
 
+@Directive()
 export class ModalDialogMock {
   @Input() formJSONData: any;
 
