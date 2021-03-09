@@ -52,7 +52,7 @@ describe('OcAppGetStartedComponent', () => {
   it('should show home', () => {
     component.getStartedType = 'home';
     component.getStartedDescription = 'This is only test description';
-    component.getStartedImage = 'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png';
+    component.getStartedImage = 'https://stage1-philips-market-test.openchannel.io/assets/oc-ng-common-component/item-1.png';
     fixture.detectChanges();
 
     const description: HTMLParagraphElement = fixture.debugElement.query(By.css('p')).nativeElement;

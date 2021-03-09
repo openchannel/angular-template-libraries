@@ -1,9 +1,9 @@
-@import "../../../../assets/styles/theme.scss";
+@import 'projects/oc-ng-common-component/assets/styles/theme.scss';
 
 .calendar-header {
   color: $body-color;
   background: #fff;
-  border-bottom: 1px solid $gray-400;
+  border-bottom: 1px solid $gray;
 }
 
 .recolor-icon {
@@ -28,7 +28,7 @@
 
 .wc-date-container {
   span {
-    font-family: "Rubik Regular";
+    font-family: "Rubik-Regular";
   }
 }
 
@@ -66,7 +66,7 @@
   padding-top: 16px;
   font-weight: 300;
   display: flex;
-  border-top: 1px solid $gray-400;
+  border-top: 1px solid $gray;
 
   &__header{
     text-align: center;
@@ -76,7 +76,7 @@
     display: flex;
     align-items: center;
     padding: 8px 2px;
-    border-bottom: 1px solid $gray-400;
+    border-bottom: 1px solid $gray;
   }
 }
 

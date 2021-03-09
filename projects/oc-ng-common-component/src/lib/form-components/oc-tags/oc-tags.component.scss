@@ -3,9 +3,9 @@
 .dropdown-element {
   max-height: 46px;
   .custom-text {
-    color: $gray-900;
+    color: $body-color;
   }
 }
 .dropdown-element:hover {
-  background: $gray-200;
+  background: $gray;
 }

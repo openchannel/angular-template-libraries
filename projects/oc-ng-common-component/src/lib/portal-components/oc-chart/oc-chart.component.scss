@@ -15,12 +15,12 @@
   }
 
   .time-selection.active {
-    border: 1px solid $gray-200;
+    border: 1px solid $gray;
     background-color: white;
   }
 
   .type-section {
-    border: 1px solid $gray-200;
+    border: 1px solid $gray;
     height: 3rem;
     margin-left: auto;
     margin-right: 0;
@@ -50,14 +50,14 @@
   }
 
   span {
-    border-top: 1px solid $gray-200;
+    border-top: 1px solid $gray;
     color: $gray-600;
     font-size: 14px;
   }
 }
 
 .border {
-  border: 1px solid $gray-200;
+  border: 1px solid $gray;
 }
 
 .radius {
