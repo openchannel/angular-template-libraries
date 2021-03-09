@@ -2,11 +2,12 @@
   <table class="table oc-mb-0"
          [infiniteScrollThrottle]="50"
          (scrolled)="onScrollDown()"
-         infiniteScroll>
+         infiniteScroll
+         aria-describedby="App listing table">
     <thead>
     <tr>
-      <th class="placeholder"></th>
-      <th class="name cursor-pointer" (click)="sortAppsBy('name')">Name
+      <th scope="col" class="placeholder"></th>
+      <th scope="col" class="name cursor-pointer" (click)="sortAppsBy('name')">Name
       <img [src]="sortingObjects[0].ascending ? ascendingSortIcon ? ascendingSortIcon
       : descendingSortIcon : descendingSortIcon"
            alt="icon" class="icon-down"
@@ -17,8 +18,8 @@
       <svg-icon src="assets/oc-ng-common-component/select-up.svg"
                *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[0].ascending"></svg-icon>
       </th>
-      <th class="summary">Summary</th>
-    <th class="data" (click)="sortAppsBy('created')">Created
+      <th scope="col" class="summary">Summary</th>
+    <th scope="col" class="data" (click)="sortAppsBy('created')">Created
       <img [src]="sortingObjects[1].ascending ? ascendingSortIcon ? ascendingSortIcon
       : descendingSortIcon : descendingSortIcon"
            alt="icon" class="cursor-pointer icon-down"
@@ -29,7 +30,7 @@
       <svg-icon src="assets/oc-ng-common-component/select-up.svg"
                *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[1].ascending"></svg-icon>
       </th>
-      <th class="status cursor-pointer" (click)="sortAppsBy('status')">Status
+      <th scope="col" class="status cursor-pointer" (click)="sortAppsBy('status')">Status
       <img [src]="sortingObjects[2].ascending ? ascendingSortIcon ? ascendingSortIcon
       : descendingSortIcon : descendingSortIcon"
            alt="icon" class="icon-down"
@@ -40,8 +41,8 @@
       <svg-icon src="assets/oc-ng-common-component/select-up.svg"
                *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[2].ascending"></svg-icon>
       </th>
-      <th class="action"></th>
-      <th class="placeholder"></th>
+      <th scope="col" class="action"></th>
+      <th scope="col" class="placeholder"></th>
     </tr>
     </thead>
     <tbody>
@@ -55,7 +56,7 @@
             </div>
             <div class="col-md oc-pl-0">
               <h6 class="app-name cursor-pointer oc-pr-2 word-break"
-                  (click)="action('PREVIEW', app.appId, app.version, false)"
+                  (click)="action('EDIT', app.appId, app.version, false)"
               >{{app.name}} </h6>
               <small> v {{app.version}}</small>
             </div>
@@ -108,7 +109,7 @@
               </div>
               <div class="col-md oc-pl-0">
                 <h6 class="oc-mb-0 cursor-pointer oc-pr-2 word-break"
-                    (click)="action('PREVIEW', child.appId, child.version, true)">{{child.name}}</h6>
+                    (click)="action('EDIT', child.appId, child.version, true)">{{child.name}}</h6>
                 <small>v {{child.version}}</small>
               </div>
             </div>
