@@ -1,4 +1,6 @@
-@import 'projects/oc-ng-common-component/assets/styles/theme.scss';
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
 
 .calendar-header {
   color: $body-color;
@@ -28,7 +30,7 @@
 
 .wc-date-container {
   span {
-    font-family: "Rubik-Regular";
+    @include font-family-rubik('Regular');
   }
 }
 
