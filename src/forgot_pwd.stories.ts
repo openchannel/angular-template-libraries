@@ -1,8 +1,9 @@
-import {moduleMetadata} from '@storybook/angular';
-import {OcCommonLibModule, OcForgotPasswordComponent} from 'projects/oc-ng-common-component/src/public-api';
-import {UserLoginModel} from 'oc-ng-common-service';
-import {RouterTestingModule} from '@angular/router/testing';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { moduleMetadata } from '@storybook/angular';
+import { OcForgotPasswordComponent } from 'oc-ng-common-component/src/lib/auth-components';
+import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
+import { UserLoginModel } from 'oc-ng-common-service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {

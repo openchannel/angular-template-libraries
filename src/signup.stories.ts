@@ -1,5 +1,6 @@
 import {moduleMetadata} from '@storybook/angular';
-import {OcCommonLibModule, OcSignupComponent} from 'projects/oc-ng-common-component/src/public-api';
+import {OcSignupComponent} from 'oc-ng-common-component/src/lib/auth-components';
+import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
 import {UserRegistrationModel} from 'oc-ng-common-service';
 import {action} from '@storybook/addon-actions';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -53,7 +54,7 @@ ResultPage.args = {
     signupModel: signupFilled,
     submit: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/oc-ng-common-component/logo-company.png',
     showSignupFeedbackPage: true,
-    forgotPasswordDoneUrl: './assets/img/email_done.svg'
+    forgotPasswordDoneUrl: './assets/oc-ng-common-component/email_done.svg'
 };

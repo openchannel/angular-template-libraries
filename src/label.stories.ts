@@ -1,14 +1,13 @@
-import {storiesOf} from '@storybook/angular';
-import {
-  OcCommonLibModule,
-  OcLabelComponent,
-  OcTooltipLabelComponent
-} from 'projects/oc-ng-common-component/src/public-api';
-import {withA11y} from '@storybook/addon-a11y';
+import { storiesOf } from '@storybook/angular';
+import { withA11y } from '@storybook/addon-a11y';
+
+import { OcCommonLibModule, OcLabelComponent } from 'oc-ng-common-component/src/lib/common-components';
+import { OcTooltipLabelComponent } from 'oc-ng-common-component/src/lib/form-components';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
-  imports: [OcCommonLibModule]
+  imports: []
 };
 
 storiesOf('Label', module)
@@ -28,5 +27,7 @@ storiesOf('Label', module)
     text: 'Label',
     description: 'It\'s tooltip text'
   },
-  moduleMetadata: modules
+  moduleMetadata: {
+    imports: [OcCommonLibModule, NgbModule]
+  }
 }));
