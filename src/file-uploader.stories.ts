@@ -1,9 +1,8 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {withA11y} from '@storybook/addon-a11y';
-import {OcCommonLibModule, OcFileUploadComponent} from 'projects/oc-ng-common-component/src/public-api';
+import {OcFileUploadComponent} from 'projects/oc-ng-common-component/src/public-api';
 import {FileDetails, FileUploadDownloadService, OcCommonServiceModule} from 'oc-ng-common-service';
 import {action} from '@storybook/addon-actions';
-import {OCComponentConstants} from 'oc-ng-common-component/src/lib/form-components/model/oc-constants';
 import {HttpClientModule} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { OcFormComponentsModule } from 'oc-ng-common-component/src/lib/form-components';
@@ -74,25 +73,16 @@ storiesOf('File Uploader', module)
         moduleMetadata: modules,
         props: {
             fileUpload: action('fileUpload'),
-            fileType: OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_FILE,
+            fileType: 'privateSingleFile',
             uploadIconUrl: 'assets/img/upload_icon.svg',
             defaultFileIcon: 'assets/img/file_icon.svg',
         },
-    })).add('Single Private image', () => ({
-      component: OcFileUploadComponent,
-      moduleMetadata: modules,
-      props: {
-          fileUpload: action('fileUpload'),
-          fileType: OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_IMAGE,
-          uploadIconUrl: 'assets/img/upload_icon.svg',
-          defaultFileIcon: 'assets/img/file_icon.svg',
-    },
     })).add('Single File With Data', () => ({
       component: OcFileUploadComponent,
       moduleMetadata: modules,
       props: {
           fileDetailArr: [file2],
-          fileType: OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_FILE,
+          fileType: 'privateSingleFile',
           uploadIconUrl: 'assets/img/upload_icon.svg',
           defaultFileIcon: 'assets/img/file_icon.svg',
     },
@@ -102,7 +92,7 @@ storiesOf('File Uploader', module)
       props: {
           isMultiFile: true,
           fileDetailArr: [file1, file2, file3, file4],
-          fileType: OCComponentConstants.FILE_TYPES.MULTI_PUBLIC_IMAGE,
+          fileType: 'multiImage',
           uploadIconUrl: 'assets/img/upload_icon.svg',
           defaultFileIcon: 'assets/img/file_icon.svg',
     },
