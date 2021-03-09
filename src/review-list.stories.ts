@@ -30,7 +30,7 @@ appReview4.review = 'I tried app. The app is good. But not recommeded';
 appReview4.reviewOwnerName = 'Gautam T.';
 
 
-storiesOf('Review List', module)
+storiesOf('Review List [BEM]', module)
   .addDecorator(withA11y)
   .addParameters({
     component: OcReviewListComponent,

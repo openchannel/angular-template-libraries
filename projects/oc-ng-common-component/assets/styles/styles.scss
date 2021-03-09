@@ -94,6 +94,10 @@ h2 {
   font-size: 28px;
 }
 
+h5 {
+  font-size: 24px;
+}
+
 html {
   font-size: 8px;
 }
@@ -329,23 +333,6 @@ oc-input, oc-password, oc-select, oc-video-url, oc-color, oc-rich-text-editor, o
 
 .min-vh-auto {
   min-width: auto;
-}
-
-.review {
-  &__rate {
-    height: 14px;
-    & > span {
-      font-size: 14px;
-      display: inline-flex;
-    }
-  }
-  &__progressbar {
-    display: block;
-
-    .progress {
-      height: 8px;
-    }
-  }
 }
 
 a.link {

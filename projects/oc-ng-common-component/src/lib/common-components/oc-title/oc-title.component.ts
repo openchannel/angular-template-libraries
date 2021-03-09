@@ -9,22 +9,17 @@ export class OcTitleComponent implements OnInit {
 
     // todo move svg img to the asserts
 
-    _title: string;
+    titleText: string;
 
     /**
      * title (*required)
      */
     @Input() set title(title: string) {
         if (!title) {
-            throw Error('Required @Input : title')
+            throw Error('Required @Input : title');
         }
-        this._title = title;
+        this.titleText = title;
     }
-
-    get title() {
-        return this._title;
-    }
-
     /**
      * required (optional) - Is the required result data. Show the red marker.
      * Default: false
@@ -40,7 +35,7 @@ export class OcTitleComponent implements OnInit {
     /**
      * infoTitleIconCsv (optional) - icon for showing description.
      */
-    @Input() infoTitleIconCsv: string = null;
+    @Input() infoTitleIconCsv: string = 'assets/oc-ng-common-component/info.svg';
     /**
      * String with class-list which can be
      * added to the existed title class-list
