@@ -1,116 +1,110 @@
-@import "../../../../assets/styles/theme.scss";
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
 
-.dropup, .dropright, .dropdown, .dropleft {
-  position: initial;
-}
-
-// Dropdown menu style
-.dropdown-menu {
-  padding: 0;
-  min-width: 136px;
+.user-table {
+  background-color: $white;
   border: 1px solid $info;
-  top: 70px;
-  left: 76px;
-  transform: translate(0px, 44px);
-
-  .dropdown-item {
-    font-size: 14px;
-    padding: 14px 42px;
-    border-bottom: 1px solid $info;
-  }
-
-  .dropdown-item:hover, .dropdown-item:focus {
-    background-color: rgba(201, 213, 234, 0.1);
-    color: $primary;
-    outline: none;
-    box-shadow: 0 1px 0 $info;
-  }
-
-  .dropdown-item:active {
-    color: $primary;
-    box-shadow: 0 1px 0 $info;
-  }
-}
-
-.table {
-  border: 1px solid $info;
-  border-radius: 4px;
-  vertical-align: middle;
-  background-color: white;
-  border-spacing: 0;
   border-collapse: inherit;
-  thead {
-    th {
+  border-radius: 4px;
+  border-spacing: 0;
+  vertical-align: middle;
+  width: 100%;
+  &__head {
+    &-cell {
       align-items: center;
       border-bottom: 1px solid $info;
       border-top: 1px solid $info;
-      padding: 1.5rem 42px 1.5rem 0;
+      line-height: 18px;
+      padding: 3rem 42px 3rem 0;
       vertical-align: middle;
       white-space: nowrap;
-      line-height: 18px;
     }
-
-    .th-row {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      font-size: 14px;
-    }
-
-    th.name {
+    &-name {
+      cursor: pointer;
       max-width: 15%;
-      padding-left: 16px;
+      padding-left: 2rem;
     }
 
-    th.email {
+    &-email {
+      cursor: pointer;
       max-width: 15%;
     }
 
-    th.data {
+    &-data {
+      cursor: pointer;
       width: 82px;
     }
 
-    th.role {
+    &-role {
       width: 47px;
     }
 
-    th.status {
+    &-status {
+      cursor: pointer;
       width: 43px;
     }
 
-    th.action {
+    &-action {
+      padding-right: 2rem;
       width: 52px;
-      padding-right: 16px;
+    }
+    &-sort-icon {
+      cursor: pointer;
+      margin-left: 1rem;
+      &_down {
+        padding-left: 1rem;
+      }
     }
   }
 
-  tr:first-child {
-    th,
-    td {
-      border-top: none;
-    }
-  }
-
-  td {
-    padding: 1rem 42px 1rem 0;
-    vertical-align: middle;
-    border-top: 1px solid $gray;
-    &:first-of-type {
-      padding-left: 16px;
-    }
-  }
-
-  td.col-blank {
-    width: 5%;
-    border-top: none;
-  }
-
-  .td-row {
+  &__th-row {
+    @include font-size-breakpoint(md);
+    align-items: center;
     display: flex;
     flex-direction: row;
+  }
+
+  &__row {
+    &:first-child {
+      .user-table__head-cell,
+      .user-table__row-td {
+        border-top: 0;
+      }
+    }
+    &_highlight-user {
+      background-color: rgba($light, .5);
+    }
+  }
+
+  &__td-row {
     align-items: center;
-    span {
-      font-size: 14px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__text {
+    @include font-size-breakpoint(md);
+    color: $secondary;
+    &_dark {
+      color: $body-color;
+    }
+    &_role {
+      color: $primary;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+    &_status {
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+  }
+
+  &__row-td {
+    border-top: 1px solid $gray;
+    padding: 2rem 42px 2rem 0;
+    vertical-align: middle;
+    &:first-of-type {
+      padding-left: 16px;
     }
   }
 
@@ -118,59 +112,73 @@
     padding-right: 16px;
   }
 
-  .c-dark {
-    color: $body-color;
-  }
-
-  .c-blue {
-    color: $primary;
-  }
-
-  .c-gray {
-    color: $secondary;
-  }
-
-  .icon-dots {
-    padding: 19px;
-    border: 1px solid $info;
-    border-radius: 4px;
-  }
-
-  .icon-down {
-    padding-left: 8px;
-  }
-
-  .last-grid-row {
+  &__last-grid-row {
     border-top: 1px solid $info;
     height: 66px;
   }
-}
 
-.profile {
-  width: 40px;
-  min-width: 40px;
-  height: 40px;
-  margin: 0 12px 0 0;
-  padding: 8px 0;
-  text-align: center;
-  border-radius: 20px;
-  color: $profile;
-  font-family: "Rubik-Medium";
-  background-image: linear-gradient(to bottom, #e8f0e7, #f5fff4);
-  &--invited {
-    color: $primary;
-    background-image: linear-gradient(to bottom, #eeebff, #f8f7ff);
+  &__profile {
+    @include font-family-rubik('Medium');
+    background-image: linear-gradient(to bottom, $profile-gradient-top, $profile-gradient-bottom);
+    border-radius: 20px;
+    color: $profile;
+    height: 40px;
+    margin: 0 12px 0 0;
+    min-width: 40px;
+    padding: 8px 0;
+    text-align: center;
+    width: 40px;
+    &_invited {
+      background-image: linear-gradient(to bottom, $gradient-top, $gradient-bottom);
+      color: $primary;
+    }
+    &-text {
+      font-weight: 700;
+    }
+  }
+  &__menu {
+    cursor: pointer;
+    text-align: right;
+    &-icon-dots {
+      border: 1px solid $info;
+      border-radius: 4px;
+      padding: 19px;
+    }
   }
 }
 
-.highlight-user {
-  background-color: rgba($light, .5);
+.dropup, .dropright, .dropdown, .dropleft {
+  position: initial;
+}
+
+// Dropdown menu style
+.dropdown-menu {
+  border: 1px solid $info;
+  left: 76px;
+  padding: 0;
+  top: 70px;
+  transform: translate(0, 44px);
+  width: 136px;
+
+  .dropdown-item {
+    border-bottom: 1px solid $info;
+    font-size: 14px;
+    padding: 14px 42px;
+  }
+
+  .dropdown-item:hover, .dropdown-item:focus {
+    background-color: rgba(201, 213, 234, 0.1);
+    box-shadow: 0 1px 0 $info;
+    color: $primary;
+    outline: none;
+  }
+
+  .dropdown-item:active {
+    box-shadow: 0 1px 0 $info;
+    color: $primary;
+  }
 }
 
 .icon-recolor {
   fill: $body-color;
-}
-
-.sort-icon {
-  margin-left: 8px;
 }
