@@ -58,6 +58,9 @@
     @include font-size-breakpoint(sm);
     @include font-family-rubik('Medium');
   }
+  &-input {
+    height: 16px;
+  }
 }
 
 .result {
@@ -85,8 +88,4 @@
       color: $primary;
     }
   }
-}
-
-oc-checkbox {
-  height: 16px;
 }
