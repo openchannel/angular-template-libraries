@@ -8,9 +8,11 @@
              *ngFor="let app of data;">
             <a class="featured-apps__card-body {{customClasses}}"
                (click)="this.clickByAppCard.emit(app)">
-                <img src="{{app.icon}}" alt="featured-logo">
-                <h5>{{app.name}}</h5>
-                <span>{{app.summary ? app.summary : app.description}}</span>
+                <div class="featured-apps__card-img">
+                    <img src="{{app.icon}}" alt="">
+                </div>
+                <h5 class="featured-apps__card-name">{{app.name}}</h5>
+                <span class="featured-apps__card-description">{{app.summary ? app.summary : app.description}}</span>
             </a>
         </div>
     </div>
