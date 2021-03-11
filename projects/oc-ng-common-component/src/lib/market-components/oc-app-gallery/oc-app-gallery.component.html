@@ -1,12 +1,16 @@
 <div class="gallery">
-    <h4 class="gallery__heading">{{appGalleryTitle}}</h4>
-    <p class="gallery__description" id="description">{{appGalleryDescription}}</p>
-    <a class="gallery__more" id="seeAllLink"
-       *ngIf="moreAppsTitle"
-       (click)="clickMoreApps.emit()">
-        <span class="gallery__more-text">{{moreAppsTitle}}</span>
-        <svg-icon svgClass="gallery__more-icon" [src]="routerIcon"></svg-icon>
-    </a>
+    <div class="gallery__header">
+        <div class="gallery__header-top">
+            <h4 class="gallery__heading">{{appGalleryTitle}}</h4>
+            <a class="gallery__more" id="seeAllLink"
+               *ngIf="moreAppsTitle"
+               (click)="clickMoreApps.emit()">
+                <span class="gallery__more-text">{{moreAppsTitle}}</span>
+                <svg-icon svgClass="gallery__more-icon" [src]="routerIcon"></svg-icon>
+            </a>
+        </div>
+        <p class="gallery__description" id="description">{{appGalleryDescription}}</p>
+    </div>
     <div class="gallery__content"
          *ngIf="appsArr && appsArr.length > 0; else emptyData">
         <div class="gallery__content-card"

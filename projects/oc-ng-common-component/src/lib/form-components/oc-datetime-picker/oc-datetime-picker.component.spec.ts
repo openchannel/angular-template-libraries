@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { OcDatetimePickerComponent } from './oc-datetime-picker.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AppIconsModule } from '../app-icon-module/app-icons.module';
 
 describe('OcDatetimePickerComponent', () => {
   let component: OcDatetimePickerComponent;
@@ -12,7 +11,7 @@ describe('OcDatetimePickerComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ OcDatetimePickerComponent ],
-      imports: [FormsModule, NgbModule, AppIconsModule]
+      imports: [FormsModule, NgbModule]
     })
     .compileComponents();
   }));
