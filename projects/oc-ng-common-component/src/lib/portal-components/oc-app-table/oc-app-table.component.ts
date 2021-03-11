@@ -32,7 +32,7 @@ export class OcAppTableComponent implements OnInit {
    * Path to the custom icon for the hidden menu toggle button.
    * Default: empty
    */
-  @Input() menuUrl: string = 'assets/img/dots-menu.svg';
+  @Input() menuUrl: string = 'assets/oc-ng-common-component/dots-menu.svg';
   /**
    * Path to the custom icon for the 'sort' button when ascending sorting chosen.
    * Default: empty

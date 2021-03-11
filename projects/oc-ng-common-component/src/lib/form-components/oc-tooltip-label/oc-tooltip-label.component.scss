@@ -1,24 +1,22 @@
-@import "../../../../assets/styles/theme.scss";
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
 
-label {
-  font-size: 14px;
-  margin-bottom: 0;
-  line-height: 14px;
-
-  span {
+.tooltip-label {
+  align-items: center;
+  display: flex;
+  &__text {
+    @include font-size-breakpoint(md);
+    line-height: 14px;
+    margin-bottom: 0;
+  }
+  &__required {
     color: $danger;
   }
-}
-
-.label-s {
-  font-size: 12px;
-}
-
-.label-l {
-  font-size: 16px;
-}
-
-.description-icon {
-  width: 14px;
-  height: 14px;
+  &__description {
+    margin-left: 1rem;
+    &-icon {
+      display: block;
+      width: 14px;
+    }
+  }
 }

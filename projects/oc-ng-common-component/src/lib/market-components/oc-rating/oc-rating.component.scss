@@ -1,33 +1,35 @@
-@import "../../../../assets/styles/theme.scss";
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/theme';
 
-.rating-star {
-  height: 16px;
-  vertical-align: unset;
-  width: 16px;
-}
+.oc-rating {
+  &-single {
+    align-items: center;
+    display: flex;
+    &__rating-star {
+      height: 16px;
+      vertical-align: unset;
+      width: 16px;
+    }
+    &__label {
+      color: $secondary;
+      margin-left: 1rem;
+    }
+  }
 
-span {
-  color: $secondary;
-}
-
-.star {
-  position: relative;
-  color: $secondary;
-}
-
-.full {
-  color: $yellow;
-}
-
-.half {
-  position: absolute;
-  overflow: hidden;
-  color: $yellow;
-  bottom: -2px;
-  left: 0px;
-}
-
-img {
-  margin-top: -4px;
-  padding-right: 4px;
+  &-multi {
+    &__star {
+      color: $secondary;
+      position: relative;
+      &_filled {
+        color: $yellow;
+      }
+      &_half-color {
+        bottom: -2px;
+        color: $yellow;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+      }
+    }
+  }
 }

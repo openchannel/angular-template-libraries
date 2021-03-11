@@ -8,7 +8,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 const modules = {
   imports: [AngularSvgIconModule.forRoot(), NgbModule, HttpClientTestingModule],
 };
-storiesOf('Rating', module)
+storiesOf('Rating [BEM]', module)
   .addDecorator(withA11y)
   .addParameters({
     component: OcRatingComponent,

@@ -1,40 +1,45 @@
-<div>
-    <div class="chart-options-container oc-border radius oc-bg-white oc-p-1 oc-mb-2">
-        <div *ngFor="let period of chartData?.periods"
-             [class.active]="period.active"
-             class="stats-period custom-radio time-selection radius oc-d-flex oc-flex-row oc-pl-5 oc-pr-2">
-            <input type="radio"
-                   [id]="period.id"
-                   [checked]="period.active"
-                   class="custom-control-input">
-            <label [for]="period.id"
-                   (click)="updateChartPeriod(period)"
-                   class="custom-control-label cursor-pointer oc-m-auto">{{period.label}}</label>
+<div class="chart">
+    <div class="chart__options-container">
+        <div class="chart__period-container">
+            <div *ngFor="let period of chartData?.periods"
+                 [class.chart__period-item-active]="period.active"
+                 class="chart__period-item">
+                <label [for]="period.id"
+                       (click)="updateChartPeriod(period)"
+                       class="chart__period-item-label">
+                    <input type="radio"
+                           [id]="period.id"
+                           [checked]="period.active"
+                           class="chart__period-item-radio">
+                    <span class="chart__period-item-checkmark"></span>
+                    <span class="chart__period-item-text">{{period.label}}</span>
+                </label>
+            </div>
         </div>
         <oc-dropdown-button [minDropdownWidth]="minDropdownWidth"
                             [options]="dropdownTypes"
                             (selectedChange)="updateChartFiled($event)"
-                            class="type-section radius cursor-pointer">
+                            class="chart__type-section">
             <div customPlaceholder
-                 class="oc-d-flex oc-align-items-center oc-h-100 oc-pl-2">
-                <label class="oc-mr-0 dropdown-label">
+                 class="chart__type-section-dropdown">
+                <label class="chart__type-section-dropdown-label">
                     {{dropdownSelectedType?.label ? dropdownSelectedType?.label : ''}}
                 </label>
             </div>
-            <svg-icon defaultPlaceholderIcon src="assets/oc-ng-common-component/select-down.svg" class="cursor-pointer angle oc-ml-auto oc-mr-0 oc-pr-2"></svg-icon>
-            <svg-icon activePlaceholderIcon src="assets/oc-ng-common-component/select-up.svg" class="cursor-pointer angle oc-ml-auto oc-mr-0 oc-pr-2"></svg-icon>
+            <svg-icon defaultPlaceholderIcon src="assets/oc-ng-common-component/select-down.svg" class="chart__type-section-dropdown-icon"></svg-icon>
+            <svg-icon activePlaceholderIcon src="assets/oc-ng-common-component/select-up.svg" class="chart__type-section-dropdown-icon"></svg-icon>
         </oc-dropdown-button>
     </div>
-    <div class="chart-container oc-border radius oc-bg-white">
-        <div class="chart-statistic flex-grow-1 chart-w-80 oc-p-0">
-            <canvas #myCanvas height="123"></canvas>
+    <div class="chart__data-container">
+        <div class="chart__data-container-canvas">
+            <canvas #myCanvas height="220"></canvas>
         </div>
-        <div *ngIf="count >= 0" class="description-statistic oc-d-flex oc-flex-column oc-justify-content-center oc-mt-0 oc-mb-0 oc-p-1 chart-w-20">
-            <div class="oc-d-flex oc-flex-column oc-mt-auto">
-                <img class="oc-m-auto" *ngIf="downloadUrl" alt="cloud" src="{{downloadUrl}}">
-                <h4 class="oc-text-center">{{count}}</h4>
+        <div *ngIf="count >= 0" class="chart__data-container-total">
+            <div class="chart__data-container-total-header">
+                <img class="chart__data-container-total-image" *ngIf="downloadUrl" alt="cloud" src="{{downloadUrl}}">
+                <h4 class="chart__data-container-total-count">{{count}}</h4>
             </div>
-            <span class="oc-text-center oc-mt-auto oc-mb-0 oc-pt-1 oc-mb-2">{{countText}}</span>
+            <span class="chart__data-container-total-text">{{countText}}</span>
         </div>
     </div>
 </div>

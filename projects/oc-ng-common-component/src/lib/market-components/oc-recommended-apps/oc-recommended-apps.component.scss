@@ -1,4 +1,5 @@
-@import "../../../../assets/styles/theme.scss";
+@import "../../../../assets/styles/theme";
+@import "../../../../assets/styles/mixins";
 
 .card.app-card {
   border: none;
@@ -27,7 +28,7 @@
   margin-bottom: 1rem;
   margin-right: 30px;
   &:last-child {
-    @include media-breakpoint-up(lg) {
+    @include media-breakpoint-lg {
       margin-right: 0;
     }
   }
@@ -38,8 +39,8 @@
   flex-basis: 250px;
   max-width: 382px;
   min-width: 350px;
-  background-color: #fff;
-  @include media-breakpoint-down(xs) {
+  background-color: $white;
+  @include media-breakpoint-sm {
     max-width: 100%;
   }
 }

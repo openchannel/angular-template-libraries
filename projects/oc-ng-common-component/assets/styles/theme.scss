@@ -9,7 +9,9 @@ $info: #c9d5ea !default;
 $light: #f4f7fc !default;
 $yellow: #ffc820 !default;
 $green-alert: #74b675 !default;
-$black: #000000 !default;
+$black: #000 !default;
+$white: #fff !default;
+$dark: #343a40;
 // apps status color indicator
 $approved: #81cf7c !default;
 $draft: #dcdcdc !default;
@@ -19,8 +21,15 @@ $rejected: #ff6262 !default;
 $review: #537cfd !default;
 
 $error-bg: #ffe0e0 !default;
-$error: #6e2c2c;
-$profile: #06b088;
+$error: #6e2c2c !default;
+$profile: #06b088 !default;
+
+$gray: #ced4da !default;
+$gray-600: #6c757d !default;
+
+// username initials circle
+$gradient-top: #eeebff;
+$gradient-bottom: #f8f7ff;
 
 $spacer: 1rem;
 $spacers: (
@@ -61,7 +70,3 @@ $spacers: (
 :root{
   @include root-prop(--root-prop, rgba(0, 0, 0, 0.5));
 }
-
-
-
-@import "~bootstrap/scss/bootstrap-reboot";

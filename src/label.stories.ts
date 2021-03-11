@@ -1,33 +1,49 @@
-import { storiesOf } from '@storybook/angular';
-import { withA11y } from '@storybook/addon-a11y';
-
-import { OcCommonLibModule, OcLabelComponent } from 'oc-ng-common-component/src/lib/common-components';
-import { OcTooltipLabelComponent } from 'oc-ng-common-component/src/lib/form-components';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {moduleMetadata} from '@storybook/angular';
+import {
+  OcCommonLibModule,
+  OcLabelComponent,
+  OcTooltipLabelComponent
+} from 'projects/oc-ng-common-component/src/public-api';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
-  imports: []
+  imports: [OcCommonLibModule, NgbModule]
 };
 
-storiesOf('Label', module)
-  .addDecorator(withA11y)
-  .addParameters({
-    component: OcLabelComponent,
-  })
-  .add('Simple Label', () => ({
-    component: OcLabelComponent,
-    props: {
-      text: 'Name'
-    },
-    moduleMetadata: modules
-  })).add('Tooltip Label', () => ({
+export default {
+  title: 'Label [BEM]',
+  component: OcLabelComponent,
+  decorators: [
+    moduleMetadata(modules),
+  ]
+};
+
+const LabelComponent = (args: OcLabelComponent) => ({
+  component: OcLabelComponent,
+  moduleMetadata: modules,
+  props: args
+});
+
+export const DefaultLabel = LabelComponent.bind({});
+DefaultLabel.args = {
+  text: 'Name'
+};
+
+export const RequiredLabel = LabelComponent.bind({});
+RequiredLabel.args = {
+  text: 'Name',
+  required: true
+};
+
+const TooltipLabelComponent = (args: OcTooltipLabelComponent) => ({
   component: OcTooltipLabelComponent,
-  props: {
-    text: 'Label',
-    description: 'It\'s tooltip text'
-  },
-  moduleMetadata: {
-    imports: [OcCommonLibModule, NgbModule]
-  }
-}));
+  moduleMetadata: modules,
+  props: args
+});
+
+export const TooltipLabel = TooltipLabelComponent.bind({});
+TooltipLabel.args = {
+  text: 'Name',
+  description: 'Tooltip Text'
+};

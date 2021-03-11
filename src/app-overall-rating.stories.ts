@@ -28,7 +28,7 @@ const overAllRatingSummary1 = {
   5: 8,
 };
 
-storiesOf('Overall Rating', module)
+storiesOf('Overall Rating [BEM]', module)
   .addDecorator(withA11y)
   .addParameters({
     component: OcOverallRatingComponent,

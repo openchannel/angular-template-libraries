@@ -19,7 +19,7 @@ activationFilled.password = 'Tenup123#';
 activationFilled.code = '2202';
 
 
-storiesOf('User Activation', module)
+storiesOf('User Activation [BEM]', module)
   .addDecorator(withA11y)
   .addParameters({
     component: OcActivationComponent,

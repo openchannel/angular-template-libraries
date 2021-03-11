@@ -1,37 +1,55 @@
-@import "../../../../assets/styles/theme";
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/theme';
 
 .recolor-svg {
   path {
     fill: $body-color;
   }
 }
-
-.sidebar {
-  max-width: 265px;
-  background-color: #fff;
-  .sidebar-heading {
+.oc-sidebar {
+  &__navigation {
+    background-color: $white;
+    max-width: 265px;
+  }
+  &__heading {
+    @include font-family-rubik('Medium');
     font-size: 16px;
-    font-family: "Rubik-Medium";
   }
-}
-
-.sidebar-list {
-  margin-top: 2rem;
-}
-
-.expand-line {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.sidebar-item {
-  padding: 2px;
-  border-radius: 4px;
-  &:hover {
-    font-weight: 700;
+  &__list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-bottom: 0;
+    margin-top: 2rem;
+    padding-left: 0;
+    &-item {
+      cursor: pointer;
+      margin-bottom: 3rem;
+      &-expand-line {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+      }
+      &-text {
+        @include font-size-breakpoint(md);
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 2px;
+        &:hover {
+          font-weight: 700;
+        }
+        &:focus {
+          border: 1px solid $focus-border;
+        }
+        &_margin {
+          margin-top: 2rem;
+        }
+      }
+    }
   }
-  &:focus {
-    border: 1px solid $focus-border;
+  &__sublist {
+    list-style: none;
+    padding-left: 3rem;
   }
 }

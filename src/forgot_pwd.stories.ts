@@ -15,7 +15,7 @@ const pwdFilled = new UserLoginModel();
 pwdFilled.email = 'zmehta@tenupsoft.com';
 
 export default {
-  title: 'Forgot Password',
+  title: 'Forgot Password [BEM]',
   component: OcForgotPasswordComponent,
   decorators: [
     moduleMetadata(modules),
@@ -50,5 +50,6 @@ ResultPage.args = {
   loginUrl: 'login',
   signupUrl: 'signup',
   companyLogoUrl: './assets/img/logo-company.png',
+  forgotPasswordDoneUrl: './assets/img/email_done.svg',
   showResultPage: true
 };

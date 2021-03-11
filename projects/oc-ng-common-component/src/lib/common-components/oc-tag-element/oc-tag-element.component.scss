@@ -1,22 +1,29 @@
-@import "../../../../assets/styles/theme.scss";
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/theme';
 
-.tag {
-  border-radius: 4px;
-}
-
-.tag-colors {
+.tag-element {
+  align-items: center;
   background-color: $light;
+  border-radius: 4px;
   color: $body-color;
-}
-
-.tag-label {
-  font-size: 14px;
-  line-height: 18px;
-}
-
-.tag-close {
-  height: 16px;
-  width: 16px;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  &__text {
+    @include font-size-breakpoint(md);
+    line-height: 16px;
+  }
+  &__close-icon {
+    @include font-size-breakpoint(md);
+    cursor: pointer;
+    padding-left: 1rem;
+    &-svg {
+      height: 14px;
+      width: 14px;
+    }
+  }
 }
 
 .fill-close-icon {

@@ -106,13 +106,12 @@
                 </div>
             </div>
             <div class="modal-footer oc-px-0 oc-pt-5 oc-pb-0 oc-d-flex oc-justify-content-center">
-                <oc-button type="secondary" [disabled]="uploadImageInProcess" [class]="'modal-button'"
+                <oc-button type="secondary" [disabled]="uploadImageInProcess" class="modal-button"
                            (click)="d('Cross click'); resetSelection()" text="Cancel"></oc-button>
-                <oc-button type="primary" [class]="'modal-button ml-2'" id="modalAgreeButton"
+                <oc-button type="primary" class="modal-button ml-2" id="modalAgreeButton"
                            [disabled]="hasImageLoadError || uploadImageInProcess"
                            (click)="uploadImageFile();"
-                           [process]="uploadImageInProcess" text="Confirm"
-                ></oc-button>
+                           [process]="uploadImageInProcess" text="Confirm"></oc-button>
             </div>
         </div>
     </div>

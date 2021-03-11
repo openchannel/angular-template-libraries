@@ -1,20 +1,20 @@
-import { moduleMetadata } from '@storybook/angular';
-import { OcCommonLibModule, OcTagElementComponent } from 'oc-ng-common-component/src/lib/common-components';
-import { OcTagsComponent } from 'oc-ng-common-component/src/lib/form-components';
+import {moduleMetadata} from '@storybook/angular';
+import {OcCommonLibModule} from 'projects/oc-ng-common-component/src/public-api';
+import {OcTagElementComponent} from 'projects/oc-ng-common-component/src/public-api';
 
 const modules = {
     imports: [OcCommonLibModule]
 };
 
 export default {
-    title: 'Tag element',
+    title: 'Tag element [BEM]',
     component: OcTagElementComponent,
     decorators: [
         moduleMetadata(modules),
     ],
 };
 
-const TagComponent = (args: OcTagsComponent) => ({
+const TagComponent = (args: OcTagElementComponent) => ({
     component: OcTagElementComponent,
     moduleMetadata: modules,
     props: args
