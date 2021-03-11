@@ -8,7 +8,7 @@ const modules = {
 };
 
 export default {
-  title: 'Grid User',
+  title: 'Grid User [BEM]',
   component: OcMenuUserGridComponent,
   decorators: [
     moduleMetadata(modules),

@@ -50,6 +50,9 @@
   &__checkbox {
     align-items: center;
     display: flex;
+    &-input {
+      height: 16px;
+    }
   }
   &__label {
     @include font-size-breakpoint(sm);
@@ -85,8 +88,4 @@
       color: $primary;
     }
   }
-}
-
-oc-checkbox {
-  height: 16px;
 }
