@@ -65,8 +65,8 @@
       }
     }
 
-    .oc-table__td {
-      padding: 1rem 0;
+    &__td {
+      padding: 2rem 0;
       vertical-align: middle;
       border-top: 1px solid rgba(201, 213, 234, 0.5);
 
@@ -81,11 +81,24 @@
 
       &_flex {
         display: flex;
+        align-items: center;
+
+        .oc-table__td-col {
+          padding-left: 1.5rem;
+        }
       }
 
       .oc-table__app-icon {
         max-width: 44px;
         min-width: 44px;
+
+        &_padded {
+          padding: 0 16px;
+          box-sizing: content-box;
+          min-width: 20px;
+          max-width: 20px;
+          height: 25px;
+        }
       }
 
       .oc-table__app-name {
@@ -93,6 +106,9 @@
         cursor: pointer;
         padding-right: 1rem;
         word-break: break-word;
+        font-size: 14px;
+        font-family: 'Rubik-Medium', sans-serif;
+        color: $body-color;
       }
 
       .oc-table__app-version {
@@ -103,6 +119,11 @@
       .oc-table__text-wrapper {
         color: $secondary;
         font-size: 14px;
+
+        &_blank {
+          padding: 0 26px;
+          height: 44px;
+        }
 
         &.oc-table__text-status {
           cursor: pointer;
@@ -128,54 +149,70 @@
           border-radius: 50%;
           margin-right: 5px;
           background-color: $white;
+
+          &.in-development {
+            background-color: $draft;
+          }
+
+          &.in-review {
+            background-color: $review;
+          }
+
+          &.pending {
+            background-color: $pending;
+          }
+
+          &.approved {
+            background-color: $approved;
+          }
+
+          &.rejected {
+            background-color: $rejected;
+          }
+
+          &.suspended {
+            background-color: $suspended;
+          }
+        }
+      }
+    }
+
+    &__dropdown {
+      float: right;
+      cursor: pointer;
+
+      &-dots {
+        padding: 19px;
+        border: 1px solid $info;
+        border-radius: 4px;
+      }
+
+      .dropdown-menu {
+        padding: 0;
+        min-width: 136px;
+        border: 1px solid $info;
+        top: 70px;
+        left: 76px;
+        transform: translate(0px, 44px);
+
+        .dropdown-item {
+          font-size: 14px;
+          padding: 14px 42px;
+          border-bottom: 1px solid $info;
+        }
+
+        .dropdown-item:hover,
+        .dropdown-item:focus {
+          background-color: rgba(201, 213, 234, 0.1);
+          color: $primary;
+          outline: none;
+        }
+
+        .dropdown-item:active {
+          color: $primary;
+          box-shadow: 0 1px 0 $info;
         }
       }
     }
   }
-}
-
-.oc-table {
-
-  .icon-dots {
-    padding: 19px;
-    border: 1px solid $info;
-    border-radius: 4px;
-  }
-
-  .ellipsis {
-    float: right;
-  }
-}
-
-// Dropdown menu style
-.dropdown-menu {
-  padding: 0;
-  min-width: 136px;
-  border: 1px solid $info;
-  top: 70px;
-  left: 76px;
-  transform: translate(0px, 44px);
-
-  .dropdown-item {
-    font-size: 14px;
-    padding: 14px 42px;
-    border-bottom: 1px solid $info;
-  }
-
-  .dropdown-item:hover,
-  .dropdown-item:focus {
-    background-color: rgba(201, 213, 234, 0.1);
-    color: $primary;
-    outline: none;
-  }
-
-  .dropdown-item:active {
-    color: $primary;
-    box-shadow: 0 1px 0 $info;
-  }
-
-}
-
-.word-break {
-  word-break: break-word
 }
