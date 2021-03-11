@@ -7,7 +7,7 @@ const modules = {
     imports: [],
 };
 
-storiesOf('Input', module)
+storiesOf('Input [BEM]', module)
     .addDecorator(withA11y)
     .addParameters({
         component: OcInputComponent,

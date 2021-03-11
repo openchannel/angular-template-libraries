@@ -7,7 +7,7 @@ const modules = {
 };
 
 export default {
-    title: 'Tags',
+    title: 'Tags [BEM]',
     component: OcTagsComponent,
     decorators: [
         moduleMetadata(modules),

@@ -11,7 +11,7 @@ const modules = {
 };
 
 export default {
-  title: 'Video Url component',
+  title: 'Video Url component [BEM]',
   component: OcVideoUrlComponent,
   decorators: [
     moduleMetadata(modules),

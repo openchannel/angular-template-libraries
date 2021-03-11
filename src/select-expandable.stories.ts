@@ -7,7 +7,7 @@ const modules = {
 };
 
 export default {
-  title: 'Expandable Select',
+  title: 'Expandable Select [BEM]',
   component: OcSelectExpandableComponent,
   decorators: [
     moduleMetadata(modules),

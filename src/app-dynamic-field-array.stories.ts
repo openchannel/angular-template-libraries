@@ -54,7 +54,7 @@ const modules = {
 };
 
 export default {
-  title: 'Dynamic Fields Array',
+  title: 'Dynamic Fields Array [BEM]',
   component: OcDynamicFieldArrayComponent,
   decorators: [
     moduleMetadata(modules),

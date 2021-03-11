@@ -8,7 +8,7 @@ const modules = {
 };
 
 export default {
-  title: 'Select',
+  title: 'Select [BEM]',
   component: OcSelectComponent,
   decorators: [
     moduleMetadata(modules),
