@@ -118,11 +118,13 @@
                     </div>
                 </div>
                 <div class="cropper__body-footer">
-                    <oc-button type="secondary"
+                    <oc-button class="cropper__body-footer-button"
+                               type="secondary"
                                text="Cancel"
                                [disabled]="uploadImageInProcess"
                                (click)="d('Cross click'); resetSelection()"></oc-button>
-                    <oc-button type="primary"
+                    <oc-button class="cropper__body-footer-button"
+                               type="primary"
                                id="modalAgreeButton"
                                [disabled]="hasImageLoadError || uploadImageInProcess"
                                (click)="uploadImageFile();"

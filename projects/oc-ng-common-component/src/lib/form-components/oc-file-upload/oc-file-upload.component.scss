@@ -258,9 +258,9 @@
         border-bottom-right-radius: calc(0.3rem - 1px);
         border-bottom-left-radius: calc(0.3rem - 1px);
 
-        oc-button {
+        &-button {
 
-          & + oc-button {
+          & + .cropper__body-footer-button {
             margin-left: 1rem;
           }
         }
