@@ -36,7 +36,7 @@ const modules = {
 };
 
 export default {
-  title: 'App Categories',
+  title: 'App Categories [BEM]',
   component: OcAppCategoriesComponent,
   decorators: [
     moduleMetadata(modules),

@@ -81,7 +81,7 @@ app3.rating = 4.9;
 app3.reviewCount = 87;
 
 export default {
-  title: 'Recommended Apps',
+  title: 'Recommended Apps [BEM]',
   component: OcRecommendedAppsComponent,
   decorators: [
     moduleMetadata(modules),

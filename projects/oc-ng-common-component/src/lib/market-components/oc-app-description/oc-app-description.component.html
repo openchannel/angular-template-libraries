@@ -1,8 +1,8 @@
-<div class="oc-w-100">
-  <h2 [ngClass]="headerClass">{{_header}}</h2>
-  <p #description class="text-secondary" [innerHTML]="appDescription"
+<div class="description">
+  <h4 class="description__heading" [ngClass]="headerClass">{{_header}}</h4>
+  <p #description class="description__text" [innerHTML]="appDescription"
      [class.hid-description]="!showFullDescription">
   </p>
-  <span *ngIf="!showFullDescription" class="font-m font-med cursor-pointer text-primary"
+  <span class="description__show-more" *ngIf="!showFullDescription"
         (click)="showFullDescription = true">{{expandDescriptionText}}</span>
 </div>

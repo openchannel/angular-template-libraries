@@ -1,17 +1,15 @@
-<a class="card app-card cursor-pointer" (click)="clickByApp()">
-    <div class="row oc-mx-0 card-height-fixed">
-        <div class="oc-pl-0">
-            <img [src]="appIcon" alt="" class="img-fluid">
+<a class="oc-card" (click)="clickByApp()">
+    <div class="oc-card__icon">
+        <img class="img-fluid" [src]="appIcon" alt="">
+    </div>
+    <div class="oc-card__content">
+        <p class="oc-card__content-name">{{appData.name}}</p>
+        <div class="oc-card__content-info">
+            <p class="oc-card__content-price">{{appData.model[0] | price}}</p>
+            <oc-rating [rating]="appData.rating"
+                       [reviewCount]="appData.reviewCount"
+                       type="single-star"></oc-rating>
         </div>
-        <div class="col-9 oc-ml-2 oc-px-0 oc-w-auto">
-            <p class="oc-mb-1 font-med app-name">{{appData.name}}</p>
-            <div class="oc-d-flex oc-mb-1">
-                <span class="app-price oc-mb-0">{{appData.model[0] | price}}</span>
-                <oc-rating [rating]="appData.rating"
-                           [reviewCount]="appData.reviewCount"
-                           type="single-star"></oc-rating>
-            </div>
-            <p class="text-secondary font-m oc-mb-0 line-space text-summary-hidden">{{appData.summary ? appData.summary : appData.description}}</p>
-        </div>
+        <p class="oc-card__content-summary">{{appData.summary ? appData.summary : appData.description}}</p>
     </div>
 </a>

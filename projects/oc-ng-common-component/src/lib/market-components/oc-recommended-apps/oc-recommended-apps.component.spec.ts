@@ -2,8 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {OcRecommendedAppsComponent} from './oc-recommended-apps.component';
 import {Component, Input} from '@angular/core';
-import {FullAppData} from 'oc-ng-common-service';
-import {StatElement} from 'oc-ng-common-service/lib/model/app-data-model';
+import {FullAppData, StatElement} from 'oc-ng-common-service';
 import {By} from '@angular/platform-browser';
 
 @Component({
@@ -84,7 +83,6 @@ describe('OcRecommendedAppsComponent', () => {
 
   it('should show data', () => {
     component.appList = [app, app, app];
-    component.appsMainLink = 'link';
     component.recommendedAppTitle = 'Test Recommended';
 
     fixture.detectChanges();
