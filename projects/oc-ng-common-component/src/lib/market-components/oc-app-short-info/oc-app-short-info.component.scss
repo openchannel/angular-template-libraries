@@ -1,104 +1,61 @@
 @import '../../../../assets/styles/theme.scss';
-
-@import '../../../../assets/styles/theme.scss';
 @import '../../../../assets/styles/mixins.scss';
 
-.info-card {
+.card-wrapper {
   display: flex;
   align-items: center;
   cursor: pointer;
-  oc-d-flex app-card oc-align-items-center
-
-  &__icon {
-    height: 74px;
-
-    img {
-      width: 60px;
-    }
-  }
-
-  &__content {
-    margin-left: 2rem;
-    padding: 0;
-
-    &-name {
-      margin-bottom: 1rem;
-      line-height: 19px;
-      font-family: "Rubik-Medium", sans-serif;
-    }
-
-    &-info {
-      display: flex;
-      margin-bottom: 0.5rem;
-
-      .info-card__content-price {
-        font-size: 14px;
-        font-family: 'Rubik-Medium', serif;
-        color: $primary;
-        min-width: 130px;
-        margin-bottom: 0;
-      }
-    }
-
-    &-summary {
-      max-height: 2.5rem;
-      line-height: 2.2rem;
-      overflow: hidden;
-      font-size: 14px;
-      margin-bottom: 0;
-      color: #727272;
-      font-family: 'Rubik-Medium', serif;
-    }
-  }
-}
-
-
-
-.app-card {
   border: 1px solid $info;
   border-radius: 4px;
   padding: 16px;
 
-  .app-name {
-    line-height: 19px;
+  .info-card {
+    display: flex;
+    flex-grow: 1;
+
+    &__logo {
+      min-width: 60px;
+      max-width: 60px;
+      height: auto;
+
+      &-image {
+        width: 100%;
+      }
+    }
+
+    &__content {
+      margin-left: 2rem;
+      width: 75%;
+
+      &-name {
+        margin-bottom: 0.5rem;
+        line-height: 19px;
+        font-family: "Rubik-Medium", sans-serif;
+      }
+
+      &-data {
+        display: flex;
+        margin-bottom: 0.5rem;
+
+        .info-card__content-price {
+          font-size: 14px;
+          font-family: 'Rubik-Medium', sans-serif;
+          color: $primary;
+          min-width: 130px;
+          margin-bottom: 8px;
+          width: 130px;
+        }
+      }
+
+      &-summary {
+        max-height: 2.5rem;
+        line-height: 2.2rem;
+        overflow: hidden;
+        font-size: 14px;
+        margin-bottom: 0;
+        color: #727272;
+        font-family: 'Rubik-Medium', serif;
+      }
+    }
   }
-
-  .app-price {
-    font-size: 14px;
-    line-height: 16px;
-    font-family: "Rubik-Medium", sans-serif;
-    display: inline-block;
-    color: $primary;
-    margin-bottom: 8px;
-    width: 130px;
-  }
-
-  .line-space {
-    line-height: 1.2rem;
-  }
-
-  .text-summary-hidden {
-    max-height: 2.5rem;
-    overflow: hidden;
-  }
-
-  .card-height-fixed {
-    height: 99px
-  }
-}
-
-a {
-  display: block;
-  text-decoration: none;
-  color: $body-color;
-
-  &:hover {
-    text-decoration: none;
-    color: $body-color;
-  }
-}
-
-.img-fluid {
-  min-width: 60px;
-  max-width: 60px;
 }
