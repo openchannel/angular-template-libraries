@@ -31,6 +31,7 @@ export class OcColorComponent implements OnInit, ControlValueAccessor {
   public toggleDialog: boolean = false;
 
   private onTouched = () => {};
+
   private onChange: (value: any) => void = () => {};
 
   constructor() { }

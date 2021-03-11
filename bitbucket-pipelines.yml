@@ -54,7 +54,7 @@ pipelines:
           trigger: manual
           <<: *increase-version
           <<: *build-and-push-new-version
-    AT-117_angular_templates:
+    release/*:
       - step: *build-test-sonarcloud
       - step:
           trigger: manual

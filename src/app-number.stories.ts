@@ -8,7 +8,7 @@ const modules = {
 };
 
 export default {
-  title: 'Number Input Component',
+  title: 'Number Input Component [BEM]',
   component: OcNumberComponent,
   decorators: [
     moduleMetadata(modules),

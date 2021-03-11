@@ -1,15 +1,15 @@
-<label class="custom-checkbox">
+<label class="form-checkbox">
     <input (change)="changeModelVal()"
            [(ngModel)]="checked"
            [ngModelOptions]="{standalone: true}"
            [disabled]="disabled"
            (focus)="onFocus()"
            autocomplete="off"
-           class="hide-checkbox"
+           class="form-checkbox__input form-checkbox__input_hidden"
            id="customCheck"
            type="checkbox">
-    <span class="checkmark"></span>
-    <span class="checkbox-text">{{labelText}}
-        <span *ngIf="requiredIndicator" class="required">*</span>
+    <span class="form-checkbox__checkmark"></span>
+    <span class="form-checkbox__label">{{labelText}}
+        <span *ngIf="requiredIndicator" class="form-checkbox__required-glyph">*</span>
     </span>
 </label>
