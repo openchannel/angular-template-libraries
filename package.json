@@ -56,6 +56,8 @@
     "@angular/compiler-cli": "~11.2.3",
     "@angular/language-service": "~11.2.3",
     "@babel/core": "^7.10.5",
+    "@ng-bootstrap/ng-bootstrap": "^6.0.2",
+    "@ng-select/ng-select": "^6.1.0",
     "@storybook/addon-a11y": "^6.1.20",
     "@storybook/addon-actions": "^6.1.20",
     "@storybook/addon-controls": "^6.1.20",
@@ -73,6 +75,7 @@
     "@types/node": "^12.11.1",
     "autoprefixer": "^8.6.5",
     "babel-loader": "^8.1.0",
+    "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
@@ -80,16 +83,13 @@
     "jest": "^26.5.3",
     "jest-preset-angular": "^8.3.1",
     "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
     "ng-packagr": "^11.2.3",
     "protractor": "~7.0.0",
     "sass-lint": "^1.13.1",
     "ts-jest": "^26.4.1",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.7",
-    "@ng-bootstrap/ng-bootstrap": "^6.0.2",
-    "@ng-select/ng-select": "^6.1.0",
-    "bootstrap": "^4.4.1",
-    "lodash": "^4.17.21"
+    "typescript": "~4.0.7"
   }
 }

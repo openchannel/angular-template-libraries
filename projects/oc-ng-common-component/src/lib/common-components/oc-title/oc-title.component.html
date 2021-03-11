@@ -1,8 +1,8 @@
 <div class="oc-title">
-    <h5 class="oc-title__text {{customClass}}" [ngStyle]="customStyle">
+    <h4 class="oc-title__text {{customClass}}" [ngStyle]="customStyle">
         {{titleText}}
         <strong *ngIf="required" class="oc-title__required">*</strong>
-    </h5>
+    </h4>
     <div *ngIf="description?.length > 0" class="oc-title__description">
         <div ngbTooltip="{{description}}"
              placement="right"

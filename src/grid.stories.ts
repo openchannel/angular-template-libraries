@@ -7,7 +7,7 @@ const modules = {
 };
 
 export default {
-  title: 'App List',
+  title: 'App List [BEM]',
   component: OcAppTableComponent,
   decorators: [
     moduleMetadata(modules),
