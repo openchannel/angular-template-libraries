@@ -19,7 +19,7 @@
 
     .date-picker__format {
 
-      span {
+      &-text {
         font-family: 'Rubik Regular', sans-serif;
       }
     }
@@ -66,9 +66,11 @@
       font-size: 14px;
 
       .date-picker__calendar-header {
-        color: $body-color;
         background: #fff;
         border-bottom: 1px solid $gray;
+        padding: 5px 0;
+        font-size: 12px;
+        color: $secondary;
       }
 
       .date-picker__calendar-days {
@@ -97,12 +99,6 @@
             cursor: default;
           }
         }
-      }
-
-      .date-picker__calendar-header {
-        padding: 5px 0 !important;
-        font-size: 12px;
-        color: $secondary;
       }
 
       .date-picker__calendar-header,
