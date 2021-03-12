@@ -23,18 +23,18 @@
     }
 
     &-label {
-      @include media-breakpoint-md {
-        max-width: 100%;
-      }
       flex: 0 0 25%;
       margin-bottom: 1rem;
-      max-width: 25%;
 
       &_row {
-        height: 46px;
-        min-width: 60px;
-        display: flex;
+        @include media-breakpoint-md {
+          max-width: 100%;
+        }
         align-items: center;
+        display: flex;
+        height: 46px;
+        max-width: 25%;
+        min-width: 60px;
       }
 
       &_position_left {
