@@ -6,6 +6,7 @@
     width: 100%;
   }
   &__card-body {
+    flex-direction: column;
     @include card-body;
   }
   &__logo {
