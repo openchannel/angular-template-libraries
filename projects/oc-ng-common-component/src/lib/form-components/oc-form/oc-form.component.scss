@@ -23,8 +23,12 @@
     }
 
     &-label {
+      @include media-breakpoint-md {
+        max-width: 100%;
+      }
+      flex: 0 0 25%;
       margin-bottom: 1rem;
-      width: 35%;
+      max-width: 25%;
 
       &_row {
         height: 46px;
