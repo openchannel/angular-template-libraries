@@ -6,7 +6,7 @@
   &__heading {
 
     &-text {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       text-align: left;
       @include media-breakpoint-md {
         text-align: center;
@@ -16,6 +16,7 @@
 
   &__container {
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
 
     .featured-apps__card {
@@ -24,6 +25,8 @@
       margin-bottom: 68px;
       height: 330px;
       width: 255px;
+      background-color: $white;
+      cursor: pointer;
       @include media-breakpoint-sm {
         margin: 0 auto 1rem;
       }
@@ -48,11 +51,15 @@
 
         .featured-apps__card-description {
           font-size: 12px;
+          overflow: hidden;
+          height: 5rem;
+          display: block;
         }
 
         .featured-apps__card-name {
-          margin-bottom: 51px;
           font-family: 'Rubik-Medium', sans-serif;
+          height: 9rem;
+          overflow: hidden;
         }
 
         .featured-apps__card-img {

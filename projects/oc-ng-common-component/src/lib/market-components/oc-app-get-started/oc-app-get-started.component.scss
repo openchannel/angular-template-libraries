@@ -29,11 +29,24 @@
       margin-top: 0;
     }
 
+    &--heading {
+      margin: 0;
+    }
+
     &-desc {
       font-size: 14px;
-      margin: 1rem 0;
+      margin: 2.5rem 0;
       width: 75%;
       color: $secondary;
+    }
+  }
+
+  &__button {
+    width: 260px;
+    display: block;
+
+    & .oc-button {
+      padding: 0;
     }
   }
 
@@ -41,7 +54,7 @@
     flex-direction: column;
     text-align: center;
 
-    .get-started__button {
+    &__button {
       margin: 2.5rem auto 0;
       padding: 0 2.5rem;
       flex: 0 0 25%;
