@@ -147,6 +147,11 @@
         flex-direction: column;
         margin-bottom: 3rem;
       }
+      &-image {
+        height: 100%;
+        max-height: 114px;
+        width: auto;
+      }
       &-count {
         margin-top: 1rem;
         text-align: center;
