@@ -2,6 +2,10 @@
 @import '../../../../assets/styles/theme';
 
 .review-list {
+  @include media-breakpoint-sm {
+    padding-bottom: 10rem;
+    position: relative;
+  }
   display: flex;
   flex-direction: column;
   &__header {
@@ -11,6 +15,12 @@
     margin-bottom: 1rem;
     &-heading {
       margin-bottom: 0;
+    }
+    &-button {
+      @include media-breakpoint-sm {
+        bottom: 0;
+        position: absolute;
+      }
     }
   }
   &__one-review {

@@ -80,6 +80,7 @@
     border: 1px solid $info;
     border-radius: 4px;
     cursor: pointer;
+    width: 248px;
     &-dropdown {
       align-items: center;
       display: flex;
@@ -88,6 +89,7 @@
         margin: auto;
         width: 192px;
         @include font-size-breakpoint(md);
+        cursor: pointer;
       }
       &-icon {
         cursor: pointer;

@@ -3,8 +3,15 @@
 
 .gallery {
 
+  &__header {
+    &-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+  }
+
   &__heading {
-    margin-bottom: 1rem;
     padding: 0 1rem;
   }
 
@@ -33,7 +40,7 @@
   }
 
   &__content {
-    padding-top: 2.5rem;
+    padding-top: 5rem;
     display: flex;
     flex-wrap: wrap;
 

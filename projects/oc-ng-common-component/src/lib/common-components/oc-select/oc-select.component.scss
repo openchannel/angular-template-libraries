@@ -1,10 +1,11 @@
-.select-component {
+@import '../../../../assets/styles/theme';
 
+.select-component {
   &__action {
-    width: 100%;
+    align-items: center;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    width: 100%;
 
     &::after {
       position: absolute;
@@ -13,16 +14,16 @@
   }
 
   &__text {
-    color: #343a40;
+    color: $dark;
     font-size: 14px;
     text-align: left;
   }
 
   &__dropdown {
+    margin-top: 8px;
+    max-height: 228px;
     padding: 0;
     right: 0;
-    margin-top: 8px;
-
     &-item {
       font-size: 14px;
     }
