@@ -20,23 +20,32 @@
       white-space: nowrap;
     }
     &-name {
-      cursor: pointer;
       max-width: 15%;
       padding-left: 2rem;
+      .user-table__th-row {
+        cursor: pointer;
+      }
     }
 
     &-email {
-      cursor: pointer;
       max-width: 15%;
+      .user-table__th-row {
+        cursor: pointer;
+      }
     }
 
     &-data {
-      cursor: pointer;
       width: 82px;
+      .user-table__th-row {
+        cursor: pointer;
+      }
     }
 
     &-role {
       width: 47px;
+      .user-table__th-row {
+        cursor: pointer;
+      }
     }
 
     &-status {
