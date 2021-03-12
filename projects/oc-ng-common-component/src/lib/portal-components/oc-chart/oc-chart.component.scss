@@ -86,6 +86,8 @@
       display: flex;
       padding: 2rem;
       &-label {
+        margin: auto;
+        width: 192px;
         @include font-size-breakpoint(md);
         cursor: pointer;
       }
