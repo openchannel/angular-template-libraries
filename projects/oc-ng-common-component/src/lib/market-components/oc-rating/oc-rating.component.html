@@ -1,6 +1,6 @@
 <div *ngIf="type === 'single-star'" class="oc-rating-single">
     <svg-icon svgClass="oc-rating-single__rating-star" src="assets/oc-ng-common-component/star.svg"></svg-icon>
-    <span class="oc-rating-single__label {{labelClass}}">{{rating}} ({{reviewCount}}{{label ? ' ' + label : ''}})</span>
+    <span class="oc-rating-single__label {{labelClass}}">{{rating | number:'.1-1'}} ({{reviewCount}}{{label ? ' ' + label : ''}})</span>
 </div>
 
 <div *ngIf="type === 'multi-star'" class="oc-rating-multi">

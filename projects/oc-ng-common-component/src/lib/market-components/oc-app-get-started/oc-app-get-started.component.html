@@ -3,7 +3,7 @@
         <img [src]="getStartedImage" alt="featured-logo">
     </div>
     <div class="get-started__info">
-        <h1 class="get-started__info-heading">{{getStartedHeader}}</h1>
+        <h3 class="get-started__info-heading">{{getStartedHeader}}</h3>
         <p class="get-started__info-desc">{{getStartedDescription}}</p>
         <oc-button class="get-started__button"
                    (click)="listAppGetStarted()"
@@ -15,7 +15,7 @@
 <div class="get-started get-started_search"
      *ngIf="getStartedType == 'search'">
     <h1>{{getStartedHeader}}</h1>
-    <div class="get-started__button">
+    <div class="get-started_search__button">
         <oc-button class="get-started__button-wrapper"
                    type="primary"
                    (click)="listAppGetStarted()"
