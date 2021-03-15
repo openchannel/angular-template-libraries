@@ -36,7 +36,7 @@ const SignupComponent = (args: OcSignupComponent) => ({
 export const Empty = SignupComponent.bind({});
 Empty.args = {
     signupModel: signupEmpty,
-    submit: action('clicked event'),
+    submitClick: action('clicked event'),
     loginUrl: 'login',
     companyLogoUrl: './assets/img/logo-company.png',
 };
@@ -44,7 +44,7 @@ Empty.args = {
 export const Filled = SignupComponent.bind({});
 Filled.args = {
     signupModel: signupFilled,
-    submit: action('clicked event'),
+    submitClick: action('clicked event'),
     loginUrl: 'login',
     companyLogoUrl: './assets/img/logo-company.png',
 };
@@ -52,7 +52,7 @@ Filled.args = {
 export const ResultPage = SignupComponent.bind({});
 ResultPage.args = {
     signupModel: signupFilled,
-    submit: action('clicked event'),
+    submitClick: action('clicked event'),
     loginUrl: 'login',
     companyLogoUrl: './assets/oc-ng-common-component/logo-company.png',
     showSignupFeedbackPage: true,

@@ -35,6 +35,7 @@ import {OcConfirmationModalComponent} from './oc-confirmation-modal/oc-confirmat
 import {OcProfileNavbarComponent} from './oc-profile-navbar/oc-profile-navbar.component';
 import {FormsModule} from '@angular/forms';
 import {OcVideoComponent} from './oc-video/oc-video.component';
+import { CheckboxRequiredDirective } from './validators/checkbox-required.directive';
 
 @NgModule({
     declarations: [
@@ -65,6 +66,7 @@ import {OcVideoComponent} from './oc-video/oc-video.component';
         OcConfirmationModalComponent,
         OcProfileNavbarComponent,
         OcVideoComponent,
+        CheckboxRequiredDirective,
     ],
     imports: [
         NgbModule,
@@ -104,7 +106,8 @@ import {OcVideoComponent} from './oc-video/oc-video.component';
         OcConfirmationModalComponent,
         OcProfileNavbarComponent,
         OcVideoComponent,
-        AngularSvgIconModule
+        AngularSvgIconModule,
+        CheckboxRequiredDirective
     ],
     providers: [
         NgbActiveModal,
