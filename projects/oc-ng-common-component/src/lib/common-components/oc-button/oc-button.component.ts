@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges, TemplateRef} from '@angular/core';
 import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
@@ -6,7 +6,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
   templateUrl: './oc-button.component.html',
   styleUrls: ['./oc-button.component.scss'],
 })
-export class OcButtonComponent implements OnChanges, AfterViewInit {
+export class OcButtonComponent implements OnChanges {
 
   buttonType: string = 'primary';
   showButton = false;
@@ -25,17 +25,10 @@ export class OcButtonComponent implements OnChanges, AfterViewInit {
     this.showButton = true;
   }
 
-  @ViewChild('button') button;
-
-  public spinnerColor: string = '#fff';
+  public spinnerName: string;
 
   constructor(private spinner: NgxSpinnerService) {
-  }
-
-  ngAfterViewInit() {
-    if (this.process) {
-      this.spinnerColor = window.getComputedStyle(this.button.nativeElement).color;
-    }
+    this.spinnerName = Math.random().toString();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -46,7 +39,13 @@ export class OcButtonComponent implements OnChanges, AfterViewInit {
 
   checkSpinner(): void {
     if (this.process && this.buttonType !== 'link') {
-      this.spinner.show();
+      this.spinner.show(this.spinnerName, {
+        color: null,
+        bdColor: null,
+        type: 'ball-spin',
+        size: 'small',
+        fullScreen: false
+      });
     } else {
       this.spinner.hide();
     }
