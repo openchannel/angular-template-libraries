@@ -531,3 +531,29 @@ oc-select {
     padding: 3px 10px;
   }
 }
+
+.oc-button {
+  &_primary {
+    .oc-button__spinner {
+      .la-ball-spin {
+        color: $white;
+      }
+    }
+  }
+
+  &_secondary {
+    .oc-button__spinner {
+      .la-ball-spin {
+        color: $body-color;
+      }
+    }
+  }
+
+  &_danger {
+    .oc-button__spinner {
+      .la-ball-spin {
+        color: $white;
+      }
+    }
+  }
+}
