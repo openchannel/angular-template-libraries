@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import {FullAppData} from 'oc-ng-common-service';
 
 @Component({
@@ -26,6 +26,10 @@ export class OcFeaturedAppsComponent implements OnInit {
    * List of classes that will be added to the default class list
    */
   @Input() customClasses: string = '';
+  /**
+   * Custom template for the feature app card
+   */
+  @Input() customFeaturedAppCardTemplate: TemplateRef<FullAppData>;
   /**
    * Emitter for click by App card.
    */
