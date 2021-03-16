@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import {FullAppData} from 'oc-ng-common-service';
 
 @Component({
@@ -40,6 +40,10 @@ export class OcAppGalleryComponent implements OnInit {
    * Path to the custom icon near 'See All'
    */
   @Input() routerIcon: string = 'assets/oc-ng-common-component/arrow.svg';
+  /**
+   * Custom template for the app card
+   */
+  @Input() customAppCardTemplate: TemplateRef<FullAppData>;
 
   constructor() {
   }
