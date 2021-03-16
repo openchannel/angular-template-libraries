@@ -2,12 +2,18 @@
     <h1 class="recommended-apps__heading">{{recommendedAppTitle}}</h1>
     <div class="recommended-apps__container"
          *ngIf="appList && appList.length > 0; else emptyData">
-        <div class="recommended-apps__card" *ngFor="let app of appList;">
-            <oc-app-card [app]="app" (clickByAppCard)="this.clickByAppCard.emit($event)"></oc-app-card>
+        <div class="recommended-apps__card" *ngFor="let app of appList;" (click)="this.clickByAppCard.emit(app)">
+            <ng-container [ngTemplateOutlet]="customAppCardTemplate ? customAppCardTemplate : defaultAppCard"
+                          [ngTemplateOutletContext]="{$implicit: app}">
+            </ng-container>
         </div>
     </div>
 </div>
 
 <ng-template #emptyData>
     <h5 class="recommended-apps_empty">{{noAppMessage}}</h5>
+</ng-template>
+
+<ng-template #defaultAppCard let-app>
+    <oc-app-card [app]="app"></oc-app-card>
 </ng-template>
