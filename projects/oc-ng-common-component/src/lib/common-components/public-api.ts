@@ -20,6 +20,7 @@ export * from './oc-profile-navbar/oc-profile-navbar.component';
 export * from './validators/white-space-validator';
 export * from './validators/email-validator.directive';
 export * from './validators/drag-drop.directive';
+export * from './validators/checkbox-required.directive';
 export * from './directive/password-toggle.directive';
 export * from './validators/password-validator.directive';
 export * from './pipe/camelcase.pipe';
