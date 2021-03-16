@@ -1,9 +1,9 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcNumberComponent, OcRecommendedAppsComponent } from 'projects/oc-ng-common-component/src/public-api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StatElement } from 'oc-ng-common-service';
-import { OcMarketComponentsModule } from 'oc-ng-common-component/src/lib/market-components';
+import { OcMarketComponentsModule, OcRecommendedAppsComponent } from 'oc-ng-common-component/src/lib/market-components';
+import { OcNumberComponent } from 'oc-ng-common-component/src/lib/form-components';
 
 const modules = {
   imports: [OcMarketComponentsModule, BrowserAnimationsModule, RouterTestingModule]
@@ -81,7 +81,7 @@ app3.rating = 4.9;
 app3.reviewCount = 87;
 
 export default {
-  title: 'Recommended Apps',
+  title: 'Recommended Apps [BEM]',
   component: OcRecommendedAppsComponent,
   decorators: [
     moduleMetadata(modules),

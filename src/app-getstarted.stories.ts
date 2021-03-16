@@ -1,9 +1,7 @@
-import {moduleMetadata, storiesOf} from '@storybook/angular';
-import {OcAppGetStartedComponent} from 'oc-ng-common-component';
-import {
-  OcCommonLibModule
-} from 'projects/oc-ng-common-component/src/public-api';
-import {linkTo} from '@storybook/addon-links';
+import { moduleMetadata } from '@storybook/angular';
+import { OcAppGetStartedComponent } from 'oc-ng-common-component/src/lib/market-components';
+import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
+import { linkTo } from '@storybook/addon-links';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
@@ -11,7 +9,7 @@ const modules = {
 };
 
 export default {
-  title: 'Get Started',
+  title: 'Get Started [BEM]',
   component: OcAppGetStartedComponent,
   decorators: [
     moduleMetadata(modules),

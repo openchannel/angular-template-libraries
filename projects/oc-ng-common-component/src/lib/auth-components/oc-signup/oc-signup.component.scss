@@ -24,6 +24,10 @@
   }
   &__form-group {
     margin-bottom: 3rem;
+    &-label {
+      display: block;
+      margin-bottom: 1rem;
+    }
   }
   &__password {
     margin-bottom: 2rem;
@@ -46,6 +50,9 @@
   &__checkbox {
     align-items: center;
     display: flex;
+    &-input {
+      height: 16px;
+    }
   }
   &__label {
     @include font-size-breakpoint(sm);
@@ -81,8 +88,4 @@
       color: $primary;
     }
   }
-}
-
-oc-checkbox {
-  height: 16px;
 }

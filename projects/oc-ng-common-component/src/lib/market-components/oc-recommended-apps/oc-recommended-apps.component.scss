@@ -1,46 +1,44 @@
-@import "../../../../assets/styles/theme.scss";
-@import "../../../../assets/styles/mixins.scss";
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
 
-.card.app-card {
-  border: none;
-  padding-right: 0;
-  padding-left: 0;
-  margin-bottom: 40px;
-  min-width: 350px;
-  max-width: 350px;
+.recommended-apps {
 
-  img {
-    min-width: 44px;
-    max-width: 44px;
+  &_empty {
+    margin-top: 2.5rem;
   }
 
-  .app-price {
-    font-size: 14px;
-    font-family: "Rubik-Medium";
-    display: inline-block;
-    color: $primary;
-    margin-bottom: 8px;
-    width: 130px;
-  }
-}
-
-.card-margin {
-  margin-bottom: 1rem;
-  margin-right: 30px;
-  &:last-child {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 2.5rem 0 0 0;
+    width: 100%;
     @include media-breakpoint-lg {
-      margin-right: 0;
+      justify-content: center;
     }
-  }
-}
 
-.recommended-card {
-  flex-grow: 1;
-  flex-basis: 250px;
-  max-width: 382px;
-  min-width: 350px;
-  background-color: #fff;
-  @include media-breakpoint-sm {
-    max-width: 100%;
+    .recommended-apps__card {
+      background-color: $white;
+      border-radius: 4px;
+      flex-basis: 250px;
+      flex-grow: 1;
+      margin-bottom: 1rem;
+      margin-right: 30px;
+      max-width: 382px;
+      min-width: 330px;
+      padding: 2rem;
+      @include media-breakpoint-md {
+        margin-right: 0;
+      }
+      @include media-breakpoint-sm {
+        max-width: 100%;
+      }
+
+      &:last-child {
+        @include media-breakpoint-lg {
+          margin-right: 0;
+        }
+      }
+    }
   }
 }

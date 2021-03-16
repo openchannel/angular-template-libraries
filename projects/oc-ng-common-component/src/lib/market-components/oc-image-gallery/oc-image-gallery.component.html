@@ -1,8 +1,8 @@
-<div class="row oc-mt-8">
-    <div class="col-md oc-text-center" *ngFor="let item of displayGallery">
+<div class="image-gallery">
+    <div class="image-gallery__item" *ngFor="let item of displayGallery">
         <img [src]="item.image"
-             height="192" alt="icon">
-        <p class="font-l font-med oc-mt-2 oc-mb-1">{{item.title}}</p>
-        <span class="font-m">{{item.description}}</span>
+             height="192" alt="icon" class="image-gallery__item-image">
+        <p class="image-gallery__item-title">{{item.title}}</p>
+        <span class="image-gallery__item-description">{{item.description}}</span>
     </div>
 </div>

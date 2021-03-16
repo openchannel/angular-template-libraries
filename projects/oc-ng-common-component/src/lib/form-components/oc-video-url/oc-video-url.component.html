@@ -6,5 +6,6 @@
        [ngModelOptions]="{standalone: true}"
        class="form-control {{class}}"
        ocWhiteSpaceValidator>
-<oc-video class="oc-mt-2 oc-d-block" [videoUrl]="videoUrl"
+<oc-video class="video-url__reference"
+          [videoUrl]="videoUrl"
           *ngIf="isValidUrl"></oc-video>

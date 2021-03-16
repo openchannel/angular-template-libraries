@@ -27,7 +27,7 @@ export class OcVideoComponent {
     }
 
     loadVideo() {
-        this.spinner.show().then();
+        this.spinner.show();
         this.showVideoLoader = true;
 
         this.previewData = this.embedService.embed(this.url);
@@ -42,7 +42,7 @@ export class OcVideoComponent {
             this.loadInVideo = false;
         }
 
-        this.spinner.hide().then();
+        this.spinner.hide();
         this.showVideoLoader = false;
     }
 }

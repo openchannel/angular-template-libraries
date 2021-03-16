@@ -47,3 +47,35 @@
   line-height: 16px;
   padding: 40px 30px 38px;
 }
+
+@mixin modal-body($background-color: '#fff', $shadow-color: #000, $border-color: 0) {
+  background-clip: padding-box;
+  background-color: $background-color;
+  border-radius: 4px;
+  box-shadow: 0 7px 22px 0 $shadow-color;
+  outline: 0;
+  pointer-events: auto;
+  position: relative;
+  width: 100%;
+  @if($border-color != 0) {
+    border: 1px solid $border-color;
+  }
+}
+
+@mixin form-control($default-border-color: #c9d5ea, $focus-border-color: #537cfd, $placeholder-color: #333) {
+  border: 1px solid $default-border-color;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 46px;
+  padding: 12px 16px;
+  width: 100%;
+  &:focus {
+    border-color: $focus-border-color;
+    box-shadow: none;
+    outline: none;
+  }
+  &::placeholder {
+    color: $placeholder-color;
+    opacity: .5;
+  }
+}

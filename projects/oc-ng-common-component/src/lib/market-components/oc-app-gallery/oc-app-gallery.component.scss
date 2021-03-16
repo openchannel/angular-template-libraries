@@ -1,14 +1,68 @@
-@import "../../../../assets/styles/mixins";
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/theme';
 
-.card-margins {
-  margin-bottom: 40px;
-  flex-grow: 1;
-  @include media-breakpoint-sm {
-    max-width: 100%;
+.gallery {
+
+  &__header {
+    &-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
   }
-}
 
-.icon-size {
-  height: 10px;
-  width: auto;
+  &__heading {
+    padding: 0 1rem;
+  }
+
+  &__description {
+    color: $secondary;
+    font-size: 14px;
+    margin-bottom: 0;
+    padding: 0 1rem;
+  }
+
+  &__more {
+    cursor: pointer;
+
+    &-text {
+      font-size: 14px;
+      padding-right: 0.5rem;
+      color: $primary;
+      font-family: 'Rubik-Medium', sans-serif;
+    }
+
+    &-icon {
+      height: 10px;
+      width: auto;
+      color: $primary;
+    }
+  }
+
+  &__content {
+    padding-top: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+
+    &-card {
+      margin-bottom: 40px;
+      flex-grow: 1;
+      padding: 1rem;
+      flex-basis: 50%;
+      @include media-breakpoint-sm {
+        flex-basis: 100%;
+      }
+    }
+  }
+
+  &__no-content {
+    margin: 0 0 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+
+    &-text {
+      margin-top: 1rem;
+      padding: 0 1rem;
+    }
+  }
 }

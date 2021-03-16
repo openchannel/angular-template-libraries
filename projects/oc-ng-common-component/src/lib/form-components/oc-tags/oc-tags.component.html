@@ -1,19 +1,19 @@
-<div class="col oc-p-0 oc-align-items-end">
-    <div class="col oc-p-0">
-        <div class="row oc-w-100 oc-m-0 oc-align-items-stretch">
-            <oc-select [selectValArr]="dropBoxTags" [(ngModel)]="currentTag"
+<div class="tags">
+    <div class="tags__group">
+        <div class="tags__group-wrapper">
+            <oc-select [selectValArr]="dropBoxTags"
+                       [(ngModel)]="currentTag"
                        [ngModelOptions]="{standalone: true}"
                        (ngModelChange)="changeCurrentTag()"
-                       class="oc-flex-grow-1"></oc-select>
-            <oc-button class="oc-ml-1"
+                       class="tags__select"></oc-select>
+            <oc-button class="tags__button-add"
                        text="Add"
                        type="secondary"
-                       [class]="'oc-min-vh-auto oc-min-vw-auto oc-h-100'"
                        (click)="addCurrentTagToResultList()"></oc-button>
         </div>
     </div>
-    <div *ngIf="resultTags?.length > 0 || dropBoxTags?.length > 0" class="row oc-m-0">
-        <oc-tag-element class="oc-mr-2 oc-mt-2 "
+    <div class="tags__list" *ngIf="resultTags?.length > 0 || dropBoxTags?.length > 0">
+        <oc-tag-element class="tags__list-item"
                         *ngFor="let tag of resultTags; index as i"
                         [closeMarker]="true"
                         [title]="tag"

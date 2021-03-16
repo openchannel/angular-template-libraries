@@ -1,15 +1,58 @@
-@import "../../../../assets/styles/theme.scss";
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/theme';
 
-.drop-down {
-  font-size: 14px;
-  font-family: "Rubik-Medium";
-  display: inline-block;
-  color: $primary;
-  margin-right: 55px;
-  cursor: pointer;
+.review-list {
+  @include media-breakpoint-sm {
+    padding-bottom: 10rem;
+    position: relative;
+  }
+  display: flex;
+  flex-direction: column;
+  &__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    &-heading {
+      margin-bottom: 0;
+    }
+    &-button {
+      @include media-breakpoint-sm {
+        bottom: 0;
+        position: absolute;
+      }
+    }
+  }
+  &__one-review {
+    margin-top: 5rem;
+    &-heading {
+      @include font-family-rubik('Regular');
+    }
+    &-rating {
+      display: block;
+      margin-bottom: 1rem;
+      &-label {
+        @include font-size-breakpoint(sm);
+        color: $secondary;
+        line-height: 16px;
+        margin-bottom: 1rem;
+      }
+    }
+    &-text {
+      @include font-size-breakpoint(md);
+    }
+  }
+  &__drop-down {
+    @include font-family-rubik('Medium');
+    color: $primary;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 55px;
+  }
+  &__empty-result-heading {
+    margin-top: 5rem;
+  }
 }
 
-.rating-label {
-  color: $secondary;
-  line-height: 16px;
-}
+

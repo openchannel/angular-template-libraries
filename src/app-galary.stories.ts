@@ -1,10 +1,8 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcAppGalleryComponent, OcCommonLibModule } from 'projects/oc-ng-common-component/src/public-api';
-import { FullAppData } from 'oc-ng-common-service';
-import { StatElement } from 'oc-ng-common-service';
+import { OcAppGalleryComponent, OcMarketComponentsModule } from 'oc-ng-common-component/src/lib/market-components';
+import { FullAppData, StatElement } from 'oc-ng-common-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { OcMarketComponentsModule } from 'oc-ng-common-component/src/lib/market-components';
 
 const modules = {
   imports: [OcMarketComponentsModule, BrowserAnimationsModule, RouterTestingModule]
@@ -82,7 +80,7 @@ app4.rating = 4.9;
 app4.reviewCount = 87;
 
 export default {
-  title: 'App Gallery',
+  title: 'App Gallery [BEM]',
   component: OcAppGalleryComponent,
   decorators: [
     moduleMetadata(modules),

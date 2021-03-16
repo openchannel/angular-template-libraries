@@ -1,16 +1,72 @@
-@import "../../../../assets/styles/theme.scss";
-@import "../../../../assets/styles/mixins.scss";
+@import '../../../../assets/styles/theme.scss';
+@import '../../../../assets/styles/mixins.scss';
 
-img {
-  margin-left: 190px;
-  margin-right: 80px;
-  @include media-breakpoint-sm {
-    margin: 0;
+.get-started {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__logo {
+    padding-right: 0;
+    @include media-breakpoint-sm {
+      text-align: center;
+    }
+
+    img {
+      margin-left: 190px;
+      margin-right: 80px;
+      @include media-breakpoint-sm {
+        margin: 0;
+      }
+    }
   }
-}
 
-.image-align {
-  @include media-breakpoint-sm {
+  &__info {
+    padding-left: 1rem;
+    margin-top: 1rem;
+    flex-grow: 1;
+    @include media-breakpoint-md {
+      padding-left: 0;
+      margin-top: 0;
+    }
+
+    &--heading {
+      margin: 0;
+    }
+
+    &-desc {
+      font-size: 14px;
+      margin: 2.5rem 0;
+      width: 75%;
+      color: $secondary;
+    }
+  }
+
+  &__button {
+    width: 260px;
+    display: block;
+
+    & .oc-button {
+      padding: 0;
+    }
+  }
+
+  &_search {
+    flex-direction: column;
     text-align: center;
+
+    &__button {
+      margin: 2.5rem auto 0;
+      padding: 0 2.5rem;
+      flex: 0 0 25%;
+      max-width: 25%;
+      @include media-breakpoint-md {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      &-wrapper {
+        display: block;
+      }
+    }
   }
 }

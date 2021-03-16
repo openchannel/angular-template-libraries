@@ -1,5 +1,6 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcCommonLibModule, OcFeaturedAppsComponent } from 'projects/oc-ng-common-component/src/public-api';
+import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
+import { OcFeaturedAppsComponent } from 'oc-ng-common-component/src/lib/market-components';
 import { FullAppData } from 'oc-ng-common-service';
 import { StatElement } from 'oc-ng-common-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,7 +11,7 @@ const modules = {
 };
 
 export default {
-  title: 'Featured Apps',
+  title: 'Featured Apps [BEM]',
   component: OcFeaturedAppsComponent,
   decorators: [
     moduleMetadata(modules),

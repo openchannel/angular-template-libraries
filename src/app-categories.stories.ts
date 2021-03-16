@@ -1,9 +1,11 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcAppCategoriesComponent, OcAppCategoriesModule } from 'projects/oc-ng-common-component/src/public-api';
+import { OcAppCategoriesComponent, OcAppCategoriesModule } from 'oc-ng-common-component/src/lib/app-categories';
 import { AppCategoryDetail } from 'oc-ng-common-service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 const appCategory1 = new AppCategoryDetail();
 appCategory1.categoryCardClass = 'category-card';
@@ -24,11 +26,17 @@ appCategory3.categoryName = 'Communication';
 appCategory3.categoryTitleColor = 'green';
 
 const modules = {
-  imports: [OcAppCategoriesModule, HttpClientTestingModule, RouterTestingModule.withRoutes([]), BrowserAnimationsModule],
+  imports: [
+    HttpClientTestingModule,
+    RouterTestingModule.withRoutes([]),
+    BrowserAnimationsModule,
+    AngularSvgIconModule.forRoot(),
+    CarouselModule,
+  ],
 };
 
 export default {
-  title: 'App Categories',
+  title: 'App Categories [BEM]',
   component: OcAppCategoriesComponent,
   decorators: [
     moduleMetadata(modules),

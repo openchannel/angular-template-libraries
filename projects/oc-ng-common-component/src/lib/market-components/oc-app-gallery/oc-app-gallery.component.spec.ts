@@ -4,7 +4,7 @@ import {OcAppGalleryComponent} from './oc-app-gallery.component';
 import { Component, Input } from '@angular/core';
 import { FullAppData } from 'oc-ng-common-service';
 import { CommonModule, Location } from '@angular/common';
-import { StatElement } from 'oc-ng-common-service/lib/model/app-data-model';
+import { StatElement } from 'oc-ng-common-service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -91,7 +91,6 @@ describe('OcAppGalleryComponent', () => {
     component.appsArr = [app, app, app];
     component.appGalleryTitle = 'Test Apps';
     component.appGalleryDescription = 'The list of test apps';
-    component.routerLinkForOneApp = '/app';
 
     fixture.detectChanges();
   });
@@ -117,17 +116,5 @@ describe('OcAppGalleryComponent', () => {
     const noAppsMessage = fixture.debugElement.query(By.css('h5')).nativeElement;
 
     expect(noAppsMessage.textContent).toContain('No Apps Added Yet');
-  });
-
-  it('should redirect on router link', async () => {
-    component.seeAllUrl = 'mock-router';
-    fixture.detectChanges();
-
-    const redirectLink = fixture.debugElement.query(By.css('#seeAllLink')).nativeElement;
-    redirectLink.click();
-
-    await fixture.whenStable().then(() => {
-      expect(location.path()).toEqual('/mock-router');
-    });
   });
 });

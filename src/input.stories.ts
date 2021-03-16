@@ -1,18 +1,13 @@
-import {storiesOf} from '@storybook/angular';
-import {
-    OcCheckboxComponent,
-    OcCommonLibModule,
-    OcInputComponent,
-    OcTextSearchComponent,
-} from 'projects/oc-ng-common-component/src/public-api';
-import {withA11y} from '@storybook/addon-a11y';
+import { storiesOf } from '@storybook/angular';
+import { OcCheckboxComponent, OcInputComponent } from 'oc-ng-common-component/src/lib/common-components';
+import { withA11y } from '@storybook/addon-a11y';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
-    imports: [OcCommonLibModule],
+    imports: [],
 };
 
-storiesOf('Input', module)
+storiesOf('Input [BEM]', module)
     .addDecorator(withA11y)
     .addParameters({
         component: OcInputComponent,
