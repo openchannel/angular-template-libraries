@@ -47,7 +47,7 @@ export class OcButtonComponent implements OnChanges {
         fullScreen: false
       });
     } else {
-      this.spinner.hide();
+      this.spinner.hide(this.spinnerName);
     }
   }
 }
