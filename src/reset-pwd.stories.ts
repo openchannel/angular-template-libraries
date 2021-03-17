@@ -6,6 +6,7 @@ import {
 import {RouterTestingModule} from '@angular/router/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UserResetPassword} from 'oc-ng-common-service';
+import { action } from '@storybook/addon-actions';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
@@ -37,6 +38,7 @@ Empty.args = {
   loginUrl: 'login',
   signupUrl: 'signup',
   companyLogoUrl: './assets/img/logo-company.png',
+  submit: action('submit')
 };
 
 export const Filled = ResetPasswordComponent.bind({});
@@ -45,4 +47,5 @@ Filled.args = {
   loginUrl: 'login',
   signupUrl: 'signup',
   companyLogoUrl: './assets/img/logo-company.png',
+  submit: action('submit')
 };
