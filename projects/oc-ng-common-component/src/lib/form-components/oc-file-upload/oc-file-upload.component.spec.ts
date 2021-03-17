@@ -6,12 +6,10 @@ import {CommonModule} from '@angular/common';
 import {BrowserModule, By} from '@angular/platform-browser';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ImageCropperModule} from 'ngx-image-cropper';
-import {OcButtonComponent} from '../oc-button/oc-button.component';
-import {FileUploadDownloadService} from 'oc-ng-common-service';
+import {FileDetails, FileUploadDownloadService} from 'oc-ng-common-service';
 import {Observable, of} from 'rxjs';
 import {HttpResponse} from '@angular/common/http';
-import {OCComponentConstants} from '../model/oc-constants';
-import {FileDetails} from 'oc-ng-common-service/lib/model/file-details-model';
+import {OcButtonComponent} from "oc-ng-common-component/src/lib/common-components";
 
 describe('OcFileUploadComponent', () => {
   let component: OcFileUploadComponent;
@@ -85,7 +83,7 @@ describe('OcFileUploadComponent', () => {
   });
 
   it('should upload image', async () => {
-    component.fileType = OCComponentConstants.FILE_TYPES.SINGLE_PUBLIC_IMAGE;
+    component.fileType = 'singleImage';
 
     const onChangeFunc = jest.fn();
     component.registerOnChange(onChangeFunc);
@@ -114,7 +112,7 @@ describe('OcFileUploadComponent', () => {
   });
 
   it('should init file', async () => {
-    component.fileType = OCComponentConstants.FILE_TYPES.SINGLE_PUBLIC_FILE;
+    component.fileType = 'singleFile';
 
     component.writeValue('http://someimage.com/213123.png');
 
@@ -127,7 +125,7 @@ describe('OcFileUploadComponent', () => {
   });
 
   it('should init files', async () => {
-    component.fileType = OCComponentConstants.FILE_TYPES.MULTI_PUBLIC_FILE;
+    component.fileType = 'multiFile';
 
     component.writeValue(['http://someimage.com/213123.png', 'http://someimage2.com/213121233.png']);
 
@@ -142,7 +140,7 @@ describe('OcFileUploadComponent', () => {
   it('download public file', async () => {
     global.open = jest.fn();
 
-    component.fileType = OCComponentConstants.FILE_TYPES.SINGLE_PUBLIC_FILE;
+    component.fileType = 'singleFile';
 
     component.writeValue('http://someimage.com/213123.png');
 
@@ -158,7 +156,7 @@ describe('OcFileUploadComponent', () => {
   it('download private file', async () => {
     global.open = jest.fn();
 
-    component.fileType = OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_FILE;
+    component.fileType = 'privateSingleFile';
 
     component.writeValue('http://someimageprivate.com/213123.png');
 
@@ -175,7 +173,7 @@ describe('OcFileUploadComponent', () => {
     const onChangeFunc = jest.fn();
     component.registerOnChange(onChangeFunc);
 
-    component.fileType = OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_FILE;
+    component.fileType = 'privateSingleFile';
 
     component.writeValue('http://someimageprivate.com/213123.png');
 

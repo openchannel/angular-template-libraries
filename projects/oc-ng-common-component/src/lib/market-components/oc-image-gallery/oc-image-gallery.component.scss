@@ -1,0 +1,29 @@
+@import '../../../../assets/styles/mixins';
+
+.image-gallery {
+  display: flex;
+  @include media-breakpoint-md {
+    flex-direction: column;
+  }
+  &__item {
+    @include media-breakpoint-md {
+      margin-bottom: 2rem;
+      width: 100%;
+    }
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+    min-width: 0;
+    padding: 0 2rem;
+    text-align: center;
+    &-title {
+      @include font-size-breakpoint(lg);
+      @include font-family-rubik('Medium');
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+    &-description {
+      @include font-size-breakpoint(md);
+    }
+  }
+}

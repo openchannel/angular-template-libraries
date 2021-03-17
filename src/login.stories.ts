@@ -1,7 +1,8 @@
-import {moduleMetadata} from '@storybook/angular';
-import {OcCommonLibModule, OcLoginComponent} from 'projects/oc-ng-common-component/src/public-api';
-import {action} from '@storybook/addon-actions';
-import {UserLoginModel} from 'oc-ng-common-service';
+import { moduleMetadata } from '@storybook/angular';
+import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
+import { OcLoginComponent } from 'oc-ng-common-component/src/lib/auth-components';
+import { action } from '@storybook/addon-actions';
+import { UserLoginModel } from 'oc-ng-common-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -18,7 +19,7 @@ loginFilled.password = 'Tenup123#';
 loginFilled.isChecked = true;
 
 export default {
-  title: 'Login',
+  title: 'Login [BEM]',
   component: OcLoginComponent,
   decorators: [
     moduleMetadata(modules),
@@ -35,6 +36,7 @@ const defaultProps = {
   submit: action('clicked event'),
   forgotPwdUrl: 'forgotPwd',
   signupUrl: 'signup',
+  companyLogoUrl: 'assets/img/logo-company.png',
   loginModelChange: action('model changed'),
 };
 

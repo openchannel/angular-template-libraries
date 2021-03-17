@@ -1,33 +1,35 @@
-<form #activationForm="ngForm" novalidate>
-    <div class="card oc-card-with-border">
-        <div class="card-body">
-            <div class="oc-text-center">
+<div class="resend-activation login-card login-card_borders">
+    <form #activationForm="ngForm" novalidate>
+        <div class="resend-activation__card-body">
+            <div class="resend-activation__logo">
                 <img alt="logo"
-                     class="img-fluid oc-mb-5 company-logo"
+                     class="company-logo"
                      [src]="companyLogoUrl">
             </div>
-            <div class="oc-text-center oc-mb-5">
-                <h4>Resend activation code</h4>
-                <oc-label text="Resend the activation code to your email"></oc-label>
+            <div class="resend-activation__header">
+                <h4 class="resend-activation__header-img">Resend activation code</h4>
+                <oc-label text="Resend the activation code to your email"
+                          class="resend-activation__header-label"></oc-label>
             </div>
-            <div class="form-group">
-                <oc-label text="Email"></oc-label>
+            <div class="resend-activation__email-group">
+                <oc-label text="Email" class="resend-activation__email-group-label"></oc-label>
                 <oc-input #email=ngModel [(ngModel)]="activationModel.email" placeholder="Email"
-                          name="code" ngDefaultControl required="true" ocEmailValidator></oc-input>
-                <oc-error [control]="email"></oc-error>
+                          name="code" ngDefaultControl required="true" ocEmailValidator
+                          class="resend-activation__email-group-input"></oc-input>
+                <oc-error [control]="email" class="resend-activation__email-group-error"></oc-error>
             </div>
             <oc-button (click)="submitForm(activationForm)"
                        [process]="process" text="Resend"
-                       type="primary" class="btn-block oc-mt-5 oc-mb-4">
+                       type="primary" class="resend-activation__button">
             </oc-button>
-            <div class="oc-text-center oc-mb-2">
-                <oc-label class="mb-0" text="Already have an account?"></oc-label>
-                <a class="font-m font-med" [routerLink]="loginUrl"> Log In </a>
+            <div class="resend-activation__log-in">
+                Already have an account?
+                <a class="resend-activation__link" [routerLink]="loginUrl"> Log In </a>
             </div>
-            <div class="oc-text-center">
-                <oc-label class="oc-mb-0" text="Dont have an account yet?"></oc-label>
-                <a class="font-m font-med" [routerLink]="signupUrl"> Sign Up </a>
+            <div class="resend-activation__sign-up">
+               Dont have an account yet?
+                <a class="resend-activation__link" [routerLink]="signupUrl"> Sign Up </a>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>

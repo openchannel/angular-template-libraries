@@ -16,7 +16,7 @@ export class OcLoginComponent {
   @Input() loginButtonText = 'Log In';
   @Input() forgotPwdUrl;
   @Input() signupUrl;
-  @Input() companyLogoUrl = 'assets/oc-ng-common-component/logo-company.png';
+  @Input() companyLogoUrl = '~oc-ng-common-component/assets/oc-ng-common-component/logo-company.png';
   @Input() process;
   @Input() loginType;
   @Input() incorrectEmailErrorCode = 'email_is_incorrect';

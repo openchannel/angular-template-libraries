@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges, TemplateRef} from '@angular/core';
 import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
@@ -6,7 +6,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
   templateUrl: './oc-button.component.html',
   styleUrls: ['./oc-button.component.scss'],
 })
-export class OcButtonComponent implements OnChanges, AfterViewInit {
+export class OcButtonComponent implements OnChanges {
 
   buttonType: string = 'primary';
   showButton = false;
@@ -14,7 +14,6 @@ export class OcButtonComponent implements OnChanges, AfterViewInit {
 
   @Input() text: string = '';
   @Input() disabled: boolean = false;
-  @Input() class: string;
   @Input() style: string;
   @Input() customClass: string;
   @Input() customTemplate: TemplateRef<any>;
@@ -22,19 +21,14 @@ export class OcButtonComponent implements OnChanges, AfterViewInit {
 
   @Input() set type(type: 'primary' | 'secondary' | 'link' | 'danger' | 'none') {
     this.buttonType = type;
-    this.buttonTypeClass = type !== 'none' ? `btn-${this.buttonType}` : null;
+    this.buttonTypeClass = type !== 'none' ? `oc-button_${this.buttonType}` : null;
     this.showButton = true;
   }
 
-  @ViewChild('button') button;
-
-  public spinnerColor: string;
+  public spinnerName: string;
 
   constructor(private spinner: NgxSpinnerService) {
-  }
-
-  ngAfterViewInit() {
-    this.spinnerColor = window.getComputedStyle(this.button.nativeElement).color;
+    this.spinnerName = Math.random().toString();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -45,9 +39,15 @@ export class OcButtonComponent implements OnChanges, AfterViewInit {
 
   checkSpinner(): void {
     if (this.process && this.buttonType !== 'link') {
-      this.spinner.show();
+      this.spinner.show(this.spinnerName, {
+        color: null,
+        bdColor: null,
+        type: 'ball-spin',
+        size: 'small',
+        fullScreen: false
+      });
     } else {
-      this.spinner.hide();
+      this.spinner.hide(this.spinnerName);
     }
   }
 }

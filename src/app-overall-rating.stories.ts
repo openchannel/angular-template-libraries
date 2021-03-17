@@ -1,10 +1,11 @@
-import { OcOverallRatingComponent } from 'projects/oc-ng-common-component/src/public-api';
 import { storiesOf } from '@storybook/angular';
 import { withA11y } from '@storybook/addon-a11y';
-import { OcMarketComponentsModule } from 'oc-ng-common-component/src/lib/market-components';
+import { OcOverallRatingComponent } from 'oc-ng-common-component/src/lib/market-components';
+import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const modules = {
-  imports: [OcMarketComponentsModule],
+  imports: [OcCommonLibModule, NgbModule],
 };
 
 const overAllRatingSummaryEmpty = {
@@ -27,7 +28,7 @@ const overAllRatingSummary1 = {
   5: 8,
 };
 
-storiesOf('Overall Rating', module)
+storiesOf('Overall Rating [BEM]', module)
   .addDecorator(withA11y)
   .addParameters({
     component: OcOverallRatingComponent,

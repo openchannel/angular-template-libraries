@@ -5,6 +5,7 @@ import {FileDetails, FileUploadDownloadService} from 'oc-ng-common-service';
 import {Observable, of} from 'rxjs';
 import {EmbedVideoService} from 'ngx-embed-video';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 class StubFileUploadDownloadService {
   constructor() {}
@@ -92,7 +93,7 @@ class StubFileUploadDownloadService {
 }
 
 const modules = {
-  imports: [OcFormComponentsModule, HttpClientModule],
+  imports: [OcFormComponentsModule, HttpClientModule, BrowserAnimationsModule],
   providers: [
     HttpClient,
     {provide: FileUploadDownloadService, useClass: StubFileUploadDownloadService}, EmbedVideoService
@@ -100,7 +101,7 @@ const modules = {
 };
 
 export default {
-  title: 'Form Group Component',
+  title: 'Form Group Component [BEM]',
   component: OcFormComponent,
   decorators: [
     moduleMetadata(modules),
@@ -887,6 +888,30 @@ FormWithFileUpload.args = {
         description: '',
         defaultValue: null,
         type: 'multiFile',
+        required: null,
+        attributes: {
+        },
+        options: null,
+        subFieldDefinitions: null
+      },
+      {
+        id: 'file-upload-1',
+        label: 'private single File Upload',
+        description: '',
+        defaultValue: null,
+        type: 'privateSingleFile',
+        required: null,
+        attributes: {
+        },
+        options: null,
+        subFieldDefinitions: null
+      },
+      {
+        id: 'file-upload-2',
+        label: 'private multi File Upload',
+        description: '',
+        defaultValue: null,
+        type: 'multiPrivateFile',
         required: null,
         attributes: {
         },

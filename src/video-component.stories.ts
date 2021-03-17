@@ -14,7 +14,7 @@ const modules = {
 };
 
 export default {
-  title: 'Video component',
+  title: 'Video component [BEM]',
   component: OcVideoComponent,
   decorators: [
     moduleMetadata(modules),

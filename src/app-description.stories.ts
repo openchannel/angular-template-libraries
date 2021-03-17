@@ -8,7 +8,7 @@ const modules = {
 };
 
 export default {
-  title: 'App Description Component',
+  title: 'App Description Component [BEM]',
   component: OcAppDescriptionComponent,
   decorators: [
     moduleMetadata(modules),

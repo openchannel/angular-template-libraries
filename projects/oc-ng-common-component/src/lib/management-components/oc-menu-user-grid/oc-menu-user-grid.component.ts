@@ -20,12 +20,12 @@ export class OcMenuUserGridComponent implements OnInit {
    * Path to the custom icon for the hidden menu toggle button.
    * Default: empty
    */
-  @Input() menuUrl: string = 'assets/img/dots-menu.svg';
+  @Input() menuUrl: string = 'assets/oc-ng-common-component/dots-menu.svg';
   /**
    * Path to the custom icon for the 'sort' button.
    * Default: empty
    */
-  @Input() sortIcon: string = '';
+  @Input() sortIcon: string = 'assets/oc-ng-common-component/dropdown.svg';
   /**
    * Output of menu list item clicked action.
    * Contains an action name, userId, userAccountId

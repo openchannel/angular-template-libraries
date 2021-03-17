@@ -1,8 +1,8 @@
-<div class="input-group">
-    <input class="form-control" placeholder="Search" type="text"
+<div class="text-search">
+    <input class="text-search__input" placeholder="Search" type="text"
            [(ngModel)]="searchText"
            (ngModelChange)="searchTextChange.emit($event)" (keydown.enter)="enterAction()">
-    <svg-icon class="search-icon" src="assets/oc-ng-common-component/text-search-icon.svg"
-              [svgStyle]="{ 'width': '16px', 'height': '16px', 'fill': '#333' }"
+    <svg-icon class="text-search__icon" src="assets/oc-ng-common-component/text-search-icon.svg"
+              svgClass="text-search__icon-svg"
               (click)="enterAction()"></svg-icon>
 </div>

@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OcDynamicFieldArrayComponent } from './oc-dynamic-field-array.component';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, Directive } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { By } from '@angular/platform-browser';
 
@@ -224,6 +224,7 @@ describe('OcDynamicFieldArrayComponent', () => {
   });
 });
 
+@Directive()
 export class ModalDialogMock {
   @Input() formJSONData: any;
   value = {

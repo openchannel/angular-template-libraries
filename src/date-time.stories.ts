@@ -6,7 +6,7 @@ const modules = {
 };
 
 export default {
-    title: 'Date component',
+    title: 'Date component [BEM]',
     component: OcDatetimePickerComponent,
     decorators: [
         moduleMetadata(modules),

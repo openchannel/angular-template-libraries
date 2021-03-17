@@ -8,7 +8,7 @@ const modules = {
 };
 
 export default {
-  title: 'Password',
+  title: 'Password [BEM]',
   component: OcPasswordComponent,
   decorators: [
     moduleMetadata(modules),

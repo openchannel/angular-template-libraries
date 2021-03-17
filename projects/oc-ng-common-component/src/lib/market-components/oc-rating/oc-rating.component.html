@@ -1,12 +1,12 @@
-<div *ngIf="type === 'single-star'" class="oc-d-flex oc-align-items-center">
-    <svg-icon svgClass="rating-star" src="assets/oc-ng-common-component/star.svg"></svg-icon>
-    <span class="{{labelClass}} oc-ml-1">{{rating}} ({{reviewCount}}{{label ? ' ' + label : ''}})</span>
+<div *ngIf="type === 'single-star'" class="oc-rating-single">
+    <svg-icon svgClass="oc-rating-single__rating-star" src="assets/oc-ng-common-component/star.svg"></svg-icon>
+    <span class="oc-rating-single__label {{labelClass}}">{{rating | number:'.1-1'}} ({{reviewCount}}{{label ? ' ' + label : ''}})</span>
 </div>
 
-<div *ngIf="type === 'multi-star'">
+<div *ngIf="type === 'multi-star'" class="oc-rating-multi">
     <ng-template #t let-fill="fill">
-        <span [class.full]="fill === 100" class="star">
-            <span [style.width.%]="fill" class="half">&#9733;</span>&#9733;
+        <span [class.oc-rating-multi__star_filled]="fill === 100" class="oc-rating-multi__star">
+            <span [style.width.%]="fill" class="oc-rating-multi__star_half-color">&#9733;</span>&#9733;
         </span>
     </ng-template>
 

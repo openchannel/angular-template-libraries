@@ -1,33 +1,33 @@
-<form #activationForm="ngForm" novalidate>
-    <div class="card oc-card-with-border">
-        <div class="card-body">
-            <div class="oc-text-center">
+<div class="activation login-card login-card_borders">
+    <form #activationForm="ngForm" novalidate>
+        <div class="activation__card-body">
+            <div class="activation__logo">
                 <img alt="logo"
-                     class="img-fluid oc-mb-5 company-logo"
+                     class="activation__logo-img company-logo"
                      [src]="companyLogoUrl">
             </div>
-            <div class="oc-text-center oc-mb-5">
-                <h4>Activate Account</h4>
+            <div class="activation__header">
+                <h4 class="activation__header-heading">Activate Account</h4>
                 <oc-label text="Check your inbox for the activation code"></oc-label>
             </div>
-            <div class="form-group">
-                <oc-label text="Activation Code"></oc-label>
+            <div class="activation__form-group">
+                <oc-label text="Activation Code" class="activation__form-group-label"></oc-label>
                 <oc-input #code=ngModel [(ngModel)]="activationModel.code" placeholder="Activation Code"
-                          name="code" ngDefaultControl required="true"></oc-input>
-                <oc-error [control]="code" field="code"></oc-error>
+                          name="code" ngDefaultControl required="true" class="activation__form-group-input"></oc-input>
+                <oc-error [control]="code" field="code" class="activation__form-group-error"></oc-error>
             </div>
             <oc-button (click)="submitForm(activationForm)"
                        [process]="process" text="Activate"
-                       type="primary" class="btn-block oc-mt-5 oc-mb-4">
+                       type="primary" class="activation__button">
             </oc-button>
-            <div class="oc-text-center oc-mb-2">
-                <oc-label class="oc-mb-0" text="Didn’t get the activation code?"></oc-label>
-                <a id="reactivation" class="font-m font-med" [routerLink]="resendActivationUrl"> Resend it </a>
+            <div class="activation__reactivation">
+                <oc-label class="activation__reactivation-label" text="Didn’t get the activation code?"></oc-label>
+                <a id="reactivation" class="activation__link" [routerLink]="resendActivationUrl"> Resend it </a>
             </div>
-            <div class="oc-text-center">
-                <oc-label class="oc-mb-0" text="Dont have an account yet?"></oc-label>
-                <a id="signup" class="font-m font-med" [routerLink]="signupUrl"> Sign Up </a>
+            <div class="activation__sign-up">
+                <oc-label class="activation__reactivation-label" text="Dont have an account yet?"></oc-label>
+                <a id="signup" class="activation__link" [routerLink]="signupUrl"> Sign Up </a>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>

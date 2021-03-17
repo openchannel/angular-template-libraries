@@ -10,13 +10,14 @@ import {
   ViewChild,
 } from '@angular/core';
 import {FileDetails, FileUploadDownloadService} from 'oc-ng-common-service';
-import {OCComponentConstants} from '../model/oc-constants';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {base64ToFile, ImageCroppedEvent, ImageTransform} from 'ngx-image-cropper';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Observer, of, Subject, Subscription} from 'rxjs';
+import {of, Subject, Subscription} from 'rxjs';
 import {mergeMap, takeUntil} from 'rxjs/operators';
+
+export type FileType = ('singleFile' | 'singleImage' | 'privateSingleFile' | 'multiFile' | 'multiImage' | 'multiPrivateFile');
 
 @Component({
   selector: 'oc-file-upload',
@@ -46,7 +47,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
 
   @Input() defaultFileIcon = 'assets/oc-ng-common-component/file_icon.svg';
 
-  @Input() fileType: string;
+  @Input() fileType: FileType;
   @Input() uploadIconUrl = 'assets/oc-ng-common-component/upload_icon.svg';
 
   @Output() fileReset = new EventEmitter<any>();
@@ -110,9 +111,9 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
 
   @Input() uploadingIconUrl;
 
-  @Input() closeIconUrl = 'assets/img/close-icon.svg';
-  @Input() zoomInIconUrl = 'assets/img/zoom-in.svg';
-  @Input() zoomOutIconUrl = 'assets/img/zoom-out.svg';
+  @Input() closeIconUrl = 'assets/oc-ng-common-component/close-icon.svg';
+  @Input() zoomInIconUrl = 'assets/oc-ng-common-component/zoom-in.svg';
+  @Input() zoomOutIconUrl = 'assets/oc-ng-common-component/zoom-out.svg';
 
   @Input() hash: string[] = [];
 
@@ -283,31 +284,20 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
   }
 
   isFileTypeImage() {
-    return this.fileType === OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_IMAGE ||
-      this.fileType === OCComponentConstants.FILE_TYPES.SINGLE_PUBLIC_IMAGE ||
-      this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PRIVATE_IMAGE ||
-      this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PUBLIC_IMAGE;
+      return this.fileType === 'singleImage' || this.fileType === 'multiImage';
   }
 
   isFileTypePrivate() {
-    return this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PRIVATE_FILE ||
-      this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PRIVATE_IMAGE ||
-      this.fileType === OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_FILE ||
-      this.fileType === OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_IMAGE;
+    return this.fileType === 'multiPrivateFile' || this.fileType === 'privateSingleFile';
   }
 
   isMultiFileSupport() {
-    return this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PRIVATE_FILE ||
-      this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PRIVATE_IMAGE ||
-      this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PUBLIC_FILE ||
-      this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PUBLIC_IMAGE;
+    return this.fileType === 'multiPrivateFile' || this.fileType ==='multiFile' || this.fileType === 'multiImage';
   }
 
   isFileTypeNotImage() {
-    return this.fileType === OCComponentConstants.FILE_TYPES.SINGLE_PUBLIC_FILE ||
-      this.fileType === OCComponentConstants.FILE_TYPES.SINGLE_PRIVATE_FILE ||
-      this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PUBLIC_FILE ||
-      this.fileType === OCComponentConstants.FILE_TYPES.MULTI_PRIVATE_FILE;
+    return this.fileType === 'singleFile' || this.fileType === 'privateSingleFile' ||
+        this.fileType === 'multiFile' || this.fileType === 'multiPrivateFile';
   }
 
   imageCropped(event: ImageCroppedEvent) {
