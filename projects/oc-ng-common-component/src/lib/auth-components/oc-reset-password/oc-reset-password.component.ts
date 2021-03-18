@@ -31,9 +31,6 @@ export class OcResetPasswordComponent implements OnInit {
   }
 
   onchange(form) {
-    if (form.form.controls.email.errors && form.form.controls.email.errors.serverErrorValidator) {
-      form.form.controls.email.setErrors(null);
-    }
     if (form.form.controls.newPassword.errors && form.form.controls.newPassword.errors.serverErrorValidator) {
       form.form.controls.newPassword.setErrors(null);
     }
