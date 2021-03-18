@@ -14,8 +14,9 @@
     <div class="gallery__content"
          *ngIf="appsArr && appsArr.length > 0; else emptyData">
         <div class="gallery__content-card"
-             *ngFor="let app of appsArr;">
-            <oc-app-card [app]="app" (clickByAppCard)="clickAppCard.emit($event)"></oc-app-card>
+             *ngFor="let app of appsArr;" (click)="clickAppCard.emit(app)">
+            <ng-container [ngTemplateOutlet]="customAppCardTemplate? customAppCardTemplate : defaultCard"
+                          [ngTemplateOutletContext]="{$implicit: app}"></ng-container>
         </div>
     </div>
 </div>
@@ -24,4 +25,8 @@
     <div class="gallery__no-content">
         <h5 class="gallery__no-content-text">{{noAppMessage}}</h5>
     </div>
+</ng-template>
+
+<ng-template #defaultCard let-app>
+    <oc-app-card [app]="app"></oc-app-card>
 </ng-template>
