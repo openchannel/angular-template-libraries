@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import {FullAppData} from 'oc-ng-common-service';
 
 @Component({
@@ -22,6 +22,10 @@ export class OcRecommendedAppsComponent implements OnInit {
    * Title for the Recommended apps list. Default 'Recommended Apps'
    */
   @Input() recommendedAppTitle: string = 'Recommended Apps';
+  /**
+   * Custom template for the app card
+   */
+  @Input() customAppCardTemplate: TemplateRef<FullAppData>;
   /**
    * Emitter for click by App card.
    */
