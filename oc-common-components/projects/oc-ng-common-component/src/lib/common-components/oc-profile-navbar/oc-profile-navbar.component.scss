@@ -1,0 +1,58 @@
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/theme';
+
+.profile-navbar {
+  display: flex;
+  &__initials {
+    background-image: linear-gradient(to bottom, $gradient-top, $gradient-bottom);
+    border-radius: 50%;
+    color: $primary;
+    height: 40px;
+    margin: 0 2rem 0 0;
+    padding: 8px 10px;
+    width: 40px;
+  }
+  &__dropdown-container {
+    position: relative;
+  }
+  &__dropdown-toggle {
+    align-items: center;
+    display: flex;
+    &:after {
+      display: flex;
+      font-size: 16px;
+      height: 16px;
+      line-height: 14px;
+      width: 16px;
+    }
+    &:hover {
+      .dropdown-menu {
+        display: block;
+      }
+    }
+  }
+  &__info-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 2rem;
+  }
+  &__username {
+    @include font-size-breakpoint(md);
+    @include font-family-rubik('Medium');
+    color: $dark;
+  }
+  &__role {
+    @include font-size-breakpoint(sm);
+    color: $gray-600;
+  }
+  &__dropdown {
+    margin-top: 2rem;
+  }
+}
+
+.dropdown-menu {
+  width: 152px;
+  left: unset;
+  right: 0;
+  top: 100%;
+}

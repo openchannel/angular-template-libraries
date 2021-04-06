@@ -1,0 +1,26 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.tooltip-label {
+  align-items: center;
+  display: flex;
+
+  &__text {
+    @include font-size-breakpoint(md);
+    margin-bottom: 0;
+  }
+
+  &__required {
+    color: $danger;
+  }
+
+  &__description {
+    margin-left: 1rem;
+
+    &-icon {
+      display: block;
+      width: 14px;
+      display: block;
+    }
+  }
+}

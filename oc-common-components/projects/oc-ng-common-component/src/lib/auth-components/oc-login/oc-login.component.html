@@ -1,0 +1,60 @@
+<div class="login login-card login-card_borders">
+    <form #loginForm="ngForm" novalidate>
+        <div class="login__card-body">
+            <div class="login__logo">
+                <img alt="logo"
+                     class="img-fluid company-logo"
+                     [src]="companyLogoUrl">
+            </div>
+            <div class="login__header">
+                <h4>Log In</h4>
+                <oc-label text="Log in into your account" class="login__header-invitation"></oc-label>
+            </div>
+            <div class="login__error" *ngIf="hasServerError(email, incorrectEmailErrorCode)">
+                The email and password you have provided is incorrect.
+            </div>
+            <div class="login__error" *ngIf="hasServerError(email, notVerifiedEmailErrorCode)">
+                This account has not been activated yet. <br>
+                Please check your inbox for an activation email or <a (click)="onActivationLinkClick(email)" class="font-s font-med resend-link">resend the activation email</a>.
+            </div>
+            <div class="login__email" [class.login__email_margin_top]="!isServerErrorExist()">
+                <oc-label text="Email" class="login__form-label login__email-label"></oc-label>
+                <oc-input #email=ngModel (ngModelChange)="onchange()" [(ngModel)]="loginModel.email"
+                          placeholder="Email" ocEmailValidator name="email" ngDefaultControl
+                          required="true"
+                          class="login__email-input"></oc-input>
+                <oc-error [control]="email" field="email" class="login__email-error"></oc-error>
+            </div>
+            <div class="login__password">
+                <oc-label text="Password" class="login__form-label login__password-label"></oc-label>
+                <oc-password #password=ngModel (ngModelChange)="onchange()" [(ngModel)]="loginModel.password"
+                             placeholder="Password" class="login__password-input" name="password" ngDefaultControl
+                             required="true"></oc-password>
+                <oc-error [control]="password" field="password" class="login__password-error"></oc-error>
+            </div>
+            <div class="login__forgot-block">
+                <div class="remember">
+                    <label>
+                        <input class="remember__checkbox" type="checkbox"
+                               [(ngModel)]="loginModel.isChecked"
+                               [ngModelOptions]="{standalone: true}"/>
+                    </label>
+                    <span class="remember__label">Remember Me</span>
+                </div>
+                <div class="forgot" [hidden]="!forgotPwdUrl">
+                    <a class="forgot__link" [routerLink]="forgotPwdUrl"> Forgot password? </a>
+                </div>
+            </div>
+            <oc-button (click)="submitForm(loginForm)"
+                       [process]="process"
+                       [text]="loginButtonText"
+                       type="primary"
+                       class="login__button">
+            </oc-button>
+            <div class="login__sign-up">
+                Dont have an account yet?
+                <a *ngIf="signupUrl" class="login__sign-up-link" [routerLink]="signupUrl">Sign Up</a>
+            </div>
+        </div>
+    </form>
+</div>

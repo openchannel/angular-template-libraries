@@ -1,0 +1,50 @@
+@import '../../../../assets/styles/theme.scss';
+
+.form-card {
+  border: 1px solid $info;
+  border-radius: 4px;
+  margin-bottom: 3px;
+
+  &__header {
+    align-items: center;
+    box-shadow: inset 0 -1px 0 0 $info;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 2.5rem;
+
+    &-text {
+      font-size: 24px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__icons-handler {
+
+    .form-card__icon  {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+      vertical-align: top;
+
+      & + .form-card__icon  {
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  &__body {
+    padding: 1.5rem 2.5rem;
+
+    &-field {
+
+      &-title {
+        width: 100%;
+      }
+
+      &-content {
+        width: 100%;
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+}

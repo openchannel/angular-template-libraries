@@ -1,0 +1,37 @@
+<div class="categories">
+    <h1 class="categories__heading">{{categoryHeaderTitle}}</h1>
+    <div class="categories__carousel">
+        <div class="categories__carousel-nav categories__carousel-nav-left"
+             id="iconLeft"
+             (click)="prevSlide()"
+             *ngIf="data.length > 5">
+            <img src="assets/oc-ng-common-component/arrow-left-analog.svg" alt="previous slide">
+        </div>
+        <owl-carousel-o [options]="customOptions" #carousel>
+            <ng-template carouselSlide [width]="data.length < 4 ? 320 : 200"
+                         *ngFor="let appCategory of data; index as i;">
+                <div class="categories__card"
+                     [ngClass]="appCategory.categoryCardClass ? appCategory.categoryCardClass : ''"
+                     [style.background-image]="appCategory.categoryBackgroundImage ? safeStyle(appCategory.categoryBackgroundImage) : ''"
+                     [class.long-card]="data.length < 4"
+                     (click)="navigateToCategory(appCategory.categoryQuery)">
+                    <div class="categories__card-logo">
+                        <img *ngIf="appCategory.categoryLogo"
+                             [src]="safeImage(appCategory.categoryLogo)"
+                             alt="category-icon">
+                    </div>
+                    <div class="categories__card-text"
+                         [style.color]="appCategory.categoryTitleColor ? appCategory.categoryTitleColor : ''">
+                        {{appCategory.categoryName ? appCategory.categoryName : 'All Apps'}}
+                    </div>
+                </div>
+            </ng-template>
+        </owl-carousel-o>
+        <div id="iconRight"
+             class="categories__carousel-nav categories__carousel-nav-right"
+             (click)="nextSlide()"
+             *ngIf="data.length > 5">
+            <img src="assets/oc-ng-common-component/arrow-right-analog.svg" alt="next slide">
+        </div>
+    </div>
+</div>

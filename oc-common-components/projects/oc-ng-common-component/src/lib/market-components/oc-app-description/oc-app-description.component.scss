@@ -1,0 +1,23 @@
+.description {
+  width: 100%;
+
+  &__heading {
+    margin-bottom: 2rem;
+  }
+
+  &__text {
+    color: #727272;
+    margin-bottom: 0;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  &__show-more {
+    cursor: pointer;
+    font-size: 14px;
+    color: #537cfd;
+    font-family: "Rubik-Medium", sans-serif;
+  }
+}

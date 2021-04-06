@@ -1,0 +1,11 @@
+<input [disabled]="disabled"
+       placeholder="{{placeholder}}"
+       [(ngModel)]="videoUrl"
+       (focus)="onFocus()"
+       (ngModelChange)="emitChanges()"
+       [ngModelOptions]="{standalone: true}"
+       class="form-control {{class}}"
+       ocWhiteSpaceValidator>
+<oc-video class="video-url__reference"
+          [videoUrl]="videoUrl"
+          *ngIf="isValidUrl"></oc-video>

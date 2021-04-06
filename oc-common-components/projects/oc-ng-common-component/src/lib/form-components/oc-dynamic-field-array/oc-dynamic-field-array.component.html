@@ -1,0 +1,36 @@
+<div class="cards-interface">
+  <div class="cards-interface__added-item"
+       *ngFor="let field of fieldsDataArray; let i = index"
+       [class.hid-item]="getHiddenItemIndex(i)">
+    <oc-dynamic-array-item
+            [subFields]="fieldDefinition?.subFieldDefinitions"
+            [index]="i"
+            [fieldLabelId]="fieldDefinition?.attributes.rowLabel ? fieldDefinition?.attributes.rowLabel : ''"
+            [formFieldsData]="fieldsDataArray[i]"
+            (sendFieldData)="editDFAItemData($event, i)"
+            (deleteField)="deleteDynamicItem($event, i)"></oc-dynamic-array-item>
+  </div>
+  <div class="cards-interface__preview"
+       *ngFor="let form of formsArray; let j = index">
+    <div class="cards-interface__preview-header">
+      <h3 class="cards-interface__preview-header-text">{{!form.new && fieldDefinition?.attributes.rowLabel ?
+          getLabelValue(fieldsDataArray[form.index], fieldDefinition?.attributes.rowLabel)
+          : 'Item ' + (form.index + 1)}}
+      </h3>
+      <svg-icon class="cards-interface__preview-icon"
+                src="assets/oc-ng-common-component/trash-icon.svg"
+                (click)="deleteDynamicItem(form.new, j)"></svg-icon>
+    </div>
+    <div class="cards-interface__preview-content">
+      <oc-form [formJsonData]="form"
+               [showButton]="false"
+               (formDataUpdated)="onFieldDataUpdates($event, form)"
+               successButtonText="Save"></oc-form>
+    </div>
+    <div class="cards-interface__preview-buttons">
+      <oc-button type="secondary" text="Cancel" (click)="cancelArrayItemAdding(j)"></oc-button>
+      <oc-button type="primary" text="Save" (click)="saveItemFieldsData(form, j)"></oc-button>
+    </div>
+  </div>
+  <oc-button type="primary" text="Add" (click)="addNewArrayItem()"></oc-button>
+</div>

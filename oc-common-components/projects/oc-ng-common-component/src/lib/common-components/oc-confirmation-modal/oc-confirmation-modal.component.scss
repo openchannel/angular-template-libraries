@@ -1,0 +1,51 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.confirmation-modal {
+  @include modal-body($white, $info);
+  display: flex;
+  flex-direction: column;
+  &__header {
+    align-items: flex-start;
+    border-bottom: 1px solid $info;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 3rem;
+    &-heading {
+      margin-bottom: 0;
+      text-align: center;
+      width: 100%;
+    }
+    &-close-icon {
+      cursor: pointer;
+      fill: $black;
+      height: 16px;
+      outline: none;
+      width: 16px;
+    }
+  }
+  &__modal-body {
+    padding: 5rem;
+  }
+  &__text {
+    @include font-size-breakpoint(lg);
+    display: block;
+    margin-bottom: 0;
+    text-align: center;
+    width: 100%;
+  }
+  &__button-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-top: 5rem;
+    padding: 0 3rem;
+    width: 100%;
+  }
+  &__button {
+    margin: 0 1rem;
+    width: 100%;
+  }
+}
+

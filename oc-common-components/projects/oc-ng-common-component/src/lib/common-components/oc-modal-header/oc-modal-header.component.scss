@@ -1,0 +1,18 @@
+@import '../../../../assets/styles/theme.scss';
+
+.header {
+  border-bottom: 1px solid $draft;
+
+  h3 {
+    font-size: 32px;
+  }
+
+  .close-icon {
+    outline: none;
+    width: 16px;
+    height: 16px;
+    fill: $black;
+    display: block;
+  }
+}
+

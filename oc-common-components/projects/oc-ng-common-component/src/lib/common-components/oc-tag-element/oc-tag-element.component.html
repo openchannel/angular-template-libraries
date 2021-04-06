@@ -1,0 +1,12 @@
+<button class="tag-element">
+    <div class="tag-element__text oc-text-wrap oc-text-truncate tag-label">{{title}}</div>
+    <svg-icon *ngIf="closeMarker"
+              [src]="deleteTagImgUrl"
+              ngbTooltip="Close"
+              placement="top"
+              tooltipClass="tag-element__tooltip"
+              class="tag-element__close-icon"
+              svgClass="tag-element__close-icon-svg"
+              (click)="sentCurrentTag()"></svg-icon>
+</button>
+

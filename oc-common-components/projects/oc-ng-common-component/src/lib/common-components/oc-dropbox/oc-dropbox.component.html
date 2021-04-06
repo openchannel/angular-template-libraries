@@ -1,0 +1,17 @@
+<div class="oc-dropbox">
+  <input #dropBox
+         type="text"
+         class="oc-dropbox__input {{customClassStyle}}"
+         placeholder="{{placeHolder}}"
+         [(ngModel)]="outputSelectedItem"
+         [ngModelOptions]="{standalone: true}"
+         (input)="clearSelectedValue($event)"
+         (focus)="onFocus()"
+         (click)="click$.next($any($event).target.value)"
+         [ngbTypeahead]="search"
+         (selectItem)="selectItem($event)"
+         [ngStyle]="customNgStyle"
+         [disabled]="disabled"
+         [resultTemplate]="dropElementTemplate"/>
+</div>
+

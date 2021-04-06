@@ -1,0 +1,33 @@
+@import '../../../../assets/styles/theme.scss';
+
+.tags {
+
+  &__group {
+
+    &-wrapper {
+      width: 100%;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+
+      .tags__select {
+        flex-grow: 1;
+      }
+
+      .tags__button-add {
+        margin-left: 0.5em;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-item {
+      margin-top: 1rem;
+      margin-right: 1rem;
+    }
+  }
+}

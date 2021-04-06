@@ -1,0 +1,17 @@
+@each $color, $value in $theme-colors {
+  @include bg-variant(".oc-bg-#{$color}", $value, true);
+}
+
+@if $enable-gradients {
+  @each $color, $value in $theme-colors {
+    @include bg-gradient-variant(".oc-bg-gradient-#{$color}", $value, true);
+  }
+}
+
+.oc-bg-white {
+  background-color: $white;
+}
+
+.oc-bg-transparent {
+  background-color: transparent;
+}

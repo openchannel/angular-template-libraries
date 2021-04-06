@@ -1,0 +1,30 @@
+<div class="featured-apps">
+    <div class="featured-apps__heading">
+        <h4 class="featured-apps__heading-text">{{label}}</h4>
+    </div>
+    <div class="featured-apps__container"
+         *ngIf="data && data.length > 0; else emptyData">
+        <div class="featured-apps__card-wrapper" *ngFor="let app of data;" (click)="this.clickByAppCard.emit(app)">
+            <ng-container
+                    [ngTemplateOutlet]="customFeaturedAppCardTemplate ? customFeaturedAppCardTemplate : defaultFeatureAppCard"
+                    [ngTemplateOutletContext]="{$implicit: app}">
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+<ng-template #emptyData>
+    <h5>{{emptyDataMessage}}</h5>
+</ng-template>
+
+<ng-template #defaultFeatureAppCard let-app>
+    <div class="featured-apps__card">
+        <a class="featured-apps__card-body {{customClasses}}">
+            <div class="featured-apps__card-img">
+                <img src="{{app.icon}}" alt="">
+            </div>
+            <h5 class="featured-apps__card-name">{{app.name}}</h5>
+            <span class="featured-apps__card-description">{{app.summary ? app.summary : app.description}}</span>
+        </a>
+    </div>
+</ng-template>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+    <g fill="none" fill-rule="evenodd">
+        <g fill="#537CFD">
+            <g>
+                <g>
+                    <g>
+                        <g>
+                            <g>
+                                <g fill="none">
+                                    <path d="M0 0H16V16H0z" transform="translate(-272 -926) translate(80 850) translate(0 36) translate(0 25) translate(192 15)"/>
+                                    <path class="recolor-icon" fill="#333" d="M3 1v1.5H2c-.245 0-.45.177-.492.41L1.5 3v1.5h13V3c0-.245-.177-.45-.41-.492L14 2.5h-1V1h1c1.105 0 2 .895 2 2v11c0 1.105-.895 2-2 2H2c-1.105 0-2-.895-2-2V3c0-1.105.895-2 2-2h1zm11.5 5h-13v8c0 .245.177.45.41.492L2 14.5h12c.245 0 .45-.177.492-.41L14.5 14V6zM4.75 0c.414 0 .75.336.75.75v2c0 .414-.336.75-.75.75S4 3.164 4 2.75v-2c0-.414.336-.75.75-.75zm6.5 0c.414 0 .75.336.75.75v2c0 .414-.336.75-.75.75s-.75-.336-.75-.75v-2c0-.414.336-.75.75-.75zM9.5 1v1.5h-3V1h3z" transform="translate(-272 -926) translate(80 850) translate(0 36) translate(0 25) translate(192 15)"/>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

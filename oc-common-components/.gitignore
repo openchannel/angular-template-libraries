@@ -1,0 +1,12 @@
+dist
+node_modules/
+storybook-assets/
+
+*.iml
+*.log
+documentation.json
+.idea
+
+coverage/
+
+storybook-assets/

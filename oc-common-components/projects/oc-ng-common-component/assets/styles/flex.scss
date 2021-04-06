@@ -1,0 +1,45 @@
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .oc-flex#{$infix}-row            { flex-direction: row; }
+    .oc-flex#{$infix}-column         { flex-direction: column; }
+    .oc-flex#{$infix}-row-reverse    { flex-direction: row-reverse; }
+    .oc-flex#{$infix}-column-reverse { flex-direction: column-reverse; }
+
+    .oc-flex#{$infix}-wrap         { flex-wrap: wrap; }
+    .oc-flex#{$infix}-nowrap       { flex-wrap: nowrap; }
+    .oc-flex#{$infix}-wrap-reverse { flex-wrap: wrap-reverse; }
+    .oc-flex#{$infix}-fill         { flex: 1 1 auto; }
+    .oc-flex#{$infix}-grow-0       { flex-grow: 0; }
+    .oc-flex#{$infix}-grow-1       { flex-grow: 1; }
+    .oc-flex#{$infix}-shrink-0     { flex-shrink: 0; }
+    .oc-flex#{$infix}-shrink-1     { flex-shrink: 1; }
+
+    .oc-justify-content#{$infix}-start   { justify-content: flex-start; }
+    .oc-justify-content#{$infix}-end     { justify-content: flex-end; }
+    .oc-justify-content#{$infix}-center  { justify-content: center; }
+    .oc-justify-content#{$infix}-between { justify-content: space-between; }
+    .oc-justify-content#{$infix}-around  { justify-content: space-around; }
+
+    .oc-align-items#{$infix}-start    { align-items: flex-start; }
+    .oc-align-items#{$infix}-end      { align-items: flex-end; }
+    .oc-align-items#{$infix}-center   { align-items: center; }
+    .oc-align-items#{$infix}-baseline { align-items: baseline; }
+    .oc-align-items#{$infix}-stretch  { align-items: stretch; }
+
+    .oc-align-content#{$infix}-start   { align-content: flex-start; }
+    .oc-align-content#{$infix}-end     { align-content: flex-end; }
+    .oc-align-content#{$infix}-center  { align-content: center; }
+    .oc-align-content#{$infix}-between { align-content: space-between; }
+    .oc-align-content#{$infix}-around  { align-content: space-around; }
+    .oc-align-content#{$infix}-stretch { align-content: stretch; }
+
+    .oc-align-self#{$infix}-auto     { align-self: auto; }
+    .oc-align-self#{$infix}-start    { align-self: flex-start; }
+    .oc-align-self#{$infix}-end      { align-self: flex-end; }
+    .oc-align-self#{$infix}-center   { align-self: center; }
+    .oc-align-self#{$infix}-baseline { align-self: baseline; }
+    .oc-align-self#{$infix}-stretch  { align-self: stretch; }
+  }
+}

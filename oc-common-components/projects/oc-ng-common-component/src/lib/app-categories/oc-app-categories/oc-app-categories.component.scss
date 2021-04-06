@@ -1,0 +1,67 @@
+@import '../../../../assets/styles/theme.scss';
+@import '../../../../assets/styles/mixins.scss';
+
+.categories {
+
+  &__heading {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 0 2rem;
+  }
+
+  &__carousel {
+    position: relative;
+
+    &-nav {
+      position: absolute;
+      top: calc(50% - 10px);
+      z-index: 2;
+      cursor: pointer;
+      font-size: 10px;
+
+      &-right {
+        right: 0;
+      }
+
+      &-left {
+        left: 0;
+      }
+
+      img {
+        width: 9px;
+      }
+    }
+
+    .categories__card {
+      cursor: pointer;
+      width: 160px;
+      height: 120px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding-top: 28px;
+      position: relative;
+      text-align: center;
+      color: $primary;
+      @include media-breakpoint-sm {
+        width: 100%;
+      }
+
+      &-logo {
+        width: 34px;
+        height: 34px;
+        margin: 0 auto;
+      }
+
+      &-text {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        color: $primary;
+        font-family: "Rubik-Medium", serif;
+        margin-top: 16px;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}

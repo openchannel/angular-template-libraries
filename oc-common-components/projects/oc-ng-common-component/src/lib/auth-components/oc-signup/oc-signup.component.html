@@ -1,0 +1,88 @@
+<div class="sign-up login-card login-card_borders">
+    <form #signUpForm="ngForm" *ngIf="!showSignupFeedbackPage" novalidate>
+        <div class="sign-up__card-body">
+            <div class="sign-up__logo">
+                <img alt="logo" class="sign-up__logo-img company-logo" [src]="companyLogoUrl">
+            </div>
+            <div class="sign-up__header">
+                <h4 class="sign-up__header-heading">Sign Up</h4>
+                <oc-label text="Enter your account details below" class="sign-up__header-invitation"></oc-label>
+            </div>
+            <div class="sign-up__form-group sign-up__name">
+                <oc-label text="Name" class="sign-up__form-group-label"></oc-label>
+                <oc-input #uname=ngModel [(ngModel)]="signupModel.uname"
+                          placeholder="Name" name="uname" ngDefaultControl required="true" ocWhiteSpaceValidator></oc-input>
+                <oc-error [control]="uname" field="uname"></oc-error>
+            </div>
+            <div class="sign-up__form-group sign-up__company" *ngIf="withCompany">
+                <oc-label text="Company" class="sign-up__form-group-label"></oc-label>
+                <oc-input #company=ngModel [(ngModel)]="signupModel.company"
+                          placeholder="Company" name="company" ngDefaultControl required="true"
+                          ocWhiteSpaceValidator></oc-input>
+                <oc-error [control]="company" field="company"></oc-error>
+            </div>
+            <div class="sign-up__form-group sign-up__email">
+                <oc-label text="Email" class="sign-up__form-group-label"></oc-label>
+                <oc-input #email=ngModel [(ngModel)]="signupModel.email"
+                          placeholder="Email" ocEmailValidator name="email" ngDefaultControl
+                          required="true"></oc-input>
+                <oc-error [control]="email" field="email"></oc-error>
+            </div>
+            <div class="sign-up__form-group sign-up__password">
+                <oc-label text="Password" class="sign-up__form-group-label"></oc-label>
+                <oc-password #password=ngModel [(ngModel)]="signupModel.password"
+                             placeholder="Password" class="oc-mb-2" name="password"
+                             ngDefaultControl ocPasswordValidator></oc-password>
+                <oc-error [control]="password" field="password"></oc-error>
+            </div>
+            <div class="consent">
+                <div class="consent__checkbox">
+                    <oc-checkbox #isChecked=ngModel
+                                 ocCheckboxRequired
+                                 name="isChecked"
+                                 class="consent__checkbox-input"
+                                 [(ngModel)]="signupModel.isChecked"></oc-checkbox>
+                    <div class="consent__label">
+                        I agree to
+                        <a class="consent__link" [href]="termsUrl" target="_blank"> Terms of Service</a>
+                        and
+                        <a class="consent__link" [href]="policyUrl" target="_blank"> Data Processing Policy</a>
+                    </div>
+                </div>
+                <oc-error [control]="isChecked"
+                          [modifyErrors]="[{validator: 'required', message: 'Please confirm this checkbox'}]"></oc-error>
+            </div>
+            <oc-button (click)="submitForm(signUpForm)"
+                       [process]="process" text="Sign Up" type="primary"
+                       class="sign-up__button">
+            </oc-button>
+            <div class="sign-up__login">
+                Already have an account? <a class="sign-up__login-link" [routerLink]="loginUrl">Log In</a>
+            </div>
+        </div>
+    </form>
+
+    <form *ngIf="showSignupFeedbackPage" novalidate>
+        <div class="sign-up__card-body result">
+            <div class="sign-up__logo result__logo">
+                <img alt="logo"
+                     class=" company-logo"
+                     [src]="companyLogoUrl">
+            </div>
+            <div class="result__message">
+                <img alt="dropdown-icon"
+                     class="result__message-img"
+                     [src]="forgotPasswordDoneUrl">
+                <h4 class="result__message-heading">Done!</h4>
+                <oc-label text="An activation email has been sent to your inbox."></oc-label>
+            </div>
+            <oc-button (click)="goToActivationPage()" [disabled]="false"
+                       text="Activate account" type="primary" class="sign-up__button">
+            </oc-button>
+            <div class="result__sign-up-message">
+                <oc-label text="Don't have an account yet?"></oc-label>
+                <a class="result__link" (click)="showSignupFeedbackPage = !showSignupFeedbackPage"> Sign Up</a>
+            </div>
+        </div>
+    </form>
+</div>

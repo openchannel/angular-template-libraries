@@ -1,0 +1,18 @@
+<div class="select-component" ngbDropdown #myDrop="ngbDropdown">
+    <oc-button class="select-component__action"
+               type="secondary"
+               [customTemplate]="selectButton"
+               (blur)="onblur()"
+               ngbDropdownToggle>
+    </oc-button>
+
+    <div class="select-component__dropdown" ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button class="select-component__dropdown-item" ngbDropdownItem
+                (click)="onSelectionChange(val)"
+                *ngFor="let val of selectValArr">{{ labelField ? val[labelField] : val }}</button>
+    </div>
+</div>
+
+<ng-template #selectButton>
+    <div class="select-component__text">{{ labelField ? selectedValue[labelField] : selectedValue }}</div>
+</ng-template>
