@@ -46,7 +46,6 @@
     "ngx-infinite-scroll": "^10.0.0",
     "ngx-owl-carousel-o": "^5.0.0",
     "ngx-spinner": "^10.0.1",
-    "oc-ng-common-service": "1.0.1",
     "react": "^16.13.1",
     "react-is": "^16.13.1",
     "rxjs": "~6.6.3",
