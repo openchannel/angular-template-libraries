@@ -114,3 +114,79 @@ Usage :
 ## Contact
 
 Project Link: [https://bitbucket.org/openchannel/angular-common-components/src/develop/](https://bitbucket.org/openchannel/angular-common-components/src/develop/)
+
+
+#Angular common service library
+
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
+
+* [About the Project](#about-the-project)
+  * [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Installation](#installation)
+* [Contact](#contact)
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+This library store models and services for creating a marketplace instance:
+* API services.
+  - user authorization.
+  - marketplace proxy endpoints.
+* Models :
+  - request and response models.
+  - models for library ["Angular common components"](https://bitbucket.org/openchannel/angular-common-components/src/develop/)
+* Utils:
+  - CSRF interceptor. Syncs CSRF token between pages.
+
+### Built With
+* [Angular 9.1.1](https://angular.io)
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+### Installation
+
+1. Install NPM packages
+```sh
+npm install
+```
+2. Build project
+```sh
+ ng build oc-ng-common-service --watch
+```
+3. Create a global link
+```sh
+ cd dist/oc-ng-common-service
+```
+```sh
+ sudo npm link
+```
+* Note: copy path.
+4. Connect this library to a project.
+   In your Angular project :
+  - Open package.json
+  - Add copied path to the dependencies.
+
+## Documentation Compodoc
+Compodoc shows project structure. (modules, components, routes and etc.)
+* Install NPM packages :<br>
+  ``npm install``
+
+* Generate Documentation :<br>
+
+  ``npm run create-compodoc``
+
+* Run Compodoc :<br>
+
+  ``npm run start-compodoc``
+
+* Documentation [http://localhost:8801](http://localhost:8801)
+
+<!-- CONTACT -->
+## Contact
+
+Project Link: [https://bitbucket.org/openchannel/angular-common-service-library/src/develop/](https://bitbucket.org/openchannel/angular-common-service-library/src/develop/)
