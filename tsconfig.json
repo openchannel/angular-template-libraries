@@ -25,6 +25,10 @@
       "oc-ng-common-component/*": [
         "projects/oc-ng-common-component/*",
         "projects/oc-ng-common-component"
+      ],
+      "oc-ng-common-service": [
+        "dist/oc-ng-common-service/oc-ng-common-service",
+        "dist/oc-ng-common-service"
       ]
     }
   },

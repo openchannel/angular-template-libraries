@@ -1,5 +1,5 @@
 {
-  "name": "oc-angular-template",
+  "name": "oc-angular-template-libraries",
   "version": "0.0.0",
   "scripts": {
     "ng": "./node_modules/.bin/ng",
@@ -19,7 +19,10 @@
     "build-storybook": "build-storybook",
     "oc-ng-common-component-pack": "cd dist/oc-ng-common-component/ && npm pack",
     "oc-ng-common-component-up-version": "cd projects/oc-ng-common-component/ && npm --no-git-tag-version version prerelease",
-    "oc-ng-common-component-watch": "./node_modules/.bin/ng build oc-ng-common-component --watch"
+    "oc-ng-common-component-watch": "./node_modules/.bin/ng build oc-ng-common-component --watch",
+    "oc-ng-common-service": "cd dist/oc-ng-common-service/ && npm oc-ng-common-service-pack",
+    "oc-ng-common-service-pack": "npm run build-prod && npm run oc-ng-common-service",
+    "oc-ng-common-service-up-version": "cd projects/oc-ng-common-service/ && npm --no-git-tag-version version prerelease"
   },
   "private": true,
   "dependencies": {
@@ -46,7 +49,9 @@
     "react-is": "^16.13.1",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "@angular-devkit/core": "^11.2.2",
+    "jwt-decode": "^3.1.2"
   },
   "devDependencies": {
     "@angular-builders/jest": "^10.0.1",

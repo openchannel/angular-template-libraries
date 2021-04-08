@@ -46,9 +46,48 @@
           }
         }
       }
+    },
+    "oc-ng-common-service": {
+      "projectType": "library",
+      "root": "projects/oc-ng-common-service",
+      "sourceRoot": "projects/oc-ng-common-service/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/oc-ng-common-service/tsconfig.lib.json",
+            "project": "projects/oc-ng-common-service/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/oc-ng-common-service/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/oc-ng-common-service/src/test.ts",
+            "tsConfig": "projects/oc-ng-common-service/tsconfig.spec.json",
+            "karmaConfig": "projects/oc-ng-common-service/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/oc-ng-common-service/tsconfig.lib.json",
+              "projects/oc-ng-common-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
-  "defaultProject": "oc-ng-common-component",
   "cli": {
     "analytics": false
   }
