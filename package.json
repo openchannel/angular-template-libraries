@@ -22,7 +22,9 @@
     "oc-ng-common-component-watch": "./node_modules/.bin/ng build oc-ng-common-component --watch",
     "oc-ng-common-service": "cd dist/oc-ng-common-service/ && npm pack",
     "oc-ng-common-service-pack": "npm run build-prod oc-ng-common-service && npm run oc-ng-common-service",
-    "oc-ng-common-service-up-version": "cd projects/oc-ng-common-service/ && npm --no-git-tag-version version prerelease"
+    "oc-ng-common-service-up-version": "cd projects/oc-ng-common-service/ && npm --no-git-tag-version version prerelease",
+    "create-compodoc": "compodoc -p tsconfig.json projects/oc-ng-common-service/src -d ./development/documentation",
+    "start-compodoc": "compodoc -s -r 8801 -d ./development/documentation/"
   },
   "private": true,
   "dependencies": {
