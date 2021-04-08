@@ -1,30 +1,25 @@
 {
-  "name": "angular-template-libraries",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "oc-angular-template",
+  "version": "0.0.0",
   "scripts": {
     "ng": "./node_modules/.bin/ng",
     "start": "./node_modules/.bin/ng serve",
     "build": "./node_modules/.bin/ng build",
     "build-prod": "./node_modules/.bin/ng build --prod",
     "test": "npm run test:lib",
-    "test:lib": "jest --config ./oc-common-components/projects/oc-ng-common-component/jest.config.js --collectCoverage",
-    "lint": "./node_modules/.bin/ng lint",
+    "test:lib": "jest --config ./projects/oc-ng-common-component/jest.config.js --collectCoverage",
     "sass-lint": "node_modules/.bin/sass-lint -c .scss-lint.yml",
+    "lint": "./node_modules/.bin/ng lint",
     "e2e": "./node_modules/.bin/ng e2e",
-    "docs:json": "compodoc -p ./oc-common-components/tsconfig.json -e json -d .",
-    "copy-components-assets": "cd oc-common-components && mkdir -p storybook-assets/assets && cp -r projects/oc-ng-common-component/assets/img/ storybook-assets/assets/oc-ng-common-component/",
-    "storybook": "npm run copy-components-assets && start-storybook -p 6006 -s ./projects/oc-ng-common-component,./storybook-assets",
-    "storybook-update-and-run": "npm install && ./node_modules/.bin/ng build oc-ng-common-component && npx --userconfig .npmrc sb@latest upgrade && npm run storybook",
-    "storybook-withoutdocs": "cd oc-common-components && start-storybook -p 6006 -s projects/",
-    "build-storybook": "cd oc-common-components && build-storybook",
-    "oc-ng-common-component-pack": "cd oc-common-components/dist/oc-ng-common-component/ && npm pack",
-    "oc-ng-common-component-up-version": "cd oc-common-components/projects/oc-ng-common-component/ && npm --no-git-tag-version version prerelease",
-    "oc-ng-common-component-watch": "./node_modules/.bin/ng build oc-ng-common-component --watch",
-    "oc-ng-common-service": "cd oc-common-service/dist/oc-ng-common-service/ && npm pack",
-    "oc-ng-common-service-pack": "npm run build-prod && npm run oc-ng-common-service",
-    "oc-ng-common-service-up-version": "cd oc-common-service/projects/oc-ng-common-component/ && npm --no-git-tag-version version prerelease"
+    "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
+    "copy-assets": "mkdir -p storybook-assets/assets && cp -r projects/oc-ng-common-component/assets/img/ storybook-assets/assets/oc-ng-common-component/",
+    "storybook": "npm run copy-assets && start-storybook -p 6006 -s ./projects/oc-ng-common-component,./storybook-assets",
+    "storybook-update-and-run": "npm install && ./node_modules/.bin/ng build && npx --userconfig .npmrc sb@latest upgrade && npm run storybook",
+    "storybook-withoutdocs": "start-storybook -p 6006 -s projects/",
+    "build-storybook": "build-storybook",
+    "oc-ng-common-component-pack": "cd dist/oc-ng-common-component/ && npm pack",
+    "oc-ng-common-component-up-version": "cd projects/oc-ng-common-component/ && npm --no-git-tag-version version prerelease",
+    "oc-ng-common-component-watch": "./node_modules/.bin/ng build oc-ng-common-component --watch"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +34,7 @@
     "@angular/router": "~11.2.3",
     "@compodoc/compodoc": "^1.1.11",
     "angular-svg-icon": "^11.1.2",
+    "broadcast-channel": "^3.5.3",
     "core-js": "^3.9.1",
     "ngx-color-picker": "^11.0.0",
     "ngx-embed-video": "^1.0.4",
@@ -50,8 +46,7 @@
     "react-is": "^16.13.1",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2",
-    "broadcast-channel": "^3.5.3"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-builders/jest": "^10.0.1",
@@ -95,11 +90,6 @@
     "ts-jest": "^26.4.1",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.7",
-    "karma": "~4.3.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~2.1.0",
-    "karma-jasmine": "~2.0.1",
-    "karma-jasmine-html-reporter": "^1.4.2"
+    "typescript": "~4.0.7"
   }
 }

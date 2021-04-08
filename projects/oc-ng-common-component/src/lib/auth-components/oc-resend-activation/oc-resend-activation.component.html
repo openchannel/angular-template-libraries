@@ -1,0 +1,35 @@
+<div class="resend-activation login-card login-card_borders">
+    <form #activationForm="ngForm" novalidate>
+        <div class="resend-activation__card-body">
+            <div class="resend-activation__logo">
+                <img alt="logo"
+                     class="company-logo"
+                     [src]="companyLogoUrl">
+            </div>
+            <div class="resend-activation__header">
+                <h4 class="resend-activation__header-heading">Resend activation code</h4>
+                <oc-label text="Resend the activation code to your email"
+                          class="resend-activation__header-label"></oc-label>
+            </div>
+            <div class="resend-activation__email-group">
+                <oc-label text="Email" class="resend-activation__email-group-label"></oc-label>
+                <oc-input #email=ngModel [(ngModel)]="activationModel.email" placeholder="Email"
+                          name="code" ngDefaultControl required="true" ocEmailValidator
+                          class="resend-activation__email-group-input"></oc-input>
+                <oc-error [control]="email" class="resend-activation__email-group-error"></oc-error>
+            </div>
+            <oc-button (click)="submitForm(activationForm)"
+                       [process]="process" text="Resend"
+                       type="primary" class="resend-activation__button">
+            </oc-button>
+            <div class="resend-activation__log-in">
+                Already have an account?
+                <a class="resend-activation__link" [routerLink]="loginUrl"> Log In </a>
+            </div>
+            <div class="resend-activation__sign-up">
+               Dont have an account yet?
+                <a class="resend-activation__link" [routerLink]="signupUrl"> Sign Up </a>
+            </div>
+        </div>
+    </form>
+</div>
