@@ -24,6 +24,7 @@ definitions:
         script:
           - npm install --quiet
           - npm run build-prod
+          - npm run oc-ng-common-service-pack
           - npm run oc-ng-common-component-pack
           - pipe: cloudsmith-io/publish:0.3.0
             variables:
@@ -37,6 +38,7 @@ definitions:
         name: Up library version
         script:
           - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
+          - npm run oc-ng-common-service-up-version
           - npm run oc-ng-common-component-up-version
           - git commit -a -m "Auto increment prerelease version [skip ci]"
           - git push
