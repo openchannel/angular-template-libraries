@@ -23,7 +23,8 @@ definitions:
         name: Push library to repository
         script:
           - npm install --quiet
-          - npm run build-prod
+          - npm run build-prod oc-ng-common-service
+          - npm run build-prod oc-ng-common-component
           - npm run oc-ng-common-service-pack
           - npm run oc-ng-common-component-pack
           - pipe: cloudsmith-io/publish:0.3.0
