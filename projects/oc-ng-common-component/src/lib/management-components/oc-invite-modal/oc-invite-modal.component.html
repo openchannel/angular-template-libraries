@@ -1,0 +1,20 @@
+<div class="invite-modal">
+    <div class="invite-modal__header header">
+        <h3 class="invite-modal__header-heading">{{this.modalData.modalTitle}}</h3>
+        <svg-icon class="invite-modal__header-close-icon" src="assets/oc-ng-common-component/close-icon.svg" (click)="dismiss()"></svg-icon>
+    </div>
+    <div modalContent class="invite-modal__modal-body">
+        <oc-form [formJsonData]="formConfig"
+                 [showButton]="false"
+                 (createdForm)="setCreatedForm($event)"
+                 (formDataUpdated)="setDataFromForm($event)"></oc-form>
+        <div class="invite-modal__button-container">
+            <oc-button type="secondary" text="Cancel" (click)="dismiss()" class="invite-modal__button"></oc-button>
+            <oc-button type="primary" class="invite-modal__button"
+                       [text]="this.modalData.successButtonText"
+                       [process]="inProcess"
+                       (click)="onClickConfirmButton()"></oc-button>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,66 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.invite-modal {
+  @include modal-body($white, $info);
+  display: flex;
+  flex-direction: column;
+  &__header {
+    align-items: flex-start;
+    border-bottom: 1px solid $info;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 3rem;
+    @include media-breakpoint-sm {
+      padding: 2rem;
+    }
+    &-heading {
+      margin-bottom: 0;
+      text-align: center;
+      width: 100%;
+      @include media-breakpoint-sm {
+        padding-left: 2rem;
+        font-size: 18px;
+        line-height: 28px;
+      }
+    }
+    &-close-icon {
+      cursor: pointer;
+      fill: $black;
+      outline: none;
+      width: 16px;
+      margin-top: 2px;
+
+      svg {
+        display: block;
+      }
+    }
+  }
+
+  &__modal-body {
+    padding: 2rem 3.5rem 5rem;
+    @include media-breakpoint-sm {
+      padding: 0 2rem 4rem 2rem;
+    }
+  }
+
+  &__button {
+    @include media-breakpoint-sm {
+      width: 100%;
+      &:last-child {
+        margin-top: 2rem;
+      }
+    }
+    &-container {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      margin-top: 4rem;
+      width: 100%;
+      @include media-breakpoint-sm {
+        flex-direction: column;
+      }
+    }
+  }
+}

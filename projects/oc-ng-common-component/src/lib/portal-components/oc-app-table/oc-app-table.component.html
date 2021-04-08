@@ -1,0 +1,182 @@
+<div class="oc-table-container">
+    <div class="oc-table-container__overlay"></div>
+    <div class="oc-table-wrapper">
+        <table class="oc-table"
+               [infiniteScrollThrottle]="50"
+               (scrolled)="onScrollDown()"
+               infiniteScroll
+               aria-describedby="App listing table">
+            <thead class="oc-table__head">
+                <tr>
+                    <th class="oc-table__th oc-table__placeholder" scope="col"></th>
+                    <th class="oc-table__th oc-table__name" scope="col" (click)="sortAppsBy('name')">Name
+                        <img [src]="sortingObjects[0].ascending ? ascendingSortIcon ? ascendingSortIcon:
+                             descendingSortIcon : descendingSortIcon"
+                             *ngIf="ascendingSortIcon || descendingSortIcon"
+                             [class.oc-table__icon-up]="!ascendingSortIcon && sortingObjects[0].ascending"
+                             alt="icon" class="oc-table__icon-down">
+                        <svg-icon src="assets/oc-ng-common-component/select-down.svg"
+                                  *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[0].ascending"></svg-icon>
+                        <svg-icon src="assets/oc-ng-common-component/select-up.svg"
+                                  *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[0].ascending"></svg-icon>
+                    </th>
+                    <th class="oc-table__th oc-table__summary" scope="col">Summary</th>
+                    <th class="oc-table__th oc-table__data" scope="col" (click)="sortAppsBy('created')">Created
+                        <img [src]="sortingObjects[1].ascending ? ascendingSortIcon ? ascendingSortIcon
+                             : descendingSortIcon : descendingSortIcon"
+                             *ngIf="ascendingSortIcon || descendingSortIcon"
+                             [class.oc-table__icon-up]="!ascendingSortIcon && sortingObjects[1].ascending"
+                             alt="icon" class="oc-table__icon-down">
+                        <svg-icon src="assets/oc-ng-common-component/select-down.svg"
+                                  *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[1].ascending"></svg-icon>
+                        <svg-icon src="assets/oc-ng-common-component/select-up.svg"
+                                  *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[1].ascending"></svg-icon>
+                    </th>
+                    <th class="oc-table__th oc-table__status" scope="col" (click)="sortAppsBy('status')">Status
+                        <img [src]="sortingObjects[2].ascending ? ascendingSortIcon ? ascendingSortIcon
+                             : descendingSortIcon : descendingSortIcon"
+                             *ngIf="ascendingSortIcon || descendingSortIcon"
+                             [class.oc-table__icon-up]="!ascendingSortIcon && sortingObjects[2].ascending"
+                             alt="icon" class="oc-table__icon-down">
+                        <svg-icon src="assets/oc-ng-common-component/select-down.svg"
+                                  *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[2].ascending"></svg-icon>
+                        <svg-icon src="assets/oc-ng-common-component/select-up.svg"
+                                  *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[2].ascending"></svg-icon>
+                    </th>
+                    <th class="oc-table__th oc-table__action" scope="col"></th>
+                    <th class="oc-table__th oc-table__placeholder" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-template [ngForOf]="properties.data.list" let-app ngFor let-i="index">
+                    <tr>
+                        <td class="oc-table__td_blank"></td>
+                        <td class="oc-table__td oc-table__td_flex">
+                            <img class="oc-table__app-icon"
+                                 [src]="app.customData.icon ? app.customData.icon : defaultAppIcon" alt="">
+                            <div class="oc-table__td-col">
+                                <h6 class="oc-table__app-name"
+                                    (click)="action('EDIT', app.appId, app.version, false)">{{app.name}}</h6>
+                                <small class="oc-table__app-version"> v {{app.version}}</small>
+                            </div>
+                        </td>
+                        <td class="oc-table__td">
+                            <span class="oc-table__text-wrapper oc-table__summary-text">{{app.customData.summary ? app.customData.summary : '' | replaceHtmlTags}}</span>
+                        </td>
+                        <td class="oc-table__td">
+                            <span class="oc-table__text-wrapper">{{app.created | date:'M/d/yyyy'}}</span>
+                        </td>
+                        <td class="oc-table__td">
+                            <small *ngIf="app.status.reason">
+                                <span class="oc-table__text-wrapper oc-table__indicator"
+                                      [ngClass]="app.status.value ? statusColor(app.status.value) : ''"></span>
+                                <span [ngbPopover]="popContent"
+                                      class="oc-table__text-wrapper oc-table__text-status" placement="bottom"
+                                      popoverClass="popover oc-shadow-sm oc-bg-white oc-rounded"
+                                      popoverTitle="Status Change Reason"
+                                      triggers="hover">
+                                      {{app.status.value === 'inDevelopment' ? 'Draft' : app.status.value | camelcase}}</span>
+                            </small>
+                            <ng-template #popContent>{{ app.status.reason }}</ng-template>
+                            <small *ngIf="!app.status.reason">
+                                <span class="oc-table__text-wrapper oc-table__indicator"
+                                      [ngClass]="app.status.value ? statusColor(app.status.value) : ''"></span>
+                                <span class="oc-table__text-wrapper oc-table__text-status">
+                                      {{app.status.value === 'inDevelopment' ? 'Draft'
+                                        : app.status.value | camelcase}}</span>
+                            </small>
+                        </td>
+                        <td class="oc-table__td">
+                            <ng-container [ngTemplateOutletContext]="{ $implicit: {data: app, child: false, index: i} }"
+                                          [ngTemplateOutlet]="appMenuTemplate">
+                            </ng-container>
+                        </td>
+                        <td class="oc-table__td_blank"></td>
+                    </tr>
+                    <ng-container *ngIf="app.children && app.children.length > 0">
+                        <tr *ngFor="let child of app?.children; let i = index">
+                            <td class="oc-table__td oc-table__td_blank"></td>
+                            <td class="oc-table__td oc-table__td_flex">
+                                <img class="oc-table__app-icon oc-table__app-icon_padded"
+                                     alt="icon"
+                                     src="assets/oc-ng-common-component/line-arrow-down.svg"
+                                     *ngIf="i === 0">
+                                <span class="oc-table__text-wrapper oc-table__text-wrapper_blank" *ngIf="i > 0"></span>
+                                <img [src]="child.customData.icon ? child.customData.icon : defaultAppIcon" alt=""
+                                     class="oc-table__app-icon">
+                                <div class="oc-table__td-col">
+                                    <h6 class="oc-table__app-name"
+                                        (click)="action('EDIT', child.appId, child.version, true)">{{child.name}}</h6>
+                                    <small class="oc-table__app-version">v {{child.version}}</small>
+                                </div>
+                            </td>
+                            <td class="oc-table__td">
+                                <span class="oc-table__text-wrapper oc-table__summary-text">{{child.customData.summary ? child.customData.summary : '' | replaceHtmlTags}}</span>
+                            </td>
+                            <td class="oc-table__td">
+                                <span class="oc-table__text-wrapper">{{child.created | date:'M/d/yyyy'}}</span>
+                            </td>
+                            <td class="oc-table__td">
+                                <small *ngIf="child.status.reason">
+                                    <span class="oc-table__text-wrapper oc-table__indicator"
+                                          [ngClass]="child.status.value ? statusColor(app.status.value) : ''"></span>
+                                    <span [ngbPopover]="popContent"
+                                          class="oc-table__text-wrapper oc-table__text-status" placement="bottom"
+                                          popoverClass="popover oc-shadow-sm oc-bg-white oc-rounded"
+                                          popoverTitle="Status Change Reason"
+                                          triggers="hover">
+                                          {{child.status.value === 'inDevelopment' ? 'Draft'
+                                            : child.status.value | camelcase}}</span>
+                                </small>
+                                <ng-template #popContent>{{ child.status.reason }}</ng-template>
+                                <small *ngIf="!child.status.reason">
+                                    <span class="oc-table__text-wrapper oc-table__indicator"
+                                          [ngClass]="child.status.value ? statusColor(child.status.value) : ''"></span>
+                                    <span class="oc-table__text-wrapper oc-table__text-status">
+                                          {{child.status.value === 'inDevelopment' ? 'Draft'
+                                            : child.status.value | camelcase}}</span>
+                                </small>
+                            </td>
+                            <td class="oc-table__td">
+                                <ng-container [ngTemplateOutletContext]="{ $implicit: {data: child, child: true, index: i} }"
+                                              [ngTemplateOutlet]="appMenuTemplate"></ng-container>
+                            </td>
+                            <td class="oc-table__td oc-table__td_blank"></td>
+                        </tr>
+                    </ng-container>
+                </ng-template>
+                <tr *ngIf="!properties.data.list || properties.data.list.length == 0">
+                    <td class="oc-table__td oc-text-center" colspan="7">
+                        <span class="oc-table__text-wrapper">No Applications Found</span>
+                    </td>
+                </tr>
+                <tr *ngIf="properties.data.list.length > 0">
+                    <td class="oc-table__td" colspan="7">
+                        <span class="oc-table__text-wrapper"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ng-template #appMenuTemplate let-app>
+    <div class="oc-table__dropdown">
+        <div ngbDropdown
+             [placement]="app?.index && properties.data.list.length > 5 &&
+             app?.index >= properties.data.list.length - 2 ?
+             'top-right': 'bottom-right top-right'">
+            <img class="oc-table__dropdown-dots" [src]="menuUrl" alt="more-icon" ngbDropdownToggle>
+            <div ngbDropdownMenu>
+                <ng-container *ngFor="let menuAction of properties.options">
+                    <button *ngIf="needToShowItem(menuAction, app.data?.status.value, app.data?.status.modifiedBy)"
+                            (click)="action(menuAction, app.data?.appId, app.data?.version, app.child)"
+                            ngbDropdownItem
+                            class="menu" [ngClass]="'menu-' + menuAction | lowercase">
+                        {{menuAction | titlecase}}
+                    </button>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</ng-template>

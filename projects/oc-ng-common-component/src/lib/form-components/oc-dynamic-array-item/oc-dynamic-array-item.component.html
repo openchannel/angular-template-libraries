@@ -1,0 +1,27 @@
+<div class="form-card">
+  <div class="form-card__header">
+    <h3 class="form-card__header-text">{{fieldLabelId ? formFieldsData[fieldLabelId] : 'Item ' + (index + 1)}}</h3>
+    <div class="form-card__icons-handler">
+      <svg-icon id="editIconBtn" class="form-card__icon"
+                src="assets/oc-ng-common-component/edit.svg"
+                (click)="editFieldsData()"></svg-icon>
+      <svg-icon id="deleteIconBtn" class="form-card__icon"
+                src="assets/oc-ng-common-component/trash-icon.svg"
+                (click)="deleteCurrentItem()"></svg-icon>
+    </div>
+  </div>
+  <div class="form-card__body">
+    <div class="form-card__body-field" *ngFor="let field of formFieldsData | keyvalue; trackBy: trackByFieldKey">
+      <div class="form-card__body-field-title">
+        <oc-title [title]="field.key"
+                  [customStyle]="{fontSize: '14px'}"></oc-title>
+      </div>
+      <div class="form-card__body-field-content" id="fieldValue">
+        <oc-dynamic-field-array *ngIf="getFieldData(field.value) === 'object' && getSubFieldsOfItem(field.key.toString())"
+                                [dfaFormArray]="dfaForm.get(field.key.toString())"
+                                [fieldDefinitionData]="getSubFieldsOfItem(field.key.toString())"></oc-dynamic-field-array>
+        <span *ngIf="getFieldData(field.value) !== 'object'">{{getFieldData(field.value)}}</span>
+      </div>
+    </div>
+  </div>
+</div>

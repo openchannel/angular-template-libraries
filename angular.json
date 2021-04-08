@@ -3,38 +3,42 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "oc-ng-common-service": {
+    "oc-ng-common-component": {
       "projectType": "library",
-      "root": "oc-common-service/projects/oc-ng-common-service",
-      "sourceRoot": "oc-common-service/projects/oc-ng-common-service/src",
-      "prefix": "lib",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "projects/oc-ng-common-component/src",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "oc-common-service/projects/oc-ng-common-service/tsconfig.lib.json",
-            "project": "oc-common-service/projects/oc-ng-common-service/ng-package.json"
+            "tsConfig": "projects/oc-ng-common-component/tsconfig.lib.json",
+            "project": "projects/oc-ng-common-component/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "oc-common-service/projects/oc-ng-common-service/tsconfig.lib.prod.json"
+              "tsConfig": "projects/oc-ng-common-component/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-builders/jest:run",
           "options": {
-            "main": "oc-common-service/projects/oc-ng-common-service/src/test.ts",
-            "tsConfig": "oc-common-service/projects/oc-ng-common-service/tsconfig.spec.json",
-            "karmaConfig": "oc-common-service/projects/oc-ng-common-service/karma.conf.js"
+            "jestConfig": "projects/oc-ng-common-component/jest.config.js",
+            "tsConfig": "projects/oc-ng-common-component/tsconfig.spec.json",
+            "setupFile": "projects/oc-ng-common-component/src/test-setup.ts"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "oc-common-service/projects/oc-ng-common-service/tsconfig.lib.json",
-              "oc-common-service/projects/oc-ng-common-service/tsconfig.spec.json"
+              "projects/oc-ng-common-component/tsconfig.lib.json",
+              "projects/oc-ng-common-component/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -43,42 +47,38 @@
         }
       }
     },
-    "oc-ng-common-component": {
+    "oc-ng-common-service": {
       "projectType": "library",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "oc-common-components/projects/oc-ng-common-components",
-      "sourceRoot": "oc-common-components/projects/oc-ng-common-component/src",
+      "root": "projects/oc-ng-common-service",
+      "sourceRoot": "projects/oc-ng-common-service/src",
+      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "oc-common-components/projects/oc-ng-common-component/tsconfig.lib.json",
-            "project": "oc-common-components/projects/oc-ng-common-component/ng-package.json"
+            "tsConfig": "projects/oc-ng-common-service/tsconfig.lib.json",
+            "project": "projects/oc-ng-common-service/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "oc-common-components/projects/oc-ng-common-component/tsconfig.lib.prod.json"
+              "tsConfig": "projects/oc-ng-common-service/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
-          "builder": "@angular-builders/jest:run",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "jestConfig": "oc-common-components/projects/oc-ng-common-component/jest.config.js",
-            "tsConfig": "oc-common-components/projects/oc-ng-common-component/tsconfig.spec.json",
-            "setupFile": "oc-common-components/projects/oc-ng-common-component/src/test-setup.ts"
+            "main": "projects/oc-ng-common-service/src/test.ts",
+            "tsConfig": "projects/oc-ng-common-service/tsconfig.spec.json",
+            "karmaConfig": "projects/oc-ng-common-service/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "oc-common-components/projects/oc-ng-common-component/tsconfig.lib.json",
-              "oc-common-components/projects/oc-ng-common-component/tsconfig.spec.json"
+              "projects/oc-ng-common-service/tsconfig.lib.json",
+              "projects/oc-ng-common-service/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
