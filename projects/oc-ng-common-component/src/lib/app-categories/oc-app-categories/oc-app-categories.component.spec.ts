@@ -1,23 +1,21 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {OcAppCategoriesComponent} from './oc-app-categories.component';
-import {AppCategoryDetail} from 'oc-ng-common-service';
 import {By} from '@angular/platform-browser';
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {RouterTestingModule} from '@angular/router/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { Component, Directive, Input, NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { OwlOptions } from 'ngx-owl-carousel-o/lib/models/owl-options.model';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import {AppCategoryDetail} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-category-model';
 
 @Component({
   template: '',
   selector: 'fa-icon'
 })
 export class FaIconMockComponent {
-  @Input() icon: IconProp;
+  @Input() icon: string;
 }
 @Component({
   template: ''

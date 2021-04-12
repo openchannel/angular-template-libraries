@@ -3,7 +3,7 @@ export interface ChartStatisticModel {
   layout: ChartLayoutTypeModel.standard;
   data: ChartStatisticDataModel;
   fields: ChartStatisticFiledModel [];
-  periods: ChartStatisticPeriodModel [];
+  periods: ChartStatisticParameterModel [];
 }
 
 export interface ChartStatisticDataModel {
@@ -15,12 +15,9 @@ export interface ChartStatisticFiledModel extends ChartStatisticParameterModel {
   icon?: string;
 }
 
-export interface ChartStatisticPeriodModel extends ChartStatisticParameterModel {
-}
-
 export interface ChartOptionsChange {
   field: ChartStatisticFiledModel;
-  period: ChartStatisticPeriodModel;
+  period: ChartStatisticParameterModel;
 }
 
 export interface ChartStatisticParameterModel {

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ComponentsDropdownModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/components-basic.model';
+import {DropdownModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/components-basic.model';
 
 @Component({
   selector: 'oc-dropdown-button',
@@ -9,16 +9,16 @@ import {ComponentsDropdownModel} from 'oc-ng-common-component/src/lib/common-com
 export class OcDropdownButtonComponent implements OnInit {
 
   @Output()
-  selectedChange: EventEmitter<ComponentsDropdownModel<any>> = new EventEmitter<ComponentsDropdownModel<any>>();
+  selectedChange: EventEmitter<DropdownModel<any>> = new EventEmitter<DropdownModel<any>>();
 
   @Input()
-  selected: ComponentsDropdownModel<any>;
+  selected: DropdownModel<any>;
 
   @Input()
   title: string = 'Sort by';
 
   @Input()
-  options: ComponentsDropdownModel<any>[];
+  options: DropdownModel<any>[];
 
   minWidthModel = {};
 
@@ -32,7 +32,7 @@ export class OcDropdownButtonComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSelect(selected: ComponentsDropdownModel<any>) {
+  onSelect(selected: DropdownModel<any>) {
     this.selected = selected;
     this.selectedChange.emit(selected);
   }

@@ -2,11 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpRequestService} from './http-request-services';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {
-  ChartStatisticDataModel,
-  ChartStatisticPeriodModel
-} from '../model/components/oc-chart.model';
 import {OcHttpParams} from '../model/api/http-params-encoder-model';
+import {
+  ChartStatisticDataModelResponse,
+  ChartStatisticParameterModelResponse
+} from '../model/components/frontend.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class ChartService {
   }
 
   getTimeSeries(period: string, fields: string, dateStartMS: number, dateEndMS: number, appId?: string)
-      : Observable<ChartStatisticDataModel> {
+      : Observable<ChartStatisticDataModelResponse> {
 
     const query = appId ? JSON.stringify({appId}) : '';
 
@@ -53,7 +53,7 @@ export class ChartService {
     );
   }
 
-  getDateStartByCurrentPeriod(dateEnd: Date, period: ChartStatisticPeriodModel): Date {
+  getDateStartByCurrentPeriod(dateEnd: Date, period: ChartStatisticParameterModelResponse): Date {
     const dateStart = new Date(dateEnd);
     if (period?.id === 'month') {
       dateStart.setFullYear(dateEnd.getFullYear() - 1);

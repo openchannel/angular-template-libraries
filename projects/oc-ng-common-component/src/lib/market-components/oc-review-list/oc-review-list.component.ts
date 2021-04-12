@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import {OCReviewDetails} from 'oc-ng-common-service';
+import {OCReviewDetails} from 'oc-ng-common-component/src/lib/common-components/interfaces/oc-review-details-model';
 
 @Component({
   selector: 'oc-review-list',

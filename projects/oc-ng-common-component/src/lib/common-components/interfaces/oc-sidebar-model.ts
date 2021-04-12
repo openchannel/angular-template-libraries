@@ -1,4 +1,4 @@
-import {SidebarValue} from './frontend.model';
+import {SidebarValue} from './components-basic.model';
 
 export class OcSidebarSelectModel {
     parent: SidebarValue;

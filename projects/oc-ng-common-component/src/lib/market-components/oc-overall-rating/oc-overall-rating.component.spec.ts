@@ -1,10 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {OcOverallRatingComponent} from './oc-overall-rating.component';
-import { OcLabelComponent } from '../oc-label/oc-label.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { OverallRatingSummary } from 'oc-ng-common-service';
 import { By } from '@angular/platform-browser';
+import {OcLabelComponent} from 'oc-ng-common-component/src/lib/common-components';
 
 describe('OcOverallRatingComponent', () => {
   let component: OcOverallRatingComponent;
