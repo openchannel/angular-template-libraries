@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DropdownModel} from 'oc-ng-common-service';
+import {ComponentsDropdownModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/components-basic.model';
 
 @Component({
   selector: 'oc-dropdown',
@@ -9,23 +9,23 @@ import {DropdownModel} from 'oc-ng-common-service';
 export class OcDropdownComponent implements OnInit {
 
   @Output()
-  selectedChange: EventEmitter<DropdownModel<any>> = new EventEmitter<DropdownModel<any>>();
+  selectedChange: EventEmitter<ComponentsDropdownModel<any>> = new EventEmitter<ComponentsDropdownModel<any>>();
 
   @Input()
-  selected: DropdownModel<any>;
+  selected: ComponentsDropdownModel<any>;
 
   @Input()
   title: string = 'Sort by';
 
   @Input()
-  options: DropdownModel<any>[];
+  options: ComponentsDropdownModel<any>[];
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onSelect(selected: DropdownModel<any>) {
+  onSelect(selected: ComponentsDropdownModel<any>) {
     this.selected = selected;
     this.selectedChange.emit(selected);
   }

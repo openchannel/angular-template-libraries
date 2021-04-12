@@ -10,16 +10,14 @@ import {
   ViewChild
 } from '@angular/core';
 import {SafeUrl} from '@angular/platform-browser';
-import {
-  ChartOptionsChange,
-  ChartStatisticFiledModel,
-  ChartStatisticModel,
-  ChartStatisticParameterModel,
-  ChartStatisticPeriodModel,
-  DropdownModel,
-} from 'oc-ng-common-service';
-
 import {normalizeCommonJSImport} from '../utils/normalizeCommonJSImport';
+import {ComponentsDropdownModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/components-basic.model';
+import {
+  ComponentChartOptions,
+  ComponentChartStatisticParameterModel,
+  ComponentsChartStatisticFiledModel,
+  ComponentsChartStatisticModel
+} from 'oc-ng-common-component/src/lib/common-components/interfaces/chart.model';
 
 const importChart = normalizeCommonJSImport(
     import('chart.js'),
@@ -54,11 +52,11 @@ export class OcChartComponent implements OnChanges, OnInit {
   /** Min width for the dropdown */
   @Input() minDropdownWidth: string;
   /** Main model for building chart with buttons and dropdown */
-  @Input() chartData: ChartStatisticModel;
-  @Output() changeChartOptions: EventEmitter<ChartOptionsChange> = new EventEmitter<ChartOptionsChange>();
+  @Input() chartData: ComponentsChartStatisticModel;
+  @Output() changeChartOptions: EventEmitter<ComponentChartOptions> = new EventEmitter<ComponentChartOptions>();
 
-  dropdownTypes: DropdownModel<ChartStatisticFiledModel>[];
-  dropdownSelectedType: DropdownModel<ChartStatisticFiledModel>;
+  dropdownTypes: ComponentsDropdownModel<ComponentsChartStatisticFiledModel>[];
+  dropdownSelectedType: ComponentsDropdownModel<ComponentsChartStatisticFiledModel>;
   context: CanvasRenderingContext2D;
 
   private chart: any;
@@ -204,12 +202,12 @@ export class OcChartComponent implements OnChanges, OnInit {
     return label;
   }
 
-  updateChartPeriod(activePeriod: ChartStatisticPeriodModel): void {
+  updateChartPeriod(activePeriod: ComponentChartStatisticParameterModel): void {
     this.setNewActiveParameter(this.chartData?.periods, activePeriod.id);
     this.updateChartData();
   }
 
-  updateChartFiled(activeFiled: DropdownModel<ChartStatisticFiledModel>): void {
+  updateChartFiled(activeFiled: ComponentsDropdownModel<ComponentsChartStatisticFiledModel>): void {
     this.setNewActiveParameter(this.chartData?.fields, activeFiled.value.id);
     this.updateChartData();
   }
@@ -226,7 +224,7 @@ export class OcChartComponent implements OnChanges, OnInit {
     this.changeChartOptions.emit({field, period});
   }
 
-  private setNewActiveParameter(parameters: ChartStatisticParameterModel[], newActiveElementId: string): void  {
+  private setNewActiveParameter(parameters: ComponentChartStatisticParameterModel[], newActiveElementId: string): void  {
     if (parameters) {
       parameters.forEach(parameter => {
         if (parameter) {
@@ -238,7 +236,7 @@ export class OcChartComponent implements OnChanges, OnInit {
 
   private updateDropdownValues() {
     this.dropdownTypes = this.chartData?.fields ? this.chartData.fields
-      .map(field => new DropdownModel(field.label, field)) : [];
+      .map(field => new ComponentsDropdownModel(field.label, field)) : [];
     this.dropdownSelectedType = this.dropdownTypes.filter(field => field.value.active)[0];
   }
 
