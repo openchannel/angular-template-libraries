@@ -48,3 +48,9 @@ export interface SidebarValue extends FilterValue {
   expanded?: boolean;
 }
 
+export interface ComponentsPage<T> {
+  pages: number;
+  count: number;
+  pageNumber: number;
+  list: T[];
+}

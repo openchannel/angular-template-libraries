@@ -5,7 +5,7 @@ import {map} from 'rxjs/operators';
 import {OcHttpParams} from '../model/api/http-params-encoder-model';
 import {
   ChartStatisticDataModelResponse,
-  ChartStatisticParameterModelResponse
+  ChartStatisticPeriodModelResponse
 } from '../model/components/frontend.model';
 
 @Injectable({
@@ -34,17 +34,21 @@ export class ChartService {
       map(chartResponse => {
         if (chartResponse) {
           let labelsDataX: string[];
+          let tabularLabels: string[];
           if (period === 'month') {
             labelsDataX = chartResponse.map(chart => new Date(chart[0])
               .toLocaleDateString('default', {month: 'short'}));
+            tabularLabels = chartResponse.map(chart => new Date(chart[0])
+              .toLocaleDateString('default', {month: 'long'}));
           } else {
-            labelsDataX = chartResponse.map(chart => new Date(chart[0])).map(date => {
+            tabularLabels = labelsDataX = chartResponse.map(chart => new Date(chart[0])).map(date => {
               return `${date.toLocaleDateString('default', {month: 'short'})} ${date.getDate()}`;
             });
           }
           return {
             labelsX: labelsDataX,
-            labelsY: chartResponse.map(chart => chart[1])
+            labelsY: chartResponse.map(chart => chart[1]),
+            tabularLabels
           };
         } else {
           return null;
@@ -53,7 +57,7 @@ export class ChartService {
     );
   }
 
-  getDateStartByCurrentPeriod(dateEnd: Date, period: ChartStatisticParameterModelResponse): Date {
+  getDateStartByCurrentPeriod(dateEnd: Date, period: ChartStatisticPeriodModelResponse): Date {
     const dateStart = new Date(dateEnd);
     if (period?.id === 'month') {
       dateStart.setFullYear(dateEnd.getFullYear() - 1);

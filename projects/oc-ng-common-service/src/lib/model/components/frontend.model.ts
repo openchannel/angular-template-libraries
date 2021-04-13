@@ -19,10 +19,12 @@ export interface OCReviewDetailsResponse {
 export interface ChartStatisticDataModelResponse {
     labelsY: number [];
     labelsX: string[] | number [];
+    tabularLabels?: string [];
 }
 
-export interface ChartStatisticParameterModelResponse {
+export interface ChartStatisticPeriodModelResponse {
     id: string;
     label: string;
     active?: boolean;
+    tabularLabel?: string;
 }

@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ModalInviteUserModel, ModalUpdateUserModel} from 'oc-ng-common-service';
 import {FormGroup} from '@angular/forms';
 import {isString, merge} from 'lodash';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {ModalInviteUserModel, ModalUpdateUserModel} from '../../common-components/interfaces/oc-modal.model';
 
 @Component({
   selector: 'oc-invite-modal',
