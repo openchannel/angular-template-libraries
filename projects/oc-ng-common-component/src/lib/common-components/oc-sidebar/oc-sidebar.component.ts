@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {OcSidebarSelectModel, SidebarValue} from 'oc-ng-common-service';
+import {OcSidebarSelectModel} from '../interfaces/oc-sidebar-model';
+import {SidebarValue} from '../interfaces/components-basic.model';
 
 @Component({
   selector: 'oc-sidebar',

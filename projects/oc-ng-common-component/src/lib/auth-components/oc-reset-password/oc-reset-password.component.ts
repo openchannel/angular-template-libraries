@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {UserResetPassword} from 'oc-ng-common-service';
+import {ComponentsUserResetPassword} from '../../common-components/interfaces/auth-types.model';
 
 @Component({
   selector: 'oc-reset-password',
@@ -12,7 +12,7 @@ export class OcResetPasswordComponent implements OnInit {
   @Input() process;
   @Input() loginUrl;
   @Input() signupUrl;
-  @Input() resetModel = new UserResetPassword();
+  @Input() resetModel = new ComponentsUserResetPassword();
   @Output() submit = new EventEmitter<any>();
 
   constructor() {
