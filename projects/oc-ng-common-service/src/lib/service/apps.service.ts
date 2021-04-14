@@ -3,7 +3,7 @@ import {HttpRequestService} from './http-request-services';
 import {Observable} from 'rxjs';
 import {Page} from '../model/api/page.model';
 import {
-    App,
+    AppResponse,
     AppStatusValue,
     CreateAppModel,
     PublishAppVersionModel
@@ -19,7 +19,7 @@ export class AppsService {
 
     constructor(private httpRequest: HttpRequestService) {}
 
-    searchApp(searchText: string, filter: string, fields: string[] = ['name']): Observable<Page<App>> {
+    searchApp(searchText: string, filter: string, fields: string[] = ['name']): Observable<Page<AppResponse>> {
         const mainUrl = `${this.APPS_URL}/textSearch`;
 
         let params = new OcHttpParams()
@@ -32,7 +32,7 @@ export class AppsService {
         return this.httpRequest.get(mainUrl, { params });
     }
 
-    getApps(pageNumber: number, limit: number, sort: any, query: any, isOwner: boolean = false): Observable<Page<App>> {
+    getApps(pageNumber: number, limit: number, sort: any, query: any, isOwner: boolean = false): Observable<Page<AppResponse>> {
         const params = new OcHttpParams()
           .append('sort', sort)
           .append('query', query)
@@ -43,11 +43,11 @@ export class AppsService {
         return this.httpRequest.get(this.APPS_URL, { params });
     }
 
-    getAppBySafeName(appSafeName: string): Observable<App> {
+    getAppBySafeName(appSafeName: string): Observable<AppResponse> {
         return this.httpRequest.get(`${this.APPS_URL}/bySafeName/${appSafeName}`);
     }
 
-    createApp(createAppRequest: CreateAppModel): Observable<App> {
+    createApp(createAppRequest: CreateAppModel): Observable<AppResponse> {
         return this.httpRequest.post(this.APPS_URL, createAppRequest);
     }
 
@@ -62,7 +62,7 @@ export class AppsService {
         return this.httpRequest.post(mainUrl, publishAppVersionModel);
     }
 
-    getAppById(id: string): Observable<App> {
+    getAppById(id: string): Observable<AppResponse> {
         return this.httpRequest.get(`${this.APPS_URL}/${id}`);
     }
 

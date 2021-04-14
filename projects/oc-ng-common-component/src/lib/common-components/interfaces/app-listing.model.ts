@@ -1,10 +1,10 @@
-/** Model for the App Listing component configuration */
-import {FullAppData} from '../api/app-data-model';
-import {Page} from '../api/page.model';
+import {FullAppData} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
+import {ComponentsPage} from 'oc-ng-common-component/src/lib/common-components/interfaces/components-basic.model';
 
+/** Model for the App Listing component configuration */
 export interface AppListing {
   layout: 'table';
-  data: Page<FullAppData>;
+  data: ComponentsPage<FullAppData>;
   options: AppListingOptions [];
   previewTemplate?: string;
 }

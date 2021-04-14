@@ -1,7 +1,7 @@
-import { SafeResourceUrl } from '@angular/platform-browser';
-import {OwnershipModel} from './ownership.model';
+import {SafeResourceUrl} from '@angular/platform-browser';
+import {OwnershipModelResponse} from './ownership.model';
 
-export interface AppModel {
+export interface AppModelResponse {
   type: string;
   price: number;
   trial: number;
@@ -14,7 +14,7 @@ export interface AppModel {
   billingPeriodUnit?: any;
 }
 
-export interface Restrict {
+export interface RestrictResponse {
   own: {
     country: string[];
   };
@@ -26,41 +26,29 @@ export interface Restrict {
 export type AppStatusValue =
   'pending' | 'inReview' | 'inDevelopment' | 'approved' | 'suspended' | 'rejected';
 
-export interface AppStatus {
+export interface AppStatusResponse {
   value: AppStatusValue;
   lastUpdated: number;
   modifiedBy: string;
   reason: string;
 }
 
-export interface StatElement {
+export interface StatElementResponse {
   '90day': number;
   '30day': number;
   total: number;
 }
 
-export interface Statistics {
-  views: StatElement;
-  downloads: StatElement;
-  developerSales: StatElement;
-  totalSales: StatElement;
-  ownerships: StatElement;
-  reviews: StatElement;
+export interface StatisticsResponse {
+  views: StatElementResponse;
+  downloads: StatElementResponse;
+  developerSales: StatElementResponse;
+  totalSales: StatElementResponse;
+  ownerships: StatElementResponse;
+  reviews: StatElementResponse;
 }
 
-export interface CustomDataAppConfig {
-  icon: string;
-  logo: string;
-  summary: string;
-  description: string;
-  video: string;
-  images: string;
-  categories: string;
-  author: string;
-  gallery: string;
-}
-
-export interface GalleryItem {
+export interface GalleryItemResponse {
   title: string;
   description: string;
   image: string;
@@ -77,7 +65,7 @@ export interface CreateAppModel {
   name: string;
   type: string;
   customData?: any;
-  model?: AppModel[];
+  model?: AppModelResponse[];
   access?: string[];
 }
 
@@ -86,11 +74,11 @@ export interface PublishAppVersionModel {
   autoApprove?: boolean;
 }
 
-export interface Parent {
-  status: AppStatus;
+export interface ParentResponse {
+  status: AppStatusResponse;
 }
 
-export interface App {
+export interface AppResponse {
   appId: string;
   customData?: any;
   lastUpdated: Date | number;
@@ -98,81 +86,53 @@ export interface App {
   name: string;
   safeName: string[];
   developerId: string;
-  model: AppModel[];
+  model: AppModelResponse[];
   access?: string[];
-  restrict?: Restrict | {};
-  allow?: Restrict | {};
+  restrict?: RestrictResponse | {};
+  allow?: RestrictResponse | {};
   submittedDate: Date | number;
   created: Date | number;
   attributes?: any;
   rating: number;
   reviewCount: number;
-  status: AppStatus;
-  statistics: Statistics;
+  status: AppStatusResponse;
+  statistics: StatisticsResponse;
   isLive: boolean;
   type?: string;
 }
 
-export interface AppVersion extends App {
+export interface AppVersionResponse extends AppResponse {
   isLatestVersion?: boolean;
-  children?: FullAppData [];
-  parent?: Parent;
-  ownership?: OwnershipModel;
+  children?: FullAppDataResponse [];
+  parent?: ParentResponse;
+  ownership?: OwnershipModelResponse;
 }
 
-/**
- * Class used for mapping apps customData to proper fields.
- * If you need more fields just extend this class.
- *
- * @example
- * export class MyFullAppData extends FullAppData {
- *   myField: string;
- *
- *   constructor(appData: AppVersion, customDataConfig: CustomDataAppConfig) {
- *   super(appData, customDataConfig);
- *
- *   this.myField = appData.customData[customDataConfig.myField] || '';
- * }
- *
- * this.appService.getAppById('appId')
- *  .map((app: App) => new MyFullAppData(app, {icon: 'image1', myFiled: 'fieldNameInCustomData'}))
- */
-export class FullAppData implements AppVersion {
-  /**
-   * App fields
-   */
+export interface FullAppDataResponse {
   appId: string;
   customData?: any;
-  lastUpdated: number | Date;
-  version: number;
-  name: string;
-  safeName: string[];
-  developerId: string;
-  model: AppModel[];
+  lastUpdated?: number | Date;
+  version?: number;
+  name?: string;
+  safeName?: string[];
+  developerId?: string;
+  model?: AppModelResponse[];
   access?: string[];
-  restrict?: {} | Restrict;
-  allow?: {} | Restrict;
-  submittedDate: number | Date;
-  created: number | Date;
+  restrict?: {} | RestrictResponse;
+  allow?: {} | RestrictResponse;
+  submittedDate?: number | Date;
+  created?: number | Date;
   attributes?: any;
-  rating: number;
-  reviewCount: number;
-  status: AppStatus;
-  statistics: Statistics;
+  rating?: number;
+  reviewCount?: number;
+  status?: AppStatusResponse;
+  statistics?: StatisticsResponse;
   isLive: boolean;
   type?: string;
-
-  /**
-   * App version fields
-   */
   isLatestVersion?: boolean;
-  children?: FullAppData [];
-  parent?: Parent;
-  ownership?: OwnershipModel;
-
-  /**
-   * custom data fields mapped in constructor
-   */
+  children?: FullAppDataResponse [];
+  parent?: ParentResponse;
+  ownership?: OwnershipModelResponse;
   icon?: SafeResourceUrl | string;
   logo?: SafeResourceUrl | string;
   summary?: string;
@@ -181,53 +141,5 @@ export class FullAppData implements AppVersion {
   images?: SafeResourceUrl [] | string[];
   categories?: string [];
   author?: string;
-  gallery?: GalleryItem[];
-
-  /**
-   * Create a class with mapped customData to proper fields
-   *
-   * @example
-   * this.appService.getAppById('appId')
-   *  .map((app: App) => new FullAppData(app, {icon: 'image1'}))
-   *
-   * @param appData app data or appversion data from api response
-   * @param {CustomDataAppConfig} customDataConfig  config for customData fields name information
-   */
-  constructor(appData: AppVersion,
-              customDataConfig: CustomDataAppConfig) {
-    this.appId = appData.appId;
-    this.type = appData.type;
-    this.lastUpdated = new Date(appData.lastUpdated);
-    this.version = appData.version;
-    this.name = appData.name;
-    this.safeName = appData.safeName;
-    this.developerId = appData.developerId;
-    this.model = appData.model;
-    this.access = appData.access || [];
-    this.restrict = appData.restrict || null;
-    this.allow = appData.allow || null;
-    this.submittedDate = new Date(appData.submittedDate);
-    this.created = new Date(appData.created);
-    this.attributes = appData.attributes || null;
-    this.rating = appData.rating;
-    this.reviewCount = appData.reviewCount;
-    this.status = appData.status;
-    this.statistics = appData.statistics;
-    this.isLive = appData.isLive;
-    this.customData = appData.customData;
-    this.isLatestVersion = appData.isLatestVersion || null;
-    this.children = appData.children || [];
-    this.parent = appData.parent;
-    this.ownership = appData?.ownership;
-    // custom data mapping
-    this.icon = appData.customData[customDataConfig.icon] || '';
-    this.logo = appData.customData[customDataConfig.logo] || '';
-    this.summary = appData.customData[customDataConfig.summary] || '';
-    this.description = appData.customData[customDataConfig.description] || '';
-    this.video = appData.customData[customDataConfig.video] || '';
-    this.images = appData.customData[customDataConfig.images] || [];
-    this.categories = appData.customData[customDataConfig.categories] || [];
-    this.author = appData.customData[customDataConfig.author] || '';
-    this.gallery = appData.customData[customDataConfig.gallery] || [];
-  }
+  gallery?: GalleryItemResponse[];
 }

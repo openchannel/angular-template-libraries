@@ -28,3 +28,35 @@ export interface ChartStatisticPeriodModelResponse {
     active?: boolean;
     tabularLabel?: string;
 }
+
+export interface FilterValueResponse {
+    id: string;
+    label: string;
+    sort: string;
+    query: string;
+    description: string;
+    checked: boolean;
+}
+
+export interface FilterResponse {
+    id: string;
+    name: string;
+    description: string;
+    values: FilterValueResponse[];
+}
+
+export interface SortValueResponse {
+    id: string;
+    label: string;
+    sort: string;
+    customData?: any;
+    description: string;
+    checked: boolean;
+}
+
+export interface SortResponse {
+    id: string;
+    name: string;
+    description: string;
+    values: SortValueResponse[];
+}
