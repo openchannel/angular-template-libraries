@@ -1,13 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormGroup} from '@angular/forms';
 import {OcFormGenerator} from '../oc-form/oc-form-generator';
-import {AppTypeFieldModel} from 'oc-ng-common-service';
-
-export interface FormArrayItem {
-  new: boolean;
-  isEdit: boolean;
-  formData: any;
-}
+import {AppTypeFieldModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
+import {FormArrayItem} from 'oc-ng-common-component/src/lib/common-components/interfaces/components-basic.model';
 
 @Component({
   selector: 'oc-dynamic-field-array',

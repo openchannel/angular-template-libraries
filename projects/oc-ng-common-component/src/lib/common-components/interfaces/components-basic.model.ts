@@ -54,3 +54,9 @@ export interface ComponentsPage<T> {
   pageNumber: number;
   list: T[];
 }
+
+export interface FormArrayItem {
+  new: boolean;
+  isEdit: boolean;
+  formData: any;
+}
