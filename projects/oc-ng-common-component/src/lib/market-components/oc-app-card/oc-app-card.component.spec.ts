@@ -3,11 +3,11 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {OcAppCardComponent} from './oc-app-card.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, Input } from '@angular/core';
-import { StatElement } from 'oc-ng-common-service';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { PricePipe } from '../../common-components/pipe/price.pipe';
+import {StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
 
 @Component({
   selector: 'oc-rating',

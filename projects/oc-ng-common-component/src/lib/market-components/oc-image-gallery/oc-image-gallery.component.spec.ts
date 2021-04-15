@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OcImageGalleryComponent } from './oc-image-gallery.component';
-import { GalleryItem } from 'oc-ng-common-service';
 import { By } from '@angular/platform-browser';
-import { Component, SimpleChange } from '@angular/core';
+import { SimpleChange } from '@angular/core';
+import {GalleryItem} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
 
 describe('OcImageGalleryComponent', () => {
   let component: OcImageGalleryComponent;

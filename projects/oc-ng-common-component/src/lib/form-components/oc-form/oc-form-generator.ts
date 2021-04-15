@@ -1,9 +1,9 @@
 import {AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {AppTypeFieldModel} from 'oc-ng-common-service';
+import {AppFormField} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-form-model';
 
 export class OcFormGenerator {
 
-  static getFormByConfig(fieldsDefinitions: AppTypeFieldModel[]) {
+  static getFormByConfig(fieldsDefinitions: AppFormField[]) {
     const group = {};
     fieldsDefinitions.forEach(inputTemplate => {
       switch (inputTemplate?.type) {

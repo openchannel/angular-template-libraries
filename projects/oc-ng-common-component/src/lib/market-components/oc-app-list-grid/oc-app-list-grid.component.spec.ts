@@ -2,9 +2,9 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {OcAppListGridComponent} from './oc-app-list-grid.component';
 import { Component, Input } from '@angular/core';
-import { FullAppData, StatElement } from 'oc-ng-common-service';
-import { PricePipe } from '../pipe/price.pipe';
 import { By } from '@angular/platform-browser';
+import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
+import {PricePipe} from 'oc-ng-common-component/src/lib/common-components';
 
 @Component({
   template: '',

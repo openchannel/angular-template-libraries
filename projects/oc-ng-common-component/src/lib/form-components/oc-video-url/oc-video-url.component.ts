@@ -1,7 +1,5 @@
-import {Component, forwardRef, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, forwardRef, Input} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Subject} from 'rxjs';
-import {EmbedVideoService} from 'ngx-embed-video';
 
 @Component({
   selector: 'oc-video-url',

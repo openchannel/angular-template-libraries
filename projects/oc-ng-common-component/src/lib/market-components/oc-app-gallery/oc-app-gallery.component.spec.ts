@@ -2,12 +2,11 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {OcAppGalleryComponent} from './oc-app-gallery.component';
 import { Component, Input } from '@angular/core';
-import { FullAppData } from 'oc-ng-common-service';
 import { CommonModule, Location } from '@angular/common';
-import { StatElement } from 'oc-ng-common-service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
 
 @Component({
   selector: 'oc-app-card',

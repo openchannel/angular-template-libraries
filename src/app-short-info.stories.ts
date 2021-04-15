@@ -4,7 +4,7 @@ import {
   OcMarketComponentsModule
 } from 'oc-ng-common-component/src/lib/market-components';
 import {OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
-import {FullAppData} from 'oc-ng-common-service';
+import {FullAppData} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {

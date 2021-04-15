@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { AppModel, FullAppData } from 'oc-ng-common-service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import {AppModel, FullAppData} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
 
 @Component({
   selector: 'oc-app-short-info',

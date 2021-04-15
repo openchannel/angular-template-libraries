@@ -370,7 +370,6 @@ describe('OcFormComponent', () => {
         description: 'test',
         defaultValue: null,
         type: 'text',
-        required: null,
         attributes: {
           maxChars: 20,
           required: true,
@@ -385,7 +384,6 @@ describe('OcFormComponent', () => {
         description: '',
         defaultValue: 'user',
         type: 'dropdownList',
-        required: null,
         attributes: {required: true},
         options: ['admin', 'user', 'test'],
         subFieldDefinitions: null
@@ -396,7 +394,6 @@ describe('OcFormComponent', () => {
         description: '',
         defaultValue: null,
         type: 'richText',
-        required: null,
         attributes: {
           maxChars: 150,
           required: null,
@@ -411,7 +408,6 @@ describe('OcFormComponent', () => {
         description: 'skills',
         defaultValue: ['angular'],
         type: 'tags',
-        required: null,
         attributes: {
           minCount: 1,
           maxCount: 5,
@@ -429,8 +425,6 @@ describe('OcFormComponent', () => {
         defaultValue:	null,
         description:	'',
         id:	'test-number',
-        isOpen:	false,
-        isValid:	true,
         label:	'Test number',
         placeholder:	null,
         type:	'number'
@@ -443,8 +437,6 @@ describe('OcFormComponent', () => {
         defaultValue:	true,
         description:	'',
         id:	'test-checkbox',
-        isOpen:	false,
-        isValid:	true,
         label:	'Test Checkbox',
         placeholder:	null,
         type:	'checkbox'
@@ -457,9 +449,6 @@ describe('OcFormComponent', () => {
         defaultValue:	null,
         description:	'',
         id:	'test-email',
-        isOpen:	false,
-        isValid:	true,
-        deleteable:	false,
         label:	'Test email',
         placeholder:	'enter email',
         type:	'emailAddress'
@@ -472,9 +461,6 @@ describe('OcFormComponent', () => {
         defaultValue:	null,
         description:	null,
         id:	'test-url-component',
-        isOpen:	false,
-        isValid:	true,
-        deleteable:	false,
         label:	'Test URL component',
         placeholder:	'Enter your link here..',
         type:	'websiteUrl'
@@ -487,9 +473,6 @@ describe('OcFormComponent', () => {
         defaultValue:	null,
         description:	null,
         id:	'test-color-component',
-        isOpen:	false,
-        isValid:	true,
-        deleteable:	false,
         label:	'Test Color Component',
         placeholder:	'Choose your color',
         type:	'color'
@@ -505,9 +488,6 @@ describe('OcFormComponent', () => {
         defaultValue:	null,
         description:	null,
         id:	'test-boolean-tags',
-        isOpen:	false,
-        isValid:	true,
-        deleteable:	false,
         label:	'Test Boolean tags',
         placeholder:	null,
         type:	'booleanTags'
@@ -523,9 +503,6 @@ describe('OcFormComponent', () => {
         defaultValue:	[],
         description:	null,
         id:	'test-number-tags',
-        isOpen:	false,
-        isValid:	true,
-        deleteable:	false,
         label:	'Test number tags',
         placeholder:	null,
         type:	'numberTags'
@@ -538,9 +515,6 @@ describe('OcFormComponent', () => {
         defaultValue:	null,
         description:	null,
         id:	'test-date-picker',
-        isOpen:	false,
-        isValid:	true,
-        deleteable:	false,
         label:	'Test Date picker',
         placeholder:	null,
         type:	'date'
@@ -553,9 +527,6 @@ describe('OcFormComponent', () => {
         defaultValue:	1602489693553,
         description:	null,
         id:	'test-datetime-picker',
-        isOpen:	false,
-        isValid:	true,
-        deleteable:	false,
         label:	'Test date-time picker',
         placeholder:	null,
         type:	'datetime'
@@ -568,9 +539,6 @@ describe('OcFormComponent', () => {
         defaultValue:	'https://www.youtube.com/watch?v=DGQwd1_dpuc',
         description:	null,
         id:	'test-video-url-comp',
-        isOpen:	false,
-        isValid:	true,
-        deleteable:	false,
         label:	'Test videoUrl component',
         placeholder:	null,
         type:	'videoUrl'
@@ -586,9 +554,6 @@ describe('OcFormComponent', () => {
         defaultValue:	[],
         description:	null,
         id:	'multi-select-test',
-        isOpen:	false,
-        isValid:	true,
-        deleteable:	false,
         label:	'Multi Select test',
         placeholder:	null,
         type:	'multiselectList'
@@ -604,9 +569,6 @@ describe('OcFormComponent', () => {
         defaultValue:	[],
         description:	null,
         id:	'multi-select-test2',
-        isOpen:	false,
-        isValid:	true,
-        deleteable:	false,
         label:	'Multi Select test',
         placeholder:	null,
         type:	'multiselectList'
@@ -619,17 +581,13 @@ describe('OcFormComponent', () => {
           required:	true,
           rowLabel:	'field1'
         },
-        required: null,
-        rowLabel: null,
         category: 'CUSTOM',
         defaultValue: null,
         description: '',
         id: 'test-dynamic-field-array',
-        isOpen: false,
-        isValid: true,
         label: 'Test Dynamic field array',
         placeholder: null,
-        subFieldDefinitions: [
+        fields: [
           {
             attributes: {
               maxChars: null,
@@ -640,8 +598,6 @@ describe('OcFormComponent', () => {
             defaultValue: null,
             description: 'some description',
             id: 'field1',
-            isOpen: false,
-            isValid: true,
             label: 'field1',
             placeholder: 'write some text',
             type: 'text'
@@ -716,9 +672,6 @@ describe('OcFormComponent', () => {
         defaultValue:	[],
         description:	null,
         id:	'test-number-tags3',
-        isOpen:	false,
-        isValid:	true,
-        deleteable:	false,
         label:	'Test number tags',
         placeholder:	null,
         type:	'numberTags'

@@ -2,8 +2,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {OcRecommendedAppsComponent} from './oc-recommended-apps.component';
 import {Component, Input} from '@angular/core';
-import {FullAppData, StatElement} from 'oc-ng-common-service';
 import {By} from '@angular/platform-browser';
+import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
 
 @Component({
   selector: 'oc-app-card',

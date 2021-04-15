@@ -1,7 +1,7 @@
 import {moduleMetadata} from '@storybook/angular';
 import {OcChartComponent, OcCommonLibModule} from 'projects/oc-ng-common-component/src/public-api';
-import {ChartLayoutTypeModel} from 'oc-ng-common-service';
 import {sum} from 'lodash';
+import {ChartLayoutTypeModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/oc-chart.model';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {

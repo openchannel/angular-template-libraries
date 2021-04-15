@@ -1,5 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AppListing, AppListingOptions, AppListMenuAction } from 'oc-ng-common-service';
+import {
+  AppListing,
+  AppListingOptions,
+  AppListMenuAction
+} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-listing.model';
 
 export interface SortChosen {
   by: 'name' | 'created' | 'status';

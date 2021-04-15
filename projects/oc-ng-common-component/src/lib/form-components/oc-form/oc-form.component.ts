@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {AbstractControl, FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {OcFormGenerator} from './oc-form-generator';
-import {AppTypeFieldModel, TypeModel} from 'oc-ng-common-service';
+import {AppFormModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-form-model';
 
 @Component({
   selector: 'oc-form',
@@ -14,7 +14,7 @@ export class OcFormComponent implements OnInit, OnDestroy {
   /**
    * JSON with all form data to generate dynamic form
    */
-  @Input() formJsonData: TypeModel<AppTypeFieldModel>;
+  @Input() formJsonData: AppFormModel;
   /**
    * Set disable for button
    * when siblings form is invalid
