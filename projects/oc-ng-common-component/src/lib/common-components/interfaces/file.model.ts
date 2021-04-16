@@ -12,3 +12,5 @@ export class FileDetails {
   virusScan: any;
   isError: boolean;
 }
+
+export type FileType = ('singleFile' | 'singleImage' | 'privateSingleFile' | 'multiFile' | 'multiImage' | 'multiPrivateFile');

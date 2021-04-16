@@ -9,15 +9,13 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import {FileDetails, FileUploadDownloadService} from 'oc-ng-common-service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {base64ToFile, ImageCroppedEvent, ImageTransform} from 'ngx-image-cropper';
-import {HttpEventType, HttpResponse} from '@angular/common/http';
+import {HttpEventType, HttpResponse, HttpUploadProgressEvent} from '@angular/common/http';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {of, Subject, Subscription} from 'rxjs';
+import {Observable, of, Subject, Subscription} from 'rxjs';
 import {mergeMap, takeUntil} from 'rxjs/operators';
-
-export type FileType = ('singleFile' | 'singleImage' | 'privateSingleFile' | 'multiFile' | 'multiImage' | 'multiPrivateFile');
+import {FileDetails} from 'oc-ng-common-component/src/lib/common-components/interfaces/file.model';
 
 @Component({
   selector: 'oc-file-upload',
@@ -32,37 +30,43 @@ export type FileType = ('singleFile' | 'singleImage' | 'privateSingleFile' | 'mu
 export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   @ViewChild('fileDropRef', {static: false})
-  fileInputVar: ElementRef<any>;
-  cropperModalRef: any;
-
-  isUploadInProcess = false;
-
-  fileDetailArr: FileDetails[] = [];
-
-  @Input() fileUploadText = 'Drag & drop file here';
-
-  @Input() isMultiFile = false;
-
-  @Output() fileUpload = new EventEmitter<any>();
-
-  @Input() defaultFileIcon = 'assets/oc-ng-common-component/file_icon.svg';
-
-  @Input() fileType: FileType;
-  @Input() uploadIconUrl = 'assets/oc-ng-common-component/upload_icon.svg';
-
-  @Output() fileReset = new EventEmitter<any>();
-
-  @Input() customMsg;
-
-  @Output() customMsgChange = new EventEmitter<boolean>();
-
-  @Input() iconMsg;
-  @Output() iconMsgChange = new EventEmitter<boolean>();
 
   @Input()
   set value(val) {
     this.initValues(val);
   }
+
+  @Input() fileUploadText = 'Drag & drop file here';
+
+  @Input() isMultiFile = false;
+
+  @Input() defaultFileIcon = 'assets/oc-ng-common-component/file_icon.svg';
+
+  @Input() fileType: FileType;
+
+  @Input() uploadIconUrl = 'assets/oc-ng-common-component/upload_icon.svg';
+
+  @Input() customMsg;
+
+  @Input() iconMsg;
+
+  @Input() fileUploadRequest:
+    (file: FormData, isPrivate: boolean, hash?: string[]) => Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent>;
+
+  @Input() fileDetailsRequest: (fileId) => Observable<FileDetails>;
+
+  @Output() customMsgChange = new EventEmitter<boolean>();
+
+  @Output() fileUpload = new EventEmitter<any>();
+
+  @Output() fileReset = new EventEmitter<any>();
+
+  @Output() iconMsgChange = new EventEmitter<boolean>();
+
+  cropperModalRef: any;
+  isUploadInProcess = false;
+  fileDetailArr: FileDetails[] = [];
+  fileInputVar: ElementRef<any>;
 
   isImageCropped = false;
   croppedImage: any = '';
@@ -123,8 +127,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
   croppedImageHeight: number;
 
 
-  constructor(private modalService: NgbModal,
-              private uploadFileService: FileUploadDownloadService) {
+  constructor(private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -162,7 +165,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     this.fileDetailArr.push(lastFileDetail);
     const formData: FormData = new FormData();
     formData.append('file', file, this.fileName);
-    this.uploadFileReq = this.uploadFileService.uploadToOpenChannel(formData, this.isFileTypePrivate(), this.hash)
+    this.uploadFileReq = this.fileUploadRequest(formData, this.isFileTypePrivate(), this.hash)
       .subscribe((event: any) => {
           if (event.type === HttpEventType.UploadProgress) {
             lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
@@ -384,7 +387,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
   downloadFile(file: FileDetails) {
     if (file && file.fileUploadProgress && file.fileUploadProgress === 100) {
       if (this.isFileTypePrivate()) {
-        this.uploadFileService.downloadFileDetails(file.fileId)
+        this.fileDetailsRequest(file.fileId)
           .pipe(takeUntil(this.destroy$))
           .subscribe((res) => {
           if (res && res.fileUrl) {
@@ -430,7 +433,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
       if (this.isMultiFileSupport()) {
         this.loadDetails(url);
       } else {
-        this.uploadFileService.downloadFileDetails(url)
+        this.fileDetailsRequest(url)
           .pipe(takeUntil(this.destroy$))
           .subscribe((res) => {
             this.fileDetailArr = res ? [{...res, fileUploadProgress: 100}] : [];
@@ -442,7 +445,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
 
   private loadDetails(urls: string[]): void {
     of(...urls)
-      .pipe(mergeMap(fileUrl => this.uploadFileService.downloadFileDetails(fileUrl)))
+      .pipe(mergeMap(fileUrl => this.fileDetailsRequest(fileUrl)))
       .subscribe(
         detail => this.fileDetailArr.push({...detail, fileUploadProgress: 100}),
         () => {},
