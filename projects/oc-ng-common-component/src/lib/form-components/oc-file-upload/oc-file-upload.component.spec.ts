@@ -6,10 +6,11 @@ import {CommonModule} from '@angular/common';
 import {BrowserModule, By} from '@angular/platform-browser';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ImageCropperModule} from 'ngx-image-cropper';
-import {FileDetails, FileUploadDownloadService} from 'oc-ng-common-service';
+import {FileUploadDownloadService} from 'oc-ng-common-service';
 import {Observable, of} from 'rxjs';
 import {HttpResponse} from '@angular/common/http';
 import {OcButtonComponent} from "oc-ng-common-component/src/lib/common-components";
+import {FileDetails} from 'oc-ng-common-component/src/lib/common-components/interfaces/file.model';
 
 describe('OcFileUploadComponent', () => {
   let component: OcFileUploadComponent;

@@ -6,7 +6,7 @@
         </div>
         <div class="info-card__content">
             <div class="info-card__content-wrapper">
-                <p class="info-card__content-name">{{app.name}}</p>
+                <p class="info-card__content-name" ellipsis (click)="clickByApp()">{{app.name}}</p>
                 <div class="info-card__dropdown info-card__dropdown_mobile">
                     <ng-container *ngTemplateOutlet="customDropdown"></ng-container>
                 </div>
@@ -18,7 +18,7 @@
                            [reviewCount]="app.reviewCount"
                            type="single-star"></oc-rating>
             </div>
-            <p class="info-card__content-summary">{{app.summary ? app.summary : app.description}}</p>
+            <p class="info-card__content-summary" ellipsis>{{(app.summary ? app.summary : app.description) | replaceHtmlTags}}</p>
         </div>
     </div>
     <div class="info-card__dropdown info-card__dropdown_desktop">

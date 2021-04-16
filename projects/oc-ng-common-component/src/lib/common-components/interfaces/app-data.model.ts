@@ -92,13 +92,6 @@ export interface App {
   type?: string;
 }
 
-export interface AppVersion extends App {
-  isLatestVersion?: boolean;
-  children?: FullAppData [];
-  parent?: Parent;
-  ownership?: OwnershipModel;
-}
-
 export interface OwnershipModel {
   ownershipId: string;
   date: Date;
@@ -156,7 +149,7 @@ export interface AppTypeModel {
  * this.appService.getAppById('appId')
  *  .map((app: App) => new MyFullAppData(app, {icon: 'image1', myFiled: 'fieldNameInCustomData'}))
  */
-export class FullAppData implements AppVersion {
+export class FullAppData {
   /**
    * App fields
    */
@@ -212,7 +205,7 @@ export class FullAppData implements AppVersion {
    * @param appData app data or appversion data from api response
    * @param customDataConfig customDataConfig  config for customData fields name information
    */
-  constructor(appData: AppVersion,
+  constructor(appData: any,
               customDataConfig: CustomDataAppConfig) {
     this.appId = appData.appId;
     this.type = appData.type;

@@ -23,8 +23,8 @@
             <div class="featured-apps__card-img">
                 <img src="{{app.icon}}" alt="">
             </div>
-            <h5 class="featured-apps__card-name">{{app.name}}</h5>
-            <span class="featured-apps__card-description">{{app.summary ? app.summary : app.description | replaceHtmlTags}}</span>
+            <h5 class="featured-apps__card-name" ellipsis>{{app.name}}</h5>
+            <span class="featured-apps__card-description" ellipsis>{{app.summary ? app.summary : app.description | replaceHtmlTags}}</span>
         </a>
     </div>
 </ng-template>

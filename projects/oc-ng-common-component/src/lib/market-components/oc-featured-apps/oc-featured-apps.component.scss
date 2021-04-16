@@ -2,32 +2,27 @@
 @import '../../../../assets/styles/mixins.scss';
 
 .featured-apps {
+
   &__heading {
+
     &-text {
+      margin-bottom: 2rem;
+      text-align: left;
       @include media-breakpoint-md {
         padding-left: 2rem;
       }
-      margin-bottom: 2rem;
-      text-align: left;
     }
   }
 
   &__container {
-
-    @include media-breakpoint-md{
-      margin-left: 2rem;
-    }
-
     overflow-x: auto;
     display: flex;
     justify-content: space-between;
+    @include media-breakpoint-md {
+      margin-left: 2rem;
+    }
 
     .featured-apps__card {
-      @include media-breakpoint-xl {
-        margin-bottom: 5rem;
-        margin-right: 2rem;
-        min-width: 240px;
-      }
       background-color: $white;
       border: 1px solid $white;
       border-radius: 4px;
@@ -35,6 +30,11 @@
       height: 330px;
       margin-bottom: 68px;
       width: 255px;
+      @include media-breakpoint-xl {
+        margin-bottom: 5rem;
+        margin-right: 2rem;
+        min-width: 240px;
+      }
 
       &:hover {
         border: 1px solid $primary;
@@ -54,19 +54,6 @@
           text-decoration: none;
         }
 
-        .featured-apps__card-description {
-          font-size: 12px;
-          overflow: hidden;
-          height: 5rem;
-          display: block;
-        }
-
-        .featured-apps__card-name {
-          @include font-family-rubik('Medium');
-          height: 9rem;
-          overflow: hidden;
-        }
-
         .featured-apps__card-img {
           width: 110px;
           height: 110px;
@@ -77,6 +64,18 @@
             margin: auto;
             width: 100%;
           }
+        }
+
+        .featured-apps__card-name {
+          @include font-family-rubik('Medium');
+          font-size: 20px;
+          height: 72px;
+        }
+
+        .featured-apps__card-description {
+          font-size: 12px;
+          height: 36px;
+          display: block;
         }
       }
     }

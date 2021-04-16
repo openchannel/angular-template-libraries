@@ -98,8 +98,10 @@
                                (loadImageFailed)="loadImageFailed()"
                                [aspectRatio]="aspectRatio"
                                [imageChangedEvent]="browsedFileEvent"
-                               [maintainAspectRatio]="maintainAspectRatio" [resizeToHeight]="resizeToHeight"
+                               [maintainAspectRatio]="maintainAspectRatio"
                                [resizeToWidth]="resizeToWidth"
+                               [resizeToHeight]="resizeToHeight"
+                               [containWithinAspectRatio]="true"
                                [transform]="transform" format="png" style="padding:0">
                 </image-cropper>
                 <div class="cropper__body-image-validity" *ngIf="hasImageLoadError">

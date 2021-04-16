@@ -28,3 +28,4 @@ export * from './pipe/price.pipe';
 export * from './pipe/html-tags-replacer.pipe';
 export * from './oc-select-expandable/oc-select-expandable.component';
 export * from './oc-video/oc-video.component';
+export * from './directive/ellipsis.directive';

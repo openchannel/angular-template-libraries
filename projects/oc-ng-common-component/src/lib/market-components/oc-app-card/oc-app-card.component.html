@@ -3,15 +3,13 @@
         <img class="img-fluid" [src]="appIcon" alt="">
     </div>
     <div class="oc-card__content">
-        <p class="oc-card__content-name">{{appData.name}}</p>
+        <p class="oc-card__content-name" ellipsis>{{appData.name}}</p>
         <div class="oc-card__content-info">
             <p class="oc-card__content-price">{{appData.model[0] | price}}</p>
             <oc-rating [rating]="appData.rating ? appData.rating/100 : 0"
                        [reviewCount]="appData.reviewCount"
                        type="single-star"></oc-rating>
         </div>
-        <p class="oc-card__content-summary">
-            {{appData.summary ? appData.summary : appData.description | replaceHtmlTags}}
-        </p>
+        <p class="oc-card__content-summary" ellipsis>{{appData.summary ? appData.summary : appData.description | replaceHtmlTags}}</p>
     </div>
 </a>

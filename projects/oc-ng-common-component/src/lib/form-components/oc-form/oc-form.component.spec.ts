@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { OcFormComponent } from './oc-form.component';
 import { Component, forwardRef, Input } from '@angular/core';
-import { FileDetails } from 'oc-ng-common-service';
 import {
   AbstractControl,
   AbstractControlDirective,
@@ -11,6 +10,7 @@ import {
   ReactiveFormsModule
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import {FileDetails} from 'oc-ng-common-component/src/lib/common-components/interfaces/file.model';
 
 @Component({
   selector: 'oc-tooltip-label',

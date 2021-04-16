@@ -1,13 +1,14 @@
 import { moduleMetadata, storiesOf } from '@storybook/angular';
 import { withA11y } from '@storybook/addon-a11y';
 import { OcFileUploadComponent } from 'oc-ng-common-component/src/lib/form-components';
-import { FileDetails, FileUploadDownloadService, OcCommonServiceModule } from 'oc-ng-common-service';
+import { FileUploadDownloadService, OcCommonServiceModule } from 'oc-ng-common-service';
 import { action } from '@storybook/addon-actions';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { FileDetails } from 'oc-ng-common-component/src/lib/common-components/interfaces/file.model';
 
 const modules = {
     imports: [OcCommonLibModule, NgbModule, OcCommonServiceModule.forRoot({}), HttpClientModule, ImageCropperModule],

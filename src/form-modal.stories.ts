@@ -1,11 +1,12 @@
 import {OcFormComponentsModule} from 'oc-ng-common-component';
 import {moduleMetadata} from '@storybook/angular';
-import {FileDetails, FileUploadDownloadService} from 'oc-ng-common-service';
+import {FileUploadDownloadService} from 'oc-ng-common-service';
 import {Observable, of} from 'rxjs';
 import {EmbedVideoService} from 'ngx-embed-video';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {OcFormModalComponent} from 'oc-ng-common-component/src/lib/form-components';
+import {FileDetails} from 'oc-ng-common-component/src/lib/common-components/interfaces/file.model';
 
 class StubFileUploadDownloadService {
   constructor() {}

@@ -27,9 +27,6 @@ export class TypeMapperUtils {
     if (clonedFields && defaultValues) {
       clonedFields.forEach(field => {
         field.defaultValue = get(defaultValues, field.id, field?.defaultValue);
-        if (field?.fields) {
-          this.injectDefaultValues(field.fields, defaultValues[field.id]);
-        }
       });
     }
     return clonedFields;

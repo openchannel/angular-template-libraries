@@ -36,6 +36,7 @@ import {FormsModule} from '@angular/forms';
 import {OcVideoComponent} from './oc-video/oc-video.component';
 import {CheckboxRequiredDirective} from './validators/checkbox-required.directive';
 import {HtmlTagsReplacerPipe} from './pipe/html-tags-replacer.pipe';
+import {EllipsisDirective} from './directive/ellipsis.directive';
 
 @NgModule({
     declarations: [
@@ -67,6 +68,7 @@ import {HtmlTagsReplacerPipe} from './pipe/html-tags-replacer.pipe';
         OcVideoComponent,
         CheckboxRequiredDirective,
         HtmlTagsReplacerPipe,
+        EllipsisDirective
     ],
     imports: [
         NgbModule,
@@ -107,7 +109,8 @@ import {HtmlTagsReplacerPipe} from './pipe/html-tags-replacer.pipe';
     OcVideoComponent,
     AngularSvgIconModule,
     CheckboxRequiredDirective,
-    HtmlTagsReplacerPipe
+    HtmlTagsReplacerPipe,
+    EllipsisDirective
   ],
     providers: [
         NgbActiveModal,

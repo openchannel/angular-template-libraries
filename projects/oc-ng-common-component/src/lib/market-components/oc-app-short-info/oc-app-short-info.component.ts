@@ -8,9 +8,6 @@ import {AppModel, FullAppData} from 'oc-ng-common-component/src/lib/common-compo
   styleUrls: ['./oc-app-short-info.component.scss']
 })
 export class OcAppShortInfoComponent implements OnInit {
-
-  desktop: boolean;
-
   /**
    * One App to show. Must consists fields: 'name', 'model',
    * 'rating', 'reviewCount', 'summary' or 'description'
@@ -43,7 +40,7 @@ export class OcAppShortInfoComponent implements OnInit {
        price += priceModel.currency ? Object.keys(this.isoCurrencyCode).includes(priceModel.currency) ?
          this.isoCurrencyCode[priceModel.currency] : '$' : '';
 
-       price += priceModel.price;
+       price += priceModel.price / 100;
        if (priceModel.billingPeriod) {
          price += '/' + priceModel.billingPeriod.substring(0, 2);
        }

@@ -3,9 +3,9 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {HttpRequestService} from './http-request-services';
 import {mergeMap} from 'rxjs/operators';
-import {FileDetails} from '../model/api/file-details-model';
 import {ConfigService} from './config.service';
 import {OcHttpParams} from '../model/api/http-params-encoder-model';
+import {FileDetailsResponse} from '../model/api/file-details-model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +47,7 @@ export class FileUploadDownloadService {
     return this.httpRequest.post(this.tokenUrl, null);
   }
 
-  downloadFileDetails(fileId): Observable<FileDetails> {
+  downloadFileDetails(fileId): Observable<FileDetailsResponse> {
     return this.httpRequest.get(`${this.uploadFileUrl}/byIdOrUrl?fileIdOrUrl=${fileId}`);
   }
 
