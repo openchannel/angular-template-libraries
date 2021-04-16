@@ -15,7 +15,7 @@ import {HttpEventType, HttpResponse, HttpUploadProgressEvent} from '@angular/com
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Observable, of, Subject, Subscription} from 'rxjs';
 import {mergeMap, takeUntil} from 'rxjs/operators';
-import {FileDetails} from 'oc-ng-common-component/src/lib/common-components/interfaces/file.model';
+import {FileDetails, FileType} from 'oc-ng-common-component/src/lib/common-components/interfaces/file.model';
 
 @Component({
   selector: 'oc-file-upload',
