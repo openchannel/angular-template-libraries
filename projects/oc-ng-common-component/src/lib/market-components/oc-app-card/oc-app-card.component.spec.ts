@@ -1,10 +1,7 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcAppCardComponent} from './oc-app-card.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { PricePipe } from '../../common-components/pipe/price.pipe';
 import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
