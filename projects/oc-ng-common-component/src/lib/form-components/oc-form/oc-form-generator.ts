@@ -225,6 +225,7 @@ export class OcFormGenerator {
         return null;
       } else {
         if (showLengthErrorText) {
+          console.log(max);
           return {
             maxElementsCount: {
               requiredCount: max

@@ -705,12 +705,12 @@ describe('OcFormComponent', () => {
     invalidControl.setValue([1, 3, 5, 6]);
     fixture.detectChanges();
 
-    expect(invalidControl.hasError('maxElementsCount')).toEqual(true);
+    expect(invalidControl.hasError('maxCount')).toEqual(true);
 
     invalidControl.setValue([1]);
     fixture.detectChanges();
 
-    expect(invalidControl.hasError('minElementsCount')).toEqual(true);
+    expect(invalidControl.hasError('minCount')).toEqual(true);
   });
 
   it('should show url validation error', () => {

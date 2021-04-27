@@ -47,7 +47,7 @@ import {OcFormModalComponent} from './oc-form-modal/oc-form-modal.component';
     ColorPickerModule,
     EditorModule,
     OcCommonLibModule,
-    NgbModule,
+    NgbModule
   ],
   exports: [
     OcColorComponent,
