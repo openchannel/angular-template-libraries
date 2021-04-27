@@ -1,16 +1,35 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcResetPasswordComponent} from './oc-reset-password.component';
+import {
+  MockButtonComponent,
+  MockErrorComponent,
+  MockLabelComponent,
+  MockPasswordComponent,
+  MockRoutingComponent
+} from 'oc-ng-common-component/src/mock/mock';
+import {FormsModule, NgModel} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Router} from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {BrowserModule, By} from '@angular/platform-browser';
 
 describe('OcResetPasswordComponent', () => {
   let component: OcResetPasswordComponent;
   let fixture: ComponentFixture<OcResetPasswordComponent>;
+  let router: Router;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OcResetPasswordComponent]
+      declarations: [OcResetPasswordComponent, MockLabelComponent, MockPasswordComponent, MockButtonComponent,
+        MockErrorComponent, MockPasswordComponent, MockRoutingComponent],
+      providers: [NgModel],
+      imports: [FormsModule, CommonModule, BrowserModule, RouterTestingModule.withRoutes([
+        {path: 'signup', component: MockRoutingComponent}
+      ])]
     })
       .compileComponents();
+    router = TestBed.inject(Router);
   }));
 
   beforeEach(() => {
@@ -21,5 +40,42 @@ describe('OcResetPasswordComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit false value on form button click', () => {
+    component.process = false;
+    spyOn(component.submit, 'emit');
+
+    fixture.detectChanges();
+
+    const button = fixture.debugElement.query(By.css('oc-button')).nativeElement;
+    button.click();
+
+    expect(component.submit.emit).toHaveBeenCalledWith(false);
+  });
+
+  it('button should not emmit submit when process is on', () => {
+    component.process = true;
+    spyOn(component.submit, 'emit');
+
+    fixture.detectChanges();
+
+    const button = fixture.debugElement.query(By.css('oc-button')).nativeElement;
+    button.click();
+
+    expect(component.submit.emit).toHaveBeenCalledWith(false);
+  });
+
+  it('should emit true value on form button click when form valid', async () => {
+    component.process = false;
+    component.resetModel.newPassword = 'QwErTy1#';
+    spyOn(component.submit, 'emit');
+    fixture.detectChanges();
+
+    await fixture.whenStable().then(() => {
+      const button = fixture.debugElement.query(By.css('oc-button')).nativeElement;
+      button.click();
+      expect(component.submit.emit).toHaveBeenCalledWith(true);
+    });
   });
 });

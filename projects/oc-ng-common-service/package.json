@@ -1,6 +1,6 @@
 {
   "name": "oc-ng-common-service",
-  "version": "1.2.0",
+  "version": "1.2.1-2",
   "dependencies": {
     "tslib": "^2.0.0"
   },

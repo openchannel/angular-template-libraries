@@ -1,5 +1,5 @@
-import { AfterViewInit, Directive, ElementRef, HostListener, Inject, PLATFORM_ID } from "@angular/core";
-import { isPlatformBrowser } from "@angular/common";
+import { AfterViewInit, Directive, ElementRef, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Directive({
   selector: '[ellipsis]'

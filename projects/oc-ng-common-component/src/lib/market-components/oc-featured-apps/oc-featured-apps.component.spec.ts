@@ -1,5 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {OcFeaturedAppsComponent} from './oc-featured-apps.component';
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
@@ -7,12 +6,8 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
-
-@Component({
-  template: ''
-})
-export class MockRoutingComponent {
-}
+import {MockRoutingComponent} from 'oc-ng-common-component/src/mock/mock';
+import {HtmlTagsReplacerPipe} from 'oc-ng-common-component/src/lib/common-components';
 
 const statElement: StatElement = {
   '90day': 20,
@@ -67,9 +62,9 @@ describe('OcFeaturedAppsComponent', () => {
   let location: Location;
   let router: Router;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OcFeaturedAppsComponent, MockRoutingComponent],
+      declarations: [OcFeaturedAppsComponent, MockRoutingComponent, HtmlTagsReplacerPipe],
       imports: [RouterTestingModule.withRoutes([
         {path: 'mock-router/:id', component: MockRoutingComponent}
       ])]

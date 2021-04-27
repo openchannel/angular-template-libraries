@@ -64,12 +64,12 @@
                         <div class="date-picker__time-manipulators">
                             <svg-icon src="assets/oc-ng-common-component/arrow-left-analog.svg"
                                       class="date-picker__time-calendar-icon"
-                                      (click)="decHour()"></svg-icon>
+                                      (click)="decHour()" id="hourDec"></svg-icon>
                             <input #hourInput type="text" [value]="hourValue < 10 ? '0' + hourStr : hourStr"
                                    (input)="onHourChange($event)" ocOnlyNumber
                                    (click)="hourInput.select()"/>
                             <svg-icon src="assets/oc-ng-common-component/arrow-right-analog.svg"
-                                      class="date-picker__time-calendar-icon"
+                                      class="date-picker__time-calendar-icon" id="hourInc"
                                       (click)="incHour()"></svg-icon>
                         </div>
                     </div>
@@ -77,13 +77,13 @@
                         <div class="date-picker__time-header">Minutes</div>
                         <div class="date-picker__time-manipulators">
                             <svg-icon src="assets/oc-ng-common-component/arrow-left-analog.svg"
-                                      class="date-picker__time-calendar-icon"
+                                      class="date-picker__time-calendar-icon" id="minDec"
                                       (click)="decMinutes()"></svg-icon>
                             <input #minInput type="text" [value]="minuteValue < 10 ? '0' + minuteStr : minuteStr"
                                    (input)="onMinChange($event)"
                                    ocOnlyNumber (click)="minInput.select()"/>
                             <svg-icon src="assets/oc-ng-common-component/arrow-right-analog.svg"
-                                      class="date-picker__time-calendar-icon"
+                                      class="date-picker__time-calendar-icon" id="minInc"
                                       (click)="incMinutes()"></svg-icon>
                         </div>
                     </div>

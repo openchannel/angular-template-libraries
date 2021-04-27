@@ -1,5 +1,5 @@
 <div (fileDropped)="onFileDropped($event,cropperModal)"
-     *ngIf="(!fileDetailArr || fileDetailArr.length == 0); else fileList"
+     *ngIf="(!fileDetailArr || fileDetailArr.length == 0) && !containsInvalidFile; else fileList"
      class="file-container file-container_without-files"
      ocFileDragDrop>
     <img [src]="uploadIconUrl" alt="upload-icon"
@@ -17,7 +17,7 @@
 
 <ng-template #fileList>
     <div class="file-container">
-        <div class="file-container__control" *ngIf="isMultiFileSupport()">
+        <div class="file-container__control" *ngIf="isMultiFileSupport() || containsInvalidFile">
             <div class="file-container__control-wrapper">
                 <img class="file-container__control-upload"
                      alt="upload-icon"
@@ -67,6 +67,23 @@
                                  class="file-container__upload-item-progress"
                                  type="primary"></ngb-progressbar>
             </div>
+        </div>
+        <div class="file-container__upload-item" *ngIf="containsInvalidFile">
+            <div class="file-container__upload-item-type">
+                <img [ngClass]="'default-icon'"
+                     [src]="'assets/oc-ng-common-component/file_icon.svg'"
+                     alt="app-icon">
+            </div>
+            <div class="file-container__upload-item-info">
+                <a class="file-container__upload-item-name"
+                   id="downloadFile2">
+                    <span id="fileName2">{{invalidFileName}}</span>
+                </a>
+                <span class="file-container__upload-item-status-wrong">
+                    Wrong type
+                </span>
+            </div>
+            <div class="file-container__upload-item-line"></div>
         </div>
     </div>
 </ng-template>

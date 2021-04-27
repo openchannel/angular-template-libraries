@@ -1,9 +1,10 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcFormModalComponent} from './oc-form-modal.component';
 import {By} from '@angular/platform-browser';
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {MockSvgIconComponent} from 'oc-ng-common-component/src/mock/mock';
 
 const formData = {
   name: 'Test name',
@@ -21,6 +22,7 @@ export class OcFormMockComponent {
   @Input() successButtonText: string = 'Submit';
   @Output() formSubmitted = new EventEmitter<any>();
   @Output() cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() showButton: boolean = true;
 
   submitForm() {
     this.formSubmitted.emit(formData);
@@ -30,9 +32,9 @@ describe('OcFormModalComponent', () => {
   let component: OcFormModalComponent;
   let fixture: ComponentFixture<OcFormModalComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcFormModalComponent, OcFormMockComponent ],
+      declarations: [ OcFormModalComponent, OcFormMockComponent, MockSvgIconComponent ],
       providers: [NgbActiveModal]
     })
     .compileComponents();
@@ -42,7 +44,7 @@ describe('OcFormModalComponent', () => {
     fixture = TestBed.createComponent(OcFormModalComponent);
     component = fixture.componentInstance;
 
-    component.formJSONData = {
+    component.formJsonData = {
       formId: 'test',
       name: 'test',
       createdDate: 1599982592157,
@@ -125,17 +127,17 @@ describe('OcFormModalComponent', () => {
 
     formComponent.submitForm();
 
-    expect(component.modalJSONData).toBeNull();
+    expect(component.formJsonData).toBeTruthy();
   });
 
   it('should close the modal', () => {
     spyOn(component, 'dismiss');
     fixture.detectChanges();
 
-    const closeBtn = fixture.debugElement.query(By.css('button')).nativeElement;
+    const closeBtn = fixture.debugElement.query(By.css('.form-modal__header-close-icon')).nativeElement;
 
     closeBtn.click();
 
-    expect(component.close).toHaveBeenCalled();
+    expect(component.dismiss).toHaveBeenCalled();
   });
 });

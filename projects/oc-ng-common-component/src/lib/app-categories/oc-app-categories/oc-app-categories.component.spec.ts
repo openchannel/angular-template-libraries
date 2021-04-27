@@ -1,22 +1,14 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {OcAppCategoriesComponent} from './oc-app-categories.component';
 import {By} from '@angular/platform-browser';
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {RouterTestingModule} from '@angular/router/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { Component, Directive, Input, NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
-import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import {Component, NO_ERRORS_SCHEMA} from '@angular/core';
+import {Location} from '@angular/common';
+import {Router} from '@angular/router';
 import {AppCategoryDetail} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-category-model';
 
-@Component({
-  template: '',
-  selector: 'fa-icon'
-})
-export class FaIconMockComponent {
-  @Input() icon: string;
-}
 @Component({
   template: ''
 })
@@ -37,7 +29,7 @@ describe('OcAppCategoriesComponent', () => {
   let location: Location;
   let router: Router;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
@@ -47,7 +39,6 @@ describe('OcAppCategoriesComponent', () => {
         ])],
       declarations: [
         OcAppCategoriesComponent,
-        FaIconMockComponent,
         MockRoutingComponent,
       ],
       schemas: [NO_ERRORS_SCHEMA]
@@ -117,8 +108,14 @@ describe('OcAppCategoriesComponent', () => {
       expect(location.path()).toEqual('/mock-router?test=test');
     });
   });
+
+  it('should safe image', () => {
+    const url = component.safeImage('image.url');
+    expect(url).toBeTruthy();
+  });
+
+  it('should safe style', () => {
+    const url = component.safeStyle('image.link');
+    expect(url).toBeTruthy();
+  });
 });
-
-
-
-

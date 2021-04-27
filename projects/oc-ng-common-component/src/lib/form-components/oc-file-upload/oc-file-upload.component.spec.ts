@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcFileUploadComponent} from './oc-file-upload.component';
 import {NgModel} from '@angular/forms';
@@ -6,10 +6,9 @@ import {CommonModule} from '@angular/common';
 import {BrowserModule, By} from '@angular/platform-browser';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ImageCropperModule} from 'ngx-image-cropper';
-import {FileUploadDownloadService} from 'oc-ng-common-service';
 import {Observable, of} from 'rxjs';
-import {HttpResponse} from '@angular/common/http';
-import {OcButtonComponent} from "oc-ng-common-component/src/lib/common-components";
+import {HttpResponse, HttpUploadProgressEvent} from '@angular/common/http';
+import {MockButtonComponent} from 'oc-ng-common-component/src/mock/mock';
 import {FileDetails} from 'oc-ng-common-component/src/lib/common-components/interfaces/file.model';
 
 describe('OcFileUploadComponent', () => {
@@ -40,12 +39,10 @@ describe('OcFileUploadComponent', () => {
     }
   }
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OcFileUploadComponent, OcButtonComponent],
-      providers: [NgModel,
-        {provide: FileUploadDownloadService, useClass: FileUploadDownloadServiceStub}
-        ],
+      declarations: [OcFileUploadComponent, MockButtonComponent],
+      providers: [NgModel],
       imports: [NgbModule, CommonModule, BrowserModule, ImageCropperModule]
     })
       .compileComponents();
@@ -55,6 +52,10 @@ describe('OcFileUploadComponent', () => {
     fixture = TestBed.createComponent(OcFileUploadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    component.fileUploadRequest = (fileData: FormData, isPrivate: boolean, hash?: string []) => {
+      return of(new HttpResponse({body: mockResponse}));
+    };
+    component.fileDetailsRequest = (fileId) => of(mockResponse);
   });
 
   it('should create', () => {
@@ -127,7 +128,6 @@ describe('OcFileUploadComponent', () => {
 
   it('should init files', async () => {
     component.fileType = 'multiFile';
-
     component.writeValue(['http://someimage.com/213123.png', 'http://someimage2.com/213121233.png']);
 
     fixture.detectChanges();
@@ -194,7 +194,7 @@ describe('OcFileUploadComponent', () => {
       }
     };
 
-    fixture.debugElement.query(By.css('.without-files')).triggerEventHandler('fileDropped', fileDropped);
+    fixture.debugElement.query(By.css('.file-container_without-files')).triggerEventHandler('fileDropped', fileDropped);
     fixture.detectChanges();
 
     await fixture.whenStable().then(() => {

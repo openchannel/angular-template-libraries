@@ -1,20 +1,10 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {OcAppListGridComponent} from './oc-app-list-grid.component';
 import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
 import {PricePipe} from 'oc-ng-common-component/src/lib/common-components';
-
-@Component({
-  template: '',
-  selector: 'oc-rating'
-})
-export class RatingMockComponent {
-  @Input() rating: number = 0;
-  @Input() reviewCount: number = 0;
-  @Input() type: 'single-star' | 'multi-star' = 'single-star';
-}
+import {MockRatingComponent, MockSvgIconComponent} from 'oc-ng-common-component/src/mock/mock';
 
 const stat: StatElement = {
   '90day': 20,
@@ -66,9 +56,9 @@ describe('OcAppListGridComponent', () => {
   let component: OcAppListGridComponent;
   let fixture: ComponentFixture<OcAppListGridComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OcAppListGridComponent, RatingMockComponent, PricePipe]
+      declarations: [OcAppListGridComponent, MockRatingComponent, PricePipe, MockSvgIconComponent]
     })
       .compileComponents();
   }));
@@ -166,19 +156,19 @@ describe('OcAppListGridComponent', () => {
 
     fixture.detectChanges();
 
-    const priceField: HTMLSpanElement = fixture.debugElement.query(By.css('.app-price')).nativeElement;
+    const priceField: HTMLSpanElement = fixture.debugElement.query(By.css('.app-list__card-price')).nativeElement;
 
     expect(priceField.textContent).toContain('Free');
   });
 
   it('should check rating data', () => {
-    app.rating = null;
+    app.rating = 500;
     component.appList = [app];
 
     fixture.detectChanges();
 
     const ratingComponent = fixture.debugElement.query(By.css('oc-rating'));
 
-    expect(ratingComponent).toBeNull();
+    expect(ratingComponent).toBeTruthy();
   });
 });

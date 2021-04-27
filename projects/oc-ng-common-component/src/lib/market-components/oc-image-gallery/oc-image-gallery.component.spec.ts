@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { OcImageGalleryComponent } from './oc-image-gallery.component';
-import { By } from '@angular/platform-browser';
-import { SimpleChange } from '@angular/core';
+import {OcImageGalleryComponent} from './oc-image-gallery.component';
+import {By} from '@angular/platform-browser';
+import {SimpleChange} from '@angular/core';
 import {GalleryItem} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
 
 describe('OcImageGalleryComponent', () => {
@@ -15,7 +15,7 @@ describe('OcImageGalleryComponent', () => {
     description: 'Improve and extend your experience right from your own UI'
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ OcImageGalleryComponent ]
     })

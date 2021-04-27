@@ -1,21 +1,35 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcLoginComponent} from './oc-login.component';
 import {FormsModule, NgModel} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
+import {Router} from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
+import {
+  MockButtonComponent,
+  MockErrorComponent,
+  MockInputComponent,
+  MockLabelComponent, MockPasswordComponent,
+  MockRoutingComponent
+} from 'oc-ng-common-component/src/mock/mock';
 
 describe('OcLoginComponent', () => {
   let component: OcLoginComponent;
   let fixture: ComponentFixture<OcLoginComponent>;
+  let router: Router;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OcLoginComponent],
+      declarations: [OcLoginComponent, MockLabelComponent, MockInputComponent, MockErrorComponent,
+        MockButtonComponent, MockRoutingComponent, MockPasswordComponent],
       providers: [NgModel],
-      imports: [FormsModule, CommonModule, BrowserModule]
+      imports: [FormsModule, CommonModule, BrowserModule, RouterTestingModule.withRoutes([
+        {path: 'signup', component: MockRoutingComponent}
+      ])]
     })
       .compileComponents();
+    router = TestBed.inject(Router);
   }));
 
   beforeEach(() => {

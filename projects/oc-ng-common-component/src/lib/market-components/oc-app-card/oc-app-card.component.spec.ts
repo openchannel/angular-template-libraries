@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcAppCardComponent} from './oc-app-card.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -7,57 +7,38 @@ import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { PricePipe } from '../../common-components/pipe/price.pipe';
-import {StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
-
-@Component({
-  selector: 'oc-rating',
-  template: ''
-})
-export class OcRatingMockComponent {
-  @Input() type;
-  @Input() rating = 0;
-  @Input() reviewCount = 0;
-  @Input() label = '';
-  @Input() labelClass = 'font-m font-med';
-}
-
-@Component({
-  template: ''
-})
-export class MockRoutingComponent {
-}
+import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
+import {MockRatingComponent, MockRoutingComponent} from 'oc-ng-common-component/src/mock/mock';
+import {HtmlTagsReplacerPipe} from 'oc-ng-common-component/src/lib/common-components';
 
 describe('OcAppCardComponent', () => {
   let component: OcAppCardComponent;
   let fixture: ComponentFixture<OcAppCardComponent>;
   let location: Location;
-  let router: Router;
+  let appData: FullAppData;
 
   const statElement: StatElement = {
     '90day': 20,
     '30day': 10,
     total: 20
   };
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         OcAppCardComponent,
-        OcRatingMockComponent,
+        MockRatingComponent,
         MockRoutingComponent,
-        PricePipe
-      ],
-      imports: [RouterTestingModule.withRoutes([
-        {path: 'mock-router/:id', component: MockRoutingComponent}
-      ])]
+        PricePipe,
+        HtmlTagsReplacerPipe
+      ]
     }).compileComponents();
-    router = TestBed.inject(Router);
     location = TestBed.inject(Location);
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(OcAppCardComponent);
     component = fixture.componentInstance;
-    component.app = {
+    appData = {
       appId: '34343jfgi3423',
       icon: '',
       name: 'Test App',
@@ -95,6 +76,7 @@ describe('OcAppCardComponent', () => {
       },
       isLive: true
     };
+    component.app = appData;
     fixture.detectChanges();
   });
 
@@ -103,23 +85,22 @@ describe('OcAppCardComponent', () => {
   });
 
   it('should show data', () => {
-    const priceInfo: HTMLSpanElement = fixture.debugElement.query(By.css('.app-price')).nativeElement;
+    const priceInfo: HTMLSpanElement = fixture.debugElement.query(By.css('.oc-card__content-price')).nativeElement;
     const summaryInfo: HTMLParagraphElement = fixture.debugElement
-      .query(By.css('.text-summary-hidden')).nativeElement;
+      .query(By.css('.oc-card__content-summary')).nativeElement;
 
-    expect(priceInfo.textContent).toContain('€5/mo');
+    expect(priceInfo.textContent).toContain('€0.05/mon');
     expect(summaryInfo.textContent).toContain('Some test summary');
   });
 
   it('should redirect on router link', async () => {
-    // component.appRouterLink = 'mock-router';
+    spyOn(component.clickByAppCard, 'emit');
+
+    const dropbox = fixture.debugElement.query(By.css('.oc-card__content-name')).nativeElement;
+    dropbox.click();
     fixture.detectChanges();
-
-    const cardLink: HTMLLinkElement = fixture.debugElement.query(By.css('a')).nativeElement;
-    cardLink.click();
-
     await fixture.whenStable().then(() => {
-      expect(location.path()).toEqual('/mock-router/34343jfgi3423');
+      expect(component.clickByAppCard.emit).toHaveBeenCalledWith(appData);
     });
   });
 });

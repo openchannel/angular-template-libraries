@@ -1,18 +1,9 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcRecommendedAppsComponent} from './oc-recommended-apps.component';
-import {Component, Input} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
-
-@Component({
-  selector: 'oc-app-card',
-  template: ''
-})
-export  class AppCardMockComponent {
-  @Input() app: FullAppData;
-  @Input() appRouterLink: any | string;
-}
+import {MockAppCardComponent} from 'oc-ng-common-component/src/mock/mock';
 
 const stat: StatElement = {
   '90day': 30,
@@ -64,9 +55,9 @@ describe('OcRecommendedAppsComponent', () => {
   let component: OcRecommendedAppsComponent;
   let fixture: ComponentFixture<OcRecommendedAppsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OcRecommendedAppsComponent, AppCardMockComponent],
+      declarations: [OcRecommendedAppsComponent, MockAppCardComponent],
     })
       .compileComponents();
   }));
@@ -87,7 +78,7 @@ describe('OcRecommendedAppsComponent', () => {
 
     fixture.detectChanges();
 
-    const title: HTMLHeadingElement = fixture.debugElement.query(By.css('h1')).nativeElement;
+    const title: HTMLHeadingElement = fixture.debugElement.query(By.css('h4')).nativeElement;
 
     expect(title.textContent).toContain('Test Recommended');
   });

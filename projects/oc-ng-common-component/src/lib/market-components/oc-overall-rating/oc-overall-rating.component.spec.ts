@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcOverallRatingComponent} from './oc-overall-rating.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -9,7 +9,7 @@ describe('OcOverallRatingComponent', () => {
   let component: OcOverallRatingComponent;
   let fixture: ComponentFixture<OcOverallRatingComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [OcOverallRatingComponent, OcLabelComponent],
       imports: [NgbModule]

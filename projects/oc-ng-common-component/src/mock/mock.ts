@@ -6,7 +6,7 @@ import {
     NG_VALUE_ACCESSOR,
     NgModel
 } from '@angular/forms';
-import {FullAppData} from 'oc-ng-common-service';
+import {FullAppData} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
 
 @Component({
     selector: 'oc-label',

@@ -17,6 +17,7 @@ import {Observable, of, Subject, Subscription} from 'rxjs';
 import {mergeMap, takeUntil} from 'rxjs/operators';
 import {FileDetails, FileType} from 'oc-ng-common-component/src/lib/common-components/interfaces/file.model';
 
+
 @Component({
   selector: 'oc-file-upload',
   templateUrl: './oc-file-upload.component.html',
@@ -29,7 +30,7 @@ import {FileDetails, FileType} from 'oc-ng-common-component/src/lib/common-compo
 })
 export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
-  @ViewChild('fileDropRef', {static: false})
+  @ViewChild('fileDropRef', {static: false}) fileInputVar: ElementRef<any>;
 
   @Input()
   set value(val) {
@@ -66,7 +67,6 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
   cropperModalRef: any;
   isUploadInProcess = false;
   fileDetailArr: FileDetails[] = [];
-  fileInputVar: ElementRef<any>;
 
   isImageCropped = false;
   croppedImage: any = '';
@@ -78,6 +78,8 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
   uploadImageResponse: any;
   browsedFileEvent: any;
   fileName = '';
+  invalidFileName: '';
+  containsInvalidFile = false;
 
   maintainAspectRatio = false;
   aspectRatio: any;
@@ -85,7 +87,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
   loaderValue = 0;
 
   @Input()
-  acceptType;
+  acceptType: string;
 
   @Input()
   resizeToWidth = 0;
@@ -156,43 +158,46 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
   }
 
   uploadFile(file) {
-    this.isUploadInProcess = true;
-    let lastFileDetail = new FileDetails();
-    lastFileDetail.name = this.fileName;
-    if (!this.fileDetailArr) {
-      this.fileDetailArr = [];
-    }
-    this.fileDetailArr.push(lastFileDetail);
-    const formData: FormData = new FormData();
-    formData.append('file', file, this.fileName);
-    this.uploadFileReq = this.fileUploadRequest(formData, this.isFileTypePrivate(), this.hash)
-      .subscribe((event: any) => {
-          if (event.type === HttpEventType.UploadProgress) {
-            lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
-          } else if (event.type === HttpEventType.ResponseHeader) {
-            lastFileDetail.fileUploadProgress = 97;
-          } else if (event.type === HttpEventType.DownloadProgress) {
-            lastFileDetail.fileUploadProgress = 99;
-          } else if (event instanceof HttpResponse) {
-            lastFileDetail = this.convertFileUploadResToFileDetails(event);
-            lastFileDetail.fileUploadProgress = 100;
-            lastFileDetail.fileIconUrl = this.defaultFileIcon;
-            this.fileDetailArr[this.fileDetailArr.length - 1] = lastFileDetail;
+    if (!this.fileUploadRequest) {
+      console.error('Please, set the fileUploadRequest function');
+    } else {
+      this.isUploadInProcess = true;
+      let lastFileDetail = new FileDetails();
+      lastFileDetail.name = this.fileName;
+      if (!this.fileDetailArr) {
+        this.fileDetailArr = [];
+      }
+      this.fileDetailArr.push(lastFileDetail);
+      const formData: FormData = new FormData();
+      formData.append('file', file, this.fileName);
+      this.uploadFileReq = this.fileUploadRequest(formData, this.isFileTypePrivate(), this.hash)
+        .subscribe((event: any) => {
+            if (event.type === HttpEventType.UploadProgress) {
+              lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
+            } else if (event.type === HttpEventType.ResponseHeader) {
+              lastFileDetail.fileUploadProgress = 97;
+            } else if (event.type === HttpEventType.DownloadProgress) {
+              lastFileDetail.fileUploadProgress = 99;
+            } else if (event instanceof HttpResponse) {
+              lastFileDetail = this.convertFileUploadResToFileDetails(event);
+              lastFileDetail.fileUploadProgress = 100;
+              lastFileDetail.fileIconUrl = this.defaultFileIcon;
+              this.fileDetailArr[this.fileDetailArr.length - 1] = lastFileDetail;
+              this.isUploadInProcess = false;
+              this.uploadFileReq = null;
+              this.emitChanges();
+              this.resetSelection();
+            }
+          },
+          () => {
             this.isUploadInProcess = false;
-            this.uploadFileReq = null;
-            this.emitChanges();
             this.resetSelection();
-          }
-        },
-        () => {
-          this.isUploadInProcess = false;
-          this.resetSelection();
-        },
-        () => {
-          this.isUploadInProcess = false;
-          this.resetSelection();
-        });
-
+          },
+          () => {
+            this.isUploadInProcess = false;
+            this.resetSelection();
+          });
+    }
     this.modalService.dismissAll();
   }
 
@@ -387,13 +392,17 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
   downloadFile(file: FileDetails) {
     if (file && file.fileUploadProgress && file.fileUploadProgress === 100) {
       if (this.isFileTypePrivate()) {
-        this.fileDetailsRequest(file.fileId)
-          .pipe(takeUntil(this.destroy$))
-          .subscribe((res) => {
-          if (res && res.fileUrl) {
-            window.open(res.fileUrl, '_blank');
-          }
-        });
+        if (!this.fileDetailsRequest) {
+          console.error('Please, set the FileDetailsRequest function');
+        } else {
+          this.fileDetailsRequest(file.fileId)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((res) => {
+              if (res && res.fileUrl) {
+                window.open(res.fileUrl, '_blank');
+              }
+            });
+        }
       } else {
         if (file && file.fileUrl) {
           window.open(file.fileUrl, '_blank');
@@ -429,7 +438,9 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
   }
 
   private initValues(url) {
-    if (url) {
+    if (!this.fileDetailsRequest) {
+      console.error('Please, set the FileDetailsRequest function');
+    } else if (url) {
       if (this.isMultiFileSupport()) {
         this.loadDetails(url);
       } else {

@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcAppGalleryComponent} from './oc-app-gallery.component';
 import { Component, Input } from '@angular/core';
@@ -7,21 +7,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
-
-@Component({
-  selector: 'oc-app-card',
-  template: '',
-})
-export class AppCardMockComponent {
-  @Input() app: FullAppData;
-  @Input() appRouterLink: any | string;
-}
-
-@Component({
-  template: ''
-})
-export class MockRoutingComponent {
-}
+import {AngularSvgIconModule} from 'angular-svg-icon';
+import {MockAppCardComponent, MockRoutingComponent} from 'oc-ng-common-component/src/mock/mock';
 
 describe('OcAppGalleryComponent', () => {
   let component: OcAppGalleryComponent;
@@ -72,10 +59,10 @@ describe('OcAppGalleryComponent', () => {
     },
     isLive: true
   };
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OcAppGalleryComponent, AppCardMockComponent, MockRoutingComponent],
-      imports: [CommonModule, RouterTestingModule.withRoutes([
+      declarations: [OcAppGalleryComponent, MockAppCardComponent, MockRoutingComponent],
+      imports: [CommonModule, AngularSvgIconModule, RouterTestingModule.withRoutes([
         {path: 'mock-router', component: MockRoutingComponent}
       ])]
     })

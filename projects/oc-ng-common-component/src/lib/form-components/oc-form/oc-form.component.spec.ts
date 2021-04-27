@@ -1,15 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { OcFormComponent } from './oc-form.component';
-import { Component, forwardRef, Input } from '@angular/core';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {OcFormComponent} from './oc-form.component';
+import {Component, forwardRef, Input} from '@angular/core';
 import {
   AbstractControl,
   AbstractControlDirective,
   ControlValueAccessor,
-  FormsModule, NG_VALUE_ACCESSOR,
+  FormArray,
+  FormsModule,
+  NG_VALUE_ACCESSOR,
   NgModel,
   ReactiveFormsModule
 } from '@angular/forms';
-import { By } from '@angular/platform-browser';
+import {By} from '@angular/platform-browser';
 import {FileDetails} from 'oc-ng-common-component/src/lib/common-components/interfaces/file.model';
 
 @Component({
@@ -33,6 +35,7 @@ export class MockTooltipComponent {
   }]
 })
 export class MockRichEditorComponent implements ControlValueAccessor {
+  @Input() placeholder: string = '';
   registerOnChange(fn: any): void {
   }
   registerOnTouched(fn: any): void {
@@ -59,6 +62,29 @@ export class MockInputComponent implements ControlValueAccessor {
   }
   writeValue(obj: any): void {
   }
+}
+
+
+@Component({
+  selector: 'oc-password',
+  template: '',
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => MockPasswordComponent),
+    multi: true
+  }],
+})
+export class MockPasswordComponent implements ControlValueAccessor {
+  @Input() placeholder: string = '';
+  registerOnChange(fn: any): void {
+  }
+
+  registerOnTouched(fn: any): void {
+  }
+
+  writeValue(obj: any): void {
+  }
+
 }
 
 @Component({
@@ -118,6 +144,7 @@ export class MockTagsComponent implements ControlValueAccessor {
   @Input() placeHolderInputName: string = '';
   @Input() title: string;
   @Input() availableTags: string [] = [];
+  @Input() placeholder: string;
   @Input() minTagLength: number = 1;
   @Input() maxTagLength: number = null;
   @Input() minTagsCount: number;
@@ -145,6 +172,9 @@ export class MockFileUploadComponent implements ControlValueAccessor {
   @Input() defaultFileIcon = '';
   @Input() fileType: string;
   @Input() uploadIconUrl;
+  @Input() acceptType;
+  @Input() imageWidth;
+  @Input() imageHeight;
   @Input() mockUploadingFile: () => FileDetails;
   registerOnChange(fn: any): void {
   }
@@ -222,6 +252,7 @@ export class MockColorComponent implements ControlValueAccessor {
   }],
 })
 export class MockVideoUrlComponent implements ControlValueAccessor {
+  @Input() placeholder: string;
   registerOnChange(fn: any): void {
   }
   registerOnTouched(fn: any): void {
@@ -289,6 +320,7 @@ export class MockMultiSelectComponent implements ControlValueAccessor {
   }]
 })
 export class MockDynamicFieldArrayComponent implements ControlValueAccessor {
+  @Input() dfaFormArray: FormArray;
   @Input() set fieldDefinitionData(value) {
     if (value) {
       this.fieldDefinition = value;
@@ -324,13 +356,14 @@ export class MockButtonComponent {
   @Input() type: 'primary' | 'secondary' | 'link' = 'primary';
   @Input() class: string;
   @Input() style: string;
+  @Input() process: boolean;
 }
 
 describe('OcFormComponent', () => {
   let component: OcFormComponent;
   let fixture: ComponentFixture<OcFormComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         OcFormComponent,
@@ -349,7 +382,8 @@ describe('OcFormComponent', () => {
         MockDynamicFieldArrayComponent,
         MockErrorComponent,
         MockButtonComponent,
-        MockInputComponent
+        MockInputComponent,
+        MockPasswordComponent
       ],
       imports: [FormsModule, ReactiveFormsModule]
     })
@@ -360,9 +394,8 @@ describe('OcFormComponent', () => {
     fixture = TestBed.createComponent(OcFormComponent);
     component = fixture.componentInstance;
     component.formJsonData = {
-      formId: 'test',
-      name: 'test',
-      createdDate: 1599982592157,
+      formId: '332323rfdf22323',
+      name: 'test-form',
       fields: [
       {
         id: 'name',
@@ -416,22 +449,21 @@ describe('OcFormComponent', () => {
         subFieldDefinitions: null
       },
       {
-        attributes:	{
-          max:	25,
-          min:	5,
-          required:	null,
+        attributes: {
+          max: 25,
+          min: 5,
+          required: null,
         },
-        category:	'CUSTOM',
-        defaultValue:	null,
-        description:	'',
-        id:	'test-number',
-        label:	'Test number',
-        placeholder:	null,
-        type:	'number'
+        defaultValue: null,
+        description:  '',
+        id: 'test-number',
+        label:  'Test number',
+        placeholder:  null,
+        type:  'number'
       },
       {
-        attributes:	{
-          required:	true
+        attributes:  {
+          required:  true
         },
         category:	'CUSTOM',
         defaultValue:	true,
@@ -442,146 +474,138 @@ describe('OcFormComponent', () => {
         type:	'checkbox'
       },
       {
-        attributes:	{
-          required:	true
+        attributes:  {
+          required:  true
         },
-        category:	'CUSTOM',
-        defaultValue:	null,
-        description:	'',
-        id:	'test-email',
-        label:	'Test email',
-        placeholder:	'enter email',
-        type:	'emailAddress'
+        defaultValue:  null,
+        description:  '',
+        id:  'test-email',
+        label:  'Test email',
+        placeholder:  'enter email',
+        type:  'emailAddress'
       },
       {
-        attributes:	{
-          required:	true
+        attributes:  {
+          required:  true
         },
-        category:	'CUSTOM',
-        defaultValue:	null,
-        description:	null,
-        id:	'test-url-component',
-        label:	'Test URL component',
-        placeholder:	'Enter your link here..',
-        type:	'websiteUrl'
+        defaultValue:  null,
+        description:  null,
+        id:  'test-url-component',
+        label:  'Test URL component',
+        placeholder:  'Enter your link here..',
+        type:  'websiteUrl'
       },
       {
-        attributes:	{
-          required:	true
+        attributes:  {
+          required:  true
         },
-        category:	'CUSTOM',
-        defaultValue:	null,
-        description:	null,
-        id:	'test-color-component',
-        label:	'Test Color Component',
-        placeholder:	'Choose your color',
-        type:	'color'
+        defaultValue:  null,
+        description:  null,
+        id:  'test-color-component',
+        label:  'Test Color Component',
+        placeholder:  'Choose your color',
+        type:  'color'
       },
       {
-        attributes:	{
-          required:	true,
-          maxCount:	null,
-          minCount:	null
+        attributes:  {
+          required:  true,
+          maxCount:  null,
+          minCount:  null
         },
         options: ['true', 'false'],
-        category:	'CUSTOM',
-        defaultValue:	null,
-        description:	null,
-        id:	'test-boolean-tags',
-        label:	'Test Boolean tags',
-        placeholder:	null,
-        type:	'booleanTags'
+        defaultValue:  null,
+        description:  null,
+        id:  'test-boolean-tags',
+        label:  'Test Boolean tags',
+        placeholder:  null,
+        type:  'booleanTags'
       },
       {
-        attributes:	{
-          required:	true,
-          maxCount:	2,
-          minCount:	1
+        attributes:  {
+          required:  true,
+          maxCount:  2,
+          minCount:  1
         },
         options: ['1', '3', '45'],
         category:	'CUSTOM',
-        defaultValue:	[],
-        description:	null,
-        id:	'test-number-tags',
-        label:	'Test number tags',
-        placeholder:	null,
-        type:	'numberTags'
+        defaultValue:  [],
+        description:  null,
+        id:  'test-number-tags',
+        label:  'Test number tags',
+        placeholder:  null,
+        type:  'numberTags'
       },
       {
-        attributes:	{
-          required:	true,
+        attributes:  {
+          required:  true,
         },
-        category:	'CUSTOM',
-        defaultValue:	null,
-        description:	null,
-        id:	'test-date-picker',
-        label:	'Test Date picker',
-        placeholder:	null,
-        type:	'date'
+        defaultValue:  null,
+        description:  null,
+        id:  'test-date-picker',
+        label:  'Test Date picker',
+        placeholder:  null,
+        type:  'date'
       },
       {
-        attributes:	{
-          required:	true,
+        attributes:  {
+          required:  true,
         },
-        category:	'CUSTOM',
-        defaultValue:	1602489693553,
-        description:	null,
-        id:	'test-datetime-picker',
-        label:	'Test date-time picker',
-        placeholder:	null,
-        type:	'datetime'
+        defaultValue:  1602489693553,
+        description:  null,
+        id:  'test-datetime-picker',
+        label:  'Test date-time picker',
+        placeholder:  null,
+        type:  'datetime'
       },
       {
-        attributes:	{
-          required:	true,
+        attributes:  {
+          required:  true,
         },
-        category:	'CUSTOM',
-        defaultValue:	'https://www.youtube.com/watch?v=DGQwd1_dpuc',
-        description:	null,
-        id:	'test-video-url-comp',
-        label:	'Test videoUrl component',
-        placeholder:	null,
-        type:	'videoUrl'
+        defaultValue:  'https://www.youtube.com/watch?v=DGQwd1_dpuc',
+        description:  null,
+        id:  'test-video-url-comp',
+        label:  'Test videoUrl component',
+        placeholder:  null,
+        type:  'videoUrl'
       },
       {
-        attributes:	{
-          required:	true,
-          maxCount:	3,
-          minCount:	2
+        attributes:  {
+          required:  true,
+          maxCount:  3,
+          minCount:  2
         },
         options: ['One', 'Two', 'Three', 'Five'],
         category:	'CUSTOM',
-        defaultValue:	[],
-        description:	null,
-        id:	'multi-select-test',
-        label:	'Multi Select test',
-        placeholder:	null,
-        type:	'multiselectList'
+        defaultValue:  [],
+        description:  null,
+        id:  'multi-select-test',
+        label:  'Multi Select test',
+        placeholder:  null,
+        type:  'multiselectList'
       },
       {
-        attributes:	{
-          required:	true,
-          maxCount:	1,
-          minCount:	null
+        attributes:  {
+          required:  true,
+          maxCount:  1,
+          minCount:  null
         },
         options: ['One', 'Two', 'Three', 'Five'],
         category:	'CUSTOM',
-        defaultValue:	[],
-        description:	null,
-        id:	'multi-select-test2',
-        label:	'Multi Select test',
-        placeholder:	null,
-        type:	'multiselectList'
+        defaultValue:  [],
+        description:  null,
+        id:  'multi-select-test2',
+        label:  'Multi Select test',
+        placeholder:  null,
+        type:  'multiselectList'
       },
       {
         attributes: {
           maxCount: 3,
           minCount: 1,
           ordering: 'append',
-          required:	true,
-          rowLabel:	'field1'
+          required:  true,
+          rowLabel:  'field1'
         },
-        category: 'CUSTOM',
         defaultValue: null,
         description: '',
         id: 'test-dynamic-field-array',
@@ -594,7 +618,6 @@ describe('OcFormComponent', () => {
               minChars: null,
               required: null
             },
-            category: 'CUSTOM',
             defaultValue: null,
             description: 'some description',
             id: 'field1',
@@ -603,16 +626,15 @@ describe('OcFormComponent', () => {
             type: 'text'
           },
           {
-            id:	'long-text-example',
+            id:  'long-text-example',
             label: 'Long Text Example',
-            type:	'longText',
+            type:  'longText',
             placeholder: 'Write your text here...',
-            category: 'CUSTOM',
             defaultValue: null,
             attributes: {
-              maxChars:	200,
-              required:	null,
-              minChars:	2
+              maxChars:  200,
+              required:  null,
+              minChars:  2
             },
           }
         ],
@@ -662,10 +684,10 @@ describe('OcFormComponent', () => {
   it('should show count validation errors', () => {
     component.formJsonData.fields.push(
       {
-        attributes:	{
-          required:	true,
-          maxCount:	3,
-          minCount:	2
+        attributes:  {
+          required:  true,
+          maxCount:  3,
+          minCount:  2
         },
         options: ['1', '3', '45'],
         category:	'CUSTOM',
@@ -683,12 +705,12 @@ describe('OcFormComponent', () => {
     invalidControl.setValue([1, 3, 5, 6]);
     fixture.detectChanges();
 
-    expect(invalidControl.hasError('maxCount')).toEqual(true);
+    expect(invalidControl.hasError('maxElementsCount')).toEqual(true);
 
-    invalidControl.setValue(1);
+    invalidControl.setValue([1]);
     fixture.detectChanges();
 
-    expect(invalidControl.hasError('minCount')).toEqual(true);
+    expect(invalidControl.hasError('minElementsCount')).toEqual(true);
   });
 
   it('should show url validation error', () => {
@@ -715,7 +737,7 @@ describe('OcFormComponent', () => {
   });
 
   it('should send data', () => {
-    spyOn(component.formSubmitted, 'emit');
+    spyOn(component.formDataUpdated, 'emit');
     component.showButton = true;
     fixture.detectChanges();
 
@@ -723,6 +745,6 @@ describe('OcFormComponent', () => {
 
     submitButton.click();
 
-    expect(component.formSubmitted.emit).toHaveBeenCalledTimes(1);
+    expect(component.formDataUpdated.emit).toHaveBeenCalledTimes(1);
   });
 });

@@ -1,29 +1,16 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcAppGetStartedComponent} from './oc-app-get-started.component';
-import { Component, Input } from '@angular/core';
-import { By } from '@angular/platform-browser';
-
-@Component({
-  selector: 'oc-button',
-  template: ''
-})
-export class ButtonMockComponent {
-  @Input() text: string = '';
-  @Input() disabled: boolean = false;
-  @Input() type: 'primary' | 'secondary' | 'link' = 'primary';
-  @Input() class: string;
-  @Input() style: string;
-  @Input() process: string;
-}
+import {By} from '@angular/platform-browser';
+import {MockButtonComponent} from 'oc-ng-common-component/src/mock/mock';
 
 describe('OcAppGetStartedComponent', () => {
   let component: OcAppGetStartedComponent;
   let fixture: ComponentFixture<OcAppGetStartedComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OcAppGetStartedComponent, ButtonMockComponent]
+      declarations: [OcAppGetStartedComponent, MockButtonComponent]
     })
       .compileComponents();
   }));
