@@ -1,11 +1,13 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcAppCategoriesComponent, OcAppCategoriesModule } from 'oc-ng-common-component/src/lib/app-categories';
+import {
+  AppCategoryDetail,
+  OcAppCategoriesComponent
+} from 'oc-ng-common-component/src/lib/app-categories';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import {AppCategoryDetail} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-category-model';
 
 const appCategory1 = new AppCategoryDetail();
 appCategory1.categoryCardClass = 'category-card';

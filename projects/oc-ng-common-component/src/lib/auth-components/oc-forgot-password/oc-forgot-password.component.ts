@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
-import {ComponentsUserLoginModel} from '../../common-components/interfaces/auth-types.model';
+import {ComponentsUserLoginModel} from '../models/auth-types.model';
 
 @Component({
   selector: 'oc-forgot-password',

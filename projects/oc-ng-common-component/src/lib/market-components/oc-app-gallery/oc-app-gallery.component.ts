@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
-import {FullAppData} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
+import {FullAppData} from 'oc-ng-common-component/src/lib/common-components';
 
 @Component({
   selector: 'oc-app-gallery',

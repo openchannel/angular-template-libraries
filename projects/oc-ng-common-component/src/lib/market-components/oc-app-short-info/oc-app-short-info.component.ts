@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import {AppModel, FullAppData} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
+import {AppModel, FullAppData} from 'oc-ng-common-component/src/lib/common-components';
 
 @Component({
   selector: 'oc-app-short-info',
@@ -14,6 +14,8 @@ export class OcAppShortInfoComponent implements OnInit {
    */
   @Input() app: FullAppData;
   @Input() customDropdown: TemplateRef<any>;
+
+  @Output() clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
 
   private isoCurrencyCode = {
     USD: '$',

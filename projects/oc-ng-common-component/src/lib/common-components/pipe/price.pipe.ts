@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {AppModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
+import {AppModel} from '../model/app-data.model';
 
 @Pipe({
   name: 'price'

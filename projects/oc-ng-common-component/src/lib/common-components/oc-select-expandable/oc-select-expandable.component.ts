@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {SelectModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/components-basic.model';
+import {SelectModel} from '../model/components-basic.model';
 
 @Component({
   selector: 'oc-select-expandable',

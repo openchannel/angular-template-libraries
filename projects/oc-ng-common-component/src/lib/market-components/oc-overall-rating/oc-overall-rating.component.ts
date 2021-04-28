@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {OverallRatingSummary} from 'oc-ng-common-component/src/lib/common-components/interfaces/overall-rating-summary-model';
+import {OverallRatingSummary} from '../models/overall-rating-summary-model';
 
 @Component({
   selector: 'oc-overall-rating',

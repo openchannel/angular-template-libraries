@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule
 } from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import {FileDetails} from 'oc-ng-common-component/src/lib/common-components/interfaces/file.model';
+import {FileDetails} from 'oc-ng-common-component/src/lib/common-components';
 
 @Component({
   selector: 'oc-tooltip-label',

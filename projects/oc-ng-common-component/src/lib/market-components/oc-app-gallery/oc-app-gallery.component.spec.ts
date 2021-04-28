@@ -6,7 +6,7 @@ import { CommonModule, Location } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
+import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components';
 import {AngularSvgIconModule} from 'angular-svg-icon';
 import {MockAppCardComponent, MockRoutingComponent} from 'oc-ng-common-component/src/mock/mock';
 

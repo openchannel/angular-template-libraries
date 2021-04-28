@@ -17,8 +17,8 @@ import {
   ChartStatisticModel,
   ChartStatisticParameterModel,
   ChartStatisticPeriodModel
-} from 'oc-ng-common-component/src/lib/common-components/interfaces/oc-chart.model';
-import {DropdownModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/components-basic.model';
+} from '../models/oc-chart.model';
+import {DropdownModel} from 'oc-ng-common-component/src/lib/common-components';
 
 const importChart = normalizeCommonJSImport(
     import('chart.js'),

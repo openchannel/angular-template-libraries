@@ -6,7 +6,7 @@
         </div>
         <div class="info-card__content">
             <div class="info-card__content-wrapper">
-                <p class="info-card__content-name" ellipsis (click)="clickByApp()">{{app.name}}</p>
+                <p class="info-card__content-name" ellipsis (click)="clickByAppCard.emit(app)">{{app.name}}</p>
                 <div class="info-card__dropdown info-card__dropdown_mobile">
                     <ng-container *ngTemplateOutlet="customDropdown"></ng-container>
                 </div>

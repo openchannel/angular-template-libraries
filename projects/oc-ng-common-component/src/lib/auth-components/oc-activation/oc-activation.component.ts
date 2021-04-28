@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ComponentsUserActivationModel} from '../../common-components/interfaces/auth-types.model';
+import {ComponentsUserActivationModel} from '../models/auth-types.model';
 
 
 @Component({

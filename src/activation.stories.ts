@@ -1,10 +1,9 @@
 import { storiesOf } from '@storybook/angular';
 import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
-import { OcActivationComponent } from 'oc-ng-common-component/src/lib/auth-components';
+import {ComponentsUserActivationModel, OcActivationComponent} from 'oc-ng-common-component/src/lib/auth-components';
 import { withA11y } from '@storybook/addon-a11y';
 import { action } from '@storybook/addon-actions';
 import { RouterTestingModule } from '@angular/router/testing';
-import {ComponentsUserActivationModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/auth-types.model';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {

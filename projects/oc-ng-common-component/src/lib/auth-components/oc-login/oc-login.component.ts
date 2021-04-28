@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {NgForm, NgModel} from '@angular/forms';
-import {ComponentsUserLoginModel} from '../../common-components/interfaces/auth-types.model';
+import {ComponentsUserLoginModel} from '../models/auth-types.model';
 
 @Component({
   selector: 'oc-login',

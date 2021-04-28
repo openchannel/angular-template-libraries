@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcRecommendedAppsComponent} from './oc-recommended-apps.component';
 import {By} from '@angular/platform-browser';
-import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
+import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components';
 import {MockAppCardComponent} from 'oc-ng-common-component/src/mock/mock';
 
 const stat: StatElement = {

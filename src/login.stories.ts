@@ -4,7 +4,7 @@ import { OcLoginComponent } from 'oc-ng-common-component/src/lib/auth-components
 import { action } from '@storybook/addon-actions';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import {ComponentsUserLoginModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/auth-types.model';
+import {ComponentsUserLoginModel} from 'oc-ng-common-component/src/lib/common-components';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {

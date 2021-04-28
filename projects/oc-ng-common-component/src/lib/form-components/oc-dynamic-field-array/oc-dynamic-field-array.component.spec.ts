@@ -5,7 +5,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {FormArray, FormGroup} from '@angular/forms';
 import {OcFormGenerator} from 'oc-ng-common-component/src/lib/form-components/oc-form/oc-form-generator';
-import {AppFormModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-form-model';
+import {AppFormModel} from '../model/app-form-model';
 
 @Component({
   selector: 'oc-dynamic-array-item',

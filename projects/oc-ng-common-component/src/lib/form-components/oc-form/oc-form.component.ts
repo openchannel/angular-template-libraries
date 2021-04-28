@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {AbstractControl, FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {OcFormGenerator} from './oc-form-generator';
-import {AppFormModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-form-model';
+import {AppFormModel} from '../model/app-form-model';
 
 @Component({
   selector: 'oc-form',

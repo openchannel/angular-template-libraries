@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { OcMarketComponentsModule, OcRecommendedAppsComponent } from 'oc-ng-common-component/src/lib/market-components';
 import { OcNumberComponent } from 'oc-ng-common-component/src/lib/form-components';
-import {StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
+import {StatElement} from 'oc-ng-common-component/src/lib/common-components';
 
 const modules = {
   imports: [OcMarketComponentsModule, BrowserAnimationsModule, RouterTestingModule]

@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {Component, NO_ERRORS_SCHEMA} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
-import {AppCategoryDetail} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-category-model';
+import {AppCategoryDetail} from 'oc-ng-common-component/src/lib/common-componentsapp-category-model';
 
 @Component({
   template: ''

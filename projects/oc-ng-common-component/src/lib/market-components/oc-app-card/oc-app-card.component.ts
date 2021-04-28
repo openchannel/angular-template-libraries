@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
-import {FullAppData} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
+import {FullAppData} from 'oc-ng-common-component/src/lib/common-components';
 
 @Component({
   selector: 'oc-app-card',

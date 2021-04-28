@@ -1,9 +1,8 @@
 import {moduleMetadata} from '@storybook/angular';
-import {OcSignupComponent} from 'oc-ng-common-component/src/lib/auth-components';
+import {ComponentsUserRegistrationModel, OcSignupComponent} from 'oc-ng-common-component/src/lib/auth-components';
 import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
 import {action} from '@storybook/addon-actions';
 import {RouterTestingModule} from '@angular/router/testing';
-import {ComponentsUserRegistrationModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/auth-types.model';
 
 const modules = {
     imports: [OcCommonLibModule, RouterTestingModule],

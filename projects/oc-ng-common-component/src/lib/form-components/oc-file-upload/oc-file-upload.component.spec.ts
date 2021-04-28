@@ -7,9 +7,9 @@ import {BrowserModule, By} from '@angular/platform-browser';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ImageCropperModule} from 'ngx-image-cropper';
 import {Observable, of} from 'rxjs';
-import {HttpResponse, HttpUploadProgressEvent} from '@angular/common/http';
+import {HttpResponse} from '@angular/common/http';
 import {MockButtonComponent} from 'oc-ng-common-component/src/mock/mock';
-import {FileDetails} from 'oc-ng-common-component/src/lib/common-components/interfaces/file.model';
+import {FileDetails} from '../model/file.model';
 
 describe('OcFileUploadComponent', () => {
   let component: OcFileUploadComponent;

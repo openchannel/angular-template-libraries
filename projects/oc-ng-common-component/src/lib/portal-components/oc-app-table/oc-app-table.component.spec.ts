@@ -7,7 +7,7 @@ import {Component, Input} from '@angular/core';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CamelcasePipe, HtmlTagsReplacerPipe} from 'oc-ng-common-component/src/lib/common-components';
-import {AppListing} from 'oc-ng-common-service';
+import {AppListing} from '../models/app-listing.model';
 
 @Component({
   selector: 'svg-icon',

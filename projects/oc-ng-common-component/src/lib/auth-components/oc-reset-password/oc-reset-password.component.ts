@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ComponentsUserResetPassword} from '../../common-components/interfaces/auth-types.model';
+import {ComponentsUserResetPassword} from '../models/auth-types.model';
 
 @Component({
   selector: 'oc-reset-password',

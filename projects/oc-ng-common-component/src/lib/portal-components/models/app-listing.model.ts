@@ -1,7 +1,6 @@
-import {FullAppData} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
-import {ComponentsPage} from 'oc-ng-common-component/src/lib/common-components/interfaces/components-basic.model';
-
 /** Model for the App Listing component configuration */
+import {ComponentsPage, FullAppData} from 'oc-ng-common-component/src/lib/common-components';
+
 export interface AppListing {
   layout: 'table';
   data: ComponentsPage<FullAppData>;

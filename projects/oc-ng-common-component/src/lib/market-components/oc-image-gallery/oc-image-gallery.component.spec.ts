@@ -3,7 +3,7 @@ import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {OcImageGalleryComponent} from './oc-image-gallery.component';
 import {By} from '@angular/platform-browser';
 import {SimpleChange} from '@angular/core';
-import {GalleryItem} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
+import {GalleryItem} from 'oc-ng-common-component/src/lib/common-components';
 
 describe('OcImageGalleryComponent', () => {
   let component: OcImageGalleryComponent;

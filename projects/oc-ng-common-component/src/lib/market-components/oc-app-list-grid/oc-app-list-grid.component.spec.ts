@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {OcAppListGridComponent} from './oc-app-list-grid.component';
 import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
+import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components';
 import {PricePipe} from 'oc-ng-common-component/src/lib/common-components';
 import {MockRatingComponent, MockSvgIconComponent} from 'oc-ng-common-component/src/mock/mock';
 

@@ -1,4 +1,4 @@
-import {ComponentsPage} from 'oc-ng-common-component/src/lib/common-components/interfaces/components-basic.model';
+import { ComponentsPage } from 'oc-ng-common-component/src/lib/common-components';
 
 export interface ComponentsUser {
   userId: string;

@@ -4,7 +4,7 @@ import {OcAppCardComponent} from './oc-app-card.component';
 import { By } from '@angular/platform-browser';
 import { Location } from '@angular/common';
 import { PricePipe } from '../../common-components/pipe/price.pipe';
-import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-data.model';
+import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components';
 import {MockRatingComponent, MockRoutingComponent} from 'oc-ng-common-component/src/mock/mock';
 import {HtmlTagsReplacerPipe} from 'oc-ng-common-component/src/lib/common-components';
 

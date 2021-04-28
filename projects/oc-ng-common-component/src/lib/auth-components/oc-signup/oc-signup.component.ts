@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
-import {ComponentsUserRegistrationModel} from '../../common-components/interfaces/auth-types.model';
+import {ComponentsUserRegistrationModel} from '../models/auth-types.model';
 
 @Component({
   selector: 'oc-signup',

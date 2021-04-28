@@ -1,8 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-
 import {OcChartComponent} from './oc-chart.component';
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {DropdownModel} from 'oc-ng-common-service';
+import {DropdownModel} from 'oc-ng-common-component/src/lib/common-components';
 
 @Component({
   selector: 'oc-dropdown-button',

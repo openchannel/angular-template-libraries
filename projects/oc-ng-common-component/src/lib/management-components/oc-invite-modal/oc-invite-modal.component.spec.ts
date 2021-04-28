@@ -4,12 +4,12 @@ import {OcInviteModalComponent} from './oc-invite-modal.component';
 import {MockButtonComponent, MockFormComponent, MockSvgIconComponent} from 'oc-ng-common-component/src/mock/mock';
 import {Observable, of} from 'rxjs';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {ComponentsPage} from 'oc-ng-common-component/src/lib/common-components/interfaces/components-basic.model';
+import {ComponentsPage} from 'oc-ng-common-component/src/lib/common-components';
 import {
   ComponentsUser,
   DeveloperRole
-} from 'oc-ng-common-component/src/lib/common-components/interfaces/user-data.model';
-import {ModalInviteUserModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/oc-modal.model';
+} from 'oc-ng-common-component/src/lib/common-components';
+import { ModalInviteUserModel } from '../models/oc-modal.model';
 
 describe('OcInviteModalComponent', () => {
   let component: OcInviteModalComponent;

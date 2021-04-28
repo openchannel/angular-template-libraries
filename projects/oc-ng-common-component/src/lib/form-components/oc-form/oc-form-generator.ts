@@ -1,5 +1,5 @@
 import {AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {AppFormField} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-form-model';
+import {AppFormField} from '../model/app-form-model';
 import {cloneDeep} from 'lodash';
 
 export class OcFormGenerator {

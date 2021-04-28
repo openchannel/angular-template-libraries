@@ -4,7 +4,7 @@ import {
   ComponentsUserGridActionModel,
   ComponentsUsersGridParametersModel,
   UserGridOptionType
-} from 'oc-ng-common-component/src/lib/common-components/interfaces/user-data.model';
+} from '../models/user-data.model';
 
 export declare type SortField = 'name' | 'email' | 'date' | 'role';
 

@@ -1,10 +1,15 @@
 import {Observable} from 'rxjs';
-import {ComponentsPage} from 'oc-ng-common-component/src/lib/common-components/interfaces/components-basic.model';
+import {
+  ComponentsUserAccount,
+  DeveloperRole,
+  UserRole
+} from '../models/user-data.model';
+import { ComponentsPage } from 'oc-ng-common-component/src/lib/common-components';
 
 export abstract class UpdateOrInviteUserModel {
   modalTitle: string;
   successButtonText: string;
-  requestFindUserRoles: () => Observable<ComponentsPage<ComponentsRole>>;
+  requestFindUserRoles: () => Observable<ComponentsPage<DeveloperRole | UserRole>>;
 }
 
 export class ModalInviteUserModel extends UpdateOrInviteUserModel {
@@ -14,16 +19,6 @@ export class ModalInviteUserModel extends UpdateOrInviteUserModel {
 export class ModalUpdateUserModel extends UpdateOrInviteUserModel {
   userData?: ComponentsDeveloperAccountModel | ComponentsUserAccount;
   requestUpdateAccount: (accountId: string, accountData: any) => Observable<any>;
-}
-
-export interface ComponentsRole {
-  created: number;
-  lastUpdated: number;
-  name: string;
-  permissions?: string[];
-  systemDefined: boolean;
-  developerRoleId?: string;
-  userRoleId?: string;
 }
 
 export interface ComponentsDeveloperAccountModel {
@@ -38,16 +33,4 @@ export interface ComponentsDeveloperAccountModel {
   permissions?: string[];
   customData?: any;
   developerAccountId?: string;
-}
-
-export interface ComponentsUserAccount {
-  userId?: string;
-  name?: string;
-  email?: string;
-  customData?: any;
-  created: number;
-  type?: string;
-  roles?: string[];
-  permissions?: string[];
-  userAccountId?: string;
 }

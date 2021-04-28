@@ -1,7 +1,6 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcMenuUserGridComponent } from 'oc-ng-common-component';
-import { OcManagementComponentsModule } from 'oc-ng-common-component/src/lib/management-components';
-import {ComponentsUsersGridParametersModel} from 'oc-ng-common-component/src/lib/common-components/interfaces/user-data.model';
+import {OcMenuUserGridComponent, OcManagementComponentsModule} from 'oc-ng-common-component/src/lib/management-components';
+import {ComponentsUsersGridParametersModel} from 'oc-ng-common-component/src/lib/common-components';
 
 const modules = {
   imports: [OcManagementComponentsModule]

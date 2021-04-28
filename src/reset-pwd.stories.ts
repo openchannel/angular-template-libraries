@@ -1,12 +1,12 @@
 import {moduleMetadata} from '@storybook/angular';
 import {
+  ComponentsUserResetPassword,
   OcCommonLibModule,
   OcResetPasswordComponent
 } from 'projects/oc-ng-common-component/src/public-api';
 import {RouterTestingModule} from '@angular/router/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { action } from '@storybook/addon-actions';
-import {ComponentsUserResetPassword} from 'oc-ng-common-component/src/lib/common-components/interfaces/auth-types.model';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {

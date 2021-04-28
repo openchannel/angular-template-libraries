@@ -3,7 +3,7 @@ import {
   AppListing,
   AppListingOptions,
   AppListMenuAction
-} from 'oc-ng-common-component/src/lib/common-components/interfaces/app-listing.model';
+} from '../models/app-listing.model';
 
 export interface SortChosen {
   by: 'name' | 'created' | 'status';
