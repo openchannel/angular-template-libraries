@@ -46,6 +46,9 @@ definitions:
     - step: &push-to-github
         name: Push to GitHub
         script:
+          - git tag
+          - git tag v0.0.0
+          - git push origin --tags
           - git remote set-url origin git@github.com:openchannel/angular-template-libraries.git
           - git remote -v
           - git push origin duplicate_master:bitbucket_change
