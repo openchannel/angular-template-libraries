@@ -46,11 +46,19 @@ definitions:
     - step: &push-to-github
         name: Push to GitHub
         script:
-          - git tag
-          - git remote set-url origin git@github.com:openchannel/angular-template-libraries.git
-          - git remote -v
-          - git push origin duplicate_master:bitbucket_change
-          - git push origin --tags
+#          - git tag
+#          - git remote set-url origin git@github.com:openchannel/angular-template-libraries.git
+#          - git remote -v
+#          - git push origin duplicate_master:bitbucket_change
+#          - git push origin --tags
+          - pipe: atlassian/npm-publish:0.3.2
+            variables:
+              NPM_TOKEN: $NPM_TOKEN
+              FOLDER: 'projects/oc-ng-common-component'
+          - pipe: atlassian/npm-publish:0.3.2
+            variables:
+              NPM_TOKEN: $NPM_TOKEN
+              FOLDER: 'projects/oc-ng-common-service'
 pipelines:
   pull-requests:
     '**':
