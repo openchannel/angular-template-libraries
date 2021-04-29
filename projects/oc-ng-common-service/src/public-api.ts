@@ -58,6 +58,7 @@ export * from './lib/service/title.service';
 export * from './lib/service/ownership.service';
 export * from './lib/service/developer-role.service';
 export * from './lib/service/user-role.service';
+export * from './lib/service/statistic.service';
 
 /* Utils */
 export * from './lib/util/type-mapper.util';

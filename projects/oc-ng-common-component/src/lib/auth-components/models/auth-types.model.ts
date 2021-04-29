@@ -1,24 +1,24 @@
 export class ComponentsUserActivationModel {
-  password: string;
-  email: string;
-  code: string;
+    password: string;
+    email: string;
+    code: string;
 }
 
 export class ComponentsUserResetPassword {
-  newPassword: string;
-  code: string;
+    newPassword: string;
+    code: string;
 }
 
 export class ComponentsUserLoginModel {
-  email: string;
-  password: string;
-  isChecked: boolean;
+    email: string;
+    password: string;
+    isChecked: boolean;
 }
 
 export class ComponentsUserRegistrationModel {
-  uname: string;
-  company: string;
-  password: string;
-  email: string;
-  isChecked: boolean;
+    uname: string;
+    company: string;
+    password: string;
+    email: string;
+    isChecked: boolean;
 }
