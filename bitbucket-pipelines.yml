@@ -64,6 +64,7 @@ pipelines:
     release/*:
       - step: *build-test-sonarcloud
     master:
+      - step: *build-test-sonarcloud
       - step: *push-to-github
       - parallel:
           - step: *build-and-push-new-version-of-services
