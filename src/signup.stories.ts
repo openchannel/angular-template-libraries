@@ -1,8 +1,8 @@
-import {moduleMetadata} from '@storybook/angular';
-import {ComponentsUserRegistrationModel, OcSignupComponent} from 'oc-ng-common-component/src/lib/auth-components';
+import { moduleMetadata } from '@storybook/angular';
+import { ComponentsUserRegistrationModel, OcSignupComponent } from 'oc-ng-common-component/src/lib/auth-components';
 import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
-import {action} from '@storybook/addon-actions';
-import {RouterTestingModule} from '@angular/router/testing';
+import { action } from '@storybook/addon-actions';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const modules = {
     imports: [OcCommonLibModule, RouterTestingModule],
@@ -21,15 +21,13 @@ const signupFilled: ComponentsUserRegistrationModel = {
 export default {
     title: 'User signup [BEM]',
     component: OcSignupComponent,
-    decorators: [
-        moduleMetadata(modules),
-    ],
+    decorators: [moduleMetadata(modules)],
 };
 
 const SignupComponent = (args: OcSignupComponent) => ({
     component: OcSignupComponent,
     moduleMetadata: modules,
-    props: args
+    props: args,
 });
 
 export const Empty = SignupComponent.bind({});
@@ -55,5 +53,5 @@ ResultPage.args = {
     loginUrl: 'login',
     companyLogoUrl: './assets/oc-ng-common-component/logo-company.png',
     showSignupFeedbackPage: true,
-    forgotPasswordDoneUrl: './assets/oc-ng-common-component/email_done.svg'
+    forgotPasswordDoneUrl: './assets/oc-ng-common-component/email_done.svg',
 };

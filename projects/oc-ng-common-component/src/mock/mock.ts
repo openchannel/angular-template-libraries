@@ -1,16 +1,19 @@
-import {Component, EventEmitter, forwardRef, Input, Output, TemplateRef} from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output, TemplateRef } from '@angular/core';
 import {
     AbstractControl,
     AbstractControlDirective,
-    ControlValueAccessor, FormArray,
+    ControlValueAccessor,
+    FormArray,
     NG_VALUE_ACCESSOR,
-    NgModel
+    NgModel,
+    FormControl,
 } from '@angular/forms';
-import {FullAppData} from 'oc-ng-common-component/src/lib/common-components';
+import { FullAppData } from 'oc-ng-common-component/src/lib/common-components';
+import { OcCheckboxData, OcEditUserFormConfig, OCOrganization } from 'oc-ng-common-component/src/lib/auth-components';
 
 @Component({
     selector: 'oc-label',
-    template: ''
+    template: '',
 })
 export class MockLabelComponent {
     @Input() text: string = '';
@@ -19,29 +22,28 @@ export class MockLabelComponent {
 @Component({
     selector: 'oc-input',
     template: '',
-    providers: [{
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => MockInputComponent),
-        multi: true
-    }],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockInputComponent),
+            multi: true,
+        },
+    ],
 })
 export class MockInputComponent implements ControlValueAccessor {
     @Input() inputType: string = 'text';
     @Input() placeholder: string = '';
 
-    registerOnChange(fn: any): void {
-    }
+    registerOnChange(fn: any): void {}
 
-    registerOnTouched(fn: any): void {
-    }
+    registerOnTouched(fn: any): void {}
 
-    writeValue(obj: any): void {
-    }
+    writeValue(obj: any): void {}
 }
 
 @Component({
     selector: 'oc-error',
-    template: ''
+    template: '',
 })
 export class MockErrorComponent {
     @Input() control: AbstractControlDirective | AbstractControl | NgModel;
@@ -51,7 +53,7 @@ export class MockErrorComponent {
 
 @Component({
     selector: 'oc-button',
-    template: ''
+    template: '',
 })
 export class MockButtonComponent {
     @Input() text: string = '';
@@ -64,14 +66,13 @@ export class MockButtonComponent {
 }
 
 @Component({
-    template: ''
+    template: '',
 })
-export class MockRoutingComponent {
-}
+export class MockRoutingComponent {}
 
 @Component({
     selector: 'svg-icon',
-    template: ''
+    template: '',
 })
 export class MockSvgIconComponent {
     @Input() src: string;
@@ -79,7 +80,7 @@ export class MockSvgIconComponent {
 
 @Component({
     selector: 'oc-password',
-    template: ''
+    template: '',
 })
 export class MockPasswordComponent {
     @Input() placeholder;
@@ -92,26 +93,26 @@ export class MockPasswordComponent {
 @Component({
     selector: 'oc-checkbox',
     template: '',
-    providers: [{
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => MockCheckboxComponent),
-        multi: true
-    }],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockCheckboxComponent),
+            multi: true,
+        },
+    ],
 })
 export class MockCheckboxComponent implements ControlValueAccessor {
     @Input() labelText: string;
     @Input() requiredIndicator: boolean = false;
-    registerOnChange(fn: any): void {
-    }
-    registerOnTouched(fn: any): void {
-    }
-    writeValue(obj: any): void {
-    }
+    @Input() formControl: FormControl;
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
 }
 
 @Component({
     template: '',
-    selector: 'oc-form'
+    selector: 'oc-form',
 })
 export class MockFormComponent {
     @Input() formJsonData: any;
@@ -124,7 +125,7 @@ export class MockFormComponent {
         name: 'Test name',
         role: 'admin',
         aboutme: '',
-        skills: ['angular']
+        skills: ['angular'],
     };
 
     submitForm() {
@@ -134,7 +135,7 @@ export class MockFormComponent {
 
 @Component({
     selector: 'oc-rating',
-    template: ''
+    template: '',
 })
 export class MockRatingComponent {
     @Input() rating: number = 0;
@@ -155,7 +156,7 @@ export class MockAppCardComponent {
 
 @Component({
     selector: 'oc-title',
-    template: ''
+    template: '',
 })
 export class MockTitleComponent {
     @Input() title: string;
@@ -164,9 +165,41 @@ export class MockTitleComponent {
 
 @Component({
     selector: 'oc-dynamic-field-array',
-    template: ''
+    template: '',
 })
 export class MockDynamicFieldArrayComponent {
     @Input() dfaFormArray: FormArray;
     @Input() fieldDefinitionData: any;
+}
+
+@Component({
+    selector: 'oc-select',
+    template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockSelectComponent),
+            multi: true,
+        },
+    ],
+})
+export class MockSelectComponent implements ControlValueAccessor {
+    @Input() selectValArr: any | object[] = [];
+    @Input() form: FormControl;
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-edit-user-form',
+    template: '',
+})
+export class MockEditUserFormComponent {
+    @Input() formConfigs: OcEditUserFormConfig[];
+    @Input() enableTypesDropdown = false;
+    @Input() enablePasswordField = false;
+    @Input() enableTermsCheckbox: OcCheckboxData;
+    @Input() defaultAccountData: OCOrganization;
+    @Input() defaultOrganizationData: OCOrganization;
 }

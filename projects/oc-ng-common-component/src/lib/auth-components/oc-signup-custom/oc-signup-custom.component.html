@@ -1,0 +1,51 @@
+<div class="sign-up login-card login-card_borders">
+    <div *ngIf="!showSignupFeedbackPage">
+        <div class="sign-up__card-body">
+            <div class="sign-up__logo">
+                <img alt="logo" class="sign-up__logo-img company-logo" [src]="companyLogoUrl">
+            </div>
+            <div class="sign-up__header">
+                <h4 class="sign-up__header-heading">Sign Up</h4>
+                <oc-label text="Enter your account details below" class="sign-up__header-invitation"></oc-label>
+            </div>
+            <div *ngIf="!formConfigsLoading">
+                <oc-edit-user-form
+                    [formConfigs]="formConfigs"
+                    [enableTypesDropdown]="true"
+                    [enablePasswordField]="true"
+                    [enableTermsCheckbox]="{termsUrl: termsUrl, policyUrl: policyUrl}"
+                    (createdFormGroup)="formGroup = $event"
+                    (resultFormDataChange)="resultFormValue = $event"></oc-edit-user-form>
+                <oc-button [process]="process" (click)="submitForm()"
+                           text="Sign Up" type="primary" class="sign-up__button"></oc-button>
+            </div>
+            <div class="sign-up__login">
+                Already have an account? <a class="sign-up__login-link" [routerLink]="loginUrl">Log In</a>
+            </div>
+        </div>
+    </div>
+
+    <form *ngIf="showSignupFeedbackPage" novalidate>
+        <div class="sign-up__card-body result">
+            <div class="sign-up__logo result__logo">
+                <img alt="logo"
+                     class=" company-logo"
+                     [src]="companyLogoUrl">
+            </div>
+            <div class="result__message">
+                <img alt="dropdown-icon"
+                     class="result__message-img"
+                     [src]="forgotPasswordDoneUrl">
+                <h4 class="result__message-heading">Done!</h4>
+                <oc-label text="An activation email has been sent to your inbox."></oc-label>
+            </div>
+            <oc-button (click)="goToActivationPage()" [disabled]="false"
+                       text="Activate account" type="primary" class="sign-up__button">
+            </oc-button>
+            <div class="result__sign-up-message">
+                <oc-label text="Don't have an account yet?"></oc-label>
+                <a class="result__link" (click)="showSignupFeedbackPage = !showSignupFeedbackPage"> Sign Up</a>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,9 +1,9 @@
-import {MetaDefinition} from '@angular/platform-browser';
+import { MetaDefinition } from '@angular/platform-browser';
 
 export interface SiteConfig {
     title: string;
     tagline?: string;
-    metaTags?: MetaDefinition [];
+    metaTags?: MetaDefinition[];
     favicon?: {
         href: string;
         type?: string;
@@ -17,9 +17,9 @@ export interface OCReviewDetailsResponse {
 }
 
 export interface ChartStatisticDataModelResponse {
-    labelsY: number [];
-    labelsX: string[] | number [];
-    tabularLabels?: string [];
+    labelsY: number[];
+    labelsX: string[] | number[];
+    tabularLabels?: string[];
 }
 
 export interface ChartStatisticPeriodModelResponse {
