@@ -1,5 +1,5 @@
 {
-  "name": "oc-ng-common-service",
+  "name": "@openchannel/angular-template-services",
   "version": "1.0.2-3",
   "dependencies": {
     "tslib": "^2.0.0"

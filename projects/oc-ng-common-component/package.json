@@ -1,5 +1,5 @@
 {
-  "name": "oc-ng-common-component",
+  "name": "@openchannel/angular-template-components",
   "version": "1.0.4-4",
   "peerDependencies": {
     "@angular/common": "~11.2.1",
