@@ -19,30 +19,28 @@ definitions:
               SONAR_SCANNER_OPTS: -Xmx2048m
               SONAR_TOKEN: ${SONAR_TOKEN}
               EXTRA_ARGS: '-Dsonar.sources=projects/oc-ng-common-component/src -Dsonar.tests=projects/oc-ng-common-component/src -Dsonar.test.inclusions="**/testing/**,**/*.spec.ts" -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info'
-    - step: &build-and-push-new-version
-        name: Push library to repository
+    - step: &build-and-push-new-version-of-services
+        name: Push services to npm
         script:
           - npm install --quiet
           - npm run build-prod oc-ng-common-service
-          - npm run build-prod oc-ng-common-component
           - npm run oc-ng-common-service-pack
-          - npm run oc-ng-common-component-pack
-          - pipe: cloudsmith-io/publish:0.3.0
+          - pipe: atlassian/npm-publish:0.3.2
             variables:
-              CLOUDSMITH_REPOSITORY: 'openchannel/angular-common-components'
-              CLOUDSMITH_API_KEY: $CLOUDSMITH_API_KEY
-              PACKAGE_FORMAT: 'npm'
-              PACKAGE_NPM_DIST_TAG: 'stable'
-              PACKAGE_PATH: 'dist/oc-ng-common-component/*.tgz'
-              REPUBLISH: 'true'
-    - step: &increase-version
-        name: Up library version
+              NPM_TOKEN: $NPM_TOKEN
+              FOLDER: 'projects/oc-ng-common-service'
+              EXTRA_ARGS: '--access public'
+    - step: &build-and-push-new-version-of-components
+        name: Push components to npm
         script:
-          - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
-          - npm run oc-ng-common-service-up-version
-          - npm run oc-ng-common-component-up-version
-          - git commit -a -m "Auto increment prerelease version [skip ci]"
-          - git push
+          - npm install --quiet
+          - npm run build-prod oc-ng-common-component
+          - npm run oc-ng-common-component-pack
+          - pipe: atlassian/npm-publish:0.3.2
+            variables:
+              NPM_TOKEN: $NPM_TOKEN
+              FOLDER: 'projects/oc-ng-common-component'
+              EXTRA_ARGS: '--access public'
     - step: &push-to-github
         name: Push to GitHub
         script:
@@ -50,25 +48,23 @@ definitions:
           - git remote -v
           - git push origin master:main
           - git push origin --tags
+
 pipelines:
   pull-requests:
     '**':
       - step: *build-test-sonarcloud
   custom:
-    publish:
-      - step: *build-and-push-new-version
+    publish-components:
+      - step: *build-and-push-new-version-of-components
+    publish-services:
+      - step: *build-and-push-new-version-of-services
   branches:
     develop:
       - step: *build-test-sonarcloud
-      - step:
-          trigger: manual
-          <<: *increase-version
-          <<: *build-and-push-new-version
     release/*:
       - step: *build-test-sonarcloud
-      - step:
-          trigger: manual
-          <<: *increase-version
-          <<: *build-and-push-new-version
     master:
       - step: *push-to-github
+      - parallel:
+          - step: *build-and-push-new-version-of-services
+          - step: *build-and-push-new-version-of-components
