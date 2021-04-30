@@ -43,22 +43,36 @@ definitions:
           - npm run oc-ng-common-component-up-version
           - git commit -a -m "Auto increment prerelease version [skip ci]"
           - git push
-    - step: &push-to-github
-        name: Push to GitHub
+    - step: &build-and-push-new-version-of-services
+        name: Push services to npm
         script:
-#          - git tag
-#          - git remote set-url origin git@github.com:openchannel/angular-template-libraries.git
-#          - git remote -v
-#          - git push origin duplicate_master:bitbucket_change
-#          - git push origin --tags
-          - pipe: atlassian/npm-publish:0.3.2
-            variables:
-              NPM_TOKEN: $NPM_TOKEN
-              FOLDER: 'projects/oc-ng-common-component'
+          - npm install --quiet
+          - npm run build-prod oc-ng-common-service
+          - npm run oc-ng-common-service-pack
           - pipe: atlassian/npm-publish:0.3.2
             variables:
               NPM_TOKEN: $NPM_TOKEN
               FOLDER: 'projects/oc-ng-common-service'
+              EXTRA_ARGS: '--access public'
+    - step: &build-and-push-new-version-of-components
+        name: Push components to npm
+        script:
+          - npm install --quiet
+          - npm run build-prod oc-ng-common-component
+          - npm run oc-ng-common-component-pack
+          - pipe: atlassian/npm-publish:0.3.2
+            variables:
+              NPM_TOKEN: $NPM_TOKEN
+              FOLDER: 'projects/oc-ng-common-component'
+              EXTRA_ARGS: '--access public'
+    - step: &push-to-github
+        name: Push to GitHub
+        script:
+          - git tag
+          - git remote set-url origin git@github.com:openchannel/angular-template-libraries.git
+          - git remote -v
+          - git push origin duplicate_master:bitbucket_change
+          - git push origin --tags
 pipelines:
   pull-requests:
     '**':
@@ -66,6 +80,10 @@ pipelines:
   custom:
     publish:
       - step: *build-and-push-new-version
+    publish-components:
+      - step: *build-and-push-new-version-of-components
+    publish-services:
+      - step: *build-and-push-new-version-of-services
   branches:
     develop:
       - step: *build-test-sonarcloud
@@ -81,3 +99,10 @@ pipelines:
           <<: *build-and-push-new-version
     duplicate_master:
       - step: *push-to-github
+      - parallel:
+          - step:
+              trigger: manual
+              <<: *build-and-push-new-version-of-services
+          - step:
+              trigger: manual
+              <<: *build-and-push-new-version-of-components
