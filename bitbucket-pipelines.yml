@@ -43,6 +43,44 @@ definitions:
           - npm run oc-ng-common-component-up-version
           - git commit -a -m "Auto increment prerelease version [skip ci]"
           - git push
+          
+    - step: &build-app
+        name: "Build"
+        image: node:14.15.4-alpine3.12
+        script:
+          - source infra/config-files/${CONFIG_FILE_SUFFIX}
+
+          - mkdir environment-variables
+          - echo "export ENVIRONMENT=$ENVIRONMENT" > environment-variables/deployment.env
+          - echo "export CNAME=$CNAME" >> environment-variables/deployment.env
+          - echo "export CONFIG_FILE_SUFFIX=$CONFIG_FILE_SUFFIX" >> environment-variables/deployment.env
+
+          - npm install --production
+          - npm install @angular/cli @angular-devkit/build-angular
+          - node --optimize_for_size --max_old_space_size=3072 ./node_modules/@angular/cli/bin/ng build --configuration=${ENVIRONMENT}
+          - ls -la
+          # - npm run build
+        artifacts:
+          - dist/**
+          - environment-variables/**
+
+    - step: &deploy-app
+        name: "Deploy to Environment"
+        image: atlassian/pipelines-awscli
+        script:
+          - source environment-variables/deployment.env
+          - source infra/config-files/${CONFIG_FILE_SUFFIX}
+
+          - chmod +x infra/scripts/*
+          - export CERTIFICATE_ARN=`./infra/scripts/getCertificate.sh us-east-1 *.${HOSTED_ZONE_NAME:0:-1}`
+
+          - aws cloudformation deploy --region $REGION --stack-name ${CLOUDFORMATION_STACKNAME}-cloudfront --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset --template-file infra/cloudformation/service-cloudfront.yml --parameter-overrides HostedZoneName=$HOSTED_ZONE_NAME CNAME=$SITE_URL CertificateArn=$CERTIFICATE_ARN ClusterName=$CLUSTER_NAME PrefixName=$PREFIX_NAME AppName=$APP_NAME
+          - echo "aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/DISTRIBUTION_ID --output text --query Parameter.Value"
+          - echo "aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value"
+          - export DISTRIBUTION_ID=`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/DISTRIBUTION_ID --output text --query Parameter.Value`
+          - export AWS_S3="`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value`"
+          - aws s3 sync --delete dist/ s3://$AWS_S3
+          - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /index.html "/assets*"
 pipelines:
   pull-requests:
     '**':

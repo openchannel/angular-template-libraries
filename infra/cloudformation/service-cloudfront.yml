@@ -1,0 +1,130 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Cloufront
+Parameters:
+  HostedZoneName:
+    Type: String
+  CNAME:
+    Type: String
+  CertificateArn:
+    Type: String
+  ClusterName:
+    Type: String
+  PrefixName:
+    Type: String
+  AppName:
+    Type: String
+
+Conditions:
+  OutUs1: !Not [!Equals [!Ref "AWS::Region", "us-east-1"]]  
+
+Resources:
+  EncryptedS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${CNAME}"
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: 'true'
+        BlockPublicPolicy: 'true'
+        IgnorePublicAcls: 'true'
+        RestrictPublicBuckets: 'true'
+      WebsiteConfiguration:
+        ErrorDocument: 'index.html'
+        IndexDocument: 'index.html'
+      VersioningConfiguration:
+        Status: 'Enabled'
+      LoggingConfiguration:
+        !If
+          - OutUs1
+          - DestinationBucketName: !Sub "${PrefixName}-access"
+            LogFilePrefix: !Sub "/${AppName}"
+          - !Ref "AWS::NoValue"
+#==========================================================================================
+  cloudfrontoriginaccessidentity:
+    DependsOn: EncryptedS3Bucket
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: !Sub "${AppName}-access-identity-${CNAME}.s3.amazonaws.com"
+#==========================================================================================
+  ReadPolicy:
+    DependsOn: cloudfrontoriginaccessidentity
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: !Sub "${CNAME}"
+      PolicyDocument:
+        Statement:
+          - Action: 's3:GetObject'
+            Effect: Allow
+            Resource: !Sub "arn:aws:s3:::${CNAME}/*"
+            Principal:
+              CanonicalUser: !Sub ${cloudfrontoriginaccessidentity.S3CanonicalUserId}
+  CfnDistribution:
+    DependsOn: cloudfrontoriginaccessidentity
+    Type: 'AWS::CloudFront::Distribution'
+    Properties:
+      DistributionConfig:
+        HttpVersion: http2
+        Origins:
+          -
+            DomainName: !Sub "${CNAME}.s3.amazonaws.com"
+            Id: !Sub "${AppName}-bucket"
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${cloudfrontoriginaccessidentity}"
+        Enabled: 'true'
+        DefaultRootObject: index.html
+        DefaultCacheBehavior:
+          MaxTTL: 31536000
+          MinTTL: 0
+          Compress: false
+          TargetOriginId: !Sub "${AppName}-bucket"
+          SmoothStreaming: 'false'
+          ForwardedValues:
+            QueryString: 'false'
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: redirect-to-https
+        CustomErrorResponses:
+          - ErrorCode: '403'
+            ResponsePagePath: "/index.html"
+            ResponseCode: '200'
+            ErrorCachingMinTTL: '300'
+        Aliases:
+          - !Ref CNAME
+        ViewerCertificate:
+          AcmCertificateArn: !Ref CertificateArn
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.1_2016
+  SiteDNS:
+    DependsOn: CfnDistribution
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: !Sub ${HostedZoneName}
+      RecordSets:
+        - Name: !Ref CNAME
+          Type: CNAME
+          TTL: 60
+          ResourceRecords:
+            - !Sub ${CfnDistribution.DomainName}
+  DNS:
+    Type: 'AWS::SSM::Parameter'
+    Properties:
+      Name: !Sub '/ECS-CLUSTER/${ClusterName}/${AppName}/BASE_DOMAIN'
+      Value: !Ref CNAME
+      Type: String
+  DistributionId:
+    Type: 'AWS::SSM::Parameter'
+    Properties:
+      Name: !Sub '/ECS-CLUSTER/${ClusterName}/${AppName}/DISTRIBUTION_ID'
+      Value: !Ref CfnDistribution
+      Type: String
+  S3Name:
+    Type: 'AWS::SSM::Parameter'
+    Properties:
+      Name: !Sub '/ECS-CLUSTER/${ClusterName}/${AppName}/AWS_S3'
+      Value: !Ref EncryptedS3Bucket
+      Type: String
