@@ -48,27 +48,18 @@ definitions:
         name: "Build"
         image: node:14.15.4-alpine3.12
         script:
-          - source infra/config-files/${CONFIG_FILE_SUFFIX}
-
-          - mkdir environment-variables
-          - echo "export ENVIRONMENT=$ENVIRONMENT" > environment-variables/deployment.env
-          - echo "export CNAME=$CNAME" >> environment-variables/deployment.env
-          - echo "export CONFIG_FILE_SUFFIX=$CONFIG_FILE_SUFFIX" >> environment-variables/deployment.env
-
-          - npm install --production
-          - npm install @angular/cli @angular-devkit/build-angular
-          - node --optimize_for_size --max_old_space_size=3072 ./node_modules/@angular/cli/bin/ng build --configuration=${ENVIRONMENT}
-          - ls -la
-          # - npm run build
+          - npm install
+          - npm run oc-ng-common-service-pack
+          - npm run build-prod oc-ng-common-component && npm run oc-ng-common-component-pack
+          - npm run docs:json
+          - npm run build-storybook
         artifacts:
-          - dist/**
-          - environment-variables/**
+          - storybook-static/**
 
     - step: &deploy-app
         name: "Deploy to Environment"
         image: atlassian/pipelines-awscli
         script:
-          - source environment-variables/deployment.env
           - source infra/config-files/${CONFIG_FILE_SUFFIX}
 
           - chmod +x infra/scripts/*
@@ -79,7 +70,7 @@ definitions:
           - echo "aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value"
           - export DISTRIBUTION_ID=`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/DISTRIBUTION_ID --output text --query Parameter.Value`
           - export AWS_S3="`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value`"
-          - aws s3 sync --delete dist/ s3://$AWS_S3
+          - aws s3 sync --delete storybook-static/ s3://$AWS_S3
           - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /index.html "/assets*"
 pipelines:
   pull-requests:
@@ -88,6 +79,11 @@ pipelines:
   custom:
     publish:
       - step: *build-and-push-new-version
+    Deploy to dev1:
+      - step: *build-app
+      - step:
+          <<: *deploy-app 
+          deployment: dev1
   branches:
     develop:
       - step: *build-test-sonarcloud
