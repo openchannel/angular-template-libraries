@@ -65,7 +65,7 @@ definitions:
           - chmod +x infra/scripts/*
           - export CERTIFICATE_ARN=`./infra/scripts/getCertificate.sh us-east-1 *.${HOSTED_ZONE_NAME:0:-1}`
 
-          - aws cloudformation deploy --region $REGION --stack-name ${CLOUDFORMATION_STACKNAME}-cloudfront --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset --template-file infra/cloudformation/service-cloudfront.yml --parameter-overrides HostedZoneName=$HOSTED_ZONE_NAME CNAME=$SITE_URL CertificateArn=$CERTIFICATE_ARN ClusterName=$CLUSTER_NAME PrefixName=$PREFIX_NAME AppName=$APP_NAME
+          - aws cloudformation deploy --region $REGION --stack-name ${CLOUDFORMATION_STACKNAME}-cloudfront --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset --template-file infra/cloudformation/service-cloudfront.yml --parameter-overrides CNAME=$SITE_URL CertificateArn=$CERTIFICATE_ARN ProjectName=$APP_NAME ClusterName=$CLUSTER_NAME PrefixName=$PREFIX_NAME
           - echo "aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/DISTRIBUTION_ID --output text --query Parameter.Value"
           - echo "aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value"
           - export DISTRIBUTION_ID=`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/DISTRIBUTION_ID --output text --query Parameter.Value`
