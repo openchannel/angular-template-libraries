@@ -27,6 +27,7 @@ export * from './lib/model/api/ownership.model';
 export * from './lib/model/api/account-role-model';
 export * from './lib/model/api/type-model';
 export * from './lib/model/api/http-params-encoder-model';
+export * from './lib/model/api/properties.model';
 
 /* Component models */
 export * from './lib/model/components/frontend.model';
@@ -59,6 +60,7 @@ export * from './lib/service/ownership.service';
 export * from './lib/service/developer-role.service';
 export * from './lib/service/user-role.service';
 export * from './lib/service/statistic.service';
+export * from './lib/service/properties.service';
 
 /* Utils */
 export * from './lib/util/type-mapper.util';
