@@ -187,7 +187,7 @@ Resources:
     Properties:
       Name: !If
             - hasTypeProj
-            - !Sub '/ECS-CLUSTER/${ClusterName}/${ProjectName}/AWS_S3_NAME_${TypeProj}'
-            - !Sub '/ECS-CLUSTER/${ClusterName}/${ProjectName}/AWS_S3_NAME'
+            - !Sub '/ECS-CLUSTER/${ClusterName}/${ProjectName}/AWS_S3_${TypeProj}'
+            - !Sub '/ECS-CLUSTER/${ClusterName}/${ProjectName}/AWS_S3'
       Value: !Ref EncryptedS3Bucket
       Type: String
