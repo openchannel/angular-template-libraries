@@ -36,6 +36,7 @@ import {FormsModule} from '@angular/forms';
 import {OcVideoComponent} from './oc-video/oc-video.component';
 import {CheckboxRequiredDirective} from './validators/checkbox-required.directive';
 import {HtmlTagsReplacerPipe} from './pipe/html-tags-replacer.pipe';
+import {OcContentModalComponent} from './oc-content-modal/oc-content-modal.component';
 
 @NgModule({
     declarations: [
@@ -46,6 +47,7 @@ import {HtmlTagsReplacerPipe} from './pipe/html-tags-replacer.pipe';
         OcPasswordComponent,
         EmailValidatorDirective,
         OcSelectComponent,
+        OcContentModalComponent,
         WhiteSpaceValidatorDirective,
         OcErrorComponent,
         DragDropDirective,
@@ -92,6 +94,7 @@ import {HtmlTagsReplacerPipe} from './pipe/html-tags-replacer.pipe';
     DragDropDirective,
     CamelcasePipe,
     EllipsisPipe,
+    OcContentModalComponent,
     PricePipe,
     PasswordValidatorDirective,
     PasswordToggleDirective,
