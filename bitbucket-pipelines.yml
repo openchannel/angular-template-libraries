@@ -84,12 +84,12 @@ pipelines:
       - step:
           <<: *deploy-app 
           deployment: dev1
-    stage1:
+    Deploy to stage1:
       - step: *build-app
       - step:
           <<: *deploy-app 
           deployment: stage1
-    us1:
+    Deploy to us1:
       - step: *build-app
       - step:
           <<: *deploy-app 
