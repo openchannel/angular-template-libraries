@@ -38,11 +38,9 @@ export class OcContentModalComponent implements AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        setTimeout(() => {
-            if (this.contentModal.nativeElement.offsetHeight > window.innerHeight / 1.5) {
-                this.hasLongContent = true;
-            }
-        });
+        if (this.contentModal.nativeElement.offsetHeight > window.innerHeight / 2) {
+            this.hasLongContent = true;
+        }
     }
 
     dismiss(): void {
