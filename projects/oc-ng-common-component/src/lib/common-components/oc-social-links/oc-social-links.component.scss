@@ -1,0 +1,20 @@
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/theme';
+
+.social-links {
+    display: flex;
+    align-items: flex-start;
+    margin-left: auto;
+    @include media-breakpoint-md() {
+        margin-right: auto;
+        margin-left: 0;
+    }
+
+    &__item {
+        display: block;
+
+        & + .social-links__item {
+            margin-left: 16px;
+        }
+    }
+}

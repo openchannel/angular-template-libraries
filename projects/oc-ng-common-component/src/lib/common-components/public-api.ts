@@ -27,4 +27,5 @@ export * from './pipe/ellipsis.pipe';
 export * from './pipe/price.pipe';
 export * from './pipe/html-tags-replacer.pipe';
 export * from './oc-select-expandable/oc-select-expandable.component';
+export * from './oc-social-links/oc-social-links.component';
 export * from './oc-video/oc-video.component';
