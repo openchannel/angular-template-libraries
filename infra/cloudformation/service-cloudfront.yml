@@ -14,6 +14,9 @@ Parameters:
     Default: ""
   PrefixName:
     Type: String
+  HostedZoneName:
+    Type: String
+    Default: "openchannel.io."
 
 Conditions:
   hasTypeProj: !Not [!Equals [!Ref TypeProj, ""]]
@@ -140,8 +143,24 @@ Resources:
             ResponsePagePath: "/index.html"
             ResponseCode: '200'
             ErrorCachingMinTTL: '300'
+        Aliases:
+          - !Ref CNAME
         ViewerCertificate:
-          CloudFrontDefaultCertificate: true
+          AcmCertificateArn: !Ref CertificateArn
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.1_2016
+
+  SiteDNS:
+    DependsOn: CfnDistribution
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: !Sub ${HostedZoneName}
+      RecordSets:
+        - Name: !Ref CNAME
+          Type: CNAME
+          TTL: 60
+          ResourceRecords:
+            - !Sub ${CfnDistribution.DomainName}
             
   DNS:
     Type: 'AWS::SSM::Parameter'
