@@ -1,4 +1,4 @@
-<div class="social-links">
+<div class="social-links" *ngIf="socialLinks && socialLinks.length">
     <a class="social-links__item"
        *ngFor="let item of socialLinks"
        href="{{item.link}}"
