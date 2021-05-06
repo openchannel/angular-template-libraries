@@ -29,3 +29,9 @@ export * from './pipe/html-tags-replacer.pipe';
 export * from './oc-select-expandable/oc-select-expandable.component';
 export * from './oc-social-links/oc-social-links.component';
 export * from './oc-video/oc-video.component';
+export * from './directive/ellipsis.directive';
+
+/** Models */
+export * from './model/app-data.model';
+export * from './model/components-basic.model';
+export * from './model/oc-sidebar-model';

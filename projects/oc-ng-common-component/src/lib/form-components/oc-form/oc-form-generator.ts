@@ -1,9 +1,10 @@
 import {AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {AppTypeFieldModel} from 'oc-ng-common-service';
+import {AppFormField} from '../model/app-form-model';
+import {cloneDeep} from 'lodash';
 
 export class OcFormGenerator {
 
-  static getFormByConfig(fieldsDefinitions: AppTypeFieldModel[]) {
+  static getFormByConfig(fieldsDefinitions: AppFormField[]) {
     const group = {};
     fieldsDefinitions.forEach(inputTemplate => {
       switch (inputTemplate?.type) {
@@ -224,6 +225,7 @@ export class OcFormGenerator {
         return null;
       } else {
         if (showLengthErrorText) {
+          console.log(max);
           return {
             maxElementsCount: {
               requiredCount: max

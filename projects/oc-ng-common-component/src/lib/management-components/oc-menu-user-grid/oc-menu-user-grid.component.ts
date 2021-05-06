@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
-  UserAccountGridModel,
-  UserGridActionModel,
-  UserGridOptionTypeModel,
-  UsersGridParametersModel
-} from 'oc-ng-common-service';
+  ComponentsUserAccountGridModel,
+  ComponentsUserGridActionModel,
+  ComponentsUsersGridParametersModel,
+  UserGridOptionType
+} from '../models/user-data.model';
 
 export declare type SortField = 'name' | 'email' | 'date' | 'role';
 
@@ -15,7 +15,7 @@ export declare type SortField = 'name' | 'email' | 'date' | 'role';
 })
 export class OcMenuUserGridComponent implements OnInit {
 
-  @Input() properties: UsersGridParametersModel;
+  @Input() properties: ComponentsUsersGridParametersModel;
   /**
    * Path to the custom icon for the hidden menu toggle button.
    * Default: empty
@@ -30,7 +30,7 @@ export class OcMenuUserGridComponent implements OnInit {
    * Output of menu list item clicked action.
    * Contains an action name, userId, userAccountId
    */
-  @Output() menuClicked: EventEmitter<UserGridActionModel> = new EventEmitter<UserGridActionModel>();
+  @Output() menuClicked: EventEmitter<ComponentsUserGridActionModel> = new EventEmitter<ComponentsUserGridActionModel>();
   /**
    * Output with page number for new users request
    * Start number = 1
@@ -52,8 +52,8 @@ export class OcMenuUserGridComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  action(actionType: UserGridOptionTypeModel, userData: UserAccountGridModel): void {
-    const action: UserGridActionModel = {
+  action(actionType: UserGridOptionType, userData: ComponentsUserAccountGridModel): void {
+    const action: ComponentsUserGridActionModel = {
       action: actionType,
       userId: userData.userId,
       userAccountId: userData.userAccountId,
@@ -74,7 +74,7 @@ export class OcMenuUserGridComponent implements OnInit {
     this.pageNumber = 1;
   }
 
-  initials(user: UserAccountGridModel): string {
+  initials(user: ComponentsUserAccountGridModel): string {
     return user?.name ? user.name.split(' ').map(value => value.substring(0, 1)).join('').substring(0, 2) : '';
   }
 }

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpRequestService} from './http-request-services';
 import {Observable} from 'rxjs';
 import {Page} from '../model/api/page.model';
-import {AppVersion, UpdateAppVersionModel} from '../model/api/app-data-model';
+import {AppVersionResponse, UpdateAppVersionModel} from '../model/api/app-data-model';
 import {OcHttpParams} from '../model/api/http-params-encoder-model';
 
 
@@ -18,7 +18,7 @@ export class AppVersionService {
 
   getAppsVersionsBySearchText(pageNumber: number, limit: number,
                               sort: string, query: string,
-                              searchText: string, searchTextByFields: string[]): Observable<Page<AppVersion>> {
+                              searchText: string, searchTextByFields: string[]): Observable<Page<AppVersionResponse>> {
 
     const mainUrl = `${this.APPS_URL}/versions/textSearch`;
 
@@ -33,7 +33,7 @@ export class AppVersionService {
     return this.httpRequest.get(mainUrl, { params });
   }
 
-  getAppsVersions(pageNumber: number, limit: number, sort: any, query: string): Observable<Page<AppVersion>> {
+  getAppsVersions(pageNumber: number, limit: number, sort: any, query: string): Observable<Page<AppVersionResponse>> {
 
     const mainUrl = `${this.APPS_URL}/versions`;
 
@@ -55,12 +55,12 @@ export class AppVersionService {
     return this.httpRequest.delete(mainUrl);
   }
 
-  getAppByVersion(appId: string, version: number): Observable<AppVersion> {
+  getAppByVersion(appId: string, version: number): Observable<AppVersionResponse> {
     const mainUrl = `${this.APPS_URL}/${appId}/versions/${version}`;
     return this.httpRequest.get(mainUrl);
   }
 
-  updateAppByVersion(appId: string, version: number, updateAppVersionModel: UpdateAppVersionModel): Observable<AppVersion> {
+  updateAppByVersion(appId: string, version: number, updateAppVersionModel: UpdateAppVersionModel): Observable<AppVersionResponse> {
     const mainUrl = `${this.APPS_URL}/${appId}/versions/${version}`;
     return this.httpRequest.post(mainUrl, updateAppVersionModel);
   }

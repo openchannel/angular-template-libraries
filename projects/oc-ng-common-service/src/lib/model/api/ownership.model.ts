@@ -1,9 +1,9 @@
-import {AppModel} from './app-data-model';
+import {AppModelResponse} from './app-data-model';
 
 /**
  * representation of the ownership relationship between a user and an app
  */
-export interface OwnershipModel {
+export interface OwnershipModelResponse {
   ownershipId: string;
   date: Date;
   appId: string;
@@ -13,7 +13,7 @@ export interface OwnershipModel {
   ownershipStatus: string | 'pending' | 'active' | 'uninstalled' | 'cancelled';
   uninstallDate?: Date;
   expires?: Date;
-  model: AppModel;
+  model: AppModelResponse;
   customData?: any;
 }
 

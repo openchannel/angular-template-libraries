@@ -1,5 +1,5 @@
 import {Page} from './page.model';
-import {OwnershipModel} from './ownership.model';
+import {OwnershipModelResponse} from './ownership.model';
 
 export interface User {
   userId: string;
@@ -51,7 +51,7 @@ export interface UserGridActionModel {
 }
 
 export interface UserCompanyModel extends User {
-  ownedApps?: OwnershipModel [];
+  ownedApps?: OwnershipModelResponse [];
   accountCount?: number;
 }
 

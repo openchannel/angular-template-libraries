@@ -1,4 +1,4 @@
-export class UserRegistrationModel {
+export interface UserRegistrationModel {
     uname: string;
     company: string;
     password: string;

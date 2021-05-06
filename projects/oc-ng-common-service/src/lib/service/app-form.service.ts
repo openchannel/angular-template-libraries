@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {Page} from '../model/api/page.model';
 import {QueryUtil} from '../util/query.util';
 import {
-  AppFormModel,
+  AppFormModelResponse,
   CreateFormSubmissionModel,
   FormSubmissionModel
 } from '../model/api/app-form-model';
@@ -19,12 +19,12 @@ export class AppFormService {
   constructor(private httpRequest: HttpRequestService) {
   }
 
-  getForms(pageNumber: number, pageLimit: number): Observable<Page<AppFormModel>> {
+  getForms(pageNumber: number, pageLimit: number): Observable<Page<AppFormModelResponse>> {
     const mainUrl = `${this.FORM_URL}?${QueryUtil.getPaginationQuery(pageNumber, pageLimit)}`;
     return this.httpRequest.get(encodeURI(mainUrl));
   }
 
-  getForm(formId: string): Observable<AppFormModel> {
+  getForm(formId: string): Observable<AppFormModelResponse> {
     const mainUrl = `${this.FORM_URL}/${formId}`;
     return this.httpRequest.get(mainUrl);
   }

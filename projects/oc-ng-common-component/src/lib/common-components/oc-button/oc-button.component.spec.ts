@@ -1,14 +1,16 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcButtonComponent} from './oc-button.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 describe('OcButtonComponent', () => {
   let component: OcButtonComponent;
   let fixture: ComponentFixture<OcButtonComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OcButtonComponent]
+      declarations: [OcButtonComponent],
+      imports: [NgxSpinnerModule]
     })
       .compileComponents();
   }));
@@ -30,12 +32,12 @@ describe('OcButtonComponent', () => {
   });
 
   it('should contain type value and exist', async () => {
-    component.type = 'secondary';
+    component.buttonType = 'secondary';
 
     const button = fixture.nativeElement.querySelector('button');
     fixture.detectChanges();
 
-    expect(component.type).toEqual('secondary');
+    expect(component.buttonType).toEqual('secondary');
 
     await fixture.whenStable().then(() => {
       expect(button).toBeTruthy();
@@ -54,7 +56,7 @@ describe('OcButtonComponent', () => {
   });
 
   it('should click', async () => {
-    component.type = 'secondary';
+    component.buttonType = 'secondary';
 
     const button = fixture.nativeElement.querySelector('button');
 
@@ -62,7 +64,7 @@ describe('OcButtonComponent', () => {
     fixture.detectChanges();
 
     await fixture.whenStable().then(() => {
-      expect(component.type).toBe('secondary');
+      expect(component.buttonType).toBe('secondary');
     });
   });
 });

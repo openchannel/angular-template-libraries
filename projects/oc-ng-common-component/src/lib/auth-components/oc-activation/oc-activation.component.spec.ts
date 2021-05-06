@@ -1,74 +1,18 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcActivationComponent} from './oc-activation.component';
+import {FormsModule} from '@angular/forms';
+import {Location} from '@angular/common';
+import {Router} from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
+import {By} from '@angular/platform-browser';
 import {
-  AbstractControl,
-  AbstractControlDirective,
-  ControlValueAccessor,
-  FormsModule,
-  NG_VALUE_ACCESSOR,
-  NgModel
-} from '@angular/forms';
-import { Component, forwardRef, Input } from '@angular/core';
-import { Location } from '@angular/common';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { By } from '@angular/platform-browser';
-
-@Component({
-  selector: 'oc-label',
-  template: ''
-})
-export class MockLabelComponent {
-  @Input() text: string = '';
-}
-
-@Component({
-  selector: 'oc-error',
-  template: ''
-})
-export class MockErrorComponent {
-  @Input()
-  public control: AbstractControlDirective | AbstractControl | NgModel;
-  @Input()
-  public field: string;
-}
-@Component({
-  selector: 'oc-button',
-  template: ''
-})
-export class ButtonMockComponent {
-  @Input() text: string = '';
-  @Input() disabled: boolean = false;
-  @Input() type: 'primary' | 'secondary' | 'link' = 'primary';
-  @Input() class: string;
-  @Input() style: string;
-  @Input() process: string;
-}
-@Component({
-  selector: 'oc-input',
-  template: '',
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => MockInputComponent),
-    multi: true
-  }],
-})
-export class MockInputComponent implements ControlValueAccessor {
-  @Input() inputType: string = 'text';
-  @Input() placeholder: string = '';
-  registerOnChange(fn: any): void {
-  }
-  registerOnTouched(fn: any): void {
-  }
-  writeValue(obj: any): void {
-  }
-}
-@Component({
-  template: ''
-})
-export class MockRoutingComponent {
-}
+    MockButtonComponent,
+    MockErrorComponent,
+    MockInputComponent,
+    MockLabelComponent,
+    MockRoutingComponent
+} from 'oc-ng-common-component/src/mock/mock';
 
 describe('OcActivationComponent', () => {
   let component: OcActivationComponent;
@@ -76,13 +20,13 @@ describe('OcActivationComponent', () => {
   let location: Location;
   let router: Router;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         OcActivationComponent,
         MockLabelComponent,
         MockErrorComponent,
-        ButtonMockComponent,
+        MockButtonComponent,
         MockInputComponent,
         MockRoutingComponent
       ],

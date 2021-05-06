@@ -12,3 +12,7 @@ export * from './oc-recommended-apps/oc-recommended-apps.component';
 export * from './oc-review-list/oc-review-list.component';
 export * from './oc-text-search/oc-text-search.component';
 export * from './oc-market-components.module';
+
+/** Models */
+export * from './models/oc-review-details-model';
+export * from './models/overall-rating-summary-model';
