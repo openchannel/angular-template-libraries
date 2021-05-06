@@ -1,7 +1,6 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcMenuUserGridComponent } from 'oc-ng-common-component';
-import { UsersGridParametersModel } from 'oc-ng-common-service';
-import { OcManagementComponentsModule } from 'oc-ng-common-component/src/lib/management-components';
+import {OcMenuUserGridComponent, OcManagementComponentsModule} from 'oc-ng-common-component/src/lib/management-components';
+import {ComponentsUsersGridParametersModel} from 'oc-ng-common-component/src/lib/common-components';
 
 const modules = {
   imports: [OcManagementComponentsModule]
@@ -21,7 +20,7 @@ const ListGridComponent = (args: OcMenuUserGridComponent) => ({
   props: args
 });
 
-const propsConfig: UsersGridParametersModel = {
+const propsConfig: ComponentsUsersGridParametersModel = {
   layout: 'table',
   data: {
     pages: 50,
@@ -45,7 +44,7 @@ const propsConfig: UsersGridParametersModel = {
       type: 'VIEWER',
       inviteStatus: 'ACTIVE',
       customData: {companyName: 'Mark Company', interests: []},
-    },{
+    }, {
       name: 'Johnny Lewis',
       created: new Date().getTime() - 10 * 24 * 60 * 60 * 1000,
       email: 'johnny@test.com',
@@ -54,7 +53,7 @@ const propsConfig: UsersGridParametersModel = {
       type: 'ADMIN',
       inviteStatus: 'INVITED',
       customData: {companyName: 'Johnny Company', interests: []},
-    },{
+    }, {
         name: undefined,
         created: new Date().getTime() - 10 * 24 * 60 * 60 * 1000,
         email: undefined,

@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcPasswordComponent} from './oc-password.component';
 import {FormsModule, NgModel} from '@angular/forms';
@@ -9,7 +9,7 @@ describe('OcPasswordComponent', () => {
   let component: OcPasswordComponent;
   let fixture: ComponentFixture<OcPasswordComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [NgModel],
       imports: [FormsModule, CommonModule, BrowserModule],
@@ -97,7 +97,7 @@ describe('OcPasswordComponent', () => {
 
     const input = fixture.nativeElement.querySelector('input');
     input.value = 'test on change';
-    input.dispatchEvent(new Event('focus'));
+    input.dispatchEvent(new Event('blur'));
 
     expect(onTouchedFunc).toHaveBeenCalled();
   });

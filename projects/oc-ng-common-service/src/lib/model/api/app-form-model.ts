@@ -1,4 +1,4 @@
-export interface AppFormField {
+export interface AppFormFieldResponse {
   id: string;
   label: string;
   description: string;
@@ -7,15 +7,16 @@ export interface AppFormField {
   required?: any;
   attributes: string [];
   options?: any;
-  subFieldDefinitions?: AppFormField [];
+  subFieldDefinitions?: AppFormFieldResponse [];
+  fields?: AppFormFieldResponse[];
   placeholder: string;
 }
 
-export interface AppFormModel {
+export interface AppFormModelResponse {
   formId: string;
   name: string;
   createdDate: number;
-  fields?: AppFormField[];
+  fields?: AppFormFieldResponse[];
 }
 
 export interface FormSubmissionStatus {

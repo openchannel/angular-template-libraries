@@ -2,6 +2,7 @@
 @import '../../../../assets/styles/mixins.scss';
 
 .card-wrapper {
+  width: 100%;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -9,6 +10,10 @@
   border-radius: 4px;
   padding: 16px;
   position: relative;
+  min-height: 110px;
+  @include media-breakpoint-sm {
+    min-height: 129px;
+  }
 
   .info-card__dropdown {
 
@@ -28,8 +33,15 @@
   }
 
   .info-card {
+    width: inherit;
     display: flex;
     flex-grow: 1;
+    @include media-breakpoint-xl {
+      width: calc(100% - 68px);
+    }
+    @include media-breakpoint-sm {
+      width: 100%;
+    }
 
     &__logo {
       flex-basis: 60px;
@@ -46,23 +58,25 @@
 
     &__content {
       margin-left: 2rem;
-      width: 75%;
+      width: calc(100% - 90px);
       @include media-breakpoint-sm {
-        width: 100%;
+        width: calc(100% - 66px);
       }
 
       &-wrapper {
         @include media-breakpoint-sm {
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           justify-content: space-between;
         }
       }
 
       &-name {
+        display: inline-block;
         margin-bottom: 0.5rem;
         line-height: 19px;
-        font-family: "Rubik-Medium", sans-serif;
+        height: 19px;
+        font-family: 'Rubik-Medium', sans-serif;
       }
 
       &-data {
@@ -97,9 +111,8 @@
       }
 
       &-summary {
-        max-height: 2.5rem;
         line-height: 2.3rem;
-        overflow: hidden;
+        height: 2.3rem;
         font-size: 14px;
         margin-bottom: 0;
         color: #727272;

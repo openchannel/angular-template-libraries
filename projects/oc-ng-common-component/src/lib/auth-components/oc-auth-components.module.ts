@@ -7,33 +7,34 @@ import { OcForgotPasswordComponent } from './oc-forgot-password/oc-forgot-passwo
 import { OcSignupComponent } from './oc-signup/oc-signup.component';
 import { OcLoginComponent } from './oc-login/oc-login.component';
 import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
+import { OcEditUserFormComponent } from './oc-edit-user-form/oc-edit-user-form.component';
+import { OcSignupCustomComponent } from './oc-signup-custom/oc-signup-custom.component';
+import { OcFormComponentsModule } from 'oc-ng-common-component/src/lib/form-components';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [
-    OcActivationComponent,
-    OcResendActivationComponent,
-    OcResetPasswordComponent,
-    OcSignupComponent,
-    OcLoginComponent,
-    OcForgotPasswordComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    OcCommonLibModule,
-  ],
-  exports: [
-    OcActivationComponent,
-    OcResendActivationComponent,
-    OcResetPasswordComponent,
-    OcSignupComponent,
-    OcLoginComponent,
-    OcForgotPasswordComponent,
-  ],
+    declarations: [
+        OcActivationComponent,
+        OcResendActivationComponent,
+        OcResetPasswordComponent,
+        OcSignupComponent,
+        OcLoginComponent,
+        OcForgotPasswordComponent,
+        OcSignupCustomComponent,
+        OcEditUserFormComponent,
+    ],
+    imports: [CommonModule, FormsModule, RouterModule, OcCommonLibModule, OcFormComponentsModule, ReactiveFormsModule, NgbModule],
+    exports: [
+        OcActivationComponent,
+        OcResendActivationComponent,
+        OcResetPasswordComponent,
+        OcSignupComponent,
+        OcLoginComponent,
+        OcForgotPasswordComponent,
+        OcSignupCustomComponent,
+        OcEditUserFormComponent,
+    ],
 })
-export class OcAuthComponentsModule {
-}
+export class OcAuthComponentsModule {}

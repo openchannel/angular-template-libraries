@@ -1,8 +1,8 @@
 import { moduleMetadata } from '@storybook/angular';
 import { OcAppGalleryComponent, OcMarketComponentsModule } from 'oc-ng-common-component/src/lib/market-components';
-import { FullAppData, StatElement } from 'oc-ng-common-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import {FullAppData, StatElement} from 'oc-ng-common-component/src/lib/common-components';
 
 const modules = {
   imports: [OcMarketComponentsModule, BrowserAnimationsModule, RouterTestingModule]

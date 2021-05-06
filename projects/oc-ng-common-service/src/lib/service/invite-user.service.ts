@@ -40,6 +40,15 @@ export class InviteUserService {
     return this.sendInvite('users', company, inviteData, {userInviteTemplateId});
   }
 
+  /**
+   * Edit developer invite
+   * @param inviteData data from invite form
+   * @param inviteId id of the invite
+   */
+  editUserInvite(inviteId: string, inviteData: any): Observable<any> {
+    return this.httpService.post(`${this.INVITE_URL}/users/byId/${inviteId}`, inviteData);
+  }
+
   deleteUserInvite(inviteId: string): Observable<any> {
     return this.httpService.delete(`${this.INVITE_URL}/users/byId/${inviteId}`);
   }
@@ -64,6 +73,15 @@ export class InviteUserService {
    */
   sendDeveloperInvite(developerInviteTemplateId: string, company: string, inviteData: any): Observable<any> {
     return this.sendInvite('developers', company, inviteData, {developerInviteTemplateId});
+  }
+
+  /**
+   * Edit developer invite
+   * @param inviteData data from invite form
+   * @param inviteId id of the invite
+   */
+  editDeveloperInvite(inviteId: string, inviteData: any): Observable<any> {
+    return this.httpService.post(`${this.INVITE_URL}/developers/byId/${inviteId}`, inviteData);
   }
 
   /** In order to validate the invite token and get the details for the invite */

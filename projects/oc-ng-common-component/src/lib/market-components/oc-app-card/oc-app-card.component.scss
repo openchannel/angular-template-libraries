@@ -20,13 +20,11 @@
     width: 100%;
 
     &-name {
-      margin-bottom: 1rem;
+      height: 19px;
       line-height: 19px;
-      font-family: "Rubik-Medium", sans-serif;
+      margin-bottom: 1rem;
+      font-family: 'Rubik-Medium', sans-serif;
       color: $body-color;
-      word-break: break-all;
-      max-height: 40px;
-      overflow: hidden;
     }
 
     &-info {
@@ -43,9 +41,8 @@
     }
 
     &-summary {
-      max-height: 4.5rem;
+      height: 2.3rem;
       line-height: 2.3rem;
-      overflow: hidden;
       font-size: 14px;
       margin-bottom: 0;
       color: $secondary;

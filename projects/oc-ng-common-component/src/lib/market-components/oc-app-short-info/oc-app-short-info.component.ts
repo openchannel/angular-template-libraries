@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { AppModel, FullAppData } from 'oc-ng-common-service';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import {AppModel, FullAppData} from 'oc-ng-common-component/src/lib/common-components';
 
 @Component({
   selector: 'oc-app-short-info',
@@ -8,15 +8,14 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./oc-app-short-info.component.scss']
 })
 export class OcAppShortInfoComponent implements OnInit {
-
-  desktop: boolean;
-
   /**
    * One App to show. Must consists fields: 'name', 'model',
    * 'rating', 'reviewCount', 'summary' or 'description'
    */
   @Input() app: FullAppData;
   @Input() customDropdown: TemplateRef<any>;
+
+  @Output() clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
 
   private isoCurrencyCode = {
     USD: '$',
@@ -43,7 +42,7 @@ export class OcAppShortInfoComponent implements OnInit {
        price += priceModel.currency ? Object.keys(this.isoCurrencyCode).includes(priceModel.currency) ?
          this.isoCurrencyCode[priceModel.currency] : '$' : '';
 
-       price += priceModel.price;
+       price += priceModel.price / 100;
        if (priceModel.billingPeriod) {
          price += '/' + priceModel.billingPeriod.substring(0, 2);
        }

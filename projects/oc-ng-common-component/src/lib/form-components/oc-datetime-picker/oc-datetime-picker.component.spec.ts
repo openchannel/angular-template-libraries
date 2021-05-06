@@ -1,17 +1,22 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { OcDatetimePickerComponent } from './oc-datetime-picker.component';
-import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {OcDatetimePickerComponent} from './oc-datetime-picker.component';
+import {FormsModule} from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MockSvgIconComponent} from 'oc-ng-common-component/src/mock/mock';
+import {OcButtonComponent} from 'oc-ng-common-component/src/lib/common-components';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {NgxSpinnerModule} from 'ngx-spinner';
+
 
 describe('OcDatetimePickerComponent', () => {
   let component: OcDatetimePickerComponent;
   let fixture: ComponentFixture<OcDatetimePickerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcDatetimePickerComponent ],
-      imports: [FormsModule, NgbModule]
+      declarations: [OcDatetimePickerComponent, MockSvgIconComponent, OcButtonComponent],
+      imports: [FormsModule, NgbModule, HttpClientTestingModule, NgxSpinnerModule]
     })
     .compileComponents();
   }));
@@ -43,7 +48,7 @@ describe('OcDatetimePickerComponent', () => {
     component.settings = {format: 'dd/MM/yyyy'};
 
     fixture.detectChanges();
-    const dateContainer = fixture.nativeElement.querySelector('.wc-date-container span');
+    const dateContainer = fixture.nativeElement.querySelector('.date-picker__format-text');
 
     await fixture.whenStable().then(() => {
       expect(dateContainer.textContent.trim()).toEqual('30/10/2020');
@@ -56,7 +61,7 @@ describe('OcDatetimePickerComponent', () => {
     component.settings = {format: 'dd/MM/yyyy HH:mm'};
 
     fixture.detectChanges();
-    const dateContainer = fixture.nativeElement.querySelector('.wc-date-container span');
+    const dateContainer = fixture.nativeElement.querySelector('.date-picker__format-text');
 
     await fixture.whenStable().then(() => {
       expect(dateContainer.textContent.trim()).toEqual('30/10/2020 11:51');
@@ -127,16 +132,12 @@ describe('OcDatetimePickerComponent', () => {
     component.value = dateStr;
     component.type = 'datetime';
 
-    const pickerButton = fixture.nativeElement.querySelector('#datePickerDD');
-
-    pickerButton.click();
+    fixture.nativeElement.querySelector('#datePickerDD').click();
     fixture.detectChanges();
 
-    const prevHourBtn = fixture.nativeElement.querySelector('.hour .inc-btn');
-    prevHourBtn.click();
-
-    const nextMinuteBtn = fixture.nativeElement.querySelector('.minutes .dec-btn');
-    nextMinuteBtn.click();
+    fixture.nativeElement.querySelector('#hourDec').click();
+    fixture.nativeElement.querySelector('#minInc').click();
+    fixture.detectChanges();
 
     await fixture.whenStable().then(() => {
       expect(component.date).toEqual(timeChanged);

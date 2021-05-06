@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpRequestService} from './http-request-services';
 import {Observable} from 'rxjs';
-import {CreateOwnershipModel, OwnershipModel} from '../model/api/ownership.model';
+import {CreateOwnershipModel, OwnershipModelResponse} from '../model/api/ownership.model';
 import {HttpHeaders} from '@angular/common/http';
 
 @Injectable({
@@ -13,12 +13,12 @@ export class OwnershipService {
 
     constructor(private httpRequest: HttpRequestService) {}
 
-    installOwnership(ownership: CreateOwnershipModel, headers: HttpHeaders = new HttpHeaders()): Observable<OwnershipModel> {
+    installOwnership(ownership: CreateOwnershipModel, headers: HttpHeaders = new HttpHeaders()): Observable<OwnershipModelResponse> {
         return this.httpRequest.post(`${this.OWNERSHIP_URL}/install`,
             ownership,  {headers});
     }
 
-    uninstallOwnership(ownershipId: string, headers: HttpHeaders = new HttpHeaders()): Observable<OwnershipModel> {
+    uninstallOwnership(ownershipId: string, headers: HttpHeaders = new HttpHeaders()): Observable<OwnershipModelResponse> {
         return this.httpRequest.post(`${this.OWNERSHIP_URL}/uninstall/${ownershipId}`,
             {}, {headers});
     }

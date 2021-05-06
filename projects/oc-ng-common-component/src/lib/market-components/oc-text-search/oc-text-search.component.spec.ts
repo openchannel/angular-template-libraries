@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcTextSearchComponent} from './oc-text-search.component';
-import { By } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import {By} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
 import {AngularSvgIconModule} from 'angular-svg-icon';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 
@@ -10,7 +10,7 @@ describe('OcTextSearchComponent', () => {
   let component: OcTextSearchComponent;
   let fixture: ComponentFixture<OcTextSearchComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [OcTextSearchComponent],
       imports: [FormsModule, AngularSvgIconModule.forRoot(), HttpClientTestingModule],

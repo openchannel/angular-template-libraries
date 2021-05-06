@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {UserRegistrationModel} from 'oc-ng-common-service';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
+import {ComponentsUserRegistrationModel} from '../models/auth-types.model';
 
 @Component({
   selector: 'oc-signup',
@@ -12,7 +12,7 @@ export class OcSignupComponent {
   imagePath: any;
   closeResult = '';
 
-  @Input() signupModel = new UserRegistrationModel();
+  @Input() signupModel = new ComponentsUserRegistrationModel();
   @Input() loginUrl;
   @Input() signupUrl;
   @Input() activationUrl;

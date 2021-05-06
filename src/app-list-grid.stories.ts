@@ -1,10 +1,10 @@
 import { moduleMetadata } from '@storybook/angular';
-import { StatElement } from 'oc-ng-common-service';
 import { OcAppListGridComponent, OcRatingComponent } from 'oc-ng-common-component/src/lib/market-components';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { PricePipe } from 'oc-ng-common-component/src/lib/common-components';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {StatElement} from 'oc-ng-common-component/src/lib/common-components';
 
 const modules = {
   imports: [AngularSvgIconModule.forRoot(), NgbModule, HttpClientTestingModule],

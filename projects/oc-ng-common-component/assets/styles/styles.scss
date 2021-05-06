@@ -239,20 +239,15 @@ h6 {
 /** form inputs validation style **/
 oc-input, oc-password, oc-select, oc-video-url, oc-color, oc-rich-text-editor, oc-textarea {
     &.ng-invalid {
-      input.ng-touched, select.ng-touched , textarea.ng-touched {
-        border-color: $danger;
-      }
       .custom-editor.ng-touched {
         .tox-tinymce {
           border-color: $danger;
         }
       }
     }
-    &.ng-invalid {
-      &.ng-touched {
-        input, select, button.ng-invalid , textarea {
-          border-color: $danger;
-        }
+    &.ng-touched {
+      input, select, button.ng-invalid , textarea {
+        border-color: $danger;
       }
     }
 }

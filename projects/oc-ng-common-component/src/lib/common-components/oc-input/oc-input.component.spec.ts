@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcInputComponent} from './oc-input.component';
 import {FormsModule} from '@angular/forms';
@@ -7,7 +7,7 @@ describe('OcInputComponent', () => {
   let component: OcInputComponent;
   let fixture: ComponentFixture<OcInputComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [OcInputComponent],
       imports: [FormsModule],
@@ -94,7 +94,7 @@ describe('OcInputComponent', () => {
 
     const input = fixture.nativeElement.querySelector('input');
     input.value = 'test on change';
-    input.dispatchEvent(new Event('focus'));
+    input.dispatchEvent(new Event('blur'));
 
     expect(onTouchedFunc).toHaveBeenCalled();
   });
