@@ -1,4 +1,4 @@
-export interface Role {
+export interface RoleResponse {
   created: number;
   lastUpdated: number;
   name: string;
@@ -6,10 +6,10 @@ export interface Role {
   systemDefined: boolean;
 }
 
-export interface DeveloperRole extends Role {
+export interface DeveloperRoleResponse extends RoleResponse {
   developerRoleId: string;
 }
 
-export interface UserRole extends Role {
+export interface UserRoleResponse extends RoleResponse {
   userRoleId: string;
 }

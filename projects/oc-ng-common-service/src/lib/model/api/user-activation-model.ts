@@ -1,10 +1,10 @@
-export class UserActivationModel {
+export interface UserActivationModel {
     password: string;
     email: string;
     code: string;
 }
 
-export class UserResetPassword {
+export interface UserResetPassword {
     newPassword: string;
     code: string;
 }

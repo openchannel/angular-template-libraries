@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcLabelComponent} from './oc-label.component';
 
@@ -6,7 +6,7 @@ describe('OcLabelComponent', () => {
   let component: OcLabelComponent;
   let fixture: ComponentFixture<OcLabelComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [OcLabelComponent]
     })
@@ -36,7 +36,7 @@ describe('OcLabelComponent', () => {
     component.required = true;
 
     fixture.detectChanges();
-    const required = fixture.nativeElement.querySelector('.required');
+    const required = fixture.nativeElement.querySelector('.oc-form-label__required');
 
     await fixture.whenStable().then(() => {
       expect(required).toBeTruthy();

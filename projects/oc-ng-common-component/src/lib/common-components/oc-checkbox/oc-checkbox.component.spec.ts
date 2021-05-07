@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcCheckboxComponent} from './oc-checkbox.component';
 import {FormsModule} from '@angular/forms';
@@ -7,7 +7,7 @@ describe('OcCheckboxComponent', () => {
   let component: OcCheckboxComponent;
   let fixture: ComponentFixture<OcCheckboxComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [OcCheckboxComponent],
       imports: [FormsModule],
@@ -55,7 +55,7 @@ describe('OcCheckboxComponent', () => {
   it('should contain label text', async () => {
     component.labelText = 'Test label text';
 
-    const checkboxLabelText = fixture.nativeElement.querySelector('.checkbox-text');
+    const checkboxLabelText = fixture.nativeElement.querySelector('.form-checkbox__label');
     fixture.detectChanges();
 
     expect(component.labelText).toEqual('Test label text');
@@ -69,7 +69,7 @@ describe('OcCheckboxComponent', () => {
 
     fixture.detectChanges();
 
-    const checkboxIndicator = fixture.nativeElement.querySelector('.required');
+    const checkboxIndicator = fixture.nativeElement.querySelector('.form-checkbox__required-glyph');
 
     expect(component.requiredIndicator).toEqual(true);
     await fixture.whenStable().then(() => {

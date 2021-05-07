@@ -10,6 +10,7 @@
   }
 
   &__card {
+    cursor: pointer;
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -80,6 +81,12 @@
         path {
           fill: $body-color;
         }
+      }
+    }
+
+    &-container {
+      &-link {
+        color: $body-color;
       }
     }
   }

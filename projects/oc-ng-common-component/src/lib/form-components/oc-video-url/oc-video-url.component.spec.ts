@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcVideoUrlComponent} from './oc-video-url.component';
 import {FormsModule} from '@angular/forms';
@@ -6,14 +6,14 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {Observable, of} from 'rxjs';
 import {By} from '@angular/platform-browser';
 import {EmbedVideoService} from 'ngx-embed-video';
-import {OcVideoComponent} from '../oc-video/oc-video.component';
+import {OcVideoComponent} from 'oc-ng-common-component/src/lib/common-components';
 import {NgxSpinnerModule} from 'ngx-spinner';
 
 describe('OcVideoUrlComponent', () => {
   let component: OcVideoUrlComponent;
   let fixture: ComponentFixture<OcVideoUrlComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [OcVideoUrlComponent, OcVideoComponent],
       imports: [FormsModule, HttpClientTestingModule, NgxSpinnerModule],

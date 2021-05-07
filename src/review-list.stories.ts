@@ -1,7 +1,10 @@
 import { storiesOf } from '@storybook/angular';
 import { withA11y } from '@storybook/addon-a11y';
-import { OCReviewDetails } from 'oc-ng-common-service';
-import { OcMarketComponentsModule, OcRatingComponent, OcReviewListComponent } from 'oc-ng-common-component/src/lib/market-components';
+import {
+  OcRatingComponent,
+  OCReviewDetails,
+  OcReviewListComponent
+} from 'oc-ng-common-component/src/lib/market-components';
 import { OcButtonComponent } from 'oc-ng-common-component/src/lib/common-components';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularSvgIconModule } from 'angular-svg-icon';

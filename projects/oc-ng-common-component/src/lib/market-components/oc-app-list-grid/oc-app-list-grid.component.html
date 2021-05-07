@@ -1,7 +1,13 @@
 <div class="app-list">
     <ng-container *ngIf="appList && appList.length > 0">
         <div class="app-list__card-container" *ngFor="let app of appList" (click)="viewDetails(app)">
-            <ng-container [ngTemplateOutlet]="customAppCardTemplate ? customAppCardTemplate : defaultAppCard"
+            <a class="app-list__card-container-link" *ngIf="baseLinkForOneApp"
+               [routerLink]="[baseLinkForOneApp, getAppValueByParameter(app)]">
+                <ng-container [ngTemplateOutlet]="customAppCardTemplate ? customAppCardTemplate : defaultAppCard"
+                              [ngTemplateOutletContext]="{$implicit: app}"></ng-container>
+            </a>
+            <ng-container *ngIf="!baseLinkForOneApp"
+                          [ngTemplateOutlet]="customAppCardTemplate ? customAppCardTemplate : defaultAppCard"
                           [ngTemplateOutletContext]="{$implicit: app}"></ng-container>
         </div>
     </ng-container>
@@ -25,8 +31,7 @@
                 <p class="app-list__card-name">{{app.name}}</p>
                 <div class="app-list__card-info">
                     <span class="app-list__card-price">{{app.model[0] | price}}</span>
-                    <oc-rating *ngIf="app.rating"
-                               [rating]="app.rating/100"
+                    <oc-rating [rating]="app.rating ? app.rating/100 : 0"
                                type="single-star"
                                [reviewCount]="app.reviewCount"></oc-rating>
                 </div>

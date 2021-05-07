@@ -6,9 +6,9 @@ import {HttpRequestService} from './http-request-services';
 import {map, mergeMap, tap} from 'rxjs/operators';
 import {UsersService} from './users.service';
 import {User} from '../model/api/user.model';
-import {OCReviewDetails} from '../model/components/oc-review-details-model';
 import {QueryUtil} from '../util/query.util';
 import {OcHttpParams} from '../model/api/http-params-encoder-model';
+import {OCReviewDetailsResponse} from '../model/components/frontend.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,8 @@ export class ReviewsService {
               private usersService: UsersService) {
   }
 
-  getReviewsByAppId(appId: string, sort?: string, filter?: string, page?: number, count?: number): Observable<Page<OCReviewDetails>> {
+  getReviewsByAppId(appId: string, sort?: string, filter?: string, page?: number, count?: number):
+    Observable<Page<OCReviewDetailsResponse>> {
     const queries = [`{'appId':'${appId}'}`];
     if (filter) {
       queries.push(filter);
@@ -51,10 +52,11 @@ export class ReviewsService {
           userPage.list.forEach(user => idToUser.set(user.userId, user));
 
           const reviews = reviewPage.list.map(review => {
-            const reviewDetail = new OCReviewDetails();
-            reviewDetail.rating = review.rating;
-            reviewDetail.review = review.description;
-            reviewDetail.reviewOwnerName = idToUser.get(review.userId).name;
+            const reviewDetail: OCReviewDetailsResponse = {
+              rating: review.rating,
+              review: review.description,
+              reviewOwnerName: idToUser.get(review.userId).name
+            };
             return reviewDetail;
           });
 

@@ -1,41 +1,17 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcReviewListComponent} from './oc-review-list.component';
-import { Component, Input } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
+import {By} from '@angular/platform-browser';
+import {CommonModule} from '@angular/common';
+import {MockButtonComponent, MockRatingComponent} from 'oc-ng-common-component/src/mock/mock';
 
-@Component({
-  selector: 'oc-button',
-  template: ''
-})
-export class ButtonMockComponent {
-  @Input() text: string = '';
-  @Input() disabled: boolean = false;
-  @Input() type: 'primary' | 'secondary' | 'link' = 'primary';
-  @Input() class: string;
-  @Input() style: string;
-  @Input() process: string;
-}
-
-@Component({
-  selector: 'oc-rating',
-  template: ''
-})
-export class RatingMockComponent {
-  @Input() type: 'single-star' | 'multi-star' = 'single-star';
-  @Input() rating: number = 0;
-  @Input() reviewCount: number = 0;
-  @Input() label: string = '';
-  @Input() labelClass: string = 'font-m font-med';
-}
 describe('OcReviewListComponent', () => {
   let component: OcReviewListComponent;
   let fixture: ComponentFixture<OcReviewListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OcReviewListComponent, ButtonMockComponent, RatingMockComponent],
+      declarations: [OcReviewListComponent, MockButtonComponent, MockRatingComponent],
       imports: [CommonModule]
     })
       .compileComponents();
@@ -57,8 +33,8 @@ describe('OcReviewListComponent', () => {
 
     fixture.detectChanges();
 
-    const heading: HTMLHeadingElement = fixture.debugElement.query(By.css('h4')).nativeElement;
-    const emptyData: HTMLHeadingElement = fixture.debugElement.query(By.css('h1')).nativeElement;
+    const heading: HTMLHeadingElement = fixture.debugElement.query(By.css('.review-list__empty-result-heading')).nativeElement;
+    const emptyData: HTMLHeadingElement = fixture.debugElement.query(By.css('.review-list__header-heading')).nativeElement;
 
     expect(heading.textContent).toContain('No reviews has been written yet');
     expect(emptyData.textContent).toContain('Most Recent Reviews');
@@ -78,8 +54,7 @@ describe('OcReviewListComponent', () => {
       }
     ];
     fixture.detectChanges();
-
-    const reviewName: HTMLHeadingElement = fixture.debugElement.query(By.css('h4')).nativeElement;
+    const reviewName: HTMLHeadingElement = fixture.debugElement.query(By.css('.review-list__one-review-heading')).nativeElement;
     const reviewText: HTMLDivElement = fixture.debugElement.query(By.css('#reviewText')).nativeElement;
 
     expect(component.baseReviewsList.length).toBeGreaterThan(0);
@@ -113,7 +88,7 @@ describe('OcReviewListComponent', () => {
 
     fixture.detectChanges();
 
-    const button = fixture.debugElement.query(By.css('.drop-down')).nativeElement;
+    const button = fixture.debugElement.query(By.css('.review-list__drop-down')).nativeElement;
     button.click();
 
     fixture.detectChanges();

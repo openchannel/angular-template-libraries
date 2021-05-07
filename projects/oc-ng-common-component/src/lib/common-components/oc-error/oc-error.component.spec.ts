@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcErrorComponent} from './oc-error.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -13,7 +13,7 @@ describe('OcErrorComponent', () => {
     testControl: new FormControl([''], Validators.required)
   });
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [OcErrorComponent]
     })
@@ -43,23 +43,7 @@ describe('OcErrorComponent', () => {
     expect(errorMessage.textContent).toContain('Please fill out this field');
   });
 
-  it('should show server value', async () => {
-    component.field = 'serverErrorValidator';
-    component.errorParams = {message: 'Wrong email'};
-
-    fixture.detectChanges();
-
-    await fixture.whenStable().then(() => {
-      const errorMessage = fixture.nativeElement.querySelector('span');
-
-      expect(errorMessage.textContent).toContain('Wrong email');
-    });
-  });
-
   it('should set servers error', async () => {
-    component.control = testForm.get('testControl');
-    testForm.get('testControl').setValue('test@mail.com');
-    component.field = 'emailInput';
 
     const serverErrors = [
       {
@@ -67,6 +51,7 @@ describe('OcErrorComponent', () => {
         message: 'Wrong Email'
       }
     ];
+
     component.errorService.setServerErrorList(serverErrors);
     fixture.detectChanges();
 

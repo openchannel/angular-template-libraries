@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import { OcProfileNavbarComponent } from './oc-profile-navbar.component';
 import {By} from '@angular/platform-browser';
@@ -7,7 +7,7 @@ describe('OcProfileNavbarComponent', () => {
   let component: OcProfileNavbarComponent;
   let fixture: ComponentFixture<OcProfileNavbarComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ OcProfileNavbarComponent ]
     })

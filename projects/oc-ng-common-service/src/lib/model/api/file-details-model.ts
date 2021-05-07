@@ -1,4 +1,4 @@
-export class FileDetails {
+export class FileDetailsResponse {
     fileId: string;
     fileUrl: string;
     name: string;
@@ -7,7 +7,7 @@ export class FileDetails {
     fileUploadProgress: number;
     fileIconUrl: string;
     contentType: string;
-    isPrivate:boolean;
+    isPrivate: boolean;
     mimeCheck: string;
     virusScan: any;
     isError: boolean;

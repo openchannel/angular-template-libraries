@@ -2,18 +2,18 @@ import { moduleMetadata } from '@storybook/angular';
 import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
 import { OcLoginComponent } from 'oc-ng-common-component/src/lib/auth-components';
 import { action } from '@storybook/addon-actions';
-import { UserLoginModel } from 'oc-ng-common-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import {ComponentsUserLoginModel} from 'oc-ng-common-component/src/lib/common-components';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
   imports: [OcCommonLibModule, BrowserAnimationsModule, RouterTestingModule]
 };
 
-const loginEmpty = new UserLoginModel();
+const loginEmpty = new ComponentsUserLoginModel();
 
-const loginFilled = new UserLoginModel();
+const loginFilled = new ComponentsUserLoginModel();
 loginFilled.email = 'zmehta@gmail.com';
 loginFilled.password = 'Tenup123#';
 loginFilled.isChecked = true;

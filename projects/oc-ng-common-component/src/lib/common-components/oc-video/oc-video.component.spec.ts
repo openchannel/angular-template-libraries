@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcVideoComponent} from './oc-video.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
@@ -9,7 +9,7 @@ describe('OcVideoComponent', () => {
   let component: OcVideoComponent;
   let fixture: ComponentFixture<OcVideoComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [OcVideoComponent],
       imports: [HttpClientTestingModule, NgxSpinnerModule],

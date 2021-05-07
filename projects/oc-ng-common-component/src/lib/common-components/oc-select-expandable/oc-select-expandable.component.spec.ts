@@ -1,17 +1,26 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcSelectExpandableComponent} from './oc-select-expandable.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import {Component, Input} from "@angular/core";
+
+@Component({
+  selector: 'svg-icon',
+  template: '',
+})
+export class MockSvgIconComponent {
+  @Input() src: string = '';
+}
 
 describe('OcSelectExpandableComponent', () => {
   let component: OcSelectExpandableComponent;
   let fixture: ComponentFixture<OcSelectExpandableComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OcSelectExpandableComponent],
+      declarations: [OcSelectExpandableComponent, MockSvgIconComponent],
       imports: [NgbModule, FormsModule]
     })
       .compileComponents();

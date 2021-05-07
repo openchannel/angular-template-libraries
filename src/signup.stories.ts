@@ -1,17 +1,16 @@
-import {moduleMetadata} from '@storybook/angular';
-import {OcSignupComponent} from 'oc-ng-common-component/src/lib/auth-components';
+import { moduleMetadata } from '@storybook/angular';
+import { ComponentsUserRegistrationModel, OcSignupComponent } from 'oc-ng-common-component/src/lib/auth-components';
 import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
-import {UserRegistrationModel} from 'oc-ng-common-service';
-import {action} from '@storybook/addon-actions';
-import {RouterTestingModule} from '@angular/router/testing';
+import { action } from '@storybook/addon-actions';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const modules = {
     imports: [OcCommonLibModule, RouterTestingModule],
 };
 
-const signupEmpty = new UserRegistrationModel();
+const signupEmpty = new ComponentsUserRegistrationModel();
 
-const signupFilled: UserRegistrationModel = {
+const signupFilled: ComponentsUserRegistrationModel = {
     uname: 'User name',
     company: 'test company',
     email: 'test@gmail.com',
@@ -22,15 +21,13 @@ const signupFilled: UserRegistrationModel = {
 export default {
     title: 'User signup [BEM]',
     component: OcSignupComponent,
-    decorators: [
-        moduleMetadata(modules),
-    ],
+    decorators: [moduleMetadata(modules)],
 };
 
 const SignupComponent = (args: OcSignupComponent) => ({
     component: OcSignupComponent,
     moduleMetadata: modules,
-    props: args
+    props: args,
 });
 
 export const Empty = SignupComponent.bind({});
@@ -56,5 +53,5 @@ ResultPage.args = {
     loginUrl: 'login',
     companyLogoUrl: './assets/oc-ng-common-component/logo-company.png',
     showSignupFeedbackPage: true,
-    forgotPasswordDoneUrl: './assets/oc-ng-common-component/email_done.svg'
+    forgotPasswordDoneUrl: './assets/oc-ng-common-component/email_done.svg',
 };

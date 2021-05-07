@@ -1,0 +1,29 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.edit-user-form {
+  &__consent {
+    &__checkbox {
+      align-items: flex-start;
+      display: flex;
+
+      &-input {
+        height: 16px;
+      }
+    }
+
+    &__label {
+      @include font-size-breakpoint(sm);
+    }
+
+    &__link {
+      @include font-size-breakpoint(sm);
+      @include font-family-rubik('Medium');
+    }
+  }
+  &__empty_form_configs {
+    text-align: center;
+    color: $danger;
+    font-size: 16px;
+  }
+}

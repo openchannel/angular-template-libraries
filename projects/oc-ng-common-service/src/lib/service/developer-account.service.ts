@@ -1,56 +1,52 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {HttpRequestService} from './http-request-services';
-import {DeveloperAccount} from '../model/api/developer-account.model';
-import {DeveloperAccountModel} from '../model/api/developer.model';
-import {Page} from '../model/api/page.model';
-import {OcHttpParams} from '../model/api/http-params-encoder-model';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpRequestService } from './http-request-services';
+import { DeveloperAccount } from '../model/api/developer-account.model';
+import { DeveloperAccountModel } from '../model/api/developer.model';
+import { Page } from '../model/api/page.model';
+import { OcHttpParams } from '../model/api/http-params-encoder-model';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class DeveloperAccountService {
+    private readonly DEVELOPER_ACCOUNTS_URL = 'v2/developerAccounts';
 
-  private readonly DEVELOPER_ACCOUNTS_URL = 'v2/developerAccounts';
+    constructor(private httpService: HttpRequestService) {}
 
-  constructor(private httpService: HttpRequestService) { }
+    getAccount(): Observable<DeveloperAccount> {
+        return this.httpService.get(`${this.DEVELOPER_ACCOUNTS_URL}/this`);
+    }
 
-  getAccount(): Observable<DeveloperAccount> {
-    return this.httpService.get(`${this.DEVELOPER_ACCOUNTS_URL}/this`);
-  }
+    updateAccountFields(body: any): Observable<DeveloperAccount> {
+        return this.httpService.patch(`${this.DEVELOPER_ACCOUNTS_URL}/this`, body);
+    }
 
-  updateAccountFields(body: any): Observable<DeveloperAccount> {
-    return this.httpService.patch(`${this.DEVELOPER_ACCOUNTS_URL}/this`, body);
-  }
+    updateAccountFieldsForAnotherUser(developerAccountId: string, skipTypeValidation: boolean, body: any): Observable<DeveloperAccount> {
+        const mainUrl = `${this.DEVELOPER_ACCOUNTS_URL}/${developerAccountId}`;
 
-  updateAccountFieldsForAnotherUser(
-      developerAccountId: string, skipTypeValidation: boolean, body: any): Observable<DeveloperAccount> {
+        const params = new OcHttpParams().append('skipTypeValidators', String(skipTypeValidation));
 
-    const mainUrl = `${this.DEVELOPER_ACCOUNTS_URL}/${developerAccountId}`;
+        return this.httpService.patch(mainUrl, body, { params });
+    }
 
-    const params = new OcHttpParams()
-      .append('skipTypeValidators', String(skipTypeValidation));
+    getDeveloperAccounts(pageNumber: number, limit: number, sort?: string, query?: string): Observable<Page<DeveloperAccountModel>> {
+        const mainUrl = `${this.DEVELOPER_ACCOUNTS_URL}/all`;
 
-    return this.httpService.patch(mainUrl, body, { params });
-  }
+        const params = new OcHttpParams()
+            .append('pageNumber', String(pageNumber))
+            .append('limit', String(limit))
+            .append('sort', sort)
+            .append('query', query);
 
-  getDeveloperAccounts(pageNumber: number, limit: number, sort?: string, query?: string): Observable<Page<DeveloperAccountModel>> {
-    const mainUrl = `${this.DEVELOPER_ACCOUNTS_URL}/all`;
+        return this.httpService.get(mainUrl, { params });
+    }
 
-    const params = new OcHttpParams()
-      .append('pageNumber', String(pageNumber))
-      .append('limit', String(limit))
-      .append('sort', sort)
-      .append('query', query);
+    deleteDeveloperAccount(developerAccountId: string): Observable<any> {
+        return this.httpService.delete(`${this.DEVELOPER_ACCOUNTS_URL}/${developerAccountId}`);
+    }
 
-    return this.httpService.get(mainUrl, { params });
-  }
-
-  deleteDeveloperAccount(developerAccountId: string): Observable<any> {
-    return this.httpService.delete(`${this.DEVELOPER_ACCOUNTS_URL}/${developerAccountId}`);
-  }
-
-  deleteCurrentDeveloperAccount(): Observable<any> {
-    return this.httpService.delete(`${this.DEVELOPER_ACCOUNTS_URL}/this`);
-  }
+    deleteCurrentDeveloperAccount(): Observable<any> {
+        return this.httpService.delete(`${this.DEVELOPER_ACCOUNTS_URL}/this`);
+    }
 }

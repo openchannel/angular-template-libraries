@@ -1,15 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import { OcTagElementComponent } from './oc-tag-element.component';
 import { By } from '@angular/platform-browser';
+import {AngularSvgIconModule} from "angular-svg-icon";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('OcTagElementComponent', () => {
   let component: OcTagElementComponent;
   let fixture: ComponentFixture<OcTagElementComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcTagElementComponent ]
+      declarations: [ OcTagElementComponent ],
+      imports: [ AngularSvgIconModule.forRoot(), HttpClientTestingModule ]
     })
     .compileComponents();
   }));
@@ -30,8 +33,8 @@ describe('OcTagElementComponent', () => {
 
     fixture.detectChanges();
 
-    const closeMarker: HTMLOrSVGElement = fixture.debugElement.query(By.css('svg')).nativeElement;
-    const tagTitle: HTMLDivElement = fixture.debugElement.query(By.css('#tagTitle')).nativeElement;
+    const closeMarker: HTMLOrSVGElement = fixture.debugElement.query(By.css('svg-icon')).nativeElement;
+    const tagTitle: HTMLDivElement = fixture.debugElement.query(By.css('.tag-element__text')).nativeElement;
 
     expect(closeMarker).toBeTruthy();
     expect(tagTitle.textContent).toContain('Test Tag');
@@ -39,14 +42,15 @@ describe('OcTagElementComponent', () => {
 
   it('should emit a value', () => {
     component.title = 'Test Tag';
-
-    const oneTag: HTMLDivElement = fixture.debugElement.query(By.css('#tag')).nativeElement;
-
-    spyOn(component.clickEmitter, 'emit');
+    component.closeMarker = true;
 
     fixture.detectChanges();
 
-    oneTag.click();
+    const closeMarker: HTMLImageElement = fixture.debugElement.query(By.css('svg-icon')).nativeElement;
+
+    spyOn(component.clickEmitter, 'emit');
+
+    closeMarker.click();
 
     expect(component.clickEmitter.emit).toHaveBeenCalledWith('Test Tag');
   });

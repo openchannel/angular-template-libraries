@@ -1,27 +1,27 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {Page} from '../model/api/page.model';
-import {HttpRequestService} from './http-request-services';
-import {User, UserCompanyModel} from '../model/api/user.model';
-import {OcHttpParams} from '../model/api/http-params-encoder-model';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Page } from '../model/api/page.model';
+import { HttpRequestService } from './http-request-services';
+import { User, UserCompanyModel } from '../model/api/user.model';
+import { OcHttpParams } from '../model/api/http-params-encoder-model';
+import { HttpHeaders } from '@angular/common/http';
+import { TypeFieldModel, TypeModel } from '../model/api/type-model';
+import { toString } from 'lodash';
 
 @Injectable({
     providedIn: 'root',
 })
 export class UsersService {
-
     private readonly USERS_URL = 'v2/users';
     private readonly USER_TYPE_URL = 'v2/userTypes';
 
-    constructor(private httpService: HttpRequestService) {
-    }
+    constructor(private httpService: HttpRequestService) {}
 
     getUsersByIds(userIds: string[]): Observable<Page<User>> {
         const mainUrl = `${this.USERS_URL}/all`;
 
-        const dStr = userIds ? `['${userIds.join('\',\'')}']` : '';
-        const params = new OcHttpParams()
-          .append('query', `{'userId': {'$in': ${dStr}}}`);
+        const dStr = userIds ? `['${userIds.join("','")}']` : '';
+        const params = new OcHttpParams().append('query', `{'userId': {'$in': ${dStr}}}`);
 
         return this.httpService.get(mainUrl, { params });
     }
@@ -29,9 +29,7 @@ export class UsersService {
     getUsers(pageNumber: number, limit: number): Observable<Page<User>> {
         const mainUrl = `${this.USERS_URL}/all`;
 
-        const params = new OcHttpParams()
-          .append('pageNumber', String(pageNumber))
-          .append('limit', String(limit));
+        const params = new OcHttpParams().append('pageNumber', String(pageNumber)).append('limit', String(limit));
 
         return this.httpService.get(mainUrl, { params });
     }
@@ -56,5 +54,25 @@ export class UsersService {
      */
     getUserTypeDefinition(type: string): Observable<any> {
         return this.httpService.get(`${this.USER_TYPE_URL}/${type}`);
+    }
+
+    getUserTypes(
+        query?: string,
+        sort?: string,
+        pageNumber?: number,
+        pageLimit?: number,
+        headers?: HttpHeaders,
+    ): Observable<Page<TypeModel<TypeFieldModel>>> {
+        const options: any = {
+            params: new OcHttpParams()
+                .append('query', query)
+                .append('sort', sort)
+                .append('pageNumber', toString(pageNumber))
+                .append('limit', toString(pageLimit))
+        };
+        if (headers) {
+            options.headers = headers;
+        }
+        return this.httpService.get(`${this.USER_TYPE_URL}`, options);
     }
 }

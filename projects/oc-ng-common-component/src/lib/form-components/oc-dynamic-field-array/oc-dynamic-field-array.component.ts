@@ -1,13 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormGroup} from '@angular/forms';
 import {OcFormGenerator} from '../oc-form/oc-form-generator';
-import {AppTypeFieldModel} from 'oc-ng-common-service';
-
-export interface FormArrayItem {
-  new: boolean;
-  isEdit: boolean;
-  formData: any;
-}
+import {FormArrayItem} from 'oc-ng-common-component/src/lib/common-components';
+import {AppFormField} from '../model/app-form-model';
 
 @Component({
   selector: 'oc-dynamic-field-array',
@@ -20,7 +15,7 @@ export class OcDynamicFieldArrayComponent implements OnInit {
    * Fields definition config necessary for the DFA generation
    * @param value fields definition config
    */
-  @Input() set fieldDefinitionData(value: AppTypeFieldModel) {
+  @Input() set fieldDefinitionData(value: AppFormField) {
     if (value) {
       this.fieldDefinition = value;
     } else {
@@ -33,7 +28,7 @@ export class OcDynamicFieldArrayComponent implements OnInit {
   @Input() dfaFormArray: FormArray;
 
   public formsArrayConfig: FormArrayItem [] = [];
-  public fieldDefinition: AppTypeFieldModel;
+  public fieldDefinition: AppFormField;
 
   constructor() { }
 

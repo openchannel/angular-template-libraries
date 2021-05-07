@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DropdownModel} from 'oc-ng-common-service';
+import {DropdownModel} from '../model/components-basic.model';
 
 @Component({
   selector: 'oc-dropdown',
