@@ -1,0 +1,193 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Cloufront
+Parameters:
+  CNAME:
+    Type: String
+  CertificateArn:
+    Type: String
+  ProjectName:
+    Type: String
+  ClusterName:
+    Type: String
+  TypeProj:
+    Type: String
+    Default: ""
+  PrefixName:
+    Type: String
+  HostedZoneName:
+    Type: String
+    Default: "openchannel.io."
+
+Conditions:
+  hasTypeProj: !Not [!Equals [!Ref TypeProj, ""]]
+  OutUs1: !Not [!Equals [!Ref "AWS::Region", "us-east-1"]] 
+
+Resources:
+
+  EncryptedS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: PublicRead
+      CorsConfiguration:
+        CorsRules:
+        - AllowedHeaders:
+            - '*'
+          AllowedMethods:
+            - GET
+          AllowedOrigins:
+            - '*'
+          ExposedHeaders:
+            - Date
+          Id: CORSRuleId1
+          MaxAge: '3600'
+        - AllowedHeaders:
+            - x-amz-*
+          AllowedMethods:
+            - DELETE
+            - GET
+          AllowedOrigins: 
+            - !Sub 'https://${CNAME}/'
+          ExposedHeaders:
+            - Connection
+            - Server
+            - Date
+          Id: CORSRuleId2
+          MaxAge: '1800'
+        - AllowedHeaders:
+            - '*'
+          AllowedMethods:
+            - GET
+            - POST
+            - DELETE
+            - PUT
+          AllowedOrigins:
+            - !Sub 'https://*.${CNAME}/'
+          ExposedHeaders:
+            - Date
+          Id: CORSRuleId3
+          MaxAge: '3600'
+      BucketName: !Sub "${CNAME}"
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicPolicy: 'true'
+        RestrictPublicBuckets: 'true'
+      WebsiteConfiguration:
+        ErrorDocument: 'index.html'
+        IndexDocument: 'index.html'
+      VersioningConfiguration:
+        Status: 'Enabled'
+      LoggingConfiguration:
+        !If
+          - OutUs1
+          - DestinationBucketName: !Sub "${PrefixName}-access"
+            LogFilePrefix: !Sub "/${ProjectName}"
+          - !Ref "AWS::NoValue"
+#==========================================================================================
+  cloudfrontoriginaccessidentity:
+    DependsOn: EncryptedS3Bucket
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: !Sub "${ProjectName}-access-identity-${CNAME}.s3.amazonaws.com"
+#==========================================================================================
+  ReadPolicy:
+    DependsOn: cloudfrontoriginaccessidentity
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: !Sub "${CNAME}"
+      PolicyDocument:
+        Statement:
+          - Resource: !Sub "arn:aws:s3:::${CNAME}/*"
+            Effect: Allow
+            Action: 
+              - s3:*
+            Principal:
+              CanonicalUser: !Sub ${cloudfrontoriginaccessidentity.S3CanonicalUserId}
+          - Resource: !Sub "arn:aws:s3:::${CNAME}/*"
+            Effect: Allow
+            Action: 
+              - s3:*
+            Principal:
+              CanonicalUser: !Sub ${cloudfrontoriginaccessidentity.S3CanonicalUserId}
+  
+  CfnDistribution:
+    DependsOn: cloudfrontoriginaccessidentity
+    Type: 'AWS::CloudFront::Distribution'
+    Properties:
+      DistributionConfig:
+        HttpVersion: http2
+        Origins:
+          -
+            DomainName: !GetAtt EncryptedS3Bucket.RegionalDomainName
+            Id: !Sub "${ProjectName}-bucket"
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${cloudfrontoriginaccessidentity}"
+        Enabled: 'true'
+        DefaultRootObject: index.html
+        DefaultCacheBehavior:
+          MaxTTL: 31536000
+          MinTTL: 0
+          Compress: false
+          TargetOriginId: !Sub "${ProjectName}-bucket"
+          SmoothStreaming: 'false'
+          ForwardedValues:
+            QueryString: 'false'
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: redirect-to-https
+        CustomErrorResponses:
+          - ErrorCode: '403'
+            ResponsePagePath: "/index.html"
+            ResponseCode: '200'
+            ErrorCachingMinTTL: '300'
+        Aliases:
+          - !Ref CNAME
+        ViewerCertificate:
+          AcmCertificateArn: !Ref CertificateArn
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.1_2016
+
+  SiteDNS:
+    DependsOn: CfnDistribution
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: !Sub ${HostedZoneName}
+      RecordSets:
+        - Name: !Ref CNAME
+          Type: CNAME
+          TTL: 60
+          ResourceRecords:
+            - !Sub ${CfnDistribution.DomainName}
+            
+  DNS:
+    Type: 'AWS::SSM::Parameter'
+    Properties:
+      Name: !If
+            - hasTypeProj
+            - !Sub '/ECS-CLUSTER/${ClusterName}/${ProjectName}/BASE_DOMAIN_${TypeProj}'
+            - !Sub '/ECS-CLUSTER/${ClusterName}/${ProjectName}/BASE_DOMAIN'
+      Value: !Ref CNAME
+      Type: String
+
+  DistributionId:
+    Type: 'AWS::SSM::Parameter'
+    Properties:
+      Name: !If
+            - hasTypeProj
+            - !Sub '/ECS-CLUSTER/${ClusterName}/${ProjectName}/DISTRIBUTION_ID_${TypeProj'
+            - !Sub '/ECS-CLUSTER/${ClusterName}/${ProjectName}/DISTRIBUTION_ID'
+      Value: !Ref CfnDistribution
+      Type: String
+
+  S3Name:
+    Type: 'AWS::SSM::Parameter'
+    Properties:
+      Name: !If
+            - hasTypeProj
+            - !Sub '/ECS-CLUSTER/${ClusterName}/${ProjectName}/AWS_S3_${TypeProj}'
+            - !Sub '/ECS-CLUSTER/${ClusterName}/${ProjectName}/AWS_S3'
+      Value: !Ref EncryptedS3Bucket
+      Type: String
