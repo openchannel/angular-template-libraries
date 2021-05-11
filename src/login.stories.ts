@@ -36,7 +36,7 @@ const defaultProps = {
   submit: action('clicked event'),
   forgotPwdUrl: 'forgotPwd',
   signupUrl: 'signup',
-  companyLogoUrl: 'assets/img/logo-company.png',
+  companyLogoUrl: 'assets/angular-common-components/logo-company.png',
   loginModelChange: action('model changed'),
 };
 

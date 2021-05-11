@@ -37,7 +37,7 @@ Empty.args = {
   resetModel: pwdEmpty,
   loginUrl: 'login',
   signupUrl: 'signup',
-  companyLogoUrl: './assets/img/logo-company.png',
+  companyLogoUrl: './assets/angular-common-components/logo-company.png',
   submit: action('submit')
 };
 
@@ -46,6 +46,6 @@ Filled.args = {
   resetModel: pwdFilled,
   loginUrl: 'login',
   signupUrl: 'signup',
-  companyLogoUrl: './assets/img/logo-company.png',
+  companyLogoUrl: './assets/angular-common-components/logo-company.png',
   submit: action('submit')
 };

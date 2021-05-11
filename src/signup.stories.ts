@@ -35,7 +35,7 @@ Empty.args = {
     signupModel: signupEmpty,
     submitClick: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
 };
 
 export const Filled = SignupComponent.bind({});
@@ -43,7 +43,7 @@ Filled.args = {
     signupModel: signupFilled,
     submitClick: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
 };
 
 export const ResultPage = SignupComponent.bind({});
@@ -51,7 +51,7 @@ ResultPage.args = {
     signupModel: signupFilled,
     submitClick: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/oc-ng-common-component/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     showSignupFeedbackPage: true,
-    forgotPasswordDoneUrl: './assets/oc-ng-common-component/email_done.svg',
+    forgotPasswordDoneUrl: './assets/angular-common-components/email_done.svg',
 };

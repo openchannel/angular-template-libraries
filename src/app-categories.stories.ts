@@ -11,19 +11,19 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 
 const appCategory1 = new AppCategoryDetail();
 appCategory1.categoryCardClass = 'category-card';
-appCategory1.categoryLogo = 'https://stage1-philips-market-test.openchannel.io/assets/img/item-1.png';
+appCategory1.categoryLogo = 'https://stage1-philips-market-test.openchannel.io/assets/angular-common-components/item-1.png';
 appCategory1.categoryName = 'All Apps';
 appCategory1.categoryTitleColor = 'orange';
 
 const appCategory2 = new AppCategoryDetail();
 appCategory2.categoryCardClass = 'category-card';
-appCategory2.categoryLogo = 'https://stage1-philips-market-test.openchannel.io/assets/img/item-2.png';
+appCategory2.categoryLogo = 'https://stage1-philips-market-test.openchannel.io/assets/angular-common-components/item-2.png';
 appCategory2.categoryName = 'Analytics';
 appCategory2.categoryTitleColor = 'blue';
 
 const appCategory3 = new AppCategoryDetail();
 appCategory3.categoryCardClass = 'category-card';
-appCategory3.categoryLogo = 'https://stage1-philips-market-test.openchannel.io/assets/img/item-3.png';
+appCategory3.categoryLogo = 'https://stage1-philips-market-test.openchannel.io/assets/angular-common-components/item-3.png';
 appCategory3.categoryName = 'Communication';
 appCategory3.categoryTitleColor = 'green';
 

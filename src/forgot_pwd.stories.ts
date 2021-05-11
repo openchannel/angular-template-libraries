@@ -32,7 +32,7 @@ Empty.args = {
   loginModel: pwdEmpty,
   loginUrl: 'login',
   signupUrl: 'signup',
-  companyLogoUrl: './assets/img/logo-company.png',
+  companyLogoUrl: './assets/angular-common-components/logo-company.png',
 };
 
 export const Filled = ForgotPasswordComponent.bind({});
@@ -40,7 +40,7 @@ Filled.args = {
   loginModel: pwdFilled,
   loginUrl: 'login',
   signupUrl: 'signup',
-  companyLogoUrl: './assets/img/logo-company.png',
+  companyLogoUrl: './assets/angular-common-components/logo-company.png',
 };
 
 export const ResultPage = ForgotPasswordComponent.bind({});
@@ -48,7 +48,7 @@ ResultPage.args = {
   loginModel: pwdFilled,
   loginUrl: 'login',
   signupUrl: 'signup',
-  companyLogoUrl: './assets/img/logo-company.png',
-  forgotPasswordDoneUrl: './assets/img/email_done.svg',
+  companyLogoUrl: './assets/angular-common-components/logo-company.png',
+  forgotPasswordDoneUrl: './assets/angular-common-components/email_done.svg',
   showResultPage: true
 };

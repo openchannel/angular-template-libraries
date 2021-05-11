@@ -32,7 +32,7 @@ export const CustomCloseMarker = TagComponent.bind({});
 CustomCloseMarker.args = {
     title: 'MyTag',
     closeMarker: true,
-    deleteTagImgUrl: 'assets/oc-ng-common-component/delete.svg'
+    deleteTagImgUrl: 'assets/angular-common-components/delete.svg'
 };
 
 export const WithoutCloseMarker = TagComponent.bind({});
