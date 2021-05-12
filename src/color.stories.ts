@@ -1,5 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcColorComponent, OcFormComponentsModule } from 'oc-ng-common-component/src/lib/form-components';
+import { OcColorComponent, OcFormComponentsModule } from '@openchannel/angular-common-components/src/lib/form-components';
 
 const modules = {
   imports: [OcFormComponentsModule]

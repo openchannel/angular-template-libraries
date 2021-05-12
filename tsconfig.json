@@ -18,17 +18,17 @@
       "dom"
     ],
     "paths": {
-      "oc-ng-common-component": [
-        "dist/oc-ng-common-component/*",
-        "dist/oc-ng-common-component"
+      "@openchannel/angular-common-components": [
+        "dist/angular-common-components/*",
+        "dist/angular-common-components"
       ],
-      "oc-ng-common-component/*": [
-        "projects/oc-ng-common-component/*",
-        "projects/oc-ng-common-component"
+      "@openchannel/angular-common-components/*": [
+        "projects/angular-common-components/*",
+        "projects/angular-common-components"
       ],
-      "oc-ng-common-service": [
-        "dist/oc-ng-common-service/oc-ng-common-service",
-        "dist/oc-ng-common-service"
+      "@openchannel/angular-common-services": [
+        "dist/angular-common-services/angular-common-services",
+        "dist/angular-common-services"
       ]
     }
   },
