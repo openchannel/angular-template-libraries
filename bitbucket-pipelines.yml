@@ -13,39 +13,39 @@ definitions:
           - sonar
         script:
           - npm install --quiet
-          - npm run build-prod oc-ng-common-service
-          - npm run build-prod oc-ng-common-component
+          - npm run build-prod angular-common-services
+          - npm run build-prod angular-common-components
           - npm run test
           - pipe: sonarsource/sonarcloud-scan:1.2.1
             variables:
               SONAR_SCANNER_OPTS: -Xmx2048m
               SONAR_TOKEN: ${SONAR_TOKEN}
-              EXTRA_ARGS: '-Dsonar.sources=projects/oc-ng-common-component/src
-              -Dsonar.tests=projects/oc-ng-common-component/src
+              EXTRA_ARGS: '-Dsonar.sources="projects/angular-common-components/src,projects/angular-common-services/src"
+              -Dsonar.tests=projects/angular-common-components/src
               -Dsonar.test.inclusions="**/testing/**,**/*.spec.ts"
-              -Dsonar.typescript.lcov.reportPaths=projects/oc-ng-common-component/coverage/lcov.info'
+              -Dsonar.typescript.lcov.reportPaths=projects/angular-common-components/coverage/lcov.info'
     - step: &build-and-push-new-version
         name: Push library to repository
         script:
           - npm install --quiet
-          - npm run build-prod oc-ng-common-service
-          - npm run build-prod oc-ng-common-component
-          - npm run oc-ng-common-service-pack
-          - npm run oc-ng-common-component-pack
+          - npm run build-prod angular-common-services
+          - npm run build-prod angular-common-components
+          - npm run angular-common-services-pack
+          - npm run angular-common-components-pack
           - pipe: cloudsmith-io/publish:0.3.0
             variables:
               CLOUDSMITH_REPOSITORY: 'openchannel/angular-common-components'
               CLOUDSMITH_API_KEY: $CLOUDSMITH_API_KEY
               PACKAGE_FORMAT: 'npm'
               PACKAGE_NPM_DIST_TAG: 'stable'
-              PACKAGE_PATH: 'dist/oc-ng-common-component/*.tgz'
+              PACKAGE_PATH: 'dist/angular-common-components/*.tgz'
               REPUBLISH: 'true'
     - step: &increase-version
         name: Up library version
         script:
           - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
-          - npm run oc-ng-common-service-up-version
-          - npm run oc-ng-common-component-up-version
+          - npm run angular-common-services-up-version
+          - npm run angular-common-components-up-version
           - git commit -a -m "Auto increment prerelease version [skip ci]"
           - git push
     - step: &push-to-github

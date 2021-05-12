@@ -1,4 +1,4 @@
-import {OcCommonLibModule, OcFormComponentsModule, OcInviteModalComponent} from 'oc-ng-common-component';
+import {OcCommonLibModule, OcFormComponentsModule, OcInviteModalComponent} from '@openchannel/angular-common-components';
 import {moduleMetadata} from '@storybook/angular';
 import {of} from 'rxjs';
 

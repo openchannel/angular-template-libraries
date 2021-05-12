@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/angular';
 import { withA11y } from '@storybook/addon-a11y';
-import { OcOverallRatingComponent } from 'oc-ng-common-component/src/lib/market-components';
-import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
+import { OcOverallRatingComponent } from '@openchannel/angular-common-components/src/lib/market-components';
+import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const modules = {

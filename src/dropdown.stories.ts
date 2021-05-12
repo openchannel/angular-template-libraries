@@ -1,8 +1,7 @@
-import {OcCommonLibModule} from 'oc-ng-common-component';
-import {moduleMetadata} from '@storybook/angular';
-import {OcDropdownComponent} from 'oc-ng-common-component';
-import {AngularSvgIconModule} from 'angular-svg-icon';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { OcCommonLibModule, OcDropdownComponent } from '@openchannel/angular-common-components/src/lib/common-components';
+import { moduleMetadata } from '@storybook/angular';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const modules = {
     imports: [OcCommonLibModule, AngularSvgIconModule.forRoot(), NgbModule],
@@ -11,33 +10,30 @@ const modules = {
 export default {
     title: 'Dropdown [BEM]',
     component: OcDropdownComponent,
-    decorators: [
-        moduleMetadata(modules),
-    ],
+    decorators: [moduleMetadata(modules)],
 };
 
 const DropdownComponent = (args: OcDropdownComponent) => ({
     component: OcDropdownComponent,
     moduleMetadata: modules,
-    props: args
+    props: args,
 });
-
 
 export const DefaultDropdownLabel = DropdownComponent.bind({});
 
 DefaultDropdownLabel.args = {
     selected: {
-        label: 'popular'
+        label: 'popular',
     },
     options: [
         {
-            label: 'popular'
+            label: 'popular',
         },
         {
-            label: 'newest'
+            label: 'newest',
         },
         {
-            label: 'featured'
-        }
+            label: 'featured',
+        },
     ],
 };

@@ -1,6 +1,5 @@
-import {OcCommonLibModule} from 'oc-ng-common-component';
-import {moduleMetadata} from '@storybook/angular';
-import {OcConfirmationModalComponent} from 'oc-ng-common-component';
+import { moduleMetadata } from '@storybook/angular';
+import { OcConfirmationModalComponent, OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 
 const modules = {
     imports: [OcCommonLibModule],
@@ -9,15 +8,13 @@ const modules = {
 export default {
     title: 'Confirmation modal [BEM]',
     component: OcConfirmationModalComponent,
-    decorators: [
-        moduleMetadata(modules),
-    ],
+    decorators: [moduleMetadata(modules)],
 };
 
 const ConfirmationModal = (args: OcConfirmationModalComponent) => ({
     component: OcConfirmationModalComponent,
     moduleMetadata: modules,
-    props: args
+    props: args,
 });
 
 export const DefaultConfirmation = ConfirmationModal.bind({});
@@ -34,5 +31,5 @@ WarningConfirmation.args = {
     modalTitle: 'Delete app',
     modalText: 'Delete this app from the marketplace now?',
     confirmButtonText: 'Yes, delete it',
-    confirmButtonType: 'danger'
+    confirmButtonType: 'danger',
 };

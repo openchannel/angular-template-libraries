@@ -1,22 +1,20 @@
 import { moduleMetadata, storiesOf } from '@storybook/angular';
 import { withA11y } from '@storybook/addon-a11y';
-import { OcFileUploadComponent, FileDetails } from 'oc-ng-common-component/src/lib/form-components';
-import { FileUploadDownloadService, OcCommonServiceModule } from 'oc-ng-common-service';
+import { OcFileUploadComponent, FileDetails } from '@openchannel/angular-common-components/src/lib/form-components';
 import { action } from '@storybook/addon-actions';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
+import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 import { ImageCropperModule } from 'ngx-image-cropper';
 
 const modules = {
-    imports: [OcCommonLibModule, NgbModule, OcCommonServiceModule.forRoot({}), HttpClientModule, ImageCropperModule],
+    imports: [OcCommonLibModule, NgbModule, HttpClientModule, ImageCropperModule],
 };
 
 const file1 = new FileDetails();
 file1.name = 'Product_image.png';
 file1.fileUploadProgress = 0;
-
 
 const file2 = new FileDetails();
 file2.name = 'Product_image.png';
@@ -34,8 +32,7 @@ file4.size = 2048000;
 file4.uploadDate = 1595942005169;
 
 class StubFileUploadDownloadService {
-    constructor() {
-    }
+    constructor() {}
 
     uploadToOpenchannel(file: FormData, isPrivate?: boolean): Observable<any> {
         return new Observable();
@@ -58,11 +55,7 @@ class StubFileUploadDownloadService {
     }
 }
 
-const metadata = moduleMetadata({
-    providers: [
-        {provide: FileUploadDownloadService, useClass: StubFileUploadDownloadService},
-    ],
-});
+const metadata = moduleMetadata({});
 
 storiesOf('File Uploader [BEM]', module)
     .addParameters({
@@ -79,23 +72,25 @@ storiesOf('File Uploader [BEM]', module)
             uploadIconUrl: 'assets/img/upload_icon.svg',
             defaultFileIcon: 'assets/img/file_icon.svg',
         },
-    })).add('Single File With Data', () => ({
-      component: OcFileUploadComponent,
-      moduleMetadata: modules,
-      props: {
-          fileDetailArr: [file2],
-          fileType: 'privateSingleFile',
-          uploadIconUrl: 'assets/img/upload_icon.svg',
-          defaultFileIcon: 'assets/img/file_icon.svg',
-    },
-    })).add('Multi Public Image With Data', () => ({
-      component: OcFileUploadComponent,
-      moduleMetadata: modules,
-      props: {
-          isMultiFile: true,
-          fileDetailArr: [file1, file2, file3, file4],
-          fileType: 'multiImage',
-          uploadIconUrl: 'assets/img/upload_icon.svg',
-          defaultFileIcon: 'assets/img/file_icon.svg',
-    },
-}));
+    }))
+    .add('Single File With Data', () => ({
+        component: OcFileUploadComponent,
+        moduleMetadata: modules,
+        props: {
+            fileDetailArr: [file2],
+            fileType: 'privateSingleFile',
+            uploadIconUrl: 'assets/img/upload_icon.svg',
+            defaultFileIcon: 'assets/img/file_icon.svg',
+        },
+    }))
+    .add('Multi Public Image With Data', () => ({
+        component: OcFileUploadComponent,
+        moduleMetadata: modules,
+        props: {
+            isMultiFile: true,
+            fileDetailArr: [file1, file2, file3, file4],
+            fileType: 'multiImage',
+            uploadIconUrl: 'assets/img/upload_icon.svg',
+            defaultFileIcon: 'assets/img/file_icon.svg',
+        },
+    }));
