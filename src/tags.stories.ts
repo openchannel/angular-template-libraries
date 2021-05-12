@@ -1,24 +1,22 @@
-import {moduleMetadata} from '@storybook/angular';
-import {OcCommonLibModule} from 'oc-ng-common-component/src/lib/common-components';
-import {OcTagsComponent} from 'oc-ng-common-component/src/lib/form-components';
+import { moduleMetadata } from '@storybook/angular';
+import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
+import { OcTagsComponent } from '@openchannel/angular-common-components/src/lib/form-components';
 
 const modules = {
-    imports: [OcCommonLibModule]
+    imports: [OcCommonLibModule],
 };
 
 export default {
     title: 'Tags [BEM]',
     component: OcTagsComponent,
-    decorators: [
-        moduleMetadata(modules),
-    ],
-    argTypes: { updatingTags: { action: 'Get Tags' }}
+    decorators: [moduleMetadata(modules)],
+    argTypes: { updatingTags: { action: 'Get Tags' } },
 };
 
 const TagsComponent = (args: OcTagsComponent) => ({
     component: OcTagsComponent,
     moduleMetadata: modules,
-    props: args
+    props: args,
 });
 
 export const DefaultTags = TagsComponent.bind({});
@@ -29,9 +27,21 @@ DefaultTags.args = {
     description: 'Tag description description description description description',
     placeHolderInputName: 'Input text',
     placeHolderDropBoxName: 'Select text',
-    availableTags: ['default', 'first', 'second',
-        '111111', '222222', '333333', '444444444444', '5555555555555555', '6666666',
-        '777777', '888888', '999999999999', '000000000000'],
+    availableTags: [
+        'default',
+        'first',
+        'second',
+        '111111',
+        '222222',
+        '333333',
+        '444444444444',
+        '5555555555555555',
+        '6666666',
+        '777777',
+        '888888',
+        '999999999999',
+        '000000000000',
+    ],
     defaultTags: ['default'],
     minTagsCount: 2,
     maxTagsCount: 4,
@@ -58,7 +68,6 @@ CustomTags.args = {
     maxTagLength: 30,
 };
 
-
 export const BooleanTags = TagsComponent.bind({});
 
 BooleanTags.args = {
@@ -74,7 +83,7 @@ BooleanTags.args = {
     ignoreCase: true,
     minTagLength: null,
     maxTagLength: null,
-    tagsType: 'boolean'
+    tagsType: 'boolean',
 };
 
 export const NumberTags = TagsComponent.bind({});
@@ -92,6 +101,5 @@ NumberTags.args = {
     ignoreCase: true,
     minTagLength: null,
     maxTagLength: null,
-    tagsType: 'number'
+    tagsType: 'number',
 };
-

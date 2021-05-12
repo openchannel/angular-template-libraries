@@ -1,0 +1,17 @@
+<div class="confirmation-modal">
+    <div class="confirmation-modal__header">
+        <h2 class="confirmation-modal__header-heading">{{modalTitle}}</h2>
+        <svg-icon class="confirmation-modal__header-close-icon" src="assets/angular-common-components/close-icon.svg" (click)="dismiss()"></svg-icon>
+    </div>
+    <div class="confirmation-modal__modal-body">
+        <span class="confirmation-modal__text">{{modalText}}</span>
+        <div class="confirmation-modal__button-container">
+            <oc-button class="confirmation-modal__button" *ngIf="!rejectButtonHide"
+                       [type]="rejectButtonType" [text]="rejectButtonText"
+                       (click)="dismiss()"></oc-button>
+            <oc-button class="confirmation-modal__button" *ngIf="!confirmButtonHide"
+                       [type]="confirmButtonType" [text]="confirmButtonText"
+                       (click)="confirm(true)"></oc-button>
+        </div>
+    </div>
+</div>

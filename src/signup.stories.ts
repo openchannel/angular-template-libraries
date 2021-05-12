@@ -1,11 +1,12 @@
 import { moduleMetadata } from '@storybook/angular';
-import { ComponentsUserRegistrationModel, OcSignupComponent } from 'oc-ng-common-component/src/lib/auth-components';
-import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
+import { ComponentsUserRegistrationModel, OcSignupComponent } from '@openchannel/angular-common-components/src/lib/auth-components';
+import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 import { action } from '@storybook/addon-actions';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 
 const modules = {
-    imports: [OcCommonLibModule, RouterTestingModule],
+    imports: [OcCommonLibModule, RouterTestingModule, FormsModule],
 };
 
 const signupEmpty = new ComponentsUserRegistrationModel();
@@ -51,7 +52,7 @@ ResultPage.args = {
     signupModel: signupFilled,
     submitClick: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/oc-ng-common-component/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     showSignupFeedbackPage: true,
-    forgotPasswordDoneUrl: './assets/oc-ng-common-component/email_done.svg',
+    forgotPasswordDoneUrl: './assets/angular-common-components/email_done.svg',
 };

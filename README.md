@@ -1,111 +1,176 @@
-# OcAngularTemplate
+# Openchannel angular template libraries
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=openchannel_angular-template-libraries&metric=alert_status&token=f76791dd255721aae0058043d34409a4d9310b17)](https://sonarcloud.io/dashboard?id=openchannel_angular-template-libraries)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=openchannel_angular-template-libraries&metric=coverage&token=f76791dd255721aae0058043d34409a4d9310b17)](https://sonarcloud.io/dashboard?id=openchannel_angular-template-libraries)
+
+This project contains angular libraries for Openchannel templates.
+
+angular-common-components includes components for portal and market (form builder, form components, file upload, app cards, login, signup, inputs, etc)
+* Form components:
+  - form builder.
+  - input, selects.
+  - file upload
+  - color picker
+  - video url
+  - date time picker
+  - tags
+  - etc
+* Common components:
+  - select.
+  - button
+  - iframe video
+  - etc.
+* Portal components:
+  - charts
+  - app tables
+* Market components:
+  - app cards
+  - app tables
+* Auth components
+
+angular-common-services store models and services for creating a marketplace instance:
+* API services.
+  - user authorization.
+  - marketplace endpoints.
+* Models :
+  - request and response models.
+* Utils:
+  - CSRF interceptor. Syncs CSRF token between pages.
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
+---
+
+* [angular-common-components](#angular-common-componentss)
+  * [Built with](#built-with)
+  * [Dependencies](#dependencies)
   * [Installation](#installation)
   * [Storybook](#storybook)
-* [Usage](#usage)
-* [Contact](#contact)
+  * [Development](#development)
+  * [Usage](#usage)
+  * [Contact](#contact)
+* [angular-common-services](#angular-common-services)
+  * [Built with](#services-built-with)
+  * [Dependencies](#services-dependencies)
+  * [Installation](#services-installation)
+  * [Development](#services-development)
+  * [Usage](#services-usage)
+  * [Contact](#services-contact)
 
+# angular-common-components
 
-
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-This project store elastic patterns for many components 
-(buttons, text area, inputs, dropdowns, tags, and another). 
-Every component you can customize by your style. 
-
-### Built With
+## Built With
 * [Angular](https://angular.io) v. 11.2.3
 * [Bootstrap](https://getbootstrap.com) v. 4.4.1
 * [Storybook](https://storybook.js.org/) v. 6.1.20
 
-<!-- GETTING STARTED -->
-## Getting Started
-### Prerequisites
+## Dependencies
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
+    "@ng-bootstrap/ng-bootstrap": "6.0.2",
+    "@tinymce/tinymce-angular": "4.2.0",
+    "angular-svg-icon": "11.0.0",
+    "bootstrap": "4.6.0",
+    "chart.js": "2.9.3",
+    "ngx-color-picker": "10.1.0",
+    "ngx-embed-video": "1.0.4",
+    "ngx-image-cropper": "3.1.9",
+    "ngx-infinite-scroll": "10.0.0",
+    "ngx-owl-carousel-o": "4.0.0",
+    "ngx-spinner": "9.0.2",
+    "tinymce": "5.6.2",
 
-### Installation (creating global link)
-1. `npm install`
+## Installation
+1. Install dependencies
+```sh
+npm i --save @ng-bootstrap/ng-bootstrap@6.0.2 @tinymce/tinymce-angular@4.2.0 angular-svg-icon@11.0.0 bootstrap@4.6.0 chart.js@2.9.3 ngx-color-picker@10.1.0 ngx-embed-video@1.0.4 ngx-image-cropper@3.1.9 ngx-infinite-scroll@10.0.0 ngx-owl-carousel-o@4.0.0 ngx-spinner@9.0.2 tinymce@5.6.2  
+```
+2. Install library `npm i @openchannel/angular-common-components`
 
-2. Optional. If need connect oc-ng-common-service.<br> `npm install file:<absolute path to common service project dist/oc-ng-common-service>`
+3. Connect library styles by import in styles `@import "~@openchannel/angular-common-components/assets/styles/styles.scss";`
+   or add it to angular json
+```sh
+  "build": {
+    ...
+    "styles": [
+      ...
+      "node_modules/@openchannel/angular-common-components/assets/styles/styles.scss"
+    ],
+  }
+```
+3. Connect library assets
+```sh
+  "assets": [
+    {
+      "glob": "**/*", "input": "node_modules/angular-common-components/assets/img",
+      "output": "/assets/angular-common-components",
+    },
+  ]
+ ```
+4. Including TinyMCE within the Application, open angular.json and add TinyMCE to the assets property.
+```sh
+  "assets": [
+     { "glob": "**/*", "input": "node_modules/tinymce", "output": "/tinymce/" }
+  ]
+ ```
+5. To load TinyMCE when the page or application is loaded, open angular.json and add TinyMCE to the global scripts tag.
+```sh
+  "scripts": [
+    "node_modules/tinymce/tinymce.min.js"
+  ]
+```
 
-3. `ng build oc-ng-common-component`
+## Development
 
-4. `cd dist/oc-ng-common-component`
+### Connect library to project
 
-5. `sudo npm link` Then copy result link. 
+1. `ng build angular-common-components`
 
-## Start components service
+2. `cd dist/angular-common-components`
 
-1. `npm install`  
+5. `sudo npm link` Then copy result link.
 
-2. `ng build oc-ng-common-component`
+4. In your angular project run:<br> `npm install file:<{absolute path to angular-common-components}/dist/angular-common-components>`
 
-3. `npm run oc-ng-common-component`
+### Build Project with watching file changes
+Run `ng build angular-common-components --watch`
 
-## Build Project with logging
-Run `ng build oc-ng-common-component --watch`
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
+### Build
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running tests
+### Running tests
+Run `npm run test`
 
-Run `npm run test:lib`
+### Package Project
+Run `npm run angular-common-components-pack`
 
-## Angular CLI help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-## Upgrade Storybook 
-Run `npx sb@next upgrade --prerelease`
-
-## Up package version
-Run `npm run oc-ng-common-component-up-version`
-
-## Package Project
-Run `npm run oc-ng-common-component-pack`
-
-## Publish package version
-Run `cd ./dist/oc-ng-common-component && npm publish`
+### Publish package version
+Run `cd ./dist/angular-common-components && npm publish`
 
 <!-- STORYBOOK -->
-# Storybook
+### Storybook
 
 * Install npm dependencies
 
   ``npm install``
 
+* Build Project
+
+  ``ng build``
+
+* Create doc for storybook
+
+  ``npm run docs:json``
 
 * Run Storybook
 
   ``npm run storybook``
 
-Note: 
-* When you can't start the Storybook. Try Update his version:
+Note:
+* If you can't start the Storybook. Try to Update its version:
   ``npx sb@latest upgrade``
 
-* When updating the storybook version did not help. Try this:
+* If updating the storybook version did not help. Try this:
   ``npm run storybook-update-and-run``
-   
-Usage :
-   * Open [http://localhost:6006](http://localhost:6006)
-   * [Document](https://storybook.js.org/docs/react/get-started/introduction) : about storybook.
-   * [Document](https://storybook.js.org/docs/react/essentials/controls) : changing incoming parameters for a component. 
-   * [Document](https://storybook.js.org/docs/react/get-started/introduction) : tutorials.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -116,62 +181,47 @@ Usage :
 Project Link: [https://bitbucket.org/openchannel/angular-common-components/src/develop/](https://bitbucket.org/openchannel/angular-common-components/src/develop/)
 
 
-#Angular common service library
-
-<!-- TABLE OF CONTENTS -->
-## Table of Contents
-
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Installation](#installation)
-* [Contact](#contact)
+# angular-common-services
 
 
+### Services Built With
+* [Angular 11.2.3](https://angular.io)
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+## Services Dependencies
 
-This library store models and services for creating a marketplace instance:
-* API services.
-  - user authorization.
-  - marketplace proxy endpoints.
-* Models :
-  - request and response models.
-  - models for library ["Angular common components"](https://bitbucket.org/openchannel/angular-common-components/src/develop/)
-* Utils:
-  - CSRF interceptor. Syncs CSRF token between pages.
+    "jwt-decode": "3.1.2",
+    "broadcast-channel": "3.5.3",
 
-### Built With
-* [Angular 9.1.1](https://angular.io)
+### Services Installation
 
-<!-- GETTING STARTED -->
-## Getting Started
-
-### Installation
-
-1. Install NPM packages
+1. Install dependencies
 ```sh
-npm install
+  npm i --save jwt-decode@3.1.2 broadcast-channel@3.5.3
 ```
-2. Build project
-```sh
- ng build oc-ng-common-service --watch
-```
-3. Create a global link
-```sh
- cd dist/oc-ng-common-service
-```
-```sh
- sudo npm link
-```
-* Note: copy path.
-4. Connect this library to a project.
-   In your Angular project :
-  - Open package.json
-  - Add copied path to the dependencies.
+2. Install library `npm i @openchannel/angular-common-services`
 
-## Documentation Compodoc
+3. Add import to app.module
+```sh
+  OcCommonServiceModule.forRoot(environment),
+```
+4. Add property to environment.ts
+```sh
+  apiUrl: 'https://client-api.openchannel.io/',
+```
+
+## Services Development
+
+### Connect library to project
+
+1. `ng build angular-common-services`
+
+2. `cd dist/angular-common-services`
+
+5. `sudo npm link` Then copy result link.
+
+4. In your angular project run:<br> `npm install file:<{absolute path to angular-common-components or copied path}/dist/angular-common-components>`
+
+### Documentation Compodoc
 Compodoc shows project structure. (modules, components, routes and etc.)
 * Install NPM packages :<br>
   ``npm install``
@@ -185,8 +235,10 @@ Compodoc shows project structure. (modules, components, routes and etc.)
   ``npm run start-compodoc``
 
 * Documentation [http://localhost:8801](http://localhost:8801)
+<!-- USAGE EXAMPLES -->
+## Services Usage
 
 <!-- CONTACT -->
-## Contact
+## Services Contact
 
 Project Link: [https://bitbucket.org/openchannel/angular-common-service-library/src/develop/](https://bitbucket.org/openchannel/angular-common-service-library/src/develop/)

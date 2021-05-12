@@ -1,0 +1,47 @@
+@import '../../../../assets/styles/theme.scss';
+@import '../../../../assets/styles/mixins';
+
+.tags {
+
+  &__group {
+
+    &-wrapper {
+      width: 100%;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+
+      .tags__select {
+        flex-grow: 1;
+      }
+
+      .tags__button-add {
+        margin-left: 0.5em;
+        & button {
+          height: 46px;
+        }
+      }
+      @include media-breakpoint-sm {
+        flex-direction: column;
+        .tags__select {
+          margin-bottom: 1rem;
+        }
+        .tags__button-add {
+          margin-left: 0;
+          height: 46px;
+        }
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-item {
+      margin-top: 1rem;
+      margin-right: 1rem;
+    }
+  }
+}

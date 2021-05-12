@@ -1,5 +1,5 @@
 {
-  // "extends": "../projects/oc-ng-common-component/tsconfig.lib.json",
+  // "extends": "../projects/angular-common-components/tsconfig.lib.json",
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "types": [
