@@ -55,10 +55,7 @@
     }
 
     &-input {
-      width: 75%;
-      @include media-breakpoint-md {
-        width: 100%;
-      }
+      width: 100%;
     }
     &-custom-error {
       @include font-size-breakpoint(sm);
