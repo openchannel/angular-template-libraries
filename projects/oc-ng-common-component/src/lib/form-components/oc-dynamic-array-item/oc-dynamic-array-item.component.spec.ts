@@ -5,7 +5,7 @@ import {Component, Input} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {OcFormGenerator} from 'oc-ng-common-component/src/lib/form-components/oc-form/oc-form-generator';
 import {FormArray, FormGroup} from '@angular/forms';
-import {AppTypeFieldModel} from '../../../../../../../angular-common-service-library/dist/oc-ng-common-service';
+import {AppTypeFieldModel} from 'oc-ng-common-service';
 
 @Component({
   selector: 'oc-title',

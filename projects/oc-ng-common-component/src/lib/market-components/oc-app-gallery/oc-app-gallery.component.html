@@ -3,10 +3,14 @@
         <div class="gallery__header-top">
             <h4 class="gallery__heading">{{appGalleryTitle}}</h4>
             <a class="gallery__more" id="seeAllLink"
-               *ngIf="moreAppsTitle"
+               *ngIf="moreAppsTitle && !seeAllUrl"
                (click)="clickMoreApps.emit()">
-                <span class="gallery__more-text">{{moreAppsTitle}}</span>
-                <svg-icon svgClass="gallery__more-icon" [src]="routerIcon"></svg-icon>
+                <ng-container *ngTemplateOutlet="seeAllLink"></ng-container>
+            </a>
+            <a class="gallery__more" id="seeAllLinkRouter"
+               *ngIf="moreAppsTitle && seeAllUrl"
+               [routerLink]="seeAllUrl">
+                <ng-container *ngTemplateOutlet="seeAllLink"></ng-container>
             </a>
         </div>
         <p class="gallery__description" id="description">{{appGalleryDescription}}</p>
@@ -15,7 +19,12 @@
          *ngIf="appsArr && appsArr.length > 0; else emptyData">
         <div class="gallery__content-card"
              *ngFor="let app of appsArr;" (click)="clickAppCard.emit(app)">
-            <ng-container [ngTemplateOutlet]="customAppCardTemplate? customAppCardTemplate : defaultCard"
+            <a *ngIf="routerLinkForOneApp" [routerLink]="[routerLinkForOneApp, getAppValueByParameter(app)]">
+                <ng-container [ngTemplateOutlet]="customAppCardTemplate? customAppCardTemplate : defaultCard"
+                              [ngTemplateOutletContext]="{$implicit: app}"></ng-container>
+            </a>
+            <ng-container *ngIf="!routerLinkForOneApp"
+                          [ngTemplateOutlet]="customAppCardTemplate? customAppCardTemplate : defaultCard"
                           [ngTemplateOutletContext]="{$implicit: app}"></ng-container>
         </div>
     </div>
@@ -29,4 +38,9 @@
 
 <ng-template #defaultCard let-app>
     <oc-app-card [app]="app"></oc-app-card>
+</ng-template>
+
+<ng-template #seeAllLink>
+    <span class="gallery__more-text">{{moreAppsTitle}}</span>
+    <svg-icon svgClass="gallery__more-icon" [src]="routerIcon"></svg-icon>
 </ng-template>

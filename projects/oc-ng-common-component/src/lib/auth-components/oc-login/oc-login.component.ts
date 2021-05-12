@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {UserLoginModel} from 'oc-ng-common-service';
 import {NgForm, NgModel} from '@angular/forms';
+import {ComponentsUserLoginModel} from '../models/auth-types.model';
 
 @Component({
   selector: 'oc-login',
@@ -10,8 +10,8 @@ import {NgForm, NgModel} from '@angular/forms';
 export class OcLoginComponent {
   @ViewChild('loginForm') form: NgForm;
 
-  @Input() loginModel = new UserLoginModel();
-  @Output() loginModelChange = new EventEmitter<UserLoginModel>();
+  @Input() loginModel = new ComponentsUserLoginModel();
+  @Output() loginModelChange = new EventEmitter<ComponentsUserLoginModel>();
 
   @Input() loginButtonText = 'Log In';
   @Input() forgotPwdUrl;

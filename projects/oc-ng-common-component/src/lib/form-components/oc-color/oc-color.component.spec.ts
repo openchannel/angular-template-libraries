@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import { OcColorComponent } from './oc-color.component';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +8,7 @@ describe('OcColorComponent', () => {
   let component: OcColorComponent;
   let fixture: ComponentFixture<OcColorComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ OcColorComponent ],
       imports: [FormsModule, ColorPickerModule],
@@ -41,19 +41,19 @@ describe('OcColorComponent', () => {
     expect(component.colorPickerPosition).toEqual('right');
   });
 
-  it('should contain a color in input', async () => {
+  it('should contain a color in input', waitForAsync(() => {
     component.writeValue('#26c6da');
 
-    const input = fixture.nativeElement.querySelector('.color-input');
+    const input = fixture.nativeElement.querySelector('.color-adjust__input');
     fixture.detectChanges();
 
-    await fixture.whenStable().then(() => {
+    fixture.whenStable().then(() => {
       expect(input.value).toEqual('#26c6da');
     });
-  });
+  }));
 
   it('should bind color input value to field', () => {
-    const input = fixture.nativeElement.querySelector('.color-input');
+    const input = fixture.nativeElement.querySelector('.color-adjust__input');
     const newInputVal = '#26c6da';
 
     input.value = newInputVal;
@@ -67,59 +67,43 @@ describe('OcColorComponent', () => {
   it('input should contain placeholder', () => {
     component.placeholder = 'test placeholder';
 
-    const input = fixture.nativeElement.querySelector('.color-input');
+    const input = fixture.nativeElement.querySelector('.color-adjust__input');
     fixture.detectChanges();
 
     expect(input.placeholder).toEqual('test placeholder');
   });
 
-  it('should be disabled', async () => {
+  it('should be disabled', waitForAsync(() => {
     component.setDisabledState(true);
 
-    const input = fixture.nativeElement.querySelector('.color-input');
+    const input = fixture.nativeElement.querySelector('.color-adjust__input');
     fixture.detectChanges();
 
-    await fixture.whenStable().then(() => {
+    fixture.whenStable().then(() => {
       expect(input.disabled).toBeTruthy();
     });
-  });
+  }));
 
-  it('should call onChange with value', async () => {
+  it('should call onChange with value', waitForAsync(() => {
     const onChangeFunc = jest.fn();
     component.registerOnChange(onChangeFunc);
 
-    const colorInput = fixture.nativeElement.querySelector('.color-input');
+    const colorInput = fixture.nativeElement.querySelector('.color-adjust__input');
     colorInput.value = '#26c6da';
 
     colorInput.dispatchEvent(new Event('input'));
 
     expect(onChangeFunc).toHaveBeenCalled();
     expect(onChangeFunc.mock.calls[0][0]).toBe('#26c6da');
-  });
+  }));
 
-  it('should call onTouch', async () => {
+  it('should call onTouch', waitForAsync(() => {
     const onTouchedFunc = jest.fn();
     component.registerOnTouched(onTouchedFunc);
 
-    const colorInput = fixture.nativeElement.querySelector('.color-input');
+    const colorInput = fixture.nativeElement.querySelector('.color-adjust__input');
     colorInput.dispatchEvent(new Event('focus'));
 
     expect(onTouchedFunc).toHaveBeenCalled();
-  });
-
-  it('should toggle color picker dialog', async () => {
-    component.colorPickerPosition = 'left';
-    component.colorValue = '#26c6da';
-    const toggleButton = fixture.nativeElement.querySelector('.picker-btn input');
-
-    toggleButton.click();
-    fixture.detectChanges();
-
-    const libDialog = fixture.nativeElement.querySelector('.color-picker');
-
-    await fixture.whenStable().then(() => {
-      expect(libDialog).toBeTruthy();
-      expect(component.toggleDialog).toEqual(true);
-    });
-  });
+  }));
 });

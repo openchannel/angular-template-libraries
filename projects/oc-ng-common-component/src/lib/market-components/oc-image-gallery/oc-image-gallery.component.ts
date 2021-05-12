@@ -1,5 +1,5 @@
-import { AfterContentInit, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import {GalleryItem} from 'oc-ng-common-service';
+import {AfterContentInit, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {GalleryItem} from 'oc-ng-common-component/src/lib/common-components';
 
 @Component({
   selector: 'oc-image-gallery',

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {UserLoginModel} from 'oc-ng-common-service';
 import {Router} from '@angular/router';
+import {ComponentsUserLoginModel} from '../models/auth-types.model';
 
 @Component({
   selector: 'oc-forgot-password',
@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class OcForgotPasswordComponent implements OnInit {
 
-  @Input() loginModel = new UserLoginModel();
+  @Input() loginModel = new ComponentsUserLoginModel();
   @Input() loginUrl;
   @Input() signupUrl;
   /** Path to the email sent icon in .svg format */

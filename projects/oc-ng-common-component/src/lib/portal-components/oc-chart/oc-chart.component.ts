@@ -10,16 +10,15 @@ import {
   ViewChild
 } from '@angular/core';
 import {SafeUrl} from '@angular/platform-browser';
+import {normalizeCommonJSImport} from '../utils/normalizeCommonJSImport';
 import {
   ChartOptionsChange,
   ChartStatisticFiledModel,
   ChartStatisticModel,
   ChartStatisticParameterModel,
-  ChartStatisticPeriodModel,
-  DropdownModel,
-} from 'oc-ng-common-service';
-
-import {normalizeCommonJSImport} from '../utils/normalizeCommonJSImport';
+  ChartStatisticPeriodModel
+} from '../models/oc-chart.model';
+import {DropdownModel} from 'oc-ng-common-component/src/lib/common-components';
 
 const importChart = normalizeCommonJSImport(
     import('chart.js'),

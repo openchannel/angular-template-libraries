@@ -1,16 +1,17 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OcRatingComponent} from './oc-rating.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { By } from '@angular/platform-browser';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {By} from '@angular/platform-browser';
+import {MockSvgIconComponent} from 'oc-ng-common-component/src/mock/mock';
 
 describe('OcRatingComponent', () => {
   let component: OcRatingComponent;
   let fixture: ComponentFixture<OcRatingComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OcRatingComponent],
+      declarations: [OcRatingComponent, MockSvgIconComponent],
       imports: [NgbModule]
     })
       .compileComponents();
@@ -35,7 +36,7 @@ describe('OcRatingComponent', () => {
     fixture.detectChanges();
 
     await fixture.whenStable().then(() => {
-      expect(ratingInfo.textContent).toContain('5 (10 reviews)');
+      expect(ratingInfo.textContent).toContain('5.0 (10 reviews)');
     });
   });
 });

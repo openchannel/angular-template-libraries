@@ -1,5 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DropdownModel} from 'oc-ng-common-service';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'oc-profile-navbar',

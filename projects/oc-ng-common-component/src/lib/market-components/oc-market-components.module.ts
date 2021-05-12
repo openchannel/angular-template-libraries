@@ -18,7 +18,6 @@ import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-compone
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     OcAppCardComponent,
@@ -40,7 +39,7 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     OcCommonLibModule,
     RouterModule,
-    FormsModule,
+    FormsModule
   ],
   exports: [
     OcAppCardComponent,
@@ -55,7 +54,7 @@ import { FormsModule } from '@angular/forms';
     OcRatingComponent,
     OcRecommendedAppsComponent,
     OcReviewListComponent,
-    OcTextSearchComponent,
+    OcTextSearchComponent
   ],
 })
 export class OcMarketComponentsModule {

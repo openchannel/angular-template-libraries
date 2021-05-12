@@ -4,8 +4,8 @@ import {OcDynamicFieldArrayComponent} from './oc-dynamic-field-array.component';
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {FormArray, FormGroup} from '@angular/forms';
-import {AppTypeFieldModel, TypeModel} from 'oc-ng-common-service';
 import {OcFormGenerator} from 'oc-ng-common-component/src/lib/form-components/oc-form/oc-form-generator';
+import {AppFormModel} from '../model/app-form-model';
 
 @Component({
   selector: 'oc-dynamic-array-item',
@@ -39,7 +39,7 @@ export class ButtonMockComponent {
   template: ''
 })
 export class MockFormComponent {
-  @Input() formJsonData: TypeModel<AppTypeFieldModel>;
+  @Input() formJsonData: AppFormModel;
   @Input() generatedForm: FormGroup;
   @Input() showButton: boolean;
 }

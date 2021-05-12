@@ -32,26 +32,38 @@
           <oc-file-upload *ngSwitchCase="'singleFile'"
                           formControlName="{{formElement?.id}}"
                           isMultiFile="true"
-                          fileType="singleFile"></oc-file-upload>
+                          fileType="singleFile"
+                          [fileUploadRequest]="fileUploadRequest"
+                          [fileDetailsRequest]="fileDetailsRequest"></oc-file-upload>
           <oc-file-upload *ngSwitchCase="'multiFile'"
                           formControlName="{{formElement?.id}}"
                           isMultiFile="true"
-                          fileType="multiFile"></oc-file-upload>
+                          fileType="multiFile"
+                          [fileUploadRequest]="fileUploadRequest"
+                          [fileDetailsRequest]="fileDetailsRequest"></oc-file-upload>
           <oc-file-upload *ngSwitchCase="'multiImage'"
                           formControlName="{{formElement?.id}}"
                           isMultiFile="true"
-                          fileType="multiImage"></oc-file-upload>
+                          fileType="multiImage"
+                          [fileUploadRequest]="fileUploadRequest"
+                          [fileDetailsRequest]="fileDetailsRequest"></oc-file-upload>
           <oc-file-upload *ngSwitchCase="'singleImage'"
                           formControlName="{{formElement?.id}}"
-                          fileType="singleImage">
+                          fileType="singleImage"
+                          [fileUploadRequest]="fileUploadRequest"
+                          [fileDetailsRequest]="fileDetailsRequest">
           </oc-file-upload>
           <oc-file-upload *ngSwitchCase="'privateSingleFile'"
                           formControlName="{{formElement?.id}}"
-                          fileType="privateSingleFile">
+                          fileType="privateSingleFile"
+                          [fileUploadRequest]="fileUploadRequest"
+                          [fileDetailsRequest]="fileDetailsRequest">
           </oc-file-upload>
           <oc-file-upload *ngSwitchCase="'multiPrivateFile'"
                           formControlName="{{formElement?.id}}"
-                          fileType="multiPrivateFile">
+                          fileType="multiPrivateFile"
+                          [fileUploadRequest]="fileUploadRequest"
+                          [fileDetailsRequest]="fileDetailsRequest">
           </oc-file-upload>
           <oc-number *ngSwitchCase="'number'"
                      formControlName="{{formElement?.id}}"
