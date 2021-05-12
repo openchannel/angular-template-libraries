@@ -36,7 +36,7 @@ Empty.args = {
     activationModel: activationEmpty,
     loginUrl: 'login',
     signupUrl: 'signup',
-    companyLogoUrl: './assets/img/logo-company.png',
+  companyLogoUrl: './assets/angular-common-components/logo-company.png',
 };
 
 export const Filled = ForgotPasswordComponent.bind({});
@@ -44,5 +44,5 @@ Filled.args = {
     activationModel: activationFilled,
     loginUrl: 'login',
     signupUrl: 'signup',
-    companyLogoUrl: './assets/img/logo-company.png',
+  companyLogoUrl: './assets/angular-common-components/logo-company.png',
 };

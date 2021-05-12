@@ -36,8 +36,8 @@ Empty.args = {
     resetModel: pwdEmpty,
     loginUrl: 'login',
     signupUrl: 'signup',
-    companyLogoUrl: './assets/img/logo-company.png',
-    submit: action('submit'),
+  companyLogoUrl: './assets/angular-common-components/logo-company.png',
+  submit: action('submit')
 };
 
 export const Filled = ResetPasswordComponent.bind({});
@@ -45,6 +45,6 @@ Filled.args = {
     resetModel: pwdFilled,
     loginUrl: 'login',
     signupUrl: 'signup',
-    companyLogoUrl: './assets/img/logo-company.png',
-    submit: action('submit'),
+  companyLogoUrl: './assets/angular-common-components/logo-company.png',
+  submit: action('submit')
 };

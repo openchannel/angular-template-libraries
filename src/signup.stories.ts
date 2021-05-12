@@ -36,7 +36,7 @@ Empty.args = {
     signupModel: signupEmpty,
     submitClick: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
 };
 
 export const Filled = SignupComponent.bind({});
@@ -44,7 +44,7 @@ Filled.args = {
     signupModel: signupFilled,
     submitClick: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
 };
 
 export const ResultPage = SignupComponent.bind({});

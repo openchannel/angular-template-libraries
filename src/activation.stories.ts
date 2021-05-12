@@ -28,7 +28,7 @@ storiesOf('User Activation [BEM]', module)
             activationModel: activationEmpty,
             submit: action('clicked event'),
             signupUrl: 'signup',
-            companyLogoUrl: './assets/img/logo-company.png',
+      companyLogoUrl: './assets/angular-common-components/logo-company.png',
         },
         moduleMetadata: modules,
     }))
@@ -38,7 +38,7 @@ storiesOf('User Activation [BEM]', module)
             activationModel: activationFilled,
             submit: action('clicked event'),
             signupUrl: 'signup',
-            companyLogoUrl: './assets/img/logo-company.png',
+      companyLogoUrl: './assets/angular-common-components/logo-company.png',
         },
         moduleMetadata: modules,
     }));

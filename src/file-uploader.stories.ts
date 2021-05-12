@@ -27,7 +27,7 @@ file3.fileUploadProgress = 75;
 const file4 = new FileDetails();
 file4.name = 'Product_backside_image.png';
 file4.fileUploadProgress = 100;
-file4.fileUrl = './assets/img/standard-app-icon.svg';
+file4.fileUrl = './assets/angular-common-components/standard-app-icon.svg';
 file4.size = 2048000;
 file4.uploadDate = 1595942005169;
 
@@ -69,8 +69,8 @@ storiesOf('File Uploader [BEM]', module)
         props: {
             fileUpload: action('fileUpload'),
             fileType: 'privateSingleFile',
-            uploadIconUrl: 'assets/img/upload_icon.svg',
-            defaultFileIcon: 'assets/img/file_icon.svg',
+            uploadIconUrl: 'assets/angular-common-components/upload_icon.svg',
+            defaultFileIcon: 'assets/angular-common-components/file_icon.svg',
         },
     }))
     .add('Single File With Data', () => ({
@@ -79,8 +79,8 @@ storiesOf('File Uploader [BEM]', module)
         props: {
             fileDetailArr: [file2],
             fileType: 'privateSingleFile',
-            uploadIconUrl: 'assets/img/upload_icon.svg',
-            defaultFileIcon: 'assets/img/file_icon.svg',
+          uploadIconUrl: 'assets/angular-common-components/upload_icon.svg',
+          defaultFileIcon: 'assets/angular-common-components/file_icon.svg',
         },
     }))
     .add('Multi Public Image With Data', () => ({
@@ -90,7 +90,7 @@ storiesOf('File Uploader [BEM]', module)
             isMultiFile: true,
             fileDetailArr: [file1, file2, file3, file4],
             fileType: 'multiImage',
-            uploadIconUrl: 'assets/img/upload_icon.svg',
-            defaultFileIcon: 'assets/img/file_icon.svg',
+          uploadIconUrl: 'assets/angular-common-components/upload_icon.svg',
+          defaultFileIcon: 'assets/angular-common-components/file_icon.svg',
         },
     }));

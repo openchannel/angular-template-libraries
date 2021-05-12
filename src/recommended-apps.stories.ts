@@ -60,7 +60,7 @@ const app = {
 const app1 = { ...app };
 app1.description = 'With this plugin you can communicate with your teammates any time';
 app1.summary = 'With this plugin you can communicate with your teammates any time';
-app1.icon = './assets/img/standard-app-icon.svg';
+app1.icon = './assets/angular-common-components/standard-app-icon.svg';
 app1.name = 'Plugin';
 app1.model[0].type = 'free';
 app1.rating = 3.5;
@@ -68,7 +68,7 @@ app1.reviewCount = 12;
 
 const app2 = { ...app };
 app2.description = app2.summary = 'Integrate directly with your account and make customer updates a breeze';
-app2.icon = './assets/img/standard-app-icon.svg';
+app2.icon = './assets/angular-common-components/standard-app-icon.svg';
 app2.name = 'Application';
 app2.model[0].price = 11.99;
 app2.rating = 0;
@@ -76,7 +76,7 @@ app2.reviewCount = 0;
 
 const app3 = { ...app };
 app3.description = app2.summary = 'Improve and extend your experience right from your own UI';
-app3.icon = './assets/img/standard-app-icon.svg';
+app3.icon = './assets/angular-common-components/standard-app-icon.svg';
 app3.name = 'Integration';
 app3.model[0].price = 4.99;
 app3.rating = 4.9;

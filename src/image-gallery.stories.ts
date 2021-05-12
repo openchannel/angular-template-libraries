@@ -20,7 +20,7 @@ const ImageGalleryComponent = (args: OcImageGalleryComponent) => ({
 });
 
 const imageItem: GalleryItem = {
-    image: './assets/angular-common-components/img/get-started.svg',
+  image: './assets/angular-common-components/get-started.svg',
     title: 'Test App Image',
     description: 'Improve and extend your experience right from your own UI',
 };

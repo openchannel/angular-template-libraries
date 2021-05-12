@@ -31,8 +31,8 @@ const statElement: StatElement = {
 
 const featuredApp: FullAppData = {
   appId: '34343-jjo-sgs-353-fgi-3423',
-  icon: './assets/img/get-started.svg',
-  logo: './assets/img/get-started.svg',
+  icon: './assets/angular-common-components/get-started.svg',
+  logo: './assets/angular-common-components/get-started.svg',
   name: 'Test App 1',
   model: [{
     type: 'recurring',

@@ -2,7 +2,6 @@ import { moduleMetadata } from '@storybook/angular';
 import {
     OcAuthComponentsModule,
     OcEditUserFormConfig,
-    OCOrganization,
     OcSignupCustomComponent,
     TypeFieldModel,
     TypeModel,
@@ -111,7 +110,7 @@ export const LoadingConfigs = SignupCustomComponent.bind({});
 LoadingConfigs.args = {
     submitClick: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     formConfigs: null,
 };
 
@@ -119,7 +118,7 @@ export const WithoutConfigs = SignupCustomComponent.bind({});
 WithoutConfigs.args = {
     submitClick: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     formConfigsLoading: false,
     formConfigs: [],
 };
@@ -128,7 +127,7 @@ export const MultiConfigs = SignupCustomComponent.bind({});
 MultiConfigs.args = {
     submitClick: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     formConfigsLoading: false,
     formConfigs: multiConfigs,
 };
@@ -137,7 +136,7 @@ export const OneConfig = SignupCustomComponent.bind({});
 OneConfig.args = {
     submitClick: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     formConfigsLoading: false,
     formConfigs: [multiConfigs[0]],
 };
