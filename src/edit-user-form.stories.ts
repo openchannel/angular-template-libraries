@@ -1,5 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
+import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
     OcEditUserFormComponent,
@@ -7,13 +7,13 @@ import {
     OCOrganization,
     TypeFieldModel,
     TypeModel,
-} from 'oc-ng-common-component/src/lib/auth-components';
-import { OcFormComponentsModule } from 'oc-ng-common-component/src/lib/form-components';
-import { ReactiveFormsModule } from '@angular/forms';
+    OcFormComponentsModule,
+} from '@openchannel/angular-common-components';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { action } from '@storybook/addon-actions';
 
 const modules = {
-    imports: [OcCommonLibModule, OcFormComponentsModule, ReactiveFormsModule, RouterTestingModule],
+    imports: [OcCommonLibModule, OcFormComponentsModule, ReactiveFormsModule, RouterTestingModule, FormsModule],
 };
 
 const accountTypeData: TypeModel<TypeFieldModel> = {

@@ -1,6 +1,6 @@
-import {OcCommonLibModule} from 'oc-ng-common-component';
+import {OcCommonLibModule} from '@openchannel/angular-common-components';
 import {moduleMetadata} from '@storybook/angular';
-import { OcPasswordComponent } from 'oc-ng-common-component';
+import { OcPasswordComponent } from '@openchannel/angular-common-components';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {

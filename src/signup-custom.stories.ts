@@ -5,8 +5,8 @@ import {
     OcSignupCustomComponent,
     TypeFieldModel,
     TypeModel,
-} from 'oc-ng-common-component/src/lib/auth-components';
-import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
+} from '@openchannel/angular-common-components/src/lib/auth-components';
+import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 import { action } from '@storybook/addon-actions';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';

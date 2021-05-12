@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "oc-ng-common-component": {
+    "angular-common-components": {
       "projectType": "library",
       "schematics": {
         "@schematics/angular:component": {
@@ -11,34 +11,34 @@
         }
       },
       "root": "",
-      "sourceRoot": "projects/oc-ng-common-component/src",
+      "sourceRoot": "projects/angular-common-components/src",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/oc-ng-common-component/tsconfig.lib.json",
-            "project": "projects/oc-ng-common-component/ng-package.json"
+            "tsConfig": "projects/angular-common-components/tsconfig.lib.json",
+            "project": "projects/angular-common-components/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/oc-ng-common-component/tsconfig.lib.prod.json"
+              "tsConfig": "projects/angular-common-components/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-builders/jest:run",
           "options": {
-            "jestConfig": "projects/oc-ng-common-component/jest.config.js",
-            "tsConfig": "projects/oc-ng-common-component/tsconfig.spec.json",
-            "setupFile": "projects/oc-ng-common-component/src/test-setup.ts"
+            "jestConfig": "projects/angular-common-components/jest.config.js",
+            "tsConfig": "projects/angular-common-components/tsconfig.spec.json",
+            "setupFile": "projects/angular-common-components/src/test-setup.ts"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/oc-ng-common-component/tsconfig.lib.json",
-              "projects/oc-ng-common-component/tsconfig.spec.json"
+              "projects/angular-common-components/tsconfig.lib.json",
+              "projects/angular-common-components/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -47,38 +47,38 @@
         }
       }
     },
-    "oc-ng-common-service": {
+    "angular-common-services": {
       "projectType": "library",
-      "root": "projects/oc-ng-common-service",
-      "sourceRoot": "projects/oc-ng-common-service/src",
+      "root": "projects/angular-common-services",
+      "sourceRoot": "projects/angular-common-services/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/oc-ng-common-service/tsconfig.lib.json",
-            "project": "projects/oc-ng-common-service/ng-package.json"
+            "tsConfig": "projects/angular-common-services/tsconfig.lib.json",
+            "project": "projects/angular-common-services/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/oc-ng-common-service/tsconfig.lib.prod.json"
+              "tsConfig": "projects/angular-common-services/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/oc-ng-common-service/src/test.ts",
-            "tsConfig": "projects/oc-ng-common-service/tsconfig.spec.json",
-            "karmaConfig": "projects/oc-ng-common-service/karma.conf.js"
+            "main": "projects/angular-common-services/src/test.ts",
+            "tsConfig": "projects/angular-common-services/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-common-services/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/oc-ng-common-service/tsconfig.lib.json",
-              "projects/oc-ng-common-service/tsconfig.spec.json"
+              "projects/angular-common-services/tsconfig.lib.json",
+              "projects/angular-common-services/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

@@ -1,6 +1,6 @@
 import {moduleMetadata} from '@storybook/angular';
-import {OcCommonLibModule} from 'oc-ng-common-component/src/lib/common-components';
-import {OcDropboxComponent} from 'oc-ng-common-component';
+import {OcCommonLibModule} from '@openchannel/angular-common-components/src/lib/common-components';
+import {OcDropboxComponent} from '@openchannel/angular-common-components';
 
 const modules = {
     imports: [OcCommonLibModule]

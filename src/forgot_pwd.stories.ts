@@ -1,12 +1,13 @@
 import { moduleMetadata } from '@storybook/angular';
-import {ComponentsUserLoginModel, OcForgotPasswordComponent} from 'oc-ng-common-component/src/lib/auth-components';
-import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
+import {ComponentsUserLoginModel, OcForgotPasswordComponent} from '@openchannel/angular-common-components/src/lib/auth-components';
+import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
-  imports: [OcCommonLibModule, RouterTestingModule.withRoutes([]), BrowserAnimationsModule]
+  imports: [OcCommonLibModule, RouterTestingModule.withRoutes([]), BrowserAnimationsModule, ReactiveFormsModule, FormsModule]
 };
 
 const pwdEmpty = new ComponentsUserLoginModel();
