@@ -48,6 +48,13 @@ definitions:
           - npm run angular-common-components-up-version
           - git commit -a -m "Auto increment prerelease version [skip ci]"
           - git push
+    - step: &push-to-github
+        name: Push to GitHub
+        script:
+          - git remote set-url origin git@github.com:openchannel/angular-template-libraries.git
+          - git remote -v
+          - git push origin master:main
+          - git push origin --tags
 
     - step: &build-app
         name: "Build"
@@ -112,3 +119,5 @@ pipelines:
           trigger: manual
           <<: *increase-version
           <<: *build-and-push-new-version
+    master:
+      - step: *push-to-github
