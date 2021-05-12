@@ -1,0 +1,51 @@
+@import '../../../../assets/styles/theme.scss';
+@import '../../../../assets/styles/mixins.scss';
+
+.oc-card {
+  display: flex;
+  cursor: pointer;
+
+  &__icon {
+    height: 74px;
+    flex-shrink: 0;
+
+    img {
+      width: 44px;
+    }
+  }
+
+  &__content {
+    margin-left: 2rem;
+    padding: 0;
+    width: 100%;
+
+    &-name {
+      height: 19px;
+      line-height: 19px;
+      margin-bottom: 1rem;
+      font-family: 'Rubik-Medium', sans-serif;
+      color: $body-color;
+    }
+
+    &-info {
+      display: flex;
+      margin-bottom: 0.5rem;
+
+      .oc-card__content-price {
+        font-size: 14px;
+        font-family: 'Rubik-Medium', serif;
+        color: $primary;
+        min-width: 100px;
+        margin-bottom: 0;
+      }
+    }
+
+    &-summary {
+      height: 2.3rem;
+      line-height: 2.3rem;
+      font-size: 14px;
+      margin-bottom: 0;
+      color: $secondary;
+    }
+  }
+}

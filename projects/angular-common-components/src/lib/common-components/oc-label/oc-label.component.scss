@@ -1,0 +1,12 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.oc-form-label  {
+  @include font-size-breakpoint(md);
+  line-height: 14px;
+  margin-bottom: 0;
+  word-break: break-word;
+  &__required {
+    color: $danger;
+  }
+}

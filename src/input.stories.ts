@@ -1,10 +1,11 @@
 import { storiesOf } from '@storybook/angular';
-import { OcCheckboxComponent, OcInputComponent } from 'oc-ng-common-component/src/lib/common-components';
+import { OcCheckboxComponent, OcInputComponent } from '@openchannel/angular-common-components/src/lib/common-components';
 import { withA11y } from '@storybook/addon-a11y';
+import { FormsModule } from '@angular/forms';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
-    imports: [],
+    imports: [FormsModule],
 };
 
 storiesOf('Input [BEM]', module)
@@ -18,10 +19,12 @@ storiesOf('Input [BEM]', module)
             focus: true,
         },
         moduleMetadata: modules,
-    })).add('Checkbox', () => ({
+    }))
+    .add('Checkbox', () => ({
         component: OcCheckboxComponent,
         props: {
             labelText: 'Custom Checkbox',
             requiredIndicator: true,
-    },
+        },
+        moduleMetadata: modules,
     }));

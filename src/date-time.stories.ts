@@ -1,4 +1,4 @@
-import { OcDatetimePickerComponent, OcFormComponentsModule } from 'oc-ng-common-component/src/lib/form-components';
+import { OcDatetimePickerComponent, OcFormComponentsModule } from '@openchannel/angular-common-components/src/lib/form-components';
 import { moduleMetadata } from '@storybook/angular';
 
 const modules = {
