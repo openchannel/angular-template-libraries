@@ -33,7 +33,7 @@ definitions:
           - pipe: atlassian/npm-publish:0.3.2
             variables:
               NPM_TOKEN: $NPM_TOKEN
-              FOLDER: 'projects/angular-common-services'
+              FOLDER: 'dist/angular-common-services'
               EXTRA_ARGS: '--access public'
     - step: &build-and-push-new-version-of-components
         name: Push components to npm
@@ -44,7 +44,7 @@ definitions:
           - pipe: atlassian/npm-publish:0.3.2
             variables:
               NPM_TOKEN: $NPM_TOKEN
-              FOLDER: 'projects/angular-common-components'
+              FOLDER: 'dist/angular-common-components'
               EXTRA_ARGS: '--access public'
     - step: &push-to-github
         name: Push to GitHub
@@ -53,7 +53,6 @@ definitions:
           - git remote -v
           - git push origin master:main
           - git push origin --tags
-
 
     - step: &build-app
         name: "Build"
