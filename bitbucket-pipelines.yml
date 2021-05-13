@@ -60,8 +60,8 @@ definitions:
         image: node:14.15.4-alpine3.12
         script:
           - npm install
-          - npm run oc-ng-common-service-pack
-          - npm run build-prod oc-ng-common-component && npm run oc-ng-common-component-pack
+          - npm run angular-common-services-pack
+          - npm run build-prod angular-common-components && npm run angular-common-components-pack
           - npm run docs:json
           - npm run build-storybook
         artifacts:
