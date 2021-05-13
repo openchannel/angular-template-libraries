@@ -59,6 +59,7 @@ definitions:
         name: "Build"
         image: node:14.15.4-alpine3.12
         script:
+          - sed -i "s|oc-ng-common-component|angular-common-components|g" package.json # TO SKIP ERROR
           - npm install
           - npm run angular-common-services-pack
           - npm run build-prod angular-common-components && npm run angular-common-components-pack
