@@ -13,58 +13,107 @@ definitions:
           - sonar
         script:
           - npm install --quiet
-          - npm run build-prod oc-ng-common-service
-          - npm run build-prod oc-ng-common-component
+          - npm run build-prod angular-common-services
+          - npm run build-prod angular-common-components
           - npm run test
           - pipe: sonarsource/sonarcloud-scan:1.2.1
             variables:
               SONAR_SCANNER_OPTS: -Xmx2048m
               SONAR_TOKEN: ${SONAR_TOKEN}
-              EXTRA_ARGS: '-Dsonar.sources=projects/oc-ng-common-component/src
-              -Dsonar.tests=projects/oc-ng-common-component/src
+              EXTRA_ARGS: '-Dsonar.sources="projects/angular-common-components/src,projects/angular-common-services/src"
+              -Dsonar.tests=projects/angular-common-components/src
               -Dsonar.test.inclusions="**/testing/**,**/*.spec.ts"
-              -Dsonar.typescript.lcov.reportPaths=projects/oc-ng-common-component/coverage/lcov.info'
-    - step: &build-and-push-new-version
-        name: Push library to repository
+              -Dsonar.typescript.lcov.reportPaths=projects/angular-common-components/coverage/lcov.info'
+    - step: &build-and-push-new-version-of-services
+        name: Push services to npm
         script:
           - npm install --quiet
-          - npm run build-prod oc-ng-common-service
-          - npm run build-prod oc-ng-common-component
-          - npm run oc-ng-common-service-pack
-          - npm run oc-ng-common-component-pack
-          - pipe: cloudsmith-io/publish:0.3.0
+          - npm run build-prod angular-common-services
+          - npm run angular-common-services-pack
+          - pipe: atlassian/npm-publish:0.3.2
             variables:
-              CLOUDSMITH_REPOSITORY: 'openchannel/angular-common-components'
-              CLOUDSMITH_API_KEY: $CLOUDSMITH_API_KEY
-              PACKAGE_FORMAT: 'npm'
-              PACKAGE_NPM_DIST_TAG: 'stable'
-              PACKAGE_PATH: 'dist/oc-ng-common-component/*.tgz'
-              REPUBLISH: 'true'
-    - step: &increase-version
-        name: Up library version
+              NPM_TOKEN: $NPM_TOKEN
+              FOLDER: 'dist/angular-common-services'
+              EXTRA_ARGS: '--access public'
+    - step: &build-and-push-new-version-of-components
+        name: Push components to npm
         script:
-          - echo "Made a change in build ${BITBUCKET_BUILD_NUMBER}"
-          - npm run oc-ng-common-service-up-version
-          - npm run oc-ng-common-component-up-version
-          - git commit -a -m "Auto increment prerelease version [skip ci]"
-          - git push
+          - npm install --quiet
+          - npm run build-prod angular-common-components
+          - npm run angular-common-components-pack
+          - pipe: atlassian/npm-publish:0.3.2
+            variables:
+              NPM_TOKEN: $NPM_TOKEN
+              FOLDER: 'dist/angular-common-components'
+              EXTRA_ARGS: '--access public'
+    - step: &push-to-github
+        name: Push to GitHub
+        script:
+          - git remote set-url origin git@github.com:openchannel/angular-template-libraries.git
+          - git remote -v
+          - git push origin master:main
+          - git push origin --tags
+
+    - step: &build-app
+        name: "Build"
+        image: node:14.15.4-alpine3.12
+        script:
+          - npm install
+          - npm run angular-common-services-pack
+          - npm run build-prod angular-common-components && npm run angular-common-components-pack
+          - npm run docs:json
+          - npm run build-storybook
+        artifacts:
+          - storybook-static/**
+
+    - step: &deploy-app
+        name: "Deploy to Environment"
+        image: atlassian/pipelines-awscli
+        script:
+          - source infra/config-files/${CONFIG_FILE_SUFFIX}
+
+          - chmod +x infra/scripts/*
+          - export CERTIFICATE_ARN=`./infra/scripts/getCertificate.sh us-east-1 *.${HOSTED_ZONE_NAME:0:-1}`
+
+          - aws cloudformation deploy --region $REGION --stack-name ${CLOUDFORMATION_STACKNAME}-cloudfront --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset --template-file infra/cloudformation/service-cloudfront.yml --parameter-overrides CNAME=$SITE_URL CertificateArn=$CERTIFICATE_ARN ProjectName=$APP_NAME ClusterName=$CLUSTER_NAME PrefixName=$PREFIX_NAME
+          - echo "aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/DISTRIBUTION_ID --output text --query Parameter.Value"
+          - echo "aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value"
+          - export DISTRIBUTION_ID=`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/DISTRIBUTION_ID --output text --query Parameter.Value`
+          - export AWS_S3="`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value`"
+          - aws s3 sync --delete storybook-static/ s3://$AWS_S3
+          - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /index.html "/static"
 pipelines:
   pull-requests:
     '**':
       - step: *build-test-sonarcloud
   custom:
-    publish:
-      - step: *build-and-push-new-version
+    publish-components:
+      - step: *build-and-push-new-version-of-components
+    publish-services:
+      - step: *build-and-push-new-version-of-services
+    Deploy to dev1:
+      - step: *build-app
+      - step:
+          <<: *deploy-app
+          deployment: dev1
+    Deploy to stage1:
+      - step: *build-app
+      - step:
+          <<: *deploy-app
+          deployment: stage1
+    Deploy to us1:
+      - step: *build-app
+      - step:
+          <<: *deploy-app
+          deployment: us1
   branches:
     develop:
       - step: *build-test-sonarcloud
-      - step:
-          trigger: manual
-          <<: *increase-version
-          <<: *build-and-push-new-version
     release/*:
       - step: *build-test-sonarcloud
-      - step:
-          trigger: manual
-          <<: *increase-version
-          <<: *build-and-push-new-version
+    master:
+      - step: *build-test-sonarcloud
+      - step: *push-to-github
+      - parallel:
+          - step: *build-and-push-new-version-of-services
+          - step: *build-and-push-new-version-of-components

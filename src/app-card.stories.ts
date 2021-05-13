@@ -1,7 +1,7 @@
 import {moduleMetadata} from '@storybook/angular';
-import {OcAppCardComponent, OcMarketComponentsModule} from 'oc-ng-common-component/src/lib/market-components';
-import {OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
-import {FullAppData} from 'oc-ng-common-component/src/lib/common-components';
+import {OcAppCardComponent, OcMarketComponentsModule} from '@openchannel/angular-common-components/src/lib/market-components';
+import {OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
+import {FullAppData} from '@openchannel/angular-common-components/src/lib/common-components';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {

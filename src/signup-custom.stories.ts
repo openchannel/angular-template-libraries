@@ -2,12 +2,11 @@ import { moduleMetadata } from '@storybook/angular';
 import {
     OcAuthComponentsModule,
     OcEditUserFormConfig,
-    OCOrganization,
     OcSignupCustomComponent,
     TypeFieldModel,
     TypeModel,
-} from 'oc-ng-common-component/src/lib/auth-components';
-import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
+} from '@openchannel/angular-common-components/src/lib/auth-components';
+import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 import { action } from '@storybook/addon-actions';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -111,7 +110,7 @@ export const LoadingConfigs = SignupCustomComponent.bind({});
 LoadingConfigs.args = {
     submitClick: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     formConfigs: null,
 };
 
@@ -119,7 +118,7 @@ export const WithoutConfigs = SignupCustomComponent.bind({});
 WithoutConfigs.args = {
     submitClick: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     formConfigsLoading: false,
     formConfigs: [],
 };
@@ -128,7 +127,7 @@ export const MultiConfigs = SignupCustomComponent.bind({});
 MultiConfigs.args = {
     submitClick: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     formConfigsLoading: false,
     formConfigs: multiConfigs,
 };
@@ -137,7 +136,7 @@ export const OneConfig = SignupCustomComponent.bind({});
 OneConfig.args = {
     submitClick: action('clicked event'),
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     formConfigsLoading: false,
     formConfigs: [multiConfigs[0]],
 };
@@ -145,7 +144,7 @@ OneConfig.args = {
 export const ResultPage = SignupCustomComponent.bind({});
 ResultPage.args = {
     loginUrl: 'login',
-    companyLogoUrl: './assets/oc-ng-common-component/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     showSignupFeedbackPage: true,
-    forgotPasswordDoneUrl: './assets/oc-ng-common-component/email_done.svg',
+    forgotPasswordDoneUrl: './assets/angular-common-components/email_done.svg',
 };

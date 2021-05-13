@@ -1,0 +1,79 @@
+<div class="array-preview">
+  <div class="array-preview__field" *ngFor="let field of previewFields;">
+    <oc-label class="array-preview__field-title" [text]="field.label"></oc-label>
+    <div class="array-preview__field-content" [id]="field.id">
+      <ng-container *ngIf="field.isValidField; else ngtText">
+        <ng-container [ngSwitch]="field.type">
+          <ng-container *ngSwitchCase="'dynamicFieldArray'"
+                        [ngTemplateOutlet]="ngtDFA"
+                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+          <ng-container *ngSwitchCase="'tags'"
+                        [ngTemplateOutlet]="ngtTags"
+                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+          <ng-container *ngSwitchCase="'booleanTags'"
+                        [ngTemplateOutlet]="ngtTags"
+                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+          <ng-container *ngSwitchCase="'numberTags'"
+                        [ngTemplateOutlet]="ngtTags"
+                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+          <ng-container *ngSwitchCase="'richText'"
+                        [ngTemplateOutlet]="ngtRichText"
+                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+          <ng-container *ngSwitchCase="'singleImage'"
+                        [ngTemplateOutlet]="ngtSingleImage"
+                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+          <ng-container *ngSwitchCase="'multiImage'"
+                        [ngTemplateOutlet]="ngtImages"
+                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+          <ng-container *ngSwitchDefault
+                        [ngTemplateOutlet]="ngtText"
+                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<!-- Template for text types-->
+<ng-template #ngtText let-field>
+  <span class="array-preview__field-content__text">{{field.fieldValue | replaceHtmlTags}}</span>
+</ng-template>
+
+<!-- Rich text template -->
+<ng-template #ngtRichText let-field>
+  <div [innerHTML]="field?.fieldValue | safe:'html'"></div>
+</ng-template>
+
+<!-- Tags template -->
+<ng-template #ngtTags let-field>
+  <div class="array-preview__field-content__tags" *ngIf="field?.fieldValue?.length > 0">
+    <oc-tag-element class="array-preview__field-content__tags-item"
+                    *ngFor="let tag of field.fieldValue; index as i"
+                    [title]="tag">
+    </oc-tag-element>
+  </div>
+</ng-template>
+
+<!-- Dynamic field array template -->
+<ng-template #ngtDFA let-field>
+  <oc-dynamic-field-array *ngIf="field?.formArrayDFA"
+                          [dfaFormArray]="field.formArrayDFA"
+                          [fieldDefinitionData]="field"></oc-dynamic-field-array>
+</ng-template>
+
+<!-- List of images template-->
+<ng-template #ngtImages let-field>
+  <div *ngIf="field?.fieldValue?.length > 0" class="array-preview__field-content__image-multi">
+    <div class="array-preview__field-content__image-multi-container" *ngFor="let image of field.fieldValue">
+      <img class="array-preview__field-content__image-multi-item" [src]="image" alt="image">
+    </div>
+  </div>
+</ng-template>
+
+<!-- Single image template-->
+<ng-template #ngtSingleImage let-field>
+  <div class="array-preview__field-content__image-mono">
+    <img *ngIf="field.fieldValue" [src]="field.fieldValue"
+         class="array-preview__field-content__image-mono-item" alt="image">
+  </div>
+</ng-template>
