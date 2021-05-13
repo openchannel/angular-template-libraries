@@ -31,11 +31,7 @@ export class OcContentModalComponent implements AfterViewInit {
 
     hasLongContent: boolean = false;
 
-    private modal: NgbActiveModal;
-
-    constructor(modal: NgbActiveModal) {
-        this.modal = modal;
-    }
+    constructor(private modal: NgbActiveModal) {}
 
     ngAfterViewInit(): void {
         if (this.contentModal.nativeElement.offsetHeight > window.innerHeight / 2) {
