@@ -1,32 +1,24 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {AngularSvgIconModule} from 'angular-svg-icon';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {OcContentModalComponent} from './oc-content-modal.component';
-import {Component, Input} from "@angular/core";
-import {By} from "@angular/platform-browser";
-
-@Component({
-    selector: 'oc-button',
-    template: ''
-})
-export class MockButtonComponent {
-    @Input() text: string = '';
-    @Input() type: 'primary' | 'secondary' | 'link' = 'primary';
-}
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { OcContentModalComponent } from './oc-content-modal.component';
+import { By } from '@angular/platform-browser';
+import { MockButtonComponent } from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcTagElementComponent', () => {
     let component: OcContentModalComponent;
     let fixture: ComponentFixture<OcContentModalComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [OcContentModalComponent, MockButtonComponent],
-            imports: [AngularSvgIconModule.forRoot(), HttpClientTestingModule],
-            providers: [NgbActiveModal]
-        })
-            .compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [OcContentModalComponent, MockButtonComponent],
+                imports: [AngularSvgIconModule.forRoot(), HttpClientTestingModule],
+                providers: [NgbActiveModal],
+            }).compileComponents();
+        }),
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(OcContentModalComponent);

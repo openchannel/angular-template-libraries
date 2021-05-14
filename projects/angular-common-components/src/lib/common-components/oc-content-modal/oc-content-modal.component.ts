@@ -27,7 +27,7 @@ export class OcContentModalComponent implements AfterViewInit {
     /**
      * allows to change the close icon, adding a new source to it as a string.
      */
-    @Input() closeIconSource: string = 'assets/oc-ng-common-component/close-icon.svg';
+    @Input() closeIconSource: string = 'assets/angular-common-components/close-icon.svg';
 
     hasLongContent: boolean = false;
 
