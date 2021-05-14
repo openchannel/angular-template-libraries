@@ -9,6 +9,7 @@ definitions:
   steps:
     - step: &build-test-sonarcloud
         name: Build, test and analyze on SonarCloud
+        max-time: 15
         caches:
           - sonar
         script:
