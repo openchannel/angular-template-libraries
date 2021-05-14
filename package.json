@@ -1,6 +1,6 @@
 {
   "name": "oc-angular-template-libraries",
-  "version": "2.0.0-2",
+  "version": "2.0.0-3",
   "scripts": {
     "ng": "./node_modules/.bin/ng",
     "start": "./node_modules/.bin/ng serve",
@@ -16,7 +16,7 @@
     "storybook": "npm run copy-assets && start-storybook -p 6006 -s ./projects/angular-common-components,./storybook-assets",
     "storybook-update-and-run": "npm install && ./node_modules/.bin/ng build && npx --userconfig .npmrc sb@latest upgrade && npm run storybook",
     "storybook-withoutdocs": "start-storybook -p 6006 -s projects/",
-    "copy-assets-for-static-storybook": "mkdir -p ./storybook-static/assets/angular-common-components && cp -r ./projects/oc-ng-common-component/assets/img/* ./storybook-static/assets/angular-common-components",
+    "copy-assets-for-static-storybook": "mkdir -p ./storybook-static/assets/angular-common-components && cp -r ./projects/angular-common-components/assets/img/* ./storybook-static/assets/angular-common-components",
     "build-storybook": "build-storybook && npm run copy-assets-for-static-storybook",
     "angular-common-components-pack": "cd dist/angular-common-components/ && npm pack",
     "angular-common-components-up-version": "cd projects/angular-common-components/ && npm --no-git-tag-version version prerelease",

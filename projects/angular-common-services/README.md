@@ -1,25 +1,61 @@
-# OcCommonService
+# angular-common-services
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 
-## Code scaffolding
+### Services Built With
+* [Angular 11.2.3](https://angular.io)
 
-Run `ng generate component component-name --project angular-common-services` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project angular-common-services`.
+## Services Dependencies
 
-> Note: Don't forget to add `--project angular-common-services` or else it will be added to the default project in your `angular.json` file.
+    "jwt-decode": "3.1.2",
+    "broadcast-channel": "3.5.3",
 
-## Build
+### Services Installation
 
-Run `ng build angular-common-services` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Install dependencies
+```sh
+  npm i --save jwt-decode@3.1.2 broadcast-channel@3.5.3
+```
+2. Install library `npm i @openchannel/angular-common-services`
 
-## Publishing
+3. Add import to app.module
+```sh
+  OcCommonServiceModule.forRoot(environment),
+```
+4. Add property to environment.ts
+```sh
+  apiUrl: 'https://client-api.openchannel.io/',
+```
 
-After building your library with `ng build angular-common-services`, go to the dist folder `cd dist/angular-common-services` and run `npm publish`.
+## Services Development
 
-## Running unit tests
+### Connect library to project
 
-Run `ng test angular-common-services` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. `ng build angular-common-services`
 
-## Further help
+2. `cd dist/angular-common-services`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+5. `sudo npm link` Then copy result link.
+
+4. In your angular project run:<br> `npm install file:<{absolute path to angular-common-components or copied path}/dist/angular-common-components>`
+
+### Documentation Compodoc
+Compodoc shows project structure. (modules, components, routes and etc.)
+* Install NPM packages :<br>
+  ``npm install``
+
+* Generate Documentation :<br>
+
+  ``npm run create-compodoc``
+
+* Run Compodoc :<br>
+
+  ``npm run start-compodoc``
+
+* Documentation [http://localhost:8801](http://localhost:8801)
+<!-- USAGE EXAMPLES -->
+## Services Usage
+
+<!-- CONTACT -->
+## Services Contact
+
+Project Link: [https://bitbucket.org/openchannel/angular-common-service-library/src/develop/](https://bitbucket.org/openchannel/angular-common-service-library/src/develop/)
