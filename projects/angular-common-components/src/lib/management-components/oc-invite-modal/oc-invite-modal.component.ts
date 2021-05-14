@@ -21,6 +21,8 @@ export class OcInviteModalComponent implements OnInit {
     // show spinner while inviting requests
     inProcess = false;
 
+    private listRoles: any = {};
+
     private modal: NgbActiveModal;
 
     constructor(modal: NgbActiveModal) {
@@ -88,12 +90,13 @@ export class OcInviteModalComponent implements OnInit {
             result => {
                 if (result.list && result.list.length > 0) {
                     const roles: string[] = [];
-                    result.list.forEach((role: { developerRoleId?: string; userRoleId?: string }) => {
-                        if (role?.developerRoleId) {
-                            roles.push(role?.developerRoleId);
-                        } else if (role?.userRoleId) {
-                            roles.push(role?.userRoleId);
+                    result.list.forEach((r: { developerRoleId?: string; userRoleId?: string; name: string }) => {
+                        if (r?.developerRoleId) {
+                            this.listRoles[r.name] = r.developerRoleId;
+                        } else if (r?.userRoleId) {
+                            this.listRoles[r.name] = r.userRoleId;
                         }
+                        roles.push(r.name);
                     });
                     this.formConfig.fields.find(field => field.id === 'roles').options = roles;
                     if (!(this.modalData instanceof ModalUpdateUserModel)) {
@@ -121,7 +124,7 @@ export class OcInviteModalComponent implements OnInit {
             if (this.formGroup.valid && this.formData && !this.inProcess) {
                 this.inProcess = true;
 
-                const roles = isString(this.formData?.roles) ? [this.formData.roles] : this.formData?.roles;
+                const roles = this.toRoleId(isString(this.formData?.roles) ? [this.formData.roles] : this.formData?.roles);
                 this.formData = merge(this.formData, { customData: { roles } });
                 this.formData.roles = roles;
 
@@ -136,6 +139,12 @@ export class OcInviteModalComponent implements OnInit {
 
     dismiss(): void {
         this.modal.dismiss();
+    }
+
+    private toRoleId(roles: string[]): string[] {
+        const roleName = [];
+        roles.forEach(r => roleName.push(this.listRoles[r]));
+        return roleName;
     }
 
     private updateUser(updateModalData: ModalUpdateUserModel): void {
