@@ -1,6 +1,6 @@
 {
   "name": "oc-angular-template-libraries",
-  "version": "2.0.0-3",
+  "version": "2.0.0-4",
   "scripts": {
     "ng": "./node_modules/.bin/ng",
     "start": "./node_modules/.bin/ng serve",

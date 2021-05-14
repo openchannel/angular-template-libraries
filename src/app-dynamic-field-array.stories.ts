@@ -36,6 +36,7 @@ const modules = {
         EditorModule,
         ImageCropperModule,
         ColorPickerModule,
+        FormsModule,
     ],
     declarations: [
         OcFormComponent,

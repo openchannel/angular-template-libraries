@@ -4,10 +4,11 @@ import { ComponentsUserActivationModel, OcActivationComponent } from '@openchann
 import { withA11y } from '@storybook/addon-a11y';
 import { action } from '@storybook/addon-actions';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
-    imports: [OcCommonLibModule, RouterTestingModule],
+    imports: [OcCommonLibModule, RouterTestingModule, FormsModule],
 };
 
 const activationEmpty = new ComponentsUserActivationModel();
