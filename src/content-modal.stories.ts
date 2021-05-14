@@ -43,7 +43,7 @@ const ContentModal = (args: OcContentModalComponent) => ({
     moduleMetadata: modules,
     props: args,
     template: `
-        <div>
+        <div style="margin-top: 100px;">
             <oc-content-modal modalTitle="Test modal title" 
                               [customContentTemplate]="modalContent" [closeButton]="true"></oc-content-modal>
             <ng-template #modalContent>
