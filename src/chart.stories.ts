@@ -3,7 +3,7 @@ import {
   ChartLayoutTypeModel,
   OcChartComponent,
   OcCommonLibModule
-} from 'projects/oc-ng-common-component/src/public-api';
+} from 'projects/angular-common-components/src/public-api';
 import {sum} from 'lodash';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
@@ -69,7 +69,7 @@ Monthly.args = {
   },
   count: sum(month.labelsY),
   countText: 'Total',
-  downloadUrl: './assets/img/upload_icon.svg',
+  downloadUrl: './assets/angular-common-components/upload_icon.svg',
   isBackgroundColor: true,
   enablePoints: true,
   minDropdownWidth: '247px',
@@ -109,7 +109,7 @@ Daily.args = {
   },
   count: sum(day.labelsY),
   countText: 'Total',
-  downloadUrl: './assets/img/upload_icon.svg',
+  downloadUrl: './assets/angular-common-components/upload_icon.svg',
   isBackgroundColor: true,
   enablePoints: true,
   minDropdownWidth: '247px',

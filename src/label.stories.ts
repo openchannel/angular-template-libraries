@@ -3,7 +3,7 @@ import {
   OcCommonLibModule,
   OcLabelComponent,
   OcTooltipLabelComponent
-} from 'projects/oc-ng-common-component/src/public-api';
+} from '@openchannel/angular-common-components/src/public-api';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */

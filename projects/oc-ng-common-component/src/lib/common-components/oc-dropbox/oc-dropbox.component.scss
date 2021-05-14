@@ -1,9 +1,0 @@
-@import '../../../../assets/styles/theme';
-@import '../../../../assets/styles/mixins';
-
-.oc-dropbox {
-  position: relative;
-  &__input {
-    @include form-control($info, $primary, $body-color);
-  }
-}

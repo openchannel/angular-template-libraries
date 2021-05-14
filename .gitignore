@@ -1,6 +1,7 @@
 dist
 node_modules/
 storybook-assets/
+storybook-static/
 
 *.iml
 *.log

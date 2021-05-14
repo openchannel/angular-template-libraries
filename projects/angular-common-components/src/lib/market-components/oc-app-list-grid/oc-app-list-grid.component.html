@@ -1,0 +1,43 @@
+<div class="app-list">
+    <ng-container *ngIf="appList && appList.length > 0">
+        <div class="app-list__card-container" *ngFor="let app of appList" (click)="viewDetails(app)">
+            <a class="app-list__card-container-link" *ngIf="baseLinkForOneApp"
+               [routerLink]="[baseLinkForOneApp, getAppValueByParameter(app)]">
+                <ng-container [ngTemplateOutlet]="customAppCardTemplate ? customAppCardTemplate : defaultAppCard"
+                              [ngTemplateOutletContext]="{$implicit: app}"></ng-container>
+            </a>
+            <ng-container *ngIf="!baseLinkForOneApp"
+                          [ngTemplateOutlet]="customAppCardTemplate ? customAppCardTemplate : defaultAppCard"
+                          [ngTemplateOutletContext]="{$implicit: app}"></ng-container>
+        </div>
+    </ng-container>
+    <div *ngIf="!appList || appList.length === 0"
+         class="app-list_empty">
+        <h5>{{noAppMessage}}</h5>
+    </div>
+</div>
+
+<ng-template #defaultAppCard let-app>
+    <div class="app-list__card">
+        <div class="app-list__card-wrapper"
+             id="appCard">
+            <div class="app-list__card-image">
+                <img class="img-fluid"
+                     alt="app-icon"
+                     id="appImage"
+                     [src]="app.icon ? app.icon : defaultAppIcon">
+            </div>
+            <div class="app-list__card-data">
+                <p class="app-list__card-name">{{app.name}}</p>
+                <div class="app-list__card-info">
+                    <span class="app-list__card-price">{{app.model[0] | price}}</span>
+                    <oc-rating [rating]="app.rating ? app.rating/100 : 0"
+                               type="single-star"
+                               [reviewCount]="app.reviewCount"></oc-rating>
+                </div>
+            </div>
+            <svg-icon class="app-list__card-arrow"
+                      src="assets/angular-common-components/right-arrow.svg"></svg-icon>
+        </div>
+    </div>
+</ng-template>
