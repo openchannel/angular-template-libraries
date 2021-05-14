@@ -58,14 +58,20 @@ const ContentModal = (args: OcContentModalComponent) => ({
                     Sed augue sem, egestas sed lobortis quis, ultricies vel lorem. In vel ex nec mi gravida ornare dapibus nec neque. Mauris
                     laoreet cursus augue, id sagittis quam varius non. Donec nec ipsum nec quam condimentum euismod eu quis lacus. Ut ut
                     faucibus mi.
-                    
-                     Ut et mollis ex. Sed eu dolor erat. In purus leo, dapibus eget turpis sit amet, ultrices efficitur ligula. Donec nec velit neque.
-                      Morbi porta tellus id sem consectetur, quis pretium augue rutrum. Aenean ut purus non dui porttitor mattis. 
-                      Morbi hendrerit lacus ante, sit amet feugiat lectus hendrerit sed. Etiam bibendum ullamcorper ligula, 
-                      eu ullamcorper quam tincidunt non. Aliquam varius tellus non lacinia sodales. Suspendisse neque tortor,
+                </p>
+                     <ul> <strong> List Example:</strong>
+                     <li>Ut et mollis ex. Sed eu dolor erat. In purus leo, dapibus eget turpis sit amet, ultrices efficitur ligula. Donec nec velit neque.
+                      Morbi porta tellus id sem consectetur, quis pretium augue rutrum.</li>
+                     <li>Aenean ut purus non dui porttitor mattis. 
+                      Morbi hendrerit lacus ante, sit amet feugiat lectus hendrerit sed.</li>
+                     <li>Etiam bibendum ullamcorper ligula, 
+                      eu ullamcorper quam tincidunt non. Aliquam varius tellus non lacinia sodales. </li>
+                     <li>Suspendisse neque tortor,
                        sodales eget ultrices varius, efficitur eu elit. Vestibulum ut erat augue. Suspendisse non scelerisque massa,
                         vel gravida erat. In tortor lectus, congue tempus augue quis, vestibulum varius nisi. Nam quis molestie libero.
-                     
+                        </li>
+                     </ul> 
+                 <p> 
                      Aliquam risus est, condimentum sodales lobortis quis, ullamcorper id justo. Vestibulum feugiat 
                      lacus ante, vel dictum felis euismod a. Vestibulum ante ipsum primis in faucibus orci luctus et
                       ultrices posuere cubilia curae; Nam venenatis ante a augue rutrum congue. Nam nec porta risus. 

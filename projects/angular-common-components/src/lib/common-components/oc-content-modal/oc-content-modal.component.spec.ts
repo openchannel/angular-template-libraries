@@ -6,7 +6,7 @@ import { OcContentModalComponent } from './oc-content-modal.component';
 import { By } from '@angular/platform-browser';
 import { MockButtonComponent } from '@openchannel/angular-common-components/src/mock/mock';
 
-describe('OcTagElementComponent', () => {
+describe('OcContentModalComponent', () => {
     let component: OcContentModalComponent;
     let fixture: ComponentFixture<OcContentModalComponent>;
 
