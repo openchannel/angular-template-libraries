@@ -13,7 +13,7 @@ import { DropdownModel } from '@openchannel/angular-common-components/src/lib/co
 const importChart = normalizeCommonJSImport(import('chart.js'));
 
 const chartPoint = new Image();
-chartPoint.src = 'assets/oc-ng-common-component/chart_point.svg';
+chartPoint.src = 'assets/angular-common-components/chart_point.svg';
 
 @Component({
     selector: 'oc-chart',
@@ -47,7 +47,7 @@ export class OcChartComponent implements OnChanges, OnInit {
     /**
      * Path to the custom icon for the 'sort' button
      */
-    @Input() sortIcon: string = 'assets/oc-ng-common-component/dropdown.svg';
+    @Input() sortIcon: string = 'assets/angular-common-components/dropdown.svg';
     @Output() changeChartOptions: EventEmitter<ChartOptionsChange> = new EventEmitter<ChartOptionsChange>();
 
     dropdownTypes: DropdownModel<ChartStatisticFiledModel>[];
