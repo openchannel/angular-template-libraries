@@ -16,11 +16,41 @@ export default {
 const month = {
     labelsY: [3, 10, 30, 50, 25, 40, 100, 70, 150, 200, 50, 85, 50],
     labelsX: ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
+    tabularLabels: [
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+        'January',
+        'February',
+        'March',
+    ],
 };
 
 const day = {
     labelsY: [200, 400, 100, 50, 700, 750, 250, 200, 400, 100, 50, 700, 750],
     labelsX: [
+        'Jan 30',
+        'Jan 31',
+        'Feb 01',
+        'Feb 02',
+        'Feb 03',
+        'Feb 04',
+        'Feb 04',
+        'Feb 06',
+        'Feb 07',
+        'Feb 08',
+        'Feb 09',
+        'Feb 10',
+        'Feb 11',
+    ],
+    tabularLabels: [
         'Jan 30',
         'Jan 31',
         'Feb 01',
@@ -54,10 +84,12 @@ Monthly.args = {
                 id: 'month',
                 label: 'Monthly',
                 active: true,
+                tabularLabel: 'Month',
             },
             {
                 id: 'day',
                 label: 'Daily',
+                tabularLabel: 'Day',
             },
         ],
         fields: [
@@ -82,7 +114,7 @@ Monthly.args = {
     },
     count: sum(month.labelsY),
     countText: 'Total',
-    downloadUrl: './assets/angular-common-components/upload_icon.svg',
+    downloadUrl: './assets/img/upload_icon.svg',
     isBackgroundColor: true,
     enablePoints: true,
     minDropdownWidth: '247px',
@@ -99,11 +131,13 @@ Daily.args = {
             {
                 id: 'month',
                 label: 'Monthly',
-                active: true,
+                tabularLabel: 'Month',
             },
             {
                 id: 'day',
                 label: 'Daily',
+                active: true,
+                tabularLabel: 'Day',
             },
         ],
         fields: [
@@ -128,7 +162,7 @@ Daily.args = {
     },
     count: sum(day.labelsY),
     countText: 'Total',
-    downloadUrl: './assets/angular-common-components/upload_icon.svg',
+    downloadUrl: './assets/img/upload_icon.svg',
     isBackgroundColor: true,
     enablePoints: true,
     minDropdownWidth: '247px',
