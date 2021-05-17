@@ -124,7 +124,7 @@ Run `cd ./dist/angular-common-components && npm publish`
 
 * Build Project
 
-  ``ng build``
+  ``ng build angular-common-components``
 
 * Create doc for storybook
 
@@ -147,4 +147,4 @@ Note:
 <!-- CONTACT -->
 ## Contact
 
-Project Link: [https://bitbucket.org/openchannel/angular-common-components/src/develop/](https://bitbucket.org/openchannel/angular-common-components/src/develop/)
+Project Link: [https://bitbucket.org/openchannel/angular-template-libraries/src/master/projects/oc-ng-common-component/](https://bitbucket.org/openchannel/angular-template-libraries/src/master/projects/oc-ng-common-component/)
