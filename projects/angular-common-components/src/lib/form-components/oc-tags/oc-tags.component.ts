@@ -16,7 +16,7 @@ import { OcDropboxComponent } from '@openchannel/angular-common-components/src/l
 })
 export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges {
     @Input() set value(val) {
-        this.resultTags = val;
+        this.resultTags = val || [];
         this.onChange(this.resultTags);
     }
     @ViewChild('dropBox') dropbox: OcDropboxComponent;
