@@ -2,32 +2,6 @@ import { moduleMetadata } from '@storybook/angular';
 import { OcCommonLibModule, OcContentModalComponent } from '@openchannel/angular-common-components/src/lib/common-components';
 import { Component } from '@angular/core';
 
-// @Component({
-//     selector: 'content-modal-wrapper',
-//     template: `
-//         <div>
-//             <oc-content-modal modalTitle="Test modal title"></oc-content-modal>
-//             <ng-template #modalContent>
-//                 <p>
-//                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu sollicitudin nulla. Donec ultrices ornare velit. Donec
-//                     ac molestie eros, at aliquet ligula. Ut et nibh lorem. Vestibulum egestas ac sapien eu fermentum. Cras ac ex a nulla
-//                     maximus porta id eget velit. Nulla et eros at arcu efficitur ullamcorper vel quis lacus. Morbi a posuere mauris. Fusce
-//                     rhoncus, eros nec ullamcorper varius, neque turpis ornare est, ac lacinia massa libero vitae erat. Ut ullamcorper in
-//                     metus et condimentum. Aliquam condimentum, dolor in gravida ullamcorper, tortor dui ultrices ante, a tincidunt ante nisl
-//                     id sapien. Duis semper aliquam eleifend. Nullam eget commodo magna, in luctus nulla. Sed sit amet feugiat magna.
-//                     Phasellus vitae aliquam nulla. Suspendisse placerat dui tortor, at molestie ipsum egestas ut. Nullam eget mollis lectus.
-//                     Sed augue sem, egestas sed lobortis quis, ultricies vel lorem. In vel ex nec mi gravida ornare dapibus nec neque. Mauris
-//                     laoreet cursus augue, id sagittis quam varius non. Donec nec ipsum nec quam condimentum euismod eu quis lacus. Ut ut
-//                     faucibus mi.
-//                 </p>
-//             </ng-template>
-//         </div>
-//     `,
-// })
-// export class ContentModalWrapperComponent {
-//     constructor() {}
-// }
-
 const modules = {
     imports: [OcCommonLibModule],
 };
