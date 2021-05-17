@@ -90,7 +90,7 @@ export class OcChartComponent implements OnChanges, OnInit {
         }
     }
 
-    getChart() {
+    getChart(): void {
         const gradientFill = this.context.createLinearGradient(0, 0, 0, 170);
         gradientFill.addColorStop(0, '#e7eef7');
         gradientFill.addColorStop(1, 'rgba(240, 247, 255, 0.25)');
@@ -205,6 +205,10 @@ export class OcChartComponent implements OnChanges, OnInit {
         });
     }
 
+    getValue(label: string): string {
+        return label;
+    }
+
     updateChartPeriod(activePeriod: ChartStatisticPeriodModel): void {
         this.tabularLabelsHeader = activePeriod.tabularLabel;
         this.setNewActiveParameter(this.chartData?.periods, activePeriod.id);
@@ -217,14 +221,14 @@ export class OcChartComponent implements OnChanges, OnInit {
         this.updateDropdownValues();
     }
 
-    swapActiveDataType(type: 'tabular' | 'graph') {
+    swapActiveDataType(type: 'tabular' | 'graph'): void {
         this.activeDataType = type;
         if (type === 'graph') {
             setTimeout(() => this.reloadChart(), 0);
         }
     }
 
-    sortTabularData(by: 'label' | 'value') {
+    sortTabularData(by: 'label' | 'value'): void {
         this.activeTabularSort.by = by;
         this.activeTabularSort.ascending = !this.activeTabularSort.ascending;
         if (this.activeTabularSort.ascending) {
@@ -278,12 +282,12 @@ export class OcChartComponent implements OnChanges, OnInit {
         }
     }
 
-    private updateDropdownValues() {
+    private updateDropdownValues(): void {
         this.dropdownTypes = this.chartData?.fields ? this.chartData.fields.map(field => new DropdownModel(field.label, field)) : [];
         this.dropdownSelectedType = this.dropdownTypes.filter(field => field.value.active)[0];
     }
 
-    private fillTabularData() {
+    private fillTabularData(): void {
         this.tabularData = [];
         this.chartData.data?.tabularLabels.forEach((label, index) => {
             this.tabularData.push({
