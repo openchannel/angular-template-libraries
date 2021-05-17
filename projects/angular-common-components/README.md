@@ -5,6 +5,31 @@
 * [Bootstrap](https://getbootstrap.com) v. 4.4.1
 * [Storybook](https://storybook.js.org/) v. 6.1.20
 
+## About the library
+
+Includes components for portal and market (form builder, form components, file upload, app cards, login, signup, inputs, etc)
+* Form components:
+  - form builder.
+  - input, selects.
+  - file upload
+  - color picker
+  - video url
+  - date time picker
+  - tags
+  - etc
+* Common components:
+  - select.
+  - button
+  - iframe video
+  - etc.
+* Portal components:
+  - charts
+  - app tables
+* Market components:
+  - app cards
+  - app tables
+* Auth components
+
 ## Dependencies
 
     "@ng-bootstrap/ng-bootstrap": "6.0.2",
@@ -66,12 +91,15 @@ npm i --save @ng-bootstrap/ng-bootstrap@6.0.2 @tinymce/tinymce-angular@4.2.0 ang
 
 1. `ng build angular-common-components`
 
-2. `cd dist/angular-common-components`
+2. `cd ../../dist/angular-common-components`
 
 5. `sudo npm link` Then copy result link.
 
 4. In your angular project run:<br> `npm install file:<{absolute path to angular-common-components}/dist/angular-common-components>`
 
+5. Import example (ts file):
+   import { ComponentOrModel } from '@openchannel/angular-common-components/src/lib/common-components';
+   
 ### Build Project with watching file changes
 Run `ng build angular-common-components --watch`
 
