@@ -5,6 +5,7 @@
     display: flex;
     align-items: flex-start;
     margin-left: auto;
+    flex-wrap: wrap;
     @include media-breakpoint-md() {
         margin-right: auto;
         margin-left: 0;
@@ -12,9 +13,11 @@
 
     &__item {
         display: block;
-
-        & + .social-links__item {
-            margin-left: 16px;
+        margin-bottom: 16px;
+        margin-left: 16px;
+        @include media-breakpoint-md() {
+            margin-left: 0;
+            margin-right: 16px;
         }
     }
 }

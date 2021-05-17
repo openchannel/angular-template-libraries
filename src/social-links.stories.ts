@@ -1,23 +1,20 @@
-import {moduleMetadata} from '@storybook/angular';
-import {OcCommonLibModule} from 'oc-ng-common-component/src/lib/common-components';
-import {OcSocialLinksComponent} from 'oc-ng-common-component';
+import { moduleMetadata } from '@storybook/angular';
+import { OcCommonLibModule, OcSocialLinksComponent } from 'projects/angular-common-components/src/lib/common-components';
 
 const modules = {
-    imports: [OcCommonLibModule]
+    imports: [OcCommonLibModule],
 };
 
 export default {
     title: 'App Social Links [BEM]',
     component: OcSocialLinksComponent,
-    decorators: [
-        moduleMetadata(modules),
-    ],
+    decorators: [moduleMetadata(modules)],
 };
 
 const SocialLinksComponent = (args: OcSocialLinksComponent) => ({
     component: OcSocialLinksComponent,
     moduleMetadata: modules,
-    props: args
+    props: args,
 });
 
 export const componentLinks = SocialLinksComponent.bind({});
@@ -27,11 +24,11 @@ componentLinks.args = {
         {
             link: 'https://facebook.com',
             iconSrc: './assets/img/edit_icon.svg',
-            iconAlt: 'facebook'
+            iconAlt: 'facebook',
         },
         {
             link: 'https://twitter.com',
             iconSrc: './assets/img/close-icon.svg',
-        }
-    ]
-}
+        },
+    ],
+};

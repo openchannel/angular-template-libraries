@@ -1,19 +1,21 @@
-import {waitForAsync, ComponentFixture, TestBed} from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {OcSocialLinksComponent} from './oc-social-links.component';
-import {RouterTestingModule} from '@angular/router/testing';
-import {By} from "@angular/platform-browser";
+import { OcSocialLinksComponent } from './oc-social-links.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
 
 describe('OcSocialLinksComponent', () => {
     let component: OcSocialLinksComponent;
     let fixture: ComponentFixture<OcSocialLinksComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [OcSocialLinksComponent],
-            imports: [RouterTestingModule.withRoutes([])]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [OcSocialLinksComponent],
+                imports: [RouterTestingModule.withRoutes([])],
+            }).compileComponents();
+        }),
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(OcSocialLinksComponent);
@@ -30,14 +32,14 @@ describe('OcSocialLinksComponent', () => {
             {
                 link: 'https://facebook.com',
                 iconSrc: 'assets/img/facebook-icon.svg',
-                iconAlt: 'facebook-icon'
+                iconAlt: 'facebook-icon',
             },
             {
                 link: 'https://twitter.com',
                 iconSrc: 'assets/img/twitter-icon.svg',
-                iconAlt: 'twitter-icon'
-            }
-        ]
+                iconAlt: 'twitter-icon',
+            },
+        ];
 
         fixture.detectChanges();
 
