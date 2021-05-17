@@ -72,4 +72,4 @@ Compodoc shows project structure. (modules, components, routes and etc.)
 <!-- CONTACT -->
 ## Services Contact
 
-Project Link: [https://bitbucket.org/openchannel/angular-common-service-library/src/develop/](https://bitbucket.org/openchannel/angular-common-service-library/src/develop/)
+Project Link: [https://bitbucket.org/openchannel/angular-template-libraries/src/master/projects/oc-ng-common-service/](https://bitbucket.org/openchannel/angular-template-libraries/src/master/projects/oc-ng-common-service/)
