@@ -1,15 +1,49 @@
 import { moduleMetadata, storiesOf } from '@storybook/angular';
 import { withA11y } from '@storybook/addon-a11y';
-import { OcFileUploadComponent, FileDetails } from '@openchannel/angular-common-components/src/lib/form-components';
+import {
+    OcFileUploadComponent,
+    FileDetails,
+    FileUploaderService
+} from '@openchannel/angular-common-components/src/lib/form-components';
 import { action } from '@storybook/addon-actions';
-import { HttpClientModule } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClientModule, HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 import { ImageCropperModule } from 'ngx-image-cropper';
 
+const mockResponse: FileDetails = {
+    uploadDate: 214213,
+    fileId: 'fileId',
+    name: 'test1.jpg',
+    contentType: 'type',
+    size: 123123,
+    isPrivate: false,
+    mimeCheck: 'mimeCheck',
+    fileUrl: 'http://file-url.com',
+    isError: false,
+    fileUploadProgress: 100,
+    virusScan: true,
+    fileIconUrl: '',
+};
+
+class FileUploadDownloadServiceStub extends FileUploaderService {
+    constructor() {
+        super();
+    }
+
+    fileUploadRequest(file: FormData, isPrivate: boolean, hash?: string[]): Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent> {
+        return of(new HttpResponse({ body: mockResponse }));
+    }
+
+    fileDetailsRequest(fileId: string): Observable<FileDetails> {
+        return of(mockResponse);
+    }
+}
+
 const modules = {
     imports: [OcCommonLibModule, NgbModule, HttpClientModule, ImageCropperModule],
+    providers: [{ provide: FileUploaderService, useClass: FileUploadDownloadServiceStub }],
 };
 
 const file1 = new FileDetails();
@@ -30,30 +64,6 @@ file4.fileUploadProgress = 100;
 file4.fileUrl = './assets/angular-common-components/standard-app-icon.svg';
 file4.size = 2048000;
 file4.uploadDate = 1595942005169;
-
-class StubFileUploadDownloadService {
-    constructor() {}
-
-    uploadToOpenchannel(file: FormData, isPrivate?: boolean): Observable<any> {
-        return new Observable();
-    }
-
-    prepareUploadReq(token: any, file: any, isPrivate: any): Observable<any> {
-        return new Observable();
-    }
-
-    getToken(): Observable<any> {
-        return new Observable();
-    }
-
-    downloadFileDetails(fileId: any): Observable<FileDetails> {
-        return new Observable();
-    }
-
-    downloadFileFromUrl(fileUrl: any): Observable<any> {
-        return new Observable();
-    }
-}
 
 const metadata = moduleMetadata({});
 
