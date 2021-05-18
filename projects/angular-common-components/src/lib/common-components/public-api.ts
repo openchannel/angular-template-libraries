@@ -41,6 +41,7 @@ export * from './validators/password-validator.directive';
 export * from './model/app-data.model';
 export * from './model/components-basic.model';
 export * from './model/oc-sidebar-model';
+export * from './interfaces/social-link.model';
 
 /** Services */
 export * from './oc-error/oc-error-service';
