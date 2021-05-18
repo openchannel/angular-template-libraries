@@ -6,13 +6,13 @@
 .oc-text-truncate { @include text-truncate(); }
 
 @each $breakpoint in map-keys($grid-breakpoints) {
-  @include media-breakpoint-up($breakpoint) {
-    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-    .oc-text#{$infix}-left   { text-align: left; }
-    .oc-text#{$infix}-right  { text-align: right; }
-    .oc-text#{$infix}-center { text-align: center; }
-  }
+        .oc-text#{$infix}-left   { text-align: left; }
+        .oc-text#{$infix}-right  { text-align: right; }
+        .oc-text#{$infix}-center { text-align: center; }
+    }
 }
 
 .oc-text-lowercase  { text-transform: lowercase; }
@@ -29,7 +29,7 @@
 .oc-text-white { color: $white; }
 
 @each $color, $value in $theme-colors {
-  @include text-emphasis-variant(".oc-text-#{$color}", $value, true);
+    @include text-emphasis-variant(".oc-text-#{$color}", $value, true);
 }
 
 .oc-text-body { color: $body-color; }
@@ -39,13 +39,11 @@
 .oc-text-white-50 { color: rgba($white, .5); }
 
 .oc-text-hide {
-  @include text-hide($ignore-warning: true);
+    @include text-hide($ignore-warning: true);
 }
 
 .oc-text-decoration-none { text-decoration: none; }
 
-.oc-text-break {
-  word-wrap: break-word;
-}
+.oc-text-break { word-wrap: break-word; }
 
 .oc-text-reset { color: inherit; }

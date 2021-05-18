@@ -24,22 +24,6 @@
   }
 }
 
-// font settings
-
-@mixin font-family-rubik($type: 'Medium') {
-  font-family: 'Rubik-' + $type, sans-serif;
-}
-
-@mixin font-size-breakpoint($breakpoint: md) {
-  @if $breakpoint == sm {
-    font-size: 12px;
-  } @else if $breakpoint == lg {
-    font-size: 18px;
-  } @else {
-    font-size: 14px;
-  }
-}
-
 // template elements
 
 @mixin card-body {

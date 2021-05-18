@@ -1,6 +1,5 @@
-@import 'theme.scss';
+@import 'theme';
 @import 'mixins';
-@import '~bootstrap/scss/bootstrap';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 @import 'custom';
@@ -31,11 +30,7 @@
   font-style: normal;
   font-display: swap;
 }
-//@font-face {
-//  font-family: 'Rubik-Bold-Italic';
-//  font-weight: normal;
-//  src: url('~@openchannel/angular-common-components/assets/fonts/Rubik-BoldItalic.ttf') format('truetype');
-//}
+
 @font-face {
   font-family: 'Rubik-Italic';
   src: url('~@openchannel/angular-common-components/assets/fonts/Rubik-Italic.woff2') format('woff2'),

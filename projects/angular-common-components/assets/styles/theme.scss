@@ -1,5 +1,5 @@
 $light-blue: #e6f3fc;
-$body-color: #333333 !default; //this is the text color
+$body-color: #333333 !default;
 $primary: #537cfd !default;
 $secondary: #727272 !default;
 
@@ -12,6 +12,7 @@ $green-alert: #74b675 !default;
 $black: #000 !default;
 $white: #fff !default;
 $dark: #343a40;
+
 // apps status color indicator
 $approved: #81cf7c !default;
 $draft: #dcdcdc !default;
@@ -33,7 +34,8 @@ $gradient-bottom: #f8f7ff;
 
 $profile-gradient-top: #e8f0e7;
 $profile-gradient-bottom: #f5fff4;
-// rewriting of the bootstrap spacers
+
+// rewriting bootstrap spacers
 $spacer: 1rem;
 $spacers: (
   0_5: (
@@ -67,7 +69,25 @@ $spacers: (
   }
 }
 
+// fonts
+
+@mixin font-family-rubik($type: 'Medium') {
+  font-family: 'Rubik-' + $type, sans-serif;
+}
+
+@mixin font-size-breakpoint($breakpoint: md) {
+  @if $breakpoint == sm {
+    font-size: 12px;
+  } @else if $breakpoint == lg {
+    font-size: 18px;
+  } @else {
+    font-size: 14px;
+  }
+}
+
+
 /* Variable for Image cropper*/
 :root{
   @include root-prop(--root-prop, rgba(0, 0, 0, 0.5));
 }
+
