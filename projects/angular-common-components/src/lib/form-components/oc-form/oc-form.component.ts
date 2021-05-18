@@ -51,18 +51,6 @@ export class OcFormComponent implements OnInit, OnDestroy, OnChanges {
      */
     @Input() generatedForm: FormGroup;
     /**
-     * Custom request for uploading file
-     */
-    @Input() fileUploadRequest: (
-        file: FormData,
-        isPrivate: boolean,
-        hash?: string[],
-    ) => Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent>;
-    /**
-     * Request for getting file details data
-     */
-    @Input() fileDetailsRequest: (fileId: string) => Observable<FileDetails>;
-    /**
      * Returning all form fields value to the parent component
      */
     @Output() formSubmitted = new EventEmitter<any>();
