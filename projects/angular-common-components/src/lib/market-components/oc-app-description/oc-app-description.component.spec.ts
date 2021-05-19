@@ -60,24 +60,6 @@ describe('OcAppDescriptionComponent', () => {
     expect(getDescriptionText()).toEqual("");
   });
 
-  it('expand description normal value', () => {
-    const expandDescription = 'Expand description';
-    setExpandDescription(expandDescription);
-    expect(getExpandDescription()).toEqual(expandDescription);
-  });
-
-  it('expand description non null', () => {
-    const expandDescription = null;
-    setExpandDescription(expandDescription);
-    expect(getExpandDescription()).toEqual("");
-  });
-
-  it('expand description non undefined', () => {
-    const expandDescription = undefined;
-    setExpandDescription(expandDescription);
-    expect(getExpandDescription()).toEqual("");
-  });
-
   it('switch full description by click', () => {
     fixture.detectChanges();
     expect(component.showFullDescription).toBeFalsy();
@@ -87,14 +69,6 @@ describe('OcAppDescriptionComponent', () => {
     expect(fixture.nativeElement.querySelector('span')).toBeNull();
   });
 
-  function setExpandDescription(expandDescription: string): void {
-    component.expandDescriptionText = expandDescription;
-    fixture.detectChanges();
-  }
-
-  function getExpandDescription(): string {
-    return fixture.nativeElement.querySelector('span').innerHTML;
-  }
 
   function setHeaderText(header: string): void {
     component.header = header;
