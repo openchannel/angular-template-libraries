@@ -21,38 +21,38 @@
           <oc-select *ngSwitchCase="'dropdownList'"
                      formControlName="{{formElement?.id}}"
                      [selectValArr]="formElement?.options"></oc-select>
-          <oc-tags *ngSwitchCase="'tags'"
-                   placeHolderInputName="Choose your tags"
-                   formControlName="{{formElement?.id}}"
-                   [availableTags]="formElement?.options ? formElement?.options : ['']"
-                   [required]="formElement?.attributes?.required"
-                   [title]="formElement?.label"></oc-tags>
           <oc-file-upload *ngSwitchCase="'singleFile'"
                           formControlName="{{formElement?.id}}"
                           isMultiFile="true"
+                          acceptType="{{formElement?.attributes?.accept}}"
                           fileType="singleFile"></oc-file-upload>
           <oc-file-upload *ngSwitchCase="'multiFile'"
                           formControlName="{{formElement?.id}}"
                           isMultiFile="true"
+                          acceptType="{{formElement?.attributes?.accept}}"
                           fileType="multiFile"></oc-file-upload>
           <oc-file-upload *ngSwitchCase="'multiImage'"
                           formControlName="{{formElement?.id}}"
                           isMultiFile="true"
                           fileType="multiImage"
+                          acceptType="{{formElement?.attributes?.accept}}"
                           imageWidth="{{formElement?.attributes?.width}}"
                           imageHeight="{{formElement?.attributes?.height}}"></oc-file-upload>
           <oc-file-upload *ngSwitchCase="'singleImage'"
                           formControlName="{{formElement?.id}}"
                           fileType="singleImage"
+                          acceptType="{{formElement?.attributes?.accept}}"
                           imageWidth="{{formElement?.attributes?.width}}"
                           imageHeight="{{formElement?.attributes?.height}}">
           </oc-file-upload>
           <oc-file-upload *ngSwitchCase="'privateSingleFile'"
                           formControlName="{{formElement?.id}}"
+                          acceptType="{{formElement?.attributes?.accept}}"
                           fileType="privateSingleFile">
           </oc-file-upload>
           <oc-file-upload *ngSwitchCase="'multiPrivateFile'"
                           formControlName="{{formElement?.id}}"
+                          acceptType="{{formElement?.attributes?.accept}}"
                           fileType="multiPrivateFile">
           </oc-file-upload>
           <oc-number *ngSwitchCase="'number'"
@@ -72,19 +72,19 @@
           <oc-color  *ngSwitchCase="'color'"
                      formControlName="{{formElement?.id}}"
                      [placeholder]="formElement?.placeholder"></oc-color>
-          <oc-tags *ngSwitchCase="'booleanTags'"
-                   placeHolderInputName="Choose your tags"
+          <oc-tags *ngSwitchCase="'tags'"
                    formControlName="{{formElement?.id}}"
+                   [placeholder]="formElement.placeholder"
+                   [availableTags]="formElement?.options ? formElement?.options : ['']"></oc-tags>
+          <oc-tags *ngSwitchCase="'booleanTags'"
+                   formControlName="{{formElement?.id}}"
+                   [placeholder]="formElement.placeholder"
                    [availableTags]="formElement?.options ? formElement?.options : ['']"
-                   [required]="formElement?.attributes?.required"
-                   [title]="formElement?.label"
                    tagsType="boolean"></oc-tags>
           <oc-tags *ngSwitchCase="'numberTags'"
-                   placeHolderInputName="Choose your tags"
                    formControlName="{{formElement?.id}}"
+                   [placeholder]="formElement.placeholder"
                    [availableTags]="formElement?.options ? formElement?.options : ['']"
-                   [required]="formElement?.attributes?.required"
-                   [title]="formElement?.label"
                    tagsType="number"></oc-tags>
           <oc-video-url *ngSwitchCase="'videoUrl'"
                         [formControlName]="formElement?.id"
@@ -110,8 +110,7 @@
                        formControlName="{{formElement?.id}}"
                        [placeholder]="formElement?.placeholder"></oc-password>
         </div>
-        <oc-error *ngIf="formElement?.type !== 'tags'"
-                  [field]="formElement?.id"
+        <oc-error [field]="formElement?.id"
                   [control]="customForm.get(formElement?.id)"></oc-error>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <div class="text-search">
-    <input class="text-search__input" placeholder="Search" type="text"
+    <input class="text-search__input" [placeholder]="placeHolder" type="text"
            [(ngModel)]="searchText"
            (ngModelChange)="searchTextChange.emit($event)" (keydown.enter)="enterAction()">
     <svg-icon class="text-search__icon" src="assets/angular-common-components/text-search-icon.svg"
