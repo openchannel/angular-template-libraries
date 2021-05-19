@@ -1,10 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { OcFormGenerator } from './oc-form-generator';
 import { AppFormModel } from '../model/app-form-model';
-import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
-import { FileDetails } from '../model/file.model';
 
 @Component({
     selector: 'oc-form',

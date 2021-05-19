@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
     ComponentsUserAccountGridModel,
     ComponentsUserGridActionModel,
@@ -13,7 +13,7 @@ export declare type SortField = 'name' | 'email' | 'date' | 'role';
     templateUrl: './oc-menu-user-grid.component.html',
     styleUrls: ['./oc-menu-user-grid.component.scss'],
 })
-export class OcMenuUserGridComponent implements OnInit {
+export class OcMenuUserGridComponent {
     @Input() properties: ComponentsUsersGridParametersModel;
     /**
      * Path to the custom icon for the hidden menu toggle button.
@@ -46,8 +46,6 @@ export class OcMenuUserGridComponent implements OnInit {
     private pageNumber: number = 1;
 
     constructor() {}
-
-    ngOnInit(): void {}
 
     action(actionType: UserGridOptionType, userData: ComponentsUserAccountGridModel): void {
         const action: ComponentsUserGridActionModel = {
