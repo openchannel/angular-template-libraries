@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AppListing, AppListingOptions, AppListMenuAction } from '../models/app-listing.model';
 
 export interface SortChosen {
@@ -10,7 +10,7 @@ export interface SortChosen {
     templateUrl: './oc-app-table.component.html',
     styleUrls: ['./oc-app-table.component.scss'],
 })
-export class OcAppTableComponent implements OnInit {
+export class OcAppTableComponent {
     /**
      * Configuration of the component,
      * must consist fields:
@@ -81,8 +81,6 @@ export class OcAppTableComponent implements OnInit {
     ];
 
     constructor() {}
-
-    ngOnInit(): void {}
 
     action(menu: AppListingOptions, appId: string, appVersion: number, isChild?: boolean): void {
         const appAction: AppListMenuAction = {
