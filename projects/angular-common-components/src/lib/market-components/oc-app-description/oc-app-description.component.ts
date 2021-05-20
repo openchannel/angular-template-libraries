@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import {OnChanges} from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'oc-app-description',
@@ -29,11 +30,9 @@ export class OcAppDescriptionComponent implements OnInit, OnChanges {
   /** Boolean variable to allow 'show more' logic */
   @Input() allowTruncateLogic = true;
 
-  pureText: string;
-  head: string;
-  tail: string;
+  cutAppDescription: SafeHtml;
 
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.rerenderDescription();
@@ -46,12 +45,26 @@ export class OcAppDescriptionComponent implements OnInit, OnChanges {
   }
 
   rerenderDescription(): void {
-    let tagsRegExp = /(<([^>]+)>)/ig;
-    let tagsArray: string[] = this.appDescription.match(tagsRegExp);
-    this.pureText = this.appDescription.replace(tagsRegExp, '');
-    this.head = tagsArray.slice(0, tagsArray.length/2).join('');
-    this.tail = tagsArray.slice(tagsArray.length/2, tagsArray.length-1).join('');
-    if (this.description.offsetHeight < 120 || this.appDescription.length < this.threshold) {
+    if(this.allowTruncateLogic && this.threshold){
+      let indexBrakeWord: number;
+      let sizeBrakeWord: number;
+      let tagsRegExp = /<[^>]+>/gi;
+      let tagsArray = this.appDescription.match(tagsRegExp);
+      let textArray = this.appDescription.split(tagsRegExp);
+      textArray.pop();
+      textArray.shift();
+      textArray.reduce((acc, cur, i)=>{
+        if(!indexBrakeWord && !sizeBrakeWord && (acc+cur).length>=this.threshold){
+          indexBrakeWord = i;
+          sizeBrakeWord = this.threshold - acc.length;
+        }
+        return acc+cur;
+      })
+      textArray.length = indexBrakeWord+1;
+      textArray[indexBrakeWord] = textArray[indexBrakeWord].slice(0, sizeBrakeWord);
+      this.cutAppDescription = this.sanitizer.bypassSecurityTrustHtml(tagsArray.reduce((acc, curr, i)=>acc+(i-1<=textArray.length-1 ? textArray[i-1] : '')+curr));
+    }
+    if (this.threshold && this.appDescription.length < this.threshold) {
       this.showFullDescription = true;
     }
   }
