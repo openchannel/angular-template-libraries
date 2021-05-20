@@ -1,0 +1,10 @@
+export HOSTED_ZONE_NAME="openchannel.io."
+export REGION="us-west-2"
+export CLUSTER_NAME="market-stage1-cluster"
+export ENVIRONMENT="stage1"
+
+# CONCAT STRINGS
+export SITE_URL="${CNAME}.${HOSTED_ZONE_NAME:0:-1}"
+export PREFIX_NAME="openchannel-${ENVIRONMENT}"
+export CLOUDFORMATION_STACKNAME="${CLUSTER_NAME}-${CNAME}"
+export APP_NAME="${CNAME}"

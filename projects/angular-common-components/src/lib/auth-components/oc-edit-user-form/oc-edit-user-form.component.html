@@ -1,0 +1,40 @@
+<div class="edit-user-form">
+  <div *ngIf="this.formConfigs?.length > 0">
+    <ng-container *ngIf="enableTypesDropdown && this.formConfigs?.length > 1">
+      <oc-tooltip-label [text]="defaultTypeLabelText"
+                        class="edit-user-form__type-label"></oc-tooltip-label>
+      <oc-select [selectValArr]="this.formConfigs"
+                 [ngModel]="currentFormConfig"
+                 (ngModelChange)="buildFormByConfig($event)"
+                 labelField="name"></oc-select>
+    </ng-container>
+    <oc-form *ngIf="mainFormModel"
+             [formJsonData]="mainFormModel"
+             [showButton]="false"
+             (createdForm)="setFormGroup($event);"
+             (formDataUpdated)="buildAndEmitResultData($event)">
+    </oc-form>
+    <div *ngIf="enableTermsCheckbox && mainFormModel" class="edit-user-form__consent">
+      <div class="edit-user-form__consent__checkbox">
+        <oc-checkbox class="edit-user-form__consent-checkbox"
+                     [formControl]="termsControl"></oc-checkbox>
+        <div class="edit-user-form__consent__label">
+          I agree to
+          <a class="edit-user-form__consent__link" [href]="enableTermsCheckbox.termsUrl"
+             target="_blank"> Terms of Service</a>
+          and
+          <a class="edit-user-form__consent__link" [href]="enableTermsCheckbox.policyUrl"
+             target="_blank"> Data Processing Policy</a>
+        </div>
+      </div>
+      <oc-error [control]="termsControl"
+                [modifyErrors]="[{validator: 'required', message: 'Please confirm this checkbox'}]"></oc-error>
+    </div>
+  </div>
+  <ng-template *ngIf="!this.currentFormConfig"
+               [ngTemplateOutlet]="defaultEmptyConfigsErrorTemplate ? defaultEmptyConfigsErrorTemplate : emptyConfigsError"></ng-template>
+</div>
+
+<ng-template #emptyConfigsError>
+  <h6 class="edit-user-form__empty_form_configs">{{defaultEmptyConfigsErrorMessage}}</h6>
+</ng-template>

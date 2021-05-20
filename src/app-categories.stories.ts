@@ -1,6 +1,8 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcAppCategoriesComponent, OcAppCategoriesModule } from 'oc-ng-common-component/src/lib/app-categories';
-import { AppCategoryDetail } from 'oc-ng-common-service';
+import {
+  AppCategoryDetail,
+  OcAppCategoriesComponent
+} from '@openchannel/angular-common-components/src/lib/app-categories';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';

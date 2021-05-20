@@ -1,10 +1,9 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcCommonLibModule } from 'oc-ng-common-component/src/lib/common-components';
-import { OcFeaturedAppsComponent } from 'oc-ng-common-component/src/lib/market-components';
-import { FullAppData } from 'oc-ng-common-service';
-import { StatElement } from 'oc-ng-common-service';
+import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
+import { OcFeaturedAppsComponent } from '@openchannel/angular-common-components/src/lib/market-components';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import {FullAppData, StatElement} from '@openchannel/angular-common-components/src/lib/common-components';
 
 const modules = {
   imports: [OcCommonLibModule, BrowserAnimationsModule, RouterTestingModule]
@@ -32,8 +31,8 @@ const statElement: StatElement = {
 
 const featuredApp: FullAppData = {
   appId: '34343-jjo-sgs-353-fgi-3423',
-  icon: './assets/img/get-started.svg',
-  logo: './assets/img/get-started.svg',
+  icon: './assets/angular-common-components/get-started.svg',
+  logo: './assets/angular-common-components/get-started.svg',
   name: 'Test App 1',
   model: [{
     type: 'recurring',

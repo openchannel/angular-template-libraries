@@ -1,24 +1,22 @@
-import {moduleMetadata} from '@storybook/angular';
-import {OcCommonLibModule} from 'oc-ng-common-component/src/lib/common-components';
-import {OcDropboxComponent} from 'oc-ng-common-component';
+import { moduleMetadata } from '@storybook/angular';
+import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
+import { OcDropboxComponent } from '@openchannel/angular-common-components';
 
 const modules = {
-    imports: [OcCommonLibModule]
+    imports: [OcCommonLibModule],
 };
 
 export default {
     title: 'Dropbox search [BEM]',
     component: OcDropboxComponent,
-    decorators: [
-        moduleMetadata(modules),
-    ],
-    argTypes: { selectedItem: { action: 'Get selected' }}
+    decorators: [moduleMetadata(modules)],
+    argTypes: { selectedItem: { action: 'Get selected' } },
 };
 
 const DropboxComponent = (args: OcDropboxComponent) => ({
     component: OcDropboxComponent,
     moduleMetadata: modules,
-    props: args
+    props: args,
 });
 
 export const DefaultDropbox = DropboxComponent.bind({});
@@ -41,6 +39,3 @@ EmptyDropbox.args = {
     items: null,
     clearFormAfterSelect: null,
 };
-
-
-

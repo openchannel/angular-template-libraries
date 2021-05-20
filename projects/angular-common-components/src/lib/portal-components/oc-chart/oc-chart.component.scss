@@ -1,0 +1,317 @@
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/theme';
+
+.chart {
+  &__options-container {
+    @include media-breakpoint-md {
+      flex-direction: column;
+      padding: 2rem;
+    }
+    border: solid 1px $info;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding: 1rem;
+  }
+
+  &__period-container {
+    @include media-breakpoint-md {
+      flex-direction: column;
+    }
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__period-item {
+    @include media-breakpoint-md {
+      justify-content: flex-start;
+      padding: 0 0 2rem;
+    }
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    width: 152px;
+    &-active {
+      .chart__period-item-checkmark {
+        border-color: $primary;
+        &:after {
+          display: block;
+        }
+      }
+    }
+    &-text {
+      display: block;
+      margin-left: 1rem;
+    }
+    &-label {
+      @include font-size-breakpoint(md);
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      line-height: 2rem;
+      margin-bottom: 0;
+    }
+    &-radio {
+      height: 0;
+      opacity: 0;
+      position: absolute;
+      width: 0;
+    }
+    &-checkmark {
+      background-color: $white;
+      border: 1px solid $body-color;
+      border-radius: 50%;
+      height: 16px;
+      position: relative;
+      width: 16px;
+      &:after {
+        background-color: $primary;
+        border-radius: 50%;
+        content: '';
+        display: none;
+        height: 8px;
+        left: 3px;
+        position: absolute;
+        top: 3px;
+        width: 8px;
+      }
+    }
+  }
+
+  &__filter-buttons-container {
+    @include media-breakpoint-md {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    align-items: center;
+    display: flex;
+    &-tabs {
+      @include media-breakpoint-md {
+        align-items: flex-start;
+        margin-bottom: 2rem;
+        margin-left: -6px;
+      }
+      align-items: flex-end;
+      display: flex;
+    }
+  }
+
+  &__swap-type-button {
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    .recolor-svg {
+      fill: $gray-600;
+    }
+    &:hover, &:focus {
+      background-color: $light;
+    }
+    &:focus {
+      border: 2px solid $focus-border;
+    }
+    &_active {
+      .recolor-svg {
+        fill: $body-color;
+      }
+    }
+  }
+
+  &__tabular-button {
+    @include media-breakpoint-md {
+      margin-right: 3rem;
+    }
+    margin-right: 4rem;
+  }
+
+  &__graph-button {
+    margin-right: 5rem;
+  }
+
+  &__type-section {
+    @include font-size-breakpoint(md);
+    @include media-breakpoint-md {
+      width: 100%;
+    }
+    border: 1px solid $info;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 248px;
+    &-dropdown {
+      align-items: center;
+      display: flex;
+      padding: 2rem;
+      &-label {
+        margin: auto;
+        width: 192px;
+        @include font-size-breakpoint(md);
+        cursor: pointer;
+      }
+      &-icon {
+        cursor: pointer;
+        margin-left: auto;
+        margin-right: 2rem;
+        .recolor-icon {
+          fill: $info;
+        }
+      }
+    }
+    &:focus, &:active {
+      border-color: $primary;
+      &-dropdown {
+        &-icon {
+          .recolor-icon {
+            fill: $primary;
+          }
+        }
+      }
+    }
+  }
+
+  &__data-container {
+    @include media-breakpoint-md {
+      flex-direction: column;
+      max-height: unset;
+      padding: 2rem;
+    }
+    background-color: $white;
+    border: solid 1px $info;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    max-height: 300px;
+    padding: 5rem;
+    &-canvas {
+      @include media-breakpoint-md {
+        border: 1px solid $gray;
+        border-radius: 4px;
+        padding: 2rem;
+        width: 100%;
+      }
+      flex-grow: 1;
+      height: 100%;
+      width: 80%;
+    }
+
+    &-tabular {
+      @include media-breakpoint-md {
+        width: 100%;
+      }
+      border: 1px solid $gray;
+      border-radius: 4px;
+      flex-grow: 1;
+      height: 100%;
+      max-height: 220px;
+      overflow: hidden;
+      width: 80%;
+      &_scroll {
+        box-sizing: content-box;
+        height: 100%;
+        max-height: 220px;
+        overflow-y: auto;
+        width: calc(100% + 17px);
+      }
+    }
+
+    &-total {
+      @include media-breakpoint-md {
+        margin-left: 0;
+        margin-top: 3rem;
+        padding: 0 1rem;
+        width: 100%;
+      }
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin-left: 2rem;
+      padding: 1rem;
+      width: 20%;
+      &-header {
+        @include media-breakpoint-md {
+          margin-bottom: 1rem;
+        }
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 3rem;
+      }
+      &-image {
+        height: 100%;
+        max-height: 114px;
+        width: auto;
+      }
+      &-count {
+        margin-top: 1rem;
+        text-align: center;
+        margin-bottom: 0;
+      }
+      &-text {
+        @include font-size-breakpoint(md);
+        box-shadow: inset 0 1px 0 0 rgba($info, .5);
+        color: $gray-600;
+        padding-top: 2rem;
+        text-align: center;
+      }
+    }
+  }
+
+  &__table-view {
+    background-color: $white;
+    width: 100%;
+    &-cell {
+      align-items: center;
+      border-bottom: 1px solid $info;
+      line-height: 18px;
+      padding: 3rem 42px 3rem 1rem;
+      vertical-align: middle;
+      white-space: nowrap;
+      &_padding {
+        padding-left: 3rem;
+      }
+    }
+
+    &-heading {
+      cursor: pointer;
+      display: flex;
+      &-sort-icon {
+        margin-left: 1rem;
+        &_rotated {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+
+    &-body {
+      &-row {
+        padding-left: 2rem;
+        &:last-child {
+          .chart__table-view-body-td {
+            box-shadow: none;
+          }
+        }
+      }
+      &-cell {
+        border-bottom: none;
+        box-shadow: inset 0 -1px 0 0 rgba($info, .5);
+        color: $secondary;
+        margin: 0;
+        width: 100%;
+      }
+      &-td {
+        &:first-child {
+          padding-left: 2rem;
+        }
+        &:last-child {
+          padding-right: 2rem;
+        }
+      }
+    }
+  }
+}
+

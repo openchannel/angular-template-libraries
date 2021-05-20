@@ -1,0 +1,22 @@
+<div class="form-modal">
+    <div class="form-modal__header">
+        <h3 class="form-modal__header-heading">{{modalTitle}}</h3>
+        <svg-icon class="form-modal__header-close-icon" src="assets/angular-common-components/close-icon.svg"
+                  (click)="dismiss()"></svg-icon>
+    </div>
+    <div modalContent class="form-modal__modal-inner">
+        <oc-form [formJsonData]="formJsonData"
+                 [showButton]="false"
+                 (createdForm)="setCreatedForm($event)"
+                 (formDataUpdated)="setDataFromForm($event)"></oc-form>
+
+        <div class="form-modal__buttons">
+            <div (click)="dismiss()">
+                <ng-container [ngTemplateOutlet]="rejectButton"></ng-container>
+            </div>
+            <div class="form-modal__buttons-button" (click)="onClickConfirmButton()">
+                <ng-container [ngTemplateOutlet]="confirmButton"></ng-container>
+            </div>
+        </div>
+    </div>
+</div>
