@@ -1,11 +1,21 @@
-import { Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    forwardRef,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    ViewChild
+} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { base64ToFile, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
-import { HttpEventType, HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Observable, of, Subject, Subscription } from 'rxjs';
+import { of, Subject, Subscription } from 'rxjs';
 import { mergeMap, takeUntil } from 'rxjs/operators';
-import { FileDetails, FileType } from '../model/file.model';
+import { FileDetails, FileType, FileUploaderService } from '../model/file.model';
 
 @Component({
     selector: 'oc-file-upload',
@@ -40,13 +50,24 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
 
     @Input() iconMsg;
 
-    @Input() fileUploadRequest: (
-        file: FormData,
-        isPrivate: boolean,
-        hash?: string[],
-    ) => Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent>;
+    @Input() completeIconUrl;
 
-    @Input() fileDetailsRequest: (fileId: string) => Observable<FileDetails>;
+    @Input() uploadingIconUrl;
+
+    @Input() closeIconUrl = 'assets/angular-common-components/close-icon.svg';
+    @Input() zoomInIconUrl = 'assets/angular-common-components/zoom-in.svg';
+    @Input() zoomOutIconUrl = 'assets/angular-common-components/zoom-out.svg';
+
+    @Input() imageWidth;
+
+    @Input() imageHeight;
+
+    @Input() hash: string[] = [];
+
+    @Input() acceptType: string;
+    @Input() imageFileObj: any;
+
+    @Input() imageFileUrl: any;
 
     @Output() customMsgChange = new EventEmitter<boolean>();
 
@@ -56,11 +77,21 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
 
     @Output() iconMsgChange = new EventEmitter<boolean>();
 
+    @Output() cancelPopup = new EventEmitter<any>();
+
+    @Output() imageFileObjChange = new EventEmitter<any>();
+
+    @Output() imageFileUrlChange = new EventEmitter<any>();
+
+    uploadFileReq: Subscription = null;
+
+
     cropperModalRef: any;
+
     isUploadInProcess = false;
     fileDetailArr: FileDetails[] = [];
-
     isImageCropped = false;
+
     croppedImage: any = '';
     imageLoadErrorMessage = 'Please provide valid image';
     hasImageLoadError = false;
@@ -72,56 +103,28 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     fileName = '';
     invalidFileName: '';
     containsInvalidFile = false;
-
     maintainAspectRatio = false;
+
     aspectRatio: any;
     scale = 1;
     loaderValue = 0;
-
-    @Input() acceptType: string;
-
-    @Input() imageWidth;
-
-    @Input() imageHeight;
-
-    @Output() cancelPopup = new EventEmitter<any>();
-
-    @Input() imageFileObj: any;
-
-    @Input() imageFileUrl: any;
-
-    @Output() imageFileObjChange = new EventEmitter<any>();
-
-    @Output() imageFileUrlChange = new EventEmitter<any>();
-
-    uploadFileReq: Subscription = null;
-
-    @Input() completeIconUrl;
-
-    @Input() uploadingIconUrl;
-
-    @Input() closeIconUrl = 'assets/angular-common-components/close-icon.svg';
-    @Input() zoomInIconUrl = 'assets/angular-common-components/zoom-in.svg';
-    @Input() zoomOutIconUrl = 'assets/angular-common-components/zoom-out.svg';
-
-    @Input() hash: string[] = [];
-
-    private destroy$ = new Subject<void>();
-
     croppedImageWidth: number;
+
     croppedImageHeight: number;
     resizeToWidth = 0;
     resizeToHeight = 0;
 
-    constructor(private modalService: NgbModal) {}
+    private destroy$ = new Subject<void>();
+
+    constructor(private modalService: NgbModal, private fileUploaderService: FileUploaderService) {}
 
     ngOnInit(): void {
-        if (this.isFileTypeImage){
+        if (this.isFileTypeImage) {
             this.calculateAspectRatio();
         }
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this.resetSelection();
         this.destroy$.next();
         this.destroy$.complete();
@@ -130,20 +133,20 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         }
     }
 
-    getAcceptTypes() {
+    getAcceptTypes(): string {
         return this.acceptType ? this.acceptType : this.isFileTypeImage() ? 'image/*' : '*/*';
     }
 
     /**
      * on file drop handler
      */
-    onFileDropped($event, content?) {
+    onFileDropped($event, content?): void {
         this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
         this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
     }
 
-    uploadFile(file) {
-        if (!this.fileUploadRequest) {
+    uploadFile(file): void {
+        if (!this.fileUploaderService.fileUploadRequest) {
             console.error('Please, set the fileUploadRequest function');
         } else {
             this.isUploadInProcess = true;
@@ -155,7 +158,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
             this.fileDetailArr.push(lastFileDetail);
             const formData: FormData = new FormData();
             formData.append('file', file, this.fileName);
-            this.uploadFileReq = this.fileUploadRequest(formData, this.isFileTypePrivate(), this.hash).subscribe(
+            this.uploadFileReq = this.fileUploaderService.fileUploadRequest(formData, this.isFileTypePrivate(), this.hash).subscribe(
                 (event: any) => {
                     if (event.type === HttpEventType.UploadProgress) {
                         lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
@@ -190,7 +193,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * This method is used to convert uploaded file response to fileDetails.
      */
-    convertFileUploadResToFileDetails(fileUploadRes) {
+    convertFileUploadResToFileDetails(fileUploadRes): FileDetails {
         const fileDetails = new FileDetails();
         fileDetails.uploadDate = fileUploadRes.body.uploadDate;
         fileDetails.fileId = fileUploadRes.body.fileId;
@@ -207,7 +210,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * handle file from browsing
      */
-    fileBrowseHandler(event, content?) {
+    fileBrowseHandler(event, content?): void {
         this.onTouched();
 
         if (!event?.target?.files[0]?.name) {
@@ -249,14 +252,14 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * Convert Files list to normal array list
      * @param files (Files List)
      */
-    prepareFilesList(files: any[]) {
+    prepareFilesList(files: any[]): void {
         for (const item of files) {
             item.progress = 0;
             this.fileDetailArr.push(item);
         }
     }
 
-    getFileIcon(file) {
+    getFileIcon(file): string {
         if (file?.fileIconUrl) {
             return file.fileIconUrl;
         } else {
@@ -264,7 +267,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         }
     }
 
-    resetSelection() {
+    resetSelection(): void {
         if (this.fileInputVar) {
             this.fileInputVar.nativeElement.value = '';
         }
@@ -276,19 +279,19 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         }
     }
 
-    isFileTypeImage() {
+    isFileTypeImage(): boolean {
         return this.fileType === 'singleImage' || this.fileType === 'multiImage';
     }
 
-    isFileTypePrivate() {
+    isFileTypePrivate(): boolean {
         return this.fileType === 'multiPrivateFile' || this.fileType === 'privateSingleFile';
     }
 
-    isMultiFileSupport() {
+    isMultiFileSupport(): boolean {
         return this.fileType === 'multiPrivateFile' || this.fileType === 'multiFile' || this.fileType === 'multiImage';
     }
 
-    isFileTypeNotImage() {
+    isFileTypeNotImage(): boolean {
         return (
             this.fileType === 'singleFile' ||
             this.fileType === 'privateSingleFile' ||
@@ -386,10 +389,10 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     downloadFile(file: FileDetails) {
         if (file && file.fileUploadProgress && file.fileUploadProgress === 100) {
             if (this.isFileTypePrivate()) {
-                if (!this.fileDetailsRequest) {
+                if (!this.fileUploaderService.fileDetailsRequest) {
                     console.error('Please, set the FileDetailsRequest function');
                 } else {
-                    this.fileDetailsRequest(file.fileId)
+                    this.fileUploaderService.fileDetailsRequest(file.fileId)
                         .pipe(takeUntil(this.destroy$))
                         .subscribe(res => {
                             if (res && res.fileUrl) {
@@ -431,13 +434,13 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     setDisabledState?(isDisabled: boolean): void {}
 
     private initValues(url) {
-        if (!this.fileDetailsRequest) {
+        if (!this.fileUploaderService.fileDetailsRequest) {
             console.error('Please, set the FileDetailsRequest function');
         } else if (url) {
             if (this.isMultiFileSupport()) {
                 this.loadDetails(url);
             } else {
-                this.fileDetailsRequest(url)
+                this.fileUploaderService.fileDetailsRequest(url)
                     .pipe(takeUntil(this.destroy$))
                     .subscribe(res => {
                         this.fileDetailArr = res ? [{ ...res, fileUploadProgress: 100 }] : [];
@@ -449,7 +452,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
 
     private loadDetails(urls: string[]): void {
         of(...urls)
-            .pipe(mergeMap(fileUrl => this.fileDetailsRequest(fileUrl)))
+            .pipe(mergeMap(fileUrl => this.fileUploaderService.fileDetailsRequest(fileUrl)))
             .subscribe(
                 detail => this.fileDetailArr.push({ ...detail, fileUploadProgress: 100 }),
                 () => {},

@@ -9,6 +9,7 @@ definitions:
   steps:
     - step: &build-test-sonarcloud
         name: Build, test and analyze on SonarCloud
+        max-time: 15
         caches:
           - sonar
         script:
@@ -28,23 +29,23 @@ definitions:
         name: Push services to npm
         script:
           - npm install --quiet
-          - npm run build-prod oc-ng-common-service
-          - npm run oc-ng-common-service-pack
+          - npm run build-prod angular-common-services
+          - npm run angular-common-services-pack
           - pipe: atlassian/npm-publish:0.3.2
             variables:
               NPM_TOKEN: $NPM_TOKEN
-              FOLDER: 'projects/oc-ng-common-service'
+              FOLDER: 'dist/angular-common-services'
               EXTRA_ARGS: '--access public'
     - step: &build-and-push-new-version-of-components
         name: Push components to npm
         script:
           - npm install --quiet
-          - npm run build-prod oc-ng-common-component
-          - npm run oc-ng-common-component-pack
+          - npm run build-prod angular-common-components
+          - npm run angular-common-components-pack
           - pipe: atlassian/npm-publish:0.3.2
             variables:
               NPM_TOKEN: $NPM_TOKEN
-              FOLDER: 'projects/oc-ng-common-component'
+              FOLDER: 'dist/angular-common-components'
               EXTRA_ARGS: '--access public'
     - step: &push-to-github
         name: Push to GitHub
@@ -53,7 +54,6 @@ definitions:
           - git remote -v
           - git push origin master:main
           - git push origin --tags
-
 
     - step: &build-app
         name: "Build"

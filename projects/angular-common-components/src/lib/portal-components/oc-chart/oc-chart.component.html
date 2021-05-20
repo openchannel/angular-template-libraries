@@ -16,23 +16,83 @@
                 </label>
             </div>
         </div>
-        <oc-dropdown-button [minDropdownWidth]="minDropdownWidth"
-                            [options]="dropdownTypes"
-                            (selectedChange)="updateChartFiled($event)"
-                            class="chart__type-section">
-            <div customPlaceholder
-                 class="chart__type-section-dropdown">
-                <label class="chart__type-section-dropdown-label">
-                    {{dropdownSelectedType?.label ? dropdownSelectedType?.label : ''}}
-                </label>
+        <div class="chart__filter-buttons-container">
+            <div class="chart__filter-buttons-container-tabs">
+                <svg-icon src="assets/angular-common-components/icon-tabular.svg"
+                          class="chart__swap-type-button chart__tabular-button"
+                          [class.chart__swap-type-button_active]="activeDataType === 'tabular'"
+                          (click)="swapActiveDataType('tabular')"></svg-icon>
+                <svg-icon src="assets/angular-common-components/icon-graph.svg"
+                          class="chart__swap-type-button chart__graph-button"
+                          [class.chart__swap-type-button_active]="activeDataType === 'graph'"
+                          (click)="swapActiveDataType('graph')"></svg-icon>
             </div>
-            <svg-icon defaultPlaceholderIcon src="assets/angular-common-components/select-down.svg" class="chart__type-section-dropdown-icon"></svg-icon>
-            <svg-icon activePlaceholderIcon src="assets/angular-common-components/select-up.svg" class="chart__type-section-dropdown-icon"></svg-icon>
-        </oc-dropdown-button>
+            <oc-dropdown-button [minDropdownWidth]="minDropdownWidth"
+                                [options]="dropdownTypes"
+                                (selectedChange)="updateChartFiled($event)"
+                                class="chart__type-section">
+                <div customPlaceholder
+                     class="chart__type-section-dropdown">
+                    <label class="chart__type-section-dropdown-label">
+                        {{dropdownSelectedType?.label ? dropdownSelectedType?.label : ''}}
+                    </label>
+                </div>
+                <svg-icon defaultPlaceholderIcon src="assets/angular-common-components/select-down.svg" class="chart__type-section-dropdown-icon"></svg-icon>
+                <svg-icon activePlaceholderIcon src="assets/angular-common-components/select-up.svg" class="chart__type-section-dropdown-icon"></svg-icon>
+            </oc-dropdown-button>
+        </div>
     </div>
     <div class="chart__data-container">
-        <div class="chart__data-container-canvas">
+        <div class="chart__data-container-canvas" *ngIf="activeDataType === 'graph'">
             <canvas #myCanvas height="220"></canvas>
+        </div>
+        <div class="chart__data-container-tabular" *ngIf="activeDataType === 'tabular'">
+            <div class="chart__data-container-tabular_scroll">
+                <table class="chart__table-view" aria-describedby="char-data-table">
+                    <thead class="chart__table-view-head">
+                    <tr class="chart__table-view-row">
+                        <th scope="col" class="chart__table-view-cell chart__table-view-cell_padding">
+                            <div class="chart__table-view-heading"
+                                 (click)="sortTabularData('label')">
+                                {{tabularLabelsHeader}}
+                                <div class="chart__table-view-heading-sort-icon">
+                                    <svg-icon [src]="sortIcon"
+                                              [svgClass]="activeTabularSort.by === 'label' && !activeTabularSort.ascending ?
+                                               'chart__table-view-heading-sort-icon_rotated' : ''">
+                                    </svg-icon>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col" class="chart__table-view-cell">
+                            <div class="chart__table-view-heading"
+                                 (click)="sortTabularData('value')">
+                                Result
+                                <div class="chart__table-view-heading-sort-icon">
+                                    <svg-icon [src]="sortIcon"
+                                              [svgClass]="activeTabularSort.by === 'value' && !activeTabularSort.ascending ?
+                                               'chart__table-view-heading-sort-icon_rotated' : ''"></svg-icon>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="chart__table-view-body">
+                    <tr class="chart__table-view-body-row"
+                        *ngFor="let tabLine of tabularData">
+                        <td class="chart__table-view-body-td">
+                            <p class="chart__table-view-cell chart__table-view-body-cell">
+                                {{tabLine.label}}
+                            </p>
+                        </td>
+                        <td class="chart__table-view-body-td">
+                            <p class="chart__table-view-cell chart__table-view-body-cell">
+                                {{tabLine.value}}
+                            </p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div *ngIf="count >= 0" class="chart__data-container-total">
             <div class="chart__data-container-total-header">

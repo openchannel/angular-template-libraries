@@ -101,7 +101,7 @@ npm i --save @ng-bootstrap/ng-bootstrap@6.0.2 @tinymce/tinymce-angular@4.2.0 ang
 ```sh
   "assets": [
     {
-      "glob": "**/*", "input": "node_modules/angular-common-components/assets/img",
+      "glob": "**/*", "input": "node_modules/@openchannel/angular-common-components/assets/img",
       "output": "/assets/angular-common-components",
     },
   ]
