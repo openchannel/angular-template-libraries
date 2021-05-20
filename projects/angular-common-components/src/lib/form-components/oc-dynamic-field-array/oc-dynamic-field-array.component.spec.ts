@@ -1,13 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
 import { OcDynamicFieldArrayComponent } from './oc-dynamic-field-array.component';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { FormArray, FormGroup } from '@angular/forms';
 import { OcFormGenerator } from '@openchannel/angular-common-components/src/lib/form-components/oc-form/oc-form-generator';
 import {
     MockButtonComponent,
-    MockDynamicArrayItemComponent,
     MockDynamicArrayPreview,
     MockFormComponent,
     MockSvgIconComponent,
@@ -22,7 +19,6 @@ describe('OcDynamicFieldArrayComponent', () => {
             TestBed.configureTestingModule({
                 declarations: [
                     OcDynamicFieldArrayComponent,
-                    MockDynamicArrayItemComponent,
                     MockButtonComponent,
                     MockSvgIconComponent,
                     MockFormComponent,
@@ -108,18 +104,6 @@ describe('OcDynamicFieldArrayComponent', () => {
         expect(() => (component.fieldDefinitionData = undefined)).toThrowError('FieldDefinitionData is required @Input() parameter');
     });
 
-    it('should generate a config for the form in array', () => {
-        const fields = component.fieldDefinition.fields;
-        component.dfaFormArray = new FormArray([new FormGroup(OcFormGenerator.getFormByConfig(fields))]);
-
-        fixture.detectChanges();
-
-        const arrayItemCard = fixture.debugElement.query(By.css('oc-dynamic-array-item')).nativeElement;
-
-        expect(component.formsArrayConfig.length).toBeGreaterThan(0);
-        expect(arrayItemCard).toBeTruthy();
-    });
-
     it('should save items value', () => {
         fixture.detectChanges();
 
@@ -145,7 +129,7 @@ describe('OcDynamicFieldArrayComponent', () => {
         component.dfaFormArray = new FormArray([new FormGroup(OcFormGenerator.getFormByConfig(fields))]);
         fixture.detectChanges();
 
-        component.deleteDynamicItem(false, 0);
+        component.deleteDynamicItem(0);
 
         fixture.detectChanges();
 
