@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TypeFieldModel, TypeModel } from '../models/oc-type-definition.model';
 import { OcCheckboxData, OcEditUserFormConfig, OcEditUserResult, OCOrganization } from '../models/oc-edit-user-form.model';
@@ -22,6 +22,7 @@ export class OcEditUserFormComponent implements OnInit {
     @Input() defaultOrganizationData: OCOrganization;
     @Input() defaultEmptyConfigsErrorTemplate: TemplateRef<any>;
     @Input() defaultEmptyConfigsErrorMessage: string = 'There are no forms configured';
+    @Input() customTermsDescription: TemplateRef<any>;
 
     @Output() resultFormDataChange = new EventEmitter<OcEditUserResult>();
     @Output() createdFormGroup = new EventEmitter<FormGroup>();
