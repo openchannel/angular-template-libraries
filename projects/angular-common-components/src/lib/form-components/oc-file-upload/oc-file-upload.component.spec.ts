@@ -7,43 +7,49 @@ import { BrowserModule, By } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { Observable, of } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
 import { MockButtonComponent } from '@openchannel/angular-common-components/src/mock/mock';
-import { FileDetails } from '../model/file.model';
+import { FileDetails, FileUploaderService } from '../model/file.model';
+
+const mockResponse: FileDetails = {
+    uploadDate: 214213,
+    fileId: 'fileId',
+    name: 'test1.jpg',
+    contentType: 'type',
+    size: 123123,
+    isPrivate: false,
+    mimeCheck: 'mimeCheck',
+    fileUrl: 'http://file-url.com',
+    isError: false,
+    fileUploadProgress: 100,
+    virusScan: true,
+    fileIconUrl: '',
+};
+
+class FileUploadDownloadServiceStub extends FileUploaderService {
+    constructor() {
+        super();
+    }
+
+    fileUploadRequest(file: FormData, isPrivate: boolean, hash?: string[]): Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent> {
+        return of(new HttpResponse({ body: mockResponse }));
+    }
+
+    fileDetailsRequest(fileId: string): Observable<FileDetails> {
+        return of(mockResponse);
+    }
+}
 
 describe('OcFileUploadComponent', () => {
     let component: OcFileUploadComponent;
     let fixture: ComponentFixture<OcFileUploadComponent>;
-    const mockResponse: FileDetails = {
-        uploadDate: 214213,
-        fileId: 'fileId',
-        name: 'test1.jpg',
-        contentType: 'type',
-        size: 123123,
-        isPrivate: false,
-        mimeCheck: 'mimeCheck',
-        fileUrl: 'http://file-url.com',
-        isError: false,
-        fileUploadProgress: 100,
-        virusScan: true,
-        fileIconUrl: '',
-    };
 
-    class FileUploadDownloadServiceStub {
-        uploadToOpenChannel(file: FormData, isPrivate: boolean, hash?: string[]): Observable<any> {
-            return of(new HttpResponse({ body: mockResponse }));
-        }
-
-        downloadFileDetails(fileId: any): Observable<FileDetails> {
-            return of(mockResponse);
-        }
-    }
 
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 declarations: [OcFileUploadComponent, MockButtonComponent],
-                providers: [NgModel],
+                providers: [NgModel, { provide: FileUploaderService, useClass: FileUploadDownloadServiceStub }],
                 imports: [NgbModule, CommonModule, BrowserModule, ImageCropperModule],
             }).compileComponents();
         }),
@@ -53,10 +59,6 @@ describe('OcFileUploadComponent', () => {
         fixture = TestBed.createComponent(OcFileUploadComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
-        component.fileUploadRequest = (fileData: FormData, isPrivate: boolean, hash?: string[]) => {
-            return of(new HttpResponse({ body: mockResponse }));
-        };
-        component.fileDetailsRequest = fileId => of(mockResponse);
     });
 
     it('should create', () => {

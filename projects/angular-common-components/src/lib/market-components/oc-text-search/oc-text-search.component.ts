@@ -8,6 +8,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class OcTextSearchComponent {
     /** Search text which has been entered by user */
     @Input() searchText: string;
+    /** Input placeholder text */
+    @Input() placeHolder: string = 'Search';
     /** Emit search text on ngModel changes */
     @Output() searchTextChange: EventEmitter<string> = new EventEmitter();
     /** Emit search text on enter key down or search icon click */

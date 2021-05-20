@@ -86,14 +86,14 @@ export class OcDynamicFieldArrayComponent implements OnInit {
         }
     }
 
-    editDFAItemData(fieldsDefinitions, index: number): void {
+    editDFAItemData(fieldsDefinitions: AppTypeFieldModel, index: number): void {
         this.formsArrayConfig[index] = {
             ...this.formsArrayConfig[index],
             isEdit: true,
         };
     }
 
-    getLabelValue(dataObject, rowLabel) {
+    getLabelValue(dataObject: any, rowLabel: string): any {
         return dataObject[rowLabel];
     }
 
