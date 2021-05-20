@@ -51,13 +51,13 @@
       max-width: 132px;
 
       &-text {
-        font-size: 14px;
+        @include font-size-md();
         color: #727272;
       }
 
       &-browse {
-        font-size: 14px;
-        font-family: "Rubik-Bold", serif;
+        @include font-bold();
+        @include font-size-md();
         color: #537cfd;
         cursor: pointer;
         position: relative;
@@ -95,8 +95,8 @@
       }
 
       .file-container__control-browse {
-        font-size: 14px;
-        font-family: 'Rubik-Bold', serif;
+        @include font-bold();
+        @include font-size-md();
         cursor: pointer;
         color: #537cfd;
       }
@@ -138,8 +138,8 @@
         cursor: pointer;
         span {
           display: block;
-          font-size: 14px;
-          font-family: 'Rubik-Medium', serif;
+          @include font-size-md();
+          @include font-medium();
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
@@ -147,13 +147,13 @@
       }
 
       .file-container__upload-item-status {
-        font-size: 12px;
+        @include font-size-sm();
         color: #727272;
       }
     }
 
     &-status-wrong {
-      font-size: 12px;
+      @include font-size-sm();
       color: #ff6262;
     }
 
@@ -229,7 +229,7 @@
         margin-bottom: 1rem;
 
         .cropper__body-resolution {
-          font-size: 14px;
+          @include font-size-md();
         }
 
         .cropper__body-zoom {

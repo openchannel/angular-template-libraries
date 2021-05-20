@@ -25,7 +25,7 @@
       padding-left: 0;
     }
     color: $secondary;
-    font-size: 14px;
+    @include font-size-md();
     margin-bottom: 0;
     padding: 0 1rem;
   }
@@ -38,10 +38,10 @@
     cursor: pointer;
 
     &-text {
-      font-size: 14px;
+      @include font-medium();
+      @include font-size-md();
       padding-right: 0.5rem;
       color: $primary;
-      font-family: 'Rubik-Medium', sans-serif;
     }
 
     &-icon {

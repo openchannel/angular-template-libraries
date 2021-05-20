@@ -2,8 +2,8 @@
 @import '../../../../assets/styles/mixins';
 
 .oc-button {
-  @include font-family-rubik('Medium');
-  @include font-size-breakpoint(md);
+  @include font-medium();
+  @include font-size-md();
   border: 0;
   border-radius: 4px;
   font-weight: 300;
@@ -22,8 +22,8 @@
     opacity: .35;
   }
   &__text {
-    @include font-family-rubik('Medium');
-    @include font-size-breakpoint(md);
+    @include font-medium();
+    @include font-size-md();
   }
 
   &_primary {

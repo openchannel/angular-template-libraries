@@ -1,5 +1,5 @@
-@import '../../../../assets/styles/theme.scss';
-@import '../../../../assets/styles/mixins.scss';
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
 
 .oc-card {
   display: flex;
@@ -20,10 +20,10 @@
     width: 100%;
 
     &-name {
+      @include font-medium();
       height: 19px;
       line-height: 19px;
       margin-bottom: 1rem;
-      font-family: 'Rubik-Medium', sans-serif;
       color: $body-color;
     }
 
@@ -32,8 +32,8 @@
       margin-bottom: 0.5rem;
 
       .oc-card__content-price {
-        font-size: 14px;
-        font-family: 'Rubik-Medium', serif;
+        @include font-medium();
+        @include font-size-md();
         color: $primary;
         min-width: 100px;
         margin-bottom: 0;
@@ -43,7 +43,7 @@
     &-summary {
       height: 2.3rem;
       line-height: 2.3rem;
-      font-size: 14px;
+      @include font-size-md();
       margin-bottom: 0;
       color: $secondary;
     }

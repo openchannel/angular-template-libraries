@@ -1,4 +1,5 @@
-@import '../../../../assets/styles/theme.scss';
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
 
 .form-checkbox {
   display: flex;
@@ -63,11 +64,11 @@
   .form-checkbox__label {
     color: $body-color;
     line-height: 16px;
-    font-size: 12px;
+    @include font-size-sm();
     margin-left: 8px;
 
     .form-checkbox__required-glyph {
-      font-size: 12px;
+      @include font-size-sm();
       color: $danger;
     }
   }

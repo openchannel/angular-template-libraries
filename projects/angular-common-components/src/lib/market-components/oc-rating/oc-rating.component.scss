@@ -2,34 +2,48 @@
 @import '../../../../assets/styles/theme';
 
 .oc-rating {
-  &-single {
-    align-items: center;
-    display: flex;
-    &__rating-star {
-      height: 16px;
-      vertical-align: unset;
-      width: 16px;
-    }
-    &__label {
-      color: $secondary;
-      margin-left: 1rem;
-    }
-  }
 
-  &-multi {
-    &__star {
-      color: $secondary;
-      position: relative;
-      &_filled {
-        color: $yellow;
-      }
-      &_half-color {
-        bottom: -2px;
-        color: $yellow;
-        left: 0;
-        overflow: hidden;
-        position: absolute;
-      }
+    &-single {
+        align-items: center;
+        display: flex;
+
+        &__rating-star {
+            height: 16px;
+            vertical-align: unset;
+            width: 16px;
+        }
+
+        &__label {
+            color: $secondary;
+            margin-left: 1rem;
+
+            &.medium {
+                @include font-medium();
+            }
+
+            &.md {
+                @include font-size-md();
+            }
+        }
     }
-  }
+
+    &-multi {
+
+        &__star {
+            color: $secondary;
+            position: relative;
+
+            &_filled {
+                color: $yellow;
+            }
+
+            &_half-color {
+                bottom: -2px;
+                color: $yellow;
+                left: 0;
+                overflow: hidden;
+                position: absolute;
+            }
+        }
+    }
 }

@@ -19,7 +19,7 @@ export class OcRatingComponent {
     /** Text that can be added near the review count */
     @Input() label: string = '';
     /** List of the public classes that can be added to the label */
-    @Input() labelClass: string = 'font-m font-med';
+    @Input() labelClass: string = 'medium md';
 
     constructor(config: NgbRatingConfig) {
         config.max = 5;

@@ -4,8 +4,8 @@
 .dropdown-label {
   display: inline-block;
   &__text {
-    @include font-size-breakpoint(md);
-    @include font-family-rubik('Medium');
+    @include font-size-md();
+    @include font-medium();
     color: $primary;
     display: flex;
     align-items: center;
@@ -24,7 +24,7 @@
   }
   &__dropdown {
     &-item {
-      @include font-size-breakpoint(md);
+      @include font-size-md();
     }
   }
 }
