@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { OcTextSearchComponent } from './oc-text-search.component';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MockButtonComponent, MockSvgIconComponent } from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcTextSearchComponent', () => {
     let component: OcTextSearchComponent;
@@ -13,8 +13,8 @@ describe('OcTextSearchComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcTextSearchComponent],
-                imports: [FormsModule, AngularSvgIconModule.forRoot(), HttpClientTestingModule],
+                declarations: [OcTextSearchComponent, MockButtonComponent, MockSvgIconComponent],
+                imports: [FormsModule, HttpClientTestingModule],
             }).compileComponents();
         }),
     );
