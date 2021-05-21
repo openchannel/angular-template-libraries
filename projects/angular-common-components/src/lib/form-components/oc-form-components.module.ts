@@ -14,7 +14,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { OcDynamicArrayItemComponent } from './oc-dynamic-array-item/oc-dynamic-array-item.component';
 import { OcDynamicFieldArrayComponent } from './oc-dynamic-field-array/oc-dynamic-field-array.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OcTooltipLabelComponent } from './oc-tooltip-label/oc-tooltip-label.component';
@@ -34,7 +33,6 @@ import { OcDynamicArrayPreviewComponent } from './oc-dynamic-array-preview/oc-dy
         OcTagsComponent,
         OcTextareaComponent,
         OcVideoUrlComponent,
-        OcDynamicArrayItemComponent,
         OcDynamicFieldArrayComponent,
         OcTooltipLabelComponent,
         OcFormModalComponent,
@@ -61,7 +59,6 @@ import { OcDynamicArrayPreviewComponent } from './oc-dynamic-array-preview/oc-dy
         OcTagsComponent,
         OcTextareaComponent,
         OcVideoUrlComponent,
-        OcDynamicArrayItemComponent,
         OcDynamicFieldArrayComponent,
         OcFormModalComponent,
         OcDynamicArrayPreviewComponent,
