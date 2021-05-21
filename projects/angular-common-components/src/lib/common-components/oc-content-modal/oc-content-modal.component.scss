@@ -1,0 +1,60 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.content-modal {
+  padding: 3.5rem;
+  @include modal-body($white, $info);
+  display: flex;
+  flex-direction: column;
+  @include media-breakpoint-sm {
+    padding: 2rem;
+  }
+
+  &_long-content {
+    max-height: calc(100vh - 100px);
+    margin-top: -95px;
+  }
+
+  &__header {
+    margin-bottom: 3rem;
+    @include media-breakpoint-sm {
+      margin-bottom: 2rem;
+    }
+
+    &-close {
+      display: flex;
+      justify-content: flex-end;
+
+      &-icon {
+        cursor: pointer;
+        fill: $black;
+        height: 20px;
+        width: 20px;
+        outline: none;
+      }
+    }
+
+    &-title {
+      margin-top: 2rem;
+      margin-bottom: 0;
+      font-size: 28px;
+      line-height: 34px;
+      @include media-breakpoint-sm {
+        margin-top: 1rem;
+        font-size: 24px;
+        line-height: 28px;
+      }
+    }
+  }
+
+  &__body {
+    overflow: auto;
+    margin-bottom: 2rem;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+}

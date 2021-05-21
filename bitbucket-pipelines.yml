@@ -82,7 +82,7 @@ definitions:
           - export DISTRIBUTION_ID=`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/DISTRIBUTION_ID --output text --query Parameter.Value`
           - export AWS_S3="`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value`"
           - aws s3 sync --delete storybook-static/ s3://$AWS_S3
-          - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /index.html "/static"
+          - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /*
 pipelines:
   pull-requests:
     '**':

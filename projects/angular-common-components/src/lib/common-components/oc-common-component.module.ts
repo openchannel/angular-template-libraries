@@ -39,6 +39,7 @@ import { HtmlTagsReplacerPipe } from './pipe/html-tags-replacer.pipe';
 import { EllipsisDirective } from './directive/ellipsis.directive';
 import { SafePipe } from './pipe/safe.pipe';
 import { OcSocialLinksComponent } from './oc-social-links/oc-social-links.component';
+import { OcContentModalComponent } from './oc-content-modal/oc-content-modal.component';
 
 @NgModule({
     declarations: [
@@ -73,6 +74,7 @@ import { OcSocialLinksComponent } from './oc-social-links/oc-social-links.compon
         HtmlTagsReplacerPipe,
         EllipsisDirective,
         SafePipe,
+        OcContentModalComponent,
     ],
     imports: [
         NgbModule,
@@ -117,6 +119,7 @@ import { OcSocialLinksComponent } from './oc-social-links/oc-social-links.compon
         HtmlTagsReplacerPipe,
         EllipsisDirective,
         SafePipe,
+        OcContentModalComponent,
     ],
     providers: [NgbActiveModal],
 })
