@@ -112,11 +112,3 @@ Note:
 
 * If updating the storybook version did not help. Try this:
   ``npm run storybook-update-and-run``
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-<!-- CONTACT -->
-## Contact
-
-Project Link: [https://bitbucket.org/openchannel/angular-common-components/src/develop/](https://bitbucket.org/openchannel/angular-common-components/src/develop/)

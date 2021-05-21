@@ -40,10 +40,11 @@ Store models and services for creating a marketplace instance:
 ## Services Development
 
 ### Connect library to project
+Note: Run commands from the root directory.
 
 1. `ng build angular-common-services`
 
-2. `cd ../../dist/angular-common-services`
+2. `cd ./dist/angular-common-services`
 
 5. `sudo npm link` Then copy result link.
 
@@ -66,10 +67,3 @@ Compodoc shows project structure. (modules, components, routes and etc.)
   ``npm run start-compodoc``
 
 * Documentation [http://localhost:8801](http://localhost:8801)
-<!-- USAGE EXAMPLES -->
-## Services Usage
-
-<!-- CONTACT -->
-## Services Contact
-
-Project Link: [https://bitbucket.org/openchannel/angular-template-libraries/src/master/projects/oc-ng-common-service/](https://bitbucket.org/openchannel/angular-template-libraries/src/master/projects/oc-ng-common-service/)
