@@ -9,6 +9,17 @@
     "jwt-decode": "3.1.2",
     "broadcast-channel": "3.5.3",
 
+## About the library
+Store models and services for creating a marketplace instance:
+* API services.
+  - user authorization.
+  - marketplace endpoints.
+* Models :
+  - request and response models.
+* Utils:
+  - CSRF interceptor. Syncs CSRF token between pages.
+
+
 ### Services Installation
 
 1. Install dependencies
@@ -29,15 +40,19 @@
 ## Services Development
 
 ### Connect library to project
+Note: Run commands from the root directory.
 
 1. `ng build angular-common-services`
 
-2. `cd dist/angular-common-services`
+2. `cd ./dist/angular-common-services`
 
 5. `sudo npm link` Then copy result link.
 
-4. In your angular project run:<br> `npm install file:<{absolute path to angular-common-components or copied path}/dist/angular-common-components>`
+4. In your angular project run:<br> `npm install file:<{absolute path to angular-common-services or copied path}/dist/angular-common-services>`
 
+5. Use imports into ts files :
+   import { ModelOrService } from '@openchannel/angular-common-services';
+ 
 ### Documentation Compodoc
 Compodoc shows project structure. (modules, components, routes and etc.)
 * Install NPM packages :<br>
@@ -52,10 +67,3 @@ Compodoc shows project structure. (modules, components, routes and etc.)
   ``npm run start-compodoc``
 
 * Documentation [http://localhost:8801](http://localhost:8801)
-<!-- USAGE EXAMPLES -->
-## Services Usage
-
-<!-- CONTACT -->
-## Services Contact
-
-Project Link: [https://bitbucket.org/openchannel/angular-common-service-library/src/develop/](https://bitbucket.org/openchannel/angular-common-service-library/src/develop/)
