@@ -84,7 +84,33 @@ npm i --save @ng-bootstrap/ng-bootstrap@6.0.2 @tinymce/tinymce-angular@4.2.0 ang
     "node_modules/tinymce/tinymce.min.js"
   ]
 ```
+6. For the File Uploader component should be created a service which extends `FileUploaderService`.
+Service must consist two function `fileUploadRequest` and `fileDetailsRequest` which  should return your requests to CAP
+   Example of service:
+```sh
+@Injectable()
+export class FileService extends FileUploaderService {
+    constructor(private fileUploaderService: FileUploadDownloadService) {
+        super();
+    }
 
+    fileUploadRequest(
+        file: FormData,
+        isPrivate: boolean,
+        hash?: string[],
+    ): Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent> {
+        return this.fileUploaderService.uploadToOpenChannel(file, isPrivate, hash);
+    }
+
+    fileDetailsRequest(fileId: string): Observable<FileDetails> {
+        return this.fileUploaderService.downloadFileDetails(fileId);
+    }
+}
+```
+`FileUploaderService` should be provided in `AppModule`:
+```sh
+{ provide: FileUploaderService, useClass: FileService }
+```
 ## Development
 
 ### Connect library to project
