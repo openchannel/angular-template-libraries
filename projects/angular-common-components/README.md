@@ -88,10 +88,11 @@ npm i --save @ng-bootstrap/ng-bootstrap@6.0.2 @tinymce/tinymce-angular@4.2.0 ang
 ## Development
 
 ### Connect library to project
+Note: Run commands from the root directory.
 
 1. `ng build angular-common-components`
 
-2. `cd ../../dist/angular-common-components`
+2. `cd ./dist/angular-common-components`
 
 5. `sudo npm link` Then copy result link.
 
@@ -140,11 +141,3 @@ Note:
 
 * If updating the storybook version did not help. Try this:
   ``npm run storybook-update-and-run``
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-<!-- CONTACT -->
-## Contact
-
-Project Link: [https://bitbucket.org/openchannel/angular-template-libraries/src/master/projects/oc-ng-common-component/](https://bitbucket.org/openchannel/angular-template-libraries/src/master/projects/oc-ng-common-component/)
