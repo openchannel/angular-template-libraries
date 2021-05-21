@@ -1,8 +1,13 @@
 <div class="description">
-  <h4 class="description__heading" [ngClass]="headerClass">{{_header}}</h4>
-  <p #description class="description__text" [innerHTML]="appDescription"
-     [class.hid-description]="!showFullDescription">
+  <h4 class="description__heading" [ngClass]="headerClass">{{headerText}}</h4>
+  <p class="description__text"
+     *ngIf="!showFullDescription"
+     [innerHTML]="appDescription" ellipsis>
   </p>
-  <span class="description__show-more" *ngIf="!showFullDescription"
-        (click)="showFullDescription = true">{{expandDescriptionText}}</span>
+  <p class="description__text description__text_visible"
+     *ngIf="showFullDescription"
+     [innerHTML]="appDescription">
+  </p>
+  <span class="description__show-more"
+        (click)="triggerDescription()">{{expandDescriptionText}}</span>
 </div>
