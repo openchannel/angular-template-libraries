@@ -44,7 +44,7 @@ export class OcAppDescriptionComponent implements OnInit {
     }
 
     checkOfText(): void {
-        if (this.appDescription.length < 245 || this.showFullDescription) {
+        if (this.appDescription?.length < 245 || this.showFullDescription) {
             this.showDescription = true;
         } else {
             this.descriptionTriggerText = this.showDescription ? this.collapseDescriptionText : this.expandDescriptionText;
