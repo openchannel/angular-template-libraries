@@ -64,28 +64,30 @@ describe('OcAppDescriptionComponent', () => {
     it('expand description normal value', () => {
         const expandDescription = 'Expand description';
         setExpandDescription(expandDescription);
+        setDescriptionText('It is a long description text'.repeat(300));
         expect(getExpandDescription()).toEqual(expandDescription);
     });
 
     it('expand description non null', () => {
         const expandDescription = null;
         setExpandDescription(expandDescription);
+        setDescriptionText('It is a long description text'.repeat(300));
         expect(getExpandDescription()).toEqual('');
     });
 
     it('expand description non undefined', () => {
         const expandDescription = undefined;
         setExpandDescription(expandDescription);
+        setDescriptionText('It is a long description text'.repeat(300));
         expect(getExpandDescription()).toEqual('');
     });
 
     function setExpandDescription(expandDescription: string): void {
         component.expandDescriptionText = expandDescription;
-        fixture.detectChanges();
     }
 
     function getExpandDescription(): string {
-        return fixture.nativeElement.querySelector('span').innerHTML;
+        return fixture.nativeElement.querySelector('.description__show-more').textContent;
     }
 
     function setHeaderText(header: string): void {
