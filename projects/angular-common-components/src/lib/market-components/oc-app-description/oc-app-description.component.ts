@@ -30,6 +30,7 @@ export class OcAppDescriptionComponent implements OnInit {
     /** Header of the App Description section */
     headerText: string = '';
     descriptionTriggerText: string;
+    showDescription: boolean = false;
 
     constructor() {}
 
@@ -38,13 +39,15 @@ export class OcAppDescriptionComponent implements OnInit {
     }
 
     triggerDescription(): void {
-        this.showFullDescription = !this.showFullDescription;
+        this.showDescription = !this.showDescription;
         this.checkOfText();
     }
 
     checkOfText(): void {
-        this.showFullDescription
-            ? (this.descriptionTriggerText = this.collapseDescriptionText)
-            : (this.descriptionTriggerText = this.expandDescriptionText);
+        if (this.appDescription.length < 245 || this.showFullDescription) {
+            this.showDescription = true;
+        } else {
+            this.descriptionTriggerText = this.showDescription ? this.collapseDescriptionText : this.expandDescriptionText;
+        }
     }
 }
