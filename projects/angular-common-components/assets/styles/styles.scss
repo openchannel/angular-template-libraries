@@ -315,15 +315,14 @@ a.link {
     .dropdown-item {
         @include font-size-md();
         padding: 14px 16px;
-        border-bottom: 1px solid $info;
+        border-bottom: 1px solid $dropdown-border;
 
         &:last-child {
             border-bottom: 0;
         }
 
         &.active, &:active {
-            background-color: rgba($info, .2);
-            color: $body-color;
+            background-color: rgba($dropdown-border, .2);
         }
     }
 }
@@ -341,12 +340,11 @@ a.link {
             border-bottom: 1px;
 
             &:hover {
-                color: $body-color;
                 background-color: $light;
             }
 
             &:active {
-                color: $primary;
+                color: $dropdown-item-text-hover;
                 background-color: $light;
                 border-color: unset;
             }
@@ -484,7 +482,7 @@ a.link {
 oc-select {
 
     & .btn:focus {
-        border-color: $primary !important;
+        border-color: $dropdown-item-text-hover !important;
     }
 
     .dropdown-menu {
