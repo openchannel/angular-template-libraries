@@ -66,16 +66,16 @@
     font-style: italic;
 }
 
-@mixin font-size-sm() {
-    font-size: 12px;
+@mixin font-size-sm($size: 12px) {
+    font-size: $size;
 }
 
-@mixin font-size-md() {
-    font-size: 14px;
+@mixin font-size-md($size: 14px) {
+    font-size: $size;
 }
 
-@mixin font-size-lg() {
-    font-size: 18px;
+@mixin font-size-lg($size: 18px) {
+    font-size: $size;
 }
 
 // template elements
