@@ -65,10 +65,10 @@ export class OcEditUserFormComponent implements OnInit {
                 tempForm = TypeMergeUtils.mergeTypes(tempForm, this.defaultOrganizationData, { fields: [passwordField] }, '', ['password']);
             }
 
-            if (formConfig.subFields?.order) {
+            if (formConfig.fieldsOrder) {
                 tempForm.fields.sort((item1, item2) => {
-                    const index1 = formConfig.subFields.order.indexOf(item1.id);
-                    const index2 = formConfig.subFields.order.indexOf(item2.id);
+                    const index1 = formConfig.fieldsOrder.indexOf(item1.id);
+                    const index2 = formConfig.fieldsOrder.indexOf(item2.id);
                     return (index1 > -1 ? index1 : Infinity) - (index2 > -1 ? index2 : Infinity);
                 });
             }
