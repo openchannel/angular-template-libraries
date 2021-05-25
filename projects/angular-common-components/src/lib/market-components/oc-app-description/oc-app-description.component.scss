@@ -11,9 +11,10 @@
     &__text {
         color: $text-color;
         margin-bottom: 0;
+        height: 9rem;
 
-        p {
-            margin-bottom: 0;
+        &_visible {
+          height: auto;
         }
     }
 

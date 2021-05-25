@@ -371,6 +371,17 @@ a.link {
     }
 }
 
+.cards-interface__preview-header {
+  .array-preview {
+    .array-preview__field {
+      margin: 0;
+      &-content__tags-item {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
+
 .modal-button {
     width: 255px;
 }

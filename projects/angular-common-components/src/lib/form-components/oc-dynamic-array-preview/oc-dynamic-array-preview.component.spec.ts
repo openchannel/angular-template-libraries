@@ -1,12 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
 import { OcDynamicArrayPreviewComponent } from './oc-dynamic-array-preview.component';
 import { FormGroup } from '@angular/forms';
 import { AppTypeFieldModel, HtmlTagsReplacerPipe, SafePipe } from '@openchannel/angular-common-components/src/lib/common-components';
 import { FieldValueModel } from '../model/dynamic-array.model';
 import { MockDynamicFieldArrayComponent, MockLabelComponent, MockTagComponent } from '@openchannel/angular-common-components/src/mock/mock';
-import { OcFormGenerator } from '@openchannel/angular-common-components/src/lib/form-components';
+import { FileDetails, FileUploaderService, OcFormGenerator } from '@openchannel/angular-common-components/src/lib/form-components';
+import { Observable, of } from 'rxjs';
+import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
 
 describe('OcDynamicArrayPreviewComponent', () => {
     let component: OcDynamicArrayPreviewComponent;
@@ -65,6 +66,13 @@ describe('OcDynamicArrayPreviewComponent', () => {
         ],
     };
 
+    const fieldDefinitionWithEmptyFields = {
+        id: 'testId',
+        label: 'testLabel',
+        type: 'testType',
+        fields: null,
+    };
+
     const fieldValues: FieldValueModel[] = [
         {
             fieldId: TEXT_ID,
@@ -94,6 +102,36 @@ describe('OcDynamicArrayPreviewComponent', () => {
             ],
         },
     ];
+
+    const mockResponse: FileDetails = {
+        uploadDate: 214213,
+        fileId: 'fileId',
+        name: 'test1.jpg',
+        contentType: 'type',
+        size: 123123,
+        isPrivate: false,
+        mimeCheck: 'mimeCheck',
+        fileUrl: 'http://file-url.com',
+        isError: false,
+        fileUploadProgress: 100,
+        virusScan: true,
+        fileIconUrl: '',
+    };
+
+    class FileService extends FileUploaderService {
+        fileDetailsRequest(fileId: string): Observable<FileDetails> {
+            return of(mockResponse);
+        }
+
+        fileUploadRequest(
+            file: FormData,
+            isPrivate: boolean,
+            hash?: string[],
+        ): Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent> {
+            return undefined;
+        }
+    }
+
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [
@@ -104,6 +142,7 @@ describe('OcDynamicArrayPreviewComponent', () => {
                 SafePipe,
                 HtmlTagsReplacerPipe,
             ],
+            providers: [{ provide: FileUploaderService, useClass: FileService }],
         }).compileComponents();
     });
 
@@ -113,10 +152,10 @@ describe('OcDynamicArrayPreviewComponent', () => {
         component.fieldDefinition = fieldDefinition;
         component.fieldValues = fieldValues;
         component.dfaForm = new FormGroup(OcFormGenerator.getFormByConfig(fieldDefinition.fields));
-        fixture.detectChanges();
     });
 
     it('should create', () => {
+        fixture.detectChanges();
         expect(component).toBeTruthy();
     });
 
@@ -159,5 +198,11 @@ describe('OcDynamicArrayPreviewComponent', () => {
         const dfaPreviewField = component.previewFields.find(field => field.id === DYNAMIC_FIELD_ARRAY_ID);
         expect(dfaPreviewField.formArrayDFA).not.toBeNull();
         expect(dfaPreviewField.formArrayDFA).not.toBeUndefined();
+    });
+
+    it('should show empty array', () => {
+        component.fieldDefinition = fieldDefinitionWithEmptyFields;
+        fixture.detectChanges();
+        expect(component.previewFields.length).toEqual(0);
     });
 });

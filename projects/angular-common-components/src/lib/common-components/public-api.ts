@@ -20,6 +20,8 @@ export * from './oc-profile-navbar/oc-profile-navbar.component';
 export * from './validators/white-space-validator';
 export * from './oc-select-expandable/oc-select-expandable.component';
 export * from './oc-video/oc-video.component';
+export * from './oc-social-links/oc-social-links.component';
+export * from './oc-content-modal/oc-content-modal.component';
 
 /** Pipes */
 export * from './pipe/camelcase.pipe';
@@ -40,6 +42,7 @@ export * from './validators/password-validator.directive';
 export * from './model/app-data.model';
 export * from './model/components-basic.model';
 export * from './model/oc-sidebar-model';
+export * from './interfaces/social-link.model';
 
 /** Services */
 export * from './oc-error/oc-error-service';
