@@ -1,7 +1,6 @@
 export * from './oc-form-components.module';
 export * from './oc-color/oc-color.component';
 export * from './oc-datetime-picker/oc-datetime-picker.component';
-export * from './oc-dynamic-array-item/oc-dynamic-array-item.component';
 export * from './oc-dynamic-field-array/oc-dynamic-field-array.component';
 export * from './oc-file-upload/oc-file-upload.component';
 export * from './oc-form/oc-form.component';
