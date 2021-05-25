@@ -40,7 +40,7 @@ export class OcEditUserFormComponent implements OnInit {
         this.clearPreviousValues();
         if (formConfig) {
             this.currentFormConfig = formConfig;
-            let tempForm = {};
+            let tempForm: any = {};
             if (formConfig?.organization?.includeFields) {
                 const config = formConfig?.organization;
                 tempForm = TypeMergeUtils.mergeTypes(
@@ -56,23 +56,23 @@ export class OcEditUserFormComponent implements OnInit {
                 tempForm = TypeMergeUtils.mergeTypes(tempForm, this.defaultAccountData, config.typeData, '', config.includeFields);
             }
             if (this.enablePasswordField) {
-                tempForm = TypeMergeUtils.mergeTypes(
-                    tempForm,
-                    this.defaultOrganizationData,
-                    {
-                        fields: [
-                            {
-                                id: this.PASSWORD_FILED_KEY,
-                                type: 'password',
-                                label: 'Password',
-                                attributes: {},
-                            },
-                        ],
-                    },
-                    '',
-                    ['password'],
-                );
+                const passwordField: TypeFieldModel = {
+                    id: this.PASSWORD_FILED_KEY,
+                    type: 'password',
+                    label: 'Password',
+                    attributes: {},
+                };
+                tempForm = TypeMergeUtils.mergeTypes(tempForm, this.defaultOrganizationData, { fields: [passwordField] }, '', ['password']);
             }
+
+            if (formConfig.subFields?.order) {
+                tempForm.fields.sort((item1, item2) => {
+                    const index1 = formConfig.subFields.order.indexOf(item1.id);
+                    const index2 = formConfig.subFields.order.indexOf(item2.id);
+                    return (index1 > -1 ? index1 : Infinity) - (index2 > -1 ? index2 : Infinity);
+                });
+            }
+
             this.mainFormModel = tempForm;
         }
     }

@@ -9,6 +9,9 @@ export interface OcEditUserFormConfig {
     name: string;
     account: OcEditUserTypeConfig;
     organization: OcEditUserTypeConfig;
+    subFields?: {
+        order: string[];
+    };
 }
 
 export interface OcEditUserTypeConfig {

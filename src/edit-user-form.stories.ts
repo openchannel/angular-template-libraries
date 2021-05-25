@@ -25,7 +25,6 @@ const accountTypeData: TypeModel<TypeFieldModel> = {
             attributes: {
                 required: true,
             },
-            orderNumber: null,
         },
         {
             id: 'email',
@@ -34,7 +33,6 @@ const accountTypeData: TypeModel<TypeFieldModel> = {
             attributes: {
                 required: true,
             },
-            orderNumber: null,
         },
         {
             id: 'about-me',
@@ -43,7 +41,6 @@ const accountTypeData: TypeModel<TypeFieldModel> = {
                 required: true,
             },
             label: 'About me',
-            orderNumber: null,
         },
     ],
 };
@@ -57,7 +54,6 @@ const organizationTypeData: TypeModel<TypeFieldModel> = {
             attributes: {
                 required: true,
             },
-            orderNumber: null,
         },
         {
             id: 'customData.country',
@@ -66,7 +62,6 @@ const organizationTypeData: TypeModel<TypeFieldModel> = {
             attributes: {
                 required: true,
             },
-            orderNumber: null,
         },
     ],
 };
@@ -75,25 +70,28 @@ const multiConfigs: OcEditUserFormConfig[] = [
     {
         name: 'First Form',
         account: {
-            includeFields: [{ id: 'name' }, { id: 'email' }],
+            includeFields: ['name', 'email'],
             typeData: accountTypeData,
             type: 'first-account-form',
         },
         organization: {
-            includeFields: [{ id: 'customData.organization' }],
+            includeFields: ['customData.organization'],
             typeData: organizationTypeData,
             type: 'first-organization-form',
+        },
+        subFields: {
+            order: ['email', 'name'],
         },
     },
     {
         name: 'Second Form',
         account: {
-            includeFields: [{ id: 'name' }, { id: 'email' }, { id: 'about-me' }],
+            includeFields: ['name', 'email', 'about-me'],
             typeData: accountTypeData,
             type: 'second-account-form',
         },
         organization: {
-            includeFields: [{ id: 'customData.organization' }, { id: 'customData.country' }],
+            includeFields: ['customData.organization', 'customData.country'],
             typeData: organizationTypeData,
             type: 'second-organization-form',
         },
