@@ -38,6 +38,8 @@ import { CheckboxRequiredDirective } from './validators/checkbox-required.direct
 import { HtmlTagsReplacerPipe } from './pipe/html-tags-replacer.pipe';
 import { EllipsisDirective } from './directive/ellipsis.directive';
 import { SafePipe } from './pipe/safe.pipe';
+import { OcSocialLinksComponent } from './oc-social-links/oc-social-links.component';
+import { OcContentModalComponent } from './oc-content-modal/oc-content-modal.component';
 
 @NgModule({
     declarations: [
@@ -54,6 +56,7 @@ import { SafePipe } from './pipe/safe.pipe';
         PasswordValidatorDirective,
         PasswordToggleDirective,
         OcSelectExpandableComponent,
+        OcSocialLinksComponent,
         OcDropdownComponent,
         OcDropdownButtonComponent,
         CamelcasePipe,
@@ -71,6 +74,7 @@ import { SafePipe } from './pipe/safe.pipe';
         HtmlTagsReplacerPipe,
         EllipsisDirective,
         SafePipe,
+        OcContentModalComponent,
     ],
     imports: [
         NgbModule,
@@ -100,6 +104,7 @@ import { SafePipe } from './pipe/safe.pipe';
         PasswordValidatorDirective,
         PasswordToggleDirective,
         OcSelectExpandableComponent,
+        OcSocialLinksComponent,
         OcDropdownComponent,
         OcDropdownButtonComponent,
         OcDropboxComponent,
@@ -114,6 +119,7 @@ import { SafePipe } from './pipe/safe.pipe';
         HtmlTagsReplacerPipe,
         EllipsisDirective,
         SafePipe,
+        OcContentModalComponent,
     ],
     providers: [NgbActiveModal],
 })

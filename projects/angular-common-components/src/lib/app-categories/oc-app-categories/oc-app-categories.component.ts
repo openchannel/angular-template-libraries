@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl, SafeStyle } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
@@ -9,7 +9,7 @@ import { AppCategoryDetail } from '../models/app-category-model';
     templateUrl: './oc-app-categories.component.html',
     styleUrls: ['./oc-app-categories.component.scss'],
 })
-export class OcAppCategoriesComponent implements OnInit {
+export class OcAppCategoriesComponent {
     @ViewChild('carousel', { static: false }) carouselRef: CarouselComponent;
 
     /** Data of the category that will be shown in array */
@@ -45,8 +45,6 @@ export class OcAppCategoriesComponent implements OnInit {
         nav: false,
     };
     constructor(private sanitizer: DomSanitizer, private router: Router) {}
-
-    ngOnInit(): void {}
 
     safeImage(logoUrl: string): SafeResourceUrl {
         return this.sanitizer.bypassSecurityTrustResourceUrl(logoUrl);

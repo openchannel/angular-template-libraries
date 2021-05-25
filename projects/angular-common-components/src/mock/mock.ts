@@ -6,7 +6,8 @@ import {
     FormArray,
     NG_VALUE_ACCESSOR,
     NgModel,
-    FormControl, FormGroup,
+    FormControl,
+    FormGroup,
 } from '@angular/forms';
 import { AppTypeFieldModel, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 import { OcCheckboxData, OcEditUserFormConfig, OCOrganization } from '@openchannel/angular-common-components/src/lib/auth-components';
@@ -61,6 +62,7 @@ export class MockButtonComponent {
     @Input() disabled: boolean = false;
     @Input() type: 'primary' | 'secondary' | 'link' = 'primary';
     @Input() class: string;
+    @Input() customClass: string;
     @Input() style: string;
     @Input() process: string;
     @Input() customTemplate: TemplateRef<any>;
@@ -174,25 +176,6 @@ export class MockDynamicFieldArrayComponent {
     @Input() fieldDefinitionData: AppTypeFieldModel;
 }
 
-
-@Component({
-    selector: 'oc-dynamic-array-item',
-    template: ''
-})
-export class MockDynamicArrayItemComponent {
-    @Input() index: number = 0;
-    @Input() formFieldsData: any;
-    @Input() fieldLabelId: string = '';
-    @Input() dfaForm: FormGroup;
-    @Input() currentFieldDefinition: AppTypeFieldModel;
-    @Output() deleteField: EventEmitter<boolean> = new EventEmitter<boolean>();
-    @Output() sendFieldData: EventEmitter<any> = new EventEmitter<any>();
-
-    delete() {
-        this.deleteField.emit(true);
-    }
-}
-
 @Component({
     selector: 'oc-select',
     template: '',
@@ -245,4 +228,5 @@ export class MockDynamicArrayPreview {
     @Input() fieldValues: FieldValueModel[];
     @Input() fieldDefinition: AppTypeFieldModel;
     @Input() dfaForm: FormGroup;
+    @Input() hideLabel: boolean;
 }
