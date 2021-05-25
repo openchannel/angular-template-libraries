@@ -116,7 +116,7 @@
         height: 2.3rem;
         @include font-size-md();
         margin-bottom: 0;
-        color: #727272;
+        color: $text-color;
       }
     }
   }

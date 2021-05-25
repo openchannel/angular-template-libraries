@@ -133,12 +133,12 @@
         }
 
         .oc-table__app-version {
-            color: $secondary;
+            color: $text-color;
             @include font-size-sm();
         }
 
         .oc-table__text-wrapper {
-            color: $secondary;
+            color: $text-color;
             @include font-size-md();
 
             &_blank {

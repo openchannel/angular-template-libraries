@@ -18,10 +18,10 @@ strong {
 }
 
 a {
-    color: $primary;
+    color: $link-primary;
 
     &:hover {
-        color: $primary;
+        color: $link-primary;
         text-decoration: none;
     }
 
@@ -32,6 +32,10 @@ a {
     b {
         font-size: inherit;
     }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $heading-color;
 }
 
 h1 {
@@ -323,6 +327,7 @@ a.link {
 
         &.active, &:active {
             background-color: rgba($dropdown-border, .2);
+            color: $dropdown-item-text-hover;
         }
     }
 }
@@ -340,18 +345,18 @@ a.link {
             border-bottom: 1px;
 
             &:hover {
-                background-color: $light;
+                background-color: $dropdown-light;
             }
 
             &:active {
                 color: $dropdown-item-text-hover;
-                background-color: $light;
+                background-color: $dropdown-light;
                 border-color: unset;
             }
 
             &:focus {
                 outline: none;
-                background-color: $light;
+                background-color: $dropdown-light;
             }
         }
     }
@@ -492,19 +497,19 @@ oc-select {
             border-bottom: 1px;
 
             &:hover {
-                color: $body-color;
-                background-color: $light;
+                color: $dropdown-item-text-alternative;
+                background-color: $dropdown-light;
             }
 
             &:active {
-                color: $primary;
-                background-color: $light;
+                color: $dropdown-item-text-hover;
+                background-color: $dropdown-light;
                 border-color: unset;
             }
 
             &:focus {
                 outline: none;
-                background-color: $light;
+                background-color: $dropdown-light;
             }
         }
     }

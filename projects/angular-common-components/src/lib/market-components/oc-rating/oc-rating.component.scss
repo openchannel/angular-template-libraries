@@ -14,7 +14,7 @@
         }
 
         &__label {
-            color: $secondary;
+            color: $text-color;
             margin-left: 1rem;
 
             &.medium {
@@ -30,7 +30,7 @@
     &-multi {
 
         &__star {
-            color: $secondary;
+            color: $text-color;
             position: relative;
 
             &_filled {

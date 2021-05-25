@@ -118,7 +118,7 @@
 
   &__text {
     @include font-size-md();
-    color: $secondary;
+    color: $text-color;
     &_dark {
       color: $body-color;
     }

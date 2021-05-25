@@ -52,7 +52,7 @@
       @include font-size-md();
       margin: 2.5rem 0;
       width: 75%;
-      color: $secondary;
+      color: $text-color;
       @include media-breakpoint-sm {
         width: 100%;
         margin: 1rem 0 0;

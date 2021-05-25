@@ -2,11 +2,8 @@
 @import '../../../../assets/styles/mixins';
 
 .oc-button {
-    @include font-medium();
-    @include font-size-md();
     border: 0;
     border-radius: 4px;
-    font-weight: 300;
     min-height: 52px;
     min-width: 160px;
     padding: 10px 20px;
@@ -15,7 +12,7 @@
     width: 100%;
 
     &:focus {
-        border: 2px solid $focus-border;
+        border: 2px solid $button-border-focus;
         box-shadow: none;
         outline: none;
     }
@@ -51,6 +48,7 @@
         }
 
         .oc-button__spinner {
+
             .la-ball-spin {
                 color: $white;
             }
@@ -59,28 +57,28 @@
 
     &_secondary {
         background-color: $white;
-        border: 1px solid $info;
-        color: $body-color;
+        border: 1px solid $button-info;
 
         &:hover {
             box-shadow: 1px 5px 30px 0 rgba(lighten($button-secondary, 34%), 0.5);
         }
 
         &:not(:disabled):not(.disabled):active {
-            background-color: $info;
+            background-color: $button-info;
         }
 
         &-spinner {
-            background-color: $info;
+            background-color: $button-info;
         }
 
         .oc-button__text {
-            color: $body-color;
+            color: $button-secondary-color;
         }
 
         .oc-button__spinner {
+
             .la-ball-spin {
-                color: $body-color;
+                color: $button-secondary-color;
             }
         }
     }
@@ -107,6 +105,7 @@
         }
 
         .oc-button__spinner {
+
             .la-ball-spin {
                 color: $white;
             }

@@ -24,7 +24,7 @@
     @include media-breakpoint-md {
       padding-left: 0;
     }
-    color: $secondary;
+    color: $text-color;
     @include font-size-md();
     margin-bottom: 0;
     padding: 0 1rem;

@@ -1,25 +1,26 @@
+@import '../../../../assets/styles/theme';
 @import '../../../../assets/styles/mixins';
 
 .description {
-  width: 100%;
+    width: 100%;
 
-  &__heading {
-    margin-bottom: 2rem;
-  }
-
-  &__text {
-    color: #727272;
-    margin-bottom: 0;
-
-    p {
-      margin-bottom: 0;
+    &__heading {
+        margin-bottom: 2rem;
     }
-  }
 
-  &__show-more {
-    @include font-medium();
-    cursor: pointer;
-    @include font-size-md();
-    color: #537cfd;
-  }
+    &__text {
+        color: $text-color;
+        margin-bottom: 0;
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    &__show-more {
+        @include font-medium();
+        @include font-size-md();
+        cursor: pointer;
+        color: #537cfd;
+    }
 }

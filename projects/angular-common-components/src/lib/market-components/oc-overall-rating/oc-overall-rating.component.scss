@@ -37,7 +37,7 @@
 
         &-label {
             @include font-size-md();
-            color: $secondary;
+            color: $text-color;
         }
 
         &-reviews-count {
@@ -79,7 +79,7 @@
 
         &-label {
             @include font-size-md();
-            color: $secondary;
+            color: $text-color;
             height: 14px;
             line-height: 14px;
         }

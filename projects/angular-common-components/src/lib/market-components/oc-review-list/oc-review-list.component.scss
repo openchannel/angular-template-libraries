@@ -33,7 +33,7 @@
       margin-bottom: 1rem;
       &-label {
         @include font-size-sm();
-        color: $secondary;
+        color: $text-color;
         line-height: 16px;
         margin-bottom: 1rem;
       }
