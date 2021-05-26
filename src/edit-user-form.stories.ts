@@ -79,9 +79,7 @@ const multiConfigs: OcEditUserFormConfig[] = [
             typeData: organizationTypeData,
             type: 'first-organization-form',
         },
-        subFields: {
-            order: ['email', 'name'],
-        },
+        fieldsOrder: ['email', 'name'],
     },
     {
         name: 'Second Form',

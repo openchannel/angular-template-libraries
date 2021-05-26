@@ -12,31 +12,31 @@ import {
 } from '@openchannel/angular-common-components/src/lib/auth-components';
 
 @Component({
-  selector: 'custom-signup-story',
-  template: `
-    <div>
-      <oc-signup-custom
-          [loginUrl]="loginUrl"
-          [signupUrl]="signupUrl"
-          [activationUrl]="activationUrl"
-          [termsUrl]="termsUrl"
-          [policyUrl]="policyUrl"
-          [companyLogoUrl]="companyLogoUrl"
-          [process]="process"
-          [forgotPasswordDoneUrl]="forgotPasswordDoneUrl"
-          [showSignupFeedbackPage]="showSignupFeedbackPage"
-          [formConfigsLoading]="formConfigsLoading"
-          [formConfigs]="formConfigs"
-          [defaultTypeLabelText]="defaultTypeLabelText"
-          [customTermsDescription]="enableCustomTerms ? customTerms: null">
-      </oc-signup-custom>
-      <ng-template #customTerms>
-        <p>Terms terms terms terms terms terms terms.
-          <a href="" style="color: limegreen">First Link</a>
-          <a href="" style="color: orange">Second Link</a>
-        </p>
-      </ng-template>
-    </div>`
+    selector: 'custom-signup-story',
+    template: `
+        <div>
+            <oc-signup-custom
+                [loginUrl]="loginUrl"
+                [signupUrl]="signupUrl"
+                [activationUrl]="activationUrl"
+                [termsUrl]="termsUrl"
+                [policyUrl]="policyUrl"
+                [companyLogoUrl]="companyLogoUrl"
+                [process]="process"
+                [forgotPasswordDoneUrl]="forgotPasswordDoneUrl"
+                [showSignupFeedbackPage]="showSignupFeedbackPage"
+                [formConfigsLoading]="formConfigsLoading"
+                [formConfigs]="formConfigs"
+                [defaultTypeLabelText]="defaultTypeLabelText"
+                [customTermsDescription]="enableCustomTerms ? customTerms: null">
+            </oc-signup-custom>
+            <ng-template #customTerms>
+                <p>Terms terms terms terms terms terms terms.
+                <a href="" style="color: limegreen">First Link</a>
+                <a href="" style="color: orange">Second Link</a>
+                </p>
+            </ng-template>
+        </div>`
 })
 export class CustomSignUpStoryComponent {
   @Input() loginUrl: string;

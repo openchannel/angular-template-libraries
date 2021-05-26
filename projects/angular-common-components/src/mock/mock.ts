@@ -224,6 +224,7 @@ export class MockEditUserFormComponent {
     @Input() enableTermsCheckbox: OcCheckboxData;
     @Input() defaultAccountData: OCOrganization;
     @Input() defaultOrganizationData: OCOrganization;
+    @Input() customTermsDescription: TemplateRef<any>;
 }
 
 @Component({
