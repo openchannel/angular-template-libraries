@@ -78,6 +78,16 @@
     font-size: $size;
 }
 
+// headings and texts
+
+@mixin default-heading {
+
+}
+
+@mixin default-text {
+
+}
+
 // template elements
 
 @mixin card-body {
