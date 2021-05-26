@@ -11,3 +11,22 @@ export interface PreviewFieldModel extends AppTypeFieldModel {
     fieldValue: any;
     formArrayDFA: FormArray;
 }
+
+export interface FormArrayItem {
+    new: boolean;
+    isEdit: boolean;
+    formData: any;
+    previewLabel: PreviewLabel;
+    previewFiledValues: FieldValueModel[];
+}
+
+export interface PreviewLabel {
+    defaultLabel: string;
+    customLabelValue?: FieldValueModel[];
+    customLabelDefinition?: AppTypeFieldModel;
+}
+
+export interface FieldValueModel {
+    fieldId: string;
+    fieldValue: any;
+}
