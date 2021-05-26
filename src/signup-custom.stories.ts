@@ -31,10 +31,10 @@ import {
                 [customTermsDescription]="enableCustomTerms ? customTerms: null">
             </oc-signup-custom>
             <ng-template #customTerms>
-                <p>Terms terms terms terms terms terms terms.
-                <a href="" style="color: limegreen">First Link</a>
-                <a href="" style="color: orange">Second Link</a>
-                </p>
+                <div class="edit-user-form__consent__label">
+                    Custom <a href="">Terms</a>
+                </div>
+                <oc-checkbox class="edit-user-form__consent-checkbox" style='border: red;' [formControl]="termsControl"></oc-checkbox>
             </ng-template>
         </div>`
 })
