@@ -38,10 +38,15 @@ export class OcEditUserFormComponent implements OnInit {
 
     buildFormByConfig(formConfig: OcEditUserFormConfig): void {
         this.clearPreviousValues();
+        const fieldsSorting = (field1, field2) => {
+            const index1 = formConfig.fieldsOrder.indexOf(field1.id);
+            const index2 = formConfig.fieldsOrder.indexOf(field2.id);
+            return (index1 > -1 ? index1 : Infinity) - (index2 > -1 ? index2 : Infinity);
+        };
         if (formConfig) {
             this.currentFormConfig = formConfig;
             let tempForm: any = {};
-            if (formConfig?.organization?.includeFields) {
+            if (formConfig.organization?.includeFields) {
                 const config = formConfig?.organization;
                 tempForm = TypeMergeUtils.mergeTypes(
                     tempForm,
@@ -51,7 +56,7 @@ export class OcEditUserFormComponent implements OnInit {
                     config.includeFields,
                 );
             }
-            if (formConfig?.account?.includeFields) {
+            if (formConfig.account?.includeFields) {
                 const config = formConfig?.account;
                 tempForm = TypeMergeUtils.mergeTypes(tempForm, this.defaultAccountData, config.typeData, '', config.includeFields);
             }
@@ -64,13 +69,8 @@ export class OcEditUserFormComponent implements OnInit {
                 };
                 tempForm = TypeMergeUtils.mergeTypes(tempForm, this.defaultOrganizationData, { fields: [passwordField] }, '', ['password']);
             }
-
             if (formConfig.fieldsOrder) {
-                tempForm.fields.sort((item1, item2) => {
-                    const index1 = formConfig.fieldsOrder.indexOf(item1.id);
-                    const index2 = formConfig.fieldsOrder.indexOf(item2.id);
-                    return (index1 > -1 ? index1 : Infinity) - (index2 > -1 ? index2 : Infinity);
-                });
+                tempForm.fields.sort(fieldsSorting);
             }
 
             this.mainFormModel = tempForm;
