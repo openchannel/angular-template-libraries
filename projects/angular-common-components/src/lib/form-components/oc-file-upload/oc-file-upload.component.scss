@@ -50,6 +50,7 @@
             &-text {
                 @include font-size-md();
                 color: $text-color;
+                @include default-text();
             }
 
             &-browse {
@@ -146,6 +147,7 @@
             .file-container__upload-item-status {
                 @include font-size-sm();
                 color: $text-color;
+                @include default-text();
             }
         }
 

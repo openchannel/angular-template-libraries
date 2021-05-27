@@ -112,11 +112,12 @@
 
       &-summary {
         @include font-medium();
+        @include font-size-md();
         line-height: 2.3rem;
         height: 2.3rem;
-        @include font-size-md();
         margin-bottom: 0;
         color: $text-color;
+        @include default-text();
       }
     }
   }

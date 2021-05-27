@@ -71,6 +71,7 @@
         padding: 5px 0;
         @include font-size-sm();
         color: $text-color;
+        @include default-text();
       }
 
       .date-picker__calendar-days {
@@ -93,6 +94,7 @@
 
         .date-picker__prev-month {
           color: $text-color;
+          @include default-text();
 
           &:hover {
             background: #fff;

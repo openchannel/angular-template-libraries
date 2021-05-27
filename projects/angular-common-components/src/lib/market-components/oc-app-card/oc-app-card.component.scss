@@ -46,6 +46,7 @@
       @include font-size-md();
       margin-bottom: 0;
       color: $text-color;
+      @include default-text();
     }
   }
 }

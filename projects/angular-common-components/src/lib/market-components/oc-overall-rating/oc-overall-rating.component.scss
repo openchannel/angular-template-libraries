@@ -38,6 +38,7 @@
         &-label {
             @include font-size-md();
             color: $text-color;
+            @include default-text();
         }
 
         &-reviews-count {
@@ -82,6 +83,7 @@
             color: $text-color;
             height: 14px;
             line-height: 14px;
+            @include default-text();
         }
     }
 }

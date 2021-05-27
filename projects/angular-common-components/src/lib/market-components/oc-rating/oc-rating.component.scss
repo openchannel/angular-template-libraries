@@ -16,6 +16,7 @@
         &__label {
             color: $text-color;
             margin-left: 1rem;
+            @include default-text();
 
             &.medium {
                 @include font-medium();
@@ -32,6 +33,7 @@
         &__star {
             color: $text-color;
             position: relative;
+            @include default-text();
 
             &_filled {
                 color: $yellow;

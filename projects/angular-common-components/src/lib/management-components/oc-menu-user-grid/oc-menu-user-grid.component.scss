@@ -119,6 +119,7 @@
   &__text {
     @include font-size-md();
     color: $text-color;
+    @include default-text();
     &_dark {
       color: $body-color;
     }

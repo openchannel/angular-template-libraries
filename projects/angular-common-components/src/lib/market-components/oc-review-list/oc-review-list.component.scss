@@ -36,6 +36,7 @@
         color: $text-color;
         line-height: 16px;
         margin-bottom: 1rem;
+        @include default-text();
       }
     }
     &-text {

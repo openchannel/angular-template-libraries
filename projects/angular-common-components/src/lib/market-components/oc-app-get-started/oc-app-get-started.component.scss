@@ -53,6 +53,7 @@
       margin: 2.5rem 0;
       width: 75%;
       color: $text-color;
+      @include default-text();
       @include media-breakpoint-sm {
         width: 100%;
         margin: 1rem 0 0;

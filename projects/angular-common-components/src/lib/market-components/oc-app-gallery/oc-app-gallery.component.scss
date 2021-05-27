@@ -21,13 +21,15 @@
   }
 
   &__description {
+    @include font-size-md();
+    color: $text-color;
+    margin-bottom: 0;
+    padding: 0 1rem;
+    @include default-text();
     @include media-breakpoint-md {
       padding-left: 0;
     }
-    color: $text-color;
-    @include font-size-md();
-    margin-bottom: 0;
-    padding: 0 1rem;
+
   }
 
   &__more {

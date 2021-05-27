@@ -133,13 +133,15 @@
         }
 
         .oc-table__app-version {
-            color: $text-color;
             @include font-size-sm();
+            color: $text-color;
+            @include default-text();
         }
 
         .oc-table__text-wrapper {
-            color: $text-color;
             @include font-size-md();
+            color: $text-color;
+            @include default-text();
 
             &_blank {
                 padding: 0 26px;
