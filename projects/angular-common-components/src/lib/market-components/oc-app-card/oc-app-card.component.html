@@ -17,6 +17,6 @@
                        [reviewCount]="appData.reviewCount"
                        type="single-star"></oc-rating>
         </div>
-        <p class="oc-card__content-summary" ellipsis>{{appData.summary ? appData.summary : appData.description | replaceHtmlTags}}</p>
+        <p class="oc-card__content-summary" ellipsis>{{(appData.summary ? appData.summary : appData.description ) | replaceHtmlTags}}</p>
     </div>
 </ng-template>

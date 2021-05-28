@@ -5,6 +5,31 @@
 * [Bootstrap](https://getbootstrap.com) v. 4.4.1
 * [Storybook](https://storybook.js.org/) v. 6.1.20
 
+## About the library
+
+Includes components for portal and market (form builder, form components, file upload, app cards, login, signup, inputs, etc)
+* Form components:
+  - form builder.
+  - input, selects.
+  - file upload
+  - color picker
+  - video url
+  - date time picker
+  - tags
+  - etc
+* Common components:
+  - select.
+  - button
+  - iframe video
+  - etc.
+* Portal components:
+  - charts
+  - app tables
+* Market components:
+  - app cards
+  - app tables
+* Auth components
+
 ## Dependencies
 
     "@ng-bootstrap/ng-bootstrap": "6.0.2",
@@ -59,19 +84,49 @@ npm i --save @ng-bootstrap/ng-bootstrap@6.0.2 @tinymce/tinymce-angular@4.2.0 ang
     "node_modules/tinymce/tinymce.min.js"
   ]
 ```
+6. For the File Uploader component should be created a service which extends `FileUploaderService`.
+Service must consist two function `fileUploadRequest` and `fileDetailsRequest` which  should return your requests to CAP
+   Example of service:
+```sh
+@Injectable()
+export class FileService extends FileUploaderService {
+    constructor(private fileUploaderService: FileUploadDownloadService) {
+        super();
+    }
 
+    fileUploadRequest(
+        file: FormData,
+        isPrivate: boolean,
+        hash?: string[],
+    ): Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent> {
+        return this.fileUploaderService.uploadToOpenChannel(file, isPrivate, hash);
+    }
+
+    fileDetailsRequest(fileId: string): Observable<FileDetails> {
+        return this.fileUploaderService.downloadFileDetails(fileId);
+    }
+}
+```
+`FileUploaderService` should be provided in `AppModule`:
+```sh
+{ provide: FileUploaderService, useClass: FileService }
+```
 ## Development
 
 ### Connect library to project
+Note: Run commands from the root directory.
 
 1. `ng build angular-common-components`
 
-2. `cd dist/angular-common-components`
+2. `cd ./dist/angular-common-components`
 
 5. `sudo npm link` Then copy result link.
 
 4. In your angular project run:<br> `npm install file:<{absolute path to angular-common-components}/dist/angular-common-components>`
 
+5. Import example (ts file):
+   import { ComponentOrModel } from '@openchannel/angular-common-components/src/lib/common-components';
+   
 ### Build Project with watching file changes
 Run `ng build angular-common-components --watch`
 
@@ -96,7 +151,7 @@ Run `cd ./dist/angular-common-components && npm publish`
 
 * Build Project
 
-  ``ng build``
+  ``ng build angular-common-components``
 
 * Create doc for storybook
 
@@ -112,11 +167,3 @@ Note:
 
 * If updating the storybook version did not help. Try this:
   ``npm run storybook-update-and-run``
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-<!-- CONTACT -->
-## Contact
-
-Project Link: [https://bitbucket.org/openchannel/angular-common-components/src/develop/](https://bitbucket.org/openchannel/angular-common-components/src/develop/)

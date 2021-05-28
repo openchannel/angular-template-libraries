@@ -20,3 +20,11 @@ const TextSearchComponent = (args: OcTextSearchComponent) => ({
 });
 
 export const SimpleSearch = TextSearchComponent.bind({});
+
+export const SearchWithButtons = TextSearchComponent.bind({});
+
+SearchWithButtons.args = {
+    clearButtonText: 'Cancel',
+    hasClearTextControl: true,
+    hasMagnifier: false,
+};

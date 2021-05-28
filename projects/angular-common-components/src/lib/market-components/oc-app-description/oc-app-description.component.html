@@ -1,6 +1,6 @@
 <div class="description">
-   <h4 class="description__heading" [ngClass]="headerClass">{{_header}}</h4>
-   <p #description class="description__text" 
+   <h4 class="description__heading" [ngClass]="headerClass">{{headerText}}</h4>
+   <p #description class="description__text"
       [innerHTML]="allowTruncateLogic && threshold && !showFullDescription ? cutAppDescription : appDescription | safe:'html'"
       [class.hid-description]="!showFullDescription">
    </p>
@@ -8,4 +8,3 @@
          *ngIf="allowTruncateLogic && threshold"
          (click)="showFullDescription = !showFullDescription">{{showFullDescription ? 'Show less' : 'Show more'}}</span>
  </div>
- 
