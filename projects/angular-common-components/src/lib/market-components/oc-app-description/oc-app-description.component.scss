@@ -1,24 +1,28 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
 .description {
-  width: 100%;
+    width: 100%;
 
-  &__heading {
-    margin-bottom: 2rem;
-  }
-
-  &__text {
-    color: #727272;
-    margin-bottom: 0;
-    height: 9rem;
-
-    &_visible {
-      height: auto;
+    &__heading {
+        margin-bottom: 2rem;
     }
-  }
 
-  &__show-more {
-    cursor: pointer;
-    font-size: 14px;
-    color: #537cfd;
-    font-family: "Rubik-Medium", sans-serif;
-  }
+    &__text {
+        color: $text-color;
+        margin-bottom: 0;
+        height: 9rem;
+        @include default-text();
+
+        &_visible {
+          height: auto;
+        }
+    }
+
+    &__show-more {
+        @include font-medium();
+        @include font-size-md();
+        cursor: pointer;
+        color: #537cfd;
+    }
 }
