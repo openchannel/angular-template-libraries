@@ -1,5 +1,5 @@
-@import '../../../../assets/styles/theme.scss';
-@import '../../../../assets/styles/mixins.scss';
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
 
 .card-wrapper {
   width: 100%;
@@ -72,11 +72,11 @@
       }
 
       &-name {
+        @include font-medium();
         display: inline-block;
         margin-bottom: 0.5rem;
         line-height: 19px;
         height: 19px;
-        font-family: 'Rubik-Medium', sans-serif;
       }
 
       &-data {
@@ -88,8 +88,8 @@
         }
 
         .info-card__content-price {
-          font-size: 14px;
-          font-family: 'Rubik-Medium', sans-serif;
+          @include font-medium();
+          @include font-size-md();
           color: $primary;
           min-width: 130px;
           flex-shrink: 0;
@@ -111,12 +111,13 @@
       }
 
       &-summary {
+        @include font-medium();
+        @include font-size-md();
         line-height: 2.3rem;
         height: 2.3rem;
-        font-size: 14px;
         margin-bottom: 0;
-        color: #727272;
-        font-family: 'Rubik-Medium', serif;
+        color: $text-color;
+        @include default-text();
       }
     }
   }

@@ -29,7 +29,7 @@
     padding: 5rem;
   }
   &__text {
-    @include font-size-breakpoint(lg);
+    @include font-size-lg();
     display: block;
     margin-bottom: 0;
     text-align: center;

@@ -4,20 +4,12 @@
 .social-links {
     display: flex;
     align-items: flex-start;
-    margin-left: auto;
     flex-wrap: wrap;
-    @include media-breakpoint-md() {
-        margin-right: auto;
-        margin-left: 0;
-    }
+    margin-left: -8px;
+    margin-right: -8px;
 
     &__item {
         display: block;
-        margin-bottom: 16px;
-        margin-left: 16px;
-        @include media-breakpoint-md() {
-            margin-left: 0;
-            margin-right: 16px;
-        }
+        margin: 0 8px 16px;
     }
 }
