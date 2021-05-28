@@ -1,0 +1,15 @@
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/theme';
+
+.social-links {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-left: -8px;
+    margin-right: -8px;
+
+    &__item {
+        display: block;
+        margin: 0 8px 16px;
+    }
+}

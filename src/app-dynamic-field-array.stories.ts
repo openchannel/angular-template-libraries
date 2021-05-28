@@ -8,9 +8,11 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ColorPickerModule } from 'ngx-color-picker';
 import {
+    FileDetails,
+    FileUploaderService,
     OcColorComponent,
     OcDatetimePickerComponent,
-    OcDynamicArrayItemComponent, OcDynamicArrayPreviewComponent,
+    OcDynamicArrayPreviewComponent,
     OcDynamicFieldArrayComponent,
     OcFileUploadComponent,
     OcFormComponent,
@@ -23,6 +25,22 @@ import {
     OcVideoUrlComponent,
 } from '@openchannel/angular-common-components/src/lib/form-components';
 import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
+import { Observable, of } from 'rxjs';
+import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
+
+class FileService extends FileUploaderService {
+    fileDetailsRequest(fileId: string): Observable<FileDetails> {
+        return of();
+    }
+
+    fileUploadRequest(
+        file: FormData,
+        isPrivate: boolean,
+        hash?: string[],
+    ): Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent> {
+        return undefined;
+    }
+}
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
@@ -40,7 +58,6 @@ const modules = {
     ],
     declarations: [
         OcFormComponent,
-        OcDynamicArrayItemComponent,
         OcTooltipLabelComponent,
         OcRichTextEditorComponent,
         OcTextareaComponent,
@@ -53,6 +70,7 @@ const modules = {
         OcMultiSelectListComponent,
         OcDynamicArrayPreviewComponent,
     ],
+    providers: [{ provide: FileUploaderService, useClass: FileService }],
 };
 
 export default {
@@ -70,7 +88,7 @@ const DynamicFieldsArrayComponent = (args: OcDynamicFieldArrayComponent) => ({
 export const DynamicFieldsArrayComponentAppendOrdering = DynamicFieldsArrayComponent.bind({});
 
 DynamicFieldsArrayComponentAppendOrdering.args = {
-    fieldDefinition: {
+    fieldDefinitionData: {
         attributes: {
             maxCount: null,
             minCount: null,
@@ -129,7 +147,7 @@ DynamicFieldsArrayComponentAppendOrdering.args = {
 export const DynamicFieldsArrayComponentPrependOrdering = DynamicFieldsArrayComponent.bind({});
 
 DynamicFieldsArrayComponentPrependOrdering.args = {
-    fieldDefinition: {
+    fieldDefinitionData: {
         attributes: {
             maxCount: null,
             minCount: null,

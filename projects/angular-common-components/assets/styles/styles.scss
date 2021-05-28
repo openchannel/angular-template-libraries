@@ -1,656 +1,625 @@
-@import 'theme.scss';
+@import 'theme';
 @import 'mixins';
 @import '~bootstrap/scss/bootstrap';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
-@import 'custom';
-
-@font-face {
-  font-family: 'Rubik-Black';
-  src: url('~@openchannel/angular-common-components/assets/fonts/Rubik-Black.woff2') format('woff2'),
-  url('~@openchannel/angular-common-components/assets/fonts/Rubik-Black.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Rubik-Black-Italic';
-  src: url('~@openchannel/angular-common-components/assets/fonts/Rubik-BlackItalic.woff2') format('woff2'),
-  url('~@openchannel/angular-common-components/assets/fonts/Rubik-BlackItalic.woff') format('woff');
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Rubik-Bold';
-  src: url('~@openchannel/angular-common-components/assets/fonts/Rubik-Bold.woff2') format('woff2'),
-  url('~@openchannel/angular-common-components/assets/fonts/Rubik-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-//@font-face {
-//  font-family: 'Rubik-Bold-Italic';
-//  font-weight: normal;
-//  src: url('~@openchannel/angular-common-components/assets/fonts/Rubik-BoldItalic.ttf') format('truetype');
-//}
-@font-face {
-  font-family: 'Rubik-Italic';
-  src: url('~@openchannel/angular-common-components/assets/fonts/Rubik-Italic.woff2') format('woff2'),
-  url('~@openchannel/angular-common-components/assets/fonts/Rubik-Italic.woff') format('woff');
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Rubik-Medium';
-  src: url('~@openchannel/angular-common-components/assets/fonts/Rubik-Medium.woff2') format('woff2'),
-  url('~@openchannel/angular-common-components/assets/fonts/Rubik-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Rubik-Light';
-  src: url('~@openchannel/angular-common-components/assets/fonts/Rubik-Light.woff2') format('woff2'),
-  url('~@openchannel/angular-common-components/assets/fonts/Rubik-Light.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Rubik-Light-Italic';
-  src: url('~@openchannel/angular-common-components/assets/fonts/Rubik-LightItalic.woff2') format('woff2'),
-  url('~@openchannel/angular-common-components/assets/fonts/Rubik-LightItalic.woff') format('woff');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Rubik-Bold-Italic';
-  src: url('~@openchannel/angular-common-components/assets/fonts/Rubik-BoldItalic.woff2') format('woff2'),
-  url('~@openchannel/angular-common-components/assets/fonts/Rubik-BoldItalic.woff') format('woff');
-  font-weight: bold;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Rubik-Regular';
-  src: url('~@openchannel/angular-common-components/assets/fonts/Rubik-Regular.woff2') format('woff2'),
-  url('~@openchannel/angular-common-components/assets/fonts/Rubik-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Rubik-Medium-Italic';
-  src: url('~@openchannel/angular-common-components/assets/fonts/Rubik-MediumItalic.woff2') format('woff2'),
-  url('~@openchannel/angular-common-components/assets/fonts/Rubik-MediumItalic.woff') format('woff');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-.font-light {
-  @include font-family-rubik('Light');
-}
-
-.font-reg {
-  @include font-family-rubik('Regular');
-}
-
-.font-med {
-  @include font-family-rubik('Medium');
-}
-
-.font-bold {
-  @include font-family-rubik('Bold');
-}
-
-.font-s {
-  font-size: 12px;
-}
-
-.font-m {
-  font-size: 14px;
-}
-
-.font-l {
-  font-size: 18px;
-}
 
 html {
-  font-size: 8px;
+    font-size: 8px;
+}
+
+strong {
+    font-weight: bold;
 }
 
 * {
-  @include font-family-rubik('Regular');
-  font-size: 16px;
-  font-weight: normal;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 a {
-  color: $primary;
-  &:hover {
-    color: $primary;
-    text-decoration: none;
-  }
-  &:focus {
-    outline: none;
-  }
-  b {
-    font-size: inherit;
-  }
-}
+    color: $link-primary;
 
+    &:hover {
+        color: $link-primary;
+        text-decoration: none;
+    }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @include font-family-rubik('Medium');
+    &:focus {
+        outline: none;
+    }
+
+    b {
+        font-size: inherit;
+    }
 }
 
 h1 {
-  font-size: 40px;
+    font-size: 40px;
 }
 
 h2 {
-  font-size: 32px;
+    font-size: 32px;
 }
 
 h3 {
-  font-size: 28px;
+    font-size: 28px;
 }
 
 h4 {
-  font-size: 24px;
+    font-size: 24px;
 }
 
 h5 {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 h6 {
-  font-size: 16px;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $heading-color;
+    @include default-heading();
 }
 
 .cursor-pointer {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .form-control {
-  border: 1px solid $info;
-  border-radius: 4px;
-  font-size: 14px;
-  height: 46px;
-  padding: 12px 16px;
+    border: 1px solid $info;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 46px;
+    padding: 12px 16px;
 }
 
 .form-control:focus {
-  border: 1px solid $primary;
-  box-shadow: none;
+    border: 1px solid $primary;
+    box-shadow: none;
 }
 
 .form-control::placeholder {
-  color: $body-color;
-  opacity: 0.5;
+    color: $body-color;
+    opacity: 0.5;
 }
 
 .invalid-feedback {
-  color: $danger;
-  display: block;
-  font-size: 12px;
-  margin-top: 6px;
+    color: $danger;
+    display: block;
+    font-size: 12px;
+    margin-top: 6px;
 }
 
 .login-card {
-  background-color: $white;
-  border-radius: 4px;
-  width: 412px;
+    background-color: $white;
+    border-radius: 4px;
+    width: 412px;
 }
 
 .login-card_borders {
-  border: 1px solid $info;
-  @include media-breakpoint-sm {
-    border: none;
-  }
+    border: 1px solid $info;
+    @include media-breakpoint-sm {
+        border: none;
+    }
 }
 
 .sidebar {
-  span {
-    font-size: 14px;
-    line-height: 18px;
-  }
-  .nav {
-    .nav-item {
-      display: inline-block;
-      padding: 11px 0;
+
+    span {
+        font-size: 14px;
+        line-height: 18px;
     }
-  }
+
+    .nav {
+        .nav-item {
+            display: inline-block;
+            padding: 11px 0;
+        }
+    }
 }
 
 /* oc-file-upload */
 
 .file-container__upload-item-progress {
 
-  .progress {
-    background-color: $info;
-    height: 4px;
-  }
-
-  &[type='primary'] {
-
     .progress {
-      background-color: #e9ecef;
-      height: 4px;
+        background-color: $info;
+        height: 4px;
     }
-  }
+
+    &[type='primary'] {
+
+        .progress {
+            background-color: #e9ecef;
+            height: 4px;
+        }
+    }
 }
 
 /* end */
 
-.company-logo{
-  height: 27px;
+.company-logo {
+    height: 27px;
 }
 
 .sign-up__text {
-  margin-bottom: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 /** End buttons **/
-.divider{
-  border-top: 1px solid $info;
+
+.divider {
+    border-top: 1px solid $info;
 }
 
 /** form inputs validation style **/
-oc-input, oc-password, oc-select, oc-video-url, oc-color, oc-rich-text-editor, oc-textarea {
-  &.ng-invalid {
-    .custom-editor.ng-touched {
-      .tox-tinymce {
-        border-color: $danger;
-      }
+oc-input,
+oc-password,
+oc-select,
+oc-video-url,
+oc-color,
+oc-rich-text-editor,
+oc-textarea {
+    &.ng-invalid {
+        .custom-editor.ng-touched {
+            .tox-tinymce {
+                border-color: $danger;
+            }
+        }
+
+        &.ng-touched {
+            input, select, button.ng-invalid, textarea {
+                border-color: $danger;
+            }
+        }
     }
-    &.ng-touched {
-      input, select, button.ng-invalid , textarea {
-        border-color: $danger;
-      }
-    }
-  }
 }
 
-.toggle_password{
-  float: right;
-  margin-top: -31px;
-  margin-right: 16px;
-  font-size: 16px;
-  cursor: pointer;
-  position: relative;
-  background: url(~@openchannel/angular-common-components/assets/img/password-hide.svg) center center no-repeat;
-  height: 16px;
-  width: 16px;
+.toggle_password {
+    float: right;
+    margin-top: -31px;
+    margin-right: 16px;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    background: url(~@openchannel/angular-common-components/assets/img/password-hide.svg) center center no-repeat;
+    height: 16px;
+    width: 16px;
 }
-.toggle_password.fa-eye-slash{
-  background: url(~@openchannel/angular-common-components/assets/img/password-show.svg) center center no-repeat;
+
+.toggle_password.fa-eye-slash {
+    background: url(~@openchannel/angular-common-components/assets/img/password-show.svg) center center no-repeat;
 }
+
 /** input password **/
 /** input radio **/
 
-.custom-radio .custom-control-input ~ .custom-control-label{
-  font-size: 14px;
-  line-height: 28px;
-  padding-left:4px;
-  margin: auto;
+.custom-radio .custom-control-input ~ .custom-control-label {
+    font-size: 14px;
+    line-height: 28px;
+    padding-left: 4px;
+    margin: auto;
 }
 
 .custom-radio .custom-control-input ~ .custom-control-label::after,
 .custom-radio .custom-control-input ~ .custom-control-label::before {
-  top: 0.35rem;
+    top: 0.35rem;
 }
 
 .custom-radio .custom-control-input:checked ~ .custom-control-label::after {
-  background-image: url(~@openchannel/angular-common-components/assets/img/radio.svg);
+    background-image: url(~@openchannel/angular-common-components/assets/img/radio.svg);
 }
+
 .custom-control-input:checked ~ .custom-control-label::before {
-  color: $light;
-  border-color: $primary;
-  background-color: $light;
+    color: $light;
+    border-color: $primary;
+    background-color: $light;
 }
+
 /** input radio **/
 
-.menu-edit{
-  background: url(~@openchannel/angular-common-components/assets/img/edit_icon.svg) no-repeat 15px;
-}
-.menu-edit:hover{
-  background: url(~@openchannel/angular-common-components/assets/img/edit_icon_h.svg) no-repeat 15px;
-}
-.menu-delete{
-  background: url(~@openchannel/angular-common-components/assets/img/delete.svg) no-repeat 15px;
-}
-.menu-delete:hover{
-  background: url(~@openchannel/angular-common-components/assets/img/delete_h.svg) no-repeat 15px;
+.menu-edit {
+    background: url(~@openchannel/angular-common-components/assets/img/edit_icon.svg) no-repeat 15px;
 }
 
-.menu-suspend{
-  background: url(~@openchannel/angular-common-components/assets/img/suspend_icon.svg) no-repeat 15px;
-}
-.menu-suspend:hover{
-  background: url(~@openchannel/angular-common-components/assets/img/suspend_icon_h.svg) no-repeat 15px;
-}
-.menu-unsuspend{
-  background: url(~@openchannel/angular-common-components/assets/img/suspend_icon.svg) no-repeat 15px;
-}
-.menu-unsuspend:hover{
-  background: url(~@openchannel/angular-common-components/assets/img/suspend_icon_h.svg) no-repeat 15px;
+.menu-edit:hover {
+    background: url(~@openchannel/angular-common-components/assets/img/edit_icon_h.svg) no-repeat 15px;
 }
 
-.menu-publish{
-  background: url(~@openchannel/angular-common-components/assets/img/submit_icon.svg) no-repeat 15px;
-}
-.menu-publish:hover{
-  background: url(~@openchannel/angular-common-components/assets/img/submit_icon_h.svg) no-repeat 15px;
+.menu-delete {
+    background: url(~@openchannel/angular-common-components/assets/img/delete.svg) no-repeat 15px;
 }
 
-.menu-submit{
-  background: url(~@openchannel/angular-common-components/assets/img/submit_icon.svg) no-repeat 15px;
-}
-.menu-submit:hover{
-  background: url(~@openchannel/angular-common-components/assets/img/submit_icon_h.svg) no-repeat 15px;
+.menu-delete:hover {
+    background: url(~@openchannel/angular-common-components/assets/img/delete_h.svg) no-repeat 15px;
 }
 
-.menu-preview{
-  background: url(~@openchannel/angular-common-components/assets/img/view.svg) no-repeat 15px;
+.menu-suspend {
+    background: url(~@openchannel/angular-common-components/assets/img/suspend_icon.svg) no-repeat 15px;
 }
-.menu-preview:hover{
-  background: url(~@openchannel/angular-common-components/assets/img/view.svg) no-repeat 15px;
+
+.menu-suspend:hover {
+    background: url(~@openchannel/angular-common-components/assets/img/suspend_icon_h.svg) no-repeat 15px;
+}
+
+.menu-unsuspend {
+    background: url(~@openchannel/angular-common-components/assets/img/suspend_icon.svg) no-repeat 15px;
+}
+
+.menu-unsuspend:hover {
+    background: url(~@openchannel/angular-common-components/assets/img/suspend_icon_h.svg) no-repeat 15px;
+}
+
+.menu-publish {
+    background: url(~@openchannel/angular-common-components/assets/img/submit_icon.svg) no-repeat 15px;
+}
+
+.menu-publish:hover {
+    background: url(~@openchannel/angular-common-components/assets/img/submit_icon_h.svg) no-repeat 15px;
+}
+
+.menu-submit {
+    background: url(~@openchannel/angular-common-components/assets/img/submit_icon.svg) no-repeat 15px;
+}
+
+.menu-submit:hover {
+    background: url(~@openchannel/angular-common-components/assets/img/submit_icon_h.svg) no-repeat 15px;
+}
+
+.menu-preview {
+    background: url(~@openchannel/angular-common-components/assets/img/view.svg) no-repeat 15px;
+}
+
+.menu-preview:hover {
+    background: url(~@openchannel/angular-common-components/assets/img/view.svg) no-repeat 15px;
 }
 
 .min-vw-auto {
-  min-height: auto;
+    min-height: auto;
 }
 
 .min-vh-auto {
-  min-width: auto;
+    min-width: auto;
 }
 
 a.link {
-  cursor: pointer;
-  color: $primary;
-  &:hover {
+    cursor: pointer;
     color: $primary;
-    text-decoration: none;
-  }
-  &:focus {
-    outline:none
-  }
+
+    &:hover {
+        color: $primary;
+        text-decoration: none;
+    }
+
+    &:focus {
+        outline: none
+    }
 }
 
 .error-container {
-  background-color: $error-bg;
-  color: $error;
+    background-color: $error-bg;
+    color: $error;
 }
 
 .dropdown-menu {
-  border-radius: 4px;
-  margin-top: 1rem;
-  overflow-y: auto;
-  padding: 0;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  & .dropdown-item {
-    @include font-size-breakpoint(md);
-    border-bottom: 1px solid $info;
-    padding: 2rem;
-    &:last-child {
-      border-bottom: 0;
+    border-radius: 4px;
+    margin-top: 1rem;
+    overflow-y: auto;
+    padding: 0;
+
+    &::-webkit-scrollbar {
+        display: none;
     }
-    &.active, &:active {
-      background-color: rgba($info, .2);
-      color: $body-color;
+
+    .dropdown-item {
+        @include font-size-md();
+        padding: 14px 16px;
+        border-bottom: 1px solid $dropdown-border;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        &.active, &:active {
+            background-color: rgba($dropdown-border, .2);
+            color: $dropdown-item-text-hover;
+        }
     }
-  }
 }
 
 // Special dropdown menu for the Text search component
+
 .oc-dropbox {
-  .dropdown-menu {
-    max-height: 229px;
-    width: 100%;
-    .dropdown-item {
-      padding: 16px;
-      border-bottom: 1px;
-      &:hover {
-        color: $body-color;
-        background-color: $light;
-      }
-      &:active{
-        color: $primary;
-        background-color: $light;
-        border-color: unset;
-      }
-      &:focus{
-        outline: none;
-        background-color: $light;
-      }
+
+    .dropdown-menu {
+        max-height: 229px;
+        width: 100%;
+
+        .dropdown-item {
+            padding: 16px;
+            border-bottom: 1px;
+
+            &:hover {
+                background-color: $dropdown-light;
+            }
+
+            &:active {
+                color: $dropdown-item-text-hover;
+                background-color: $dropdown-light;
+                border-color: unset;
+            }
+
+            &:focus {
+                outline: none;
+                background-color: $dropdown-light;
+            }
+        }
     }
-  }
 }
 
 // Special field label for the oc-dynamic-array-preview component
+
 .array-preview__field-title {
-  .oc-form-label {
-    font-weight: bold;
+
+    .oc-form-label {
+        font-weight: bold;
+    }
+}
+
+.cards-interface__preview-header {
+  .array-preview {
+    .array-preview__field {
+      margin: 0;
+      &-content__tags-item {
+        margin-bottom: 8px;
+      }
+    }
   }
 }
 
 .modal-button {
-  width: 255px;
+    width: 255px;
 }
 
 //Tiny Editor style customization
+
 .rich-editor__custom {
-  .tox-tinymce {
-    border-radius: 4px;
-    border-color: $info;
-    &:focus-within {
-      border-color: $primary;
-    }
-    .tox-editor-container {
-      .tox-editor-header {
-        .tox-toolbar-overlord {
-          .tox-toolbar__primary {
-            .tox-toolbar__group {
-              .tox-tbtn--enabled {
-                background: none;
-                svg {
-                  fill: $primary
-                }
-                &:hover {
-                  background: #f4f4f4;
-                }
-              }
-              .tox-tbtn {
-                &:hover {
-                  background: #f4f4f4;
-                }
-                svg {
-                  fill: mix($black, $info, 38%);
-                }
-                &__select-label {
-                  color: mix($black, $info, 38%);
-                }
-              }
-            }
-          }
-          .tox-toolbar__overflow {
-            .tox-toolbar__group {
-              .tox-tbtn--enabled {
-                background: none;
-                svg {
-                  fill: $primary
-                }
-                &:hover {
-                  background: #f4f4f4;
-                }
-              }
-              .tox-tbtn {
-                &:hover {
-                  background: #f4f4f4;
-                }
-                svg {
-                  fill: mix($black, $info, 38%);
-                }
-                &__select-label {
-                  color: mix($black, $info, 38%);
-                }
-              }
-            }
-          }
-        }
-        .tox-tbtn--select {
-          width: 92px;
-        }
-      }
-    }
-    .tox-statusbar {
-      opacity: 0;
-    }
-  }
-  &_focus {
+
     .tox-tinymce {
-      border-color: $primary;
+        border-radius: 4px;
+        border-color: $info;
+
+        &:focus-within {
+            border-color: $primary;
+        }
+
+        .tox-editor-container {
+
+            .tox-editor-header {
+
+                .tox-toolbar-overlord {
+
+                    .tox-toolbar__primary {
+
+                        .tox-toolbar__group {
+
+                            .tox-tbtn--enabled {
+                                background: none;
+
+                                svg {
+                                    fill: $primary
+                                }
+
+                                &:hover {
+                                    background: #f4f4f4;
+                                }
+                            }
+
+                            .tox-tbtn {
+
+                                &:hover {
+                                    background: #f4f4f4;
+                                }
+
+                                svg {
+                                    fill: mix($black, $info, 38%);
+                                }
+
+                                &__select-label {
+                                    color: mix($black, $info, 38%);
+                                }
+                            }
+                        }
+                    }
+
+                    .tox-toolbar__overflow {
+
+                        .tox-toolbar__group {
+
+                            .tox-tbtn--enabled {
+                                background: none;
+
+                                svg {
+                                    fill: $primary;
+                                }
+
+                                &:hover {
+                                    background: #f4f4f4;
+                                }
+                            }
+
+                            .tox-tbtn {
+
+                                &:hover {
+                                    background: #f4f4f4;
+                                }
+
+                                svg {
+                                    fill: mix($black, $info, 38%);
+                                }
+
+                                &__select-label {
+                                    color: mix($black, $info, 38%);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .tox-tbtn--select {
+                    width: 92px;
+                }
+            }
+        }
+
+        .tox-statusbar {
+            opacity: 0;
+        }
     }
-  }
+
+    &_focus {
+
+        .tox-tinymce {
+            border-color: $primary;
+        }
+    }
 }
+
 // end of the Tiny Editor style customization
 
 
 // oc-select
 
 oc-select {
-  & .btn:focus {
-    border-color: $primary !important;
-  }
 
-  .dropdown-menu {
-    .dropdown-item {
-      padding: 16px;
-      border-bottom: 1px;
-      &:hover {
-        color: $body-color;
-        background-color: $light;
-      }
-      &:active{
-        color: $primary;
-        background-color: $light;
-        border-color: unset;
-      }
-      &:focus{
-        outline: none;
-        background-color: $light;
-      }
+    & .btn:focus {
+        border-color: $dropdown-item-text-hover !important;
     }
-  }
+
+    .dropdown-menu {
+
+        .dropdown-item {
+            padding: 16px;
+            border-bottom: 1px;
+
+            &:hover {
+                color: $dropdown-item-text-alternative;
+                background-color: $dropdown-light;
+            }
+
+            &:active {
+                color: $dropdown-item-text-hover;
+                background-color: $dropdown-light;
+                border-color: unset;
+            }
+
+            &:focus {
+                outline: none;
+                background-color: $dropdown-light;
+            }
+        }
+    }
 }
 
 .svg-primary {
-  path {
-    fill: $primary;
-  }
+
+    path {
+        fill: $primary;
+    }
 }
 
 .dropdown-toggle[aria-expanded='true']::after {
-  content: url(~@openchannel/angular-common-components/assets/img/select-up.svg);
-  border: none;
+    content: url(~@openchannel/angular-common-components/assets/img/select-up.svg);
+    border: none;
 }
 
 .dropdown-toggle[aria-expanded='false']::after {
-  content: url(~@openchannel/angular-common-components/assets/img/select-down.svg);
-  border: none;
+    content: url(~@openchannel/angular-common-components/assets/img/select-down.svg);
+    border: none;
 }
 
 .tag-element__tooltip {
-  top: -12px !important;
+    top: -12px !important;
 
-  .arrow {
-    &:before {
-      width: 0;
-      height: 0;
-      border-right: 4px solid transparent;
-      border-left: 4px solid transparent;
-      border-top: 6px solid $info;
-      left: -1px;
-      top: -0.8px;
+    .arrow {
+
+        &:before {
+            width: 0;
+            height: 0;
+            border-right: 4px solid transparent;
+            border-left: 4px solid transparent;
+            border-top: 6px solid $info;
+            left: -1px;
+            top: -0.8px;
+        }
+
+        &:after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-top: 4.5px solid $white;
+            position: absolute;
+            left: 0;
+            top: -0.9px;
+        }
     }
 
-    &:after {
-      content: '';
-      width: 0;
-      height: 0;
-      border-left: 3px solid transparent;
-      border-right: 3px solid transparent;
-      border-top: 4.5px solid $white;
-      position: absolute;
-      left: 0;
-      top: -0.9px;
+    .tooltip-inner {
+        background-color: $white;
+        color: $body-color;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 4px;
+        border: solid 1px $info;
+        padding: 3px 10px;
     }
-  }
-
-  .tooltip-inner {
-    background-color: $white;
-    color: $body-color;
-    font-size: 12px;
-    line-height: 1.5;
-    border-radius: 4px;
-    border: solid 1px $info;
-    padding: 3px 10px;
-  }
 }
 
 .oc-button {
-  &_primary {
-    .oc-button__spinner {
-      .la-ball-spin {
-        color: $white;
-      }
-    }
-  }
 
-  &_secondary {
-    .oc-button__spinner {
-      .la-ball-spin {
-        color: $body-color;
-      }
-    }
-  }
+    &_primary {
 
-  &_danger {
-    .oc-button__spinner {
-      .la-ball-spin {
-        color: $white;
-      }
+        .oc-button__spinner {
+
+            .la-ball-spin {
+                color: $white;
+            }
+        }
     }
-  }
+
+    &_secondary {
+
+        .oc-button__spinner {
+
+            .la-ball-spin {
+                color: $body-color;
+            }
+        }
+    }
+
+    &_danger {
+
+        .oc-button__spinner {
+
+            .la-ball-spin {
+                color: $white;
+            }
+        }
+    }
 }
 
 oc-button.tags__button-add {
-  & .oc-button {
-    min-height: 46px;
-    line-height: 19px;
-  }
+
+    & .oc-button {
+        min-height: 46px;
+        line-height: 19px;
+    }
 }

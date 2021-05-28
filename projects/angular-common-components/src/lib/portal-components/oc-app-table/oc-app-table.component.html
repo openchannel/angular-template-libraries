@@ -61,7 +61,7 @@
                             </div>
                         </td>
                         <td class="oc-table__td">
-                            <span class="oc-table__text-wrapper oc-table__summary-text">{{app.customData.summary ? app.customData.summary : '' | replaceHtmlTags}}</span>
+                            <span class="oc-table__text-wrapper oc-table__summary-text">{{app.customData.summary ? (app.customData.summary | replaceHtmlTags) : ''}}</span>
                         </td>
                         <td class="oc-table__td">
                             <span class="oc-table__text-wrapper">{{app.created | date:'M/d/yyyy'}}</span>
@@ -111,7 +111,7 @@
                                 </div>
                             </td>
                             <td class="oc-table__td">
-                                <span class="oc-table__text-wrapper oc-table__summary-text">{{child.customData.summary ? child.customData.summary : '' | replaceHtmlTags}}</span>
+                                <span class="oc-table__text-wrapper oc-table__summary-text">{{child.customData.summary ? (child.customData.summary | replaceHtmlTags) : ''}}</span>
                             </td>
                             <td class="oc-table__td">
                                 <span class="oc-table__text-wrapper">{{child.created | date:'M/d/yyyy'}}</span>
@@ -141,7 +141,7 @@
                                 <ng-container [ngTemplateOutletContext]="{ $implicit: {data: child, child: true, index: i} }"
                                               [ngTemplateOutlet]="appMenuTemplate"></ng-container>
                             </td>
-                            <td class="oc-table__td oc-table__td_blank"></td>
+                            <td class="oc-table__td_blank"></td>
                         </tr>
                     </ng-container>
                 </ng-template>

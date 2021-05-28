@@ -6,6 +6,7 @@ import { OcCommonLibModule } from '../../common-components/';
 import { By } from '@angular/platform-browser';
 
 describe('OcAppDescriptionComponent', () => {
+<<<<<<< HEAD
     let component: OcAppDescriptionComponent;
     let fixture: ComponentFixture<OcAppDescriptionComponent>;
     let descriptionElement: Element;
@@ -17,11 +18,26 @@ describe('OcAppDescriptionComponent', () => {
             }).compileComponents();
         }),
     );
+=======
+  let component: OcAppDescriptionComponent;
+  let fixture: ComponentFixture<OcAppDescriptionComponent>;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [OcAppDescriptionComponent],
+      imports: [FormsModule]
+    })
+      .compileComponents();
+  }));
+>>>>>>> 5341905580375927066ad1a64f9154cafc965873
 
     beforeEach(() => {
         fixture = TestBed.createComponent(OcAppDescriptionComponent);
         component = fixture.componentInstance;
+<<<<<<< HEAD
         descriptionElement = fixture.debugElement.query(By.css('.description__text')).nativeElement;
+=======
+>>>>>>> 5341905580375927066ad1a64f9154cafc965873
     });
 
     it('should create', () => {
@@ -64,6 +80,7 @@ describe('OcAppDescriptionComponent', () => {
         expect(getDescriptionText()).toEqual('');
     });
 
+<<<<<<< HEAD
     it('switch full description by click', () => {
         setDescriptionText('lorem ipsum');
         setThreshold(800);
@@ -76,16 +93,31 @@ describe('OcAppDescriptionComponent', () => {
         expect(descriptionElement.textContent).toEqual(component._appDescription);
     });
 
+=======
+  it('switch full description by click', () => {
+    fixture.detectChanges();
+    expect(component.showFullDescription).toBeFalsy();
+    fixture.nativeElement.querySelector('span').click();
+    fixture.detectChanges();
+    expect(component.showFullDescription).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('span')).toBeNull();
+    });
+
+
+>>>>>>> 5341905580375927066ad1a64f9154cafc965873
     function setHeaderText(header: string): void {
         component.header = header;
         fixture.detectChanges();
     }
 
+<<<<<<< HEAD
     function setThreshold(threshold: number): void {
         component.threshold = threshold;
         fixture.detectChanges();
     }
 
+=======
+>>>>>>> 5341905580375927066ad1a64f9154cafc965873
     function getHeaderText(): string {
         return fixture.nativeElement.querySelector('h4').innerHTML;
     }
@@ -99,4 +131,7 @@ describe('OcAppDescriptionComponent', () => {
         return fixture.nativeElement.querySelector('p').innerHTML;
     }
 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5341905580375927066ad1a64f9154cafc965873
