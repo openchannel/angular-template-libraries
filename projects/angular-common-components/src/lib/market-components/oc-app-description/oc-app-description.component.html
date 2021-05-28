@@ -1,7 +1,7 @@
 <div class="description">
    <h4 class="description__heading" [ngClass]="headerClass">{{_header}}</h4>
    <p #description class="description__text" 
-      [innerHTML]="allowTruncateLogic && threshold && !showFullDescription ? cutAppDescription : appDescription | safe:'html'"
+      [innerHTML]="allowTruncateLogic && threshold && !showFullDescription ? cutAppDescription : _appDescription | safe:'html'"
       [class.hid-description]="!showFullDescription">
    </p>
    <span class="description__show-more"

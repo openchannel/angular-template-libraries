@@ -10,9 +10,14 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class OcAppDescriptionComponent implements OnInit, OnChanges {
 
   @ViewChild('description', { static: true }) description: HTMLParagraphElement;
-
+  _appDescription: string
   /** App Description text */
-  @Input() appDescription: string = '';
+  @Input() set appDescription(value: string){
+    this._appDescription = value || '';
+  }
+  get appDescription(){
+    return this._appDescription;
+  }
   /** Header of the App Description section */
   _header : string = '';
   @Input() set header(header: string) {
@@ -30,9 +35,9 @@ export class OcAppDescriptionComponent implements OnInit, OnChanges {
   /** Boolean variable to allow 'show more' logic */
   @Input() allowTruncateLogic = true;
 
-  cutAppDescription: SafeHtml;
+  cutAppDescription: SafeHtml = ""
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.rerenderDescription();
@@ -45,27 +50,31 @@ export class OcAppDescriptionComponent implements OnInit, OnChanges {
   }
 
   rerenderDescription(): void {
-    if(this.allowTruncateLogic && this.threshold){
-      let indexBrakeWord: number;
-      let sizeBrakeWord: number;
-      let tagsRegExp = /<[^>]+>/gi;
-      let tagsArray = this.appDescription.match(tagsRegExp);
-      let textArray = this.appDescription.split(tagsRegExp);
-      textArray.pop();
-      textArray.shift();
-      textArray.reduce((acc, cur, i)=>{
-        if(!indexBrakeWord && !sizeBrakeWord && (acc+cur).length>=this.threshold){
-          indexBrakeWord = i;
-          sizeBrakeWord = this.threshold - acc.length;
-        }
-        return acc+cur;
-      })
-      textArray.length = indexBrakeWord+1;
-      textArray[indexBrakeWord] = textArray[indexBrakeWord].slice(0, sizeBrakeWord);
-      this.cutAppDescription = this.sanitizer.bypassSecurityTrustHtml(tagsArray.reduce((acc, curr, i)=>acc+(i-1<=textArray.length-1 ? textArray[i-1] : '')+curr));
-    }
-    if (this.threshold && this.appDescription.length < this.threshold) {
-      this.showFullDescription = true;
+    if(this._appDescription && this._appDescription.length){
+      if(this.allowTruncateLogic && this.threshold){
+        let indexBrakeWord: number;
+        let sizeBrakeWord: number;
+        let tagsRegExp = /<[^>]+>/gi;
+        let tagsArray = this._appDescription.match(tagsRegExp);
+        let textArray = this._appDescription.split(tagsRegExp);
+        textArray.pop();
+        textArray.shift();
+        textArray.reduce((acc, cur, i)=>{
+          if(!indexBrakeWord && !sizeBrakeWord && (acc+cur).length>=this.threshold){
+            indexBrakeWord = i;
+            sizeBrakeWord = this.threshold - acc.length;
+          }
+          return acc+cur;
+        })
+        textArray.length = indexBrakeWord+1;
+        textArray[indexBrakeWord] = textArray[indexBrakeWord].slice(0, sizeBrakeWord);
+        this.cutAppDescription = this.sanitizer.bypassSecurityTrustHtml(tagsArray.reduce((acc, curr, i)=>acc+(i-1<=textArray.length-1 ? textArray[i-1] : '')+curr));
+      }
+      if (this.threshold && this._appDescription.length < this.threshold) {
+        this.showFullDescription = true;
+      }
+    } else {
+      this.cutAppDescription = "";
     }
   }
 }
