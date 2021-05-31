@@ -7,12 +7,12 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class OcTitleComponent implements OnInit {
 
-    // todo move svg img to the asserts
+    // todo move svg img to the assets
 
     titleText: string;
 
     /**
-     * title (*required)
+     * title setter (*required)
      */
     @Input() set title(title: string) {
         if (!title) {
@@ -20,6 +20,7 @@ export class OcTitleComponent implements OnInit {
         }
         this.titleText = title;
     }
+
     /**
      * required (optional) - Is the required result data. Show the red marker.
      * Default: false
@@ -36,20 +37,20 @@ export class OcTitleComponent implements OnInit {
      * infoTitleIconCsv (optional) - icon for showing description.
      */
     @Input() infoTitleIconCsv: string = 'assets/angular-common-components/info.svg';
+
     /**
      * String with class-list which can be
      * added to the existed title class-list
      */
     @Input() customClass: string = '';
+
     /**
      * Style which can be added to the title
      * Supposed to be the style object
      */
     @Input() customStyle: any;
 
-    constructor() {
-    }
+    constructor() {}
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 }
