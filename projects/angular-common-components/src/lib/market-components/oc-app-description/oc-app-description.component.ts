@@ -47,7 +47,7 @@ export class OcAppDescriptionComponent implements OnInit {
                 const textArray = this.appDescriptionText.split(tagsRegExp);
                 textArray.pop();
                 textArray.shift();
-                textArray.reduce((acc, cur, i) => {
+                const reducedTextArray = textArray.reduce((acc, cur, i) => {
                     if (!indexBrakeWord && !sizeBrakeWord && (acc + cur).length >= this.threshold) {
                         indexBrakeWord = i;
                         sizeBrakeWord = this.threshold - acc.length;
