@@ -22,10 +22,9 @@ export class OcVideoComponent {
     showVideoLoader = false;
     previewData: SafeHtml;
 
-    constructor(
-        private embedService: EmbedVideoService,
-        private spinner: NgxSpinnerService
-    ) {}
+    constructor(private embedService: EmbedVideoService,
+                private spinner: NgxSpinnerService) {
+    }
 
     loadVideo() {
         this.spinner.show();
