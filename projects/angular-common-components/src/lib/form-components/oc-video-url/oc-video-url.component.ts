@@ -12,25 +12,32 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
     }],
 })
 export class OcVideoUrlComponent implements ControlValueAccessor {
-    /** Model name for input */
-    @Input() modelName;
-
-    /** Autofocus for input */
-    @Input() autoFocus;
-
-    /** Placeholder text for input */
+    /**
+     * Placeholder text for video url input.
+     * Default empty.
+     */
     @Input() placeholder: string = '';
 
-    /** List of classes which can be attached to the current list */
+    /** List of classes which can be attached to the current list. */
     @Input() class: string = '';
 
-    /** Set 'disable' state for input */
+    /**
+     * Set 'disable' state for input.
+     * Default false.
+     */
     @Input() disabled: boolean = false;
 
-    /** Type of the input. Can be 'text' or 'email' */
+    /**
+     * Type of the input. Can be 'text' or 'email'.
+     * Default 'text'.
+     */
     @Input() inputType: string = 'text';
 
-    /** Video url setter. Calls onChange() and verifyVideoUrl() methods. Default empty. */
+    /**
+     * Video url setter. Takes a string.
+     * Calls onChange() and verifyVideoUrl() methods.
+     * Required.
+     */
     @Input() set value(val: string) {
         this.videoUrl = val;
         this.onChange(this.videoUrl);
