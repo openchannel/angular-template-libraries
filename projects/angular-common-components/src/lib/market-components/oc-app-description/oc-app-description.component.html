@@ -1,13 +1,10 @@
 <div class="description">
-  <h4 class="description__heading" [ngClass]="headerClass">{{headerText}}</h4>
-  <p class="description__text"
-     *ngIf="!showDescription"
-     [innerHTML]="appDescription" ellipsis>
-  </p>
-  <p class="description__text description__text_visible"
-     *ngIf="showDescription"
-     [innerHTML]="appDescription">
-  </p>
-  <span class="description__show-more" *ngIf="!showFullDescription"
-        (click)="triggerDescription()">{{descriptionTriggerText}}</span>
-</div>
+   <h4 class="description__heading" [ngClass]="headerClass">{{headerText}}</h4>
+   <p #description class="description__text"
+      [innerHTML]="allowTruncateLogic && threshold && !showFullDescription ? cutAppDescription : appDescriptionText | safe:'html'"
+      [class.description__text_visible]="showFullDescription">
+   </p>
+   <span class="description__show-more"
+         *ngIf="allowTruncateLogic && threshold"
+         (click)="showFullDescription = !showFullDescription">{{showFullDescription ? 'Show less' : 'Show more'}}</span>
+ </div>

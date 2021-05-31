@@ -2,16 +2,18 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { OcAppDescriptionComponent } from './oc-app-description.component';
 import { FormsModule } from '@angular/forms';
+import { OcCommonLibModule } from '../../common-components/';
+import { By } from '@angular/platform-browser';
 
 describe('OcAppDescriptionComponent', () => {
     let component: OcAppDescriptionComponent;
     let fixture: ComponentFixture<OcAppDescriptionComponent>;
-
+    let descriptionElement: Element;
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 declarations: [OcAppDescriptionComponent],
-                imports: [FormsModule],
+                imports: [FormsModule, OcCommonLibModule],
             }).compileComponents();
         }),
     );
@@ -19,6 +21,7 @@ describe('OcAppDescriptionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(OcAppDescriptionComponent);
         component = fixture.componentInstance;
+        descriptionElement = fixture.debugElement.query(By.css('.description__text')).nativeElement;
     });
 
     it('should create', () => {
@@ -61,37 +64,25 @@ describe('OcAppDescriptionComponent', () => {
         expect(getDescriptionText()).toEqual('');
     });
 
-    it('expand description normal value', () => {
-        const expandDescription = 'Expand description';
-        setExpandDescription(expandDescription);
-        setDescriptionText('It is a long description text'.repeat(300));
-        expect(getExpandDescription()).toEqual(expandDescription);
+    it('switch full description by click', () => {
+        setDescriptionText('lorem ipsum');
+        setThreshold(800);
+        fixture.detectChanges();
+        expect(component.showFullDescription).toBeFalsy();
+        expect(descriptionElement.textContent).toEqual(component.cutAppDescription as string);
+        fixture.nativeElement.querySelector('span').click();
+        fixture.detectChanges();
+        expect(component.showFullDescription).toBeTruthy();
+        expect(descriptionElement.textContent).toEqual(component.appDescriptionText);
     });
-
-    it('expand description non null', () => {
-        const expandDescription = null;
-        setExpandDescription(expandDescription);
-        setDescriptionText('It is a long description text'.repeat(300));
-        expect(getExpandDescription()).toEqual('');
-    });
-
-    it('expand description non undefined', () => {
-        const expandDescription = undefined;
-        setExpandDescription(expandDescription);
-        setDescriptionText('It is a long description text'.repeat(300));
-        expect(getExpandDescription()).toEqual('');
-    });
-
-    function setExpandDescription(expandDescription: string): void {
-        component.expandDescriptionText = expandDescription;
-    }
-
-    function getExpandDescription(): string {
-        return fixture.nativeElement.querySelector('.description__show-more').textContent;
-    }
 
     function setHeaderText(header: string): void {
         component.header = header;
+        fixture.detectChanges();
+    }
+
+    function setThreshold(threshold: number): void {
+        component.threshold = threshold;
         fixture.detectChanges();
     }
 
