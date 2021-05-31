@@ -28,7 +28,7 @@ export class OcAppGetStartedComponent {
     /**
      * Get Started component type.
      *
-     * 'home' type will be with  image and description.
+     * 'home' type represents button, image and description.
      *
      * 'search' type represents title and button.
      * @default 'home'
@@ -42,9 +42,10 @@ export class OcAppGetStartedComponent {
     @Output() readonly getStarted: EventEmitter<void> = new EventEmitter<void>();
 
     constructor() {}
-
+    /**
+     * This function triggers by click on the component's button and emmit info that the button was pressed
+     */
     listAppGetStarted(): void {
-        console.log(this);
         this.getStarted.emit();
     }
 }
