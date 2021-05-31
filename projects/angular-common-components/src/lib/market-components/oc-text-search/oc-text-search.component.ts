@@ -6,28 +6,58 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
     styleUrls: ['./oc-text-search.component.scss'],
 })
 export class OcTextSearchComponent {
-    /** Search text which has been entered by user */
+    /**
+     * A model for search text value which is entered by a user.
+     * Type string.
+     * Default empty.
+     */
     @Input() searchText: string;
 
-    /** Input placeholder text */
+    /**
+     * Input placeholder text.
+     * Type string.
+     * Optional.
+     * Default 'search'.
+     */
     @Input() placeHolder: string = 'Search';
 
-    /** Input for magnifier or search button */
+    /**
+     * A boolean, that defines whether an input has a magnifier icon or a search button.
+     * Default - icon.
+     */
     @Input() hasMagnifier: boolean = true;
 
-    /** Input for clear text button */
+    /**
+     * A boolean, that defines, whether an input has 'clear text' button or no.
+     * Default false.
+     */
     @Input() hasClearTextControl: boolean = false;
 
-    /** Describes the clear button text */
+    /**
+     * Describes the text in 'clear' button.
+     * Type string.
+     * Default 'Clear'.
+     */
     @Input() clearButtonText: string = 'Clear';
 
-    /** Describes the search button text */
+    /**
+     * Describes the text int the 'search' button.
+     * Type string.
+     * Default 'Search'.
+     */
     @Input() searchButtonText: string = 'Search';
 
-    /** Emit search text on ngModel changes */
+    /**
+     * Output that emits search input value on ngModel changes.
+     * Passes a string to a parent component.
+     */
     @Output() searchTextChange: EventEmitter<string> = new EventEmitter();
 
-    /** Emit search text on enter key down or search icon click */
+    /**
+     * Output that emits a search event on 'enter' keydown or search icon click.
+     * Passes a searchable value to a parent component.
+     * Type string.
+     */
     @Output() enterSearch: EventEmitter<string> = new EventEmitter<string>();
 
     constructor() {}
