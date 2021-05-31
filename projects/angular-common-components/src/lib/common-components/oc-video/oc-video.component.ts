@@ -9,11 +9,9 @@ import {NgxSpinnerService} from 'ngx-spinner';
     styleUrls: ['./oc-video.component.scss']
 })
 export class OcVideoComponent {
-    /**
-     * The video url setter. Defines video source and calls loadVideo() method.
-     * Default: empty
-     */
-    @Input() set videoUrl(videoUrl: string) {
+
+    @Input()
+    set videoUrl(videoUrl: string) {
         this.url = videoUrl;
         this.loadVideo();
     }
