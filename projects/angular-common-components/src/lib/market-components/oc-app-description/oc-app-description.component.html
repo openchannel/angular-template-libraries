@@ -1,13 +1,7 @@
 <div class="description">
-<<<<<<< HEAD
-   <h4 class="description__heading" [ngClass]="headerClass">{{_header}}</h4>
-   <p #description class="description__text" 
-      [innerHTML]="allowTruncateLogic && threshold && !showFullDescription ? cutAppDescription : _appDescription | safe:'html'"
-=======
    <h4 class="description__heading" [ngClass]="headerClass">{{headerText}}</h4>
    <p #description class="description__text"
-      [innerHTML]="allowTruncateLogic && threshold && !showFullDescription ? cutAppDescription : appDescription | safe:'html'"
->>>>>>> 5341905580375927066ad1a64f9154cafc965873
+      [innerHTML]="allowTruncateLogic && threshold && !showFullDescription ? cutAppDescription : appDescriptionText | safe:'html'"
       [class.hid-description]="!showFullDescription">
    </p>
    <span class="description__show-more"
