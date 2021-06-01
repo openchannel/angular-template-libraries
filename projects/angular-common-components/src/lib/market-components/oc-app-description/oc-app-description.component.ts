@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
     selector: 'oc-app-description',
@@ -8,8 +9,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class OcAppDescriptionComponent implements OnInit {
     /** App Description text */
     @Input() set appDescription(appDescription: string) {
-        this.tempDescription = this.stripHtml(appDescription || '');
+        this.tempDescription = appDescription || '';
     }
+
     /** Header of the App Description section */
     @Input() header: string = '';
     /** Show full description always. Text for expand description will not be shown */
@@ -26,21 +28,26 @@ export class OcAppDescriptionComponent implements OnInit {
     @Input() showLessDescriptionText: string = 'Show less';
 
     tempDescription: string;
+    tempDescriptionLength: number;
     isTruncatedText: boolean;
     currentShowDescriptionText: string;
-    currentDescriptionText: string;
+    currentDescriptionText: SafeHtml;
 
-    constructor() {
+    constructor(private sanitizer: DomSanitizer) {
     }
 
     ngOnInit(): void {
         this.initDescriptionWithShowOption(this.showFullDescription);
     }
 
-
     initDescriptionWithShowOption(skipTruncate: boolean): void {
+        this.initDescriptionLength();
         this.initDescriptionText(skipTruncate);
         this.initShowMoreText();
+    }
+
+    initDescriptionLength(): void {
+        this.tempDescriptionLength = this.getTextFromHtml(this.tempDescription).length;
     }
 
     /**
@@ -48,28 +55,51 @@ export class OcAppDescriptionComponent implements OnInit {
      * @param skipTruncate - when true, text not be truncated.
      */
     initDescriptionText(skipTruncate: boolean): void {
+        let tempDescriptionHtml = this.tempDescription;
         if (!skipTruncate
             && this.enableTruncateTextLogic
-            && this.truncateTextLength < this.tempDescription?.length) {
-            const newTextLength = this.truncateTextLength > 3 ? this.truncateTextLength - 3 : 0;
-            this.currentDescriptionText = `${this.tempDescription.substring(0, newTextLength)}...`;
-        } else {
-            this.currentDescriptionText = this.tempDescription;
+            && this.truncateTextLength < this.tempDescriptionLength) {
+            tempDescriptionHtml = this.truncateWithHTML(this.tempDescription, this.truncateTextLength);
         }
+        this.isTruncatedText = tempDescriptionHtml.length !== this.tempDescription.length;
+        this.currentDescriptionText = this.sanitizer.bypassSecurityTrustHtml(tempDescriptionHtml);
     }
 
     initShowMoreText(): void {
         if (!this.showFullDescription && this.enableTruncateTextLogic && this.tempDescription?.length > this.truncateTextLength) {
-            this.isTruncatedText = this.currentDescriptionText.length !== this.tempDescription.length;
             this.currentShowDescriptionText = this.isTruncatedText ? this.showMoreDescriptionText : this.showLessDescriptionText;
         } else {
             this.currentShowDescriptionText = '';
         }
     }
 
-    stripHtml(html: string): string {
+    getTextFromHtml(html: string): string {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = html;
         return tempDiv.textContent || tempDiv.innerText || '';
+    }
+
+    truncateWithHTML(htmlText: string, truncateTo: number): string {
+        const substrings = htmlText.split(/(<[^>]*>)/g);
+        let count = 0;
+        const truncated = [];
+
+        for (let i = 0; i < substrings.length; i++) {
+            const substr = substrings[i];
+            if (!substr.startsWith('<')) {
+                if (count > truncateTo) {
+                    continue;
+                } else if (substr.length > truncateTo - count - 1) {
+                    truncated.push(`${substr.substring(0, truncateTo - count - 1)}...`);
+                    return truncated.join('');
+                } else {
+                    truncated.push(substr);
+                }
+                count += substr.length;
+            } else {
+                truncated.push(substr);
+            }
+        }
+        return truncated.join('');
     }
 }

@@ -1,4 +1,4 @@
-import { OcCommonLibModule, OcAppDescriptionComponent } from '@openchannel/angular-common-components';
+import { OcAppDescriptionComponent, OcCommonLibModule } from '@openchannel/angular-common-components';
 import { moduleMetadata } from '@storybook/angular';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
