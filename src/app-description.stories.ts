@@ -33,7 +33,7 @@ export const ExpandableDescription = AppDescriptionComponent.bind({});
 ExpandableDescription.args = {
     appDescription: descriptionText,
     header: 'About App',
-    threshold: 250,
+    truncateTextLength: 250,
 };
 
 export const FullDescription = AppDescriptionComponent.bind({});
@@ -41,6 +41,7 @@ export const FullDescription = AppDescriptionComponent.bind({});
 FullDescription.args = {
     appDescription: descriptionText,
     header: 'About App',
+    truncateTextLength: 250,
     showFullDescription: true,
 };
 

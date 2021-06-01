@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
     selector: 'oc-app-description',
@@ -7,64 +6,70 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     styleUrls: ['./oc-app-description.component.scss'],
 })
 export class OcAppDescriptionComponent implements OnInit {
-    @ViewChild('description', { static: true }) description: HTMLParagraphElement;
     /** App Description text */
-    @Input() set appDescription(value: string) {
-        this.appDescriptionText = value || '';
+    @Input() set appDescription(appDescription: string) {
+        this.tempDescription = this.stripHtml(appDescription || '');
     }
     /** Header of the App Description section */
-    @Input() set header(header: string) {
-        if (header) {
-            this.headerText = header;
-        }
-    }
+    @Input() header: string = '';
     /** Show full description always. Text for expand description will not be shown */
     @Input() showFullDescription: boolean = false;
     /** String with classes that will be applied to the header */
     @Input() headerClass: string;
-    /** Threshold number to truncate text if 'show more' logic available */
-    @Input() threshold: number;
-    /** Boolean variable to allow 'show more' logic */
-    @Input() allowTruncateLogic = true;
+    /** Show button for switching between long and short description. */
+    @Input() enableTruncateTextLogic = true;
+    /** Limit for description length for showing switch button */
+    @Input() truncateTextLength: number = 800;
+    /** Text for switch button. Shows when description <= truncateTextLength. */
+    @Input() showMoreDescriptionText: string = 'Show more';
+    /** Text for switch button. Shows when description >= truncateTextLength. */
+    @Input() showLessDescriptionText: string = 'Show less';
 
-    cutAppDescription: SafeHtml = '';
-    appDescriptionText: string;
-    headerText: string = '';
+    tempDescription: string;
+    isTruncatedText: boolean;
+    currentShowDescriptionText: string;
+    currentDescriptionText: string;
 
-    constructor(private sanitizer: DomSanitizer) {}
-
-    ngOnInit(): void {
-        this.rerenderDescription();
+    constructor() {
     }
 
-    rerenderDescription(): void {
-        if (this.appDescriptionText && this.appDescriptionText.length) {
-            if (this.allowTruncateLogic && this.threshold) {
-                let indexBrakeWord: number;
-                let sizeBrakeWord: number;
-                const tagsRegExp = /<[^>]+>/gi;
-                const tagsArray = this.appDescriptionText.match(tagsRegExp);
-                const textArray = this.appDescriptionText.split(tagsRegExp);
-                textArray.pop();
-                textArray.shift();
-                const reducedTextArray = textArray.reduce((acc, cur, i) => {
-                    if (!indexBrakeWord && !sizeBrakeWord && (acc + cur).length >= this.threshold) {
-                        indexBrakeWord = i;
-                        sizeBrakeWord = this.threshold - acc.length;
-                    }
-                    return acc + cur;
-                });
-                textArray.length = indexBrakeWord + 1;
-                textArray[indexBrakeWord] = textArray[indexBrakeWord].slice(0, sizeBrakeWord);
-                this.cutAppDescription = this.sanitizer.bypassSecurityTrustHtml(
-                    tagsArray.reduce((acc, curr, i) => acc + (i - 1 <= textArray.length - 1 ? textArray[i - 1] : '') + curr),
-                );
-            }
-            if (this.threshold && this.appDescriptionText.length < this.threshold) {
-                this.showFullDescription = true;
-            }
+    ngOnInit(): void {
+        this.initDescriptionWithShowOption(this.showFullDescription);
+    }
+
+
+    initDescriptionWithShowOption(skipTruncate: boolean): void {
+        this.initDescriptionText(skipTruncate);
+        this.initShowMoreText();
+    }
+
+    /**
+     * Truncate description if need.
+     * @param skipTruncate - when true, text not be truncated.
+     */
+    initDescriptionText(skipTruncate: boolean): void {
+        if (!skipTruncate
+            && this.enableTruncateTextLogic
+            && this.truncateTextLength < this.tempDescription?.length) {
+            const newTextLength = this.truncateTextLength > 3 ? this.truncateTextLength - 3 : 0;
+            this.currentDescriptionText = `${this.tempDescription.substring(0, newTextLength)}...`;
         } else {
-            this.cutAppDescription = '';
+            this.currentDescriptionText = this.tempDescription;
         }
+    }
+
+    initShowMoreText(): void {
+        if (!this.showFullDescription && this.enableTruncateTextLogic && this.tempDescription?.length > this.truncateTextLength) {
+            this.isTruncatedText = this.currentDescriptionText.length !== this.tempDescription.length;
+            this.currentShowDescriptionText = this.isTruncatedText ? this.showMoreDescriptionText : this.showLessDescriptionText;
+        } else {
+            this.currentShowDescriptionText = '';
+        }
+    }
+
+    stripHtml(html: string): string {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        return tempDiv.textContent || tempDiv.innerText || '';
     }
 }
