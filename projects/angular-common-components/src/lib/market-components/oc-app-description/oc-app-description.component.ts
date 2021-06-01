@@ -33,8 +33,7 @@ export class OcAppDescriptionComponent implements OnInit {
     currentShowDescriptionText: string;
     currentDescriptionText: SafeHtml;
 
-    constructor(private sanitizer: DomSanitizer) {
-    }
+    constructor(private sanitizer: DomSanitizer) {}
 
     ngOnInit(): void {
         this.initDescriptionWithShowOption(this.showFullDescription);
@@ -56,9 +55,7 @@ export class OcAppDescriptionComponent implements OnInit {
      */
     initDescriptionText(skipTruncate: boolean): void {
         let tempDescriptionHtml = this.tempDescription;
-        if (!skipTruncate
-            && this.enableTruncateTextLogic
-            && this.truncateTextLength < this.tempDescriptionLength) {
+        if (!skipTruncate && this.enableTruncateTextLogic && this.truncateTextLength < this.tempDescriptionLength) {
             tempDescriptionHtml = this.truncateWithHTML(this.tempDescription, this.truncateTextLength);
         }
         this.isTruncatedText = tempDescriptionHtml.length !== this.tempDescription.length;
@@ -84,8 +81,7 @@ export class OcAppDescriptionComponent implements OnInit {
         let count = 0;
         const truncated = [];
 
-        for (let i = 0; i < substrings.length; i++) {
-            const substr = substrings[i];
+        for (const substr of substrings) {
             if (!substr.startsWith('<')) {
                 if (count > truncateTo) {
                     continue;
