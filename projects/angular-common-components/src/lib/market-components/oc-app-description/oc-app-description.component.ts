@@ -58,7 +58,7 @@ export class OcAppDescriptionComponent implements OnInit {
         if (!skipTruncate && this.enableTruncateTextLogic && this.truncateTextLength < this.tempDescriptionLength) {
             tempDescriptionHtml = this.truncateWithHTML(this.tempDescription, this.truncateTextLength);
         }
-        this.isTruncatedText = tempDescriptionHtml.length !== this.tempDescription.length;
+        this.isTruncatedText = tempDescriptionHtml && tempDescriptionHtml.length !== this.tempDescription.length;
         this.currentDescriptionText = this.sanitizer.bypassSecurityTrustHtml(tempDescriptionHtml);
     }
 
@@ -86,7 +86,7 @@ export class OcAppDescriptionComponent implements OnInit {
                 if (count > truncateTo) {
                     continue;
                 } else if (substr.length > truncateTo - count - 1) {
-                    truncated.push(`${substr.substring(0, truncateTo - count - 1)}...`);
+                    truncated.push(`${substr.substring(0, truncateTo - count)}...`);
                     return truncated.join('');
                 } else {
                     truncated.push(substr);

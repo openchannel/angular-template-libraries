@@ -71,7 +71,7 @@ describe('OcAppDescriptionComponent', () => {
         const description = fixture.nativeElement.querySelector('#ocAppDescriptionTruncatedTextId');
         const switchButton = fixture.nativeElement.querySelector('#ocAppDescriptionShowMoreId');
         expect(switchButton.textContent).toEqual('Show more');
-        expect(description.textContent).toEqual('12...');
+        expect(description.textContent).toEqual('12345...');
         switchButton.click();
         fixture.detectChanges();
         expect(switchButton.textContent).toEqual('Show less');
@@ -85,7 +85,7 @@ describe('OcAppDescriptionComponent', () => {
         const description = fixture.nativeElement.querySelector('#ocAppDescriptionTruncatedTextId');
         const switchButton = fixture.nativeElement.querySelector('#ocAppDescriptionShowMoreId');
         expect(switchButton.textContent).toEqual('Show more');
-        expect(description.textContent).toEqual('12...');
+        expect(description.textContent).toEqual('12345...');
     });
 
     function setHeaderText(header: string): void {
