@@ -16,7 +16,7 @@ definitions:
           - npm install --quiet
           - npm run build-prod angular-common-services
           - npm run build-prod angular-common-components
-          - npm run test --maxWorkers=4
+          - npm run test --runInBand
           - pipe: sonarsource/sonarcloud-scan:1.2.1
             variables:
               SONAR_SCANNER_OPTS: -Xmx2048m
