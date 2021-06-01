@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'oc-text-search',
@@ -8,57 +8,60 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 export class OcTextSearchComponent {
     /**
      * A model for search text value which is entered by a user.
-     * Type string.
+     * @type {string}.
      * Default empty.
      */
     @Input() searchText: string;
 
     /**
      * Input placeholder text.
-     * Type string.
+     * @type {string}.
      * Optional.
      * Default 'search'.
      */
     @Input() placeHolder: string = 'Search';
 
     /**
-     * A boolean, that defines whether an input has a magnifier icon or a search button.
+     * An input, that defines whether an input has a magnifier icon or a search button.
+     * @type {boolean}.
      * Default - icon.
      */
     @Input() hasMagnifier: boolean = true;
 
     /**
-     * A boolean, that defines, whether an input has 'clear text' button or no.
+     * An input, that defines, whether an input has 'clear text' button or no.
+     * @type {boolean}.
      * Default false.
      */
     @Input() hasClearTextControl: boolean = false;
 
     /**
-     * Describes the text in 'clear' button.
-     * Type string.
+     * Describes the text in a 'clear' button.
+     * @type {string}.
      * Default 'Clear'.
      */
     @Input() clearButtonText: string = 'Clear';
 
     /**
      * Describes the text int the 'search' button.
-     * Type string.
+     * @type {string}.
      * Default 'Search'.
      */
     @Input() searchButtonText: string = 'Search';
 
     /**
      * Output that emits search input value on ngModel changes.
-     * Passes a string to a parent component.
+     * Passes a current input value to a parent component.
+     * @type {string}.
      */
-    @Output() searchTextChange: EventEmitter<string> = new EventEmitter();
+    @Output() readonly searchTextChange: EventEmitter<string> = new EventEmitter();
 
     /**
      * Output that emits a search event on 'enter' keydown or search icon click.
      * Passes a searchable value to a parent component.
-     * Type string.
+     * @type {string}.
      */
-    @Output() enterSearch: EventEmitter<string> = new EventEmitter<string>();
+    @Output() readonly enterSearch: EventEmitter<string> = new EventEmitter<string>();
 
     constructor() {}
 
