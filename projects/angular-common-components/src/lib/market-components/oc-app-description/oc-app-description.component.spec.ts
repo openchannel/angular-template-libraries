@@ -21,7 +21,7 @@ describe('OcAppDescriptionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(OcAppDescriptionComponent);
         component = fixture.componentInstance;
-        descriptionElement = fixture.debugElement.query(By.css('.description__text')).nativeElement;
+        descriptionElement = fixture.debugElement.query(By.css('#ocAppDescriptionTruncatedTextId')).nativeElement;
     });
 
     it('should create', () => {
@@ -65,15 +65,27 @@ describe('OcAppDescriptionComponent', () => {
     });
 
     it('switch full description by click', () => {
-        setDescriptionText('lorem ipsum');
-        setThreshold(800);
+        component.appDescription = '1234567890';
+        component.truncateTextLength = 5;
         fixture.detectChanges();
-        expect(component.showFullDescription).toBeFalsy();
-        expect(descriptionElement.textContent).toEqual(component.cutAppDescription as string);
-        fixture.nativeElement.querySelector('span').click();
+        const description = fixture.nativeElement.querySelector('#ocAppDescriptionTruncatedTextId');
+        const switchButton = fixture.nativeElement.querySelector('#ocAppDescriptionShowMoreId');
+        expect(switchButton.textContent).toEqual('Show more');
+        expect(description.textContent).toEqual('12...');
+        switchButton.click();
         fixture.detectChanges();
-        expect(component.showFullDescription).toBeTruthy();
-        expect(descriptionElement.textContent).toEqual(component.appDescriptionText);
+        expect(switchButton.textContent).toEqual('Show less');
+        expect(description.textContent).toEqual('1234567890');
+    });
+
+    it('description without any html tags', () => {
+        component.appDescription = '<a>1234567890</a>';
+        component.truncateTextLength = 5;
+        fixture.detectChanges();
+        const description = fixture.nativeElement.querySelector('#ocAppDescriptionTruncatedTextId');
+        const switchButton = fixture.nativeElement.querySelector('#ocAppDescriptionShowMoreId');
+        expect(switchButton.textContent).toEqual('Show more');
+        expect(description.textContent).toEqual('12...');
     });
 
     function setHeaderText(header: string): void {
@@ -81,13 +93,8 @@ describe('OcAppDescriptionComponent', () => {
         fixture.detectChanges();
     }
 
-    function setThreshold(threshold: number): void {
-        component.threshold = threshold;
-        fixture.detectChanges();
-    }
-
     function getHeaderText(): string {
-        return fixture.nativeElement.querySelector('h4').innerHTML;
+        return fixture.nativeElement.querySelector('#ocAppDescriptionHeaderTextId').innerHTML;
     }
 
     function setDescriptionText(description: string): void {
@@ -96,6 +103,6 @@ describe('OcAppDescriptionComponent', () => {
     }
 
     function getDescriptionText(): string {
-        return fixture.nativeElement.querySelector('p').innerHTML;
+        return fixture.nativeElement.querySelector('#ocAppDescriptionTruncatedTextId').innerHTML;
     }
 });
