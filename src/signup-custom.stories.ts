@@ -30,11 +30,11 @@ import {
                 [defaultTypeLabelText]="defaultTypeLabelText"
                 [customTermsDescription]="enableCustomTerms ? customTerms: null">
             </oc-signup-custom>
-            <ng-template #customTerms>
+            <ng-template #customTerms let-ctx>
                 <div class="edit-user-form__consent__label">
                     Custom <a href="">Terms</a>
                 </div>
-                <oc-checkbox class="edit-user-form__consent-checkbox" style='border: red;' [formControl]="termsControl"></oc-checkbox>
+                <oc-checkbox class="edit-user-form__consent-checkbox" style='border: red;' [formControl]="ctx.termsControl"></oc-checkbox>
             </ng-template>
         </div>`
 })
@@ -160,14 +160,14 @@ const multiConfigs: OcEditUserFormConfig[] = [
 export const LoadingConfigs = Template.bind({});
 LoadingConfigs.args = {
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     formConfigs: null,
 };
 
 export const WithoutConfigs = Template.bind({});
 WithoutConfigs.args = {
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     formConfigsLoading: false,
     formConfigs: [],
 };
@@ -175,7 +175,7 @@ WithoutConfigs.args = {
 export const MultiConfigs = Template.bind({});
 MultiConfigs.args = {
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     formConfigsLoading: false,
     formConfigs: multiConfigs,
 };
@@ -183,7 +183,7 @@ MultiConfigs.args = {
 export const OneConfig = Template.bind({});
 OneConfig.args = {
     loginUrl: 'login',
-    companyLogoUrl: './assets/img/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
     formConfigsLoading: false,
     formConfigs: [multiConfigs[0]],
 };
@@ -191,7 +191,7 @@ OneConfig.args = {
 export const CustomTermsConfig = Template.bind({});
 CustomTermsConfig.args = {
   loginUrl: 'login',
-  companyLogoUrl: './assets/img/logo-company.png',
+  companyLogoUrl: './assets/angular-common-components/logo-company.png',
   formConfigsLoading: false,
   formConfigs: [multiConfigs[0]],
   enableCustomTerms: true

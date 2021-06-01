@@ -18,7 +18,8 @@
       <div class="edit-user-form__consent__checkbox">
           <ng-container *ngIf="customTermsDescription; else ngtDefaultTermsDescription"
                         [ngTemplateOutlet]="customTermsDescription"
-                        [ngTemplateOutletContext]="{termsControl: termsControl, enableTermsCheckbox: enableTermsCheckbox}"></ng-container>
+                        [ngTemplateOutletContext]="{$implicit: { termsControl: termsControl, enableTermsCheckbox: enableTermsCheckbox}}"></ng-container>
+        
       </div>
       <oc-error [control]="termsControl"
                 [modifyErrors]="[{validator: 'required', message: 'Please confirm this checkbox'}]"></oc-error>
