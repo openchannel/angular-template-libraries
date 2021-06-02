@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { AppModel, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {AppModel, FullAppData} from '@openchannel/angular-common-components/src/lib/common-components';
 
 @Component({
     selector: 'oc-app-short-info',
@@ -9,13 +9,20 @@ import { AppModel, FullAppData } from '@openchannel/angular-common-components/sr
 })
 export class OcAppShortInfoComponent implements OnInit {
     /**
-     * One App to show. Must consists fields: 'name', 'model',
+     * One App to show. Must contain fields: 'name', 'model',
      * 'rating', 'reviewCount', 'summary' or 'description'
      */
     @Input() app: FullAppData;
+
+    /**
+     * The index of the price model in the array, default is 0
+     */
+    @Input() priceModelIndex: number = 0;
     @Input() customDropdown: TemplateRef<any>;
 
     @Output() clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
+
+    currentModel: AppModel;
 
     private isoCurrencyCode = {
         USD: '$',
@@ -26,7 +33,9 @@ export class OcAppShortInfoComponent implements OnInit {
 
     constructor(private sanitizer: DomSanitizer) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.currentModel = this.app.model[this.priceModelIndex] || this.app.model[0];
+    }
 
     safeLink(sourceUrl): SafeResourceUrl {
         return this.sanitizer.bypassSecurityTrustResourceUrl(sourceUrl);
@@ -48,7 +57,6 @@ export class OcAppShortInfoComponent implements OnInit {
                 price += '/' + priceModel.billingPeriod.substring(0, 2);
             }
         }
-
         return price;
     }
 
