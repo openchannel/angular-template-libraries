@@ -13,7 +13,7 @@ import { FullAppData } from '@openchannel/angular-common-components/src/lib/comm
 export class OcAppShortInfoComponent {
     /**
      * (Required)
-     * App data object for current component. You should set this input for proper work of this component.
+     * App data object for current component.
      */
     @Input() set appData(app: FullAppData) {
         if (!app) {
