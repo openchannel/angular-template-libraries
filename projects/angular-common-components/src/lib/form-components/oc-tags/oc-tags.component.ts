@@ -15,19 +15,23 @@ import { OcDropboxComponent } from '@openchannel/angular-common-components/src/l
     ],
 })
 export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges {
-    @Input() set value(val) {
+    @Input() set value(val: any) {
         this.resultTags = val || [];
         this.onChange(this.resultTags);
     }
+
     @ViewChild('dropBox') dropbox: OcDropboxComponent;
+
     /** Placeholder */
     @Input() placeholder: string;
+
     /**
      * availableTags (optional) - It is list tags for the dropbox. Users can choice tags of this list.
      * When this list is empty dropbox not shows.
      * Default: empty string []
      */
     @Input() availableTags: string[] = [];
+
     /**
      * Set type of tags values.
      * Can be 'string', 'boolean' or 'number'
@@ -50,7 +54,7 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         this.dropBoxTags = this.findAvailableDropBoxTags();
     }
 
-    ngOnChanges(changes: SimpleChanges) {
+    ngOnChanges(changes: SimpleChanges): void {
         if (changes.availableTags && changes.availableTags.previousValue !== changes.availableTags.currentValue) {
             this.dropBoxTags = this.findAvailableDropBoxTags();
         }
@@ -63,7 +67,7 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         }
     }
 
-    addTagToResultList(tag: string) {
+    addTagToResultList(tag: string): void {
         if (!this.resultTags.includes(tag)) {
             this.resultTags = [...this.resultTags, tag];
             this.updateComponentData();
@@ -71,7 +75,7 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         }
     }
 
-    normalizeTag(tag: string) {
+    normalizeTag(tag: string): any {
         if (this.tagsType === 'number') {
             return isNaN(Number(tag)) ? tag : Number(tag);
         }
@@ -85,7 +89,7 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         return tag.trim();
     }
 
-    onInputChange(text: string) {
+    onInputChange(text: string): void {
         this.currentTag = text;
     }
 
