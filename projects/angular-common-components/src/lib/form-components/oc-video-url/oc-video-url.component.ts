@@ -37,6 +37,7 @@ export class OcVideoUrlComponent implements ControlValueAccessor {
 
     /**
      * Type of the input. Can be 'text' or 'email'.
+     * @type {string}.
      * Default 'text'.
      */
     @Input() inputType: string = 'text';
