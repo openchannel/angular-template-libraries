@@ -40,7 +40,7 @@ export class OcVideoUrlComponent implements ControlValueAccessor {
      * @type {string}.
      * Default 'text'.
      */
-    @Input() inputType: string = 'text';
+    @Input() inputType: 'text' | 'email' = 'text';
 
     /**
      * Video url setter.
