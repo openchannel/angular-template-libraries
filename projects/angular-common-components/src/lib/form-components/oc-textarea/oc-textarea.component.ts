@@ -19,8 +19,6 @@ export class OcTextareaComponent implements ControlValueAccessor {
      * @type {string}.
      * Default empty.
      */
-    placeholderValue: string = '';
-
     @Input() set placeholder(placeholder: string) {
         if (placeholder) {
             this.placeholderValue = placeholder;
@@ -72,6 +70,7 @@ export class OcTextareaComponent implements ControlValueAccessor {
     }
 
     textAreaValue: string;
+    placeholderValue: string = '';
 
     constructor() {}
 
