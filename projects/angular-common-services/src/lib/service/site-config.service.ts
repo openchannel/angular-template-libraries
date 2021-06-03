@@ -1,9 +1,23 @@
 import {Injectable} from '@angular/core';
 import {Meta} from '@angular/platform-browser';
-import {Router} from '@angular/router';
 import {SiteConfig} from '../model/components/frontend.model';
 import {TitleService} from './title.service';
 
+/**
+
+ * Description: Service for setting up site config.<br> 
+
+ * @param {string} siteConfig 
+
+ * Methods:
+
+ * setMeta
+
+ * setFavicon
+
+ * initSiteConfiguration
+
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -12,21 +26,34 @@ export class SiteConfigService {
   siteConfig: SiteConfig;
 
   constructor(private titleService: TitleService,
-              private router: Router,
               private metaService: Meta) {
   }
 
   /**
-   * Set up meta tags from the Site Config
+   * Description: Set up meta tags from the Site Config
+   * 
+   * @returns {void}
+   * 
+   * * ### Example:
+   *``
+   * setMeta()
+   *``
    */
   setMeta() {
     this.metaService.addTags(this.siteConfig.metaTags);
   }
 
   /**
-   * Set up the favicon for the app
-   * @param customPath path to the favicon icon
-   * @param customIconType type of the favicon icon. Default: 'image/x-icon'
+   * Desctiption: Set up the favicon for the app
+   * 
+   * @param {string} customPath - (optional) path to the favicon icon
+   * @param {string} customIconType - (optional) type of the favicon icon. Default: 'image/x-icon'
+   * @returns {void}
+   * 
+   * * ### Example:
+   *``
+   * setFavicon('/path/img', 'png')
+   *``
    */
   setFavicon(customPath?: string, customIconType?: string) {
     const iconLink: HTMLLinkElement = document.querySelector('#custom-favicon');
@@ -47,7 +74,33 @@ export class SiteConfigService {
   }
 
   /**
-   * Set up a site by the Site Config
+   * Description: Set up a site by the Site Config
+   * 
+   * @param {SiteConfig} config - Set initial site configuration
+   * @returns {void} 
+   * 
+   * * ### Example:
+   *``
+   * initSiteConfiguration({
+   * title: 'title';
+   * tagline: 'some';
+   * metaTags: Array<{
+   *  charset: 'some string',
+   *  content: 'some string',
+   *  httpEquiv: 'some string',
+   *  id: 'some string',
+   *  itemprop: 'some string',
+   *  name: 'some string',
+   *  property: 'some string',
+   *  scheme: 'some string',
+   *  url: 'some string'
+   * }>;
+   * favicon: {
+   *     href: '/img' ;
+   *     type?: 'png';
+   * };
+   * })
+   *``
    */
   initSiteConfiguration(config: SiteConfig) {
     this.siteConfig = config;
