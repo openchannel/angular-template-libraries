@@ -57,11 +57,7 @@ export class ReviewsService {
     let params = new OcHttpParams()
       .append('query', QueryUtil.getAndQuery(queries))
       .append('sort', sort);
-
-    if (sort) {
-      params = params
-        .append('sort', sort);
-    }
+      
     if (page > 0 && limit > 0) {
       params = params
         .append('pageNumber', String(page))
