@@ -65,7 +65,7 @@ export class UserAccountService {
    * getUserAccounts(1,10, "{"name": 1}", "{"name": {"$in":["first", "second"]}}")
    *``
    */
-  getUserAccounts(pageNumber: number, limit: number, sort?: string, query?: string): Observable<Page<UserAccount>> {
+  getUserAccounts(pageNumber?: number, limit?: number, sort?: string, query?: string): Observable<Page<UserAccount>> {
     const mainUrl = `${this.BASE_USER_ACCOUNTS}/all`;
 
     const params = new OcHttpParams()
