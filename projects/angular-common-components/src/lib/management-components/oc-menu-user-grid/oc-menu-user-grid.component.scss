@@ -92,7 +92,7 @@
   }
 
   &__th-row {
-    @include font-size-breakpoint(md);
+    @include font-size-md();
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -117,8 +117,9 @@
   }
 
   &__text {
-    @include font-size-breakpoint(md);
-    color: $secondary;
+    @include font-size-md();
+    color: $text-color;
+    @include default-text();
     &_dark {
       color: $body-color;
     }
@@ -152,7 +153,7 @@
   }
 
   &__profile {
-    @include font-family-rubik('Medium');
+    @include font-medium();
     background-image: linear-gradient(to bottom, $profile-gradient-top, $profile-gradient-bottom);
     border-radius: 20px;
     color: $profile;
@@ -199,7 +200,7 @@
 
   .dropdown-item {
     border-bottom: 1px solid $info;
-    font-size: 14px;
+    @include font-size-md();
     padding: 14px 42px;
   }
 
