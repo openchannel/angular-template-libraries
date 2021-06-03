@@ -43,8 +43,8 @@ export class AppTypeService {
      * 
      * Description: Get App Types list with pagination
      * 
-     * @param {number} pageNumber - (optional) Current page index. Starts from >= 1
-     * @param {number} pageLimit - (optional) Count users into response. Starts from >= 1.
+     * @param {number} pageNumber - Current page index. Starts from >= 1
+     * @param {number} pageLimit - Count users into response. Starts from >= 1.
      * @returns {Observable<Page<AppTypeModelResponse>>} Observable<Page<AppTypeModelResponse>>
      * 
      * * ### Example:
