@@ -55,7 +55,7 @@ export class UserAccountTypesService {
      * getUserAccountTypes(1,10,"{"name": {"$in":["first", "second"]}}")
      *``
      */
-    getUserAccountTypes(pageNumber: number, limit: number, query?: string): Observable<Page<UserAccountTypeModel>> {
+    getUserAccountTypes(pageNumber?: number, limit?: number, query?: string): Observable<Page<UserAccountTypeModel>> {
         const params = new OcHttpParams().append('pageNumber', String(pageNumber)).append('limit', String(limit)).append('query', query);
 
         return this.httpService.get(this.BASE_USER_ACCOUNTS_TYPES, { params });
