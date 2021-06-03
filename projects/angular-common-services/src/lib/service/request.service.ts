@@ -46,7 +46,7 @@ export class RequestService {
      *
      * `getAllRequest(1,10,{"Authorization":"Bearer as98hd90ahsd98has9d8ha98sd"})`
      */
-    getAllRequest(pageNumber: number, limit: number, headers: HttpHeaders = new HttpHeaders()): Observable<Page<RequestModelResponse>> {
+    getAllRequest(pageNumber?: number, limit?: number, headers: HttpHeaders = new HttpHeaders()): Observable<Page<RequestModelResponse>> {
         const options: any = {
             params: new OcHttpParams().append('pageNumber', String(pageNumber)).append('limit', String(limit)),
         };
