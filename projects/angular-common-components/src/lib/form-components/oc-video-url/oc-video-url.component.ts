@@ -78,7 +78,8 @@ export class OcVideoUrlComponent implements ControlValueAccessor {
     }
 
     /**
-     * Register touch action
+     * Register touch action on focus event.
+     * Fires when the component input gets focused.
      */
     onFocus(): void {
         this.onTouched();
