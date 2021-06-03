@@ -49,7 +49,7 @@ export class UsersService {
      * getUsersByIds(['a2sd876ags7dd6g','3v874hy98374vr93'])
      *``
      */
-    getUsersByIds(userIds: string[]): Observable<Page<User>> {
+    getUsersByIds(userIds?: string[]): Observable<Page<User>> {
         const mainUrl = `${this.USERS_URL}/all`;
 
         const dStr = userIds ? `['${userIds.join("','")}']` : '';
@@ -71,7 +71,7 @@ export class UsersService {
      * searchApp(1,100)
      *``
      */
-    getUsers(pageNumber: number, limit: number): Observable<Page<User>> {
+    getUsers(pageNumber?: number, limit?: number): Observable<Page<User>> {
         const mainUrl = `${this.USERS_URL}/all`;
 
         const params = new OcHttpParams().append('pageNumber', String(pageNumber)).append('limit', String(limit));
