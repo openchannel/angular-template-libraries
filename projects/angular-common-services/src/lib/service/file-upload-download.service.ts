@@ -32,7 +32,7 @@ import { FileDetailsResponse } from '../model/api/file-details-model';
 })
 export class FileUploadDownloadService {
     private tokenUrl = 'v2/files/uploadToken';
-    private uploadFileUrl = 'v2/files/';
+    private uploadFileUrl = 'v2/files';
 
     constructor(public httpRequest: HttpRequestService, private http: HttpClient, private configService: ConfigService) {}
 
