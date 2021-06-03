@@ -52,7 +52,7 @@ export class InviteUserService {
    * 
    * `getUserInvites(1,10, "{"name": 1}", "{"name": {"$in":["first", "second"]}}")`
    */
-  getUserInvites(pageNumber: number, limit: number, sort?: string, query?: string): Observable<Page<InviteUserModel>> {
+  getUserInvites(pageNumber?: number, limit?: number, sort?: string, query?: string): Observable<Page<InviteUserModel>> {
     const mainUrl = `${this.INVITE_URL}/users`;
 
     const params = new OcHttpParams()
