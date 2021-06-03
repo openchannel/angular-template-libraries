@@ -35,7 +35,7 @@ export class DeveloperRoleService {
    * 
    * `getDeveloperRoles(1, 10)`
    */
-  getDeveloperRoles(pageNumber: number, pageLimit: number): Observable<Page<DeveloperRoleResponse | any>> {
+  getDeveloperRoles(pageNumber?: number, pageLimit?: number): Observable<Page<DeveloperRoleResponse | any>> {
     return this.httpService.get(this.DEVELOPER_ROLES, {
       params: new OcHttpParams()
         .append('pageNumber', String(pageNumber))
