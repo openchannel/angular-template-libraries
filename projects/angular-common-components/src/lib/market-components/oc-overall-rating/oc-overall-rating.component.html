@@ -8,14 +8,12 @@
     </div>
     <div class="overall-rating__reviews-header">
         <oc-label class="overall-rating__reviews-header-label review-label" text="Based on"></oc-label>
-        <span id="reviewCount" class="overall-rating__reviews-header-reviews-count label-blue font-m"> {{allReviewSummary.reviewCount}} reviews</span>
+        <span id="reviewCount" class="overall-rating__reviews-header-reviews-count label-blue"> {{allReviewSummary.reviewCount}} reviews</span>
     </div>
 
     <ng-template #t let-fill="fill">
         <span [class.overall-rating__star_filled]="fill === 100" class="overall-rating__star">&#9733;</span>
     </ng-template>
-
-
 
     <div *ngFor="let rate of rates" class="overall-rating__rate">
         <div class="overall-rating__rate-header">
