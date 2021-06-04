@@ -45,7 +45,7 @@
     text-align: center;
   }
   &__link {
-    @include font-size-breakpoint(md);
-    @include font-family-rubik('Medium');
+    @include font-size-md();
+    @include font-medium();
   }
 }
