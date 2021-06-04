@@ -8,21 +8,52 @@ import { SidebarValue } from '../model/components-basic.model';
     styleUrls: ['./oc-sidebar.component.scss'],
 })
 export class OcSidebarComponent {
-    /** title of the sidebar */
+    /**
+     * Title of the sidebar.
+     * @type {string}.
+     * Default empty.
+     */
     @Input() title: string;
-    /** Sidebar config */
+
+    /**
+     * Sidebar config, contains array of sidebar list items.
+     * @type {SidebarValue[]}.
+     */
     @Input() sidebarModel: SidebarValue[];
-    /** Path to the custom toggle icon up */
+
+    /**
+     * Path to the custom toggle icon down.
+     * @type {string}.
+     * Default 'assets/angular-common-components/down-arrow.svg'.
+     */
     @Input() toggleIconDown: string = 'assets/angular-common-components/down-arrow.svg';
-    /** Path to the custom toggle icon down */
+
+    /**
+     * Path to the custom toggle icon up.
+     * @type {string}.
+     * Default 'assets/angular-common-components/select-up.svg'.
+     */
     @Input() toggleIconUp: string = 'assets/angular-common-components/select-up.svg';
-    /** Base url for the Router link */
+
+    /**
+     * Base url for the Router links in the sidebar component.
+     * @type {string}.
+     * Default empty.
+     */
     @Input() baseNavigation: string;
-    /** Return changed model */
-    @Output() sidebarChange: EventEmitter<OcSidebarSelectModel> = new EventEmitter<OcSidebarSelectModel>();
+
+    /**
+     * Emits sidebar model changes and passes to the parent component.
+     */
+    @Output() readonly sidebarChange: EventEmitter<OcSidebarSelectModel> = new EventEmitter<OcSidebarSelectModel>();
 
     constructor() {}
 
+    /**
+     * This method runs by click on the sidebar list item.
+     * Checks for the sidebar changes.
+     * Emits parent sidebar model and child sidebar model.
+     */
     onClickSidebar(parentSidebar: SidebarValue, childSidebar?: SidebarValue): void {
         this.sidebarChange.emit({ parent: parentSidebar, child: childSidebar });
     }
