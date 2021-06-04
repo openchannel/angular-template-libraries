@@ -23,33 +23,70 @@ chartPoint.src = 'assets/angular-common-components/chart_point.svg';
 export class OcChartComponent implements OnChanges, OnInit {
     @ViewChild('myCanvas') myCanvas: ElementRef<HTMLCanvasElement>;
 
-    /** Sum of data or other total count that can be shown */
+    /**
+     * Total sum of the data. It can be total reviews or total downloads.
+     * @default  null
+     */
     @Input() count: number;
-    /** Title text of the data count */
+    /**
+     * Info title of the total count
+     * @default empty
+     */
     @Input() countText: string = '';
-    /** Url of the Chart count image */
+    /**
+     * Path to the chart counter image. Can be local or url from server.
+     * ## Data example for docs
+     * ``
+     * './assets/img/image.png' or 'https://example.site.com/image.png'
+     * ``
+     * @example
+     * './assets/img/image.png'
+     * 'https://example.site.com/image.png'
+     */
     @Input() downloadUrl: SafeUrl;
-    /** Set or remove background color for chart line */
+    /**
+     * Enable/Disable background gradient under chart line.
+     * It's enabled by default
+     */
     @Input() isBackgroundColor: boolean = true;
-    /** Enable or Disable points on Chart */
+    /**
+     * Enable/Disable points on the Chart line.
+     * It's disabled by default.
+     */
     @Input() enablePoints: boolean = false;
-    // change in value of this invokes ngOnChanges
-    @Input() random;
-    /** Min width for the dropdown */
+    /** Min width for the dropdown menu */
     @Input() minDropdownWidth: string;
-    /** Main model for building chart with buttons and dropdown */
+    /**
+     * (Required)
+     * Main config model for the component.
+     * Including chart data, layout type, etc.
+     */
     @Input() chartData: ChartStatisticModel;
     /**
      * Set active data view type from the start.
-     * Default 'graph'
+     *
+     * `tabular` - will demonstrate the tabular view of the data.
+     *
+     * `graph` - will show line graph.
+     * @default 'graph'
      */
     @Input() activeDataType: 'tabular' | 'graph' = 'graph';
     /**
-     * Path to the custom icon for the 'sort' button
+     * Path to the custom icon for the sorting button.
+     * Can be local or url from server.
+     * ## Data example for docs
+     * ``
+     * './assets/img/image.png' or 'https://example.site.com/image.png'
+     * ``
+     * @example
+     * './assets/img/image.png'
+     * 'https://example.site.com/image.png'
      */
     @Input() sortIcon: string = 'assets/angular-common-components/dropdown.svg';
-    @Output() changeChartOptions: EventEmitter<ChartOptionsChange> = new EventEmitter<ChartOptionsChange>();
-
+    /**
+     * Notification about changing chart data options, like dropdown menu item changing or period switching.
+     */
+    @Output() readonly changeChartOptions: EventEmitter<ChartOptionsChange> = new EventEmitter<ChartOptionsChange>();
     dropdownTypes: DropdownModel<ChartStatisticFiledModel>[];
     dropdownSelectedType: DropdownModel<ChartStatisticFiledModel>;
     context: CanvasRenderingContext2D;
@@ -59,9 +96,15 @@ export class OcChartComponent implements OnChanges, OnInit {
         by: 'key',
         ascending: true,
     };
-
+    /**
+     * @ignore
+     * @private
+     */
     private chart: any;
-
+    /**
+     * @ignore
+     * @private
+     */
     private Chart;
 
     constructor() {}
@@ -80,6 +123,9 @@ export class OcChartComponent implements OnChanges, OnInit {
         }
     }
 
+    /**
+     * Checking if chart already exists and reloading it.
+     */
     reloadChart(): void {
         if (typeof this.chart !== 'undefined') {
             this.chart.destroy();
@@ -90,6 +136,9 @@ export class OcChartComponent implements OnChanges, OnInit {
         }
     }
 
+    /**
+     * Creating main chart with configuration.
+     */
     getChart(): void {
         const gradientFill = this.context.createLinearGradient(0, 0, 0, 170);
         gradientFill.addColorStop(0, '#e7eef7');
@@ -205,22 +254,32 @@ export class OcChartComponent implements OnChanges, OnInit {
         });
     }
 
-    getValue(label: string): string {
-        return label;
-    }
-
+    /**
+     * Function that triggering on Period changes.
+     * Swiping active parameters and updating chart data.
+     * @param {ChartStatisticPeriodModel} activePeriod chosen period object
+     */
     updateChartPeriod(activePeriod: ChartStatisticPeriodModel): void {
         this.tabularLabelsHeader = activePeriod.tabularLabel;
         this.setNewActiveParameter(this.chartData?.periods, activePeriod.id);
         this.updateChartData();
     }
 
+    /**
+     * Function that catches dropdown fields changes.
+     * Swiping active parameters and updating chart data.
+     * @param activeFiled chosen item
+     */
     updateChartFiled(activeFiled: DropdownModel<ChartStatisticFiledModel>): void {
         this.setNewActiveParameter(this.chartData?.fields, activeFiled.value.id);
         this.updateChartData();
         this.updateDropdownValues();
     }
 
+    /**
+     * Switching between tabular and chart views.
+     * @param type chosen type of the view
+     */
     swapActiveDataType(type: 'tabular' | 'graph'): void {
         this.activeDataType = type;
         if (type === 'graph') {
@@ -228,6 +287,11 @@ export class OcChartComponent implements OnChanges, OnInit {
         }
     }
 
+    /**
+     * Sorting tabular data column on click of the header.
+     * Sorts by labels or by values.
+     * @param by parameter for sorting
+     */
     sortTabularData(by: 'label' | 'value'): void {
         this.activeTabularSort.by = by;
         this.activeTabularSort.ascending = !this.activeTabularSort.ascending;
@@ -254,12 +318,19 @@ export class OcChartComponent implements OnChanges, OnInit {
         }
     }
 
+    /**
+     * Checking for loaded chartJs lib and connects it of not connected.
+     */
     async connectChartLib() {
         if (!this.Chart) {
             this.Chart = (await importChart).Chart;
         }
     }
 
+    /**
+     * Updating chart options and fields and throw changed value to the parent component.
+     * @private
+     */
     private updateChartData(): void {
         let period = null;
         let field = null;
