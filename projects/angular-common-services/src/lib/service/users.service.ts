@@ -8,6 +8,26 @@ import { HttpHeaders } from '@angular/common/http';
 import { TypeFieldModel, TypeModel } from '../model/api/type-model';
 import { toString } from 'lodash';
 
+
+/**
+
+ * Description: API service for getting and modifying user model.<br>
+
+ * Documentation: <a href="https://support.openchannel.io/documentation/api/#439-users">Openchannel API</a><br>
+
+ * Endpoints:<br>
+
+ * GET 'v2/users/all'<br>
+
+ * GET 'v2/users/this'<br>
+
+ * PATCH 'v2/users/this'<br>
+
+ * GET 'v2/userTypes/{type}'<br>
+
+ * GET 'v2/userTypes'<br>
+
+ */
 @Injectable({
     providedIn: 'root',
 })
@@ -16,8 +36,20 @@ export class UsersService {
     private readonly USER_TYPE_URL = 'v2/userTypes';
 
     constructor(private httpService: HttpRequestService) {}
-
-    getUsersByIds(userIds: string[]): Observable<Page<User>> {
+    
+    /**
+     * 
+     * Description: Get list of users by ids.
+     * 
+     * @param {string[]} userIds - (optional) Array of strings (User Ids)
+     * @returns {Observable<Page<User>>} Observable<Page<User>>
+     * 
+     * * ### Example:
+     *``
+     * getUsersByIds(['a2sd876ags7dd6g','3v874hy98374vr93'])
+     *``
+     */
+    getUsersByIds(userIds?: string[]): Observable<Page<User>> {
         const mainUrl = `${this.USERS_URL}/all`;
 
         const dStr = userIds ? `['${userIds.join("','")}']` : '';
@@ -26,7 +58,20 @@ export class UsersService {
         return this.httpService.get(mainUrl, { params });
     }
 
-    getUsers(pageNumber: number, limit: number): Observable<Page<User>> {
+    /**
+     * 
+     * Description: Get list of users with pagination.
+     *
+     * @param {number} pageNumber - (optional) Current page index. Starts from >= 1
+     * @param {number} limit - (optional) Count users into response. Starts from >= 1.
+     * @returns {Observable<Page<User>>} Observable<Page<User>>
+     * 
+     * * ### Example:
+     *``
+     * searchApp(1,100)
+     *``
+     */
+    getUsers(pageNumber?: number, limit?: number): Observable<Page<User>> {
         const mainUrl = `${this.USERS_URL}/all`;
 
         const params = new OcHttpParams().append('pageNumber', String(pageNumber)).append('limit', String(limit));
@@ -35,27 +80,68 @@ export class UsersService {
     }
 
     /**
-     * Getting data about non-developer user's company
+     * 
+     * Description: Getting data about non-developer user's company
+     * 
+     * @returns {Observable<UserCompanyModel>} Observable<UserCompanyModel>
+     * 
+     * * ### Example:
+     *``
+     * getUserCompany()
+     *``
      */
     getUserCompany(): Observable<UserCompanyModel> {
         return this.httpService.get(`${this.USERS_URL}/this`);
     }
     /**
-     * Saving data of non-developer user's company
-     * @param companyData new company fields data
+     * 
+     * Description: Saving data of non-developer user's company
+     * 
+     * @param {any} companyData (required) new company fields data
+     * @returns {Observable<any>} Observable<any>
+     * 
+     * * ### Example:
+     *``
+     * updateUserCompany(any)
+     *``
      */
     updateUserCompany(companyData: any): Observable<any> {
         return this.httpService.patch(`${this.USERS_URL}/this`, companyData);
     }
 
     /**
-     * Getting Fields definition for current user type
-     * @param type user type
+     * 
+     * Description: Getting Fields definition for current user type
+     * 
+     * @param {string} type (required) User Type
+     * @param {any} httpOptions (optional)
+     * @returns {Observable<any>} Observable<any>
+     * 
+     * * ### Example:
+     *``
+     * getUserTypeDefinition('developer', {"Authorization": "Bearer aksjhdl123dlkjahslk123jhaslakjhalksj"})
+     *``
      */
     getUserTypeDefinition(type: string, httpOptions?: any): Observable<any> {
         return this.httpService.get(`${this.USER_TYPE_URL}/${type}`, httpOptions);
     }
 
+    /**
+     * 
+     * Description: Get all user types with pagination
+     * 
+     * @param {number} pageNumber - (optional) Current page index. Starts from >= 1.
+     * @param {number} limit - (optional) Count user types into response. Starts from >= 1.
+     * @param {string} sort - (optional) Sort user types by specific field.
+     * @param {string} query - (optional) Your specific search query.
+     * @param {HttpHeaders} headers - (optional)
+     * @returns {Observable<Page<TypeModel<TypeFieldModel>>>} Observable<Page<TypeModel<TypeFieldModel>>>
+     * 
+     * * ### Example:
+     *``
+     * getUserTypes(1, 10, "{"name": 1}", "{"name": {"$in":["first", "second"]}}", {"Authorization": "Bearer aksjhdl123dlkjahslk123jhaslakjhalksj"})
+     *``
+     */
     getUserTypes(
         query?: string,
         sort?: string,
