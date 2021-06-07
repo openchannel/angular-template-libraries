@@ -14,23 +14,43 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     ],
 })
 export class OcSelectComponent implements OnInit, ControlValueAccessor {
-
-    /** Set selected value */
-    @Input() set value(val) {
+    /**
+     * Selected value setter for select component.
+     * @type {*}.
+     * Calls changeInputLabel() and onChange() methods.
+     * Required.
+     */
+    @Input() set value(val: any) {
         this.selectedValue = val;
         this.changeInputLabel();
         this.onChange(this.selectedValue);
     }
-    /** Placeholder */
+
+    /**
+     * Placeholder, can be used as inputLabel in the #selectButton ngTemplate.
+     * @type {string}.
+     */
     @Input() placeholder: string;
-    /** Array of the select items */
+
+    /**
+     * Array of the select options in the dropdown menu.
+     * @type {* | Object.[]}
+     */
     @Input() selectValArr: any | object[] = [];
-    /** Set object field name using as label */
+
+    /**
+     * Set text label for dropdown menu options.
+     * @type {string}.
+     * Default empty.
+     */
     @Input() labelField: string;
-    /** Disable select for user input */
+
+    /**
+     * Disable select for user input.
+     * @type {boolean}.
+     * Default false.
+     */
     @Input() disabled: boolean = false;
-    /** Add string of public classes to the existed */
-    @Input() class: string = '';
 
     selectedValue: any;
     inputLabel: string;
