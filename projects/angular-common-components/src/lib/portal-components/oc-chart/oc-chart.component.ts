@@ -15,6 +15,9 @@ const importChart = normalizeCommonJSImport(import('chart.js'));
 const chartPoint = new Image();
 chartPoint.src = 'assets/angular-common-components/chart_point.svg';
 
+/**
+ * Component for statistical data view. Includes chart, table, menus for data switching.
+ */
 @Component({
     selector: 'oc-chart',
     templateUrl: './oc-chart.component.html',
@@ -87,11 +90,23 @@ export class OcChartComponent implements OnChanges, OnInit {
      * Notification about changing chart data options, like dropdown menu item changing or period switching.
      */
     @Output() readonly changeChartOptions: EventEmitter<ChartOptionsChange> = new EventEmitter<ChartOptionsChange>();
+    /** dropdown menu items array. Created from {@link chartData} fields */
     dropdownTypes: DropdownModel<ChartStatisticFiledModel>[];
+    /** chosen item from the dropdown menu */
     dropdownSelectedType: DropdownModel<ChartStatisticFiledModel>;
+    /** 2d context for the chart canvas */
     context: CanvasRenderingContext2D;
+    /** header text for the tabular data labels column */
     tabularLabelsHeader: string;
+    /** data array for the tabular format */
     tabularData: any[] = [];
+    /**
+     * helper for sorting tabular data.
+     *
+     * `by`: 'key' | 'value'
+     *
+     * `ascending`: true | false
+     */
     activeTabularSort = {
         by: 'key',
         ascending: true,
@@ -109,12 +124,20 @@ export class OcChartComponent implements OnChanges, OnInit {
 
     constructor() {}
 
+    /**
+     * Angular lifecycle function. Init on component creation.
+     * Setting the {@link tabularLabelsHeader}. Connecting chart lib, loading chart and dropdown menu items.
+     */
     async ngOnInit(): Promise<void> {
         this.tabularLabelsHeader = this.chartData.periods.find(period => period.active).tabularLabel;
         await this.connectChartLib();
         this.updateDropdownValues();
     }
 
+    /**
+     * Angular lifecycle function. Triggering on every changes of the component's Input.
+     * Reloads chart on any chart data changes.
+     */
     async ngOnChanges(changes: SimpleChanges) {
         await this.connectChartLib();
         if (changes.chartData.previousValue !== changes.chartData.currentValue) {
@@ -343,6 +366,12 @@ export class OcChartComponent implements OnChanges, OnInit {
         this.changeChartOptions.emit({ field, period });
     }
 
+    /**
+     * Changing active dropdown item or period.
+     * @param parameters array of parameters. It can be periods or fields
+     * @param newActiveElementId unique id for switching
+     * @private
+     */
     private setNewActiveParameter(parameters: ChartStatisticParameterModel[], newActiveElementId: string): void {
         if (parameters) {
             parameters.forEach(parameter => {
@@ -353,11 +382,19 @@ export class OcChartComponent implements OnChanges, OnInit {
         }
     }
 
+    /**
+     * Updating dropdown menu items
+     * @private
+     */
     private updateDropdownValues(): void {
         this.dropdownTypes = this.chartData?.fields ? this.chartData.fields.map(field => new DropdownModel(field.label, field)) : [];
         this.dropdownSelectedType = this.dropdownTypes.filter(field => field.value.active)[0];
     }
 
+    /**
+     * Filling tabular data array from the Chart data.
+     * @private
+     */
     private fillTabularData(): void {
         this.tabularData = [];
         this.chartData.data?.tabularLabels.forEach((label, index) => {
