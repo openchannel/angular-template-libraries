@@ -61,16 +61,29 @@ export class OcSelectComponent implements OnInit, ControlValueAccessor {
         this.changeInputLabel();
     }
 
+    /**
+     * Updates current selected value.
+     * Calls changeInputLabel().
+     * Updates onChange() function.
+     */
     onSelectionChange(event: any): void {
         this.selectedValue = event;
         this.changeInputLabel();
         this.onChange(this.selectedValue);
     }
 
+    /**
+     * Register touch action on blur event.
+     * Calls when select input loses focus.
+     */
     onblur(): void {
         this.onTouched();
     }
 
+    /**
+     * Checks the selected value.
+     * Transforms selected value into inputLabel.
+     */
     changeInputLabel(): void {
         if (this.selectedValue) {
             this.inputLabel = this.labelField ? this.selectedValue[this.labelField] : this.selectedValue;
@@ -80,16 +93,16 @@ export class OcSelectComponent implements OnInit, ControlValueAccessor {
     }
 
     /**
-     * Calls this function with new value. When user wrote something in the component
-     * It needs to know that new data has been entered in the control.
+     * Calls this function with new value.
+     * When user writes something in the component, it needs to know that new data has entered in the control.
      */
     registerOnChange(onChange: (value: any) => void): void {
         this.onChange = onChange;
     }
 
     /**
-     * Calls this function when user left chosen component.
-     * It needs for validation
+     * Calls this function when user leaves chosen component.
+     * It is needed for validation.
      */
     registerOnTouched(onTouched: () => void): void {
         this.onTouched = onTouched;
@@ -97,14 +110,14 @@ export class OcSelectComponent implements OnInit, ControlValueAccessor {
 
     /**
      * (Optional)
-     * the method will be called by the control when the [disabled] state changes.
+     * The method will be called by the control when the [disabled] state changes.
      */
     setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
     }
 
     /**
-     * this method will be called by the control to pass the value to our component.
+     * This method will be called by the control to pass the value to component.
      * It is used if the value is changed through the code outside
      * (setValue or changing the variable that ngModel is tied to),
      * as well as to set the initial value.
