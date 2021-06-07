@@ -2,16 +2,18 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { OcAppDescriptionComponent } from './oc-app-description.component';
 import { FormsModule } from '@angular/forms';
+import { OcCommonLibModule } from '../../common-components/';
+import { By } from '@angular/platform-browser';
 
 describe('OcAppDescriptionComponent', () => {
     let component: OcAppDescriptionComponent;
     let fixture: ComponentFixture<OcAppDescriptionComponent>;
-
+    let descriptionElement: Element;
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 declarations: [OcAppDescriptionComponent],
-                imports: [FormsModule],
+                imports: [FormsModule, OcCommonLibModule],
             }).compileComponents();
         }),
     );
@@ -19,6 +21,7 @@ describe('OcAppDescriptionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(OcAppDescriptionComponent);
         component = fixture.componentInstance;
+        descriptionElement = fixture.debugElement.query(By.css('#ocAppDescriptionTruncatedTextId')).nativeElement;
     });
 
     it('should create', () => {
@@ -61,34 +64,29 @@ describe('OcAppDescriptionComponent', () => {
         expect(getDescriptionText()).toEqual('');
     });
 
-    it('expand description normal value', () => {
-        const expandDescription = 'Expand description';
-        setExpandDescription(expandDescription);
-        setDescriptionText('It is a long description text'.repeat(300));
-        expect(getExpandDescription()).toEqual(expandDescription);
+    it('switch full description by click', () => {
+        component.appDescription = '1234567890';
+        component.truncateTextLength = 5;
+        fixture.detectChanges();
+        const description = fixture.nativeElement.querySelector('#ocAppDescriptionTruncatedTextId');
+        const switchButton = fixture.nativeElement.querySelector('#ocAppDescriptionShowMoreId');
+        expect(switchButton.textContent).toEqual('Show more');
+        expect(description.textContent).toEqual('12345...');
+        switchButton.click();
+        fixture.detectChanges();
+        expect(switchButton.textContent).toEqual('Show less');
+        expect(description.textContent).toEqual('1234567890');
     });
 
-    it('expand description non null', () => {
-        const expandDescription = null;
-        setExpandDescription(expandDescription);
-        setDescriptionText('It is a long description text'.repeat(300));
-        expect(getExpandDescription()).toEqual('');
+    it('description without any html tags', () => {
+        component.appDescription = '<a>1234567890</a>';
+        component.truncateTextLength = 5;
+        fixture.detectChanges();
+        const description = fixture.nativeElement.querySelector('#ocAppDescriptionTruncatedTextId');
+        const switchButton = fixture.nativeElement.querySelector('#ocAppDescriptionShowMoreId');
+        expect(switchButton.textContent).toEqual('Show more');
+        expect(description.textContent).toEqual('12345...');
     });
-
-    it('expand description non undefined', () => {
-        const expandDescription = undefined;
-        setExpandDescription(expandDescription);
-        setDescriptionText('It is a long description text'.repeat(300));
-        expect(getExpandDescription()).toEqual('');
-    });
-
-    function setExpandDescription(expandDescription: string): void {
-        component.expandDescriptionText = expandDescription;
-    }
-
-    function getExpandDescription(): string {
-        return fixture.nativeElement.querySelector('.description__show-more').textContent;
-    }
 
     function setHeaderText(header: string): void {
         component.header = header;
@@ -96,7 +94,7 @@ describe('OcAppDescriptionComponent', () => {
     }
 
     function getHeaderText(): string {
-        return fixture.nativeElement.querySelector('h4').innerHTML;
+        return fixture.nativeElement.querySelector('#ocAppDescriptionHeaderTextId').innerHTML;
     }
 
     function setDescriptionText(description: string): void {
@@ -105,6 +103,6 @@ describe('OcAppDescriptionComponent', () => {
     }
 
     function getDescriptionText(): string {
-        return fixture.nativeElement.querySelector('p').innerHTML;
+        return fixture.nativeElement.querySelector('#ocAppDescriptionTruncatedTextId').innerHTML;
     }
 });

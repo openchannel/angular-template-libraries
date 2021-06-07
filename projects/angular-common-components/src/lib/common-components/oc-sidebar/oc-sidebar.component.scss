@@ -12,7 +12,7 @@
     max-width: 265px;
   }
   &__heading {
-    @include font-family-rubik('Medium');
+    @include font-medium();
     font-size: 16px;
   }
   &__list {
@@ -34,7 +34,7 @@
       &-text {
         color: $body-color;
         text-decoration: none;
-        @include font-size-breakpoint(md);
+        @include font-size-md();
         border-radius: 4px;
         cursor: pointer;
         padding: 2px;
