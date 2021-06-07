@@ -16,6 +16,7 @@
                 <oc-rating class="info-card__content-rating"
                            [rating]="parseRating(app.rating)"
                            [reviewCount]="app.reviewCount"
+                           [labelClass]="'medium md'"
                            type="single-star"></oc-rating>
             </div>
             <p class="info-card__content-summary" ellipsis>{{(app.summary ? app.summary : app.description) | replaceHtmlTags}}</p>

@@ -3,7 +3,7 @@
 
 .error {
   &__feedback {
-    @include font-size-breakpoint(sm);
+    @include font-size-sm();
     color: $danger;
     display: block;
     margin-top: 6px;

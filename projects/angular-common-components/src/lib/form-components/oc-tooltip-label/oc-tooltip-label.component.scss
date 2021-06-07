@@ -6,7 +6,7 @@
   display: flex;
 
   &__text {
-    @include font-size-breakpoint(md);
+    @include font-size-md();
     margin-bottom: 0;
   }
 
