@@ -1,12 +1,12 @@
-import { moduleMetadata } from '@storybook/angular';
+import {moduleMetadata} from '@storybook/angular';
 import {
     ComponentsUserActivationModel,
     OcCommonLibModule,
     OcResendActivationComponent,
 } from 'projects/angular-common-components/src/public-api';
-import { RouterTestingModule } from '@angular/router/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
@@ -36,7 +36,7 @@ Empty.args = {
     activationModel: activationEmpty,
     loginUrl: 'login',
     signupUrl: 'signup',
-  companyLogoUrl: './assets/angular-common-components/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
 };
 
 export const Filled = ForgotPasswordComponent.bind({});
@@ -44,5 +44,5 @@ Filled.args = {
     activationModel: activationFilled,
     loginUrl: 'login',
     signupUrl: 'signup',
-  companyLogoUrl: './assets/angular-common-components/logo-company.png',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
 };
