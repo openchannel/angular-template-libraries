@@ -24,7 +24,7 @@ export class OcCommonServiceModule {
                 },
                 {
                     provide: OcApiPaths,
-                    useValue: this.createApiPaths(options?.apiPaths),
+                    useValue: OcCommonServiceModule.createApiPaths(options?.apiPaths),
                 },
             ],
         };
