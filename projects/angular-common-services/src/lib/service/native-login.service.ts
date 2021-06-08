@@ -6,14 +6,17 @@ import { SignUpByInviteRequest } from '../model/api/login.model';
 import { UserResetPassword } from '../model/api/user-activation-model';
 import { ChangePasswordRequest } from '../model/api/change-password.model';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class NativeLoginService {
-    private readonly NATIVE_URL = 'auth/native';
+    private NATIVE_URL;
 
-    constructor(private httpRequest: HttpRequestService) {}
+    constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {
+        this.NATIVE_URL = apiPaths.authorizationNative;
+    }
 
     signIn(body: UserLoginModel): Observable<any> {
         return this.httpRequest.post(`${this.NATIVE_URL}/token`, body);

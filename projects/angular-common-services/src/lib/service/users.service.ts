@@ -7,15 +7,19 @@ import { OcHttpParams } from '../model/api/http-params-encoder-model';
 import { HttpHeaders } from '@angular/common/http';
 import { TypeFieldModel, TypeModel } from '../model/api/type-model';
 import { toString } from 'lodash';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class UsersService {
-    private readonly USERS_URL = 'v2/users';
-    private readonly USER_TYPE_URL = 'v2/userTypes';
+    private USERS_URL;
+    private USER_TYPE_URL;
 
-    constructor(private httpService: HttpRequestService) {}
+    constructor(private httpService: HttpRequestService, private apiPaths: OcApiPaths) {
+        this.USERS_URL = apiPaths.users;
+        this.USER_TYPE_URL = apiPaths.userTypes;
+    }
 
     getUsersByIds(userIds: string[]): Observable<Page<User>> {
         const mainUrl = `${this.USERS_URL}/all`;

@@ -1,16 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpRequestService } from './http-request-services';
 import { Page } from '../model/api/page.model';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DeveloperAccountTypesService {
-    private readonly DEVELOPER_ACCOUNTS_TYPES_URL = 'v2/developerAccountTypes';
+    private DEVELOPER_ACCOUNTS_TYPES_URL;
 
-    constructor(private httpService: HttpRequestService) {}
+    constructor(private httpService: HttpRequestService, private apiPaths: OcApiPaths) {
+        this.DEVELOPER_ACCOUNTS_TYPES_URL = apiPaths.developerAccountTypes;
+    }
 
     getAccountType(type: string, httpOptions?: any): Observable<any> {
         return this.httpService.get(`${this.DEVELOPER_ACCOUNTS_TYPES_URL}/${type}`, httpOptions);

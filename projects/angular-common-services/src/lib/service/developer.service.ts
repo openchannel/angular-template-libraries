@@ -2,15 +2,17 @@ import {Injectable} from '@angular/core';
 import {HttpRequestService} from './http-request-services';
 import {Observable} from 'rxjs';
 import {DeveloperModel, DeveloperUpdateModel} from '../model/api/developer.model';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeveloperService {
 
-  private readonly BASIC_URL = 'v2/developers';
+  private BASIC_URL;
 
-  constructor(private httpRequest: HttpRequestService) {
+  constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {
+    this.BASIC_URL = apiPaths.developer;
   }
 
   getDeveloper(): Observable<DeveloperModel> {

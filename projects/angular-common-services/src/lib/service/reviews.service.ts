@@ -9,16 +9,19 @@ import {User} from '../model/api/user.model';
 import {QueryUtil} from '../util/query.util';
 import {OcHttpParams} from '../model/api/http-params-encoder-model';
 import {OCReviewDetailsResponse} from '../model/components/frontend.model';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReviewsService {
 
-  private readonly REVIEWS_URL = 'v2/reviews';
+  private REVIEWS_URL;
 
   constructor(private httpService: HttpRequestService,
-              private usersService: UsersService) {
+              private usersService: UsersService,
+              private apiPaths: OcApiPaths) {
+      this.REVIEWS_URL = apiPaths.reviews;
   }
 
   getReviewsByAppId(appId: string, sort?: string, filter?: string, page?: number, count?: number):

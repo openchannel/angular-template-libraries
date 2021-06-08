@@ -4,14 +4,17 @@ import { Observable } from 'rxjs';
 import { Page } from '../model/api/page.model';
 import { UserAccountTypeModel } from '../model/api/user-type.model';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class UserAccountTypesService {
-    private readonly BASE_USER_ACCOUNTS_TYPES = 'v2/userAccountTypes';
+    private BASE_USER_ACCOUNTS_TYPES;
 
-    constructor(private httpService: HttpRequestService) {}
+    constructor(private httpService: HttpRequestService, private apiPaths: OcApiPaths) {
+        this.BASE_USER_ACCOUNTS_TYPES = apiPaths.userAccountTypes;
+    }
 
     /**
      * Getting user profile fields definition by type

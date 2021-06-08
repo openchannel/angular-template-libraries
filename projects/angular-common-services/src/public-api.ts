@@ -64,5 +64,8 @@ export * from './lib/service/statistic.service';
 export * from './lib/service/properties.service';
 export * from './lib/service/request.service';
 
+/* Configs */
+export { OcEndpointApiPaths } from './lib/config/api-version.model';
+
 /* Utils */
 export * from './lib/util/type-mapper.util';

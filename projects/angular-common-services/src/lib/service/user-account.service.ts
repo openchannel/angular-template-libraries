@@ -4,15 +4,17 @@ import {Page} from '../model/api/page.model';
 import {HttpRequestService} from './http-request-services';
 import {UserAccount} from '../model/api/user.model';
 import {OcHttpParams} from '../model/api/http-params-encoder-model';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserAccountService {
 
-  private readonly BASE_USER_ACCOUNTS = 'v2/userAccounts';
+  private BASE_USER_ACCOUNTS;
 
-  constructor(private httpService: HttpRequestService) {
+  constructor(private httpService: HttpRequestService, private apiPaths: OcApiPaths) {
+    this.BASE_USER_ACCOUNTS = apiPaths.userAccounts;
   }
 
   /** Getting data about none-developer users */

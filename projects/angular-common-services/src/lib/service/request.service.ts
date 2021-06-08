@@ -5,14 +5,17 @@ import { Page } from '../model/api/page.model';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
 import { RequestModel, RequestModelResponse, RequestStatusModel } from '../model/api/request.model';
 import { HttpHeaders } from '@angular/common/http';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class RequestService {
-    private readonly REQUEST_URL = 'v2/requests';
+    private REQUEST_URL;
 
-    constructor(private httpService: HttpRequestService) {}
+    constructor(private httpService: HttpRequestService, private apiPaths: OcApiPaths) {
+        this.REQUEST_URL = apiPaths.requests;
+    }
 
     getAllRequest(pageNumber: number, limit: number, headers: HttpHeaders = new HttpHeaders()): Observable<Page<RequestModelResponse>> {
         const options: any = {

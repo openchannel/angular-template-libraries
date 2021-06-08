@@ -6,15 +6,18 @@ import { mergeMap } from 'rxjs/operators';
 import { ConfigService } from './config.service';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
 import { FileDetailsResponse } from '../model/api/file-details-model';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class FileUploadDownloadService {
-    private tokenUrl = 'v2/files/uploadToken';
     private uploadFileUrl = 'v2/files';
 
-    constructor(public httpRequest: HttpRequestService, private http: HttpClient, private configService: ConfigService) {}
+    constructor(public httpRequest: HttpRequestService, private http: HttpClient, private configService: ConfigService,
+                private apiPaths: OcApiPaths) {
+        this.uploadFileUrl = apiPaths.files;
+    }
 
     uploadToOpenChannel(file: FormData, isPrivate: boolean, hash?: string[]): Observable<any> {
         return this.getToken().pipe(mergeMap(res => this.prepareUploadReq(res.token, file, isPrivate, hash)));
@@ -41,7 +44,7 @@ export class FileUploadDownloadService {
     }
 
     getToken() {
-        return this.httpRequest.post(this.tokenUrl, null);
+        return this.httpRequest.post(`${this.uploadFileUrl}/uploadToken`, null);
     }
 
     downloadFileDetails(fileId): Observable<FileDetailsResponse> {

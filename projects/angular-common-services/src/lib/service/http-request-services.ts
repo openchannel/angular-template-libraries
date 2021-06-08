@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
 import { API_URL } from '../../public-api';
-import { AuthenticationService } from './authentication.service';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +12,8 @@ export class HttpRequestService {
 
     private API_URL: string;
 
-    constructor(private http: HttpClient, @Inject(API_URL) private apiUrl: string) {
+    constructor(private http: HttpClient, @Inject(API_URL) private apiUrl: string,
+                private apiPaths: OcApiPaths) {
         this.API_URL = apiUrl;
     }
 
@@ -54,7 +55,7 @@ export class HttpRequestService {
     }
 
     private initCSRF(): Observable<any> {
-        return this.http.get(this.API_URL + AuthenticationService.INIT_CSRF_URL, this.options);
+        return this.http.get(`${this.API_URL}${this.apiPaths.authorization}/csrf`, this.options);
     }
 
     private mergeHttpOptions(newOptions: any): any {

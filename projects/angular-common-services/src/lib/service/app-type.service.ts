@@ -4,15 +4,17 @@ import {Observable} from 'rxjs';
 import {AppTypeModelResponse} from '../model/api/app-type-model';
 import {QueryUtil} from '../util/query.util';
 import {Page} from '../model/api/page.model';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppTypeService {
 
-  private readonly APP_TYPE_URL = 'v2/appTypes';
+  private APP_TYPE_URL;
 
-  constructor(private httpRequest: HttpRequestService) {
+  constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {
+    this.APP_TYPE_URL = apiPaths.appTypes;
   }
 
   public getOneAppType(appTypeId: string): Observable<AppTypeModelResponse> {

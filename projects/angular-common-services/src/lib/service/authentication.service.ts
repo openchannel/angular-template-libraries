@@ -4,37 +4,41 @@ import {Observable, of, throwError} from 'rxjs';
 import {LoginRequest, LoginResponse, RefreshTokenRequest} from '../model/api/login.model';
 import {AuthHolderService} from './auth-holder.service';
 import {catchError, flatMap, map, tap} from 'rxjs/operators';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthenticationService {
 
-    private static readonly AUTH_URL = 'auth';
-    public static readonly INIT_CSRF_URL = `${AuthenticationService.AUTH_URL}/csrf`;
+    private AUTH_URL;
+    INIT_CSRF_URL;
 
     constructor(private httpService: HttpRequestService,
-                private authHolderService: AuthHolderService) {
+                private authHolderService: AuthHolderService,
+                private apiPaths: OcApiPaths) {
+        this.AUTH_URL = apiPaths.authorization;
+        this.INIT_CSRF_URL = `${this.AUTH_URL}/csrf`;
     }
 
     initCsrf(): Observable<any> {
-        return this.httpService.get( AuthenticationService.INIT_CSRF_URL);
+        return this.httpService.get( this.INIT_CSRF_URL);
     }
 
     getAuthConfig(): Observable<any> {
-        return this.httpService.get(`${(AuthenticationService.AUTH_URL)}/config`);
+        return this.httpService.get(`${this.AUTH_URL}/config`);
     }
 
     login(request: LoginRequest): Observable<LoginResponse> {
-        return this.httpService.post(`${AuthenticationService.AUTH_URL}/external/token`, request);
+        return this.httpService.post(`${this.AUTH_URL}/external/token`, request);
     }
 
     refreshToken(request: RefreshTokenRequest): Observable<LoginResponse> {
-        return this.httpService.post(`${AuthenticationService.AUTH_URL}/refresh`, request);
+        return this.httpService.post(`${this.AUTH_URL}/refresh`, request);
     }
 
     logOut(): Observable<void> {
-        return this.httpService.post(`${AuthenticationService.AUTH_URL}/logout`,
+        return this.httpService.post(`${this.AUTH_URL}/logout`,
             {refreshToken: this.authHolderService.refreshToken});
     }
 

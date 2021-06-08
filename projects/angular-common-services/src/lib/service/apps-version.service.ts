@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Page} from '../model/api/page.model';
 import {AppVersionResponse, UpdateAppVersionModel} from '../model/api/app-data-model';
 import {OcHttpParams} from '../model/api/http-params-encoder-model';
+import { OcApiPaths } from '../config/api-version.model';
 
 
 @Injectable({
@@ -11,9 +12,10 @@ import {OcHttpParams} from '../model/api/http-params-encoder-model';
 })
 export class AppVersionService {
 
-  private readonly APPS_URL = 'v2/apps';
+  private APPS_URL;
 
-  constructor(private httpRequest: HttpRequestService) {
+  constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {
+    this.APPS_URL = apiPaths.appsVersions
   }
 
   getAppsVersionsBySearchText(pageNumber: number, limit: number,

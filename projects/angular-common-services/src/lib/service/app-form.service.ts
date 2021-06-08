@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import {HttpRequestService} from './http-request-services';
 import {Observable} from 'rxjs';
 import {Page} from '../model/api/page.model';
@@ -8,15 +8,18 @@ import {
   CreateFormSubmissionModel,
   FormSubmissionModel
 } from '../model/api/app-form-model';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppFormService {
 
-  private readonly FORM_URL = 'v2/forms';
+  private FORM_URL;
 
-  constructor(private httpRequest: HttpRequestService) {
+  constructor(private httpRequest: HttpRequestService,
+              private apiPaths: OcApiPaths ) {
+        this.FORM_URL = apiPaths.forms;
   }
 
   getForms(pageNumber: number, pageLimit: number): Observable<Page<AppFormModelResponse>> {

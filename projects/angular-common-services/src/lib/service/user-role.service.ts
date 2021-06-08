@@ -4,15 +4,17 @@ import {Page} from '../model/api/page.model';
 import {HttpRequestService} from './http-request-services';
 import {UserRoleResponse} from '../model/api/account-role-model';
 import {OcHttpParams} from '../model/api/http-params-encoder-model';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserRoleService {
 
-  private readonly USER_ROLES = 'v2/userRoles';
+  private USER_ROLES;
 
-  constructor(private httpService: HttpRequestService) {
+  constructor(private httpService: HttpRequestService, private apiPaths: OcApiPaths) {
+    this.USER_ROLES = apiPaths.userRoles;
   }
 
   getUserRoles(pageNumber: number, pageLimit: number): Observable<Page<UserRoleResponse | any>> {

@@ -4,14 +4,17 @@ import { Observable } from 'rxjs';
 import { Page } from '../model/api/page.model';
 import { AppResponse, AppStatusValue, CreateAppModel, PublishAppVersionModel } from '../model/api/app-data-model';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AppsService {
-    private readonly APPS_URL = 'v2/apps';
+    private APPS_URL;
 
-    constructor(private httpRequest: HttpRequestService) {}
+    constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {
+        this.APPS_URL = apiPaths.apps;
+    }
 
     searchApp(searchText: string, filter: string, fields: string[] = ['name']): Observable<Page<AppResponse | any>> {
         const mainUrl = `${this.APPS_URL}/textSearch`;

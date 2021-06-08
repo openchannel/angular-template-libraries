@@ -4,15 +4,17 @@ import {InviteDeveloperModel, InviteUserModel} from '../model/api/invite-user.mo
 import {Observable} from 'rxjs';
 import {HttpRequestService} from './http-request-services';
 import {OcHttpParams} from '../model/api/http-params-encoder-model';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InviteUserService {
 
-  readonly INVITE_URL = 'v2/invites';
+  readonly INVITE_URL;
 
-  constructor(private httpService: HttpRequestService) {
+  constructor(private httpService: HttpRequestService, private apiPaths: OcApiPaths) {
+    this.INVITE_URL = apiPaths.invites;
   }
 
   getUserInvites(pageNumber: number, limit: number, sort?: string, query?: string): Observable<Page<InviteUserModel>> {

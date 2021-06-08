@@ -5,14 +5,17 @@ import { DeveloperAccount } from '../model/api/developer-account.model';
 import { DeveloperAccountModel } from '../model/api/developer.model';
 import { Page } from '../model/api/page.model';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DeveloperAccountService {
-    private readonly DEVELOPER_ACCOUNTS_URL = 'v2/developerAccounts';
+    private DEVELOPER_ACCOUNTS_URL;
 
-    constructor(private httpService: HttpRequestService) {}
+    constructor(private httpService: HttpRequestService, private apiPaths: OcApiPaths) {
+        this.DEVELOPER_ACCOUNTS_URL = apiPaths.developerAccounts;
+    }
 
     getAccount(): Observable<DeveloperAccount> {
         return this.httpService.get(`${this.DEVELOPER_ACCOUNTS_URL}/this`);

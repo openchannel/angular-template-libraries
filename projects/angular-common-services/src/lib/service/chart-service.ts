@@ -7,15 +7,17 @@ import {
   ChartStatisticDataModelResponse,
   ChartStatisticPeriodModelResponse
 } from '../model/components/frontend.model';
+import { OcApiPaths } from '../config/api-version.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChartService {
 
-  private readonly STATS_URL = 'v2/stats';
+  private STATS_URL;
 
-  constructor(private httpRequest: HttpRequestService) {
+  constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {
+        this.STATS_URL = apiPaths.stats;
   }
 
   getTimeSeries(period: string, fields: string, dateStartMS: number, dateEndMS: number, appId?: string)
