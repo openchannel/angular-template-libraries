@@ -11,18 +11,14 @@ export const API_URL = new InjectionToken<string>('API_URL');
     exports: [],
 })
 export class OcCommonServiceModule {
-    static forRoot(environment: any, apiUrl?: string): ModuleWithProviders<OcCommonServiceModule> {
+    static forRoot(options: { apiUrl: string }): ModuleWithProviders<OcCommonServiceModule> {
         return {
             ngModule: OcCommonServiceModule,
             providers: [
                 HttpRequestService,
                 {
-                    provide: 'environment', // you can also use InjectionToken
-                    useValue: environment,
-                },
-                {
                     provide: API_URL,
-                    useValue: apiUrl,
+                    useValue: options?.apiUrl,
                 },
             ],
         };

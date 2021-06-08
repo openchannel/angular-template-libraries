@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
 import { API_URL } from '../../public-api';
@@ -12,8 +12,8 @@ export class HttpRequestService {
 
     private API_URL: string;
 
-    constructor(private http: HttpClient, @Inject('environment') private environment, @Optional() @Inject(API_URL) private apiUrl: string) {
-        this.API_URL = apiUrl || environment.apiUrl;
+    constructor(private http: HttpClient, @Inject(API_URL) private apiUrl: string) {
+        this.API_URL = apiUrl;
     }
 
     options = {

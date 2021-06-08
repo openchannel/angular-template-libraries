@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {ActivationStart, Router} from '@angular/router';
 
@@ -10,8 +10,7 @@ export class TitleService {
   title: string;
 
   constructor(private titleService: Title,
-              private router: Router,
-              @Inject('environment') private environment) {
+              private router: Router) {
     this.router.events.subscribe(value => {
       if (value instanceof ActivationStart) {
         const subtitle = value.snapshot.data.title;
