@@ -13,5 +13,4 @@ export class OcOverallRatingComponent {
 
     @Input() allReviewSummary: OverallRatingSummary = new OverallRatingSummary();
 
-    constructor() {}
 }

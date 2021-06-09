@@ -6,9 +6,6 @@ import {Injectable} from '@angular/core';
 export class OcErrorService {
   serverErrorList = [];
 
-  constructor() {
-  }
-
   setServerErrorList(messages) {
     this.serverErrorList = messages;
   }

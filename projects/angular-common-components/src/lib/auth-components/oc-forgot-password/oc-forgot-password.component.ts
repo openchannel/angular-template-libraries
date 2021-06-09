@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ComponentsUserLoginModel } from '../models/auth-types.model';
 
@@ -7,7 +7,7 @@ import { ComponentsUserLoginModel } from '../models/auth-types.model';
     templateUrl: './oc-forgot-password.component.html',
     styleUrls: ['./oc-forgot-password.component.scss'],
 })
-export class OcForgotPasswordComponent implements OnInit {
+export class OcForgotPasswordComponent {
     @Input() loginModel = new ComponentsUserLoginModel();
     @Input() loginUrl;
     @Input() signupUrl;
@@ -19,8 +19,6 @@ export class OcForgotPasswordComponent implements OnInit {
     @Output() submit = new EventEmitter<any>();
 
     constructor(private router: Router) {}
-
-    ngOnInit(): void {}
 
     submitForm(form): void {
         if (!this.process) {

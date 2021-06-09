@@ -45,8 +45,6 @@ export class OcMenuUserGridComponent {
 
     private pageNumber: number = 1;
 
-    constructor() {}
-
     action(actionType: UserGridOptionType, userData: ComponentsUserAccountGridModel): void {
         const action: ComponentsUserGridActionModel = {
             action: actionType,

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {DropdownModel} from '../model/components-basic.model';
 
 @Component({
@@ -6,7 +6,7 @@ import {DropdownModel} from '../model/components-basic.model';
   templateUrl: './oc-dropdown.component.html',
   styleUrls: ['./oc-dropdown.component.scss']
 })
-export class OcDropdownComponent implements OnInit {
+export class OcDropdownComponent {
 
   @Output()
   selectedChange: EventEmitter<DropdownModel<any>> = new EventEmitter<DropdownModel<any>>();
@@ -19,11 +19,6 @@ export class OcDropdownComponent implements OnInit {
 
   @Input()
   options: DropdownModel<any>[];
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   onSelect(selected: DropdownModel<any>) {
     this.selected = selected;
