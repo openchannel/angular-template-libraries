@@ -12,12 +12,16 @@ export class OcRatingComponent {
      * Default: 'single-star'
      */
     @Input() type: 'single-star' | 'multi-star' = 'single-star';
+
     /** Rating number */
     @Input() rating: number = 0;
+
     /** Count of the reviews */
     @Input() reviewCount: number = 0;
+
     /** Text that can be added near the review count */
     @Input() label: string = '';
+
     /** List of the public classes that can be added to the label */
     @Input() labelClass: string = 'medium md';
 
