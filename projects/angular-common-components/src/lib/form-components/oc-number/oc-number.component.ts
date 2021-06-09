@@ -1,6 +1,20 @@
 import { Component, ElementRef, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+/**
+ * Number input component. Represents component with template and logic to use like numbers only input.
+ * 
+ * Inputs: <br>
+ * @param {'on'|'off'} autocomplete
+ * @param {boolean} autoFocus
+ * @param {string} placeholder
+ * @param {string} customClass
+ * @param {any} customStyle
+ * @param {boolean} disabled
+ * 
+ * @example <oc-number [(ngModel)]="number" [autocomplete]="'on'" [autoFocus]="true" [placeholder]="Placeholder"
+ * [customClass]="number" [customStyle]="{background: 'green'}" [disabled]="true">
+ */
 @Component({
   selector: 'oc-number',
   templateUrl: './oc-number.component.html',
@@ -12,6 +26,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   }],
 })
 export class OcNumberComponent implements OnInit, ControlValueAccessor {
+
+  /**
+   * Value for input.
+   */
   @Input()
   set value(val) {
     this.inputNumber = this.parseNumber(val);
@@ -20,23 +38,39 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
 
   constructor(private el: ElementRef) { }
 
-  @Input() autocomplete;
-  /** Set autofocus on input. Default: false */
+  /**
+   * 'autocomplete' attribute value for input
+   */
+  @Input() autocomplete: 'on' | 'off';
+
+  /** Set autofocus on input.
+   * 
+   * Default: false */
   @Input() autoFocus: boolean = false;
+
   /** Placeholder text for input */
   @Input() placeholder: string = '';
+
   /**
-   * List of the custom classes which
-   *  can be added to the current classes
+   * List of the custom classes which can be added to the current classes.
    */
   @Input() customClass: string = '';
+
   /** Style object for input */
   @Input() customStyle: any;
-  /** Set disable state for input */
+
+  /** Set disable state for input.
+   * 
+   * Default: `false`
+  */
   @Input() disabled: boolean = false;
+
   /** Value in the input */
   public inputNumber: number;
 
+  /**
+   * (private property) Regex for validation (digits only)
+   */
   private regex = new RegExp(/[^\d.]/g);
 
   private onTouched = () => {};
@@ -51,6 +85,9 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
     }
   }
 
+  /**
+   * Fuction on change model value 
+   */
   changeModelVal() {
     this.onChange(this.inputNumber);
   }
@@ -101,6 +138,9 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
     this.inputNumber = this.parseNumber(obj);
   }
 
+  /**
+   * Fuction for parse string to number
+   */
   parseNumber(inputString): number {
     if ( typeof inputString  === 'string') {
       return Number(inputString.replace(this.regex, ''));
