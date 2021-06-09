@@ -2,6 +2,10 @@ import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+/**
+ * Rich text editor component. It is used for the confirmation some action from the user.
+ * Component represents a specific block which allows to write/insert/edit text, code snippets etc.
+ */
 @Component({
     selector: 'oc-rich-text-editor',
     templateUrl: './oc-rich-text-editor.component.html',
@@ -60,6 +64,7 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
 
     editorContent: SafeHtml;
     editorOnFocus: boolean = false;
+    disabled: boolean;
 
     constructor() {}
 
@@ -105,7 +110,9 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
      * (Optional)
      * The method will be called by the control when the [disabled] state changes.
      */
-    setDisabledState(isDisabled: boolean): void {}
+    setDisabledState(isDisabled: boolean): void {
+        this.disabled = isDisabled;
+    }
 
     /**
      * This method will be called by the control to pass the value to our component.
