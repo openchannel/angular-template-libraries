@@ -2,6 +2,16 @@ import { Component, forwardRef, Input, OnChanges, OnInit, SimpleChanges } from '
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { difference } from 'lodash';
 
+/**
+ * Multi select list component. Represent input for search tags by name and tags list.
+ *
+ * Input: <br>
+ * @param {any[]} availableItemsList
+ * @param {string} label
+ * @param {string} description
+ * @param {string[]} defaultItems
+ * @example <oc-multi-select-list [(ngModel)]="resultList" [availableItemsList]="['1','2','3']" [label]="'LABEL'" [description]="'Description'" [defaultItems]="['1']">
+ */
 @Component({
     selector: 'oc-multi-select-list',
     templateUrl: './oc-multi-select-list.component.html',
@@ -18,11 +28,11 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
     /**
      * (Required)
      * List of available items to choose in dropbox
-     * Default: empty string []
      */
     @Input() set availableItemsList(value: any[]) {
         this.availableItems = value;
     }
+
     /**
      * Set result items array value
      */
@@ -31,26 +41,26 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
         this.resultItems = val;
         this.onChange(this.resultItems);
     }
+
     /** Label of the Component */
     @Input() label: string = '';
+
     /**
      * Description for all list items.
-     * Default: empty
      */
     @Input() description: string = '';
+
     /**
      * (optional)
      * List of items for automatically adding to the user tags list.
-     * Default: empty string []
+     * Default: `[]`
      */
-    @Input() defaultItems = [];
+    @Input() defaultItems: string[] = [];
 
     availableItems: string[] = [];
     resultItems: any[] = [];
     // tags for DropBox
     dropBoxItems = [];
-
-    constructor() {}
 
     ngOnInit(): void {
         this.applyDefaultItems();
@@ -69,6 +79,7 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
     applyDefaultItems(): void {
         this.defaultItems.forEach(tag => this.addTagToResultList(tag));
     }
+
     /**
      * Remove item from selected items list by index
      * @param index index of the chosen item
@@ -90,14 +101,21 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
         }
     }
 
+    /**
+     * Filter drop box items that are not yet selected
+     */
     findAvailableDropBoxItems(): string[] {
         return this.availableItems.filter(tag => !this.existTagInResultList(tag));
     }
 
+    /**
+     * Check is tag already selected
+     */
     existTagInResultList(currentTag: string): boolean {
         const tagNormalized = currentTag.toLowerCase();
         return this.resultItems.filter(t => tagNormalized === t.toLowerCase()).length > 0;
     }
+
     /**
      * Update component filters and result value
      */
@@ -105,6 +123,7 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
         this.dropBoxItems = this.findAvailableDropBoxItems();
         this.onChange(this.resultItems);
     }
+
     /**
      * Calls this function with new value. When user wrote something in the component
      * It needs to know that new data has been entered in the control.
@@ -112,6 +131,7 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
     registerOnChange(onChange: (value: any) => void): void {
         this.onChange = onChange;
     }
+
     /**
      * Calls this function when user left chosen component.
      * It needs for validation
@@ -119,11 +139,13 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
     registerOnTouched(onTouched: () => void): void {
         this.onTouched = onTouched;
     }
+
     /**
      * (Optional)
      * the method will be called by the control when the [disabled] state changes.
      */
     setDisabledState(isDisabled: boolean): void {}
+
     /**
      * this method will be called by the control to pass the value to our component.
      * It is used if the value is changed through the code outside
