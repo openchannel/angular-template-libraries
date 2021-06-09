@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ComponentsUserResetPassword } from '../models/auth-types.model';
 
+/**
+ * A reset password component. A form, which allows user to change his account password.
+ * Contains of a header, password field and navigation links.
+ */
 @Component({
     selector: 'oc-reset-password',
     templateUrl: './oc-reset-password.component.html',
@@ -11,32 +15,32 @@ export class OcResetPasswordComponent implements OnInit {
      * A source path for company logo.
      * @type {string}.
      */
-    @Input() companyLogoUrl;
+    @Input() companyLogoUrl: string;
 
     /**
      * A variable which determines whether to show or hide button text.
      * Shows button text if it has no active process.
      * @type {boolean}.
      */
-    @Input() process;
+    @Input() process: boolean;
 
     /**
      * Login url for those users who already has an account.
      * @type {string}.
      */
-    @Input() loginUrl;
+    @Input() loginUrl: string;
 
     /**
      * Signup url for those users who has no account yet.
      * @type {string}.
      */
-    @Input() signupUrl;
+    @Input() signupUrl: string;
 
     /**
      * The user password model for signup.
      * @type {ComponentsUserResetPassword}.
      */
-    @Input() resetModel = new ComponentsUserResetPassword();
+    @Input() resetModel: ComponentsUserResetPassword = new ComponentsUserResetPassword();
 
     /**
      * Event emitter that submits form.
