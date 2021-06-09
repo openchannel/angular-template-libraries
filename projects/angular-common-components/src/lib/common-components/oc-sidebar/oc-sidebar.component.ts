@@ -2,6 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { OcSidebarSelectModel } from '../model/oc-sidebar-model';
 import { SidebarValue } from '../model/components-basic.model';
 
+/**
+ * Sidebar component. It is used as a tool for quick search of applications.
+ * Component represents a block with an unordered list of links,
+ * which set filters to the search apps request.
+ */
 @Component({
     selector: 'oc-sidebar',
     templateUrl: './oc-sidebar.component.html',
@@ -39,6 +44,8 @@ export class OcSidebarComponent {
      * Base url for the Router links in the sidebar component.
      * @type {string}.
      * Default empty.
+     * @example
+     * // returns '/browse/collections/allApps'.
      */
     @Input() baseNavigation: string;
 
