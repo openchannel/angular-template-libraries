@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { OCReviewDetails } from '../models/oc-review-details-model';
 
+/**
+ * Review list component.
+ * It is used to render the comments and rate in any application description.
+ * It is represented by a header, a list of reviews and sorting elements.
+ */
 @Component({
     selector: 'oc-review-list',
     templateUrl: './oc-review-list.component.html',
@@ -14,7 +19,7 @@ export class OcReviewListComponent implements OnChanges {
      * @type {string}.
      * Default 'Most recent reviews'.
      */
-    @Input() reviewListTitle = 'Most recent reviews';
+    @Input() reviewListTitle: string = 'Most recent reviews';
 
     /**
      * The total review count of the list.
@@ -34,7 +39,7 @@ export class OcReviewListComponent implements OnChanges {
      * @type {string}.
      * Default 'There is no review for this app'.
      */
-    @Input() noReviewMessage = 'There is no review for this app.';
+    @Input() noReviewMessage: string = 'There is no review for this app.';
 
     /**
      * Sets the baseReviewsList and displayedReviews arrays.
