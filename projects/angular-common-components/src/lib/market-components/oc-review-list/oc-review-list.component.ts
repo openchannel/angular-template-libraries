@@ -30,7 +30,7 @@ export class OcReviewListComponent implements OnChanges {
     /**
      * The maximum number of reviews to display.
      * @type {number}.
-     * Default 3.
+     * @default.
      */
     @Input() maxReviewDisplay: number = 3;
 
@@ -60,7 +60,7 @@ export class OcReviewListComponent implements OnChanges {
      * Event emitter for writing a new review.
      * @type {*}.
      */
-    @Output() readonly writeAReview = new EventEmitter<any>();
+    @Output() readonly writeAReview: EventEmitter<any> = new EventEmitter<any>();
 
     displayedReviews: OCReviewDetails[] = [];
 
