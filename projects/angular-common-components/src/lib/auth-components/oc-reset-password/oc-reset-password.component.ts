@@ -47,7 +47,7 @@ export class OcResetPasswordComponent implements OnInit {
      * Uses ResetPasswordForm.
      * @type {*}.
      */
-    @Output() readonly submit = new EventEmitter<any>();
+    @Output() readonly submit: EventEmitter<any> = new EventEmitter<any>();
 
     constructor() {}
 
