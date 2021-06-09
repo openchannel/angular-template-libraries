@@ -2,6 +2,11 @@ import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/co
 import { FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 import { get } from 'lodash';
 
+/**
+ * Recommended apps component. Renders a list of applications, tha are recommended for a user.
+ * Located on the single application page after its description.
+ * Shows brief information via app cards.
+ */
 @Component({
     selector: 'oc-recommended-apps',
     templateUrl: './oc-recommended-apps.component.html',
@@ -40,12 +45,16 @@ export class OcRecommendedAppsComponent {
     /**
      * Router link for one app when clicked.
      * @type {string | any}.
+     * @example
+     * /details.
      */
     @Input() routerLinkForOneApp: string | any;
 
     /**
      * Key name of the App object which will be chosen like navigation parameter for the Router link.
      * @type {string}.
+     * @example
+     * /test-application.
      */
     @Input() appNavigationParam: string;
 
