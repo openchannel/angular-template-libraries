@@ -19,12 +19,12 @@
     }
 
     &__label {
-      @include font-size-breakpoint(sm);
+      @include font-size-sm();
     }
 
     &__link {
-      @include font-size-breakpoint(sm);
-      @include font-family-rubik('Medium');
+      @include font-size-sm();
+      @include font-medium();
     }
   }
   &__empty_form_configs {
