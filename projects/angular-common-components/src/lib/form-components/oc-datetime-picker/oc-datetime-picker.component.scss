@@ -1,4 +1,4 @@
-@import '../../../../assets/styles/theme.scss';
+@import '../../../../assets/styles/theme';
 @import '../../../../assets/styles/mixins';
 
 .date-picker {
@@ -20,7 +20,7 @@
     .date-picker__format {
 
       &-text {
-        font-family: 'Rubik Regular', sans-serif;
+        @include font-regular();
       }
     }
 
@@ -38,7 +38,7 @@
     &-popover {
       height: auto;
       width: 250px;
-      font-size: 14px;
+      @include font-size-md();
 
       &-date {
         height: 280px;
@@ -53,7 +53,7 @@
       justify-content: space-between;
 
       .date-picker__dropdown-detail {
-        font-size: 12px;
+        @include font-size-sm();
       }
 
       .date-picker__dropdown-icon {
@@ -63,14 +63,15 @@
 
     &-content {
       padding: 16px 16px 0;
-      font-size: 14px;
+      @include font-size-md();
 
       .date-picker__calendar-header {
         background: #fff;
         border-bottom: 1px solid $gray;
         padding: 5px 0;
-        font-size: 12px;
-        color: $secondary;
+        @include font-size-sm();
+        color: $text-color;
+        @include default-text();
       }
 
       .date-picker__calendar-days {
@@ -92,7 +93,8 @@
         }
 
         .date-picker__prev-month {
-          color: $secondary;
+          color: $text-color;
+          @include default-text();
 
           &:hover {
             background: #fff;
@@ -114,7 +116,7 @@
 
           span {
             display: block;
-            font-size: 12px;
+            @include font-size-sm();
           }
         }
       }
@@ -153,7 +155,7 @@
 
       &-header {
         text-align: center;
-        font-size: 14px;
+        @include font-size-md();
       }
 
       &-manipulators {
@@ -178,7 +180,7 @@
           text-align: center;
           cursor: pointer;
           font-family: inherit;
-          font-size: 14px;
+          @include font-size-md();
           font-weight: 300;
           padding: 0 10px;
 

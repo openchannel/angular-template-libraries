@@ -26,28 +26,29 @@
   &__one-review {
     margin-top: 5rem;
     &-heading {
-      @include font-family-rubik('Medium');
+      @include font-medium();
     }
     &-rating {
       display: block;
       margin-bottom: 1rem;
       &-label {
-        @include font-size-breakpoint(sm);
-        color: $secondary;
+        @include font-size-sm();
+        color: $text-color;
         line-height: 16px;
         margin-bottom: 1rem;
+        @include default-text();
       }
     }
     &-text {
-      @include font-size-breakpoint(md);
+      @include font-size-md();
     }
   }
   &__drop-down {
-    @include font-family-rubik('Medium');
+    @include font-medium();
     color: $primary;
     cursor: pointer;
     display: inline-block;
-    font-size: 14px;
+    @include font-size-md();
     margin-right: 55px;
   }
   &__empty-result-heading {
