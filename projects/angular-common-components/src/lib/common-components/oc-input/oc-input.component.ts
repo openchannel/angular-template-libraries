@@ -1,6 +1,26 @@
 import { Component, ElementRef, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+/**
+ * Input component. Represents component based on simple input.
+ *
+ * Inputs:
+ * @param {string} modelName
+ * @param {boolean} autoFocus
+ * @param {string} autocomplete
+ * @param {string} placeholder
+ * @param {string} class
+ * @param {boolean} disabled
+ * @param {'text' | 'email' | 'password'} inputType
+ *
+ * @example <oc-input [(NgModel)]="data"
+ * [modelName]="'Name'"
+ * [autoFocus]="true"
+ * [autocomplete]="'on'"
+ * [placeholder]="'ENTER'"
+ * [class]="'custom-input'"
+ * [disabled]="true">
+ */
 @Component({
     selector: 'oc-input',
     templateUrl: './oc-input.component.html',
@@ -14,26 +34,54 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     ],
 })
 export class OcInputComponent implements OnInit, ControlValueAccessor {
+    /**
+     * Model value
+     */
     @Input()
     set value(val) {
         this.inputValue = val;
         this.onChange(this.inputValue);
     }
-    @Input() modelName;
-    @Input() autoFocus;
-    @Input() autocomplete;
-    /** Placeholder text for input */
+
+    /**
+     * Model name
+     */
+    @Input() modelName: string;
+
+    /**
+     * Enable auto focus on input
+     */
+    @Input() autoFocus: boolean;
+
+    /**
+     * Enable auto complete feature
+     */
+    @Input() autocomplete: string;
+
+    /**
+     * Placeholder text for input
+     */
     @Input() placeholder: string = '';
+
     /**
      * List of classes which can be
      * attached to the current list
      */
     @Input() class: string = '';
-    /** Set 'disable' state for input */
+
+    /**
+     * Set 'disable' state for input
+     */
     @Input() disabled: boolean = false;
-    /** Type of the input. Can be 'text', 'password' or 'email' */
+
+    /**
+     * Type of the input. Can be 'text', 'password' or 'email'
+     */
     @Input() inputType: 'text' | 'email' | 'password' = 'text';
 
+    /**
+     * Value from main input
+     */
     inputValue: string;
 
     constructor(private el: ElementRef) {}
