@@ -46,7 +46,7 @@ export class OcRecommendedAppsComponent {
      * Router link for one app when clicked.
      * @type {string | any}.
      * @example
-     * /details.
+     * '/details'.
      */
     @Input() routerLinkForOneApp: string | any;
 
@@ -54,7 +54,7 @@ export class OcRecommendedAppsComponent {
      * Key name of the App object which will be chosen like navigation parameter for the Router link.
      * @type {string}.
      * @example
-     * /test-application.
+     * '/test-application'.
      */
     @Input() appNavigationParam: string;
 
