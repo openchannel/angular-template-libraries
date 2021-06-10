@@ -2,7 +2,7 @@
 @import '../../../../assets/styles/mixins';
 
 .oc-form-label  {
-  @include font-size-breakpoint(md);
+  @include font-size-md();
   line-height: 14px;
   margin-bottom: 0;
   word-break: break-word;

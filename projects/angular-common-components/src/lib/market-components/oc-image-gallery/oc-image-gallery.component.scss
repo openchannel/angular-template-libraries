@@ -1,3 +1,4 @@
+@import '../../../../assets/styles/theme';
 @import '../../../../assets/styles/mixins';
 
 .image-gallery {
@@ -17,13 +18,13 @@
     padding: 0 2rem;
     text-align: center;
     &-title {
-      @include font-size-breakpoint(lg);
-      @include font-family-rubik('Medium');
+      @include font-size-lg();
+      @include font-medium();
       margin-bottom: 1rem;
       margin-top: 2rem;
     }
     &-description {
-      @include font-size-breakpoint(md);
+      @include font-size-md();
     }
   }
 }
