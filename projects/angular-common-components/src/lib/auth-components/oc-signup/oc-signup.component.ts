@@ -12,30 +12,93 @@ export class OcSignupComponent {
     imagePath: any;
     closeResult = '';
 
+    /**
+     * The user registration model for signup.
+     * Contains signup form fields values.
+     * @type {ComponentsUserRegistrationModel}.
+     */
     @Input() signupModel = new ComponentsUserRegistrationModel();
+
+    /**
+     * Login url for those users who already has an account.
+     * @type {string}.
+     */
     @Input() loginUrl;
-    @Input() signupUrl;
+
+    /**
+     * A url for users to activate their account.
+     * @type {string}.
+     */
     @Input() activationUrl;
+
+    /**
+     * A url for users, which opens the terms of service.
+     * @type {string}.
+     */
     @Input() termsUrl;
+
+    /**
+     * A url for users, which opens the data processing policy.
+     * @type {string}.
+     */
     @Input() policyUrl;
+
+    /**
+     * A source path to company logo icon.
+     * @type {string}.
+     */
     @Input() companyLogoUrl;
+
+    /**
+     * A variable which determines whether to show or hide button text.
+     * Shows button text if it has no active process.
+     * @type {boolean}.
+     */
     @Input() process;
+
+    /**
+     * A source path to the icon in a result message after the activation email had been sent to the inbox.
+     * @type {boolean}.
+     */
     @Input() forgotPasswordDoneUrl;
-    @Input() showSignupFeedbackPage;
+
+    /**
+     * A variable which determines whether to show or hide signup feedback page.
+     * @type {boolean}.
+     */
+    @Input() showSignupFeedbackPage: boolean;
+
+    /**
+     * Shows or hides a signup company block of the form.
+     * @type {boolean}.
+     * Default false.
+     */
     @Input() withCompany = false;
 
-    @Output() submitClick = new EventEmitter<any>();
+    /**
+     * Event emitter that submits a click event.
+     * Used in SubmitForm method, if all the fields are checked.
+     * @type {*}.
+     */
+    @Output() readonly submitClick = new EventEmitter<any>();
 
     constructor(private router: Router) {}
 
+    /**
+     * Submits a signup form.
+     * Marks all fields as touched.
+     * Then emits the valid value of the form.
+     */
     submitForm(form: NgForm): void {
         form.form.markAllAsTouched();
-
         if (this.signupModel.isChecked && !this.process) {
             this.submitClick.emit(form.valid);
         }
     }
 
+    /**
+     * Redirects a user to account activation page, using activationUrl.
+     */
     goToActivationPage(): void {
         this.router.navigate([this.activationUrl]);
     }
