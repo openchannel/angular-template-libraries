@@ -387,7 +387,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     }
 
     downloadFile(file: FileDetails) {
-        if (file.fileUploadProgress && file.fileUploadProgress === 100) {
+        if (file && file.fileUploadProgress && file.fileUploadProgress === 100) {
             if (this.isFileTypePrivate()) {
                 if (!this.fileUploaderService.fileDetailsRequest) {
                     console.error('Please, set the FileDetailsRequest function');

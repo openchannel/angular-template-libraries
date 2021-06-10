@@ -7,8 +7,6 @@ import {Component, Input} from '@angular/core';
 })
 export class OcTitleComponent {
 
-    // TODO: move svg img to the asserts
-
     titleText: string;
 
     /**
