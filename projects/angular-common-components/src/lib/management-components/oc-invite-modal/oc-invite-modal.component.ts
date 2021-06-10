@@ -4,25 +4,54 @@ import { isString, merge } from 'lodash';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalInviteUserModel, ModalUpdateUserModel } from '../models/oc-modal.model';
 
+/**
+ * Invite modal component. Represents component with configurable form for inviting user.
+ *
+ * Inputs:
+ * @param {ModalInviteUserModel | ModalUpdateUserModel} modalData
+ * <br>
+ * @example <oc-ivite-modal [modalData]="{
+ *      userData: {userAccountId:"7ahs08d79ya09s7dy"},
+ *      requestUpdateAccount: (accountId: string, accountData: any) => Observable<any>
+ *     }">
+ */
 @Component({
     selector: 'oc-invite-modal',
     templateUrl: './oc-invite-modal.component.html',
     styleUrls: ['./oc-invite-modal.component.scss'],
 })
 export class OcInviteModalComponent implements OnInit {
+
     @Input() modalData: ModalInviteUserModel | ModalUpdateUserModel;
 
-    // config for custom form generation
+    /**
+     * Config for custom form generation
+     */
     formConfig: any = {};
-    // custom form
+
+    /**
+     * Custom form
+     */
     formGroup: FormGroup;
-    // data from custom form
+
+    /**
+     * Data from custom form
+     */
     formData: any;
-    // show spinner while inviting requests
+
+    /**
+     * Show spinner while inviting requests
+     */
     inProcess = false;
 
+    /**
+     * List of user roles
+     */
     private listRoles: any = {};
 
+    /**
+     * Active modal window instance
+     */
     private modal: NgbActiveModal;
 
     constructor(modal: NgbActiveModal) {
@@ -34,6 +63,9 @@ export class OcInviteModalComponent implements OnInit {
         this.setUserRolesToForm();
     }
 
+    /**
+     * Initialisation of form config
+     */
     makeFormConfig(): void {
         this.formConfig.fields = [
             {
@@ -85,6 +117,9 @@ export class OcInviteModalComponent implements OnInit {
         }
     }
 
+    /**
+     * Find user roles data and apply it to main form.
+     */
     setUserRolesToForm(): void {
         this.modalData.requestFindUserRoles().subscribe(
             result => {
@@ -110,21 +145,32 @@ export class OcInviteModalComponent implements OnInit {
         );
     }
 
+    /**
+     * Set form to value
+     * @param {FormGroup} createdForm
+     */
     setCreatedForm(createdForm: FormGroup): void {
         this.formGroup = createdForm;
     }
 
+    /**
+     * Set data from form to value
+     * @param {any} data
+     */
     setDataFromForm(data: any): void {
         this.formData = data;
     }
 
+    /**
+     * Function that executes on click to confirm button. Check validity of form and calls request function.
+     */
     onClickConfirmButton(): void {
         if (this.formGroup) {
             this.formGroup.markAllAsTouched();
             if (this.formGroup.valid && this.formData && !this.inProcess) {
                 this.inProcess = true;
 
-                const roles = this.toRoleId(isString(this.formData?.roles) ? [this.formData.roles] : this.formData?.roles);
+                const roles = (isString(this.formData?.roles) ? [this.formData.roles] : this.formData?.roles).map(r => this.listRoles[r]);
                 this.formData = merge(this.formData, { customData: { roles } });
                 this.formData.roles = roles;
 
@@ -137,16 +183,17 @@ export class OcInviteModalComponent implements OnInit {
         }
     }
 
+    /**
+     * Dismiss modal function
+     */
     dismiss(): void {
         this.modal.dismiss();
     }
 
-    private toRoleId(roles: string[]): string[] {
-        const roleName = [];
-        roles.forEach(r => roleName.push(this.listRoles[r]));
-        return roleName;
-    }
-
+    /**
+     * Fuction that call Update User method
+     * @param {ModalUpdateUserModel} updateModalData
+     */
     private updateUser(updateModalData: ModalUpdateUserModel): void {
         updateModalData
             .requestUpdateAccount(this.getAccountId(updateModalData.userData), merge(updateModalData.userData, this.formData))
@@ -161,6 +208,10 @@ export class OcInviteModalComponent implements OnInit {
             );
     }
 
+    /**
+     * Fuction that call Invite user method
+     * @param {ModalInviteUserModel} inviteModalData
+     */
     private inviteUser(inviteModalData: ModalInviteUserModel): void {
         inviteModalData.requestSendInvite(this.formData).subscribe(
             () => {
@@ -173,6 +224,11 @@ export class OcInviteModalComponent implements OnInit {
         );
     }
 
+    /**
+     * Get developer or user account id
+     * @param {any} userData
+     * @returns `string` or `null`
+     */
     private getAccountId(userData: any): string {
         if (userData?.userAccountId) {
             return userData.userAccountId;
