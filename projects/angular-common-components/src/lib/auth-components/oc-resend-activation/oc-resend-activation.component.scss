@@ -1,3 +1,4 @@
+@import '../../../../assets/styles/theme';
 @import '../../../../assets/styles/mixins';
 
 .resend-activation {
@@ -34,14 +35,14 @@
     width: 100%;
   }
   &__log-in, &__sign-up {
-    @include font-size-breakpoint(md);
+    @include font-size-md();
     text-align: center;
   }
   &__log-in {
     margin-bottom: 2rem;
   }
   &__link {
-    @include font-size-breakpoint(md);
-    @include font-family-rubik('Medium');
+    @include font-size-md();
+    @include font-medium();
   }
 }

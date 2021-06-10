@@ -42,5 +42,5 @@ CustomIconTitle.args = {
     title: 'Options',
     required: true,
     infoTitleIconCsv: './assets/angular-common-components/delete.svg',
-    description: 'Description description description description'
+    description: 'Description description description description',
 };
