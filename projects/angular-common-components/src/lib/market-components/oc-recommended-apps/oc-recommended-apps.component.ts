@@ -54,7 +54,7 @@ export class OcRecommendedAppsComponent {
      * Key name of the App object which will be chosen like navigation parameter for the Router link.
      * @type {string}.
      * @example
-     * '/test-application'.
+     * 'appId'.
      */
     @Input() appNavigationParam: string;
 
