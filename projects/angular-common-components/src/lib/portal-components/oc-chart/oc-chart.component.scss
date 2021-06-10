@@ -48,7 +48,7 @@
       margin-left: 1rem;
     }
     &-label {
-      @include font-size-breakpoint(md);
+      @include font-size-md();
       align-items: center;
       cursor: pointer;
       display: flex;
@@ -136,7 +136,7 @@
   }
 
   &__type-section {
-    @include font-size-breakpoint(md);
+    @include font-size-md();
     @include media-breakpoint-md {
       width: 100%;
     }
@@ -151,7 +151,7 @@
       &-label {
         margin: auto;
         width: 192px;
-        @include font-size-breakpoint(md);
+        @include font-size-md();
         cursor: pointer;
       }
       &-icon {
@@ -252,7 +252,7 @@
         margin-bottom: 0;
       }
       &-text {
-        @include font-size-breakpoint(md);
+        @include font-size-md();
         box-shadow: inset 0 1px 0 0 rgba($info, .5);
         color: $gray-600;
         padding-top: 2rem;
@@ -299,9 +299,10 @@
       &-cell {
         border-bottom: none;
         box-shadow: inset 0 -1px 0 0 rgba($info, .5);
-        color: $secondary;
+        color: $text-color;
         margin: 0;
         width: 100%;
+        @include default-text();
       }
       &-td {
         &:first-child {

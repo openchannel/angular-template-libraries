@@ -1,7 +1,10 @@
 import { OcCommonLibModule, OcSidebarComponent } from '@openchannel/angular-common-components/src/lib/common-components';
 import { moduleMetadata } from '@storybook/angular';
 
-/** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
+/**
+ * List of module dependencies and component declarations.
+ * Stored as separate var because they are shared among all stories
+ */
 const modules = {
     imports: [OcCommonLibModule],
 };
