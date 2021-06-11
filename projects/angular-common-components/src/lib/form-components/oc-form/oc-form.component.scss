@@ -58,7 +58,7 @@
       width: 100%;
     }
     &-custom-error {
-      @include font-size-breakpoint(sm);
+      @include font-size-sm();
       color: $danger;
       margin-top: 6px;
     }
