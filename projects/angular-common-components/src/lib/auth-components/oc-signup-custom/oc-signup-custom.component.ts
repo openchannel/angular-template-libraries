@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { OcEditUserFormConfig, OcEditUserResult } from '../models/oc-edit-user-form.model';
 import { FormGroup } from '@angular/forms';
@@ -21,6 +21,7 @@ export class OcSignupCustomComponent {
     @Input() formConfigsLoading = true;
     @Input() formConfigs: OcEditUserFormConfig[];
     @Input() defaultTypeLabelText = 'Type';
+    @Input() customTermsDescription: TemplateRef<any>;
 
     @Output() resultUserData = new EventEmitter<OcEditUserResult>();
 

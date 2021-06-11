@@ -11,6 +11,7 @@ export class OcAppCardComponent {
     /**
      * One App to show. Must consists fields: 'name', 'model',
      * 'rating', 'reviewCount', 'summary' or 'description'
+     * @type FullAppData
      */
     @Input() set app(appData: FullAppData) {
         this.appData = appData;
@@ -19,11 +20,13 @@ export class OcAppCardComponent {
         }
     }
     /**
-     * Router link for the more apps navigation
+     * The RouterLink will lead to another page by click on the App card.
+     * Default: null
      */
-    @Input() appRedirectLink: string | any;
+    @Input() appRedirectLink: any[] | string | null | undefined = null;
     /**
-     * Emitter for click by App card.
+     * Emitting click by App card. Works only when appRedirectLink does not applied.
+     * Emmit Full App Data
      */
     @Output() clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
 
@@ -31,14 +34,6 @@ export class OcAppCardComponent {
     appData: FullAppData;
 
     constructor(private sanitizer: DomSanitizer) {}
-
-    safeLink(sourceUrl): SafeResourceUrl {
-        return this.sanitizer.bypassSecurityTrustResourceUrl(sourceUrl);
-    }
-
-    parseRating(rating): number {
-        return Number(rating) * 0.01;
-    }
 
     clickByApp(): void {
         this.clickByAppCard.emit(this.appData);
