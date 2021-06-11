@@ -1,4 +1,5 @@
 import '!style-loader!css-loader!sass-loader!../projects/angular-common-components/assets/styles/styles.scss';
+import '!style-loader!css-loader!sass-loader!../.storybook/font-family.scss';
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 import { setCompodocJson } from '@storybook/addon-docs/angular';
