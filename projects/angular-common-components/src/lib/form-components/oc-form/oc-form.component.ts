@@ -7,24 +7,6 @@ import { AppFormModel } from '../model/app-form-model';
 /**
  * Form component. Represents form builder from given config with customization.
  *
- * Inputs:
- * @param {AppFormModel} formJsonData 
- * @param {boolean} anotherInvalidResult
- * @param {boolean} showButton
- * @param {'center' | 'left' | 'right'} buttonPosition
- * @param {string} successButtonText
- * @param {'top' | 'left' | 'right'} labelPosition
- * @param {boolean} setFormDirty
- * @param {boolean} process
- * @param {FormGroup} generatedForm
- * <br>
- * Outputs:
- * @param {EventEmitter<any>} formSubmitted
- * @param {EventEmitter<boolean>} cancelSubmit
- * @param {EventEmitter<any>} formDataUpdated
- * @param {EventEmitter<boolean>} isFormInvalid
- * @param {EventEmitter<FormGroup>} createdForm
- *
  * @example <oc-form [formJsonData]="{
  *                        formId: "ahs97d8ha897shd87",
  *                        name: "login",
@@ -131,19 +113,19 @@ export class OcFormComponent implements OnInit, OnDestroy, OnChanges {
     /**
      * Returning all form fields value to the parent component
      */
-    @Output() formSubmitted = new EventEmitter<any>();
+    @Output() readonly formSubmitted = new EventEmitter<any>();
 
     /** Sending true when user cancel form submitting */
-    @Output() cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /** When need to get data of the form without buttons */
-    @Output() formDataUpdated: EventEmitter<any> = new EventEmitter<any>();
+    @Output() readonly formDataUpdated: EventEmitter<any> = new EventEmitter<any>();
 
     /** Send form valid status */
-    @Output() isFormInvalid: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() readonly isFormInvalid: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /** Emit created form */
-    @Output() createdForm: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
+    @Output() readonly createdForm: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
     /** Main form group */
     customForm: FormGroup;
@@ -151,7 +133,7 @@ export class OcFormComponent implements OnInit, OnDestroy, OnChanges {
     /** Result data from form for submission */
     formData: any;
 
-    /** (private) Subscription for a main form */
+    /** @private Subscription for a main form */
     private formSubscription: Subscription = new Subscription();
 
     ngOnInit(): void {
