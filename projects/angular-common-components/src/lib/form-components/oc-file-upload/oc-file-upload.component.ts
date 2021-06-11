@@ -1,14 +1,4 @@
-import {
-    Component,
-    ElementRef,
-    EventEmitter,
-    forwardRef,
-    Input,
-    OnDestroy,
-    OnInit,
-    Output,
-    ViewChild
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { base64ToFile, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
@@ -26,7 +16,6 @@ import { FileDetails, FileType, FileUploaderService } from '../model/file.model'
  *                          [fileUploadText]="'Throw file here'"
  *                          [defaultFileIcon]="'/fIcon.png'"
  *                          [uploadIconUrl]="'/uIcon.png'"
- *                          [customMsg]="true"
  *                          [closeIconUrl]="'/close.png'"
  *                          [zoomInIconUrl]="'/zoomIn.png'"
  *                          [zoomOutIconUrl]="'/zoomOut.png'"
@@ -65,17 +54,17 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * Text for file upload block
      */
-    @Input() fileUploadText = 'Drag & drop file here';
+    @Input() fileUploadText: string = 'Drag & drop file here';
 
     /**
      * Flag for download multiple files allowed or not
      */
-    @Input() isMultiFile = false;
+    @Input() isMultiFile: boolean = false;
 
     /**
-     * File icon
+     * URL for default file icon.
      */
-    @Input() defaultFileIcon = 'assets/angular-common-components/file_icon.svg';
+    @Input() defaultFileIcon: string = 'assets/angular-common-components/file_icon.svg';
 
     /**
      * Supported file type ( "singleFile", "singleImage", "privateSingleFile", "multiFile", "multiImage", "multiPrivateFile" )
@@ -85,37 +74,32 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * Icon for upload button
      */
-    @Input() uploadIconUrl = 'assets/angular-common-components/upload_icon.svg';
+    @Input() uploadIconUrl: string = 'assets/angular-common-components/upload_icon.svg';
 
     /**
-     * Flag is custom message
+     * Icon URL value for buttons that close container window and stop uploading file
      */
-    @Input() customMsg;
+    @Input() closeIconUrl: string = 'assets/angular-common-components/close-icon.svg';
 
     /**
-     * Icon URL for close button
+     * Icon URL value for button that active zoomIn feature
      */
-    @Input() closeIconUrl = 'assets/angular-common-components/close-icon.svg';
+    @Input() zoomInIconUrl: string = 'assets/angular-common-components/zoom-in.svg';
 
     /**
-     * Icon URL for zoom in button
+     * Icon URL value for button that active zoomOut feature
      */
-    @Input() zoomInIconUrl = 'assets/angular-common-components/zoom-in.svg';
-
-    /**
-     * Icon URL for zoom out button
-     */
-    @Input() zoomOutIconUrl = 'assets/angular-common-components/zoom-out.svg';
+    @Input() zoomOutIconUrl: string = 'assets/angular-common-components/zoom-out.svg';
 
     /**
      * Variable for width of image
      */
-    @Input() imageWidth;
+    @Input() imageWidth: number;
 
     /**
      * Variable for height of image
      */
-    @Input() imageHeight;
+    @Input() imageHeight: number;
 
     /**
      * File hash
@@ -130,7 +114,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * Output emits after change custom message
      */
-    @Output() customMsgChange = new EventEmitter<boolean>();
+    @Output() readonly customMsgChange = new EventEmitter<boolean>();
 
     /**
      * Subscription to upload file from server
@@ -140,7 +124,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * Flag to know is upload in process or not
      */
-    isUploadInProcess = false;
+    isUploadInProcess: boolean = false;
 
     /**
      * Array of objects with file data
@@ -150,12 +134,12 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * Text that shows up when image load throw error
      */
-    imageLoadErrorMessage = 'Please provide valid image';
+    imageLoadErrorMessage: string = 'Please provide valid image';
 
     /**
      * Flag that shows existence of image load error
      */
-    hasImageLoadError = false;
+    hasImageLoadError: boolean = false;
 
     /**
      * Object of cropped file
@@ -170,7 +154,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * Flag that shows that upload image in process
      */
-    uploadImageInProcess = false;
+    uploadImageInProcess: boolean = false;
 
     /**
      * Event that triggers when file browsed
@@ -180,11 +164,11 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * Name of valid file
      */
-    fileName = '';
+    fileName: string = '';
     /**
      * Name of invalid file
      */
-    invalidFileName: '';
+    invalidFileName: string;
 
     /**
      * Flag that shows existence of invalid file
@@ -348,8 +332,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
             this.browsedFileEvent = event;
             this.fileName = event?.target?.files[0]?.name;
             this.fileName = this.fileName ? this.fileName : event?.dataTransfer?.files[0]?.name;
-            this.customMsg = false;
-            this.customMsgChange.emit(this.customMsg);
+            this.customMsgChange.emit(false);
             this.modalService
                 .open(content, {
                     centered: true,
@@ -382,8 +365,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         this.imageLoadErrorMessage = '';
         this.hasImageLoadError = false;
         if (this.fileDetailArr && this.fileDetailArr.length < 1) {
-            this.customMsg = true;
-            this.customMsgChange.emit(this.customMsg);
+            this.customMsgChange.emit(true);
         }
     }
 
@@ -495,8 +477,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         this.fileDetailArr.splice(idx, 1);
         this.emitChanges();
         if (this.fileDetailArr.length < 1) {
-            this.customMsg = true;
-            this.customMsgChange.emit(this.customMsg);
+            this.customMsgChange.emit(true);
         }
     }
 
@@ -539,7 +520,8 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
                 if (!this.fileUploaderService.fileDetailsRequest) {
                     console.error('Please, set the FileDetailsRequest function');
                 } else {
-                    this.fileUploaderService.fileDetailsRequest(file.fileId)
+                    this.fileUploaderService
+                        .fileDetailsRequest(file.fileId)
                         .pipe(takeUntil(this.destroy$))
                         .subscribe(res => {
                             if (res && res.fileUrl) {
@@ -593,8 +575,9 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         } else if (urlData) {
             if (this.isMultiFileSupport() && typeof urlData !== 'string') {
                 this.loadDetails(urlData);
-            } else if (typeof urlData === 'string'){
-                this.fileUploaderService.fileDetailsRequest(urlData)
+            } else if (typeof urlData === 'string') {
+                this.fileUploaderService
+                    .fileDetailsRequest(urlData)
                     .pipe(takeUntil(this.destroy$))
                     .subscribe(res => {
                         this.fileDetailArr = res ? [{ ...res, fileUploadProgress: 100 }] : [];
