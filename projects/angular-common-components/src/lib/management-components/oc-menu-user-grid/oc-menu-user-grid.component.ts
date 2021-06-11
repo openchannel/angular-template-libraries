@@ -11,16 +11,6 @@ export declare type SortField = 'name' | 'email' | 'date' | 'role';
 /**
  * User grid component. Represent list of users data.
  *
- * Inputs:
- * @param {ComponentsUsersGridParametersModel} properties
- * @param {string} menuUrl
- * @param {string} sortIcon
- * <br>
- * Outputs:
- * @param {EventEmitter<ComponentsUserGridActionModel>} menuClicked
- * @param {EventEmitter<number>} pageScrolled
- * @param {EventEmitter<SortField>} sortChosen
- *
  * @example <oc-menu-user-grid [properties]="{
  *                  layout: 'table',
  *                  data: {
@@ -40,7 +30,8 @@ export declare type SortField = 'name' | 'email' | 'date' | 'role';
  *              [sortIcon]="/image.svg"
  *              (menuClicked)="clicked()"
  *              (pageScrolled)="scrolled()"
- *              (sortChosen)="chosen()">
+ *              (sortChosen)="chosen()"
+ * >
  */
 @Component({
     selector: 'oc-menu-user-grid',
@@ -55,14 +46,14 @@ export class OcMenuUserGridComponent {
 
     /**
      * Path to the custom icon for the hidden menu toggle button.
-     * 
+     *
      * Default: `assets/angular-common-components/dots-menu.svg`
      */
     @Input() menuUrl: string = 'assets/angular-common-components/dots-menu.svg';
 
     /**
      * Path to the custom icon for the 'sort' button.
-     * 
+     *
      * Default: `assets/angular-common-components/dropdown.svg`
      */
     @Input() sortIcon: string = 'assets/angular-common-components/dropdown.svg';
@@ -71,19 +62,19 @@ export class OcMenuUserGridComponent {
      * Output of menu list item clicked action.
      * Contains an action name, userId, userAccountId
      */
-    @Output() menuClicked: EventEmitter<ComponentsUserGridActionModel> = new EventEmitter<ComponentsUserGridActionModel>();
+    @Output() readonly menuClicked: EventEmitter<ComponentsUserGridActionModel> = new EventEmitter<ComponentsUserGridActionModel>();
 
     /**
      * Output with page number for new users request
      * Start number = 1
      */
-    @Output() pageScrolled: EventEmitter<number> = new EventEmitter<number>();
+    @Output() readonly pageScrolled: EventEmitter<number> = new EventEmitter<number>();
 
     /**
      * Returns clicked sorting type.
      * can be 'name', 'email', 'date' or 'role'
      */
-    @Output() sortChosen: EventEmitter<SortField> = new EventEmitter<SortField>();
+    @Output() readonly sortChosen: EventEmitter<SortField> = new EventEmitter<SortField>();
 
     /**
      * Selected field to sort by
@@ -91,7 +82,7 @@ export class OcMenuUserGridComponent {
     currentSortField: SortField;
 
     /**
-     * (private) Page number for pagination
+     * @private Page number for pagination
      */
     private pageNumber: number = 1;
 
@@ -121,7 +112,7 @@ export class OcMenuUserGridComponent {
 
     /**
      * Function that set sort field and page number to default(1). Also emit output event 'sortChosen'
-     * @param sortField 
+     * @param sortField
      */
     sortUsersBy(sortField: SortField): void {
         this.sortChosen.emit(sortField);
