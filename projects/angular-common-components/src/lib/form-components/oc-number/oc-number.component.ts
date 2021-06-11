@@ -4,14 +4,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 /**
  * Number input component. Represents component with template and logic to use like numbers only input.
  *
- * Inputs: <br>
- * @param {'on'|'off'} autocomplete
- * @param {boolean} autoFocus
- * @param {string} placeholder
- * @param {string} customClass
- * @param {any} customStyle
- * @param {boolean} disabled
- *
  * @example <oc-number [(ngModel)]="number" [autocomplete]="'on'" [autoFocus]="true" [placeholder]="Placeholder"
  * [customClass]="number" [customStyle]="{background: 'green'}" [disabled]="true">
  */
