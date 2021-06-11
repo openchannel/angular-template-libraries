@@ -5,11 +5,6 @@ import { difference } from 'lodash';
 /**
  * Multi select list component. Represent input for search tags by name and tags list.
  *
- * Input: <br>
- * @param {any[]} availableItemsList
- * @param {string} label
- * @param {string} description
- * @param {string[]} defaultItems
  * @example <oc-multi-select-list [(ngModel)]="resultList" [availableItemsList]="['1','2','3']" [label]="'LABEL'" [description]="'Description'" [defaultItems]="['1']">
  */
 @Component({
@@ -36,8 +31,7 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
     /**
      * Set result items array value
      */
-    @Input()
-    set value(val: any[]) {
+    @Input() set value(val: any[]) {
         this.resultItems = val;
         this.onChange(this.resultItems);
     }
@@ -67,7 +61,7 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
         this.dropBoxItems = this.findAvailableDropBoxItems();
     }
 
-    ngOnChanges(changes: SimpleChanges) {
+    ngOnChanges(changes: SimpleChanges): void {
         if (difference(changes.availableItemsList.currentValue, changes.availableItemsList.previousValue)?.length > 0) {
             this.dropBoxItems = this.findAvailableDropBoxItems();
         }
@@ -84,7 +78,7 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
      * Remove item from selected items list by index
      * @param index index of the chosen item
      */
-    removeItem(index: number) {
+    removeItem(index: number): void {
         this.resultItems.splice(index, 1);
         this.updateComponentData();
     }
@@ -93,7 +87,7 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
      * Adding Selected item to the result item list array
      * @param item selected item
      */
-    addTagToResultList(item: string) {
+    addTagToResultList(item: string): void {
         const itemNormalized = item.trim();
         if (!this.existTagInResultList(itemNormalized)) {
             this.resultItems = [...this.resultItems, item];
@@ -152,12 +146,8 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
      * (setValue or changing the variable that ngModel is tied to),
      * as well as to set the initial value.
      */
-    writeValue(obj: any): void {
-        if (obj && obj.length > 0) {
-            this.resultItems = obj.filter(tag => tag && tag.trim().length > 0);
-        } else {
-            this.resultItems = [];
-        }
+    writeValue(value: any): void {
+        this.resultItems = value && value.length ? value.filter(tag => tag && tag.trim().length > 0) : [];
         this.dropBoxItems = this.findAvailableDropBoxItems();
     }
 
