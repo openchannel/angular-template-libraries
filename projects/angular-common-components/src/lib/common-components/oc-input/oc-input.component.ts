@@ -34,11 +34,6 @@ export class OcInputComponent implements OnInit, ControlValueAccessor {
     }
 
     /**
-     * Model name
-     */
-    @Input() modelName: string;
-
-    /**
      * Enable auto focus on input
      */
     @Input() autoFocus: boolean;
