@@ -15,7 +15,7 @@ import { ComponentsUserLoginModel } from '../models/auth-types.model';
 })
 export class OcLoginComponent {
     /**
-     * Main login form template ref (NgForm)
+     * Main login form template reference (NgForm)
      */
     @ViewChild('loginForm') form: NgForm;
 
