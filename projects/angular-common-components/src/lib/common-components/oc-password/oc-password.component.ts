@@ -3,15 +3,9 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 /**
  * Password component. Represents an input field to enter password data. Also possibility to change some data attributes like 'placeholder'.
- * 
- * Inputs: <br>
- * @param {string} placeholder
- * @param {boolean} disabled
- * @param {'text' | 'email'} inputType
- * @param {any} value
- * 
+ *
  * @example <oc-password [placeholder]="Placeholder" [disabled]="true" [inputType]="text" [value]="'password'" >
- * 
+ *
  */
 @Component({
   selector: 'oc-password',
