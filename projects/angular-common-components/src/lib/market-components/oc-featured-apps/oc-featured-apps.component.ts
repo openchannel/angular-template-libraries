@@ -3,7 +3,7 @@ import { FullAppData } from '@openchannel/angular-common-components/src/lib/comm
 import { get } from 'lodash';
 
 /**
- * Featured apps component. Renders a list of applications, tha are featured by a user.
+ * Featured apps component. Renders a list of applications, that are featured by a user.
  * Located on the main page.
  * Shows a list with featured apps, which are clickable for more detailed description.
  */
