@@ -3,22 +3,7 @@ import { NgForm, NgModel } from '@angular/forms';
 import { ComponentsUserLoginModel } from '../models/auth-types.model';
 /**
  * Login component. Represent login page with auth logic.
- * 
- * Inputs:
- * @param {ComponentsUserLoginModel} loginModel - default `new ComponentsUserLoginModel()`
- * @param {string} loginButtonText - default `'Log in'`
- * @param {string} forgotPwdUrl
- * @param {string} signupUrl
- * @param {string} companyLogoUrl - default `'~@openchannel/angular-common-components/assets/angular-common-components/logo-company.png'`
- * @param {boolean} process
- * @param {string} incorrectEmailErrorCode - default `'email_is_incorrect'`
- * @param {string} notVerifiedEmailErrorCode - default `'email_not_verified'`
- * <br>
- * Outputs:
- * @param {EventEmitter<ComponentsUserLoginModel>} loginModelChange
- * @param {EventEmitter<any>} submit
- * @param {EventEmitter<string>} sendActivationLink
- * 
+ *
  * @example <oc-login [loginModel]="{login: 'admin', password:'password', isChecked: true}" [loginButtonText]="'Some text'"
  *      [forgotPwdUrl]="/forgot-password" [signupUrl]="/signup" [companyLogoUrl]="/newlogo.png" [process]="false"
  *      [incorrectEmailErrorCode]="" [notVerifiedEmailErrorCode]="">
@@ -29,21 +14,75 @@ import { ComponentsUserLoginModel } from '../models/auth-types.model';
     styleUrls: ['./oc-login.component.scss'],
 })
 export class OcLoginComponent {
+    /**
+     * Main login form template ref (NgForm)
+     */
     @ViewChild('loginForm') form: NgForm;
 
+    /**
+     * Main form model that contain login data.
+     *
+     * Default: `new ComponentsUserLoginModel()`
+     */
     @Input() loginModel = new ComponentsUserLoginModel();
-    @Output() loginModelChange = new EventEmitter<ComponentsUserLoginModel>();
 
+    /**
+     * Text for login button
+     *
+     * Default: 'Log In'
+     */
     @Input() loginButtonText = 'Log In';
+
+    /**
+     * Link to redirect on forgot password button click
+     */
     @Input() forgotPwdUrl: string;
+
+    /**
+     * Link to redirect on sign up button click
+     */
     @Input() signupUrl: string;
+
+    /**
+     * URL to company logo image
+     *
+     * Default: `'~@openchannel/angular-common-components/assets/angular-common-components/logo-company.png'`
+     */
     @Input() companyLogoUrl = '~@openchannel/angular-common-components/assets/angular-common-components/logo-company.png';
+
+    /**
+     * Flag to know process goes or not
+     */
     @Input() process: boolean;
+
+    /**
+     * Error code for incorrect email.
+     *
+     * Default: 'email_is_incorect'
+     */
     @Input() incorrectEmailErrorCode = 'email_is_incorrect';
+
+    /**
+     * Error code for not activated email.
+     *
+     * Default: 'email_not_verified'
+     */
     @Input() notVerifiedEmailErrorCode = 'email_not_verified';
 
-    @Output() submit = new EventEmitter<any>();
-    @Output() sendActivationLink = new EventEmitter<string>();
+    /**
+     * Output event that emits on model change and pass Login model
+     */
+    @Output() readonly loginModelChange = new EventEmitter<ComponentsUserLoginModel>();
+
+    /**
+     * Output event that emits on submit form
+     */
+    @Output() readonly loginSubmit = new EventEmitter<boolean>();
+
+    /**
+     * Output event that emits on click to activation link button and pass Link email value
+     */
+    @Output() readonly sendActivationLink = new EventEmitter<string>();
 
     /**
      * Submit fuction emit changed login value check form on validity and submit 'true' if everything is ok.
@@ -57,7 +96,7 @@ export class OcLoginComponent {
                 form.control.markAllAsTouched();
                 return;
             }
-            this.submit.emit(true);
+            this.loginSubmit.emit(true);
         }
     }
 
@@ -103,7 +142,7 @@ export class OcLoginComponent {
     }
 
     /**
-     * Fuction executed when user pres on activation link
+     * Fuction executed when user press on activation link
      * @param {NgModel} email
      * @returns void
      */
