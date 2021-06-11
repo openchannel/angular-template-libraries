@@ -4,15 +4,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 /**
  * Input component. Represents component based on simple input.
  *
- * Inputs:
- * @param {string} modelName
- * @param {boolean} autoFocus
- * @param {string} autocomplete
- * @param {string} placeholder
- * @param {string} class
- * @param {boolean} disabled
- * @param {'text' | 'email' | 'password'} inputType
- *
  * @example <oc-input [(NgModel)]="data"
  * [modelName]="'Name'"
  * [autoFocus]="true"
@@ -35,10 +26,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class OcInputComponent implements OnInit, ControlValueAccessor {
     /**
-     * Model value
+     * Main value provided through value accessor
      */
-    @Input()
-    set value(val) {
+    @Input() set value(val: any) {
         this.inputValue = val;
         this.onChange(this.inputValue);
     }
