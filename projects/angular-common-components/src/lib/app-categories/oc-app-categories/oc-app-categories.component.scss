@@ -1,5 +1,5 @@
-@import '../../../../assets/styles/theme.scss';
-@import '../../../../assets/styles/mixins.scss';
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
 
 .categories {
 
@@ -54,11 +54,11 @@
       }
 
       &-text {
+        @include font-medium();
         position: absolute;
         top: 60%;
         left: 50%;
         color: $primary;
-        font-family: "Rubik-Medium", serif;
         margin-top: 16px;
         transform: translate(-50%, -50%);
       }

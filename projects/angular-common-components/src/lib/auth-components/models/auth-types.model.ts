@@ -1,3 +1,13 @@
+/**
+ * Interface includes
+ * ``` typescript
+ * {
+ *   password: string;
+ *   email: string;
+ *   code: string;
+ * }
+ * ```
+ */
 export class ComponentsUserActivationModel {
     password: string;
     email: string;

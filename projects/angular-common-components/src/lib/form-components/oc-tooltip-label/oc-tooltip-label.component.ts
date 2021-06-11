@@ -1,30 +1,48 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'oc-tooltip-label',
-  templateUrl: './oc-tooltip-label.component.html',
-  styleUrls: ['./oc-tooltip-label.component.scss']
+    selector: 'oc-tooltip-label',
+    templateUrl: './oc-tooltip-label.component.html',
+    styleUrls: ['./oc-tooltip-label.component.scss'],
 })
-export class OcTooltipLabelComponent implements OnInit {
-  /** Label text */
-  @Input() text: string = '';
-  /** Show indicator of required field */
-  @Input() required: boolean = false;
-  /**
-   * description (optional) - Description for title.
-   * Open small modal panel to the right side with this description text.
-   */
-  @Input() description: string = '';
-  /**
-   * infoTitleIconCsv (optional) - icon for showing description.
-   */
-  @Input() infoTitleIconCsv: string = 'assets/angular-common-components/info.svg';
-  /** Set global classes for label */
-  @Input() labelClass: string = '';
-  constructor() {
-  }
+export class OcTooltipLabelComponent {
+    /**
+     * The text for tooltip label.
+     * @type {string}.
+     * Default empty.
+     */
+    @Input() text: string = '';
 
-  ngOnInit(): void {
-  }
+    /**
+     * The value that defines whether a field will be required or not.
+     * Shown as an asterisk.
+     * @type {boolean}.
+     * Default false.
+     */
+    @Input() required: boolean = false;
 
+    /**
+     * Description (optional) - description for a title.
+     * Open small modal panel on the right side with this description text.
+     * @type {string}.
+     * Default empty.
+     */
+    @Input() description: string = '';
+
+    /**
+     * infoTitleIconCsv (optional) - the path to the description icon.
+     * @type {string}.
+     * Default 'assets/angular-common-components/info.svg'
+     */
+    @Input() infoTitleIconCsv: string = 'assets/angular-common-components/info.svg';
+
+    /**
+     * Set custom classes for label.
+     * Optional.
+     * @type {string}.
+     * Default empty.
+     */
+    @Input() labelClass: string = '';
+
+    constructor() {}
 }

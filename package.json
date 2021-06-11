@@ -1,13 +1,13 @@
 {
   "name": "oc-angular-template-libraries",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "scripts": {
     "ng": "./node_modules/.bin/ng",
     "start": "./node_modules/.bin/ng serve",
     "build": "./node_modules/.bin/ng build",
     "build-prod": "./node_modules/.bin/ng build --prod",
     "test": "npm run test:lib",
-    "test:lib": "jest --config projects/angular-common-components/jest.config.js --collectCoverage",
+    "test:lib": "jest --config projects/angular-common-components/jest.config.js --collectCoverage --maxWorkers=4",
     "sass-lint": "node_modules/.bin/sass-lint -c .scss-lint.yml",
     "lint": "./node_modules/.bin/ng lint",
     "e2e": "./node_modules/.bin/ng e2e",
@@ -25,7 +25,9 @@
     "angular-common-services-pack": "npm run build-prod angular-common-services && npm run angular-common-services",
     "angular-common-services-up-version": "cd projects/angular-common-services/ && npm --no-git-tag-version version prerelease",
     "create-compodoc": "compodoc -p tsconfig.json projects/angular-common-services/src -d ./development/documentation",
-    "start-compodoc": "compodoc -s -r 8801 -d ./development/documentation/"
+    "start-compodoc": "compodoc -s -r 8801 -d ./development/documentation/",
+    "start-compodoc-service-watch": "compodoc -p tsconfig.json projects/angular-common-services/src -d ./development/documentation/service -s -r 8801 -d ./development/documentation/service --watch",
+    "start-compodoc-components-watch": "compodoc -p tsconfig.json projects/angular-common-components/src -d ./development/documentation/components -s -r 8802 -d ./development/documentation/components --watch"
   },
   "private": true,
   "dependencies": {
