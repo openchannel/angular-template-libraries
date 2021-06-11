@@ -15,34 +15,67 @@ import { OcDropboxComponent } from '@openchannel/angular-common-components/src/l
     ],
 })
 export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges {
-    @Input() set value(val) {
+    /**
+     * A viewchild for dropbox element. Contains dropbox tags.
+     * Uses OcDropboxComponent model.
+     */
+    @ViewChild('dropBox') dropbox: OcDropboxComponent;
+
+    /**
+     * Sets an array of tags.
+     * Calls onChange() method.
+     * @type {*}.
+     * Default empty.
+     */
+    @Input() set value(val: any) {
         this.resultTags = val || [];
         this.onChange(this.resultTags);
     }
-    @ViewChild('dropBox') dropbox: OcDropboxComponent;
-    /** Placeholder */
-    @Input() placeholder: string;
+
     /**
-     * availableTags (optional) - It is list tags for the dropbox. Users can choice tags of this list.
-     * When this list is empty dropbox not shows.
-     * Default: empty string []
+     * Placeholder text for tags input.
+     * @type {string}.
+     * Default empty.
+     */
+    @Input() placeholder: string;
+
+    /**
+     * Tags available for the dropbox. Users can chose tags from this list.
+     * When this list is empty dropbox is hidden.
+     * @type {string[]}
+     * Default: empty.
      */
     @Input() availableTags: string[] = [];
+
     /**
      * Set type of tags values.
-     * Can be 'string', 'boolean' or 'number'
-     * Default: 'string'
+     * Can be 'string', 'boolean' or 'number'.
+     * @type {string}.
+     * Default: 'string'.
      */
     @Input() tagsType: 'string' | 'boolean' | 'number' = 'string';
 
-    /** tag from the input text field */
+    /**
+     * The current tag from the input text field.
+     * @type {string}.
+     * Default empty.
+     */
     currentTag = '';
 
-    /** tags for showing in the drop box */
-    dropBoxTags = [];
+    /**
+     * The list of tags to be shown in the dropbox.
+     * @type {*[]}.
+     * Default empty.
+     */
+    dropBoxTags: any[] = [];
 
-    /** user tags */
-    resultTags = [];
+    /**
+     * The list of tags after adding/removing/searching by a user.
+     * Is listened and updated by onChange method.
+     * @type {*[]}.
+     * Default empty.
+     */
+    resultTags: any[] = [];
 
     constructor() {}
 
@@ -50,12 +83,17 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         this.dropBoxTags = this.findAvailableDropBoxTags();
     }
 
-    ngOnChanges(changes: SimpleChanges) {
+    ngOnChanges(changes: SimpleChanges): void {
         if (changes.availableTags && changes.availableTags.previousValue !== changes.availableTags.currentValue) {
             this.dropBoxTags = this.findAvailableDropBoxTags();
         }
     }
 
+    /**
+     * Checks if a current tag has value.
+     * Calls addTagToResultList().
+     * Removes the selected item value.
+     */
     addCurrentTagToResultList(): void {
         if (this.currentTag) {
             this.addTagToResultList(this.normalizeTag(this.currentTag));
@@ -63,7 +101,14 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         }
     }
 
-    addTagToResultList(tag: string) {
+    /**
+     * Takes a current tag as a parameter.
+     * Checks if result tags list does not include a current tag.
+     * Adds a current tag to the list of result tags.
+     * Updates component data.
+     * Removes the current tag value.
+     */
+    addTagToResultList(tag: string): void {
         if (!this.resultTags.includes(tag)) {
             this.resultTags = [...this.resultTags, tag];
             this.updateComponentData();
@@ -71,7 +116,12 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         }
     }
 
-    normalizeTag(tag: string) {
+    /**
+     * Takes a current tag as a parameter.
+     * Checks the current tag type.
+     * Returns the trimmed version of tag.
+     */
+    normalizeTag(tag: string): any {
         if (this.tagsType === 'number') {
             return isNaN(Number(tag)) ? tag : Number(tag);
         }
@@ -85,20 +135,38 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         return tag.trim();
     }
 
-    onInputChange(text: string) {
+    /**
+     * Checks the changes in text input.
+     * Assigns new value to the current tag.
+     */
+    onInputChange(text: string): void {
         this.currentTag = text;
     }
 
+    /**
+     * Takes tag index as a parameter.
+     * Removes specific tag by tag index from result tags array.
+     * Updates component data.
+     */
     removeTag(tagIndex: number): void {
         this.resultTags.splice(tagIndex, 1);
         this.updateComponentData();
     }
 
+    /**
+     * Updates dropbox tags list by calling findAvailableDropBoxTags() method.
+     * Calls updateOutput() method.
+     */
     updateComponentData(): void {
         this.dropBoxTags = this.findAvailableDropBoxTags();
         this.updateOutput();
     }
 
+    /**
+     * Takes array as a parameter.
+     * Checks the tags types and fills the mappedValues array with new values according to each type.
+     * Returns mappedValues filtered with the tags which are currently not in the result tags list.
+     */
     findAvailableDropBoxTags(): string[] | number[] | boolean[] {
         let mappedValues: any[] = this.availableTags;
         if (this.tagsType === 'number') {
@@ -110,30 +178,38 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         return mappedValues.filter(tag => !this.resultTags.includes(tag));
     }
 
+    /**
+     * Updates the registered private onChange() method.
+     * Passes the result tags list.
+     */
     updateOutput(): void {
         this.onChange(this.resultTags);
     }
+
     /**
-     * Calls this function with new value. When user wrote something in the component
-     * It needs to know that new data has been entered in the control.
+     * Calls this function with new value. When user writes something in the component,
+     * it is needed to know that new data has entered the control.
      */
     registerOnChange(onChange: (value: any) => void): void {
         this.onChange = onChange;
     }
+
     /**
-     * Calls this function when user left chosen component.
-     * It needs for validation
+     * Calls this function when user leaves chosen component.
+     * It is needed for validation.
      */
     registerOnTouched(onTouched: () => void): void {
         this.onTouched = onTouched;
     }
+
     /**
      * (Optional)
-     * the method will be called by the control when the [disabled] state changes.
+     * The method will be called by the control when the [disabled] state changes.
      */
     setDisabledState(isDisabled: boolean): void {}
+
     /**
-     * this method will be called by the control to pass the value to our component.
+     * This method will be called by the control to pass the value to our component.
      * It is used if the value is changed through the code outside
      * (setValue or changing the variable that ngModel is tied to),
      * as well as to set the initial value.
