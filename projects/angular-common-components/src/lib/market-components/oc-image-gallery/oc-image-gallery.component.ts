@@ -4,10 +4,6 @@ import { GalleryItem } from '@openchannel/angular-common-components/src/lib/comm
 /**
  * Image gallery component. Show list of images with title and description.
  *
- * Inputs:
- * @param {GalleryItem[]} gallery
- * @param {number} maxItems
- * <br>
  * @example <oc-image-gallery [gallery]="[{image: '/img.png', title: 'Image', descriptiom: 'Description of image'}]" [maxItems]="5">
  */
 @Component({
@@ -17,8 +13,7 @@ import { GalleryItem } from '@openchannel/angular-common-components/src/lib/comm
 })
 export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
     /**
-     * Array of the gallery images. Must contain a values:
-     * 'image', 'title', 'description'
+     * Array of the gallery images.
      */
     @Input() set gallery(value: GalleryItem[]) {
         this.mainGallery = [...value];
