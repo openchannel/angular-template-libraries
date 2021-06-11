@@ -1,17 +1,34 @@
 import { Component, Input, TemplateRef } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup } from '@angular/forms';
+import { AppFormModel } from '../model/app-form-model';
+
 
 /**
  * Form modal component. Represents form in modal window and all related logic.
  *
- * Inputs:
- * @param {string} modalTitle
- * @param {any} formJsonData
- * @param {TemplateRef<any>} confirmButton
- * @param {TemplateRef<any>} rejectButton
- *
- * @example <oc-form-modal [modalTitle]="Custom title" [formJsonData]="" [confirmButton]="cButton" [rejectButton]="rButton">
+ * @example <oc-form-modal [modalTitle]="Custom title"
+ *                         [formJsonData]="{
+ *                              formId: 'test',
+ *                              name: 'test',
+ *                              createdDate: 1599982592157,
+ *                              fields: [
+ *                                  {
+ *                                    id: 'role',
+ *                                    label: 'role',
+ *                                    description: '',
+ *                                    defaultValue: 'user',
+ *                                    type: 'dropdownList',
+ *                                    required: null,
+ *                                    attributes: {required: true},
+ *                                    options: ['admin', 'user', 'test'],
+ *                                    subFieldDefinitions: null
+ *                                  }
+ *                              ]
+ *                         }"
+ *                         [confirmButton]="cButtonTemplateRef"
+ *                         [rejectButton]="rButtonTemplateRef"
+ * >
  */
 @Component({
     selector: 'oc-form-modal',
@@ -27,30 +44,33 @@ export class OcFormModalComponent {
     /**
      * Metadata for form builder
      */
-    @Input() formJsonData: any;
+    @Input() formJsonData: AppFormModel;
 
     /**
-     * Confirm button template ref
+     * Confirm button template ref. Use it if you want to change deafault confirmation button.
      */
     @Input() confirmButton: TemplateRef<any>;
 
     /**
-     * Reject button template ref
+     * Reject button template ref. Use it if you want to change deafault reject button.
      */
     @Input() rejectButton: TemplateRef<any>;
 
     /**
      * Angular form group
+     * @private
      */
     private formGroup: FormGroup;
 
     /**
      * Data for form
+     * @private
      */
     private formData: any;
 
     /**
-     * (private) Modal window instance
+     * Modal window instance
+     * @private
      */
     private modal: NgbActiveModal;
 
@@ -69,7 +89,7 @@ export class OcFormModalComponent {
      * Set new form to a variable
      * @param {FormGroup} createdForm
      */
-    setCreatedForm(createdForm: FormGroup) {
+    setCreatedForm(createdForm: FormGroup): void {
         this.formGroup = createdForm;
     }
 
@@ -77,7 +97,7 @@ export class OcFormModalComponent {
      * Set data to form
      * @param {any} data
      */
-    setDataFromForm(data: any) {
+    setDataFromForm(data: any): void {
         this.formData = data;
     }
 
