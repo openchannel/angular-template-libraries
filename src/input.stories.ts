@@ -1,30 +1,36 @@
-import { storiesOf } from '@storybook/angular';
-import { OcCheckboxComponent, OcInputComponent } from '@openchannel/angular-common-components/src/lib/common-components';
-import { withA11y } from '@storybook/addon-a11y';
-import { FormsModule } from '@angular/forms';
+import { moduleMetadata } from '@storybook/angular';
+import { OcCheckboxComponent, OcCommonLibModule, OcInputComponent } from '@openchannel/angular-common-components/src/lib/common-components';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
-    imports: [FormsModule],
+    imports: [OcCommonLibModule],
 };
 
-storiesOf('Input [BEM]', module)
-    .addDecorator(withA11y)
-    .addParameters({
-        component: OcInputComponent,
-    })
-    .add('Text', () => ({
-        component: OcInputComponent,
-        props: {
-            focus: true,
-        },
-        moduleMetadata: modules,
-    }))
-    .add('Checkbox', () => ({
-        component: OcCheckboxComponent,
-        props: {
-            labelText: 'Custom Checkbox',
-            requiredIndicator: true,
-        },
-        moduleMetadata: modules,
-    }));
+export default {
+    title: 'Input [BEM]',
+    component: OcInputComponent,
+    decorators: [moduleMetadata(modules)],
+};
+
+const InputComponent = (args: OcInputComponent) => ({
+    component: OcInputComponent,
+    moduleMetadata: modules,
+    props: args,
+});
+
+const CheckboxComponent = (args: OcCheckboxComponent) => ({
+    component: OcCheckboxComponent,
+    moduleMetadata: modules,
+    props: args,
+});
+
+export const Text = InputComponent.bind({});
+Text.args = {
+    focus: true,
+};
+
+export const Checkbox = CheckboxComponent.bind({});
+Checkbox.args = {
+    labelText: 'Custom Checkbox',
+    requiredIndicator: true,
+};
