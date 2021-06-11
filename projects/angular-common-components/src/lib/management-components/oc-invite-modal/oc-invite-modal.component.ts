@@ -7,9 +7,6 @@ import { ModalInviteUserModel, ModalUpdateUserModel } from '../models/oc-modal.m
 /**
  * Invite modal component. Represents component with configurable form for inviting user.
  *
- * Inputs:
- * @param {ModalInviteUserModel | ModalUpdateUserModel} modalData
- * <br>
  * @example <oc-ivite-modal [modalData]="{
  *      userData: {userAccountId:"7ahs08d79ya09s7dy"},
  *      requestUpdateAccount: (accountId: string, accountData: any) => Observable<any>
@@ -21,7 +18,9 @@ import { ModalInviteUserModel, ModalUpdateUserModel } from '../models/oc-modal.m
     styleUrls: ['./oc-invite-modal.component.scss'],
 })
 export class OcInviteModalComponent implements OnInit {
-
+    /**
+     * Data main data model for modal windows. Contain invite user or update user data model.
+     */
     @Input() modalData: ModalInviteUserModel | ModalUpdateUserModel;
 
     /**
@@ -45,12 +44,12 @@ export class OcInviteModalComponent implements OnInit {
     inProcess = false;
 
     /**
-     * List of user roles
+     * @private List of user roles
      */
     private listRoles: any = {};
 
     /**
-     * Active modal window instance
+     * @private Active modal window instance
      */
     private modal: NgbActiveModal;
 
