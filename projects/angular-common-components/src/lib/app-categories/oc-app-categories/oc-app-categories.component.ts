@@ -12,11 +12,23 @@ import { AppCategoryDetail } from '../models/app-category-model';
 export class OcAppCategoriesComponent {
     @ViewChild('carousel', { static: false }) carouselRef: CarouselComponent;
 
-    /** Data of the category that will be shown in array */
+    /**
+     * Data of the category that will be shown in array.
+     * Default: empty
+     */
     @Input() data: AppCategoryDetail[] = [];
-    /** Title of the category section */
-    @Input() categoryHeaderTitle = '';
-    /** Main router link for the category */
+    /**
+     * Title of the category section.
+     * Default: empty
+     */
+    @Input() categoryHeaderTitle: string = '';
+    /**
+     * Main router link for the category card.
+     * Default: empty
+     * @example
+     * '/collections'
+     * '/collections/categoryName'
+     */
     @Input() categoryRouterLink: string = '';
     /** Owl Carousel options */
     customOptions: OwlOptions = {
@@ -62,11 +74,11 @@ export class OcAppCategoriesComponent {
         }
     }
     /** Move carousel to next slide */
-    nextSlide() {
+    nextSlide(): void {
         this.carouselRef.next();
     }
     /** Move carousel to previous slide */
-    prevSlide() {
+    prevSlide(): void {
         this.carouselRef.prev();
     }
 }
