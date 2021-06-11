@@ -100,8 +100,7 @@ describe('OcFileUploadComponent', () => {
 
         fixture.debugElement.query(By.css('input#fileDropRef')).triggerEventHandler('change', changeEvent);
 
-        component.croppedFileObj = mockedFile;
-        component.uploadImageFile();
+        component.uploadFile(mockedFile);
         fixture.detectChanges();
 
         await fixture.whenStable().then(() => {
