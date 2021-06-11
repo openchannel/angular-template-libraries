@@ -1,7 +1,10 @@
 import { moduleMetadata } from '@storybook/angular';
 import { OcCommonLibModule, OcSelectComponent } from '@openchannel/angular-common-components/src/lib/common-components';
 
-/** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
+/**
+ * List of module dependencies and component declarations.
+ * Stored as separate var because they are shared among all stories
+ */
 const modules = {
     imports: [OcCommonLibModule],
 };

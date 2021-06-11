@@ -9,9 +9,11 @@ import {NgxSpinnerService} from 'ngx-spinner';
     styleUrls: ['./oc-video.component.scss']
 })
 export class OcVideoComponent {
-
-    @Input()
-    set videoUrl(videoUrl: string) {
+    /**
+     * The video url setter. Defines video source and calls loadVideo() method.
+     * Default: empty
+     */
+    @Input() set videoUrl(videoUrl: string) {
         this.url = videoUrl;
         this.loadVideo();
     }
@@ -22,10 +24,14 @@ export class OcVideoComponent {
     showVideoLoader = false;
     previewData: SafeHtml;
 
-    constructor(private embedService: EmbedVideoService,
-                private spinner: NgxSpinnerService) {
-    }
+    constructor(
+        private embedService: EmbedVideoService,
+        private spinner: NgxSpinnerService
+    ) {}
 
+    /**
+     * Loads video. Checks preview data and video format. Shows and hides spinner.
+     */
     loadVideo() {
         this.spinner.show();
         this.showVideoLoader = true;

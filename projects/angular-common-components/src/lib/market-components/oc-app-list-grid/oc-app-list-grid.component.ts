@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/co
 import { FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 import { get } from 'lodash';
 
+/**
+ * Shows vertical list of the apps
+ */
 @Component({
     selector: 'oc-app-list-grid',
     templateUrl: './oc-app-list-grid.component.html',
@@ -9,40 +12,70 @@ import { get } from 'lodash';
 })
 export class OcAppListGridComponent {
     /**
-     * The array of the apps what will be shown
+     * The array of the apps what will be shown in this component.
+     * @default FullAppData[]
      */
     @Input() appList: FullAppData[] = [];
     /**
-     * Message that will be shown when no apps
+     * Message that will be shown when appList array is empty.
+     * This input required if you want to show the message for case with no apps in component.
+     * @default ''
      */
-    @Input() noAppMessage = '';
+    @Input() noAppMessage: string = '';
     /**
-     * App icon that will be shown when the app has no icon
+     * (Optional)
+     * Path to the custom Default App Icon that will be shown when the app has no icon.
+     * Default: default app icon
      */
-    @Input() defaultAppIcon = 'assets/angular-common-components/standard-app-icon.svg';
+    @Input() defaultAppIcon: string = 'assets/angular-common-components/standard-app-icon.svg';
     /**
-     * Custom template for the app card
+     * (Optional)
+     * Custom template for the app card. If not set, default app card will be shown.
+     * @default null
      */
     @Input() customAppCardTemplate: TemplateRef<FullAppData>;
     /**
-     * Router link for one app click, will contain 'appId' field
+     * (Optional)
+     * Base routerLink for one app. Path to the page to which will be redirected, by click on the app card.
+     *
+     * ### Example:
+     * ``
+     * 'app-details' | 'apps/details'
+     * ``
+     *
+     * @example
+     * 'app-details'
+     * 'apps/details'
      */
     @Input() baseLinkForOneApp: string | any;
     /**
+     * (Optional)
      * Key name of the App object which will be chosen like navigation parameter for the Router link.
+     * If not set, no special parameter would be applied for routerLink.
+     *
+     * Default: empty
      */
-    @Input() appNavigationParam: string;
+    @Input() appNavigationParam: string = '';
     /**
-     * Emitter for click on App card.
+     * The emitter reports that current app card has been clicked. Return current app object data.
      */
-    @Output() gotoDetails = new EventEmitter<FullAppData>();
+    @Output() readonly gotoDetails: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
 
     constructor() {}
 
+    /**
+     * Function which getting data about current App of the app card and emit it to parent.
+     * @param app app of the current app card
+     */
     viewDetails(app: FullAppData): void {
         this.gotoDetails.emit(app);
     }
 
+    /**
+     * Function which returns data from the App object by key {@link appNavigationParam}.
+     * If key doesn't applied - will return empty string.
+     * @param app app of the current app card
+     */
     getAppValueByParameter(app: FullAppData): string {
         if (this.appNavigationParam) {
             return get(app, this.appNavigationParam);
