@@ -1,6 +1,5 @@
-import { OcCommonLibModule } from '@openchannel/angular-common-components';
+import { OcAppDescriptionComponent, OcCommonLibModule } from '@openchannel/angular-common-components';
 import { moduleMetadata } from '@storybook/angular';
-import { OcAppDescriptionComponent } from '@openchannel/angular-common-components';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules = {
@@ -34,6 +33,7 @@ export const ExpandableDescription = AppDescriptionComponent.bind({});
 ExpandableDescription.args = {
     appDescription: descriptionText,
     header: 'About App',
+    truncateTextLength: 250,
 };
 
 export const FullDescription = AppDescriptionComponent.bind({});
@@ -41,6 +41,7 @@ export const FullDescription = AppDescriptionComponent.bind({});
 FullDescription.args = {
     appDescription: descriptionText,
     header: 'About App',
+    truncateTextLength: 250,
     showFullDescription: true,
 };
 
