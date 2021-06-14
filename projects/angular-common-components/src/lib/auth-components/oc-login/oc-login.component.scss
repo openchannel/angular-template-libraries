@@ -37,7 +37,7 @@
   }
 
   &__error {
-    @include font-size-breakpoint(sm);
+    @include font-size-sm();
     background-color: $error-bg;
     border-radius: 4px;
     color: $error;
@@ -61,11 +61,11 @@
   }
 
   &__sign-up {
-    @include font-size-breakpoint(md);
+    @include font-size-md();
     text-align: center;
     &-link {
-      @include font-size-breakpoint(md);
-      @include font-family-rubik('Medium');
+      @include font-size-md();
+      @include font-medium();
     }
   }
 }
@@ -82,7 +82,7 @@
   }
 
   &__label {
-    @include font-size-breakpoint(sm);
+    @include font-size-sm();
     margin-left: 8px;
   }
 }
@@ -91,8 +91,8 @@
   max-width: 100%;
   width: auto;
   &__link {
-    @include  font-size-breakpoint(sm);
-    @include font-family-rubik('Medium');
+    @include  font-size-sm();
+    @include font-medium();
   }
 }
 

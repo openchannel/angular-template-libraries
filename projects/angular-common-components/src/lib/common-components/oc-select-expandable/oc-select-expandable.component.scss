@@ -1,3 +1,4 @@
+@import '../../../../assets/styles/theme';
 @import '../../../../assets/styles/mixins';
 
 .select-expandable {
@@ -11,7 +12,7 @@
   }
 
   &__heading {
-    @include font-family-rubik('Medium');
+    @include font-medium();
     cursor: pointer;
     font-size: 2rem;
     line-height: 18px;
@@ -58,7 +59,7 @@
 
       &-label {
         margin-left: 0.5rem;
-        @include font-size-breakpoint(md);
+        @include font-size-md();
       }
     }
   }
