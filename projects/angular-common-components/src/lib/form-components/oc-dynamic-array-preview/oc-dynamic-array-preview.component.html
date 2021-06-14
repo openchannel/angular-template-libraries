@@ -1,150 +1,154 @@
 <div class="array-preview">
-  <div class="array-preview__field" *ngFor="let field of previewFields;">
-    <oc-label class="array-preview__field-title" *ngIf="!hideLabel" [text]="field.label"></oc-label>
-    <div class="array-preview__field-content" [id]="field.id">
-      <ng-container *ngIf="field.isValidField; else ngtText">
-        <ng-container [ngSwitch]="field.type">
-          <ng-container *ngSwitchCase="'dynamicFieldArray'"
-                        [ngTemplateOutlet]="ngtDFA"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'tags'"
-                        [ngTemplateOutlet]="ngtTags"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'booleanTags'"
-                        [ngTemplateOutlet]="ngtTags"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'numberTags'"
-                        [ngTemplateOutlet]="ngtTags"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'richText'"
-                        [ngTemplateOutlet]="ngtRichText"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'singleImage'"
-                        [ngTemplateOutlet]="ngtSingleImage"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'multiImage'"
-                        [ngTemplateOutlet]="ngtImages"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'checkbox'"
-                        [ngTemplateOutlet]="ngtCheckbox"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'color'"
-                        [ngTemplateOutlet]="ngtColor"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'dropdownList'"
-                        [ngTemplateOutlet]="ngtDropdownList"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'multiselectList'"
-                        [ngTemplateOutlet]="ngtTags"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'datetime'"
-                        [ngTemplateOutlet]="ngtDateTime"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'date'"
-                        [ngTemplateOutlet]="ngtDate"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'singleFile'"
-                        [ngTemplateOutlet]="ngtSingleFile"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'privateSingleFile'"
-                        [ngTemplateOutlet]="ngtSingleFile"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'multiFile'"
-                        [ngTemplateOutlet]="ngtMultiFile"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchCase="'multiPrivateFile'"
-                        [ngTemplateOutlet]="ngtMultiFile"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-          <ng-container *ngSwitchDefault
-                        [ngTemplateOutlet]="ngtText"
-                        [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
-        </ng-container>
-      </ng-container>
+    <div class="array-preview__field" *ngFor="let field of previewFields;">
+        <oc-label class="array-preview__field-title" *ngIf="!hideLabel" [text]="field.label"></oc-label>
+        <div class="array-preview__field-content" [id]="field.id">
+            <ng-container *ngIf="field.isValidField; else ngtText">
+                <ng-container [ngSwitch]="field.type">
+                    <ng-container *ngSwitchCase="'dynamicFieldArray'"
+                                  [ngTemplateOutlet]="ngtDFA"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'tags'"
+                                  [ngTemplateOutlet]="ngtTags"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'booleanTags'"
+                                  [ngTemplateOutlet]="ngtTags"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'numberTags'"
+                                  [ngTemplateOutlet]="ngtTags"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'richText'"
+                                  [ngTemplateOutlet]="ngtRichText"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'singleImage'"
+                                  [ngTemplateOutlet]="ngtSingleImage"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'multiImage'"
+                                  [ngTemplateOutlet]="ngtImages"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'checkbox'"
+                                  [ngTemplateOutlet]="ngtCheckbox"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'color'"
+                                  [ngTemplateOutlet]="ngtColor"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'dropdownList'"
+                                  [ngTemplateOutlet]="ngtDropdownList"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'multiselectList'"
+                                  [ngTemplateOutlet]="ngtTags"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'datetime'"
+                                  [ngTemplateOutlet]="ngtDateTime"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'date'"
+                                  [ngTemplateOutlet]="ngtDate"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'singleFile'"
+                                  [ngTemplateOutlet]="ngtSingleFile"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'privateSingleFile'"
+                                  [ngTemplateOutlet]="ngtSingleFile"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'multiFile'"
+                                  [ngTemplateOutlet]="ngtMultiFile"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'multiPrivateFile'"
+                                  [ngTemplateOutlet]="ngtMultiFile"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchDefault
+                                  [ngTemplateOutlet]="ngtText"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- Template for text types-->
 <ng-template #ngtText let-field>
-  <span class="array-preview__field-content__text">{{field.fieldValue | replaceHtmlTags}}</span>
+    <span class="array-preview__field-content__text">{{field.fieldValue | replaceHtmlTags}}</span>
 </ng-template>
 
 <!-- Rich text template -->
 <ng-template #ngtRichText let-field>
-  <div [innerHTML]="field?.fieldValue | safe:'html'"></div>
+    <div [innerHTML]="field?.fieldValue | safe:'html'"></div>
 </ng-template>
 
 <!-- Tags template -->
 <ng-template #ngtTags let-field>
-  <div class="array-preview__field-content__tags" *ngIf="field?.fieldValue?.length > 0">
-    <oc-tag-element class="array-preview__field-content__tags-item"
-                    *ngFor="let tag of field.fieldValue; index as i"
-                    [title]="tag">
-    </oc-tag-element>
-  </div>
+    <div class="array-preview__field-content__tags" *ngIf="field?.fieldValue?.length > 0">
+        <oc-tag-element class="array-preview__field-content__tags-item"
+                        *ngFor="let tag of field.fieldValue; index as i"
+                        [title]="tag">
+        </oc-tag-element>
+    </div>
 </ng-template>
 
 <!-- Dynamic field array template -->
 <ng-template #ngtDFA let-field>
-  <oc-dynamic-field-array *ngIf="field?.formArrayDFA"
-                          [dfaFormArray]="field.formArrayDFA"
-                          [fieldDefinitionData]="field"></oc-dynamic-field-array>
+    <oc-dynamic-field-array *ngIf="field?.formArrayDFA"
+                            [dfaFormArray]="field.formArrayDFA"
+                            [fieldDefinitionData]="field"></oc-dynamic-field-array>
 </ng-template>
 
 <!-- List of images template-->
 <ng-template #ngtImages let-field>
-  <div *ngIf="field?.fieldValue?.length > 0" class="array-preview__field-content__image-multi">
-    <div class="array-preview__field-content__image-multi-container" *ngFor="let image of field.fieldValue">
-      <img class="array-preview__field-content__image-multi-item" [src]="image" alt="image">
+    <div *ngIf="field?.fieldValue?.length > 0" class="array-preview__field-content__image-multi">
+        <div class="array-preview__field-content__image-multi-container" *ngFor="let image of field.fieldValue">
+            <img class="array-preview__field-content__image-multi-item" [src]="image" alt="image">
+        </div>
     </div>
-  </div>
 </ng-template>
 
 <!-- Single image template-->
 <ng-template #ngtSingleImage let-field>
-  <div class="array-preview__field-content__image-mono">
-    <img *ngIf="field.fieldValue" [src]="field.fieldValue"
-         class="array-preview__field-content__image-mono-item" alt="image">
-  </div>
+    <div class="array-preview__field-content__image-mono">
+        <img *ngIf="field.fieldValue" [src]="field.fieldValue"
+             class="array-preview__field-content__image-mono-item" alt="image">
+    </div>
 </ng-template>
 
-<ng-template #ngtCheckbox let-field>  
-  <span class="array-preview__field-content__text">{{field.fieldValue ? 'Yes': 'No'}}</span>
+<ng-template #ngtCheckbox let-field>
+    <span class="array-preview__field-content__text">{{field.fieldValue ? 'Yes' : 'No'}}</span>
 </ng-template>
 
 <ng-template #ngtColor let-field>
-  <span class="array-preview__field-content__text"><span class="array-preview__field-content__color" [style.background-color]="field.fieldValue"></span></span>
+    <span class="array-preview__field-content__text"><span class="array-preview__field-content__color"
+                                                           [style.background-color]="field.fieldValue"></span></span>
 </ng-template>
 
 <ng-template #ngtDropdownList let-field>
-  <span class="array-preview__field-content__text">{{field.fieldValue | replaceHtmlTags}}</span>
+    <span class="array-preview__field-content__text">{{field.fieldValue | replaceHtmlTags}}</span>
 </ng-template>
 
 <ng-template #ngtDate let-field>
-  <span class="array-preview__field-content__text">{{field.fieldValue | date:'mediumDate'}}</span>
+    <span class="array-preview__field-content__text">{{field.fieldValue | date:'mediumDate'}}</span>
 </ng-template>
 
 <ng-template #ngtDateTime let-field>
-  <span class="array-preview__field-content__text">{{field.fieldValue | date:'MMM d, y HH:MM'}}</span>
+    <span class="array-preview__field-content__text">{{field.fieldValue | date:'MMM d, y HH:MM'}}</span>
 </ng-template>
 
 <ng-template #ngtSingleFile let-field>
-  <div class="array-preview__field-content__file-single-container">
-    <ng-container [ngTemplateOutlet]="singleFileTemplate" [ngTemplateOutletContext]="{$implicit: field?.fieldValue?.name}"></ng-container>
-  </div>
+    <div class="array-preview__field-content__file-single-container">
+        <ng-container [ngTemplateOutlet]="singleFileTemplate"
+                      [ngTemplateOutletContext]="{$implicit: field?.fieldValue?.name}"></ng-container>
+    </div>
 </ng-template>
 
 <ng-template #ngtMultiFile let-fieldMulti>
-  <div class="array-preview__field-content__file-multi">
-    <div *ngFor="let file of fieldMulti.fieldValue">
-      <ng-container [ngTemplateOutlet]="singleFileTemplate" [ngTemplateOutletContext]="{$implicit: file.name}"></ng-container>
+    <div class="array-preview__field-content__file-multi">
+        <div *ngFor="let file of fieldMulti.fieldValue">
+            <ng-container [ngTemplateOutlet]="singleFileTemplate"
+                          [ngTemplateOutletContext]="{$implicit: file.name}"></ng-container>
+        </div>
     </div>
-  </div>
 </ng-template>
 
 <ng-template #singleFileTemplate let-fileName>
-  <div class="array-preview__field-content__file-single">
-    <img class="array-preview__field-content__file-single-icon" src="assets/angular-common-components/file_icon.svg" alt="file image">
-    <span class="array-preview__field-content__file-single-title">{{fileName}}</span>
-  </div>
+    <div class="array-preview__field-content__file-single">
+        <img class="array-preview__field-content__file-single-icon" src="assets/angular-common-components/file_icon.svg"
+             alt="file image">
+        <span class="array-preview__field-content__file-single-title">{{fileName}}</span>
+    </div>
 </ng-template>
