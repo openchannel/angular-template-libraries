@@ -1,3 +1,4 @@
+@import '../../../../assets/styles/theme';
 @import '../../../../assets/styles/mixins';
 
 .dropdown-button {
@@ -5,8 +6,8 @@
   position: relative;
   width: 100%;
   &__placeholder-container {
-    @include font-size-breakpoint(md);
-    @include font-family-rubik('Medium');
+    @include font-size-md();
+    @include font-medium();
     align-items: center;
     display: flex;
     height: 100%;
