@@ -164,7 +164,11 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         const monthLength = this.getMonthLength(month, year);
 
         let prevMonthDate;
-        prevMonthDate = new Date(year - 1, month === 0 ? 11 : month - 1, 1);
+        if (month === 0) {
+            prevMonthDate = new Date(year - 1, 11, 1);
+        } else {
+            prevMonthDate = new Date(year, month - 1, 1);
+        }
 
         month = prevMonthDate.getMonth();
         const prevMonthLength = this.getMonthLength(prevMonthDate.getMonth(), prevMonthDate.getFullYear());
