@@ -1,5 +1,5 @@
-@import '../../../../assets/styles/theme.scss';
-@import '../../../../assets/styles/mixins.scss';
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
 
 .get-started {
   display: flex;
@@ -49,10 +49,11 @@
     }
 
     &-desc {
-      font-size: 14px;
+      @include font-size-md();
       margin: 2.5rem 0;
       width: 75%;
-      color: $secondary;
+      color: $text-color;
+      @include default-text();
       @include media-breakpoint-sm {
         width: 100%;
         margin: 1rem 0 0;

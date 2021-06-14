@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TypeFieldModel, TypeModel } from '../models/oc-type-definition.model';
 import { OcCheckboxData, OcEditUserFormConfig, OcEditUserResult, OCOrganization } from '../models/oc-edit-user-form.model';
@@ -22,6 +22,7 @@ export class OcEditUserFormComponent implements OnInit {
     @Input() defaultOrganizationData: OCOrganization;
     @Input() defaultEmptyConfigsErrorTemplate: TemplateRef<any>;
     @Input() defaultEmptyConfigsErrorMessage: string = 'There are no forms configured';
+    @Input() customTermsDescription: TemplateRef<any>;
 
     @Output() resultFormDataChange = new EventEmitter<OcEditUserResult>();
     @Output() createdFormGroup = new EventEmitter<FormGroup>();
@@ -37,10 +38,15 @@ export class OcEditUserFormComponent implements OnInit {
 
     buildFormByConfig(formConfig: OcEditUserFormConfig): void {
         this.clearPreviousValues();
+        const fieldsSorting = (field1, field2) => {
+            const index1 = formConfig.fieldsOrder.indexOf(field1.id);
+            const index2 = formConfig.fieldsOrder.indexOf(field2.id);
+            return (index1 > -1 ? index1 : Infinity) - (index2 > -1 ? index2 : Infinity);
+        };
         if (formConfig) {
             this.currentFormConfig = formConfig;
-            let tempForm = {};
-            if (formConfig?.organization?.includeFields) {
+            let tempForm: any = {};
+            if (formConfig.organization?.includeFields) {
                 const config = formConfig?.organization;
                 tempForm = TypeMergeUtils.mergeTypes(
                     tempForm,
@@ -50,28 +56,23 @@ export class OcEditUserFormComponent implements OnInit {
                     config.includeFields,
                 );
             }
-            if (formConfig?.account?.includeFields) {
+            if (formConfig.account?.includeFields) {
                 const config = formConfig?.account;
                 tempForm = TypeMergeUtils.mergeTypes(tempForm, this.defaultAccountData, config.typeData, '', config.includeFields);
             }
             if (this.enablePasswordField) {
-                tempForm = TypeMergeUtils.mergeTypes(
-                    tempForm,
-                    this.defaultOrganizationData,
-                    {
-                        fields: [
-                            {
-                                id: this.PASSWORD_FILED_KEY,
-                                type: 'password',
-                                label: 'Password',
-                                attributes: {},
-                            },
-                        ],
-                    },
-                    '',
-                    ['password'],
-                );
+                const passwordField: TypeFieldModel = {
+                    id: this.PASSWORD_FILED_KEY,
+                    type: 'password',
+                    label: 'Password',
+                    attributes: {},
+                };
+                tempForm = TypeMergeUtils.mergeTypes(tempForm, this.defaultOrganizationData, { fields: [passwordField] }, '', ['password']);
             }
+            if (formConfig.fieldsOrder) {
+                tempForm.fields.sort(fieldsSorting);
+            }
+
             this.mainFormModel = tempForm;
         }
     }

@@ -13,11 +13,11 @@
   padding: 1rem 2rem;
   border: none;
   &__text {
-    @include font-size-breakpoint(md);
+    @include font-size-md();
     line-height: 16px;
   }
   &__close-icon {
-    @include font-size-breakpoint(md);
+    @include font-size-md();
     cursor: pointer;
     margin-left: 2rem;
     &-svg {
