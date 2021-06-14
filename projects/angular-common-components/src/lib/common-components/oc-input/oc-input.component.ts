@@ -1,6 +1,17 @@
 import { Component, ElementRef, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+/**
+ * Input component. Represents component based on simple input.
+ *
+ * @example <oc-input [(NgModel)]="data"
+ * [modelName]="'Name'"
+ * [autoFocus]="true"
+ * [autocomplete]="'on'"
+ * [placeholder]="'ENTER'"
+ * [class]="'custom-input'"
+ * [disabled]="true">
+ */
 @Component({
     selector: 'oc-input',
     templateUrl: './oc-input.component.html',
@@ -14,26 +25,48 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     ],
 })
 export class OcInputComponent implements OnInit, ControlValueAccessor {
-    @Input()
-    set value(val) {
+    /**
+     * Main value provided through value accessor
+     */
+    @Input() set value(val: any) {
         this.inputValue = val;
         this.onChange(this.inputValue);
     }
-    @Input() modelName;
-    @Input() autoFocus;
-    @Input() autocomplete;
-    /** Placeholder text for input */
+
+    /**
+     * Enable auto focus on input
+     */
+    @Input() autoFocus: boolean;
+
+    /**
+     * Enable auto complete feature
+     */
+    @Input() autocomplete: string;
+
+    /**
+     * Placeholder text for input
+     */
     @Input() placeholder: string = '';
+
     /**
      * List of classes which can be
      * attached to the current list
      */
     @Input() class: string = '';
-    /** Set 'disable' state for input */
+
+    /**
+     * Set 'disable' state for input
+     */
     @Input() disabled: boolean = false;
-    /** Type of the input. Can be 'text', 'password' or 'email' */
+
+    /**
+     * Type of the input. Can be 'text', 'password' or 'email'
+     */
     @Input() inputType: 'text' | 'email' | 'password' = 'text';
 
+    /**
+     * Value from main input
+     */
     inputValue: string;
 
     constructor(private el: ElementRef) {}

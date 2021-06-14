@@ -42,7 +42,10 @@ class FileService extends FileUploaderService {
     }
 }
 
-/** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
+/**
+ * List of module dependencies and component declarations.
+ * Stored as separate var because they are shared among all stories
+ */
 const modules = {
     imports: [
         OcCommonLibModule,
