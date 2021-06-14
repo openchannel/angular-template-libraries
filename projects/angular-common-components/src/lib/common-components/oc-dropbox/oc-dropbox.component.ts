@@ -76,8 +76,6 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
     outputSelectedItem: string;
     disabled: boolean = false;
 
-    constructor() {}
-
     ngOnInit(): void {
         if (!this.customSearch) {
             this.customSearch = this.defaultSearch;

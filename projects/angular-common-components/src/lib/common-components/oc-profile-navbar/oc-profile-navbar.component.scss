@@ -37,12 +37,12 @@
     margin-right: 2rem;
   }
   &__username {
-    @include font-size-breakpoint(md);
-    @include font-family-rubik('Medium');
+    @include font-size-md();
+    @include font-medium();
     color: $dark;
   }
   &__role {
-    @include font-size-breakpoint(sm);
+    @include font-size-sm();
     color: $gray-600;
   }
   &__dropdown {

@@ -1,13 +1,13 @@
 {
   "name": "oc-angular-template-libraries",
-  "version": "2.1.0",
+  "version": "2.3.0",
   "scripts": {
     "ng": "./node_modules/.bin/ng",
     "start": "./node_modules/.bin/ng serve",
     "build": "./node_modules/.bin/ng build",
     "build-prod": "./node_modules/.bin/ng build --prod",
     "test": "npm run test:lib",
-    "test:lib": "jest --config projects/angular-common-components/jest.config.js --collectCoverage",
+    "test:lib": "jest --config projects/angular-common-components/jest.config.js --collectCoverage --maxWorkers=4",
     "sass-lint": "node_modules/.bin/sass-lint -c .scss-lint.yml",
     "lint": "./node_modules/.bin/ng lint",
     "e2e": "./node_modules/.bin/ng e2e",

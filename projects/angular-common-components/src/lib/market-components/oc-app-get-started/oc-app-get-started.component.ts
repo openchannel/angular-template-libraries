@@ -18,8 +18,6 @@ export class OcAppGetStartedComponent {
 
     @Input() getStartedType: 'home' | 'search' = 'home';
 
-    constructor() {}
-
     listAppGetStarted(): void {
         this.getStarted.emit();
     }

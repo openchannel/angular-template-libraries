@@ -43,8 +43,6 @@ export class OcFeaturedAppsComponent {
      */
     @Output() clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
 
-    constructor() {}
-
     getAppValueByParameter(app: FullAppData): string {
         if (this.navigationParam) {
             return get(app, this.navigationParam);

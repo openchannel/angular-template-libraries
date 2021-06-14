@@ -1,4 +1,4 @@
-@import '../../../../assets/styles/theme.scss';
+@import '../../../../assets/styles/theme';
 @import '../../../../assets/styles/mixins';
 
 .app-list {
@@ -43,8 +43,8 @@
         overflow: hidden;
 
         .app-list__card-name {
+          @include font-medium();
           line-height: 19px;
-          font-family: 'Rubik-Medium', sans-serif;
           margin-bottom: 0.5rem;
           text-overflow: ellipsis;
           overflow: hidden;
@@ -60,10 +60,10 @@
         }
 
         .app-list__card-price {
+          @include font-medium();
           width: 130px;
-          font-size: 14px;
+          @include font-size-md();
           line-height: 16px;
-          font-family: 'Rubik-Medium', sans-serif;
           color: $primary;
         }
       }

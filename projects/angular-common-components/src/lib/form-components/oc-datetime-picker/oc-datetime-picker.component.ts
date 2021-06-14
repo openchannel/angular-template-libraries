@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -63,8 +63,6 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         cal_months_labels_short: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
         closeOnSelect: true,
     };
-
-    constructor() {}
 
     ngOnInit() {
         this.settings = {...this.defaultSettings, ...this.settings};
