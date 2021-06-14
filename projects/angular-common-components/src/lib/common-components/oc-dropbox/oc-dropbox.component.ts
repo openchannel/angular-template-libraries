@@ -3,7 +3,21 @@ import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, of, Subject } from 'rxjs';
 import { map, mergeAll } from 'rxjs/operators';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NgStyle } from '@angular/common';
 
+/**
+ * A component represents a dropdown list and input field which acts as a search for items from this list.
+ * For functional of this component was used [Angular Bootstrap Typeahead]{@link https://ng-bootstrap.github.io/#/components/typeahead/examples}
+ * @example
+ * <oc-dropbox #dropBox
+ *    [items]="dropBoxItems"
+ *    placeHolder="Placeholder text"
+ *    [clearFormAfterSelect]="true"
+ *    [dropElementTemplate]="dropElementTemplateExample"
+ *    (inputChange)="onInputChange($event)"
+ *    (selectedItem)="addTagToResultList($event)">
+ * </oc-dropbox>
+ */
 @Component({
     selector: 'oc-dropbox',
     templateUrl: './oc-dropbox.component.html',
@@ -18,42 +32,54 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class OcDropboxComponent implements OnInit, ControlValueAccessor {
     /**
-     * https://ng-bootstrap.github.io/#/components/typeahead/examples
+     * (Optional)
+     * Placeholder text of the search input field.
      */
+    @Input() placeHolder: string = '';
 
     /**
-     * placeHolder (optional) - show text inside dropbox.
+     * (Optional)
+     * Items of the dropdown list.
      */
-    @Input() placeHolder: string;
+    @Input() items: string[] = [];
 
     /**
-     * items (optional) - items for selecting.
-     */
-    @Input() items: string[];
-
-    /**
-     * clearFormAfterSelect - clear input text form, when the user chooses an item.
-     * Default: false.
+     * Clear/not clear input text form, after the user, chooses an item.
+     * Form will not be cleared by default.
+     * @default false
      */
     @Input() clearFormAfterSelect: boolean = false;
 
     /**
-     * customNgStyle - customize drop box style by [ngStyle].
+     * Custom style for the search input field.
+     * Implements [ngStyle]{@link NgStyle}
+     * ## Usage example
+     * ` <oc-dropbox [customNgStyle]="{'width': widthValueVariable}"></oc-dropbox> `
+     * @example
+     * <oc-dropbox [customNgStyle]="{'width': widthValueVariable}"></oc-dropbox>
      */
-    @Input() customNgStyle: {};
+    @Input() customNgStyle: NgStyle;
 
     /**
-     * customClassStyle - customize drop box style by [class]
+     * String of classes will be added to the general class of the search input field.
+     * ## Usage example
+     * ` <oc-dropbox customClassStyle="custom-class another-class"></oc-dropbox> `
+     * @example
+     * <oc-dropbox customClassStyle="custom-class another-class"></oc-dropbox>
      */
     @Input() customClassStyle: string;
 
     /**
-     * dropElementTemplate - need for showing one dropbox element.
+     * The template to override the way resulting items are displayed in the dropdown.
+     * @example
+     * <ng-template #dropElementTemplate let-result="resultItem">
+     *     <span> {{result}}</span>
+     * </ng-template>
      */
     @Input() dropElementTemplate: TemplateRef<any>;
 
     /**
-     * searchFunction - (required) need for searching contains items.
+     * Custom function for searching items of the [items array]{@link items}.
      */
     @Input() customSearch: (text: Observable<string>) => Observable<readonly any[]>;
 
