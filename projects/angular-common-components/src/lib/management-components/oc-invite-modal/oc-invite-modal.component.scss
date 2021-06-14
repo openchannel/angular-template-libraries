@@ -21,7 +21,7 @@
       width: 100%;
       @include media-breakpoint-sm {
         padding-left: 2rem;
-        font-size: 18px;
+        @include font-size-lg();
         line-height: 28px;
       }
     }

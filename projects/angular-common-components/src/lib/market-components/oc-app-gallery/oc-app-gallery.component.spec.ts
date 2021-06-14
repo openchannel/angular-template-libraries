@@ -7,7 +7,11 @@ import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { FullAppData, StatElement } from '@openchannel/angular-common-components/src/lib/common-components';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { MockAppCardComponent, MockRoutingComponent } from '@openchannel/angular-common-components/src/mock/mock';
+import {
+    MockAppCardComponent,
+    MockRoutingComponent,
+    MockSvgIconComponent
+} from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcAppGalleryComponent', () => {
     let component: OcAppGalleryComponent;
@@ -63,12 +67,8 @@ describe('OcAppGalleryComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcAppGalleryComponent, MockAppCardComponent, MockRoutingComponent],
-                imports: [
-                    CommonModule,
-                    AngularSvgIconModule,
-                    RouterTestingModule.withRoutes([{ path: 'mock-router', component: MockRoutingComponent }]),
-                ],
+                declarations: [OcAppGalleryComponent, MockAppCardComponent, MockRoutingComponent, MockSvgIconComponent],
+                imports: [CommonModule, RouterTestingModule.withRoutes([{ path: 'mock-router', component: MockRoutingComponent }])],
             }).compileComponents();
             router = TestBed.inject(Router);
             location = TestBed.inject(Location);

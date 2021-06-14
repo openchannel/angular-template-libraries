@@ -1,31 +1,69 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {SelectModel} from '../model/components-basic.model';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SelectModel } from '../model/components-basic.model';
 
 @Component({
-  selector: 'oc-select-expandable',
-  templateUrl: './oc-select-expandable.component.html',
-  styleUrls: ['./oc-select-expandable.component.scss']
+    selector: 'oc-select-expandable',
+    templateUrl: './oc-select-expandable.component.html',
+    styleUrls: ['./oc-select-expandable.component.scss'],
 })
 export class OcSelectExpandableComponent implements OnInit {
+    /**
+     * Text of the select-expandable heading.
+     * @type {string}.
+     * Default empty.
+     */
+    @Input() title: string;
 
-  @Input() title: string;
+    /**
+     * Select-expandable config, contains labels and 'checked' states of select options.
+     * @type {SelectModel[]}.
+     */
+    @Input() selectModels: SelectModel[];
 
-  @Input() selectModels: SelectModel[];
-  @Input() collapsedOnInit: boolean = true;
+    /**
+     * Initial select collapse state.
+     * @type {boolean}.
+     * Default true.
+     */
+    @Input() collapsedOnInit: boolean = true;
 
-  @Input() isCollapsed: boolean = true;
-  @Input() expandedIcon: string = 'assets/angular-common-components/select-up.svg';
-  @Input() collapsedIcon: string = 'assets/angular-common-components/down-arrow.svg';
-  @Output() selectModelsChange: EventEmitter<SelectModel[]> = new EventEmitter<SelectModel[]>();
+    /**
+     * Current select collapse state.
+     * @type {boolean}.
+     * Default true.
+     */
+    @Input() isCollapsed: boolean = true;
 
-  constructor() {
-  }
+    /**
+     * Source path to expanded svg icon.
+     * @type {boolean}.
+     * Default 'assets/angular-common-components/select-up.svg'.
+     */
+    @Input() expandedIcon: string = 'assets/angular-common-components/select-up.svg';
 
-  ngOnInit(): void {
-    this.isCollapsed = this.collapsedOnInit;
-  }
+    /**
+     * Source path to collapsed svg icon.
+     * @type {boolean}.
+     * Default 'assets/angular-common-components/down-arrow.svg'.
+     */
+    @Input() collapsedIcon: string = 'assets/angular-common-components/down-arrow.svg';
 
-  onChange() {
-    this.selectModelsChange.emit(this.selectModels);
-  }
+    /**
+     * Emits select model changes and passes to a parent component.
+     */
+    @Output() readonly selectModelsChange: EventEmitter<SelectModel[]> = new EventEmitter<SelectModel[]>();
+
+    constructor() {}
+
+    ngOnInit(): void {
+        this.isCollapsed = this.collapsedOnInit;
+    }
+
+    /**
+     * This method runs on select options change.
+     * Uses selectModelsChange to emit select model value.
+     */
+    onChange(): void {
+        this.selectModelsChange.emit(this.selectModels);
+    }
 }

@@ -21,13 +21,15 @@
   }
 
   &__description {
+    @include font-size-md();
+    color: $text-color;
+    margin-bottom: 0;
+    padding: 0 1rem;
+    @include default-text();
     @include media-breakpoint-md {
       padding-left: 0;
     }
-    color: $secondary;
-    font-size: 14px;
-    margin-bottom: 0;
-    padding: 0 1rem;
+
   }
 
   &__more {
@@ -38,10 +40,10 @@
     cursor: pointer;
 
     &-text {
-      font-size: 14px;
+      @include font-medium();
+      @include font-size-md();
       padding-right: 0.5rem;
       color: $primary;
-      font-family: 'Rubik-Medium', sans-serif;
     }
 
     &-icon {
