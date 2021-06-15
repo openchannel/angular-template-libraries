@@ -62,6 +62,12 @@ export interface CustomDataAppConfig {
     gallery: string;
 }
 
+/**
+ * Gallery Item interface
+ * @property {string} title - String value with image title
+ * @property {string} description - String value with description for the title
+ * @property {string} image - Image URL value
+ */
 export interface GalleryItem {
     title: string;
     description: string;
