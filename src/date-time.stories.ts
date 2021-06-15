@@ -2,21 +2,19 @@ import { OcDatetimePickerComponent, OcFormComponentsModule } from '@openchannel/
 import { moduleMetadata } from '@storybook/angular';
 
 const modules = {
-    imports: [OcFormComponentsModule]
+    imports: [OcFormComponentsModule],
 };
 
 export default {
     title: 'Date component [BEM]',
     component: OcDatetimePickerComponent,
-    decorators: [
-        moduleMetadata(modules),
-    ],
+    decorators: [moduleMetadata(modules)],
 };
 
 const DateTimeComponent = (args: OcDatetimePickerComponent) => ({
     component: OcDatetimePickerComponent,
     moduleMetadata: modules,
-    props: args
+    props: args,
 });
 
 export const DisabledDate = DateTimeComponent.bind({});
@@ -33,7 +31,7 @@ DefaultDate.args = {
     settings: {
         format: 'dd/MM/yyyy',
     },
-    disabled: false
+    disabled: false,
 };
 
 export const DefaultDateTime = DateTimeComponent.bind({});
