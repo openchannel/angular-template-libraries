@@ -3,7 +3,7 @@ import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
 
 /**
  * File Details interface
- *  @property {string} fileId - Unique identificator of file
+ *  @property {string} fileId - Unique identifier of file
  *  @property {string} fileUrl - File URL link
  *  @property {string} name - File name
  *  @property {number} size - File size in px
@@ -46,6 +46,10 @@ export interface FoundVirus {
 export type FileType = 'singleFile' | 'singleImage' | 'privateSingleFile' | 'multiFile' | 'multiImage' | 'multiPrivateFile';
 
 export abstract class FileUploaderService {
-    abstract fileUploadRequest(file: FormData, isPrivate: boolean, hash?: string[]): Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent>;
+    abstract fileUploadRequest(
+        file: FormData,
+        isPrivate: boolean,
+        hash?: string[],
+    ): Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent>;
     abstract fileDetailsRequest(fileId: string): Observable<FileDetails>;
 }

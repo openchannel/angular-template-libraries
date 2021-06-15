@@ -40,7 +40,7 @@ import { FileDetails, FileType, FileUploaderService } from '../model/file.model'
 })
 export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAccessor {
     /**
-     * File input template refrence
+     * File input template reference
      */
     @ViewChild('fileDropRef', { static: false }) fileInputVar: ElementRef<any>;
 
@@ -407,7 +407,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     }
 
     /**
-     * Fuction that executes after image cropping
+     * Function that executes after image cropping
      * @param {ImageCroppedEvent} event - Crop event object
      */
     imageCropped(event: ImageCroppedEvent): void {
@@ -417,14 +417,14 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     }
 
     /**
-     * Fuction that executes after image load failed
+     * Function that executes after image load failed
      */
     loadImageFailed(): void {
         this.hasImageLoadError = true;
     }
 
     /**
-     * Fuction that subtract from scale 0.1 and save it
+     * Function that subtract from scale 0.1 and save it
      */
     zoomOut(): void {
         this.scale -= 0.1;
@@ -435,7 +435,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     }
 
     /**
-     * Fuction that add to scale 0.1 and save it
+     * Function that add to scale 0.1 and save it
      */
     zoomIn(): void {
         this.scale += 0.1;

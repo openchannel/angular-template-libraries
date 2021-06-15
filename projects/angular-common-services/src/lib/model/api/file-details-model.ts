@@ -1,4 +1,3 @@
-import { VirusScanResult } from '@openchannel/angular-common-components/src/lib/form-components';
 
 export class FileDetailsResponse {
     fileId: string;
@@ -11,6 +10,18 @@ export class FileDetailsResponse {
     contentType: string;
     isPrivate: boolean;
     mimeCheck: 'PASSED' | 'FAILED';
-    virusScan: VirusScanResult;
+    virusScan: VirusScanResultResponse;
     isError: boolean;
+}
+
+export interface VirusScanResultResponse {
+    started: number;
+    finished: number;
+    status: 'CLEAN' | 'NOT_SCANNED' | 'DIRTY';
+    foundViruses: FoundVirusResponse[];
+}
+
+export interface FoundVirusResponse {
+    fileName: string;
+    virusName: string;
 }
