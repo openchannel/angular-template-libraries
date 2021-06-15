@@ -6,28 +6,14 @@ import { ComponentsUserLoginModel } from '../models/auth-types.model';
 /**
  * Forgot password component. Represents component with forgot password logic.
  *
- * Inputs:
- * @param {ComponentsUserLoginModel} loginModel
- * @param {string} loginUrl
- * @param {string} signupUrl
- * @param {string} forgotPasswordDoneUrl
- * @param {boolean} showResultPage
- * @param {string} companyLogoUrl
- * @param {boolean} process
- * <br>
- * Outputs:
- * @param {EventEmitter<any>} submit
- *
  * @example <oc-forgot-password [loginModel]="{
- *                                  email: 'admin',
- *                                  password: 'admin',
- *                                  isChecked: true
+ *                                  email: 'admin'
  *                              }"
  *                              [loginUrl]="'/login'"
  *                              [signupUrl]="'/signup'"
  *                              [forgotPasswordDoneUrl]="'/forgot-password.png'"
  *                              [showResultPage]="true"
- *                              [companyLogoUrl]="logo.png"
+ *                              [companyLogoUrl]="./img/logo.png"
  *                              [process]="false"
  *                              (submit)="onSubmit()"
  * >
@@ -53,7 +39,9 @@ export class OcForgotPasswordComponent {
      */
     @Input() signupUrl: string;
 
-    /** Path to the email sent icon in .svg format */
+    /**
+     * Path to the email sent icon in .svg format
+     */
     @Input() forgotPasswordDoneUrl: string = 'assets/angular-common-components/email_done.svg';
 
     /**
@@ -67,14 +55,14 @@ export class OcForgotPasswordComponent {
     @Input() companyLogoUrl: string;
 
     /**
-     * Flag to know process go or not
+     * Flag for process spinner
      */
     @Input() process: boolean;
 
     /**
-     * Submit output eventemitter
+     * Submit output event emitter.
      */
-    @Output() submit = new EventEmitter<any>();
+    @Output() readonly submit = new EventEmitter<void>();
 
     constructor(private router: Router) {}
 
@@ -87,7 +75,7 @@ export class OcForgotPasswordComponent {
             if (!form.valid) {
                 form.control.markAllAsTouched();
             } else {
-                this.submit.emit(true);
+                this.submit.emit();
             }
         }
     }

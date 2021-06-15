@@ -19,6 +19,9 @@ export class ComponentsUserResetPassword {
     code: string;
 }
 
+/**
+ * Model for login and forgot password component
+ */
 export class ComponentsUserLoginModel {
     email: string;
     password: string;
