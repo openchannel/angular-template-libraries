@@ -66,7 +66,6 @@ export class OcFormComponent implements OnInit, OnDestroy, OnChanges {
     formData: any;
 
     private formSubscription: Subscription = new Subscription();
-    constructor() {}
 
     ngOnInit(): void {
         this.generateForm();

@@ -21,7 +21,6 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
     mainGallery: GalleryItem[] = [];
     // spliced array
     displayGallery: GalleryItem[] = [];
-    constructor() {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.maxItems && this.maxItems) {

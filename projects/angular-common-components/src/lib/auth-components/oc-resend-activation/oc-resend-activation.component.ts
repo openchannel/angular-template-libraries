@@ -14,8 +14,6 @@ export class OcResendActivationComponent {
     @Input() activationModel = new ComponentsUserActivationModel();
     @Output() submit = new EventEmitter<any>();
 
-    constructor() {}
-
     submitForm(form): void {
         if (!this.process) {
             if (!form.valid) {

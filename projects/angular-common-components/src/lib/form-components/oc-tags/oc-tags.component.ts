@@ -44,8 +44,6 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
     /** user tags */
     resultTags = [];
 
-    constructor() {}
-
     ngOnInit(): void {
         this.dropBoxTags = this.findAvailableDropBoxTags();
     }

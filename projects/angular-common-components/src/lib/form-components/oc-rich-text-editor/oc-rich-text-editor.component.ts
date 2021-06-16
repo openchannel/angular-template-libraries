@@ -56,8 +56,6 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
   public onTouched = () => {};
   private onChange: (value: any) => void = () => {};
 
-  constructor() { }
-
   ngOnInit(): void {
     if (this.placeholderText) {
       this.tinyOptions.placeholder = this.placeholderText;

@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
     selector: 'oc-tag-element',
     templateUrl: './oc-tag-element.component.html',
     styleUrls: ['./oc-tag-element.component.scss']
 })
-export class OcTagElementComponent implements OnInit {
+export class OcTagElementComponent {
 
     /**
      * title (optional) - component title.
@@ -25,12 +25,6 @@ export class OcTagElementComponent implements OnInit {
      * clickEmitter - return title by click event on this component.
      */
     @Output() clickEmitter = new EventEmitter<string>();
-
-    constructor() {
-    }
-
-    ngOnInit(): void {
-    }
 
     sentCurrentTag(): void {
         this.clickEmitter.emit(this.title);
