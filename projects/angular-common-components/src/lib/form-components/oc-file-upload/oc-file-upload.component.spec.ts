@@ -18,11 +18,21 @@ const mockResponse: FileDetails = {
     contentType: 'type',
     size: 123123,
     isPrivate: false,
-    mimeCheck: 'mimeCheck',
+    mimeCheck: 'PASSED',
     fileUrl: 'http://file-url.com',
     isError: false,
     fileUploadProgress: 100,
-    virusScan: true,
+    virusScan: {
+        started: 1457710762784,
+        finished: 1457710769567,
+        status: 'CLEAN',
+        foundViruses: [
+            {
+                fileName: 'jacks.docx',
+                virusName: 'H237 Worm',
+            },
+        ],
+    },
     fileIconUrl: '',
 };
 
@@ -100,8 +110,7 @@ describe('OcFileUploadComponent', () => {
 
         fixture.debugElement.query(By.css('input#fileDropRef')).triggerEventHandler('change', changeEvent);
 
-        component.croppedFileObj = mockedFile;
-        component.uploadImageFile();
+        component.uploadFile(mockedFile);
         fixture.detectChanges();
 
         await fixture.whenStable().then(() => {
