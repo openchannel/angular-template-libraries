@@ -6,16 +6,14 @@ import { toString } from 'lodash';
 import { Page } from '../model/api/page.model';
 import { OcPropertyModel } from '../model/api/properties.model';
 import { HttpHeaders } from '@angular/common/http';
-import { OcApiPaths } from '../config/api-version.model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 @Injectable({
     providedIn: 'root',
 })
 export class PropertiesService {
-    private PROPERTIES;
 
     constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {
-        this.PROPERTIES = apiPaths.properties;
     }
 
     getProperties(
@@ -35,6 +33,6 @@ export class PropertiesService {
         if (headers) {
             options.headers = headers;
         }
-        return this.httpRequest.get(this.PROPERTIES, options);
+        return this.httpRequest.get(this.apiPaths.properties, options);
     }
 }

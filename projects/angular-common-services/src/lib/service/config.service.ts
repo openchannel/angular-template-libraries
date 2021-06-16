@@ -2,23 +2,20 @@ import {Injectable} from '@angular/core';
 import {HttpRequestService} from './http-request-services';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
-import { OcApiPaths } from '../config/api-version.model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigService {
 
-  private CONFIG_URL;
-
   private marketUrl: string;
 
   constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {
-    this.CONFIG_URL = apiPaths.config;
   }
 
   private loadMarketUrl(): Observable<string> {
-    return this.httpRequest.get(`${this.CONFIG_URL}/market-url`,
+    return this.httpRequest.get(`${this.apiPaths.config}/market-url`,
       {
         responseType: 'text',
         withCredentials: true

@@ -4,20 +4,18 @@ import { Observable } from 'rxjs';
 import { Page } from '../model/api/page.model';
 import { AppResponse, AppStatusValue, CreateAppModel, PublishAppVersionModel } from '../model/api/app-data-model';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
-import { OcApiPaths } from '../config/api-version.model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AppsService {
-    private APPS_URL;
 
     constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {
-        this.APPS_URL = apiPaths.apps;
     }
 
     searchApp(searchText: string, filter: string, fields: string[] = ['name']): Observable<Page<AppResponse | any>> {
-        const mainUrl = `${this.APPS_URL}/textSearch`;
+        const mainUrl = `${this.apiPaths.apps}/textSearch`;
 
         let params = new OcHttpParams().append('fields', JSON.stringify(fields)).appendRequiredParam('text', searchText, '');
         if (filter) {
@@ -35,34 +33,34 @@ export class AppsService {
             .append('pageNumber', String(pageNumber))
             .append('limit', String(limit));
 
-        return this.httpRequest.get(this.APPS_URL, { params });
+        return this.httpRequest.get(this.apiPaths.apps, { params });
     }
 
     getAppBySafeName(appSafeName: string): Observable<AppResponse> {
-        return this.httpRequest.get(`${this.APPS_URL}/bySafeName/${appSafeName}`);
+        return this.httpRequest.get(`${this.apiPaths.apps}/bySafeName/${appSafeName}`);
     }
 
     createApp(createAppRequest: CreateAppModel): Observable<AppResponse> {
-        return this.httpRequest.post(this.APPS_URL, createAppRequest);
+        return this.httpRequest.post(this.apiPaths.apps, createAppRequest);
     }
 
     // empty response
     deleteApp(appId: string): Observable<any> {
-        return this.httpRequest.delete(`${this.APPS_URL}/${appId}`);
+        return this.httpRequest.delete(`${this.apiPaths.apps}/${appId}`);
     }
 
     // empty response
     publishAppByVersion(appId: string, publishAppVersionModel: PublishAppVersionModel): Observable<any> {
-        const mainUrl = `${this.APPS_URL}/${appId}/publish`;
+        const mainUrl = `${this.apiPaths.apps}/${appId}/publish`;
         return this.httpRequest.post(mainUrl, publishAppVersionModel);
     }
 
     getAppById(id: string): Observable<AppResponse> {
-        return this.httpRequest.get(`${this.APPS_URL}/${id}`);
+        return this.httpRequest.get(`${this.apiPaths.apps}/${id}`);
     }
 
     changeAppStatus(appId: string, version: number, status: AppStatusValue, reason?: string): Observable<any> {
-        const mainUrl = `${this.APPS_URL}/${appId}/versions/${version}/status`;
+        const mainUrl = `${this.apiPaths.apps}/${appId}/versions/${version}/status`;
         const body = {
             status,
             reason: reason ? reason : '',

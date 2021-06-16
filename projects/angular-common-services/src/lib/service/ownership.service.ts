@@ -3,26 +3,23 @@ import {HttpRequestService} from './http-request-services';
 import {Observable} from 'rxjs';
 import {CreateOwnershipModel, OwnershipModelResponse} from '../model/api/ownership.model';
 import {HttpHeaders} from '@angular/common/http';
-import { OcApiPaths } from '../config/api-version.model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 @Injectable({
     providedIn: 'root'
 })
 export class OwnershipService {
 
-    private OWNERSHIP_URL;
-
     constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {
-        this.OWNERSHIP_URL = apiPaths.ownership;
     }
 
     installOwnership(ownership: CreateOwnershipModel, headers: HttpHeaders = new HttpHeaders()): Observable<OwnershipModelResponse> {
-        return this.httpRequest.post(`${this.OWNERSHIP_URL}/install`,
+        return this.httpRequest.post(`${this.apiPaths.ownership}/install`,
             ownership,  {headers});
     }
 
     uninstallOwnership(ownershipId: string, headers: HttpHeaders = new HttpHeaders()): Observable<OwnershipModelResponse> {
-        return this.httpRequest.post(`${this.OWNERSHIP_URL}/uninstall/${ownershipId}`,
+        return this.httpRequest.post(`${this.apiPaths.ownership}/uninstall/${ownershipId}`,
             {}, {headers});
     }
 }

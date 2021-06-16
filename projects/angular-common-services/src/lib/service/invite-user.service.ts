@@ -4,21 +4,18 @@ import {InviteDeveloperModel, InviteUserModel} from '../model/api/invite-user.mo
 import {Observable} from 'rxjs';
 import {HttpRequestService} from './http-request-services';
 import {OcHttpParams} from '../model/api/http-params-encoder-model';
-import { OcApiPaths } from '../config/api-version.model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InviteUserService {
 
-  readonly INVITE_URL;
-
   constructor(private httpService: HttpRequestService, private apiPaths: OcApiPaths) {
-    this.INVITE_URL = apiPaths.invites;
   }
 
   getUserInvites(pageNumber: number, limit: number, sort?: string, query?: string): Observable<Page<InviteUserModel>> {
-    const mainUrl = `${this.INVITE_URL}/users`;
+    const mainUrl = `${this.apiPaths.invites}/users`;
 
     const params = new OcHttpParams()
       .append('pageNumber', String(pageNumber))
@@ -29,7 +26,7 @@ export class InviteUserService {
   }
 
   getUserInviteInfoByToken(token: string): Observable<InviteUserModel> {
-    return this.httpService.get(`${this.INVITE_URL}/users/byToken/${token}`);
+    return this.httpService.get(`${this.apiPaths.invites}/users/byToken/${token}`);
   }
 
   /**
@@ -48,15 +45,15 @@ export class InviteUserService {
    * @param inviteId id of the invite
    */
   editUserInvite(inviteId: string, inviteData: any): Observable<any> {
-    return this.httpService.post(`${this.INVITE_URL}/users/byId/${inviteId}`, inviteData);
+    return this.httpService.post(`${this.apiPaths.invites}/users/byId/${inviteId}`, inviteData);
   }
 
   deleteUserInvite(inviteId: string): Observable<any> {
-    return this.httpService.delete(`${this.INVITE_URL}/users/byId/${inviteId}`);
+    return this.httpService.delete(`${this.apiPaths.invites}/users/byId/${inviteId}`);
   }
 
   getDeveloperInvites(pageNumber: number, limit: number, sort?: string, query?: string): Observable<Page<InviteDeveloperModel>> {
-    const mainUrl = `${this.INVITE_URL}/developers`;
+    const mainUrl = `${this.apiPaths.invites}/developers`;
 
     const params = new OcHttpParams()
       .append('pageNumber', String(pageNumber))
@@ -83,17 +80,17 @@ export class InviteUserService {
    * @param inviteId id of the invite
    */
   editDeveloperInvite(inviteId: string, inviteData: any): Observable<any> {
-    return this.httpService.post(`${this.INVITE_URL}/developers/byId/${inviteId}`, inviteData);
+    return this.httpService.post(`${this.apiPaths.invites}/developers/byId/${inviteId}`, inviteData);
   }
 
   /** In order to validate the invite token and get the details for the invite */
   getDeveloperInviteInfoByToken(token: string): Observable<InviteDeveloperModel> {
-    return this.httpService.get(`${this.INVITE_URL}/developers/byToken/${token}`);
+    return this.httpService.get(`${this.apiPaths.invites}/developers/byToken/${token}`);
   }
 
   /** Delete user invite */
   deleteDeveloperInvite(inviteId: string): Observable<any> {
-    return this.httpService.delete(`${this.INVITE_URL}/developers/byId/${inviteId}`);
+    return this.httpService.delete(`${this.apiPaths.invites}/developers/byId/${inviteId}`);
   }
 
   private sendInvite(userType: 'developers'| 'users', company: string, userInviteData: any,
@@ -105,6 +102,6 @@ export class InviteUserService {
       body: mailBody,
       customData: {company, ...(userInviteData?.customData ? userInviteData.customData : {})}
     };
-    return this.httpService.post(`${this.INVITE_URL}/${userType}`, body);
+    return this.httpService.post(`${this.apiPaths.invites}/${userType}`, body);
   }
 }

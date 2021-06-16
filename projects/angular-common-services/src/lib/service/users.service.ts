@@ -7,22 +7,18 @@ import { OcHttpParams } from '../model/api/http-params-encoder-model';
 import { HttpHeaders } from '@angular/common/http';
 import { TypeFieldModel, TypeModel } from '../model/api/type-model';
 import { toString } from 'lodash';
-import { OcApiPaths } from '../config/api-version.model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 @Injectable({
     providedIn: 'root',
 })
 export class UsersService {
-    private USERS_URL;
-    private USER_TYPE_URL;
 
     constructor(private httpService: HttpRequestService, private apiPaths: OcApiPaths) {
-        this.USERS_URL = apiPaths.users;
-        this.USER_TYPE_URL = apiPaths.userTypes;
     }
 
     getUsersByIds(userIds: string[]): Observable<Page<User>> {
-        const mainUrl = `${this.USERS_URL}/all`;
+        const mainUrl = `${this.apiPaths.users}/all`;
 
         const dStr = userIds ? `['${userIds.join("','")}']` : '';
         const params = new OcHttpParams().append('query', `{'userId': {'$in': ${dStr}}}`);
@@ -31,7 +27,7 @@ export class UsersService {
     }
 
     getUsers(pageNumber: number, limit: number): Observable<Page<User>> {
-        const mainUrl = `${this.USERS_URL}/all`;
+        const mainUrl = `${this.apiPaths.users}/all`;
 
         const params = new OcHttpParams().append('pageNumber', String(pageNumber)).append('limit', String(limit));
 
@@ -42,14 +38,14 @@ export class UsersService {
      * Getting data about non-developer user's company
      */
     getUserCompany(): Observable<UserCompanyModel> {
-        return this.httpService.get(`${this.USERS_URL}/this`);
+        return this.httpService.get(`${this.apiPaths.users}/this`);
     }
     /**
      * Saving data of non-developer user's company
      * @param companyData new company fields data
      */
     updateUserCompany(companyData: any): Observable<any> {
-        return this.httpService.patch(`${this.USERS_URL}/this`, companyData);
+        return this.httpService.patch(`${this.apiPaths.users}/this`, companyData);
     }
 
     /**
@@ -57,7 +53,7 @@ export class UsersService {
      * @param type user type
      */
     getUserTypeDefinition(type: string, httpOptions?: any): Observable<any> {
-        return this.httpService.get(`${this.USER_TYPE_URL}/${type}`, httpOptions);
+        return this.httpService.get(`${this.apiPaths.userTypes}/${type}`, httpOptions);
     }
 
     getUserTypes(
@@ -77,6 +73,6 @@ export class UsersService {
         if (headers) {
             options.headers = headers;
         }
-        return this.httpService.get(`${this.USER_TYPE_URL}`, options);
+        return this.httpService.get(`${this.apiPaths.userTypes}`, options);
     }
 }

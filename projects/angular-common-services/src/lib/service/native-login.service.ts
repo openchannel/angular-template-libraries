@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpRequestService } from './http-request-services';
 import { OCNativeCustomSignup, OCNativeDefaultSignup, UserLoginModel } from '../model/api/user-login-model';
@@ -6,20 +6,18 @@ import { SignUpByInviteRequest } from '../model/api/login.model';
 import { UserResetPassword } from '../model/api/user-activation-model';
 import { ChangePasswordRequest } from '../model/api/change-password.model';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
-import { OcApiPaths } from '../config/api-version.model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 @Injectable({
     providedIn: 'root',
 })
 export class NativeLoginService {
-    private NATIVE_URL;
 
     constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {
-        this.NATIVE_URL = apiPaths.authorizationNative;
     }
 
     signIn(body: UserLoginModel): Observable<any> {
-        return this.httpRequest.post(`${this.NATIVE_URL}/token`, body);
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/token`, body);
     }
 
     /**
@@ -27,7 +25,7 @@ export class NativeLoginService {
      * @param userSignUp
      */
     signup(userSignUp: OCNativeDefaultSignup | OCNativeCustomSignup): Observable<any> {
-        return this.httpRequest.post(`${this.NATIVE_URL}/register`, userSignUp);
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/register`, userSignUp);
     }
 
     /**
@@ -35,7 +33,7 @@ export class NativeLoginService {
      * @param userSignUp
      */
     signupByInvite(userSignUp: SignUpByInviteRequest): Observable<any> {
-        return this.httpRequest.post(`${this.NATIVE_URL}/invite`, userSignUp);
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/invite`, userSignUp);
     }
 
     /**
@@ -43,7 +41,7 @@ export class NativeLoginService {
      * @param activationModel
      */
     activate(activationModel: any): Observable<any> {
-        return this.httpRequest.post(`${this.NATIVE_URL}/activate`, activationModel);
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/activate`, activationModel);
     }
 
     /**
@@ -52,7 +50,7 @@ export class NativeLoginService {
      */
     sendResetCode(email: string): Observable<any> {
         const params = new OcHttpParams().set('email', email);
-        return this.httpRequest.post(`${this.NATIVE_URL}/send-reset-code`, null, { params });
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/send-reset-code`, null, { params });
     }
 
     /**
@@ -60,7 +58,7 @@ export class NativeLoginService {
      * @param request
      */
     resetPassword(request: UserResetPassword): Observable<any> {
-        return this.httpRequest.post(`${this.NATIVE_URL}/reset-password`, request);
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/reset-password`, request);
     }
 
     /**
@@ -68,7 +66,7 @@ export class NativeLoginService {
      * @param email
      */
     sendActivationCode(email: string): Observable<any> {
-        return this.httpRequest.post(`${this.NATIVE_URL}/send-activate-code`, email);
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/send-activate-code`, email);
     }
 
     /**
@@ -76,6 +74,6 @@ export class NativeLoginService {
      * @param request
      */
     changePassword(request: ChangePasswordRequest): Observable<any> {
-        return this.httpRequest.post(`${this.NATIVE_URL}/change-password`, request);
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/change-password`, request);
     }
 }

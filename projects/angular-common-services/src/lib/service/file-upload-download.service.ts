@@ -6,17 +6,15 @@ import { mergeMap } from 'rxjs/operators';
 import { ConfigService } from './config.service';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
 import { FileDetailsResponse } from '../model/api/file-details-model';
-import { OcApiPaths } from '../config/api-version.model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 @Injectable({
     providedIn: 'root',
 })
 export class FileUploadDownloadService {
-    private uploadFileUrl = 'v2/files';
 
     constructor(public httpRequest: HttpRequestService, private http: HttpClient, private configService: ConfigService,
                 private apiPaths: OcApiPaths) {
-        this.uploadFileUrl = apiPaths.files;
     }
 
     uploadToOpenChannel(file: FormData, isPrivate: boolean, hash?: string[]): Observable<any> {
@@ -33,7 +31,7 @@ export class FileUploadDownloadService {
         }
         return this.configService.getMarketUrl().pipe(
             mergeMap(marketUrl => {
-                return this.http.post(`${marketUrl}/${this.uploadFileUrl}`, file, {
+                return this.http.post(`${marketUrl}/${this.apiPaths.files}`, file, {
                     headers: new HttpHeaders({ 'Upload-Token': `${token}` }),
                     params: httpParams,
                     reportProgress: true,
@@ -44,11 +42,11 @@ export class FileUploadDownloadService {
     }
 
     getToken() {
-        return this.httpRequest.post(`${this.uploadFileUrl}/uploadToken`, null);
+        return this.httpRequest.post(`${this.apiPaths.files}/uploadToken`, null);
     }
 
     downloadFileDetails(fileId): Observable<FileDetailsResponse> {
-        return this.httpRequest.get(`${this.uploadFileUrl}/byIdOrUrl?fileIdOrUrl=${fileId}`);
+        return this.httpRequest.get(`${this.apiPaths.files}/byIdOrUrl?fileIdOrUrl=${fileId}`);
     }
 
     downloadFileFromUrl(fileUrl): Observable<any> {
@@ -56,6 +54,6 @@ export class FileUploadDownloadService {
     }
 
     getFileUrl(fileId: string): Observable<any> {
-        return this.httpRequest.get(`${this.uploadFileUrl}/download?fileId=${fileId}`);
+        return this.httpRequest.get(`${this.apiPaths.files}/download?fileId=${fileId}`);
     }
 }

@@ -7,17 +7,14 @@ import {
   ChartStatisticDataModelResponse,
   ChartStatisticPeriodModelResponse
 } from '../model/components/frontend.model';
-import { OcApiPaths } from '../config/api-version.model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChartService {
 
-  private STATS_URL;
-
   constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {
-        this.STATS_URL = apiPaths.stats;
   }
 
   getTimeSeries(period: string, fields: string, dateStartMS: number, dateEndMS: number, appId?: string)
@@ -25,7 +22,7 @@ export class ChartService {
 
     const query = appId ? JSON.stringify({appId}) : '';
 
-    const mainUrl = `${this.STATS_URL}/series/${period}/${fields}`;
+    const mainUrl = `${this.apiPaths.stats}/series/${period}/${fields}`;
 
     const params = new OcHttpParams()
       .append('start', String(dateStartMS))

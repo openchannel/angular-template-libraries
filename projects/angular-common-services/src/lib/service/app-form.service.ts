@@ -1,4 +1,4 @@
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {HttpRequestService} from './http-request-services';
 import {Observable} from 'rxjs';
 import {Page} from '../model/api/page.model';
@@ -8,34 +8,31 @@ import {
   CreateFormSubmissionModel,
   FormSubmissionModel
 } from '../model/api/app-form-model';
-import { OcApiPaths } from '../config/api-version.model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppFormService {
 
-  private FORM_URL;
-
   constructor(private httpRequest: HttpRequestService,
               private apiPaths: OcApiPaths ) {
-        this.FORM_URL = apiPaths.forms;
   }
 
   getForms(pageNumber: number, pageLimit: number): Observable<Page<AppFormModelResponse>> {
-    const mainUrl = `${this.FORM_URL}?${QueryUtil.getPaginationQuery(pageNumber, pageLimit)}`;
+    const mainUrl = `${this.apiPaths.forms}?${QueryUtil.getPaginationQuery(pageNumber, pageLimit)}`;
     return this.httpRequest.get(encodeURI(mainUrl));
   }
 
   getForm(formId: string): Observable<AppFormModelResponse> {
-    const mainUrl = `${this.FORM_URL}/${formId}`;
+    const mainUrl = `${this.apiPaths.forms}/${formId}`;
     return this.httpRequest.get(mainUrl);
   }
 
   createFormSubmission(formId: string, createFormSubmissionModel: CreateFormSubmissionModel):
       Observable<FormSubmissionModel> {
 
-    const mainUrl = `${this.FORM_URL}/${formId}/submissions`;
+    const mainUrl = `${this.apiPaths.forms}/${formId}/submissions`;
     return this.httpRequest.post(encodeURI(mainUrl), createFormSubmissionModel);
   }
 }
