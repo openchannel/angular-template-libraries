@@ -4,7 +4,7 @@
      ocFileDragDrop>
     <img [src]="uploadIconUrl" alt="upload-icon"
          class="file-container__upload-images">
-    <input #fileDropRef (change)="fileBrowseHandler($event,cropperModal)" [accept]="getAcceptTypes()"
+    <input #fileDropRef (change)="fileBrowseHandler($event,cropperModal)" [accept]="getAcceptedMIMEType()"
            class="file-container__input"
            id="fileDropRef" type="file"/>
     <div class="file-container__placeholder">
@@ -26,7 +26,7 @@
                    (click)="fileDropRef.click()">
                     <input #fileDropRef
                            (change)="fileBrowseHandler($event,cropperModal)"
-                           [accept]="getAcceptTypes()"
+                           [accept]="getAcceptedMIMEType()"
                            style="display: none;" type="file"/>
                     Browse File
                 </a>
@@ -146,7 +146,7 @@
                                type="primary"
                                id="modalAgreeButton"
                                [disabled]="hasImageLoadError || uploadImageInProcess"
-                               (click)="uploadImageFile();"
+                               (click)="uploadFile(croppedFileObj);"
                                [process]="uploadImageInProcess" text="Confirm"></oc-button>
                 </div>
             </div>
