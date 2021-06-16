@@ -4,9 +4,12 @@ import { ComponentsUserLoginModel } from '../models/auth-types.model';
 /**
  * Login component. Represent login page with auth logic.
  *
- * @example <oc-login [loginModel]="{login: 'admin', password:'password', isChecked: true}" [loginButtonText]="'Some text'"
- *      [forgotPwdUrl]="/forgot-password" [signupUrl]="/signup" [companyLogoUrl]="/newlogo.png" [process]="false"
- *      [incorrectEmailErrorCode]="" [notVerifiedEmailErrorCode]="">
+ * @example <oc-login [loginModel]="{login: 'admin', password:'password', isChecked: true}"
+ *                    loginButtonText="Some text"
+ *                    forgotPwdUrl="/forgot-password"
+ *                    signupUrl="/signup"
+ *                    companyLogoUrl="./assets/img/logo.png"
+ *                    [process]="false">
  */
 @Component({
     selector: 'oc-login',
@@ -21,71 +24,66 @@ export class OcLoginComponent {
 
     /**
      * Main form model that contain login data.
-     *
-     * Default: `new ComponentsUserLoginModel()`
      */
-    @Input() loginModel = new ComponentsUserLoginModel();
+    @Input() loginModel: ComponentsUserLoginModel = new ComponentsUserLoginModel();
 
     /**
-     * Text for login button
-     *
-     * Default: 'Log In'
+     * Text for the login button.
      */
-    @Input() loginButtonText = 'Log In';
+    @Input() loginButtonText: string = 'Log In';
 
     /**
-     * Link to redirect on forgot password button click
+     * Link to the Forgot password page.
+     * ## Example
+     * `/forgot-password`
      */
     @Input() forgotPwdUrl: string;
 
     /**
-     * Link to redirect on sign up button click
+     * Link to the Sign Up page.
+     * ## Example
+     * `/sign-up`
      */
     @Input() signupUrl: string;
 
     /**
-     * URL to company logo image
-     *
-     * Default: `'~@openchannel/angular-common-components/assets/angular-common-components/logo-company.png'`
+     * Path to the company logo. If not set, default logo will be shown.
      */
-    @Input() companyLogoUrl = '~@openchannel/angular-common-components/assets/angular-common-components/logo-company.png';
+    @Input() companyLogoUrl: string = './assets/angular-common-components/logo-company.png';
 
     /**
-     * Flag to know process goes or not
+     * Status of the login process. If user clicked the Login button - process will start, spinner will be shown on the button
+     * and user can't interact with a login button.
      */
-    @Input() process: boolean;
+    @Input() process: boolean = false;
 
     /**
      * Error code for incorrect email.
-     *
-     * Default: 'email_is_incorect'
      */
-    @Input() incorrectEmailErrorCode = 'email_is_incorrect';
+    @Input() incorrectEmailErrorCode: string = 'email_is_incorrect';
 
     /**
      * Error code for not activated email.
-     *
-     * Default: 'email_not_verified'
      */
-    @Input() notVerifiedEmailErrorCode = 'email_not_verified';
+    @Input() notVerifiedEmailErrorCode: string = 'email_not_verified';
 
     /**
      * Output event that emits on model change and pass Login model
      */
-    @Output() readonly loginModelChange = new EventEmitter<ComponentsUserLoginModel>();
+    @Output() readonly loginModelChange: EventEmitter<ComponentsUserLoginModel> = new EventEmitter<ComponentsUserLoginModel>();
 
     /**
-     * Output event that emits on submit form
+     * Output event that emits on that login button was clicked and the login model was updated with new valid data.
      */
-    @Output() readonly loginSubmit = new EventEmitter<boolean>();
+    @Output() readonly submit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /**
      * Output event that emits on click to activation link button and pass Link email value
      */
-    @Output() readonly sendActivationLink = new EventEmitter<string>();
+    @Output() readonly sendActivationLink: EventEmitter<string> = new EventEmitter<string>();
 
     /**
-     * Submit fuction emit changed login value check form on validity and submit 'true' if everything is ok.
+     * Submit function emit changed login value check form on validity and submit 'true' if everything is ok.
      * @param {NgForm} form
      * @returns void
      */
@@ -96,12 +94,12 @@ export class OcLoginComponent {
                 form.control.markAllAsTouched();
                 return;
             }
-            this.loginSubmit.emit(true);
+            this.submit.emit(true);
         }
     }
 
     /**
-     * Fuction executed when triggers change event
+     * Function executed when triggers change event
      */
     onchange(): void {
         if (this.form.form.controls.email.errors && this.form.form.controls.email.errors.serverErrorValidator) {
@@ -142,7 +140,7 @@ export class OcLoginComponent {
     }
 
     /**
-     * Fuction executed when user press on activation link
+     * Function executed when user press on activation link
      * @param {NgModel} email
      * @returns void
      */
