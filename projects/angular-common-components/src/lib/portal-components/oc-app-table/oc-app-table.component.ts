@@ -80,7 +80,6 @@ export class OcAppTableComponent {
         },
     ];
 
-    constructor() {}
 
     action(menu: AppListingOptions, appId: string, appVersion: number, isChild?: boolean): void {
         const appAction: AppListMenuAction = {

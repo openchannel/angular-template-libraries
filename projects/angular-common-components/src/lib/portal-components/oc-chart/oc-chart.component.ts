@@ -64,8 +64,6 @@ export class OcChartComponent implements OnChanges, OnInit {
 
     private Chart;
 
-    constructor() {}
-
     async ngOnInit(): Promise<void> {
         this.tabularLabelsHeader = this.chartData.periods.find(period => period.active).tabularLabel;
         await this.connectChartLib();

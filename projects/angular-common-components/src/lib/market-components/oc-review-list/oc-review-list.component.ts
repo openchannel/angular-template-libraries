@@ -34,7 +34,6 @@ export class OcReviewListComponent implements OnChanges {
 
     displayedReviews: OCReviewDetails[] = [];
 
-    constructor() {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.maxReviewDisplay && this.maxReviewDisplay) {
