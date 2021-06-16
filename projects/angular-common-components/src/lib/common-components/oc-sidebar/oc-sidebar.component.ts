@@ -21,8 +21,6 @@ export class OcSidebarComponent {
     /** Return changed model */
     @Output() sidebarChange: EventEmitter<OcSidebarSelectModel> = new EventEmitter<OcSidebarSelectModel>();
 
-    constructor() {}
-
     onClickSidebar(parentSidebar: SidebarValue, childSidebar?: SidebarValue): void {
         this.sidebarChange.emit({ parent: parentSidebar, child: childSidebar });
     }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {DropdownModel} from '../model/components-basic.model';
 
 @Component({
@@ -6,7 +6,7 @@ import {DropdownModel} from '../model/components-basic.model';
   templateUrl: './oc-dropdown-button.component.html',
   styleUrls: ['./oc-dropdown-button.component.scss']
 })
-export class OcDropdownButtonComponent implements OnInit {
+export class OcDropdownButtonComponent {
 
   @Output()
   selectedChange: EventEmitter<DropdownModel<any>> = new EventEmitter<DropdownModel<any>>();
@@ -25,11 +25,6 @@ export class OcDropdownButtonComponent implements OnInit {
   @Input()
   set minDropdownWidth(minWidth: string) {
     this.minWidthModel = minWidth ? {'min-width': minWidth} : {};
-  }
-
-  constructor() { }
-
-  ngOnInit(): void {
   }
 
   onSelect(selected: DropdownModel<any>) {

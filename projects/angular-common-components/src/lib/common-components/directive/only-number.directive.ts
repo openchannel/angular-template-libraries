@@ -5,8 +5,6 @@ import { Directive, HostListener } from '@angular/core';
 })
 export class OnlyNumberDirective {
 
-  constructor() { }
-
   @HostListener('keydown', ['$event']) handleKeyboardEvent(event: KeyboardEvent) {
     const e: KeyboardEvent = event;
     if (
