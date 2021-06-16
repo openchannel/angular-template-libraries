@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AbstractControl, AbstractControlDirective, NgModel } from '@angular/forms';
 import { OcErrorService } from './oc-error-service';
 
@@ -7,7 +7,7 @@ import { OcErrorService } from './oc-error-service';
     templateUrl: './oc-error.component.html',
     styleUrls: ['./oc-error.component.scss'],
 })
-export class OcErrorComponent implements OnInit {
+export class OcErrorComponent {
     private readonly errorMessages = {
         required: () => 'Please fill out this field',
         minlength: params => 'The min number of characters is ' + params.requiredLength,
@@ -53,8 +53,6 @@ export class OcErrorComponent implements OnInit {
     @Input() modifyErrors: [{ validator: string; message: string }];
 
     constructor(public errorService: OcErrorService) {}
-
-    ngOnInit(): void {}
 
     shouldShowErrors(): boolean {
         // client side error validators check

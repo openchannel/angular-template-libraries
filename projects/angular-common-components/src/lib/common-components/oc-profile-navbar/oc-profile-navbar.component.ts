@@ -1,11 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'oc-profile-navbar',
   templateUrl: './oc-profile-navbar.component.html',
   styleUrls: ['./oc-profile-navbar.component.scss']
 })
-export class OcProfileNavbarComponent implements OnInit {
+export class OcProfileNavbarComponent {
 
   /**
    * Username initials that will be shown in the avatar circle.
@@ -23,9 +23,4 @@ export class OcProfileNavbarComponent implements OnInit {
    */
   @Input() role: string;
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
 }

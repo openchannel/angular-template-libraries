@@ -25,8 +25,6 @@ export class OcLoginComponent {
     @Output() submit = new EventEmitter<any>();
     @Output() sendActivationLink = new EventEmitter<string>();
 
-    constructor() {}
-
     submitForm(form): void {
         if (!this.process) {
             this.loginModelChange.emit(this.loginModel);

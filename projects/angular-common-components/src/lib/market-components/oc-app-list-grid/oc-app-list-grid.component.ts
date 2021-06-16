@@ -37,8 +37,6 @@ export class OcAppListGridComponent {
      */
     @Output() gotoDetails = new EventEmitter<FullAppData>();
 
-    constructor() {}
-
     viewDetails(app: FullAppData): void {
         this.gotoDetails.emit(app);
     }

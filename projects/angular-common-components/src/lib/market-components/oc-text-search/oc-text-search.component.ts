@@ -23,7 +23,6 @@ export class OcTextSearchComponent {
     /** Emit search text on enter key down or search icon click */
     @Output() enterSearch: EventEmitter<string> = new EventEmitter<string>();
 
-    constructor() {}
 
     enterAction(): void {
         this.enterSearch.emit(this.searchText);
