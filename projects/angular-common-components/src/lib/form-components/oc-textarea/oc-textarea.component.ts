@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     multi: true
   }],
 })
-export class OcTextareaComponent implements OnInit, ControlValueAccessor {
+export class OcTextareaComponent implements ControlValueAccessor {
 
   /**
    * Placeholder text
@@ -53,11 +53,6 @@ export class OcTextareaComponent implements OnInit, ControlValueAccessor {
   private onTouched = () => {};
   private onChange: (value: any) => void = () => {};
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
 
   /**
    * set value to control on value changing

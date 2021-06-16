@@ -14,7 +14,6 @@ export class OcActivationComponent {
     @Input() activationModel = new ComponentsUserActivationModel();
     @Output() submit = new EventEmitter<any>();
 
-    constructor() {}
 
     submitForm(form) {
         if (!this.process) {

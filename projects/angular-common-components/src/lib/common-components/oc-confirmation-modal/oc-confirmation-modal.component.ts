@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -6,7 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     templateUrl: './oc-confirmation-modal.component.html',
     styleUrls: ['./oc-confirmation-modal.component.scss'],
 })
-export class OcConfirmationModalComponent implements OnInit {
+export class OcConfirmationModalComponent {
     @Input() modalTitle: string;
     @Input() modalText: string;
 
@@ -24,7 +24,6 @@ export class OcConfirmationModalComponent implements OnInit {
         this.modal = modal;
     }
 
-    ngOnInit(): void {}
 
     dismiss(result?: boolean) {
         this.modal.dismiss(result);

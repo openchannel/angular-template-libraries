@@ -1,11 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'oc-tooltip-label',
   templateUrl: './oc-tooltip-label.component.html',
   styleUrls: ['./oc-tooltip-label.component.scss']
 })
-export class OcTooltipLabelComponent implements OnInit {
+export class OcTooltipLabelComponent {
   /** Label text */
   @Input() text: string = '';
   /** Show indicator of required field */
@@ -21,10 +21,4 @@ export class OcTooltipLabelComponent implements OnInit {
   @Input() infoTitleIconCsv: string = 'assets/angular-common-components/info.svg';
   /** Set global classes for label */
   @Input() labelClass: string = '';
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
 }

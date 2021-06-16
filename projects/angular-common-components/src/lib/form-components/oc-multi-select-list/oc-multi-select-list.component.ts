@@ -50,8 +50,6 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
     // tags for DropBox
     dropBoxItems = [];
 
-    constructor() {}
-
     ngOnInit(): void {
         this.applyDefaultItems();
         this.dropBoxItems = this.findAvailableDropBoxItems();
