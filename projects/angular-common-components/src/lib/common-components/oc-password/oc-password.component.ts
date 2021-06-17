@@ -1,6 +1,12 @@
-import {Component, forwardRef, Input } from '@angular/core';
+import {Component, forwardRef, Input} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
+/**
+ * Password component. Represents an input field to enter password data. Also possibility to change some data attributes like 'placeholder'.
+ *
+ * @example <oc-password [placeholder]="Placeholder" [disabled]="true" [inputType]="text" [value]="'password'" >
+ *
+ */
 @Component({
   selector: 'oc-password',
   templateUrl: './oc-password.component.html',
@@ -13,22 +19,46 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 })
 export class OcPasswordComponent implements ControlValueAccessor {
 
-  @Input() placeholder;
-  /** Set 'disable' state for input */
+  /**
+   * Value of password input. Can be setted up via 'value' component input.
+   */
+  inputValue;
+
+  /**
+   * Set 'placeholder' for input field
+   */
+  @Input() placeholder: string;
+
+  /**
+   * Set 'disable' state for input.
+   *
+   * Default: false
+   */
   @Input() disabled: boolean = false;
-  /** Type of the input. Can be 'text' or 'email' */
-  @Input() inputType: string = 'text';
+
+  /**
+   * Type of the input. Can be 'text' or 'email'.
+   *
+   * Default: 'text'
+   */
+  @Input() inputType: 'text' | 'email' = 'text';
+
+  /**
+   * Default value for input field.
+   */
   @Input()
   set value(val) {
     this.inputValue = val;
     this.onChange(this.inputValue);
   }
 
-  public inputValue: string;
+  onTouched = () => {};
 
-  public onTouched = () => {};
   private onChange: (value: any) => void = () => {};
 
+  /**
+   * Function that called after input model value was changed
+   */
   changeModelVal(): void {
     this.onChange(this.inputValue);
   }

@@ -2,12 +2,19 @@ import { Component, Input } from '@angular/core';
 import { AbstractControl, AbstractControlDirective, NgModel } from '@angular/forms';
 import { OcErrorService } from './oc-error-service';
 
+/**
+ * An oc-error component. It is used to show error or errors list after validation.
+ * Each error contains a text message.
+ */
 @Component({
     selector: 'oc-error',
     templateUrl: './oc-error.component.html',
     styleUrls: ['./oc-error.component.scss'],
 })
 export class OcErrorComponent {
+    /**
+     * The list of error messages.
+     */
     private readonly errorMessages = {
         required: () => 'Please fill out this field',
         minlength: params => 'The min number of characters is ' + params.requiredLength,
@@ -39,21 +46,42 @@ export class OcErrorComponent {
         numberTagsValidator: params => params.fieldTitle + ' can only contain numeric values',
         // tslint:disable-next-line:max-line-length
         passwordValidator: () =>
-            'Password must contains 1 uppercase, 1 lowercase, 1 digit, 1 special char (one of @#$%!^&) and at least 8 character long',
+            'Password must contain 1 uppercase, 1 lowercase, 1 digit, 1 special char (one of @#$%!^&) and at least 8 characters long',
         customError: message => message,
     };
 
-    @Input() control: AbstractControlDirective | AbstractControl | NgModel;
-    // server error field name
-    @Input() field: string;
-    @Input() errorParams: any;
     /**
-     * Replace error message from validator to custom
+     * An input for a specific control, to which an error would be related.
+     * @type {AbstractControlDirective | AbstractControl | NgModel}.
+     */
+    @Input() control: AbstractControlDirective | AbstractControl | NgModel;
+
+    /**
+     * Server error field name.
+     * @type {string}.
+     */
+    @Input() field: string;
+
+    /**
+     * Params for server error message.
+     * @type {*}.
+     */
+    @Input() errorParams: any;
+
+    /**
+     * Modifying an error component to have a custom validator and text message.
+     * @type {Object[]}.
      */
     @Input() modifyErrors: [{ validator: string; message: string }];
 
     constructor(public errorService: OcErrorService) {}
 
+    /**
+     * This function defines whether to show or not validation errors.
+     * Checks for client-side and server-side errors.
+     * Creates an error validation object and passes it to a related control.
+     * Returns a boolean type.
+     */
     shouldShowErrors(): boolean {
         // client side error validators check
         if (this.control && this.control.errors && (this.control.dirty || this.control.touched)) {
@@ -81,8 +109,6 @@ export class OcErrorComponent {
                     } else if (this.control) {
                         this.control.setErrors(errors);
                         this.control.markAsTouched();
-                    } else {
-                        console.error('Invalid control type');
                     }
                 });
                 return true;
@@ -95,6 +121,10 @@ export class OcErrorComponent {
         return false;
     }
 
+    /**
+     * Returns an array of errors.
+     * @type {string[]}.
+     */
     listOfErrors(): string[] {
         if (this.control) {
             if (!this.control.errors) {
@@ -109,7 +139,10 @@ export class OcErrorComponent {
         return [];
     }
 
-    private getMessage(type: string, params: any) {
+    /**
+     * Finds a message with specific type and params.
+     */
+    private getMessage(type: string, params: any): any {
         if (this.modifyErrors) {
             const errorMsg = this.modifyErrors.filter(update => update.validator === type)[0];
             if (errorMsg) {

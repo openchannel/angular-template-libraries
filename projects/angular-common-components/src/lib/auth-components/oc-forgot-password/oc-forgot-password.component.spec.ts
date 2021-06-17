@@ -75,7 +75,7 @@ describe('OcForgotPasswordComponent', () => {
         });
     });
 
-    it('should emit true value on form button click when form valid', async () => {
+    it('should emit event on form button click when form valid', async () => {
         component.process = false;
         component.loginModel.email = 'test@test.com';
         spyOn(component.submit, 'emit');
@@ -84,7 +84,7 @@ describe('OcForgotPasswordComponent', () => {
         await fixture.whenStable().then(() => {
             const button = fixture.debugElement.query(By.css('oc-button')).nativeElement;
             button.click();
-            expect(component.submit.emit).toHaveBeenCalledWith(true);
+            expect(component.submit.emit).toHaveBeenCalledWith();
         });
     });
 
