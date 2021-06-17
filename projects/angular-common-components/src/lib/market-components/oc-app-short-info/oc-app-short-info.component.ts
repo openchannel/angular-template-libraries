@@ -50,7 +50,7 @@ export class OcAppShortInfoComponent implements OnInit {
     constructor(private sanitizer: DomSanitizer) {}
 
     ngOnInit(): void {
-        this.currentModel = this.app.model[this.priceModelIndex] || this.app.model[0];
+        this.currentModel = this.cardApp.model[this.priceModelIndex] || this.cardApp.model[0];
     }
 
     safeLink(sourceUrl: string): SafeResourceUrl {
