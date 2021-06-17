@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { EmbedVideoService } from 'ngx-embed-video';
 import { SafeHtml } from '@angular/platform-browser';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { OcEmbedVideoService } from '@openchannel/angular-common-components/src/lib/common-components/oc-video/oc-embed-video.service';
@@ -39,5 +38,8 @@ export class OcVideoComponent {
             this.loadInIframe = false;
             this.loadInVideo = false;
         }
+
+        this.spinner.hide();
+        this.showVideoLoader = false;
     }
 }
