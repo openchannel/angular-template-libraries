@@ -1,15 +1,15 @@
-import {Component, Input} from '@angular/core';
-import {EmbedVideoService} from 'ngx-embed-video';
-import {SafeHtml} from '@angular/platform-browser';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { Component, Input } from '@angular/core';
+import { EmbedVideoService } from 'ngx-embed-video';
+import { SafeHtml } from '@angular/platform-browser';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { OcEmbedVideoService } from '@openchannel/angular-common-components/src/lib/common-components/oc-video/oc-embed-video.service';
 
 @Component({
     selector: 'oc-video',
     templateUrl: './oc-video.component.html',
-    styleUrls: ['./oc-video.component.scss']
+    styleUrls: ['./oc-video.component.scss'],
 })
 export class OcVideoComponent {
-
     @Input()
     set videoUrl(videoUrl: string) {
         this.url = videoUrl;
@@ -22,11 +22,9 @@ export class OcVideoComponent {
     showVideoLoader = false;
     previewData: SafeHtml;
 
-    constructor(private embedService: EmbedVideoService,
-                private spinner: NgxSpinnerService) {
-    }
+    constructor(private embedService: OcEmbedVideoService, private spinner: NgxSpinnerService) {}
 
-    loadVideo() {
+    loadVideo(): void {
         this.spinner.show();
         this.showVideoLoader = true;
 
@@ -41,8 +39,5 @@ export class OcVideoComponent {
             this.loadInIframe = false;
             this.loadInVideo = false;
         }
-
-        this.spinner.hide();
-        this.showVideoLoader = false;
     }
 }
