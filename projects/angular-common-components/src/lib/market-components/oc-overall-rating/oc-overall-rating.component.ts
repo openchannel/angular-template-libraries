@@ -25,14 +25,11 @@ export class OcOverallRatingComponent {
 
     /**
      * Label for overall review.
-     * Default: 'Overall rating'
      */
-    @Input() overallReviewLabel = 'Overall rating';
+    @Input() overallReviewLabel: string = 'Overall rating';
 
     /**
      * Review summary data.
-     * Default: new OverallRatingSummary()
      */
     @Input() allReviewSummary: OverallRatingSummary = new OverallRatingSummary();
-
 }
