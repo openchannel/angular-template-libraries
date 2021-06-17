@@ -8,6 +8,22 @@ import {
   ChartStatisticPeriodModelResponse
 } from '../model/components/frontend.model';
 
+/**
+
+ * Description: Service for setting up site config.<br> 
+
+ * Endpoints:
+
+ * GET 'v2/stats/series/period/fields'
+
+ * Methods:
+
+ * getTimeSeries
+
+ * getDateStartByCurrentPeriod
+
+
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -18,12 +34,27 @@ export class ChartService {
   constructor(private httpRequest: HttpRequestService) {
   }
 
-  getTimeSeries(period: string, fields: string, dateStartMS: number, dateEndMS: number, appId?: string)
+  /**
+   * 
+   * Description: Get chart statistic data
+   * 
+   * @param {string} period - Period of time per devision
+   * @param {string} field - Field name
+   * @param {number} dateStartMS - timestamp of Start
+   * @param {number} dateEndMS - timestamp of End
+   * @param {string} appId - (optional)
+   * @returns {Observable<ChartStatisticDataModelResponse>} `Observable<ChartStatisticDataModelResponse>`
+   * 
+   * * ### Example:
+   *
+   * `getTimeSeries('month','name', 628376482734, 287364872364, '98agsd87has8d7h8as7d')`
+   */
+  getTimeSeries(period: string, field: string, dateStartMS: number, dateEndMS: number, appId?: string)
       : Observable<ChartStatisticDataModelResponse> {
 
     const query = appId ? JSON.stringify({appId}) : '';
 
-    const mainUrl = `${this.STATS_URL}/series/${period}/${fields}`;
+    const mainUrl = `${this.STATS_URL}/series/${period}/${field}`;
 
     const params = new OcHttpParams()
       .append('start', String(dateStartMS))
@@ -57,6 +88,23 @@ export class ChartService {
     );
   }
 
+  /**
+   *
+   * Description: Get Start Date by period
+   *
+   * @param {Date} dateEnd - End Date
+   * @param {ChartStatisticPeriodModelResponse} period - Period Data Object
+   * @returns {Date} `Date`
+   *
+   * * ### Example:
+   *
+   * `getDateStartByCurrentPeriod(297364872634, {
+   *     id:'98sdh9f8hsd9',
+   *     label:'label',
+   *     active:true,
+   *     tabularLabel:'tLabel',
+   * };`
+   */
   getDateStartByCurrentPeriod(dateEnd: Date, period: ChartStatisticPeriodModelResponse): Date {
     const dateStart = new Date(dateEnd);
     if (period?.id === 'month') {
