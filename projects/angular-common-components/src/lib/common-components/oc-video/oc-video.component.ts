@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { OcEmbedVideoService } from '@openchannel/angular-common-components/src/lib/common-components/oc-video/oc-embed-video.service';
+import { OcEmbedVideoService } from './oc-embed-video.service';
 
 @Component({
     selector: 'oc-video',
