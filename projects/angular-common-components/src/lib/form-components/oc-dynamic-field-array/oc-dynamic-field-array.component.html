@@ -1,52 +1,52 @@
 <div class="cards-interface">
-  <div class="cards-interface__added-item"
-       *ngFor="let formItem of dfaFormArray.controls; let i = index; trackBy: trackByFieldIndex">
-    <div class="cards-interface__preview">
-      <div class="cards-interface__preview-header">
-        <!--     Dynamic field title       -->
-        <ng-container *ngIf="formsArrayConfig[i].previewLabel.defaultLabel">
-          <h3 class="cards-interface__preview-header-text">{{formsArrayConfig[i].previewLabel.defaultLabel}}</h3>
-        </ng-container>
-        <ng-container *ngIf="!formsArrayConfig[i].previewLabel.defaultLabel">
-          <oc-dynamic-array-preview
-                  [fieldValues]="formsArrayConfig[i].previewLabel.customLabelValue"
-                  [fieldDefinition]="formsArrayConfig[i].previewLabel.customLabelDefinition"
-                  [hideLabel]="true"
-          ></oc-dynamic-array-preview>
-        </ng-container>
-        <!--     Dynamic field icons       -->
-        <div class="cards-interface__icons-handler">
-          <svg-icon *ngIf="!formsArrayConfig[i].isEdit"
-                    id="editIconBtn" class="cards-interface__preview-icon"
-                    src="assets/angular-common-components/edit.svg"
-                    (click)="editDFAItemData(i)"></svg-icon>
-          <svg-icon id="deleteIconBtn" class="cards-interface__preview-icon"
-                    src="assets/angular-common-components/trash-icon.svg"
-                    (click)="deleteDynamicItem(i)"></svg-icon>
+    <div class="cards-interface__added-item"
+         *ngFor="let formItem of dfaFormArray.controls; let i = index; trackBy: trackByFieldIndex">
+        <div class="cards-interface__preview">
+            <div class="cards-interface__preview-header">
+                <!--     Dynamic field title       -->
+                <ng-container *ngIf="formsArrayConfig[i].previewLabel.defaultLabel">
+                    <h3 class="cards-interface__preview-header-text">{{formsArrayConfig[i].previewLabel.defaultLabel}}</h3>
+                </ng-container>
+                <ng-container *ngIf="!formsArrayConfig[i].previewLabel.defaultLabel">
+                    <oc-dynamic-array-preview
+                            [fieldValues]="formsArrayConfig[i].previewLabel.customLabelValue"
+                            [fieldDefinition]="formsArrayConfig[i].previewLabel.customLabelDefinition"
+                            [hideLabel]="true"
+                    ></oc-dynamic-array-preview>
+                </ng-container>
+                <!--     Dynamic field icons       -->
+                <div class="cards-interface__icons-handler">
+                    <svg-icon *ngIf="!formsArrayConfig[i].isEdit"
+                              id="editIconBtn" class="cards-interface__preview-icon"
+                              src="assets/angular-common-components/edit.svg"
+                              (click)="editDFAItemData(i)"></svg-icon>
+                    <svg-icon id="deleteIconBtn" class="cards-interface__preview-icon"
+                              src="assets/angular-common-components/trash-icon.svg"
+                              (click)="deleteDynamicItem(i)"></svg-icon>
+                </div>
+            </div>
+            <div *ngIf="!formsArrayConfig[i].isEdit" class="cards-interface__preview-content">
+                <oc-dynamic-array-preview
+                        [fieldValues]="formsArrayConfig[i].previewFiledValues"
+                        [fieldDefinition]="fieldDefinition"
+                        [dfaForm]="formItem"></oc-dynamic-array-preview>
+            </div>
+            <ng-container *ngIf="formsArrayConfig[i].isEdit">
+                <div class="cards-interface__preview-content">
+                    <oc-form [formJsonData]="fieldDefinition"
+                             [generatedForm]="formItem"
+                             [showButton]="false"></oc-form>
+                </div>
+                <div class="cards-interface__preview-buttons">
+                    <oc-button class="cards-interface__preview-buttons-cancel"
+                               type="secondary" text="Cancel"
+                               (click)="cancelArrayItemAdding(i, formsArrayConfig[i].new, formItem)"></oc-button>
+                    <oc-button class="cards-interface__preview-buttons-save"
+                               type="primary" text="Save"
+                               (click)="saveItemFieldsData(formsArrayConfig[i], formItem)"></oc-button>
+                </div>
+            </ng-container>
         </div>
-      </div>
-      <div *ngIf="!formsArrayConfig[i].isEdit" class="cards-interface__preview-content">
-        <oc-dynamic-array-preview
-                [fieldValues]="formsArrayConfig[i].previewFiledValues"
-                [fieldDefinition]="fieldDefinition"
-                [dfaForm]="formItem"></oc-dynamic-array-preview>
-      </div>
-      <ng-container *ngIf="formsArrayConfig[i].isEdit">
-        <div class="cards-interface__preview-content">
-          <oc-form [formJsonData]="fieldDefinition"
-                   [generatedForm]="formItem"
-                   [showButton]="false"></oc-form>
-        </div>
-        <div class="cards-interface__preview-buttons">
-          <oc-button class="cards-interface__preview-buttons-cancel"
-                     type="secondary" text="Cancel"
-                     (click)="cancelArrayItemAdding(i, formsArrayConfig[i].new, formItem)"></oc-button>
-          <oc-button class="cards-interface__preview-buttons-save"
-                     type="primary" text="Save"
-                     (click)="saveItemFieldsData(formsArrayConfig[i], formItem)"></oc-button>
-        </div>
-      </ng-container>
     </div>
-  </div>
-  <oc-button class="cards-interface__add-btn" type="primary" text="Add" (click)="addNewArrayItem()"></oc-button>
+    <oc-button class="cards-interface__add-btn" type="primary" text="Add" (click)="addNewArrayItem()"></oc-button>
 </div>

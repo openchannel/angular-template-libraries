@@ -9,53 +9,80 @@ import { get } from 'lodash';
 })
 export class OcAppGalleryComponent {
     /**
-     * The array of the apps what will be shown
+     * The array of the apps what will be shown in this component.
+     *
+     * Default: empty
      */
     @Input() appsArr: FullAppData[] = [];
     /**
-     * Message that will be shown when no apps
+     * Message that will be shown if the array of apps is empty.
+     *
+     * Default: empty string
      */
     @Input() noAppMessage: string = '';
     /**
-     * More apps.
+     * Title for the more apps link.
+     *
+     * Default: 'More'
      */
-    @Input() moreAppsTitle: string = '';
+    @Input() moreAppsTitle: string = 'More';
     /**
-     * Emitter for click by moreAppsTitle.
-     */
-    @Output() clickMoreApps: EventEmitter<void> = new EventEmitter<void>();
-    /**
-     * Title for the app list preview
+     * Title for the app list preview. Main title of the component.
+     *
+     * Default: empty
      */
     @Input() appGalleryTitle: string = '';
     /**
-     * Description for the app list preview
+     * Description for the app list preview. Will appear under title.
+     *
+     * Default: empty
      */
     @Input() appGalleryDescription: string = '';
     /**
-     * Path to the custom icon near 'See All'
+     * Path to the custom icon for a link to the more apps to show.
+     *
+     * Default: arrow icon.
      */
     @Input() routerIcon: string = 'assets/angular-common-components/arrow.svg';
     /**
-     * Custom template for the app card
+     * Custom template for the app card to show.
+     * If not applied - default app card will be shown.
      */
     @Input() customAppCardTemplate: TemplateRef<FullAppData>;
     /**
-     * Router link for the more apps navigation
+     * Router link for the navigation to page with more apps.
+     *
+     * Default: empty
+     * @example
+     * '/apps/all'
+     * ['/apps', appsCategory]
      */
-    @Input() seeAllUrl: string | any;
+    @Input() seeAllUrl: string | any[];
     /**
-     * Router link for one app click
+     * Router link which will be used for navigation by app card click.
+     *
+     * Default: empty
+     * @example
+     * '/apps'
      */
-    @Input() routerLinkForOneApp: string | any;
+    @Input() routerLinkForOneApp: string;
     /**
      * Key name of the App object which will be chosen like navigation parameter for the Router link.
+     * @default 'appId'
      */
-    @Input() appNavigationParam: string;
+    @Input() appNavigationParam: string = 'appId';
     /**
-     * Emitter for click by App card.
+     * Sending current app data on click by App card.
+     *
+     * Return {FullAppData}
      */
     @Output() clickAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
+    /**
+     * Emitter for click by moreAppsTitle.
+     *
+     * Return {void}
+     */
+    @Output() clickMoreApps: EventEmitter<void> = new EventEmitter<void>();
 
     getAppValueByParameter(app: FullAppData): string {
         if (this.appNavigationParam) {
