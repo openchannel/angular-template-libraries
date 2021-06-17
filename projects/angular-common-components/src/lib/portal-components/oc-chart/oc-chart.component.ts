@@ -122,8 +122,6 @@ export class OcChartComponent implements OnChanges, OnInit {
      */
     private Chart;
 
-    constructor() {}
-
     /**
      * Angular lifecycle function. Init on component creation.
      * Setting the {@link tabularLabelsHeader}. Connecting chart lib, loading chart and dropdown menu items.

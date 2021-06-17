@@ -3,7 +3,7 @@ import { OverallRatingSummary } from '../models/overall-rating-summary-model';
 
 /**
  * Overall rating component. Based on ngb-rating component. Represents rating template and logic.
- * 
+ *
  * Inputs: <br>
  * @param {string} overallReviewLabel
  * @param {OverallRatingSummary} allReviewSummary
@@ -34,4 +34,5 @@ export class OcOverallRatingComponent {
      * Default: new OverallRatingSummary()
      */
     @Input() allReviewSummary: OverallRatingSummary = new OverallRatingSummary();
+
 }

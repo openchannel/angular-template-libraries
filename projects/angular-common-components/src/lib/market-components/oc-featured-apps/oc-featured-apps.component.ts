@@ -71,8 +71,6 @@ export class OcFeaturedAppsComponent {
      */
     @Output() readonly clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
 
-    constructor() {}
-
     /**
      * It is used to get a part of an app router link.
      * Returns app navigation param or empty string value.

@@ -61,8 +61,6 @@ export class OcAppListGridComponent {
      */
     @Output() readonly gotoDetails: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
 
-    constructor() {}
-
     /**
      * Function which getting data about current App of the app card and emit it to parent.
      * @param app app of the current app card

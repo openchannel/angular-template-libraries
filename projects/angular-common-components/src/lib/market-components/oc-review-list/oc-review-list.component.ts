@@ -64,7 +64,6 @@ export class OcReviewListComponent implements OnChanges {
 
     displayedReviews: OCReviewDetails[] = [];
 
-    constructor() {}
 
     /**
      * Checks for any changes in the component.

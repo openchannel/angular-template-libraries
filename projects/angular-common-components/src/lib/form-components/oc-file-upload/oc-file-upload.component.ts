@@ -530,7 +530,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
                         });
                 }
             } else {
-                if (file && file.fileUrl) {
+                if (file.fileUrl) {
                     window.open(file.fileUrl, '_blank');
                 }
             }

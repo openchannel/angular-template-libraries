@@ -49,8 +49,6 @@ export class OcResendActivationComponent {
      */
     @Output() readonly submit: EventEmitter<any> = new EventEmitter<any>();
 
-    constructor() {}
-
     /**
      * Submits a resend activation form.
      * Marks all fields as touched.

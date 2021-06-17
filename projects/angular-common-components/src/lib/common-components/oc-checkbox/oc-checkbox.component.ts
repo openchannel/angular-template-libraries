@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 /**
@@ -17,8 +17,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
         },
     ],
 })
-export class OcCheckboxComponent implements OnInit, ControlValueAccessor {
-    /** Set value from `AbstractControl` */
+export class OcCheckboxComponent implements ControlValueAccessor {
+    /** Set value from AbstractControl */
     @Input() set value(val) {
         this.checked = val;
         this.onChange(this.checked);
@@ -36,10 +36,6 @@ export class OcCheckboxComponent implements OnInit, ControlValueAccessor {
     @Output() readonly isCheckedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     /** Checkbox state value. Can be true or false */
     checked: boolean = false;
-
-    constructor() {}
-
-    ngOnInit(): void {}
 
     /**
      * Catching changes in the checkbox and updating control.

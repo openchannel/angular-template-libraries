@@ -63,7 +63,6 @@ export class OcTextSearchComponent {
      */
     @Output() readonly enterSearch: EventEmitter<string> = new EventEmitter<string>();
 
-    constructor() {}
 
     /** Emits search text value on enter key down or search icon click */
     enterAction(): void {

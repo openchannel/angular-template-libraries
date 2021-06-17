@@ -64,7 +64,6 @@ export class OcRecommendedAppsComponent {
      */
     @Output() readonly clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
 
-    constructor() {}
 
     /**
      * Uses to get a part of an app router link.

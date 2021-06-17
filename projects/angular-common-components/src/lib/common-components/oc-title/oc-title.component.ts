@@ -6,8 +6,6 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./oc-title.component.scss'],
 })
 export class OcTitleComponent {
-    titleText: string;
-
     /**
      * Sets a text for the title component.
      * Required.
@@ -63,5 +61,5 @@ export class OcTitleComponent {
      */
     @Input() customStyle: any;
 
-    constructor() {}
+    titleText: string;
 }

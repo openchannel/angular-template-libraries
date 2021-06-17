@@ -57,8 +57,6 @@ export class OcVideoUrlComponent implements ControlValueAccessor {
     videoUrl: string;
     isValidUrl: boolean = false;
 
-    constructor() {}
-
     /**
      * Emits changes of the video Url.
      * Calls onChange() and verifyVideoUrl() methods.

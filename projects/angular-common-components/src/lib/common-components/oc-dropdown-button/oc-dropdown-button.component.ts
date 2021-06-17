@@ -28,8 +28,6 @@ import { DropdownModel } from '../model/components-basic.model';
     styleUrls: ['./oc-dropdown-button.component.scss'],
 })
 export class OcDropdownButtonComponent {
-    minWidthModel = {};
-
     /**
      * Defined selected dropdown model item in dropdown list
      */
@@ -47,10 +45,14 @@ export class OcDropdownButtonComponent {
         this.minWidthModel = minWidth ? { 'min-width': minWidth } : {};
     }
 
+    @Input() title: string = 'Sort by';
+
     /**
      * Output event that emits when some item in the list was selected
      */
     @Output() readonly selectedChange: EventEmitter<DropdownModel<any>> = new EventEmitter<DropdownModel<any>>();
+
+    minWidthModel = {};
 
     /**
      * Function that executes on click to item in dropdown list. Set selected item and emits it.

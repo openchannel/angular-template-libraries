@@ -29,6 +29,4 @@ export class OcProfileNavbarComponent {
      * @type {string}.
      */
     @Input() role: string;
-
-    constructor() {}
 }

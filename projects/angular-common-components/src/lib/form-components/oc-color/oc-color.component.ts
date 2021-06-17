@@ -20,7 +20,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class OcColorComponent implements ControlValueAccessor {
     /** Set value from AbstractControl, like `ngModel` or `formControl` */
-    @Input() set value(val) {
+    @Input() set value(val: string) {
         this.colorValue = val;
         this.onChange(this.colorValue);
     }
@@ -38,8 +38,6 @@ export class OcColorComponent implements ControlValueAccessor {
     colorValue: string;
     /** Toggle Open or Close of the color picker dialog */
     toggleDialog: boolean = false;
-
-    constructor() {}
 
     /**
      * Sending data to the formControl when

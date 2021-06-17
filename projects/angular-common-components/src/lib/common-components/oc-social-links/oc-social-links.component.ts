@@ -10,5 +10,4 @@ export class OcSocialLinksComponent {
     /** data passed to a social link component */
     @Input() socialLinks: SocialLink[];
 
-    constructor() {}
 }

@@ -55,8 +55,6 @@ export class OcSelectComponent implements OnInit, ControlValueAccessor {
     selectedValue: any;
     inputLabel: string;
 
-    constructor() {}
-
     ngOnInit(): void {
         this.changeInputLabel();
     }

@@ -72,8 +72,6 @@ export class OcTextareaComponent implements ControlValueAccessor {
     textAreaValue: string;
     placeholderValue: string = '';
 
-    constructor() {}
-
     /**
      * Detects changes of the control value, and dynamically rewrites it.
      */

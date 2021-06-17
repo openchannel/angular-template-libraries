@@ -41,7 +41,6 @@ export class OcAppGetStartedComponent {
      */
     @Output() readonly getStarted: EventEmitter<void> = new EventEmitter<void>();
 
-    constructor() {}
     /**
      * This function triggers by click on the component's button and emmit info that the button was pressed
      */

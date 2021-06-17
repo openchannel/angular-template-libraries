@@ -112,8 +112,6 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         closeOnSelect: true,
     };
 
-    constructor() {}
-
     ngOnInit(): void {
         this.settings = { ...this.defaultSettings, ...this.settings };
         if (!this.date) {

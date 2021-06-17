@@ -54,8 +54,6 @@ export class OcSidebarComponent {
      */
     @Output() readonly sidebarChange: EventEmitter<OcSidebarSelectModel> = new EventEmitter<OcSidebarSelectModel>();
 
-    constructor() {}
-
     /**
      * This method runs by click on the sidebar list item.
      * Checks for the sidebar changes.

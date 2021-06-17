@@ -66,8 +66,6 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
     editorOnFocus: boolean = false;
     disabled: boolean;
 
-    constructor() {}
-
     ngOnInit(): void {
         if (this.placeholderText) {
             this.tinyOptions.placeholder = this.placeholderText;

@@ -53,8 +53,6 @@ export class OcSelectExpandableComponent implements OnInit {
      */
     @Output() readonly selectModelsChange: EventEmitter<SelectModel[]> = new EventEmitter<SelectModel[]>();
 
-    constructor() {}
-
     ngOnInit(): void {
         this.isCollapsed = this.collapsedOnInit;
     }

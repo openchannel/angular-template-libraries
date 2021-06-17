@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentsUserResetPassword } from '../models/auth-types.model';
 
 /**
@@ -10,7 +10,7 @@ import { ComponentsUserResetPassword } from '../models/auth-types.model';
     templateUrl: './oc-reset-password.component.html',
     styleUrls: ['./oc-reset-password.component.scss'],
 })
-export class OcResetPasswordComponent implements OnInit {
+export class OcResetPasswordComponent {
     /**
      * A source path for company logo.
      * @type {string}.
@@ -48,10 +48,6 @@ export class OcResetPasswordComponent implements OnInit {
      * @type {*}.
      */
     @Output() readonly submit: EventEmitter<any> = new EventEmitter<any>();
-
-    constructor() {}
-
-    ngOnInit(): void {}
 
     /**
      * Submits a reset password form.

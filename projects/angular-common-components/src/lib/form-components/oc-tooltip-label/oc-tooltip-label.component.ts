@@ -43,6 +43,4 @@ export class OcTooltipLabelComponent {
      * Default empty.
      */
     @Input() labelClass: string = '';
-
-    constructor() {}
 }

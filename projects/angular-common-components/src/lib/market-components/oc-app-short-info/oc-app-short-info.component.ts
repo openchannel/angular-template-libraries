@@ -15,7 +15,7 @@ export class OcAppShortInfoComponent {
      * (Required)
      * App data object for current component.
      */
-    @Input() set appData(app: FullAppData) {
+    @Input() set app(app: FullAppData) {
         if (!app) {
             console.error('@Input() appData is required!');
         } else {

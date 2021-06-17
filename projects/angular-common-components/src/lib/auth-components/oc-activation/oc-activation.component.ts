@@ -49,7 +49,6 @@ export class OcActivationComponent {
      */
     @Output() submit = new EventEmitter<any>();
 
-    constructor() {}
 
     submitForm(form: NgForm): void {
         if (!this.process) {

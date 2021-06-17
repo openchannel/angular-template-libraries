@@ -41,8 +41,6 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
     destroy$: Subject<boolean> = new Subject<boolean>();
     previewLabelSubscription$: Subject<boolean> = new Subject<boolean>();
 
-    constructor() {}
-
     /**
      * Generates config for created forms on component initializing.
      */

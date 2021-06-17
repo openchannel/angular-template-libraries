@@ -84,8 +84,6 @@ export class OcAppGalleryComponent {
      */
     @Output() clickMoreApps: EventEmitter<void> = new EventEmitter<void>();
 
-    constructor() {}
-
     getAppValueByParameter(app: FullAppData): string {
         if (this.appNavigationParam) {
             return get(app, this.appNavigationParam);

@@ -29,16 +29,16 @@ export class OcPasswordComponent implements ControlValueAccessor {
    */
   @Input() placeholder: string;
 
-  /** 
+  /**
    * Set 'disable' state for input.
-   * 
-   * Default: false 
+   *
+   * Default: false
    */
   @Input() disabled: boolean = false;
 
-  /** 
+  /**
    * Type of the input. Can be 'text' or 'email'.
-   * 
+   *
    * Default: 'text'
    */
   @Input() inputType: 'text' | 'email' = 'text';

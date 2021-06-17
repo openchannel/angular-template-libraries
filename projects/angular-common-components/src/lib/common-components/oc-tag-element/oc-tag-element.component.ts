@@ -35,8 +35,6 @@ export class OcTagElementComponent {
      */
     @Output() readonly clickEmitter = new EventEmitter<string>();
 
-    constructor() {}
-
     /**
      * Takes current tag title and emits it to a parent component.
      */

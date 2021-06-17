@@ -86,7 +86,6 @@ export class OcAppTableComponent {
         },
     ];
 
-    constructor() {}
 
     /**
      * Click on dropdown menu of the app.
