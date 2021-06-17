@@ -70,7 +70,7 @@ describe('OcAppShortInfoComponent', () => {
         fixture = TestBed.createComponent(OcAppShortInfoComponent);
         component = fixture.componentInstance;
 
-        component.appData = app;
+        component.app = app;
         fixture.detectChanges();
     });
 
