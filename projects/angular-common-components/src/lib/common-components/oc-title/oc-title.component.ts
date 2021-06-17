@@ -1,13 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
     selector: 'oc-title',
     templateUrl: './oc-title.component.html',
     styleUrls: ['./oc-title.component.scss']
 })
-export class OcTitleComponent implements OnInit {
-
-    // todo move svg img to the asserts
+export class OcTitleComponent {
 
     titleText: string;
 
@@ -47,9 +45,4 @@ export class OcTitleComponent implements OnInit {
      */
     @Input() customStyle: any;
 
-    constructor() {
-    }
-
-    ngOnInit(): void {
-    }
 }

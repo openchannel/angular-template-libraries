@@ -1,4 +1,4 @@
-import {Component, forwardRef, Input, OnInit} from '@angular/core';
+import {Component, forwardRef, Input } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
@@ -28,9 +28,6 @@ export class OcPasswordComponent implements ControlValueAccessor {
 
   public onTouched = () => {};
   private onChange: (value: any) => void = () => {};
-
-  constructor() {
-  }
 
   changeModelVal(): void {
     this.onChange(this.inputValue);

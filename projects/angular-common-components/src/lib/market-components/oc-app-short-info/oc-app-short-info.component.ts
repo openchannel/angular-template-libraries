@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
-import {AppModel, FullAppData} from '@openchannel/angular-common-components/src/lib/common-components';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { AppModel, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 
 @Component({
     selector: 'oc-app-short-info',

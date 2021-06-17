@@ -39,7 +39,6 @@ export class OcVideoUrlComponent implements ControlValueAccessor {
   private onTouched = () => {};
   private onChange: (value: any) => void = () => {};
 
-  constructor() {}
 
   emitChanges(): void {
     this.onChange(this.videoUrl);

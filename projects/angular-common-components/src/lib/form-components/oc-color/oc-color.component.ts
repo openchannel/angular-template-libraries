@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     multi: true
   }]
 })
-export class OcColorComponent implements OnInit, ControlValueAccessor {
+export class OcColorComponent implements ControlValueAccessor {
 
   /** Set 'disable' state for color input */
   @Input() disabled: boolean = false;
@@ -34,10 +34,6 @@ export class OcColorComponent implements OnInit, ControlValueAccessor {
 
   private onChange: (value: any) => void = () => {};
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
   /**
    * Sending data to the formControl when
    * color is chosen

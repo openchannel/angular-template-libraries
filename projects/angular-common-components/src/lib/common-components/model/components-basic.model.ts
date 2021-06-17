@@ -1,6 +1,3 @@
-import { AppTypeFieldModel } from './app-data.model';
-
-
 export interface SortValue extends SelectModel {
     id: string;
     label: string;
