@@ -9,9 +9,6 @@ import { ComponentsUserRegistrationModel } from '../models/auth-types.model';
     styleUrls: ['./oc-signup.component.scss'],
 })
 export class OcSignupComponent {
-    imagePath: any;
-    closeResult = '';
-
     /**
      * The user registration model for signup.
      * Contains signup form fields values.
@@ -81,7 +78,8 @@ export class OcSignupComponent {
      * @type {*}.
      */
     @Output() readonly submitClick = new EventEmitter<any>();
-
+    imagePath: any;
+    closeResult = '';
     constructor(private router: Router) {}
 
     /**
