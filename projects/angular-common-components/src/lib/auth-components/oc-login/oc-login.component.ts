@@ -35,14 +35,14 @@ export class OcLoginComponent {
     /**
      * Link to the Forgot password page.
      * ## Example
-     * `/forgot-password`
+     * `"/forgot-password"`
      */
     @Input() forgotPwdUrl: string;
 
     /**
      * Link to the Sign Up page.
      * ## Example
-     * `/sign-up`
+     * `"/sign-up"`
      */
     @Input() signupUrl: string;
 
@@ -53,7 +53,7 @@ export class OcLoginComponent {
 
     /**
      * Status of the login process. If user clicked the Login button - process will start, spinner will be shown on the button
-     * and user can't interact with a login button.
+     * and user can not interact with a login button.
      */
     @Input() process: boolean = false;
 
@@ -83,7 +83,7 @@ export class OcLoginComponent {
     @Output() readonly sendActivationLink: EventEmitter<string> = new EventEmitter<string>();
 
     /**
-     * Submit function emit changed login value check form on validity and submit 'true' if everything is ok.
+     * Submit function emit changed login value check form on validity and submit `true` if everything is ok.
      * @param {NgForm} form
      * @returns void
      */

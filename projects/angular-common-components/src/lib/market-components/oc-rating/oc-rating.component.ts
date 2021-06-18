@@ -13,9 +13,9 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class OcRatingComponent {
     /**
-     * Type of Rating to show. Can be 'multi-star' or 'multi-star'.
+     * Type of Rating to show. Can be `multi-star` or `multi-star`.
      * @type {string}.
-     * Default: 'single-star'.
+     * @default 'single-star'.
      */
     @Input() type: 'single-star' | 'multi-star' = 'single-star';
 

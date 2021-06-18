@@ -7,25 +7,25 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class OcTagElementComponent {
     /**
+     * (Optional)
      * Title of the tag element.
      * @type {string}.
-     * Optional.
      */
     @Input() title: string;
 
     /**
-     * CloseMarker - show the SVG icon on the right side of the title.
+     * (Optional)
+     * Show the SVG icon on the right side of the title.
      * @type {boolean}.
-     * Optional.
-     * Default false.
+     * @default false.
      */
     @Input() closeMarker: boolean = false;
 
     /**
      * Path to the SVG icon on the right side of the title.
-     * Needed if 'closeMarker' is set to true.
+     * Needed if {@link closeMarker} is set to `true`.
      * @type {string}.
-     * Default 'assets/angular-common-components/close-icon.svg'.
+     * @default close-icon.svg.
      */
     @Input() deleteTagImgUrl: string = 'assets/angular-common-components/close-icon.svg';
 
