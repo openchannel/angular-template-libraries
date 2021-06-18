@@ -54,7 +54,7 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
      * Custom style for the search input field.
      * Implements [ngStyle]{@link NgStyle}
      * ## Usage example
-     * ` <oc-dropbox [customNgStyle]="{'width': widthValueVariable}"></oc-dropbox> `
+     * ` <oc-dropbox [customNgStyle]="{"width": widthValueVariable}"></oc-dropbox> `
      * @example
      * <oc-dropbox [customNgStyle]="{'width': widthValueVariable}"></oc-dropbox>
      */

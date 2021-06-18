@@ -29,14 +29,14 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
     }
 
     /**
-     * 'autocomplete' attribute value for input
+     * `autocomplete` attribute value for input
      */
     @Input() autocomplete: 'on' | 'off';
 
     /**
      * Set autofocus on input.
      *
-     *  Default: false
+     *  @default false
      */
     @Input() autoFocus: boolean = false;
 
@@ -54,7 +54,7 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
     /**
      * Set disable state for input.
      *
-     * Default: `false`
+     * @default false
      */
     @Input() disabled: boolean = false;
 
@@ -78,7 +78,7 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
     }
 
     /**
-     * Fuction on change model value
+     * Function on change model value
      */
     changeModelVal(): void {
         this.onChange(this.inputNumber);
@@ -131,7 +131,7 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
     }
 
     /**
-     * Fuction for parse string to number
+     * Function for parse string to number
      */
     parseNumber(inputValue: any): number {
         if (typeof inputValue === 'string') {

@@ -9,8 +9,8 @@ import { FullAppData } from '@openchannel/angular-common-components/src/lib/comm
 })
 export class OcAppCardComponent {
     /**
-     * One App to show. Must consists fields: 'name', 'model',
-     * 'rating', 'reviewCount', 'summary' or 'description'
+     * One App to show. Must contain fields: "name", "model",
+     * "rating", "reviewCount", "summary" or "description"
      * @type FullAppData
      */
     @Input() set app(appData: FullAppData) {
@@ -21,7 +21,6 @@ export class OcAppCardComponent {
     }
     /**
      * The RouterLink will lead to another page by click on the App card.
-     * Default: null
      */
     @Input() appRedirectLink: any[] | string | null | undefined = null;
     /**

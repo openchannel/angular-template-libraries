@@ -10,31 +10,35 @@ import { NgForm } from '@angular/forms';
 export class OcActivationComponent {
     /**
      * RouterLink which will lead to the Resend activation code page.
-     * Example: ['/resend'] | 'resend'.
-     * Default: empty
+     * Example:
+     *
+     * `["/resend"] | "resend"`
      */
     @Input() resendActivationUrl: any[] | string | null | undefined;
     /**
      * RouterLink which will lead to the Sign Up page.
-     * Example: ['/signup'] | 'signup'.
-     * Default: empty
+     * Example:
+     *
+     * `["/signup"] | "signup"`
      */
     @Input() signupUrl: any[] | string | null | undefined;
     /**
      * Link of the logo image.
-     * Example: 'https://image.jpg' | './assets/img/img.jpg'.
-     * Default: ''
+     * Example:
+     *
+     * `"https://image.jpg " | "./assets/img/img.jpg"`
      */
     @Input() companyLogoUrl: string = '';
     /**
      * When true - sets spinner on button and blocking any button action.
-     * Example: 'https://image.jpg' | './assets/img/img.jpg'.
-     * Default: false
+     * Example:
+     *
+     * `"https://image.jpg " | "./assets/img/img.jpg"`
      */
     @Input() process: boolean = false;
     /**
      * Required input.
-     * User activation model. Must contain field 'code'.
+     * User activation model. Must contain field "code".
      * This Field will be used as ngModel.
      * @example
      * {
@@ -48,7 +52,6 @@ export class OcActivationComponent {
      * Emitting that Activate button was pressed
      */
     @Output() submit = new EventEmitter<any>();
-
 
     submitForm(form: NgForm): void {
         if (!this.process) {

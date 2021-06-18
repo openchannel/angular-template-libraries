@@ -30,12 +30,12 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.emitChanges(this.date);
     }
 
-    /** Set 'disable' state for input. User can't interact with component and choose date */
+    /** Set `disable` state for input. User can not interact with component and choose date */
     @Input() disabled: boolean = false;
     /**
      * Object of custom settings for the calendar. Can replace the default settings.
      *
-     * `format: string` - format of display date, example: `'dd/MM/yyyy, HH:mm'`
+     * `format: string` - format of display date, example: `"dd/MM/yyyy, HH:mm"`
      *
      * `cal_days_labels: string []` - array of short labels of days of a week.
      *

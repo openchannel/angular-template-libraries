@@ -14,7 +14,7 @@ import { get } from 'lodash';
 })
 export class OcFeaturedAppsComponent {
     /**
-     * List of Featured apps. Must contain the fields: 'icon', 'name', 'summary', 'appId'.
+     * List of Featured apps. Must contain the fields: "icon", "name", "summary", "appId".
      * @type {FullAppData[]}.
      * Default empty.
      */

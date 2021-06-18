@@ -40,7 +40,7 @@ export class OcAppListGridComponent {
      *
      * ### Example:
      * ``
-     * 'app-details' | 'apps/details'
+     * "app-details" | "apps/details"
      * ``
      *
      * @example
@@ -71,7 +71,7 @@ export class OcAppListGridComponent {
 
     /**
      * Function which returns data from the App object by key {@link appNavigationParam}.
-     * If key doesn't applied - will return empty string.
+     * If key does not applied - will return empty string.
      * @param app app of the current app card
      */
     getAppValueByParameter(app: FullAppData): string {
