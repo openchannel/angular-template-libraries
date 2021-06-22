@@ -1,16 +1,16 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'oc-title',
     templateUrl: './oc-title.component.html',
-    styleUrls: ['./oc-title.component.scss']
+    styleUrls: ['./oc-title.component.scss'],
 })
 export class OcTitleComponent {
-
-    titleText: string;
-
     /**
-     * title (*required)
+     * Sets a text for the title component.
+     * Required.
+     * If no title - throws an error.
+     * @type {string}.
      */
     @Input() set title(title: string) {
         if (!title) {
@@ -18,31 +18,48 @@ export class OcTitleComponent {
         }
         this.titleText = title;
     }
+
     /**
-     * required (optional) - Is the required result data. Show the red marker.
+     * Required fields indicator.
+     * Optional.
+     * Shows a red marker beside the fields that are required.
+     * @type {boolean}.
      * Default: false
      */
     @Input() required: boolean = false;
 
     /**
-     * description (optional) - Description for title.
-     * Open small modal panel to the right side with this description text.
+     * A description for the title.
+     * Optional.
+     * @type {string}.
+     * Default 'null'.
+     * Open small modal panel on the right side with this description text.
      */
     @Input() description: string = null;
 
     /**
-     * infoTitleIconCsv (optional) - icon for showing description.
+     * A tooltip icon for description text.
+     * Optional.
+     * @type {string}.
+     * Default 'assets/angular-common-components/info.svg'.
      */
     @Input() infoTitleIconCsv: string = 'assets/angular-common-components/info.svg';
+
     /**
-     * String with class-list which can be
-     * added to the existed title class-list
+     * A custom class which can be added to the title for additional customizing.
+     * @type {string}.
+     * Optional.
+     * Default empty.
      */
     @Input() customClass: string = '';
+
     /**
-     * Style which can be added to the title
-     * Supposed to be the style object
+     * Custom styling which can be added to the title.
+     * @type {Object.<>}.
+     * Optional.
+     * Supposed to be the style object.
      */
     @Input() customStyle: any;
 
+    titleText: string;
 }

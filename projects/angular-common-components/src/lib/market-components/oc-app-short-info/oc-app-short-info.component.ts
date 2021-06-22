@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { AppModel, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 
+/**
+ * Represents the one App Card for the vertical list of apps.
+ */
 @Component({
     selector: 'oc-app-short-info',
     templateUrl: './oc-app-short-info.component.html',
@@ -9,58 +12,47 @@ import { AppModel, FullAppData } from '@openchannel/angular-common-components/sr
 })
 export class OcAppShortInfoComponent implements OnInit {
     /**
-     * One App to show. Must contain fields: 'name', 'model',
-     * 'rating', 'reviewCount', 'summary' or 'description'
+     * (Required)
+     * App data object for current component.
      */
-    @Input() app: FullAppData;
+    @Input() set app(app: FullAppData) {
+        if (!app) {
+            console.error('@Input() appData is required!');
+        } else {
+            this.cardApp = app;
+            this.cardApp.icon = app.icon ? this.sanitizer.bypassSecurityTrustResourceUrl(app.icon as string) : '';
+        }
+    }
 
     /**
      * The index of the price model in the array, default is 0
      */
     @Input() priceModelIndex: number = 0;
+
+    /**
+     * (Optional)
+     * Template for the dropdown menu. If not set - no dropdown menu will appear.
+     */
     @Input() customDropdown: TemplateRef<any>;
 
-    @Output() clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
+    /**
+     * (Optional)
+     *  Path to the custom Default App Icon that will be shown when the app has no icon.
+     *
+     *  Default: default app icon
+     */
+    @Input() defaultAppIcon: string = 'assets/angular-common-components/standard-app-icon.svg';
+    /**
+     *  The emitter reports that current app card has been clicked. Return current app object data.
+     */
+    @Output() readonly clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
 
+    cardApp: FullAppData;
     currentModel: AppModel;
-
-    private isoCurrencyCode = {
-        USD: '$',
-        EUR: '€',
-        CNY: '¥',
-        GBP: '£',
-    };
 
     constructor(private sanitizer: DomSanitizer) {}
 
     ngOnInit(): void {
         this.currentModel = this.app.model[this.priceModelIndex] || this.app.model[0];
-    }
-
-    safeLink(sourceUrl): SafeResourceUrl {
-        return this.sanitizer.bypassSecurityTrustResourceUrl(sourceUrl);
-    }
-
-    parsePrice(priceModel: AppModel): string {
-        let price = '';
-        if (priceModel.type === 'free') {
-            price = 'Free';
-        } else {
-            price += priceModel.currency
-                ? Object.keys(this.isoCurrencyCode).includes(priceModel.currency)
-                    ? this.isoCurrencyCode[priceModel.currency]
-                    : '$'
-                : '';
-
-            price += priceModel.price / 100;
-            if (priceModel.billingPeriod) {
-                price += '/' + priceModel.billingPeriod.substring(0, 2);
-            }
-        }
-        return price;
-    }
-
-    parseRating(rating): number {
-        return Number(rating) * 0.01;
     }
 }

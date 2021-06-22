@@ -8,6 +8,11 @@ import { FileDetails, FileUploaderService } from '../model/file.model';
 import { difference } from 'lodash';
 import { AppTypeFieldModel } from '@openchannel/angular-common-components/src/lib/common-components';
 
+/**
+ * Dynamic array preview component.
+ * A group of field previews, rendered depending in fields type.
+ * Also can contain templates of different entities like rich text, tags, datetime etc.
+ */
 @Component({
     selector: 'oc-dynamic-array-preview',
     templateUrl: './oc-dynamic-array-preview.component.html',
@@ -16,32 +21,72 @@ import { AppTypeFieldModel } from '@openchannel/angular-common-components/src/li
 export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDestroy {
     readonly DYNAMIC_FIELD_ARRAY_KEY = 'dynamicFieldArray';
 
+    /**
+     * Array of field values.
+     * @type {FieldValueModel}.
+     */
     @Input() fieldValues: FieldValueModel[];
-    @Input() fieldDefinition: AppTypeFieldModel;
-    @Input() dfaForm: FormGroup;
-    @Input() hideLabel = false;
 
+    /**
+     * Field definition, performing its description model.
+     * @type {AppTypeFieldModel}.
+     */
+    @Input() fieldDefinition: AppTypeFieldModel;
+
+    /**
+     * A form group instance.
+     * Contains form controls.
+     * @type {FormGroup}.
+     */
+    @Input() dfaForm: FormGroup;
+
+    /**
+     * Hides or shows label component with text for a specific field.
+     * @type {boolean}.
+     * @default: false.
+     */
+    @Input() hideLabel: boolean = false;
+
+    /**
+     * Array of preview fields.
+     * @type {PreviewFieldModel[]}.
+     * @default: false.
+     */
     previewFields: PreviewFieldModel[];
+
     private destroy$: Subject<void> = new Subject();
 
-    constructor(private fileService: FileUploaderService) {
-    }
+    constructor(private fileService: FileUploaderService) {}
 
+    /**
+     * This method builds fields data on init.
+     */
     ngOnInit(): void {
         this.buildFieldsData();
     }
 
+    /**
+     * Checks component changes and dynamically updates fields data.
+     */
     ngOnChanges(changes: SimpleChanges): void {
         if (difference(changes.fieldValues.currentValue, changes.fieldValues.previousValue)?.length > 0) {
             this.buildFieldsData();
         }
     }
 
+    /**
+     * Is called when a user closes component.
+     * Unsubscription of subjects.
+     */
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.unsubscribe();
     }
 
+    /**
+     * Mapping the fields definition, creating new object as a PreviewFieldModel.
+     * Returns result object.
+     */
     buildFieldsData(): void {
         if (this.fieldDefinition?.fields) {
             this.previewFields = this.fieldDefinition.fields.map(field => {
@@ -49,7 +94,7 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
                     isValidField: false,
                     fieldValue: null,
                     formArrayDFA: null,
-                    ...field
+                    ...field,
                 };
                 let tempFiledValue: any = null;
 
@@ -63,8 +108,7 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
                 result.isValidField = this.isValidDataForFieldType(field.type, tempFiledValue);
 
                 if (result.isValidField && this.isFileType(result.type)) {
-                    this.getFileDetails(result, tempFiledValue)
-                        .subscribe(fileDetails => result.fieldValue = fileDetails);
+                    this.getFileDetails(result, tempFiledValue).subscribe(fileDetails => (result.fieldValue = fileDetails));
                 } else {
                     result.fieldValue = tempFiledValue;
                 }
@@ -75,6 +119,10 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
         }
     }
 
+    /**
+     * Private method.
+     * Checks field type and returns field value equality as a boolean type.
+     */
     private isValidDataForFieldType(type: string, fieldValue: any): boolean {
         switch (type) {
             case 'text':
@@ -111,6 +159,11 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
         }
     }
 
+    /**
+     * Private method.
+     * Checks the file type to match one of the field types list.
+     * Returns true or false.
+     */
     private isFileType(fieldType: string): boolean {
         switch (fieldType) {
             case 'multiFile':
@@ -123,16 +176,26 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
         }
     }
 
+    /**
+     * Private method.
+     * Checks the filed model type and returns FileDetails object or an array of FileDetails objects.
+     * Calls convertFileIdToUrl() method and passes FileDetails as a parameter.
+     */
     private getFileDetails(filedModel: PreviewFieldModel, arrayOfIdOrUrl: any): Observable<FileDetails[] | FileDetails> {
         if (filedModel.type === 'multiFile' || filedModel.type === 'multiPrivateFile') {
             return this.convertFileIdToUrl(arrayOfIdOrUrl);
         } else if (filedModel.type === 'singleFile' || filedModel.type === 'privateSingleFile') {
-            return this.convertFileIdToUrl([arrayOfIdOrUrl])
-                .pipe(map(files => files[0]));
+            return this.convertFileIdToUrl([arrayOfIdOrUrl]).pipe(map(files => files[0]));
         }
     }
 
-    private convertFileIdToUrl(fileId: string []): Observable<FileDetails[]> {
+    /**
+     * Private method.
+     * Takes fileId, can be string or string array.
+     * Converts file ids to paths to files.
+     * Returns an array of converted urls.
+     */
+    private convertFileIdToUrl(fileId: string[]): Observable<FileDetails[]> {
         if (isArray(fileId)) {
             return forkJoin(fileId.filter(f => typeof f === 'string').map(f => this.fileService.fileDetailsRequest(f))).pipe(
                 takeUntil(this.destroy$),
