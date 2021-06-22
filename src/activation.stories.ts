@@ -1,8 +1,6 @@
-import { storiesOf } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 import { ComponentsUserActivationModel, OcActivationComponent } from '@openchannel/angular-common-components/src/lib/auth-components';
-import { withA11y } from '@storybook/addon-a11y';
-import { action } from '@storybook/addon-actions';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 
@@ -18,28 +16,29 @@ activationFilled.email = 'test@gmail.com';
 activationFilled.password = 'Tenup123#';
 activationFilled.code = '2202';
 
-storiesOf('User Activation [BEM]', module)
-    .addDecorator(withA11y)
-    .addParameters({
-        component: OcActivationComponent,
-    })
-    .add('Empty', () => ({
-        component: OcActivationComponent,
-        props: {
-            activationModel: activationEmpty,
-            submit: action('clicked event'),
-            signupUrl: 'signup',
-      companyLogoUrl: './assets/angular-common-components/logo-company.png',
-        },
-        moduleMetadata: modules,
-    }))
-    .add('Filled', () => ({
-        component: OcActivationComponent,
-        props: {
-            activationModel: activationFilled,
-            submit: action('clicked event'),
-            signupUrl: 'signup',
-      companyLogoUrl: './assets/angular-common-components/logo-company.png',
-        },
-        moduleMetadata: modules,
-    }));
+export default {
+    title: 'User Activation [BEM]',
+    component: OcActivationComponent,
+    decorators: [moduleMetadata(modules)],
+    argTypes: { submit: { action: 'Activation clicked' } },
+} as Meta;
+
+const UserActivationComponent = (args: OcActivationComponent) => ({
+    component: OcActivationComponent,
+    moduleMetadata: modules,
+    props: args,
+});
+
+export const Empty = UserActivationComponent.bind({});
+Empty.args = {
+    activationModel: activationEmpty,
+    signupUrl: 'signup',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
+};
+
+export const Filled = UserActivationComponent.bind({});
+Filled.args = {
+    activationModel: activationFilled,
+    signupUrl: 'signup',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
+};

@@ -6,6 +6,11 @@ import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { FieldValueModel, FormArrayItem, PreviewLabel } from '../model/dynamic-array.model';
 
+/**
+ * Dynamic field array component.
+ * A group of form fields, which can be generated dynamically.
+ * Uses field definition data config.
+ */
 @Component({
     selector: 'oc-dynamic-field-array',
     templateUrl: './oc-dynamic-field-array.component.html',
@@ -13,8 +18,9 @@ import { FieldValueModel, FormArrayItem, PreviewLabel } from '../model/dynamic-a
 })
 export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
     /**
-     * Fields definition config necessary for the DFA generation
-     * @param value fields definition config
+     * Fields definition config necessary for the DFA generation.
+     * Throws an error if no value provided.
+     * @param value fields definition config.
      */
     @Input() set fieldDefinitionData(value: AppTypeFieldModel) {
         if (value) {
@@ -23,8 +29,10 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
             throw Error('FieldDefinitionData is required @Input() parameter');
         }
     }
+
     /**
-     * Generated Form Array for the DFA
+     * Generated Form Array for the DFA.
+     * @type {FormArray}.
      */
     @Input() dfaFormArray: FormArray;
 
@@ -33,10 +41,16 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
     destroy$: Subject<boolean> = new Subject<boolean>();
     previewLabelSubscription$: Subject<boolean> = new Subject<boolean>();
 
+    /**
+     * Generates config for created forms on component initializing.
+     */
     ngOnInit(): void {
         this.generateConfigForCreatedForms();
     }
 
+    /**
+     * Subject unsubscription on destroy lifecycle hook.
+     */
     ngOnDestroy(): void {
         this.destroy$.next(true);
         this.destroy$.unsubscribe();
@@ -44,18 +58,31 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
         this.previewLabelSubscription$.unsubscribe();
     }
 
+    /**
+     * Saves form array items data.
+     */
     saveItemFieldsData(formItem: FormArrayItem, control: AbstractControl): void {
         formItem.isEdit = false;
         formItem.new = false;
         formItem.formData = control.value;
     }
 
+    /**
+     * Removes dynamic item from a form array by its index.
+     * Removes specific part of config.
+     * Subscribes to all preview field changes.
+     */
     deleteDynamicItem(index: number): void {
         this.dfaFormArray.removeAt(index);
         this.formsArrayConfig.splice(index, 1);
         this.subscribeToAllPreviewFieldChanges();
     }
 
+    /**
+     * Adds new dynamic item to a form array.
+     * Uses OcFormGenerator.
+     * Subscribes to all preview field changes.
+     */
     addNewArrayItem(): void {
         const newGroup = new FormGroup(OcFormGenerator.getFormByConfig(this.fieldDefinition.fields));
         if (this.fieldDefinition.attributes.ordering === 'append') {
@@ -80,6 +107,10 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
         this.subscribeToAllPreviewFieldChanges();
     }
 
+    /**
+     * Cancels adding a new dynamic item to a form array.
+     * Checks its index, isNewItem and formControl.
+     */
     cancelArrayItemAdding(index: number, isNewItem: boolean, formControl: AbstractControl): void {
         if (!isNewItem) {
             formControl.setValue({ ...this.formsArrayConfig[index].formData });
@@ -90,6 +121,11 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
         }
     }
 
+    /**
+     * Performs DFA item data edit.
+     * Checks its index.
+     * Subscribes to all preview field changes.
+     */
     editDFAItemData(index: number): void {
         this.formsArrayConfig[index] = {
             ...this.formsArrayConfig[index],
@@ -98,10 +134,19 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
         this.subscribeToAllPreviewFieldChanges();
     }
 
+    /**
+     * Returns an DFA field index.
+     * Used in ngFor loop to render DFA form array controls.
+     */
     trackByFieldIndex(index: number, item: any): number {
         return index;
     }
 
+    /**
+     * Creates a new config for created form.
+     * Maps DFA form array controls and returns new object.
+     * Subscribes to all preview field changes.
+     */
     private generateConfigForCreatedForms(): void {
         if (this.dfaFormArray && this.dfaFormArray.controls.length > 0) {
             this.formsArrayConfig = this.dfaFormArray.controls.map(control => {
@@ -117,6 +162,9 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
         }
     }
 
+    /**
+     * Performs a forEach loop, calling subscribeToPreviewFieldChanges() method in each iteration.
+     */
     private subscribeToAllPreviewFieldChanges(): void {
         this.previewLabelSubscription$.next(true);
         this.dfaFormArray.controls.forEach((control, i) => {
@@ -124,6 +172,10 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
         });
     }
 
+    /**
+     * Used in subscribeToAllPreviewFieldChanges() method.
+     * Subscribes to changes of the current control value.
+     */
     private subscribeToPreviewFieldChanges(control: AbstractControl, index: number): void {
         this.formsArrayConfig[index].previewLabel = this.getPreviewLabel(control, index);
         this.formsArrayConfig[index].previewFiledValues = this.getPreviewFieldValues(control);
@@ -132,9 +184,14 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
                 tap(() => (this.formsArrayConfig[index].previewLabel = this.getPreviewLabel(control, index))),
                 tap(() => (this.formsArrayConfig[index].previewFiledValues = this.getPreviewFieldValues(control))),
                 takeUntil(this.previewLabelSubscription$),
-            ).subscribe();
+            )
+            .subscribe();
     }
 
+    /**
+     * Gets a preview label for current form control.
+     * Returns object with default value or custom label value and label definition.
+     */
     private getPreviewLabel(control: AbstractControl, index: number): PreviewLabel {
         if (!this.fieldDefinition.attributes.rowLabel) {
             // DFA default title
@@ -156,11 +213,20 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
         }
     }
 
-    private getFieldByRowLabel(fields: any[]): AppTypeFieldModel [] {
+    /**
+     * Gets a field by row label.
+     * Returns a fields array where field ids equal field definition row label.
+     */
+    private getFieldByRowLabel(fields: any[]): AppTypeFieldModel[] {
         return fields.filter(field =>
-            field.id ? field.id === this.fieldDefinition.attributes.rowLabel : field.fieldId === this.fieldDefinition.attributes.rowLabel,);
+            field.id ? field.id === this.fieldDefinition.attributes.rowLabel : field.fieldId === this.fieldDefinition.attributes.rowLabel,
+        );
     }
 
+    /**
+     * Gets preview field values.
+     * Returns a new array with field ids and field values.
+     */
     private getPreviewFieldValues(control: AbstractControl): FieldValueModel[] {
         const newArray: FieldValueModel[] = [];
         for (const fieldName in control.value) {

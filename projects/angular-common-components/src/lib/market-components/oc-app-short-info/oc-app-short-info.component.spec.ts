@@ -1,7 +1,12 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { OcAppShortInfoComponent } from '@openchannel/angular-common-components/src/lib/market-components';
 import { MockRatingComponent } from '@openchannel/angular-common-components/src/mock/mock';
-import { FullAppData, HtmlTagsReplacerPipe, StatElement } from '@openchannel/angular-common-components/src/lib/common-components';
+import {
+    FullAppData,
+    HtmlTagsReplacerPipe,
+    PricePipe,
+    StatElement,
+} from '@openchannel/angular-common-components/src/lib/common-components';
 
 const stat: StatElement = {
     '90day': 20,
@@ -56,7 +61,7 @@ describe('OcAppShortInfoComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcAppShortInfoComponent, MockRatingComponent, HtmlTagsReplacerPipe],
+                declarations: [OcAppShortInfoComponent, MockRatingComponent, HtmlTagsReplacerPipe, PricePipe],
             }).compileComponents();
         }),
     );

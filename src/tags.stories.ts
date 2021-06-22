@@ -22,11 +22,6 @@ const TagsComponent = (args: OcTagsComponent) => ({
 export const DefaultTags = TagsComponent.bind({});
 
 DefaultTags.args = {
-    title: 'MyTag',
-    required: true,
-    description: 'Tag description description description description description',
-    placeHolderInputName: 'Input text',
-    placeHolderDropBoxName: 'Select text',
     availableTags: [
         'default',
         'first',
@@ -42,64 +37,29 @@ DefaultTags.args = {
         '999999999999',
         '000000000000',
     ],
-    defaultTags: ['default'],
-    minTagsCount: 2,
-    maxTagsCount: 4,
-    ignoreCase: true,
-    minTagLength: 3,
-    maxTagLength: 30,
+    value: ['default'],
 };
 
 export const CustomTags = TagsComponent.bind({});
 CustomTags.args = {};
 
 CustomTags.args = {
-    title: 'MyTag',
-    required: true,
-    description: 'Tag description description description description description',
-    placeHolderInputName: null,
-    placeHolderDropBoxName: 'Select MyTag',
+    placeholder: 'Select MyTag',
     availableTags: ['1', '2', '3', '4', '5', '6', '7', 'default', 'default_second'],
-    defaultTags: ['default', 'default_second'],
-    minTagsCount: 2,
-    maxTagsCount: 3,
-    ignoreCase: true,
-    minTagLength: 3,
-    maxTagLength: 30,
+    value: ['default', 'default_second'],
 };
 
 export const BooleanTags = TagsComponent.bind({});
 
 BooleanTags.args = {
-    title: 'Test Boolean Tags',
-    required: true,
-    description: null,
-    placeHolderInputName: null,
-    placeHolderDropBoxName: 'Select Boolean Tags',
     availableTags: ['true', 'false'],
-    defaultTags: [],
-    minTagsCount: 1,
-    maxTagsCount: null,
-    ignoreCase: true,
-    minTagLength: null,
-    maxTagLength: null,
     tagsType: 'boolean',
 };
 
 export const NumberTags = TagsComponent.bind({});
 
 NumberTags.args = {
-    title: 'Test number tags',
-    required: true,
-    description: null,
-    placeHolderInputName: 'Add new number tags',
-    placeHolderDropBoxName: 'Select Number Tags',
     availableTags: ['1', '3', '45'],
-    defaultTags: [45],
-    minTagsCount: 1,
-    maxTagsCount: 2,
-    ignoreCase: true,
-    minTagLength: null,
-    maxTagLength: null,
+    value: [45],
     tagsType: 'number',
 };
