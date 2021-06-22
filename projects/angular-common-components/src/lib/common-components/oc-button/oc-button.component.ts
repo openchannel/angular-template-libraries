@@ -17,7 +17,7 @@ export class OcButtonComponent implements OnChanges {
      */
     @Input() text: string = '';
     /**
-     * Disable current button. User can't interact with this button.
+     * Disable current button. User can not interact with this button.
      * Also, disabled button style will be applied.
      * Button is active by default.
      * @default false
@@ -40,19 +40,9 @@ export class OcButtonComponent implements OnChanges {
      * ## Example for Docs
      * ``
      * <oc-button customClass=".example-class"></oc-button>.
-     * style.scss:
-     * .example-class {
-     *   color: green;
-     *   background: #fff;
-     * }
      * ``
      * @example
      * <oc-button customClass=".example-class"></oc-button>.
-     * style.scss:
-     * .example-class {
-     *     color: green;
-     *     background: #fff;
-     * }
      */
     @Input() customClass: string = '';
     /**
@@ -62,7 +52,7 @@ export class OcButtonComponent implements OnChanges {
      */
     @Input() customTemplate: TemplateRef<any>;
     /**
-     * Sets process status to the button. If it's `true` - button will show the spinner and become inactive.
+     * Sets process status to the button. If it is `true` - button will show the spinner and become inactive.
      * @default false
      */
     @Input() process: boolean = false;

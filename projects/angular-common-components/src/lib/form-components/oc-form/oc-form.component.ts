@@ -74,33 +74,38 @@ export class OcFormComponent implements OnInit, OnDestroy, OnChanges {
      */
     @Input() anotherInvalidResult = false;
 
-    /** Show button on form. Default: true */
+    /**
+     * Show button on form.
+     * @default true
+     */
     @Input() showButton: boolean = true;
 
     /**
-     * Set position of the buttons
-     * can be: 'center', 'left', 'right'.
-     * default value: 'left'
+     * Set position of the buttons.
+     * Can be: "center", "left", "right".
+     * @default 'left'
      */
     @Input() buttonPosition: 'center' | 'left' | 'right' = 'left';
 
-    /** Set custom text to success button. Default: 'Submit' */
+    /**
+     * Set custom text to success button.
+     * @default 'Submit'
+     */
     @Input() successButtonText: string = 'Submit';
 
     /**
-     * Set position of the field label
-     * can be: 'top', 'left', 'right'.
-     * default value: 'top'
+     * Set position of the field label. Can be: "top", "left", "right".
+     * @default 'top'
      */
     @Input() labelPosition: 'top' | 'left' | 'right' = 'top';
 
     /**
-     * Set form 'dirty' after form init
+     * Set form "dirty" after form init
      */
     @Input() setFormDirty: boolean = false;
 
     /**
-     * Submitting process. 'true' option will lock for
+     * Submitting process. `true` option will lock for
      *  click and start the spinner in the submit button
      */
     @Input() process: boolean = false;

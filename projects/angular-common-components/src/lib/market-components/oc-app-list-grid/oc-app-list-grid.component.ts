@@ -19,13 +19,12 @@ export class OcAppListGridComponent {
     /**
      * Message that will be shown when appList array is empty.
      * This input required if you want to show the message for case with no apps in component.
-     * @default ''
      */
     @Input() noAppMessage: string = '';
     /**
      * (Optional)
      * Path to the custom Default App Icon that will be shown when the app has no icon.
-     * Default: default app icon
+     * @default: standard-app-icon.svg
      */
     @Input() defaultAppIcon: string = 'assets/angular-common-components/standard-app-icon.svg';
     /**
@@ -40,7 +39,7 @@ export class OcAppListGridComponent {
      *
      * ### Example:
      * ``
-     * 'app-details' | 'apps/details'
+     * "app-details" | "apps/details"
      * ``
      *
      * @example
@@ -52,8 +51,6 @@ export class OcAppListGridComponent {
      * (Optional)
      * Key name of the App object which will be chosen like navigation parameter for the Router link.
      * If not set, no special parameter would be applied for routerLink.
-     *
-     * Default: empty
      */
     @Input() appNavigationParam: string = '';
     /**
@@ -71,7 +68,7 @@ export class OcAppListGridComponent {
 
     /**
      * Function which returns data from the App object by key {@link appNavigationParam}.
-     * If key doesn't applied - will return empty string.
+     * If key does not applied - will return empty string.
      * @param app app of the current app card
      */
     getAppValueByParameter(app: FullAppData): string {

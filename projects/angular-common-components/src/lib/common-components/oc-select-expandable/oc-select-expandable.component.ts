@@ -10,12 +10,11 @@ export class OcSelectExpandableComponent implements OnInit {
     /**
      * Text of the select-expandable heading.
      * @type {string}.
-     * Default empty.
      */
     @Input() title: string;
 
     /**
-     * Select-expandable config, contains labels and 'checked' states of select options.
+     * Select-expandable config, contains labels and `checked` states of select options.
      * @type {SelectModel[]}.
      */
     @Input() selectModels: SelectModel[];
@@ -23,28 +22,28 @@ export class OcSelectExpandableComponent implements OnInit {
     /**
      * Initial select collapse state.
      * @type {boolean}.
-     * Default true.
+     * @default true.
      */
     @Input() collapsedOnInit: boolean = true;
 
     /**
      * Current select collapse state.
      * @type {boolean}.
-     * Default true.
+     * @default true.
      */
     @Input() isCollapsed: boolean = true;
 
     /**
      * Source path to expanded svg icon.
      * @type {boolean}.
-     * Default 'assets/angular-common-components/select-up.svg'.
+     * @default select-up.svg
      */
     @Input() expandedIcon: string = 'assets/angular-common-components/select-up.svg';
 
     /**
      * Source path to collapsed svg icon.
      * @type {boolean}.
-     * Default 'assets/angular-common-components/down-arrow.svg'.
+     * @default down-arrow.svg
      */
     @Input() collapsedIcon: string = 'assets/angular-common-components/down-arrow.svg';
 
