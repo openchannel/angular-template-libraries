@@ -20,7 +20,7 @@ export class OcContentModalComponent implements AfterViewInit {
     @Input() customContentTemplate: TemplateRef<any>;
 
     /**
-     * allows to add a 'close' button in the bottom of the modal.
+     * allows to add a `close` button in the bottom of the modal.
      */
     @Input() closeButton: boolean = false;
 
