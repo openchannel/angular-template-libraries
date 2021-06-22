@@ -3,6 +3,18 @@ import {HttpRequestService} from './http-request-services';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 
+
+/**
+
+ * Description: Service for setting up site config.<br> 
+
+ * Methods:
+
+ * loadMarketUrl
+
+ * getMarketUrl
+
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +26,16 @@ export class ConfigService {
 
   constructor(private httpRequest: HttpRequestService) { }
 
+  /**
+   *
+   * Description: Set up market url
+   *
+   * @returns {Observable<string>} `Observable<string>
+   *
+   * * ### Example:
+   *
+   * `loadMarketUrl();`
+   */
   private loadMarketUrl(): Observable<string> {
     return this.httpRequest.get(`${this.CONFIG_URL}/market-url`,
       {
@@ -23,6 +45,16 @@ export class ConfigService {
       .pipe(tap(x => this.marketUrl = x));
   }
 
+  /**
+   *
+   * Description: Get market url
+   *
+   * @returns {Observable<string>} `Observable<string>
+   *
+   * * ### Example:
+   *
+   * `getMarketUrl();`
+   */
   getMarketUrl(): Observable<string> {
     if (!this.marketUrl) {
        return this.loadMarketUrl();
