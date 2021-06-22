@@ -1,10 +1,6 @@
 import { moduleMetadata, storiesOf } from '@storybook/angular';
 import { withA11y } from '@storybook/addon-a11y';
-import {
-    OcFileUploadComponent,
-    FileDetails,
-    FileUploaderService
-} from '@openchannel/angular-common-components/src/lib/form-components';
+import { OcFileUploadComponent, FileDetails, FileUploaderService } from '@openchannel/angular-common-components/src/lib/form-components';
 import { action } from '@storybook/addon-actions';
 import { HttpClientModule, HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -19,11 +15,21 @@ const mockResponse: FileDetails = {
     contentType: 'type',
     size: 123123,
     isPrivate: false,
-    mimeCheck: 'mimeCheck',
+    mimeCheck: 'PASSED',
     fileUrl: 'http://file-url.com',
     isError: false,
     fileUploadProgress: 100,
-    virusScan: true,
+    virusScan: {
+        started: 1457710762784,
+        finished: 1457710769567,
+        status: 'CLEAN',
+        foundViruses: [
+            {
+                fileName: 'jacks.docx',
+                virusName: 'H237 Worm',
+            },
+        ],
+    },
     fileIconUrl: '',
 };
 
@@ -32,7 +38,11 @@ class FileUploadDownloadServiceStub extends FileUploaderService {
         super();
     }
 
-    fileUploadRequest(file: FormData, isPrivate: boolean, hash?: string[]): Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent> {
+    fileUploadRequest(
+        file: FormData,
+        isPrivate: boolean,
+        hash?: string[],
+    ): Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent> {
         return of(new HttpResponse({ body: mockResponse }));
     }
 
@@ -89,8 +99,8 @@ storiesOf('File Uploader [BEM]', module)
         props: {
             fileDetailArr: [file2],
             fileType: 'privateSingleFile',
-          uploadIconUrl: 'assets/angular-common-components/upload_icon.svg',
-          defaultFileIcon: 'assets/angular-common-components/file_icon.svg',
+            uploadIconUrl: 'assets/angular-common-components/upload_icon.svg',
+            defaultFileIcon: 'assets/angular-common-components/file_icon.svg',
         },
     }))
     .add('Multi Public Image With Data', () => ({
@@ -100,7 +110,7 @@ storiesOf('File Uploader [BEM]', module)
             isMultiFile: true,
             fileDetailArr: [file1, file2, file3, file4],
             fileType: 'multiImage',
-          uploadIconUrl: 'assets/angular-common-components/upload_icon.svg',
-          defaultFileIcon: 'assets/angular-common-components/file_icon.svg',
+            uploadIconUrl: 'assets/angular-common-components/upload_icon.svg',
+            defaultFileIcon: 'assets/angular-common-components/file_icon.svg',
         },
     }));
