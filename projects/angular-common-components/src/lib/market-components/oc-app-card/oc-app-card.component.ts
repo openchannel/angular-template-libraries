@@ -14,8 +14,8 @@ export class OcAppCardComponent implements OnInit {
     @Input() priceModelIndex: number = 0;
 
     /**
-     * One App to show. Must consists fields: 'name', 'model',
-     * 'rating', 'reviewCount', 'summary' or 'description'
+     * One App to show. Must contain fields: "name", "model",
+     * "rating", "reviewCount", "summary" or "description"
      * @type FullAppData
      */
     @Input() set app(appData: FullAppData) {
@@ -26,7 +26,6 @@ export class OcAppCardComponent implements OnInit {
     }
     /**
      * The RouterLink will lead to another page by click on the App card.
-     * Default: null
      */
     @Input() appRedirectLink: any[] | string | null | undefined = null;
     /**

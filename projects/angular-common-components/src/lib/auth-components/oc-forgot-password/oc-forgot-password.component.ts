@@ -67,7 +67,7 @@ export class OcForgotPasswordComponent {
     constructor(private router: Router) {}
 
     /**
-     * Submit function if form valid emit 'true' value to components output
+     * Submit function if form valid emit `true` value to components output
      * @param {NgForm} form
      */
     submitForm(form: NgForm): void {

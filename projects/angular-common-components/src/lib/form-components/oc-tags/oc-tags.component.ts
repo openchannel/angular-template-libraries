@@ -16,16 +16,15 @@ import { OcDropboxComponent } from '@openchannel/angular-common-components/src/l
 })
 export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges {
     /**
-     * A viewchild for dropbox element. Contains dropbox tags.
-     * Uses OcDropboxComponent model.
+     * A dropbox element. Contains dropbox tags.
+     * Uses [OcDropboxComponent]{@link OcDropboxComponent} model.
      */
     @ViewChild('dropBox') dropbox: OcDropboxComponent;
 
     /**
      * Sets an array of tags.
-     * Calls onChange() method.
+     * Calls `onChange()` method.
      * @type {*}.
-     * Default empty.
      */
     @Input() set value(val: any) {
         this.resultTags = val || [];
@@ -35,7 +34,6 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
     /**
      * Placeholder text for tags input.
      * @type {string}.
-     * Default empty.
      */
     @Input() placeholder: string;
 
@@ -49,23 +47,21 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
 
     /**
      * Set type of tags values.
-     * Can be 'string', 'boolean' or 'number'.
+     * Can be `"string"`, `"boolean"` or `"number"`.
      * @type {string}.
-     * Default: 'string'.
+     * @default: 'string'.
      */
     @Input() tagsType: 'string' | 'boolean' | 'number' = 'string';
 
     /**
      * The current tag from the input text field.
      * @type {string}.
-     * Default empty.
      */
     currentTag = '';
 
     /**
      * The list of tags to be shown in the dropbox.
      * @type {*[]}.
-     * Default empty.
      */
     dropBoxTags: any[] = [];
 
@@ -73,7 +69,6 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
      * The list of tags after adding/removing/searching by a user.
      * Is listened and updated by onChange method.
      * @type {*[]}.
-     * Default empty.
      */
     resultTags: any[] = [];
 

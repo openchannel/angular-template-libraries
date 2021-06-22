@@ -12,7 +12,7 @@ export interface SortChosen {
 }
 
 /**
- * Component represents table with apps, demonstrates app's subversion.
+ * Component represents table with apps, demonstrates subversion of app.
  * Shows title, summary, date of creation ans status of the app.
  * Also has a dropdown menu with actions for each app in the table.
  */
@@ -24,7 +24,7 @@ export interface SortChosen {
 export class OcAppTableComponent {
     /**
      * Configuration of the component.
-     * By this configuration component's view and content will be built.
+     * By this configuration view and content of the component will be built.
      */
     @Input() properties: AppListing;
     /**
@@ -38,12 +38,12 @@ export class OcAppTableComponent {
      */
     @Input() menuUrl: string = 'assets/angular-common-components/dots-menu.svg';
     /**
-     * Path to the custom icon for the 'sort' button when ascending sorting chosen.
+     * Path to the custom icon for the `sort` button when ascending sorting chosen.
      * @default empty
      */
     @Input() ascendingSortIcon: string = '';
     /**
-     * Path to the custom icon for the 'sort' button when descending sorting chosen.
+     * Path to the custom icon for the `sort` button when descending sorting chosen.
      * @default empty
      */
     @Input() descendingSortIcon: string = '';
@@ -65,8 +65,11 @@ export class OcAppTableComponent {
     @Output() readonly pageScrolled: EventEmitter<number> = new EventEmitter<number>();
     /**
      * Returns clicked sorting type.
-     * Contains fields 'by' - chosen sorting type, can be 'name', 'created' or 'status';
-     * ascending - true or false
+     * Contains fields:
+     *
+     * `by` - chosen sorting type, can be `name`, `created` or `status`;
+     *
+     * `ascending` - `true` for ascending sort or `false` for descending sort.
      */
     @Output() readonly sortChosen: EventEmitter<SortChosen> = new EventEmitter<SortChosen>();
 
@@ -85,7 +88,6 @@ export class OcAppTableComponent {
             ascending: false,
         },
     ];
-
 
     /**
      * Click on dropdown menu of the app.

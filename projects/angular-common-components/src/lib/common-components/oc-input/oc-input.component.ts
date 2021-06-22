@@ -55,12 +55,12 @@ export class OcInputComponent implements OnInit, ControlValueAccessor {
     @Input() class: string = '';
 
     /**
-     * Set 'disable' state for input
+     * Set `disable` state for input
      */
     @Input() disabled: boolean = false;
 
     /**
-     * Type of the input. Can be 'text', 'password' or 'email'
+     * Type of the input. Can be `text`, `password` or `email`
      */
     @Input() inputType: 'text' | 'email' | 'password' = 'text';
 

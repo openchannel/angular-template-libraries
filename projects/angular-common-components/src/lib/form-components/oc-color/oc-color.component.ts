@@ -24,7 +24,7 @@ export class OcColorComponent implements ControlValueAccessor {
         this.colorValue = val;
         this.onChange(this.colorValue);
     }
-    /** Set `disable` state for color input. User can't interact with this component */
+    /** Set `disable` state for color input. User can not interact with this component */
     @Input() disabled: boolean = false;
     /** Placeholder text for input field */
     @Input() placeholder: string = '';

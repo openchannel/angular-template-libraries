@@ -47,14 +47,14 @@ export class OcMenuUserGridComponent {
     /**
      * Path to the custom icon for the hidden menu toggle button.
      *
-     * Default: `assets/angular-common-components/dots-menu.svg`
+     * @default dots-menu.svg
      */
     @Input() menuUrl: string = 'assets/angular-common-components/dots-menu.svg';
 
     /**
-     * Path to the custom icon for the 'sort' button.
+     * Path to the custom icon for the "sort" button.
      *
-     * Default: `assets/angular-common-components/dropdown.svg`
+     * @default dropdown.svg
      */
     @Input() sortIcon: string = 'assets/angular-common-components/dropdown.svg';
 
@@ -72,7 +72,7 @@ export class OcMenuUserGridComponent {
 
     /**
      * Returns clicked sorting type.
-     * can be 'name', 'email', 'date' or 'role'
+     * can be `name`, `email`, `date` or `role`
      */
     @Output() readonly sortChosen: EventEmitter<SortField> = new EventEmitter<SortField>();
 
@@ -87,7 +87,7 @@ export class OcMenuUserGridComponent {
     private pageNumber: number = 1;
 
     /**
-     * Collects data into object and emit it ti the Output 'menuClicked'
+     * Collects data into object and emit it to the Output `menuClicked`
      *
      * @param {UserGridOptionType} actionType
      * @param {ComponentsUserAccountGridModel} userData
@@ -111,7 +111,7 @@ export class OcMenuUserGridComponent {
     }
 
     /**
-     * Function that set sort field and page number to default(1). Also emit output event 'sortChosen'
+     * Function that set sort field and page number to default(1). Also emit output event `sortChosen`
      * @param sortField
      */
     sortUsersBy(sortField: SortField): void {
@@ -121,7 +121,7 @@ export class OcMenuUserGridComponent {
     }
 
     /**
-     * Function to get intials from name of user
+     * Function to get initials from name of user
      * @param {ComponentsUserAccountGridModel} user
      * @returns {string}
      */

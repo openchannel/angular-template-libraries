@@ -15,22 +15,18 @@ export class OcAppGetStartedComponent {
     @Input() getStartedHeader: string = 'List Your App in our App Store';
     /**
      * Main text of the component. Placed under title
-     *
-     * Default: empty string
      */
     @Input() getStartedDescription: string = '';
     /**
      * Main text of the component. Placed under title
-     *
-     * Default: empty string
      */
     @Input() getStartedButtonText: string = '';
     /**
      * Get Started component type.
      *
-     * 'home' type represents button, image and description.
+     * `home` type represents button, image and description.
      *
-     * 'search' type represents title and button.
+     * `search` type represents title and button.
      * @default 'home'
      */
     @Input() getStartedType: 'home' | 'search' = 'home';
@@ -42,7 +38,7 @@ export class OcAppGetStartedComponent {
     @Output() readonly getStarted: EventEmitter<void> = new EventEmitter<void>();
 
     /**
-     * This function triggers by click on the component's button and emmit info that the button was pressed
+     * This function triggers by click on the button of the component and emmit info that the button was pressed
      */
     listAppGetStarted(): void {
         this.getStarted.emit();

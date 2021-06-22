@@ -31,7 +31,7 @@ export class OcAppDescriptionComponent implements OnInit {
     @Input() headerClass: string;
     /** Show button for switching between long and short description. */
     @Input() enableTruncateTextLogic: boolean = true;
-    /** Limit for the description text length. If the text shorter than that parameter - the trigger button wouldn't be shown. */
+    /** Limit for the description text length. If the text shorter than that parameter - the trigger button would not be shown. */
     @Input() truncateTextLength: number = 800;
     /** Text for switch button. Shows when description <= truncateTextLength. */
     @Input() showMoreDescriptionText: string = 'Show more';

@@ -17,36 +17,33 @@ export class OcVideoUrlComponent implements ControlValueAccessor {
     /**
      * Placeholder text for video url input.
      * @type {string}.
-     * Default empty.
      */
     @Input() placeholder: string = '';
 
     /**
      * List of classes which can be attached to the current list.
      * @type {string}.
-     * Default empty.
      */
     @Input() class: string = '';
 
     /**
-     * Sets 'disable' state for input.
+     * Sets `disable` state for input.
      * @type {boolean}.
-     * Default false.
      */
     @Input() disabled: boolean = false;
 
     /**
-     * Type of the input. Can be 'text' or 'email'.
+     * Type of the input. Can be `text` or `email`.
      * @type {string}.
-     * Default 'text'.
+     * @default 'text'.
      */
     @Input() inputType: 'text' | 'email' = 'text';
 
     /**
+     * (Required)
      * Video url setter.
      * @type {string}.
-     * Calls onChange() and verifyVideoUrl() methods.
-     * Required.
+     * Calls `onChange()` and `verifyVideoUrl()` methods.
      */
     @Input() set value(val: string) {
         this.videoUrl = val;
@@ -59,7 +56,7 @@ export class OcVideoUrlComponent implements ControlValueAccessor {
 
     /**
      * Emits changes of the video Url.
-     * Calls onChange() and verifyVideoUrl() methods.
+     * Calls `onChange()` and `verifyVideoUrl()` methods.
      */
     emitChanges(): void {
         this.onChange(this.videoUrl);

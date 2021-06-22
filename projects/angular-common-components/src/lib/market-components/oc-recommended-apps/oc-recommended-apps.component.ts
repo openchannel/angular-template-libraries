@@ -15,24 +15,22 @@ import { get } from 'lodash';
 export class OcRecommendedAppsComponent {
     /**
      *  Array of the Recommended apps.
-     *  Must consist of fields: 'name', 'model',
-     * 'rating', 'reviewCount', 'summary' or 'description'.
+     *  Must contains of fields: `name`, `model`,
+     * `rating`, `reviewCount`, `summary` or `description`.
      * @type {FullAppData[]}.
-     * Default empty.
      */
     @Input() appList: FullAppData[] = [];
 
     /**
      * Message that will be shown when no apps.
      * @type {string}.
-     * Default empty.
      */
     @Input() noAppMessage: string = '';
 
     /**
      * Title for the Recommended apps list.
      * @type {string}.
-     * Default 'Recommended Apps'.
+     * @default 'Recommended Apps'.
      */
     @Input() recommendedAppTitle: string = 'Recommended Apps';
 
@@ -63,7 +61,6 @@ export class OcRecommendedAppsComponent {
      * @type {FullAppData}.
      */
     @Output() readonly clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
-
 
     /**
      * Uses to get a part of an app router link.

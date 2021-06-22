@@ -22,20 +22,14 @@ export class OcAppGalleryComponent {
     @Input() noAppMessage: string = '';
     /**
      * Title for the more apps link.
-     *
-     * Default: 'More'
      */
     @Input() moreAppsTitle: string = 'More';
     /**
      * Title for the app list preview. Main title of the component.
-     *
-     * Default: empty
      */
     @Input() appGalleryTitle: string = '';
     /**
      * Description for the app list preview. Will appear under title.
-     *
-     * Default: empty
      */
     @Input() appGalleryDescription: string = '';
     /**
@@ -51,8 +45,6 @@ export class OcAppGalleryComponent {
     @Input() customAppCardTemplate: TemplateRef<FullAppData>;
     /**
      * Router link for the navigation to page with more apps.
-     *
-     * Default: empty
      * @example
      * '/apps/all'
      * ['/apps', appsCategory]
@@ -60,8 +52,6 @@ export class OcAppGalleryComponent {
     @Input() seeAllUrl: string | any[];
     /**
      * Router link which will be used for navigation by app card click.
-     *
-     * Default: empty
      * @example
      * '/apps'
      */
@@ -79,8 +69,6 @@ export class OcAppGalleryComponent {
     @Output() clickAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
     /**
      * Emitter for click by moreAppsTitle.
-     *
-     * Return {void}
      */
     @Output() clickMoreApps: EventEmitter<void> = new EventEmitter<void>();
 

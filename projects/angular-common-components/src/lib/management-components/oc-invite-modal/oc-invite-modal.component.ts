@@ -7,10 +7,10 @@ import { ModalInviteUserModel, ModalUpdateUserModel } from '../models/oc-modal.m
 /**
  * Invite modal component. Represents component with configurable form for inviting user.
  *
- * @example <oc-ivite-modal [modalData]="{
+ * @example <oc-invite-modal [modalData]="{
  *      userData: {userAccountId:"7ahs08d79ya09s7dy"},
  *      requestUpdateAccount: (accountId: string, accountData: any) => Observable<any>
- *     }">
+ *     }"></oc-invite-modal>
  */
 @Component({
     selector: 'oc-invite-modal',

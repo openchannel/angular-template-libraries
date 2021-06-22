@@ -40,7 +40,7 @@ export class OcChartComponent implements OnChanges, OnInit {
      * Path to the chart counter image. Can be local or url from server.
      * ## Data example for docs
      * ``
-     * './assets/img/image.png' or 'https://example.site.com/image.png'
+     * "./assets/img/image.png" or "https://example.site.com/image.png "
      * ``
      * @example
      * './assets/img/image.png'
@@ -49,12 +49,12 @@ export class OcChartComponent implements OnChanges, OnInit {
     @Input() downloadUrl: SafeUrl;
     /**
      * Enable/Disable background gradient under chart line.
-     * It's enabled by default
+     * It is enabled by default
      */
     @Input() isBackgroundColor: boolean = true;
     /**
      * Enable/Disable points on the Chart line.
-     * It's disabled by default.
+     * It is disabled by default.
      */
     @Input() enablePoints: boolean = false;
     /** Min width for the dropdown menu */
@@ -79,7 +79,7 @@ export class OcChartComponent implements OnChanges, OnInit {
      * Can be local or url from server.
      * ## Data example for docs
      * ``
-     * './assets/img/image.png' or 'https://example.site.com/image.png'
+     * "./assets/img/image.png" or "https://example.site.com/image.png "
      * ``
      * @example
      * './assets/img/image.png'
@@ -103,7 +103,7 @@ export class OcChartComponent implements OnChanges, OnInit {
     /**
      * helper for sorting tabular data.
      *
-     * `by`: 'key' | 'value'
+     * `by`: "key" | "value"
      *
      * `ascending`: true | false
      */
@@ -133,7 +133,7 @@ export class OcChartComponent implements OnChanges, OnInit {
     }
 
     /**
-     * Angular lifecycle function. Triggering on every changes of the component's Input.
+     * Angular lifecycle function. Triggering on every changes of the Input of component.
      * Reloads chart on any chart data changes.
      */
     async ngOnChanges(changes: SimpleChanges) {
