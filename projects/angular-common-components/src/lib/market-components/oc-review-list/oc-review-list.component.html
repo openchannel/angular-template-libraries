@@ -10,7 +10,8 @@
         <div *ngFor="let review of displayedReviews" class="review-list__one-review">
             <h5 class="review-list__one-review-heading">{{review.reviewOwnerName}}</h5>
             <div class="review-list__one-review-rating-label">Rating</div>
-            <oc-rating [rating]="review.rating/100" type="multi-star" class="review-list__one-review-rating"></oc-rating>
+            <oc-rating [rating]="review.rating/100" type="multi-star" class="review-list__one-review-rating"
+                       [disabled]="true"></oc-rating>
             <div id="reviewText" class="review-list__one-review-text">{{review.review}}</div>
             <hr/>
         </div>
