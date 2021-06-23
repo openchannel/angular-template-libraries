@@ -6,29 +6,68 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
     styleUrls: ['./oc-text-search.component.scss'],
 })
 export class OcTextSearchComponent {
-    /** Search text which has been entered by user */
+    /**
+     * A model for search text value which is entered by a user.
+     * @type {string}.
+     */
     @Input() searchText: string;
-    /** Input placeholder text */
+
+    /**
+     * (Optional)
+     * Input placeholder text.
+     * @type {string}.
+     * @default 'search'.
+     */
     @Input() placeHolder: string = 'Search';
-    /** Input for magnifier or search button */
+
+    /**
+     * An input, that defines whether an input has a magnifier icon or a search button.
+     * @type {boolean}.
+     * @default true
+     */
     @Input() hasMagnifier: boolean = true;
-    /** Input for clear text button */
+
+    /**
+     * An input, that defines, whether an input has `clear text` button or no.
+     * @type {boolean}.
+     * @default false.
+     */
     @Input() hasClearTextControl: boolean = false;
-    /** Describes the clear button text */
+
+    /**
+     * Describes the text in a `clear` button.
+     * @type {string}.
+     * @default 'Clear'.
+     */
     @Input() clearButtonText: string = 'Clear';
-    /** Describes the search button text */
+
+    /**
+     * Describes the text int the `search` button.
+     * @type {string}.
+     * @default 'Search'.
+     */
     @Input() searchButtonText: string = 'Search';
-    /** Emit search text on ngModel changes */
-    @Output() searchTextChange: EventEmitter<string> = new EventEmitter();
-    /** Emit search text on enter key down or search icon click */
-    @Output() enterSearch: EventEmitter<string> = new EventEmitter<string>();
 
-    constructor() {}
+    /**
+     * Output that emits search input value on `ngModel` changes.
+     * Passes a current input value to a parent component.
+     * @type {string}.
+     */
+    @Output() readonly searchTextChange: EventEmitter<string> = new EventEmitter();
 
+    /**
+     * Output that emits a search event on `enter` keydown or search icon click.
+     * Passes a searchable value to a parent component.
+     * @type {string}.
+     */
+    @Output() readonly enterSearch: EventEmitter<string> = new EventEmitter<string>();
+
+    /** Emits search text value on enter key down or search icon click */
     enterAction(): void {
         this.enterSearch.emit(this.searchText);
     }
 
+    /** Clears search text value on button click */
     clearInput(): void {
         this.searchText = '';
     }

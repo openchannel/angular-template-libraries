@@ -47,4 +47,4 @@ Note: this command build and run documentation for services on the http://127.0.
 
 <!-- CONTACT -->
 ## Contact
-Project Link: [https://bitbucket.org/openchannel/angular-template-libraries/src/master/](https://bitbucket.org/openchannel/angular-template-libraries/src/master/)
+Website: [https://openchannel.io](https://openchannel.io)

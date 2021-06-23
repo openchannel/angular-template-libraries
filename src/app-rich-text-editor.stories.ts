@@ -21,11 +21,6 @@ const RichTextEditorComponent = (args: OcRichTextEditorComponent) => ({
 
 export const SimpleRichTextEditor = RichTextEditorComponent.bind({});
 
-// SimpleRichTextEditor.component.tinyOptions = {
-//   base_url: undefined,
-//   suffix: undefined,
-//   ...SimpleRichTextEditor.component.tinyOptions,
-// };
 SimpleRichTextEditor.args = {
     placeholder: 'Write here about yourself...',
     tinyOptions: {

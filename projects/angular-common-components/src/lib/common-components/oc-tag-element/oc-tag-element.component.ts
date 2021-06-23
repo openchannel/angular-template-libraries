@@ -1,37 +1,43 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'oc-tag-element',
     templateUrl: './oc-tag-element.component.html',
-    styleUrls: ['./oc-tag-element.component.scss']
+    styleUrls: ['./oc-tag-element.component.scss'],
 })
-export class OcTagElementComponent implements OnInit {
-
+export class OcTagElementComponent {
     /**
-     * title (optional) - component title.
+     * (Optional)
+     * Title of the tag element.
+     * @type {string}.
      */
     @Input() title: string;
 
     /**
-     * closeMarker (optional) - show the SVG icon on the right title side.
+     * (Optional)
+     * Show the SVG icon on the right side of the title.
+     * @type {boolean}.
+     * @default false.
      */
     @Input() closeMarker: boolean = false;
 
     /**
-     * deleteTagImgUrl (optional) - path to the SVG icon on the right title side.
+     * Path to the SVG icon on the right side of the title.
+     * Needed if {@link closeMarker} is set to `true`.
+     * @type {string}.
+     * @default close-icon.svg.
      */
     @Input() deleteTagImgUrl: string = 'assets/angular-common-components/close-icon.svg';
+
     /**
-     * clickEmitter - return title by click event on this component.
+     * Output emitter, bound to a click event.
+     * @type {string}.
      */
-    @Output() clickEmitter = new EventEmitter<string>();
+    @Output() readonly clickEmitter = new EventEmitter<string>();
 
-    constructor() {
-    }
-
-    ngOnInit(): void {
-    }
-
+    /**
+     * Takes current tag title and emits it to a parent component.
+     */
     sentCurrentTag(): void {
         this.clickEmitter.emit(this.title);
     }

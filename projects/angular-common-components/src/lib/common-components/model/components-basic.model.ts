@@ -1,6 +1,3 @@
-import { AppTypeFieldModel } from './app-data.model';
-
-
 export interface SortValue extends SelectModel {
     id: string;
     label: string;
@@ -37,7 +34,14 @@ export interface SelectModel {
 }
 
 export class DropdownModel<T> {
+    /**
+     * Dropdown item label
+     */
     label: string;
+
+    /**
+     * Dropdown item value with provided in generic type
+     */
     value: T;
 
     constructor(label: string, value: T) {

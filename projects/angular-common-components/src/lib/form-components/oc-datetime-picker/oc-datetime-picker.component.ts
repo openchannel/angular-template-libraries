@@ -1,6 +1,12 @@
-import { Component, forwardRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DayOfMonth } from '../model/datetime.model';
 
+/**
+ * Component represents input with date and time picker.
+ * Also this component supports `Abstract Control` format, so it can work with `ngModel` or `formControl`.
+ * Can be a part of the `ngForm`.
+ */
 @Component({
     selector: 'oc-datetime-picker',
     templateUrl: './oc-datetime-picker.component.html',
@@ -14,34 +20,76 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     ],
 })
 export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
-    @Input()
-    set value(val) {
+    /**
+     * Set value from AbstractControl, like `ngModel` or `formControl`.
+     * This will set the main value of the component.
+     * @default null
+     */
+    @Input() set value(val) {
         this.date = val ? new Date(val) : null;
         this.emitChanges(this.date);
     }
 
-    get isDateTime(): boolean {
-        return this.type === 'datetime';
-    }
-
-    /** Set 'disable' state for input */
+    /** Set `disable` state for input. User can not interact with component and choose date */
     @Input() disabled: boolean = false;
-
-    @Input()
-    settings: any;
-
-    @Input()
-    type: 'datetime' | 'date';
-
+    /**
+     * Object of custom settings for the calendar. Can replace the default settings.
+     *
+     * `format: string` - format of display date, example: `"dd/MM/yyyy, HH:mm"`
+     *
+     * `cal_days_labels: string []` - array of short labels of days of a week.
+     *
+     * `cal_full_days_labels: string []` - array of long labels of days of a week.
+     *
+     * `cal_months_labels: string []` - array of labels of the all twelve month.
+     *
+     * `cal_months_labels_short: string []` - array of short labels of the all twelve month.
+     *
+     * `closeOnSelect: boolean` - config for the closing or not of the calendar after the date has been chosen.
+     * `false` will not close calendar. Calendar closes by default.
+     * @example
+     * {
+     *     format: 'dd/MM/yyyy, HH:mm',
+     *     cal_days_labels: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+     *     cal_full_days_labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+     *     cal_months_labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+     *       'October', 'November', 'December'],
+     *     cal_months_labels_short: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+     *     closeOnSelect: true,
+     * }
+     */
+    @Input() settings: any;
+    /**
+     * Type of datepicker and data display of a component.
+     *
+     * `date` - user can choose only date from the calendar.
+     *
+     * `datetime` - user can choose date and time from the calendar.
+     */
+    @Input() type: 'datetime' | 'date' = 'date';
+    /** Main date value of the component */
     date: Date;
+    /** String for displaying hours */
     hourStr: string;
+    /** Hour counter */
     hourValue: number = 0;
+    /** String for displaying minutes */
     minuteStr: string;
+    /** Minute counter */
     minuteValue: number = 0;
-    monthDays: any[] = [];
+    /** Array for displaying day of month in the calendar  */
+    monthDays: DayOfMonth[][] = [];
+    /** Date in this moment of time */
     today: Date = new Date();
-
+    /**
+     * Quantity of days in each month.
+     * @private
+     */
     private calDaysInMonth: any[] = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    /**
+     * Default settings for the calendar.
+     * @private
+     */
     private defaultSettings = {
         format: 'dd/MM/yyyy, HH:mm',
         cal_days_labels: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
@@ -64,10 +112,8 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         closeOnSelect: true,
     };
 
-    constructor() {}
-
-    ngOnInit() {
-        this.settings = {...this.defaultSettings, ...this.settings};
+    ngOnInit(): void {
+        this.settings = { ...this.defaultSettings, ...this.settings };
         if (!this.date) {
             this.date = null;
         } else {
@@ -75,13 +121,27 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         }
     }
 
-    initCal() {
+    /**
+     * Checking the component type.
+     */
+    get isDateTime(): boolean {
+        return this.type === 'datetime';
+    }
+
+    /**
+     * Init the calendar. Fill current date. Fill month data.
+     */
+    initCal(): void {
         this.date = this.date ? this.date : new Date();
         this.initDate(this.date);
         this.monthDays = this.generateDays(this.date);
     }
 
-    initDate(val: any) {
+    /**
+     * Init hours and minutes
+     * @param val date value
+     */
+    initDate(val: any): void {
         this.date = new Date(val);
 
         this.hourValue = this.date.getHours();
@@ -90,7 +150,11 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.minuteStr = this.minuteValue.toString();
     }
 
-    generateDays(date: Date) {
+    /**
+     * Generating days for month.
+     * @param date current date
+     */
+    generateDays(date: Date): DayOfMonth[][] {
         let month = date.getMonth();
         const year = date.getFullYear();
         const firstDay = new Date(year, month, 1);
@@ -103,12 +167,13 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         } else {
             prevMonthDate = new Date(year, month - 1, 1);
         }
+
         month = prevMonthDate.getMonth();
         const prevMonthLength = this.getMonthLength(prevMonthDate.getMonth(), prevMonthDate.getFullYear());
 
         let day = prevMonthLength - (startingDay === 0 ? 7 : startingDay) + 2;
-        const dateArr = [];
-        let dateRow = [];
+        const dateArr: DayOfMonth[][] = [];
+        let dateRow: DayOfMonth[] = [];
         // this loop is for is weeks (rows)
         for (let i = 0; i < 6; i++) {
             // this loop is for weekdays (cells)
@@ -135,7 +200,12 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         return dateArr;
     }
 
-    getMonthLength(month: number, year: number) {
+    /**
+     * Getting quantity of days in current month for and special calculating for the February in a leap year.
+     * @param month current month number
+     * @param year current year number
+     */
+    getMonthLength(month: number, year: number): number {
         let monthLength = this.calDaysInMonth[month];
 
         // compensate for leap year
@@ -148,13 +218,20 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         return monthLength;
     }
 
-    setTimeView() {
+    /**
+     * Setting current time view
+     */
+    setTimeView(): void {
         this.date.setHours(this.hourValue);
         this.date.setMinutes(this.minuteValue);
         this.date = new Date(this.date);
     }
 
-    setDay(evt: any) {
+    /**
+     * Set chosen day in the calendar.
+     * @param evt clicked element
+     */
+    setDay(evt: any): void {
         if (evt.target.innerHTML) {
             const selectedDay = new Date(evt.target.getAttribute('data-label'));
 
@@ -174,7 +251,11 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         }
     }
 
-    prevMonth(e: any) {
+    /**
+     * Switch month in the calendar to previous.
+     * @param e clicked switcher
+     */
+    prevMonth(e: any): void {
         e.stopPropagation();
         if (this.date.getMonth() === 0) {
             this.date.setMonth(11);
@@ -191,7 +272,11 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.monthDays = this.generateDays(this.date);
     }
 
-    nextMonth(e: any) {
+    /**
+     * Switch month in the calendar to next.
+     * @param e clicked switcher
+     */
+    nextMonth(e: any): void {
         e.stopPropagation();
         if (this.date.getMonth() === 11) {
             this.date.setMonth(0);
@@ -208,7 +293,8 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.monthDays = this.generateDays(this.date);
     }
 
-    incHour() {
+    /** Incrementation of the hour value. Updating time view */
+    incHour(): void {
         if (this.hourValue < 23) {
             this.hourValue += 1;
         } else {
@@ -217,8 +303,8 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.hourStr = this.hourValue.toString();
         this.setTimeView();
     }
-
-    decHour() {
+    /** Decrementation of the hour value. Updating time view */
+    decHour(): void {
         if (this.hourValue > 1) {
             this.hourValue -= 1;
         } else if (this.hourValue === 0) {
@@ -230,7 +316,11 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.setTimeView();
     }
 
-    onHourChange(event) {
+    /**
+     * Catching changes in input field of hours. Updating hours with new values.
+     * @param event input event
+     */
+    onHourChange(event: any): void {
         const inputData = event.target.value;
         this.hourValue = Number.parseInt(inputData, 10);
 
@@ -245,8 +335,8 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.hourStr = this.hourValue.toString();
         this.setTimeView();
     }
-
-    incMinutes() {
+    /** Incrementation of the minutes value. Updating time view */
+    incMinutes(): void {
         if (this.minuteValue < 59) {
             this.minuteValue += 1;
         } else {
@@ -255,8 +345,8 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.minuteStr = this.minuteValue.toString();
         this.setTimeView();
     }
-
-    decMinutes() {
+    /** Decrementation of the minutes value. Updating time view */
+    decMinutes(): void {
         if (this.minuteValue > 0) {
             this.minuteValue -= 1;
         } else {
@@ -265,8 +355,11 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.minuteStr = this.minuteValue.toString();
         this.setTimeView();
     }
-
-    onMinChange(event) {
+    /**
+     * Catching changes in input field of hours. Updating hours with new values.
+     * @param event input event
+     */
+    onMinChange(event: any): void {
         const inputData = event.target.value;
         this.minuteValue = Number.parseInt(inputData, 10);
         if (!inputData) {
@@ -284,21 +377,33 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.setTimeView();
     }
 
-    done(event?) {
+    /**
+     * Catching changes in calendar dropdown. Emits changed date after calendar has been closed.
+     * @param event current calendar opened\closed status
+     */
+    done(event?: boolean): void {
         if (!event) {
             this.emitChanges(this.date);
         }
     }
 
-    composeDate(date: Date) {
+    /**
+     * Composing date string for the `data-label` attribute
+     * @param date date parameter for formatting
+     */
+    composeDate(date: Date): string {
         return date.toDateString();
     }
 
-    clearDate() {
-        this.date = null;
-        this.done();
-    }
+    // clearDate(): void {
+    //     this.date = null;
+    //     this.done();
+    // }
 
+    /**
+     * Emits new changes in model
+     * @param newDate new model value
+     */
     emitChanges(newDate: Date): void {
         this.onChange(newDate ? newDate.valueOf() : null);
     }

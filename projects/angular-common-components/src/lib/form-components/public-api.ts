@@ -18,6 +18,7 @@ export * from './oc-dynamic-array-preview/oc-dynamic-array-preview.component';
 export * from './model/app-form-model';
 export * from './model/file.model';
 export * from './model/dynamic-array.model';
+export * from './model/datetime.model';
 
 /** Form Generator */
 export * from './oc-form/oc-form-generator';

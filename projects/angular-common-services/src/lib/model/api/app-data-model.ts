@@ -69,7 +69,13 @@ export interface CreateAppModel {
 }
 
 export interface PublishAppVersionModel {
+    /**
+     * Current app version.
+     */
     version: number;
+    /**
+     * True if this app should be approved automatically.
+     */
     autoApprove?: boolean;
 }
 

@@ -2,25 +2,24 @@
 @import '../../../../assets/styles/mixins';
 
 .tooltip-label {
-  align-items: center;
-  display: flex;
+    align-items: center;
+    display: flex;
 
-  &__text {
-    @include font-size-md();
-    margin-bottom: 0;
-  }
-
-  &__required {
-    color: $danger;
-  }
-
-  &__description {
-    margin-left: 1rem;
-
-    &-icon {
-      display: block;
-      width: 14px;
-      display: block;
+    &__text {
+        @include font-size-md();
+        margin-bottom: 0;
     }
-  }
+
+    &__required {
+        color: $danger;
+    }
+
+    &__description {
+        margin-left: 1rem;
+
+        &-icon {
+            display: block;
+            width: 14px;
+        }
+    }
 }
