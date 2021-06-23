@@ -1,37 +1,37 @@
 <div class="oc-sidebar">
-  <nav class="oc-sidebar__navigation">
-    <span class="oc-sidebar__heading">
-      {{title}}
-    </span>
-    <ul class="oc-sidebar__list">
-      <li class="oc-sidebar__list-item" *ngFor="let select of sidebarModel">
-        <div class="oc-sidebar__list-item-expand-line">
-          <span *ngIf="!baseNavigation" class="oc-sidebar__list-item-text" [class.font-weight-bold]="select.checked"
-                (click)="onClickSidebar(select)">
-            {{select.label}}
-          </span>
-          <a *ngIf="baseNavigation" [routerLink]="[baseNavigation, select.id]" class="oc-sidebar__list-item-text">
-            {{select.label}}
-          </a>
-          <svg-icon *ngIf="select.values && select.values.length > 0"
-                    (click)="select.expanded = !select.expanded"
-                    [src]="select.expanded ? toggleIconUp : toggleIconDown"
-                    svgClass="recolor-svg"></svg-icon>
-        </div>
-        <ul class="oc-sidebar__sublist" *ngIf="select.values && select.values.length > 0"
-            [ngbCollapse]="!select.expanded">
-          <li *ngFor="let subValue of select.values">
-            <span *ngIf="!baseNavigation" class="oc-sidebar__list-item-text oc-sidebar__list-item-text_margin"
-                  [class.font-weight-bold]="subValue.checked" (click)="onClickSidebar(select, subValue)">
-              {{subValue.label}}
-            </span>
-            <a *ngIf="baseNavigation" class="oc-sidebar__list-item-text oc-sidebar__list-item-text_margin"
-               [routerLink]="[baseNavigation, select.id, subValue.id]">
-              {{subValue.label}}
-            </a>
-          </li>
+    <nav class="oc-sidebar__navigation">
+        <span class="oc-sidebar__heading">{{title}}</span>
+        <ul class="oc-sidebar__list">
+            <li class="oc-sidebar__list-item" *ngFor="let select of sidebarModel">
+                <div class="oc-sidebar__list-item-expand-line">
+                    <span *ngIf="!baseNavigation" class="oc-sidebar__list-item-text"
+                          [class.font-weight-bold]="select.checked"
+                          (click)="onClickSidebar(select)">
+                      {{select.label}}
+                    </span>
+                    <a *ngIf="baseNavigation" [routerLink]="[baseNavigation, select.id]"
+                       class="oc-sidebar__list-item-text">
+                        {{select.label}}
+                    </a>
+                    <svg-icon *ngIf="select.values && select.values.length > 0"
+                              (click)="select.expanded = !select.expanded"
+                              [src]="select.expanded ? toggleIconUp : toggleIconDown"
+                              svgClass="recolor-svg"></svg-icon>
+                </div>
+                <ul class="oc-sidebar__sublist" *ngIf="select.values && select.values.length > 0"
+                    [ngbCollapse]="!select.expanded">
+                    <li *ngFor="let subValue of select.values">
+                        <span *ngIf="!baseNavigation" class="oc-sidebar__list-item-text oc-sidebar__list-item-text_margin"
+                              [class.font-weight-bold]="subValue.checked" (click)="onClickSidebar(select, subValue)">
+                          {{subValue.label}}
+                        </span>
+                        <a *ngIf="baseNavigation" class="oc-sidebar__list-item-text oc-sidebar__list-item-text_margin"
+                           [routerLink]="[baseNavigation, select.id, subValue.id]">
+                            {{subValue.label}}
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
-      </li>
-    </ul>
-  </nav>
+    </nav>
 </div>

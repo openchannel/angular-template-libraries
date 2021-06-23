@@ -18,11 +18,16 @@ class StubFileUploadDownloadService extends FileUploaderService {
         contentType: 'type',
         size: 123123,
         isPrivate: false,
-        mimeCheck: 'mimeCheck',
+        mimeCheck: 'PASSED',
         fileUrl: 'https://youtu.be/DGQwd1_dpuc',
         isError: false,
         fileUploadProgress: 100,
-        virusScan: true,
+        virusScan: {
+            started: 1457710762784,
+            finished: 1457710769567,
+            status: 'CLEAN',
+            foundViruses: [],
+        },
         fileIconUrl: '',
     };
 
