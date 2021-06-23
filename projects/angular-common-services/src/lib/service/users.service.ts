@@ -127,7 +127,7 @@ export class UsersService {
      * Description: Get all user types with pagination
      *
      * @param {number} pageNumber - (optional) Current page index. Starts from >= 1.
-     * @param {number} limit - (optional) Count user types into response. Starts from >= 1.
+     * @param {number} pageLimit - (optional) Count user types into response. Starts from >= 1.
      * @param {string} sort - (optional) Sort user types by specific field.
      * @param {string} query - (optional) Your specific search query.
      * @param {HttpHeaders} headers - (optional)
