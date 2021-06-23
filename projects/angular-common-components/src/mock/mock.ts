@@ -87,9 +87,12 @@ export class MockSvgIconComponent {
 })
 export class MockPasswordComponent {
     @Input() placeholder;
-    /** Set 'disable' state for input */
+    /** Set `disable` state for input */
     @Input() disabled: boolean = false;
-    /** Type of the input. Can be 'text' or 'email' */
+    /**
+     *  Type of the input. Can be `text` or `email`
+     *  @default 'text'
+     */
     @Input() inputType: string = 'text';
 }
 
