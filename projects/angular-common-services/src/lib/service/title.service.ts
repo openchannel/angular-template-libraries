@@ -38,12 +38,12 @@ export class TitleService {
      * @param {string} subtitle
      * @returns {void}
      *
-     * * ### Example:
+     * ### Example
      *``
      * setPrefix("Prefix")
      *``
      */
-    setPrefix(subtitle: string) {
+    setPrefix(subtitle: string): void {
         const siteTitle = `${subtitle ? `${subtitle} | ` : ''}${this.title}`;
         this.titleService.setTitle(siteTitle);
     }
@@ -53,12 +53,12 @@ export class TitleService {
      * @param {string} subtitle
      * @returns {void}
      *
-     * * ### Example:
+     * ### Example
      *``
      * setPostfix("Postfix")
      *``
      */
-    setPostfix(subtitle: string) {
+    setPostfix(subtitle: string): void {
         const siteTitle = `${this.title}${subtitle ? ` | ${subtitle}` : ''}`;
         this.titleService.setTitle(siteTitle);
     }
@@ -70,12 +70,12 @@ export class TitleService {
      * @param {boolean} rightPart - (optional) if its 'true' - set new title part on the right side
      * @returns {void}
      *
-     * * ### Example:
+     * ### Example
      *``
      * setSpecialTitle("Title", true)
      *``
      */
-    setSpecialTitle(newTitlePart: string, rightPart?: boolean) {
+    setSpecialTitle(newTitlePart: string, rightPart?: boolean): void {
         if (rightPart) {
             this.setPostfix(newTitlePart);
         } else {

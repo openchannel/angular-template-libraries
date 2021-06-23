@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpRequestService } from './http-request-services';
 import { OCNativeCustomSignup, OCNativeDefaultSignup, UserLoginModel } from '../model/api/user-login-model';
@@ -6,37 +6,35 @@ import { SignUpByInviteRequest } from '../model/api/login.model';
 import { UserResetPassword } from '../model/api/user-activation-model';
 import { ChangePasswordRequest } from '../model/api/change-password.model';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 /**
-
  * Description: API service for Native authorization.<br>
-
+ *
  * Endpoints:<br>
-
+ *
  * POST 'auth/native/token'<br>
-
+ *
  * POST 'auth/native/register'<br>
-
+ *
  * POST 'auth/native/invite'<br>
-
+ *
  * POST 'auth/native/activate'<br>
-
+ *
  * POST 'auth/native/send-reset-code'<br>
-
+ *
  * POST 'auth/native/reset-password'<br>
-
+ *
  * POST 'auth/native/send-activate-code'<br>
-
+ *
  * POST 'auth/native/change-password'<br>
-
+ *
  */
 @Injectable({
     providedIn: 'root',
 })
 export class NativeLoginService {
-    private readonly NATIVE_URL = 'auth/native';
-
-    constructor(private httpRequest: HttpRequestService) {}
+    constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {}
     /**
      *
      * Description: Login to app
@@ -44,7 +42,7 @@ export class NativeLoginService {
      * @param {UserLoginModel} body - (required) User login data
      * @returns {Observable<any>} `Observable<any>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `signIn({
      *    email: 'admin@admin.com',
@@ -54,7 +52,7 @@ export class NativeLoginService {
      *
      */
     signIn(body: UserLoginModel): Observable<any> {
-        return this.httpRequest.post(`${this.NATIVE_URL}/token`, body);
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/token`, body);
     }
 
     /**
@@ -63,7 +61,7 @@ export class NativeLoginService {
      * @param {OCNativeDefaultSignup | OCNativeCustomSignup} userSignUp - (required) User Sign Up data
      * @returns {Observable<any>} `Observable<any>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `signup({
      *      uname:'Name',
@@ -92,7 +90,7 @@ export class NativeLoginService {
      * })`
      */
     signup(userSignUp: OCNativeDefaultSignup | OCNativeCustomSignup): Observable<any> {
-        return this.httpRequest.post(`${this.NATIVE_URL}/register`, userSignUp);
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/register`, userSignUp);
     }
 
     /**
@@ -101,7 +99,7 @@ export class NativeLoginService {
      * @param {SignUpByInviteRequest} userSignUp - (required) Invited user Sign Up data and Token
      * @returns {Observable<any>} `Observable<any>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `signupByInvite({
      *      inviteToken: 'a97hsd987ahsd87ha0s7d8h0',
@@ -109,7 +107,7 @@ export class NativeLoginService {
      * })`
      */
     signupByInvite(userSignUp: SignUpByInviteRequest): Observable<any> {
-        return this.httpRequest.post(`${this.NATIVE_URL}/invite`, userSignUp);
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/invite`, userSignUp);
     }
 
     /**
@@ -118,14 +116,14 @@ export class NativeLoginService {
      * @param {any} activationModel - (required) Data from activation form
      * @returns {Observable<any>} `Observable<any>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `activate({
      *  name: 'Name'
      * })`
      */
     activate(activationModel: any): Observable<any> {
-        return this.httpRequest.post(`${this.NATIVE_URL}/activate`, activationModel);
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/activate`, activationModel);
     }
 
     /**
@@ -134,13 +132,13 @@ export class NativeLoginService {
      * @param {string} email - (required) User Email to send reset Code
      * @returns {Observable<any>} `Observable<any>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `sendResetCode('email@email.com');`
      */
     sendResetCode(email: string): Observable<any> {
         const params = new OcHttpParams().set('email', email);
-        return this.httpRequest.post(`${this.NATIVE_URL}/send-reset-code`, null, { params });
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/send-reset-code`, null, { params });
     }
 
     /**
@@ -149,7 +147,7 @@ export class NativeLoginService {
      * @param {UserResetPassword} request (required) Request params. New password and code.
      * @returns {Observable<any>} `Observable<any>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `resetPassword({
      *     newPassword: 'password'
@@ -157,7 +155,7 @@ export class NativeLoginService {
      * })`
      */
     resetPassword(request: UserResetPassword): Observable<any> {
-        return this.httpRequest.post(`${this.NATIVE_URL}/reset-password`, request);
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/reset-password`, request);
     }
 
     /**
@@ -166,21 +164,21 @@ export class NativeLoginService {
      * @param {string} email - (required) User Email to send Activation Code
      * @returns {Observable<any>} `Observable<any>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `sendActivationCode('email@email.com');`
      */
     sendActivationCode(email: string): Observable<any> {
-        return this.httpRequest.post(`${this.NATIVE_URL}/send-activate-code`, email);
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/send-activate-code`, email);
     }
 
     /**
-     * Descriptiom: This method is responsible for change user password.
+     * Description: This method is responsible for change user password.
      *
      * @param {ChangePasswordRequest} request (required) Model with current and new passwords
      * @returns {Observable<any>} `Observable<any>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `changePassword({
      *      password: 'password',
@@ -188,6 +186,6 @@ export class NativeLoginService {
      * });`
      */
     changePassword(request: ChangePasswordRequest): Observable<any> {
-        return this.httpRequest.post(`${this.NATIVE_URL}/change-password`, request);
+        return this.httpRequest.post(`${this.apiPaths.authorizationNative}/change-password`, request);
     }
 }
