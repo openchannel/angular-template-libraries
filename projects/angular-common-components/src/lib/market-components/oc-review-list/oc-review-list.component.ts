@@ -57,13 +57,18 @@ export class OcReviewListComponent implements OnChanges {
     }
 
     /**
+     * Allow the user write a review. When `true` - review button will be shown.
+     * @default true
+     */
+    @Input() allowWriteReview: boolean = true;
+
+    /**
      * Event emitter for writing a new review.
      * @type {*}.
      */
     @Output() readonly writeAReview: EventEmitter<any> = new EventEmitter<any>();
 
     displayedReviews: OCReviewDetails[] = [];
-
 
     /**
      * Checks for any changes in the component.
