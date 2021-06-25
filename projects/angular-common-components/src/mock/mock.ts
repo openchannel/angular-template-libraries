@@ -150,6 +150,7 @@ export class MockRatingComponent {
     @Input() label = '';
     @Input() labelClass = 'font-m font-med';
     @Input() type: 'single-star' | 'multi-star' = 'single-star';
+    @Input() disabled: boolean = false;
 }
 
 @Component({

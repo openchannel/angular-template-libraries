@@ -98,4 +98,11 @@ describe('OcReviewListComponent', () => {
             expect(button.textContent).toContain('Collapse');
         });
     });
+
+    it('should hid the review button', () => {
+        component.allowWriteReview = false;
+
+        fixture.detectChanges();
+        expect(fixture.debugElement.query(By.css('.review-list__header-button'))).toBeFalsy();
+    });
 });
