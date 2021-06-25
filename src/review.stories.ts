@@ -1,40 +1,45 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcRatingComponent } from '@openchannel/angular-common-components/src/lib/market-components';
+import { OcRatingComponent, OcReviewComponent } from '@openchannel/angular-common-components/src/lib/market-components';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OcFormComponentsModule } from '@openchannel/angular-common-components/src/lib/form-components';
+import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 
 const modules = {
-    imports: [AngularSvgIconModule.forRoot(), NgbModule, HttpClientTestingModule],
+    imports: [
+        AngularSvgIconModule.forRoot(),
+        NgbModule,
+        HttpClientTestingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        OcFormComponentsModule,
+        OcCommonLibModule,
+    ],
+    declarations: [OcRatingComponent],
 };
 
 export default {
-    title: 'Rating [BEM]',
-    component: OcRatingComponent,
+    title: 'Review [BEM]',
+    component: OcReviewComponent,
     decorators: [moduleMetadata(modules)],
 };
 
-const RatingComponent = (args: OcRatingComponent) => ({
-    component: OcRatingComponent,
+const ReviewComponent = (args: OcReviewComponent) => ({
+    component: OcReviewComponent,
     moduleMetadata: modules,
     props: args,
 });
 
-export const MultiStar = RatingComponent.bind({});
-MultiStar.args = {
-    type: 'multi-star',
-    rating: 4,
-    disabled: true,
-};
+export const SimpleReview = ReviewComponent.bind({});
+SimpleReview.args = {};
 
-export const SingleStar = RatingComponent.bind({});
-SingleStar.args = {
-    type: 'single-star',
-    rating: 4.5,
-    reviewCount: 50,
-};
-
-export const InteractiveRating = RatingComponent.bind({});
-InteractiveRating.args = {
-    type: 'multi-star',
+export const FullReview = ReviewComponent.bind({});
+FullReview.args = {
+    heading: 'Write a review',
+    enableButtons: true,
+    cancelButtonText: 'Cancel',
+    submitButtonText: 'Submit',
+    hidCancelButton: false,
 };
