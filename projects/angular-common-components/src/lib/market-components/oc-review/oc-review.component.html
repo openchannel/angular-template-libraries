@@ -23,6 +23,9 @@
         <oc-button *ngIf="!hidCancelButton"
                    [text]="cancelButtonText" type="secondary"
                    class="review__button review__button-cancel"></oc-button>
-        <oc-button [text]="submitButtonText" type="primary" class="review__button review__button-submit"></oc-button>
+        <oc-button [text]="submitButtonText"
+                   type="primary"
+                   class="review__button review__button-submit"
+                   (click)="submitReview()"></oc-button>
     </div>
 </div>

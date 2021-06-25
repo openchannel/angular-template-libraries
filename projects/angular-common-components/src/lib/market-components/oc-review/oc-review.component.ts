@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Review } from '../models/oc-review-details-model';
 
@@ -42,6 +42,10 @@ export class OcReviewComponent implements OnInit {
      * Data of the review from the user.
      */
     @Input() reviewData: Review;
+    /**
+     * Emits the fresh Review data to the parent component on `submit` button click or on form value changes.
+     */
+    @Output() readonly reviewFormData: EventEmitter<Review> = new EventEmitter<Review>();
     /** Form for the review. */
     reviewForm: FormGroup;
     constructor(private fb: FormBuilder) {}
@@ -50,11 +54,42 @@ export class OcReviewComponent implements OnInit {
         this.generateForm(this.reviewData);
     }
 
+    /**
+     * Generating form with review data if it applied.
+     * @param reviewData review data input. Necessary for the review editing
+     */
     generateForm(reviewData?: Review): void {
         this.reviewForm = this.fb.group({
-            rating: [reviewData?.rating || null, [Validators.required]],
-            headline: [reviewData?.headline || '', [Validators.required]],
+            rating: [reviewData?.rating ? reviewData.rating / 100 : null, [Validators.required]],
+            headline: [reviewData?.headline, [Validators.required]],
             description: [reviewData?.description || '', [Validators.required]],
         });
+    }
+
+    /**
+     * Function for the `submit` button. Triggers on click,
+     * checking form and emits review data if form is valid. Otherwise, invalid form fields will be highlighted.
+     */
+    submitReview(): void {
+        if (this.reviewForm.valid) {
+            this.reviewFormData.emit(this.fillReviewData());
+        } else {
+            this.reviewForm.markAllAsTouched();
+        }
+    }
+
+    /**
+     * Fills review data from a previous data, new data from a form and parse rating.
+     * @private
+     * @return Review
+     */
+    private fillReviewData(): Review {
+        let resultData: Review;
+        resultData = {
+            ...this.reviewData,
+            ...this.reviewForm.getRawValue(),
+            rating: this.reviewForm.get('rating').value * 100,
+        };
+        return resultData;
     }
 }
