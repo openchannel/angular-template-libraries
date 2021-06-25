@@ -17,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
+import { OcReviewComponent } from './oc-review/oc-review.component';
 
 @NgModule({
     declarations: [
@@ -33,6 +34,7 @@ import { OcCommonLibModule } from '@openchannel/angular-common-components/src/li
         OcRecommendedAppsComponent,
         OcReviewListComponent,
         OcTextSearchComponent,
+        OcReviewComponent,
     ],
     imports: [CommonModule, NgbModule, OcCommonLibModule, RouterModule, FormsModule],
     exports: [
@@ -49,6 +51,7 @@ import { OcCommonLibModule } from '@openchannel/angular-common-components/src/li
         OcRecommendedAppsComponent,
         OcReviewListComponent,
         OcTextSearchComponent,
+        OcReviewComponent
     ],
 })
 export class OcMarketComponentsModule {}
