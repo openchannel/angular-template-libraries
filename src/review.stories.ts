@@ -24,6 +24,7 @@ export default {
     title: 'Review [BEM]',
     component: OcReviewComponent,
     decorators: [moduleMetadata(modules)],
+    argTypes: { reviewFormData: { action: 'Review Data' } },
 };
 
 const ReviewComponent = (args: OcReviewComponent) => ({
@@ -42,4 +43,27 @@ FullReview.args = {
     cancelButtonText: 'Cancel',
     submitButtonText: 'Submit',
     hidCancelButton: false,
+};
+
+export const FilledReview = ReviewComponent.bind({});
+FilledReview.args = {
+    heading: 'Write a review',
+    enableButtons: true,
+    cancelButtonText: 'Cancel',
+    submitButtonText: 'Submit',
+    hidCancelButton: false,
+    reviewData: {
+        reviewId: '5463cee5e4b042e3e26f1e41',
+        appId: '5565322ae4b0a70b13a4563b',
+        appName: 'My App',
+        userId: '6843gfu34783gfg',
+        reportDate: 1432695338702,
+        rating: 400,
+        headline: 'Good App!',
+        description: 'It works great and looks good too.',
+        status: {
+            value: 'approved',
+            reason: '',
+        },
+    },
 };
