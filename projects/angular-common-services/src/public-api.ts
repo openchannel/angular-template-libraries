@@ -64,7 +64,8 @@ export * from './lib/service/user-role.service';
 export * from './lib/service/statistic.service';
 export * from './lib/service/properties.service';
 export * from './lib/service/request.service';
-export * from './lib/service/custom-content.service';
+export * from './lib/service/site-content.service';
+export * from './lib/service/cms-site-content.service';
 
 /* Utils */
 export * from './lib/util/type-mapper.util';
