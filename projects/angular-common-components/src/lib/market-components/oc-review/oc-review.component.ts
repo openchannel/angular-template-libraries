@@ -113,14 +113,8 @@ export class OcReviewComponent implements OnInit, OnDestroy {
     private fillReviewData(): Review {
         let resultData: Review;
         resultData = {
-            ...this.reviewData,
             ...this.reviewForm.getRawValue(),
             rating: this.reviewForm.get('rating').value * 100,
-            reportDate: new Date().getTime(),
-            status: {
-                value: 'pending',
-                reason: '',
-            },
         };
         return resultData;
     }
