@@ -46,6 +46,10 @@ export class OcReviewComponent implements OnInit {
      * Emits the fresh Review data to the parent component on `submit` button click or on form value changes.
      */
     @Output() readonly reviewFormData: EventEmitter<Review> = new EventEmitter<Review>();
+    /**
+     * Emits to the parent that `cancel` button was pressed and review has been canceled.
+     */
+    @Output() readonly cancelReview: EventEmitter<boolean> = new EventEmitter<boolean>();
     /** Form for the review. */
     reviewForm: FormGroup;
     constructor(private fb: FormBuilder) {}
@@ -78,6 +82,11 @@ export class OcReviewComponent implements OnInit {
         }
     }
 
+    clearForm(): void {
+        this.reviewForm.reset();
+        this.cancelReview.emit(true);
+    }
+
     /**
      * Fills review data from a previous data, new data from a form and parse rating.
      * @private
@@ -89,6 +98,11 @@ export class OcReviewComponent implements OnInit {
             ...this.reviewData,
             ...this.reviewForm.getRawValue(),
             rating: this.reviewForm.get('rating').value * 100,
+            reportDate: new Date().getTime(),
+            status: {
+                value: 'pending',
+                reason: '',
+            },
         };
         return resultData;
     }
