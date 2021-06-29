@@ -1,6 +1,6 @@
 {
   "name": "@openchannel/angular-common-services",
-  "version": "2.5.0",
+  "version": "2.9.0-1",
   "dependencies": {
     "tslib": "^2.0.0"
   },
