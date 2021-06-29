@@ -3,6 +3,9 @@ import {Meta} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {SiteConfig} from '../model/components/frontend.model';
 import {TitleService} from './title.service';
+import { Observable } from 'rxjs/internal/Observable';
+import { of, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +13,7 @@ import {TitleService} from './title.service';
 export class SiteConfigService {
 
   siteConfig: SiteConfig;
+  private siteConfigSetupTrigger: Subject<void> = new Subject<void>();
 
   constructor(private titleService: TitleService,
               private router: Router,
@@ -54,5 +58,10 @@ export class SiteConfigService {
     this.titleService.title = this.siteConfig.title;
     this.setMeta();
     this.setFavicon();
+    this.siteConfigSetupTrigger.next();
+  }
+
+  getSiteConfigAsObservable(): Observable<SiteConfig> {
+        return this.siteConfig ? of(this.siteConfig) : this.siteConfigSetupTrigger.pipe(map(() => this.siteConfig));
   }
 }
