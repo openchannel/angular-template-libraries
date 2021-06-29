@@ -1,14 +1,14 @@
-import {componentWrapperDecorator, Meta, moduleMetadata, Story} from '@storybook/angular';
-import {OcCommonLibModule} from '@openchannel/angular-common-components/src/lib/common-components';
-import {RouterTestingModule} from '@angular/router/testing';
-import {ReactiveFormsModule} from '@angular/forms';
-import {CommonModule} from '@angular/common';
-import {Component, Input, TemplateRef} from '@angular/core';
+import { componentWrapperDecorator, Meta, moduleMetadata, Story } from '@storybook/angular';
+import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component, Input, TemplateRef } from '@angular/core';
 import {
     OcAuthComponentsModule,
     OcEditUserFormConfig,
     TypeFieldModel,
-    TypeModel
+    TypeModel,
 } from '@openchannel/angular-common-components/src/lib/auth-components';
 
 @Component({
@@ -28,53 +28,104 @@ import {
                 [formConfigsLoading]="formConfigsLoading"
                 [formConfigs]="formConfigs"
                 [defaultTypeLabelText]="defaultTypeLabelText"
-                [customTermsDescription]="enableCustomTerms ? customTerms: null">
-            </oc-signup-custom>
+                [customTermsDescription]="enableCustomTerms ? customTerms : null"
+            ></oc-signup-custom>
             <ng-template #customTerms let-ctx>
                 <div class="edit-user-form__consent__label">
-                    Custom <a href="">Terms</a>
+                    Custom
+                    <a href="">Terms</a>
                 </div>
-                <oc-checkbox class="edit-user-form__consent-checkbox" style='border: red;' [formControl]="ctx.termsControl"></oc-checkbox>
+                <oc-checkbox class="edit-user-form__consent-checkbox" style="border: red;" [formControl]="ctx.termsControl"></oc-checkbox>
             </ng-template>
-        </div>`
+        </div>
+    `,
 })
 export class CustomSignUpStoryComponent {
-  @Input() loginUrl: string;
-  @Input() signupUrl: string;
-  @Input() activationUrl: string;
-  @Input() termsUrl: string;
-  @Input() policyUrl: string;
-  @Input() companyLogoUrl: string;
-  @Input() process: boolean;
-  @Input() forgotPasswordDoneUrl: string;
-  @Input() showSignupFeedbackPage: boolean;
-  @Input() formConfigsLoading = true;
-  @Input() formConfigs: OcEditUserFormConfig[];
-  @Input() defaultTypeLabelText = 'Type';
-  @Input() customTermsDescription: TemplateRef<any>;
-  @Input() enableCustomTerms: boolean = false;
+    /**
+     * Login url for those users who already has an account.
+     * @type {string}.
+     */
+    @Input() loginUrl: string;
+    /**
+     * Link to the Sign Up page.
+     * ## Example
+     * `"/sign-up"`
+     */
+    @Input() signupUrl: string;
+    /**
+     * Link to the Activate account page.
+     * ## Example
+     * `"/activation"`
+     */
+    @Input() activationUrl: string;
+    /**
+     * A url for users, which opens the terms of service.
+     * @type {string}.
+     */
+    @Input() termsUrl: string;
+    /**
+     * A url for users, which opens the data processing policy.
+     * @type {string}.
+     */
+    @Input() policyUrl: string;
+    /**
+     * A source path to company logo icon.
+     * @type {string}.
+     */
+    @Input() companyLogoUrl: string;
+    /**
+     * Status of the signup process. If user clicked the Sign Up button - process will start, spinner will be shown on the button
+     * and user can not interact with a signup button.
+     */
+    @Input() process: boolean;
+    /**
+     * A source path to the icon in a result message after the activation email had been sent to the inbox.
+     * @type {boolean}.
+     */
+    @Input() forgotPasswordDoneUrl: string;
+    /**
+     * A variable which determines whether to show or hide signup feedback page.
+     * @type {boolean}.
+     */
+    @Input() showSignupFeedbackPage: boolean;
+    /**
+     * Flag that showing that form for sign up is loading.
+     */
+    @Input() formConfigsLoading = true;
+    /**
+     * Config for the Custom Sign Up form.
+     */
+    @Input() formConfigs: OcEditUserFormConfig[];
+    /**
+     * Default text for the type label.
+     */
+    @Input() defaultTypeLabelText = 'Type';
+    /**
+     * Custom template for the checkbox with privacy and terms.
+     */
+    @Input() customTermsDescription: TemplateRef<any>;
+    @Input() enableCustomTerms: boolean = false;
 
-  constructor() {
-  }
+    constructor() {}
 }
 
 export default {
-  title: 'User signup custom [BEM]',
-  component: CustomSignUpStoryComponent,
-  decorators: [
-    moduleMetadata({
-      declarations: [CustomSignUpStoryComponent],
-      imports: [CommonModule, OcCommonLibModule, RouterTestingModule, ReactiveFormsModule, OcAuthComponentsModule],
-    }),
-    componentWrapperDecorator(story => `<div style="margin: 3em">${story}</div>`),
-  ],
-  excludeStories: /.*StoryComponent$/
+    title: 'User signup custom [BEM]',
+    component: CustomSignUpStoryComponent,
+    decorators: [
+        moduleMetadata({
+            declarations: [CustomSignUpStoryComponent],
+            imports: [CommonModule, OcCommonLibModule, RouterTestingModule, ReactiveFormsModule, OcAuthComponentsModule],
+        }),
+        componentWrapperDecorator(story => `<div style="margin: 3em">${story}</div>`),
+    ],
+    excludeStories: /.*StoryComponent$/,
 } as Meta;
 
 const Template: Story<CustomSignUpStoryComponent> = args => ({
-  props: {
-    ...args
-  },
+    props: {
+        ...args,
+    },
 });
 
 const accountTypeData: TypeModel<TypeFieldModel> = {
@@ -140,7 +191,7 @@ const multiConfigs: OcEditUserFormConfig[] = [
             typeData: organizationTypeData,
             type: 'first-organization-form',
         },
-        fieldsOrder: ['email', 'name']
+        fieldsOrder: ['email', 'name'],
     },
     {
         name: 'Second Form',
@@ -190,17 +241,17 @@ OneConfig.args = {
 
 export const CustomTermsConfig = Template.bind({});
 CustomTermsConfig.args = {
-  loginUrl: 'login',
-  companyLogoUrl: './assets/angular-common-components/logo-company.png',
-  formConfigsLoading: false,
-  formConfigs: [multiConfigs[0]],
-  enableCustomTerms: true
+    loginUrl: 'login',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
+    formConfigsLoading: false,
+    formConfigs: [multiConfigs[0]],
+    enableCustomTerms: true,
 };
 
 export const ResultPage = Template.bind({});
 ResultPage.args = {
-  loginUrl: 'login',
-  companyLogoUrl: './assets/angular-common-components/logo-company.png',
-  showSignupFeedbackPage: true,
-  forgotPasswordDoneUrl: './assets/angular-common-components/email_done.svg',
+    loginUrl: 'login',
+    companyLogoUrl: './assets/angular-common-components/logo-company.png',
+    showSignupFeedbackPage: true,
+    forgotPasswordDoneUrl: './assets/angular-common-components/email_done.svg',
 };

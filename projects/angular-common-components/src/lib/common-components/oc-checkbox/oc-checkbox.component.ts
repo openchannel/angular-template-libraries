@@ -1,6 +1,10 @@
 import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+/**
+ * Openchannel checkbox component. Represents abstract control.
+ * Can be used with `ngModel` or `formControl`.
+ */
 @Component({
     selector: 'oc-checkbox',
     templateUrl: './oc-checkbox.component.html',
@@ -19,20 +23,23 @@ export class OcCheckboxComponent implements ControlValueAccessor {
         this.checked = val;
         this.onChange(this.checked);
     }
-    /** Text near checkbox */
+    /** Text of the checkbox. Will be placed near checkbox */
     @Input() labelText: string;
-    /** Set 'required' indicator near the label */
+    /** Sets asterisk near the label text. Which means that this control is required */
     @Input() requiredIndicator: boolean = false;
-    /** Disable checkbox */
+    /** Disable current checkbox. User can't interact with this component */
     @Input() disabled: boolean = false;
     /**
      * Output event with checkbox state.
-     * Use it when a checkbox isn't a part of the form
+     * Use it when a checkbox isn't a part of the form or not used as `ngModel`.
      */
-    @Output() isCheckedChange = new EventEmitter<any>();
+    @Output() readonly isCheckedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     /** Checkbox state value. Can be true or false */
     checked: boolean = false;
 
+    /**
+     * Catching changes in the checkbox and updating control.
+     */
     changeModelVal(): void {
         this.onTouched();
         this.onChange(this.checked);
@@ -75,6 +82,12 @@ export class OcCheckboxComponent implements ControlValueAccessor {
         this.checked = obj;
     }
 
+    /**
+     * @ignore
+     */
     private onTouched = () => {};
+    /**
+     * @ignore
+     */
     private onChange: (value: any) => void = () => {};
 }
