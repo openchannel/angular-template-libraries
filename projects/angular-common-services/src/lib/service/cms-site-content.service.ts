@@ -1,9 +1,9 @@
-import { Observable, of, Subject } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 import { camelCase, forIn, get, has } from 'lodash';
 import { catchError, map } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
 
 export abstract class CMSSiteContentService {
-
     private cmsData: any;
     private modifyContentCMSSubject: Subject<boolean> = new Subject<boolean>();
 
@@ -20,12 +20,19 @@ export abstract class CMSSiteContentService {
             });
     }
 
-    getContentByPath(path: string): Observable<any> {
+    getContentByPaths<P>(paths: P): Observable<{ [PK in keyof P]: any }> {
         if (this.cmsData) {
-            return of(this.tryGetContentByPath(this.cmsData, path));
+            return of(this.findContentByPaths(paths));
         } else {
-            return this.modifyContentCMSSubject.pipe(map(() => this.tryGetContentByPath(this.cmsData, path)));
+            return this.modifyContentCMSSubject.pipe(map(() => this.findContentByPaths(paths)));
         }
+    }
+
+    private findContentByPaths<P>(paths: P): { [PK in keyof P]: any } {
+        const tempPathsData = { ...paths };
+        Object.keys(tempPathsData).forEach(key => (tempPathsData[key] = null));
+        forIn(paths, (path, name) => (tempPathsData[name] = this.tryGetContentByPath(this.cmsData, path)));
+        return tempPathsData;
     }
 
     private tryGetContentByPath(cmsData: any, path: string): string {
