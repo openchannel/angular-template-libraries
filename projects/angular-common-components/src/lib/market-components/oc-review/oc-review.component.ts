@@ -1,13 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Review } from '../models/oc-review-details-model';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'oc-review',
     templateUrl: './oc-review.component.html',
     styleUrls: ['./oc-review.component.scss'],
 })
-export class OcReviewComponent implements OnInit {
+export class OcReviewComponent implements OnInit, OnDestroy {
     /**
      * (Optional)
      * Heading of the Review component. If not set - heading would not appear.
@@ -50,12 +52,25 @@ export class OcReviewComponent implements OnInit {
      * Emits to the parent that `cancel` button was pressed and review has been canceled.
      */
     @Output() readonly cancelReview: EventEmitter<boolean> = new EventEmitter<boolean>();
+    /** Emits the form valid status to a parent */
+    @Output() readonly isFormInvalid: EventEmitter<boolean> = new EventEmitter<boolean>();
     /** Form for the review. */
     reviewForm: FormGroup;
+    /**
+     * Subject for control of the form subscription life cycle
+     * @private
+     */
+    private destroy$: Subject<void> = new Subject();
+
     constructor(private fb: FormBuilder) {}
 
     ngOnInit(): void {
         this.generateForm(this.reviewData);
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 
     /**
@@ -68,6 +83,9 @@ export class OcReviewComponent implements OnInit {
             headline: [reviewData?.headline, [Validators.required]],
             description: [reviewData?.description || '', [Validators.required]],
         });
+        if (!this.enableButtons) {
+            this.subscribeToForm();
+        }
     }
 
     /**
@@ -105,5 +123,19 @@ export class OcReviewComponent implements OnInit {
             },
         };
         return resultData;
+    }
+
+    /**
+     * Listening to value changes of the form if buttons not applied.
+     * @private
+     */
+    private subscribeToForm(): void {
+        this.isFormInvalid.emit(this.reviewForm.valid);
+        this.reviewFormData.emit(this.fillReviewData());
+
+        this.reviewForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
+            this.isFormInvalid.emit(this.reviewForm.valid);
+            this.reviewFormData.emit(this.fillReviewData());
+        });
     }
 }

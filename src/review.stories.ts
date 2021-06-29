@@ -24,7 +24,11 @@ export default {
     title: 'Review [BEM]',
     component: OcReviewComponent,
     decorators: [moduleMetadata(modules)],
-    argTypes: { reviewFormData: { action: 'Review Data' } },
+    argTypes: {
+        reviewFormData: { action: 'Review Data' },
+        cancelReview: { action: 'Review canceled' },
+        isFormInvalid: { action: 'Form validation status' },
+    },
 };
 
 const ReviewComponent = (args: OcReviewComponent) => ({
