@@ -70,6 +70,7 @@ export class ReviewsService {
                         rating: review.rating,
                         review: review.description,
                         reviewOwnerName: idToUser.get(review.userId).name,
+                        userId: review.userId,
                     };
                 });
 
