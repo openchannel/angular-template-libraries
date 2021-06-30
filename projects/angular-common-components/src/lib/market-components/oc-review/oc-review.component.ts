@@ -45,6 +45,13 @@ export class OcReviewComponent implements OnInit, OnDestroy {
      */
     @Input() reviewData: Review;
     /**
+     * Flag that gives information that review submit request is in progress.
+     * This will disable the buttons and user can not interact with it.
+     * Also it applies a spinner to the `submit` button.
+     * @default false
+     */
+    @Input() reviewSubmitInProgress: boolean = false;
+    /**
      * Emits the fresh Review data to the parent component on `submit` button click or on form value changes.
      */
     @Output() readonly reviewFormData: EventEmitter<Review> = new EventEmitter<Review>();
@@ -93,16 +100,18 @@ export class OcReviewComponent implements OnInit, OnDestroy {
      * checking form and emits review data if form is valid. Otherwise, invalid form fields will be highlighted.
      */
     submitReview(): void {
-        if (this.reviewForm.valid) {
+        if (this.reviewForm.valid && !this.reviewSubmitInProgress) {
             this.reviewFormData.emit(this.fillReviewData());
-        } else {
-            this.reviewForm.markAllAsTouched();
+            return;
         }
+        this.reviewForm.markAllAsTouched();
     }
 
     clearForm(): void {
-        this.reviewForm.reset();
-        this.cancelReview.emit(true);
+        if (!this.reviewSubmitInProgress) {
+            this.reviewForm.reset();
+            this.cancelReview.emit(true);
+        }
     }
 
     /**
