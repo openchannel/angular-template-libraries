@@ -28,6 +28,9 @@
     &-heading {
       @include font-medium();
     }
+    &-head {
+
+    }
     &-rating {
       display: block;
       margin-bottom: 1rem;
@@ -54,6 +57,23 @@
   &__empty-result-heading {
     margin-top: 5rem;
   }
+
+  &__menu {
+    cursor: pointer;
+    text-align: right;
+    &-icon-dots {
+      border: 1px solid $info;
+      border-radius: 4px;
+      padding: 19px;
+    }
+  }
 }
 
+// Dropdown menu style
+.dropdown-menu {
+  @include oc-dropdown-menu($primary, $info);
+}
 
+.icon-recolor {
+  fill: $body-color;
+}

@@ -8,7 +8,13 @@
     <ng-content></ng-content>
     <div *ngIf="displayedReviews && displayedReviews.length>0 ; else emptyList">
         <div *ngFor="let review of displayedReviews" class="review-list__one-review">
-            <h5 class="review-list__one-review-heading">{{review.reviewOwnerName}}</h5>
+            <div class="review-list__one-review-head">
+                <h5 class="review-list__one-review-heading">{{review.reviewOwnerName}}</h5>
+                <div class="review-list__one-review-action-menu">
+                    <ng-container [ngTemplateOutlet]="reviewMenuTemplate">
+                    </ng-container>
+                </div>
+            </div>
             <div class="review-list__one-review-rating-label">Rating</div>
             <oc-rating [rating]="review.rating/100" type="multi-star" class="review-list__one-review-rating"
                        [disabled]="true"></oc-rating>
@@ -23,3 +29,19 @@
         <h4 class="review-list__empty-result-heading">{{noReviewMessage}}</h4>
     </ng-template>
 </div>
+
+<ng-template #reviewMenuTemplate let-review>
+    <div class="review-list__menu">
+        <div ngbDropdown placement="bottom-right top-right">
+            <img [src]="menuUrl" alt="more-icon" class="review-list__menu-icon-dots" ngbDropdownToggle>
+            <div ngbDropdownMenu>
+                <ng-container *ngFor="let menuAction of reviewMenuOptions">
+                    <button (click)="chosenAction.emit(menuAction)"
+                            ngbDropdownItem [ngClass]="'menu-' + menuAction | lowercase">
+                        {{menuAction | titlecase}}
+                    </button>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</ng-template>

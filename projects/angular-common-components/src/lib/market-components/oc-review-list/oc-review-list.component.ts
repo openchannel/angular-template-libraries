@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { OCReviewDetails } from '../models/oc-review-details-model';
+import { OCReviewDetails, ReviewListOptionType } from '../models/oc-review-details-model';
 
 /**
  * Review list component.
@@ -12,8 +12,6 @@ import { OCReviewDetails } from '../models/oc-review-details-model';
     styleUrls: ['./oc-review-list.component.scss'],
 })
 export class OcReviewListComponent implements OnChanges {
-    baseReviewsList: OCReviewDetails[] = [];
-
     /**
      * Review list title.
      * @type {string}.
@@ -30,7 +28,7 @@ export class OcReviewListComponent implements OnChanges {
     /**
      * The maximum number of reviews to display.
      * @type {number}.
-     * @default.
+     * @default 3
      */
     @Input() maxReviewDisplay: number = 3;
 
@@ -63,12 +61,32 @@ export class OcReviewListComponent implements OnChanges {
     @Input() allowWriteReview: boolean = true;
 
     /**
+     * Path to the custom icon for the hidden menu toggle button.
+     *
+     * @default dots-menu.svg
+     */
+    @Input() menuUrl: string = 'assets/angular-common-components/dots-menu.svg';
+    /**
+     * (optional)
+     * Id of the review of the current authorized user.
+     * If this Input does not empty - dropdown menu will be shown on this review.
+     */
+    @Input() appOwnerReviewId: string = '';
+
+    /**
      * Event emitter for writing a new review.
      * @type {*}.
      */
     @Output() readonly writeAReview: EventEmitter<any> = new EventEmitter<any>();
+    /**
+     * Emits chosen action from the review dropdown menu to the parent.
+     */
+    @Output() readonly chosenAction: EventEmitter<ReviewListOptionType> = new EventEmitter<ReviewListOptionType>();
 
+    baseReviewsList: OCReviewDetails[] = [];
     displayedReviews: OCReviewDetails[] = [];
+
+    reviewMenuOptions: ReviewListOptionType[] = ['EDIT', 'DELETE'];
 
     /**
      * Checks for any changes in the component.
