@@ -6,7 +6,7 @@ import {AuthenticationService} from './authentication.service';
 
 /**
 
- * Description: Service for setting up site config.<br> 
+ * Description: Service for setting up site config.<br>
 
  * @param {{ headers: HttpHeaders; withCredentials: boolean;}} options (default: `{headers: { 'Content-Type': 'application/json' }, withCredentials: true}`) - default Http options
 
@@ -138,6 +138,6 @@ export class HttpRequestService {
     }
 
     private mergeHttpOptions(newOptions: any): any {
-        return newOptions ? {...this.options, ...newOptions} : this.options;
+        return newOptions ? { ...this.options, ...newOptions } : this.options;
     }
 }

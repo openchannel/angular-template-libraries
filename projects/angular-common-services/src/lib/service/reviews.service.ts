@@ -33,22 +33,22 @@ export class ReviewsService {
      * @param {number} page  (optional) Current page index. Starts from >= 1.
      * @param {number} limit (optional) Count Reviews into response. Starts from >= 1.
      * @param {string} sort (optional) Sort Reviews by specific field.
-     * @param {string} filter (optional) Your specific search filter.
+     * @param {string[]} filter (optional) Array for your specific search filters.
      * @returns {Observable<Page<OCReviewDetailsResponse>>} Observable<Page<OCReviewDetailsResponse>>
      *
      * ### Example:
-     * `getReviewsByAppId('a7hsd87ha8sdh8a7sd',1, 10, "{"name": 1}", "{"name": {"$in":["first", "second"]}}")`
+     * `getReviewsByAppId('a7hsd87ha8sdh8a7sd',1, 10, "{"name": 1}", ["{"name": {"$in":["first", "second"]}}"])`
      */
     getReviewsByAppId(
         appId: string,
         sort?: string,
-        filter?: string,
+        filter?: string[],
         page?: number,
         limit?: number,
     ): Observable<Page<OCReviewDetailsResponse>> {
-        const queries = [`{'appId':'${appId}'}`];
+        let queries = [`{'appId':'${appId}'}`];
         if (filter) {
-            queries.push(filter);
+            queries = [...queries, ...filter];
         }
 
         let params = new OcHttpParams().append('query', QueryUtil.getAndQuery(queries)).append('sort', sort);
@@ -58,7 +58,7 @@ export class ReviewsService {
         }
 
         let reviewPage: Page<ReviewResponse>;
-        return this.httpService.get(this.REVIEWS_URL, params).pipe(
+        return this.httpService.get(this.REVIEWS_URL, { params }).pipe(
             tap((pageData: Page<ReviewResponse>) => (reviewPage = pageData)),
             mergeMap((pageData: Page<ReviewResponse>) => this.usersService.getUsersByIds(pageData.list.map(value => value.userId))),
             map((userPage: Page<User>) => {
