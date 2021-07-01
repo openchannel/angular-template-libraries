@@ -1,5 +1,15 @@
 import { ComponentsUser, ComponentsUserAccount } from '@openchannel/angular-common-components/src/lib/management-components';
 
+/**
+ * Model for the [Review List]{@link OcReviewListComponent} component.
+ * @example
+ * {
+ *     reviewOwnerName: 'John Doe',
+ *     rating: 300,
+ *     review: 'Some review text',
+ *     userId: '5565322ae4b0a70b13a4563b'
+ * }
+ */
 export class OCReviewDetails {
     reviewOwnerName: string;
     rating: number;
@@ -78,3 +88,5 @@ export interface ReviewStatus {
     /** Text describing the reason for the current status */
     reason?: string;
 }
+
+export declare type ReviewListOptionType = 'EDIT' | 'DELETE';
