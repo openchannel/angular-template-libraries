@@ -2,53 +2,26 @@
 @import '../../../../assets/styles/mixins';
 
 .dropdown-multi-checkbox {
-  display: inline-block;
-  width: 100%;
-  .dropdown-toggle, .dropdown-menu {
-    width: 100%;
-    max-height: 200px;
-  }
-  &__label {
+  &__group {
     display: flex;
-    align-items: center;
-    width: 100%;
-    cursor: pointer;
-    &-text {
-      width: 100%;
-      @include font-size-md();
-      @include font-medium();
-      display: flex;
-      align-items: center;
-      flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: flex-start;
+    min-height: 46px;
+
+    &-checkbox {
+      margin-right: 10px;
+      margin-top: 15px;
+      margin-left: 16px;
       cursor: pointer;
     }
-    &::after {
-      margin-left: -20px;
-      z-index: 1;
-    }
-  }
 
-  &__dropdown {
-    padding: 0;
-    &-item {
-      height: 46px;
-      &-group{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        height: 100%;
-        cursor: pointer;
-        &-checkbox {
-          margin-right: 10px;
-          margin-top: -12px;
-          margin-left: 4px;
-        }
-        &-text {
-          @include font-size-md();
-          margin-top: auto;
-          margin-bottom: auto;
-        }
-      }
+    &-text {
+      @include font-size-md();
+      margin-top: auto;
+      margin-bottom: auto;
+      cursor: pointer;
+      word-break: break-word;
+      text-overflow: ellipsis;
     }
   }
 }

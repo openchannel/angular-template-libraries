@@ -140,6 +140,9 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ### Running tests
 Run `npm run test`
 
+### Running single test with watch flag
+Run `npm run test:watch --folderName=oc-dynamic-field-array`
+
 ### Package Project
 Run `npm run angular-common-components-pack`
 

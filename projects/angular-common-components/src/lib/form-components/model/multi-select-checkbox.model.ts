@@ -3,4 +3,4 @@ export interface DropdownItem {
     value: any;
 }
 
-export type DropdownItemType = number[] | string[] | DropdownItem[];
+export type DropdownItemType = number | string | DropdownItem;

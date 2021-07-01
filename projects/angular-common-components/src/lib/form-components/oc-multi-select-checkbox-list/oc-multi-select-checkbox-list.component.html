@@ -1,28 +1,19 @@
-<div class="dropdown-multi-checkbox" ngbDropdown autoClose="outside" placement="bottom-right" #myDrop="ngbDropdown">
-        <div class="dropdown-multi-checkbox__label" (click)="$event.preventDefault(); myDrop.isOpen() ? myDrop.close() : myDrop.open()"
-              ngbDropdownAnchor id="dropdownManual">
-            <ng-container [ngTemplateOutlet]="dropdownTitleNgt"
-                          [ngTemplateOutletContext]="{$implicit: label}"></ng-container>
-        </div>
-    <div ngbDropdownMenu aria-labelledby="dropdownManual" class="dropdown-multi-checkbox__dropdown">
-        <ng-container *ngFor="let item of itemsArray">
-            <div ngbDropdownItem
-                 [class.active]="item.selected"
-                 (click)="updateSelectValueForItem(item, !item.selected)">
-                <ng-container [ngTemplateOutlet]="dropdownItemNgt"
-                              [ngTemplateOutletContext]="{$implicit: item}"></ng-container>
-            </div>
-        </ng-container>
+<div class="dropdown-multi-checkbox">
+    <div *ngFor="let item of itemsArray">
+        <ng-container [ngTemplateOutlet]="dropdownItemNgt"
+                      [ngTemplateOutletContext]="{$implicit: item}"></ng-container>
     </div>
 </div>
 
-<ng-template #dropdownTitleNgt let-label>
-    <oc-button type="secondary" class="dropdown-multi-checkbox__label-text" [text]="label"></oc-button>
-</ng-template>
-
 <ng-template #dropdownItemNgt let-item>
-    <div class="dropdown-multi-checkbox__dropdown-item-group">
-        <oc-checkbox class="dropdown-multi-checkbox__dropdown-item-group-checkbox" [value]="item.selected"></oc-checkbox>
-        <span class="dropdown-multi-checkbox__dropdown-item-group-text">{{item.label}}</span>
+    <div [id]="'multi-checkbox-item-' + item.label" class="dropdown-multi-checkbox__group">
+        <oc-checkbox
+                [value]="item.selected"
+                (isCheckedChange)="switchItemStatus(item)"
+                class="dropdown-multi-checkbox__group-checkbox"></oc-checkbox>
+        <span
+                [id]="'multi-checkbox-item-' + item.label + '-text'"
+                (click)="switchItemStatus(item)"
+                class="dropdown-multi-checkbox__group-text">{{item.label}}</span>
     </div>
 </ng-template>
