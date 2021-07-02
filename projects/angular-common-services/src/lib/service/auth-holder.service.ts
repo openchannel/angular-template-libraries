@@ -141,15 +141,12 @@ export class AuthHolderService {
     hasPermission(type: PermissionType, accessArray: AccessLevel[]): boolean {
         if (this.userDetails?.permissions && type && accessArray) {
             return !!this.userDetails?.permissions.find(permission => {
-                if (permission) {
-                    const validType = permission.startsWith(type) || permission.startsWith('*');
-                    if (validType) {
-                        if (accessArray.find(access => permission.endsWith(access)) || permission.endsWith('*')) {
-                            return true;
-                        }
-                    }
+                if (!permission) {
+                    return false;
                 }
-                return false;
+                const validType = permission.startsWith(type) || permission.startsWith('*');
+                const hasAccess = accessArray.find(access => permission.endsWith(access));
+                return (validType && hasAccess) || permission.endsWith('*');
             });
         }
         return false;

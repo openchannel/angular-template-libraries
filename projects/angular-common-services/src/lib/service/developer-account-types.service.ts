@@ -1,4 +1,4 @@
-import { Inject, Injectable, InjectionToken } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpRequestService } from './http-request-services';
 import { Page } from '../model/api/page.model';

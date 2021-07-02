@@ -22,7 +22,8 @@ import { TitleService } from './title.service';
 export class SiteConfigService {
     siteConfig: SiteConfig;
 
-    constructor(private titleService: TitleService, private metaService: Meta) {}
+    constructor(private titleService: TitleService, private metaService: Meta) {
+    }
 
     /**
      * Description: Set up meta tags from the Site Config
@@ -30,9 +31,7 @@ export class SiteConfigService {
      * @returns {void}
      *
      * ### Example
-     *``
-     * setMeta()
-     *``
+     * ``setMeta()``
      */
     setMeta(): void {
         this.metaService.addTags(this.siteConfig.metaTags);
@@ -46,24 +45,24 @@ export class SiteConfigService {
      * @returns {void}
      *
      * ### Example
-     *``
+     * ``
      * setFavicon('/path/img', 'png')
-     *``
+     * ``
      */
     setFavicon(customPath?: string, customIconType?: string): void {
         const iconLink: HTMLLinkElement = document.querySelector('#custom-favicon');
+        const type = customIconType ? customIconType : this.siteConfig.favicon.type ? this.siteConfig.favicon.type : 'image/x-icon';
+        const value = customPath ? customPath : this.siteConfig.favicon.href;
+
         if (iconLink) {
-            iconLink.href = customPath ? customPath : this.siteConfig.favicon.href;
-            iconLink.type = customIconType ? customIconType : this.siteConfig.favicon.type ? this.siteConfig.favicon.type : 'image/x-icon';
+            iconLink.href = value;
+            iconLink.type = type;
         } else {
             const linkElement = document.createElement('link');
             linkElement.setAttribute('id', 'custom-favicon');
             linkElement.setAttribute('rel', 'icon');
-            linkElement.setAttribute(
-                'type',
-                customIconType ? customIconType : this.siteConfig.favicon.type ? this.siteConfig.favicon.type : 'image/x-icon',
-            );
-            linkElement.setAttribute('href', customPath ? customPath : this.siteConfig.favicon.href);
+            linkElement.setAttribute('type', type);
+            linkElement.setAttribute('href', value);
             document.head.appendChild(linkElement);
         }
     }
@@ -75,7 +74,7 @@ export class SiteConfigService {
      * @returns {void}
      *
      * ### Example
-     *``
+     * ``
      * initSiteConfiguration({
      * title: 'title';
      * tagline: 'some';
@@ -95,7 +94,7 @@ export class SiteConfigService {
      *     type?: 'png';
      * };
      * })
-     *``
+     * ``
      */
     initSiteConfiguration(config: SiteConfig): void {
         this.siteConfig = config;

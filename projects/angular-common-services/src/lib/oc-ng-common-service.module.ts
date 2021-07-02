@@ -1,4 +1,4 @@
-import { Injectable, InjectionToken, ModuleWithProviders, NgModule, Type } from '@angular/core';
+import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpRequestService } from './service/http-request-services';
 import { HttpXsrfExtractor, HttpXsrfInterceptor, XSRF_HEADER_NAME } from './xsrf/xsrf';
@@ -163,8 +163,9 @@ export class OcCommonServiceModule {
         const apiPathsResult = new OcApiPaths();
 
         forIn(apiPaths, (apiPath: string, fieldName: string) => {
+            // tslint:disable-next-line:prefer-conditional-expression
             if (globalPrefix && !pathsWithoutGlobalPrefix.includes(fieldName)) {
-                apiPathsResult[fieldName] = `${globalPrefix}${apiPath ? `/${apiPath}` : ''}`;
+                apiPathsResult[fieldName] = `${globalPrefix}${apiPath ? '/' + apiPath : ''}`;
             } else {
                 apiPathsResult[fieldName] = apiPath || '';
             }

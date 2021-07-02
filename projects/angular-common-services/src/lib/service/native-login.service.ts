@@ -1,4 +1,4 @@
-import { Injectable, Optional } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpRequestService } from './http-request-services';
 import { OCNativeCustomSignup, OCNativeDefaultSignup, UserLoginModel } from '../model/api/user-login-model';
