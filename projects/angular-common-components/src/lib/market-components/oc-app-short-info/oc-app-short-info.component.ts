@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { AppModel, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 
 /**
@@ -51,9 +51,5 @@ export class OcAppShortInfoComponent implements OnInit {
 
     ngOnInit(): void {
         this.currentModel = this.cardApp.model[this.priceModelIndex] || this.cardApp.model[0];
-    }
-
-    safeLink(sourceUrl: string): SafeResourceUrl {
-        return this.sanitizer.bypassSecurityTrustResourceUrl(sourceUrl);
     }
 }
