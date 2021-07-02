@@ -4,15 +4,14 @@ import {Page} from '../model/api/page.model';
 import {HttpRequestService} from './http-request-services';
 import {UserRoleResponse} from '../model/api/account-role-model';
 import {OcHttpParams} from '../model/api/http-params-encoder-model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserRoleService {
 
-  private readonly USER_ROLES = 'v2/userRoles';
-
-  constructor(private httpService: HttpRequestService) {
+  constructor(private httpService: HttpRequestService, private apiPaths: OcApiPaths) {
   }
 
   getUserRoles(pageNumber: number, pageLimit: number): Observable<Page<UserRoleResponse | any>> {
@@ -20,6 +19,6 @@ export class UserRoleService {
       .append('pageNumber', String(pageNumber))
       .append('limit', String(pageLimit));
 
-    return this.httpService.get(this.USER_ROLES, { params });
+    return this.httpService.get(this.apiPaths.userRoles, { params });
   }
 }

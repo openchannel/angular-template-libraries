@@ -1,11 +1,17 @@
 # angular-common-components
 
-## Built With
-* [Angular](https://angular.io) v. 11.2.3
-* [Bootstrap](https://getbootstrap.com) v. 4.4.1
-* [Storybook](https://storybook.js.org/) v. 6.1.20
+* [angular-common-components](#angular-common-componentss)
+  * [About the library](#about-the-library)
+  * [Built with](#built-with)
+  * [Dependencies](#dependencies)
+  * [Installation](#installation)
+  * [Storybook](#storybook)
+  * [Development](#development)
+  * [Usage](#usage)
+  * [Contact](#contact)
+  
 
-## About the library
+# About the library
 
 Includes components for portal and market (form builder, form components, file upload, app cards, login, signup, inputs, etc)
 * Form components:
@@ -30,8 +36,12 @@ Includes components for portal and market (form builder, form components, file u
   - app tables
 * Auth components
 
-## Dependencies
+## Built With
+* [Angular](https://angular.io) v. 11.2.3
+* [Bootstrap](https://getbootstrap.com) v. 4.4.1
+* [Storybook](https://storybook.js.org/) v. 6.1.20
 
+## Dependencies
     "@ng-bootstrap/ng-bootstrap": "6.0.2",
     "@tinymce/tinymce-angular": "4.2.0",
     "angular-svg-icon": "11.0.0",
@@ -46,6 +56,9 @@ Includes components for portal and market (form builder, form components, file u
     "tinymce": "5.6.2",
 
 ## Installation
+
+Before installation please check **required libs** [README.md](../../README.md#required-libs)
+
 1. Install dependencies
 ```sh
 npm i --save @ng-bootstrap/ng-bootstrap@6.0.2 @tinymce/tinymce-angular@4.2.0 angular-svg-icon@11.0.0 bootstrap@4.6.0 chart.js@2.9.3 ngx-color-picker@10.1.0 ngx-embed-video@1.0.4 ngx-image-cropper@3.1.9 ngx-infinite-scroll@10.0.0 ngx-owl-carousel-o@4.0.0 ngx-spinner@9.0.2 tinymce@5.6.2  
@@ -109,30 +122,35 @@ export class FileService extends FileUploaderService {
 ```
 `FileUploaderService` should be provided in `AppModule`:
 ```sh
-{ provide: FileUploaderService, useClass: FileService }
+@NgModule({
+    imports: [
+        ...
+        OcFormComponentsModule,
+    ],
+    providers: [
+        { provide: FileUploaderService, useClass: FileService },
+    ]
+})
+export class AppModule {}
 ```
-## Development
 
 ### Connect library to project
 Note: Run commands from the root directory.
 
-1. `ng build angular-common-components`
+1. 'npm i'  
+   
+2. `ng build angular-common-components` or `ng build angular-common-components --watch` 
+   (Note: Flag '--watch' rebuild project after any changes.)
 
-2. `cd ./dist/angular-common-components`
+3. `cd ./dist/angular-common-components`
 
-5. `sudo npm link` Then copy result link.
+4. `sudo npm link` Then copy result link.
 
-4. In your angular project run:<br> `npm install file:<{absolute path to angular-common-components}/dist/angular-common-components>`
+5. In your angular project run:<br> `npm install file:{absolute path to angular-common-components}/dist/angular-common-components`
 
-5. Import example (ts file):
+6. Import example (ts file):
    import { ComponentOrModel } from '@openchannel/angular-common-components/src/lib/common-components';
    
-### Build Project with watching file changes
-Run `ng build angular-common-components --watch`
-
-### Build
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
 ### Running tests
 Run `npm run test`
 
@@ -147,11 +165,11 @@ Run `cd ./dist/angular-common-components && npm publish`
 
 * Install npm dependencies
 
-  ``npm install``
+  ``npm i``
 
 * Build Project
 
-  ``ng build angular-common-components``
+  ``ng build angular-common-components --watch``
 
 * Create doc for storybook
 
