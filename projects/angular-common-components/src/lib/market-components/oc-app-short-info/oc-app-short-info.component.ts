@@ -17,7 +17,7 @@ export class OcAppShortInfoComponent implements OnInit {
      */
     @Input() set app(app: FullAppData) {
         if (!app) {
-            console.error('@Input() appData is required!');
+            console.error('@Input() app is required!');
         } else {
             this.cardApp = app;
             this.cardApp.icon = app.icon ? this.sanitizer.bypassSecurityTrustResourceUrl(app.icon as string) : '';
