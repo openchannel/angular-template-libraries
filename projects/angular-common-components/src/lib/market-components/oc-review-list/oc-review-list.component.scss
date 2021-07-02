@@ -24,12 +24,14 @@
     }
   }
   &__one-review {
-    margin-top: 5rem;
+    margin-top: 3rem;
     &-heading {
       @include font-medium();
+      line-height: 5rem;
     }
     &-head {
-
+      display: flex;
+      justify-content: space-between;
     }
     &-rating {
       display: block;
