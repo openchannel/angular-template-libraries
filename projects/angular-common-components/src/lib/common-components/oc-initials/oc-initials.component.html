@@ -1,7 +1,7 @@
 <div class="initials-container">
-    <img class="initials-container__image" *ngIf="tempInitialType === 'image'"
+    <img id="initials-image" class="initials-container__image" *ngIf="tempInitialType === 'image'"
          [src]="initialsImageURL" alt="image">
-    <div class="initials-container__text-container" *ngIf="tempInitialType === 'name'">
+    <div id="initials-text" class="initials-container__text-container" *ngIf="tempInitialType === 'name'">
         <h4 class="initials-container__text-container-value">{{tempInitialsName}}</h4>
     </div>
 </div>

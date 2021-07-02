@@ -19,11 +19,20 @@ export class OcInitialsComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {
-        if (this.primaryInitialType === 'image' && this.initialsImageURL) {
-            this.tempInitialType = 'image';
+        if (this.primaryInitialType === 'image') {
+            if (this.initialsImageURL) {
+                this.tempInitialType = 'image';
+            } else {
+                this.tempInitialsName = this.createNameInitials(this.initialsName, this.initialsNameCharactersLimit) || '';
+                this.tempInitialType = 'name';
+            }
         } else {
             this.tempInitialsName = this.createNameInitials(this.initialsName, this.initialsNameCharactersLimit) || '';
             this.tempInitialType = 'name';
+
+            if (!this.tempInitialsName && this.initialsImageURL) {
+                this.tempInitialType = 'image';
+            }
         }
     }
 

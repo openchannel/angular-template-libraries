@@ -12,6 +12,7 @@ import {
 import { AppTypeFieldModel, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 import { OcCheckboxData, OcEditUserFormConfig, OCOrganization } from '@openchannel/angular-common-components/src/lib/auth-components';
 import { FieldValueModel } from '@openchannel/angular-common-components/src/lib/form-components';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'oc-label',
@@ -233,4 +234,29 @@ export class MockDynamicArrayPreview {
     @Input() fieldDefinition: AppTypeFieldModel;
     @Input() dfaForm: FormGroup;
     @Input() hideLabel: boolean;
+}
+
+
+@Component({
+    template: '',
+    selector: 'oc-dropbox'
+})
+export class MockDropboxComponent {
+    @Input() placeHolder: string;
+    @Input() items: string [];
+    @Input() customSearch: (text: Observable<string>) => Observable<readonly any[]>;
+    @Input() clearFormAfterSelect: boolean = false;
+    @Input() dropElementTemplate: TemplateRef<any>;
+}
+
+
+@Component({
+    template: '',
+    selector: 'oc-initials',
+})
+export class MockInitialsComponent {
+    @Input() initialsImageURL: string;
+    @Input() initialsName: string;
+    @Input() primaryInitialType: 'name' | 'image' = 'name';
+    @Input() initialsNameCharactersLimit: number = 2;
 }
