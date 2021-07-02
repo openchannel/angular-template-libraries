@@ -15,6 +15,7 @@ export class OCReviewDetails {
     rating: number;
     review: string;
     userId?: string;
+    reviewId: string;
 }
 
 /**

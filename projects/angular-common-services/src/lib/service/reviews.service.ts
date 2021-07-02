@@ -71,6 +71,7 @@ export class ReviewsService {
                         review: review.description,
                         reviewOwnerName: idToUser.get(review.userId).name,
                         userId: review.userId,
+                        reviewId: review.reviewId,
                     };
                 });
 
