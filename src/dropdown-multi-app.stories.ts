@@ -1,13 +1,9 @@
-import {
-    OcFormComponentsModule
-} from '@openchannel/angular-common-components/src/lib/form-components';
+import { OcFormComponentsModule } from '@openchannel/angular-common-components/src/lib/form-components';
 import { moduleMetadata } from '@storybook/angular';
 import { OcDropdownMultiAppComponent } from '@openchannel/angular-common-components/src/lib/form-components/oc-dropdown-multi-app/oc-dropdown-multi-app.component';
-import {
-    AppsSearchService
-} from '@openchannel/angular-common-components/src/lib/form-components/model/dropdown-multi-app.model';
+import { AppsSearchService } from '@openchannel/angular-common-components/src/lib/form-components/model/dropdown-multi-app.model';
 import { Observable, of } from 'rxjs';
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { FullAppData, OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 
 const mockApps: Partial<FullAppData>[] = [
@@ -40,33 +36,38 @@ const mockApps: Partial<FullAppData>[] = [
     },
 ];
 
-export class AppSearchServiceStory extends AppsSearchService {
-    constructor() {
+class StoryMockAppSearchService extends AppsSearchService {
+    constructor(private apps: Partial<FullAppData>[]) {
         super();
     }
 
     loadDefaultApps(existsAppIDs: string[]): Observable<FullAppData[]> {
-        return of(mockApps.filter(app => existsAppIDs?.includes(app.appId)) as FullAppData[]);
+        return of(this.apps.filter(app => existsAppIDs?.includes(app.appId)) as FullAppData[]);
     }
 
     appsSearch(existsApps: FullAppData[], searchText: string): Observable<FullAppData[]> {
         const existsAppIDs = (existsApps || []).map(app => app.appId);
         return of(
-            mockApps.filter(app => !existsAppIDs.includes(app.appId) && app.name.toLowerCase().includes(searchText)) as FullAppData[],
+            this.apps.filter(app => !existsAppIDs.includes(app.appId) && app.name.toLowerCase().includes(searchText)) as FullAppData[],
         );
     }
 }
 
+const storyMockProviderAppSearchService: Provider = {
+    provide: AppsSearchService,
+    useFactory: () => new StoryMockAppSearchService(mockApps),
+};
+
 const modules: NgModule = {
     imports: [OcFormComponentsModule, OcCommonLibModule],
-    providers: [{provide: AppsSearchService, useClass: AppSearchServiceStory}],
+    providers: [storyMockProviderAppSearchService],
 };
 
 export default {
     title: 'Dropdown multi app component [BEM]',
     component: OcDropdownMultiAppComponent,
     decorators: [moduleMetadata(modules)],
-    excludeStories: /.*Story$/,
+    excludeStories: /.*[M|m]ock.*/,
 };
 
 const DropdownMultiAppComponent = (args: OcDropdownMultiAppComponent) => ({
@@ -88,3 +89,6 @@ DefaultAppsInMultiApp.args = {
     dropdownPlaceholder: 'Search  ...',
     defaultAppIDs: ['601ab171d0c0c60baf65433e', '601ab170d0c0c60baf654326'],
 };
+
+// Exports for another stories (provider for StoryMockAppSearchService, StoryMockAppSearchService)
+export { storyMockProviderAppSearchService, StoryMockAppSearchService };
