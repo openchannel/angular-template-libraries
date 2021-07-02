@@ -20,6 +20,7 @@ import { OcTooltipLabelComponent } from './oc-tooltip-label/oc-tooltip-label.com
 import { OcFormModalComponent } from './oc-form-modal/oc-form-modal.component';
 import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 import { OcDynamicArrayPreviewComponent } from './oc-dynamic-array-preview/oc-dynamic-array-preview.component';
+import { OcDropdownMultiAppComponent } from './oc-dropdown-multi-app/oc-dropdown-multi-app.component';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import { OcDynamicArrayPreviewComponent } from './oc-dynamic-array-preview/oc-dy
         OcTooltipLabelComponent,
         OcFormModalComponent,
         OcDynamicArrayPreviewComponent,
+        OcDropdownMultiAppComponent,
     ],
     imports: [
         CommonModule,
@@ -63,6 +65,7 @@ import { OcDynamicArrayPreviewComponent } from './oc-dynamic-array-preview/oc-dy
         OcFormModalComponent,
         OcDynamicArrayPreviewComponent,
         OcTooltipLabelComponent,
+        OcDropdownMultiAppComponent,
     ],
 })
 export class OcFormComponentsModule {}
