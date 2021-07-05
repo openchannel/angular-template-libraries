@@ -148,8 +148,15 @@ export class MockFormComponent {
 @Component({
     selector: 'oc-rating',
     template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockRatingComponent),
+            multi: true,
+        },
+    ],
 })
-export class MockRatingComponent {
+export class MockRatingComponent implements ControlValueAccessor {
     @Input() rating: number = 0;
     @Input() reviewCount: number = 0;
     @Input() label = '';
