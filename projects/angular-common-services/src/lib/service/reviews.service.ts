@@ -9,21 +9,21 @@ import { User } from '../model/api/user.model';
 import { QueryUtil } from '../util/query.util';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
 import { OCReviewDetailsResponse } from '../model/components/frontend.model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 /**
- * Description: API service for getting reviews.
+ * Description: API service for getting reviews.<br>
  *
  * Endpoints:
  *
  * GET 'v2/reviews'
+ *
  */
 @Injectable({
     providedIn: 'root',
 })
 export class ReviewsService {
-    private readonly REVIEWS_URL = 'v2/reviews';
-
-    constructor(private httpService: HttpRequestService, private usersService: UsersService) {}
+    constructor(private httpService: HttpRequestService, private usersService: UsersService, private apiPaths: OcApiPaths) {}
 
     /**
      *
@@ -36,8 +36,10 @@ export class ReviewsService {
      * @param {string[]} filter (optional) Array for your specific search filters.
      * @returns {Observable<Page<OCReviewDetailsResponse>>} Observable<Page<OCReviewDetailsResponse>>
      *
-     * ### Example:
-     * `getReviewsByAppId('a7hsd87ha8sdh8a7sd',1, 10, "{"name": 1}", ["{"name": {"$in":["first", "second"]}}"])`
+     * ### Example
+     * ``
+     * getReviewsByAppId('a7hsd87ha8sdh8a7sd',1, 10, "{"name": 1}", "{"name": {"$in":["first", "second"]}}")
+     * ``
      */
     getReviewsByAppId(
         appId: string,
@@ -58,7 +60,7 @@ export class ReviewsService {
         }
 
         let reviewPage: Page<ReviewResponse>;
-        return this.httpService.get(this.REVIEWS_URL, { params }).pipe(
+        return this.httpService.get(this.apiPaths.reviews, { params }).pipe(
             tap((pageData: Page<ReviewResponse>) => (reviewPage = pageData)),
             mergeMap((pageData: Page<ReviewResponse>) => this.usersService.getUsersByIds(pageData.list.map(value => value.userId))),
             map((userPage: Page<User>) => {
@@ -92,7 +94,7 @@ export class ReviewsService {
      * `createReview({appId: 5565322ae4b0a70b13a4563b, headline: "Good App", rating: 400, description: ""})`
      */
     createReview(reviewData: ReviewResponse): Observable<ReviewResponse> {
-        return this.httpService.post(this.REVIEWS_URL, reviewData);
+        return this.httpService.post(this.apiPaths.reviews, reviewData);
     }
 
     /**
@@ -104,7 +106,7 @@ export class ReviewsService {
      * `updateReview({reviewId: "5565322ae4b0a70b13a4563b", headline: "Good App", rating: 400, description: ""})`
      */
     updateReview(reviewData: ReviewResponse): Observable<ReviewResponse> {
-        return this.httpService.post(`${this.REVIEWS_URL}/${reviewData.reviewId}`, reviewData);
+        return this.httpService.post(`${this.apiPaths.reviews}/${reviewData.reviewId}`, reviewData);
     }
 
     /**
@@ -115,7 +117,7 @@ export class ReviewsService {
      * `getOneReview("5565322ae4b0a70b13a4563b")`
      */
     getOneReview(reviewId: string): Observable<ReviewResponse> {
-        return this.httpService.get(`${this.REVIEWS_URL}/${reviewId}`);
+        return this.httpService.get(`${this.apiPaths.reviews}/${reviewId}`);
     }
 
     /**
@@ -126,6 +128,6 @@ export class ReviewsService {
      * `deleteReview("5565322ae4b0a70b13a4563b")`
      */
     deleteReview(reviewId: string): Observable<any> {
-        return this.httpService.delete(`${this.REVIEWS_URL}/${reviewId}`);
+        return this.httpService.delete(`${this.apiPaths.reviews}/${reviewId}`);
     }
 }

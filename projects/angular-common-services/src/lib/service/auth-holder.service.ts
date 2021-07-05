@@ -15,6 +15,38 @@ import { AccessLevel, Permission, PermissionType, UserDetails } from '../model/a
 })
 export class AuthHolderService {
     /**
+     * Get JWT accessToken from the browser local storage.
+     * @return string
+     */
+    get accessToken(): string {
+        return window.localStorage.getItem(this.ACCESS_TOKEN_KEY);
+    }
+
+    /**
+     * Set JWT accessToken to the browser local storage.
+     * @param token (required) JWT accessToken.
+     * @return void;
+     */
+    set accessToken(token: string) {
+        window.localStorage.setItem(this.ACCESS_TOKEN_KEY, token);
+    }
+
+    /**
+     * Get JWT refreshToken from the browser local storage.
+     * @return string;
+     */
+    get refreshToken(): string {
+        return window.localStorage.getItem(this.REFRESH_TOKEN_KEY);
+    }
+
+    /**
+     * Set refreshToken to the browser local storage.
+     * @param token (required) JWT refreshToken
+     */
+    set refreshToken(token: string) {
+        window.localStorage.setItem(this.REFRESH_TOKEN_KEY, token);
+    }
+    /**
      * By this key will be store JWT accessToken in browser local storage.
      */
     readonly ACCESS_TOKEN_KEY = 'accessToken';
@@ -26,7 +58,7 @@ export class AuthHolderService {
     /**
      * User data from derived from the decoded JWT accessToken.
      */
-    public userDetails: UserDetails;
+    userDetails: UserDetails;
 
     constructor() {
         this.updateVariables();
@@ -85,19 +117,6 @@ export class AuthHolderService {
     }
 
     /**
-     * Function for decoding JWT accessToken and creating user details.
-     * When JWT signature is not valid, will be removed all JWT tokens from the browser local storage.
-     * @return void;
-     */
-    private updateVariables(): void {
-        try {
-            this.userDetails = this.accessToken ? jwtDecode(this.accessToken) : null;
-        } catch (error) {
-            this.clearTokensInStorage();
-        }
-    }
-
-    /**
      * Function for checking user permissions. Used for blocking access for some functions or hiding DOM elements.
      *
      * @param type (required) Permission type : 'APPS','ACCOUNTS','DEVELOPERS','USERS','FILES','FORMS','OWNERSHIPS','REVIEWS','ORGANIZATIONS';
@@ -119,18 +138,15 @@ export class AuthHolderService {
      *   will be return false.
      * ``
      */
-    public hasPermission(type: PermissionType, accessArray: AccessLevel[]): boolean {
+    hasPermission(type: PermissionType, accessArray: AccessLevel[]): boolean {
         if (this.userDetails?.permissions && type && accessArray) {
             return !!this.userDetails?.permissions.find(permission => {
-                if (permission) {
-                    const validType = permission.startsWith(type) || permission.startsWith('*');
-                    if (validType) {
-                        if (accessArray.find(access => permission.endsWith(access)) || permission.endsWith('*')) {
-                            return true;
-                        }
-                    }
+                if (!permission) {
+                    return false;
                 }
-                return false;
+                const validType = permission.startsWith(type) || permission.startsWith('*');
+                const hasAccess = accessArray.find(access => permission.endsWith(access));
+                return (validType && hasAccess) || permission.endsWith('*');
             });
         }
         return false;
@@ -163,7 +179,7 @@ export class AuthHolderService {
      * return true;
      * ``
      */
-    public hasAnyPermission(permissions: Permission []): boolean {
+    hasAnyPermission(permissions: Permission[]): boolean {
         if (permissions) {
             return !!permissions.find(p => this.hasPermission(p.type, p.access));
         }
@@ -171,35 +187,15 @@ export class AuthHolderService {
     }
 
     /**
-     * Get JWT accessToken from the browser local storage.
-     * @return string
-     */
-    get accessToken(): string {
-        return window.localStorage.getItem(this.ACCESS_TOKEN_KEY);
-    }
-
-    /**
-     * Set JWT accessToken to the browser local storage.
-     * @param token (required) JWT accessToken.
+     * Function for decoding JWT accessToken and creating user details.
+     * When JWT signature is not valid, will be removed all JWT tokens from the browser local storage.
      * @return void;
      */
-    set accessToken(token: string) {
-        window.localStorage.setItem(this.ACCESS_TOKEN_KEY, token);
-    }
-
-    /**
-     * Get JWT refreshToken from the browser local storage.
-     * @return string;
-     */
-    get refreshToken(): string {
-        return window.localStorage.getItem(this.REFRESH_TOKEN_KEY);
-    }
-
-    /**
-     * Set refreshToken to the browser local storage.
-     * @param token (required) JWT refreshToken
-     */
-    set refreshToken(token: string) {
-        window.localStorage.setItem(this.REFRESH_TOKEN_KEY, token);
+    private updateVariables(): void {
+        try {
+            this.userDetails = this.accessToken ? jwtDecode(this.accessToken) : null;
+        } catch (error) {
+            this.clearTokensInStorage();
+        }
     }
 }
