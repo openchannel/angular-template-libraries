@@ -17,18 +17,16 @@ export class OcAppShortInfoComponent implements OnInit {
      */
     @Input() set app(app: FullAppData) {
         if (!app) {
-            console.error('@Input() appData is required!');
+            console.error('@Input() app is required!');
         } else {
             this.cardApp = app;
             this.cardApp.icon = app.icon ? this.sanitizer.bypassSecurityTrustResourceUrl(app.icon as string) : '';
         }
     }
-
     /**
      * The index of the price model in the array, default is 0
      */
     @Input() priceModelIndex: number = 0;
-
     /**
      * (Optional)
      * Template for the dropdown menu. If not set - no dropdown menu will appear.
@@ -53,6 +51,6 @@ export class OcAppShortInfoComponent implements OnInit {
     constructor(private sanitizer: DomSanitizer) {}
 
     ngOnInit(): void {
-        this.currentModel = this.app.model[this.priceModelIndex] || this.app.model[0];
+        this.currentModel = this.cardApp.model[this.priceModelIndex] || this.cardApp.model[0];
     }
 }

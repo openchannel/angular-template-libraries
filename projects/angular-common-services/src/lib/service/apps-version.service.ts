@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Page } from '../model/api/page.model';
 import { AppVersionResponse, UpdateAppVersionModel } from '../model/api/app-data-model';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 /**
  * Description: API service for getting and modifying apps by version.<br>
@@ -19,11 +20,7 @@ import { OcHttpParams } from '../model/api/http-params-encoder-model';
     providedIn: 'root',
 })
 export class AppVersionService {
-
-    private readonly APPS_URL = 'v2/apps';
-
-    constructor(private httpRequest: HttpRequestService) {
-    }
+    constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {}
 
     /**
      * Description: You can search for apps by specifying the text that you want to search for as well as a list of fields that you want to include in the search.
@@ -51,7 +48,7 @@ export class AppVersionService {
         searchText: string,
         searchTextByFields: string[],
     ): Observable<Page<AppVersionResponse>> {
-        const mainUrl = `${this.APPS_URL}/versions/textSearch`;
+        const mainUrl = `${this.apiPaths.appsVersions}/versions/textSearch`;
 
         const params = new OcHttpParams()
             .append('pageNumber', String(pageNumber))
@@ -61,7 +58,7 @@ export class AppVersionService {
             .append('fields', JSON.stringify(searchTextByFields))
             .appendRequiredParam('searchText', searchText, '');
 
-        return this.httpRequest.get(mainUrl, {params});
+        return this.httpRequest.get(mainUrl, { params });
     }
 
     /**
@@ -83,7 +80,7 @@ export class AppVersionService {
      * ``
      */
     getAppsVersions(pageNumber: number, limit: number, sort: any, query: string): Observable<Page<AppVersionResponse>> {
-        const mainUrl = `${this.APPS_URL}/versions`;
+        const mainUrl = `${this.apiPaths.appsVersions}/versions`;
 
         const params = new OcHttpParams()
             .append('pageNumber', String(pageNumber))
@@ -91,7 +88,7 @@ export class AppVersionService {
             .append('sort', sort)
             .append('query', query);
 
-        return this.httpRequest.get(mainUrl, {params});
+        return this.httpRequest.get(mainUrl, { params });
     }
 
     /**
@@ -109,10 +106,9 @@ export class AppVersionService {
      * ``
      */
     getAppByVersion(appId: string, version: number): Observable<AppVersionResponse> {
-        const mainUrl = `${this.APPS_URL}/${appId}/versions/${version}`;
+        const mainUrl = `${this.apiPaths.appsVersions}/${appId}/versions/${version}`;
         return this.httpRequest.get(mainUrl);
     }
-
 
     /**
      * Description: Update app by version but the update may create a new app version
@@ -130,7 +126,7 @@ export class AppVersionService {
      * ``
      */
     updateAppByVersion(appId: string, version: number, updateAppVersionModel: UpdateAppVersionModel): Observable<AppVersionResponse> {
-        const mainUrl = `${this.APPS_URL}/${appId}/versions/${version}`;
+        const mainUrl = `${this.apiPaths.appsVersions}/${appId}/versions/${version}`;
         return this.httpRequest.post(mainUrl, updateAppVersionModel);
     }
 
@@ -148,7 +144,7 @@ export class AppVersionService {
      * ``
      */
     deleteAppVersion(appId: string, version: number): Observable<any> {
-        const mainUrl = `${this.APPS_URL}/${appId}/versions/${version}`;
+        const mainUrl = `${this.apiPaths.appsVersions}/${appId}/versions/${version}`;
         return this.httpRequest.delete(mainUrl);
     }
 }
