@@ -14,12 +14,12 @@
       margin-left: 0.255em;
       vertical-align: 0.255em;
     }
-    &[aria-expanded='true']~span::after {
-      content: url(../../../../assets/img/select-up.svg);
-    }
-    &[aria-expanded='false']~span::after {
-      content: url(../../../../assets/img/select-down.svg);
-    }
+    //&[aria-expanded='true']~span::after {
+    //  content: url(../../../../assets/img/select-up.svg);
+    //}
+    //&[aria-expanded='false']~span::after {
+    //  content: url(../../../../assets/img/select-down.svg);
+    //}
   }
 }
 

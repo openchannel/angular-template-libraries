@@ -2,6 +2,7 @@
   "name": "oc-angular-template-libraries",
   "version": "2.5.0",
   "scripts": {
+    "postbuild": "echo \"POSTBUILD---${npm_config_tractorist}\"---ppp && npm run gather-components-styles",
     "ng": "./node_modules/.bin/ng",
     "start": "./node_modules/.bin/ng serve",
     "build": "./node_modules/.bin/ng build",
@@ -27,7 +28,8 @@
     "create-compodoc": "compodoc -p tsconfig.json projects/angular-common-services/src -d ./development/documentation",
     "start-compodoc": "compodoc -s -r 8801 -d ./development/documentation/",
     "start-compodoc-service-watch": "compodoc -p tsconfig.json projects/angular-common-services/src -d ./development/documentation/service -s -r 8801 -d ./development/documentation/service --watch",
-    "start-compodoc-components-watch": "compodoc -p tsconfig.json projects/angular-common-components/src -d ./development/documentation/components -s -r 8802 -d ./development/documentation/components --watch"
+    "start-compodoc-components-watch": "compodoc -p tsconfig.json projects/angular-common-components/src -d ./development/documentation/components -s -r 8802 -d ./development/documentation/components --watch",
+    "gather-components-styles": "bundle-scss -m \"./projects/angular-common-components/src/**/*.scss\" -d \"./dist/angular-common-components/assets/styles/general-styles.scss\""
   },
   "private": true,
   "dependencies": {
@@ -86,6 +88,7 @@
     "autoprefixer": "^8.6.5",
     "babel-loader": "^8.1.0",
     "bootstrap": "^4.4.1",
+    "bundle-scss": "^1.5.0",
     "chart.js": "^2.9.3",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
@@ -95,14 +98,14 @@
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "ng-packagr": "^11.2.3",
+    "prettier": "^2.2.1",
     "protractor": "~7.0.0",
     "sass-lint": "^1.13.1",
     "ts-jest": "^26.4.1",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.7",
-    "prettier": "^2.2.1",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.3.0"
+    "tslint-plugin-prettier": "^2.3.0",
+    "typescript": "~4.0.7"
   }
 }
