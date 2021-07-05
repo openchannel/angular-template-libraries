@@ -18,7 +18,12 @@ import { FieldValueModel } from '@openchannel/angular-common-components/src/lib/
     template: '',
 })
 export class MockLabelComponent {
+    /** Label text */
     @Input() text: string = '';
+    /** Show indicator of required field */
+    @Input() required: boolean = false;
+    /** Set global classes for label */
+    @Input() class: string = '';
 }
 
 @Component({
@@ -151,6 +156,9 @@ export class MockRatingComponent {
     @Input() labelClass = 'font-m font-med';
     @Input() type: 'single-star' | 'multi-star' = 'single-star';
     @Input() disabled: boolean = false;
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
 }
 
 @Component({

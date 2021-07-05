@@ -47,11 +47,13 @@ describe('OcReviewListComponent', () => {
                 reviewOwnerName: 'John Doe',
                 rating: 5,
                 review: 'Cool App!',
+                reviewId: '43423df434gfg1212kkd',
             },
             {
                 reviewOwnerName: 'Jane Doe',
                 rating: 2,
                 review: '',
+                reviewId: '434jg43df434gfg1212kkd',
             },
         ];
         fixture.detectChanges();
@@ -81,6 +83,7 @@ describe('OcReviewListComponent', () => {
             reviewOwnerName: 'John Doe',
             rating: 5,
             review: 'Cool App!',
+            reviewId: '43423df434gfg1212kkd',
         };
         component.reviewListTitle = 'Most Recent Reviews';
         component.maxReviewDisplay = 2;
