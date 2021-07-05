@@ -6,35 +6,35 @@ import { mergeMap } from 'rxjs/operators';
 import { ConfigService } from './config.service';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
 import { FileDetailsResponse } from '../model/api/file-details-model';
-
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 /**
-
  * Description: API service for getting and modifying User Account model.<br>
-
+ *
  * Endpoints:<br>
-
+ *
  * POST 'v2/files/uploadToken'<br>
-
+ *
  * GET 'v2/userAccounts/this'<br>
-
+ *
  * POST '{marketUrl}/v2/files'
-
+ *
  * GET '/v2/files/byIdOrUrl'
-
+ *
  * GET '/v2/files/download'
-
+ *
  * GET {fileUrl}
-
  */
 @Injectable({
     providedIn: 'root',
 })
 export class FileUploadDownloadService {
-    private tokenUrl = 'v2/files/uploadToken';
-    private uploadFileUrl = 'v2/files';
-
-    constructor(public httpRequest: HttpRequestService, private http: HttpClient, private configService: ConfigService) {}
+    constructor(
+        public httpRequest: HttpRequestService,
+        private http: HttpClient,
+        private configService: ConfigService,
+        private apiPaths: OcApiPaths,
+    ) {}
 
     /**
      *
@@ -45,7 +45,7 @@ export class FileUploadDownloadService {
      * @param {string[]} hash - (optional) file hash
      * @returns {Observable<any>} `Observable<any>`
      *
-     * * ### Example:
+     * ### Example:
      *
      * `uploadToOpenChannel({file},true, ['na0s78hd09a8shd90ahsd'])`
      */
@@ -55,7 +55,7 @@ export class FileUploadDownloadService {
 
     /**
      *
-     * Desctiption: Prepare upload request and upload file
+     * Description: Prepare upload request and upload file
      *
      * @param {any} token - Token for channel
      * @param {FormData} file - File from formData
@@ -63,7 +63,7 @@ export class FileUploadDownloadService {
      * @param {string[]} hash - (optional) file hash
      * @returns {Observable<any>} `Observable<any>`
      *
-     * * ### Example:
+     * ### Example:
      *
      * `prepareUploadReq('0a897shd0897ahs09d8has9d7',{file},true, ['na0s78hd09a8shd90ahsd'])`
      */
@@ -77,7 +77,7 @@ export class FileUploadDownloadService {
         }
         return this.configService.getMarketUrl().pipe(
             mergeMap(marketUrl => {
-                return this.http.post(`${marketUrl}/${this.uploadFileUrl}`, file, {
+                return this.http.post(`${marketUrl}/${this.apiPaths.files}`, file, {
                     headers: new HttpHeaders({ 'Upload-Token': `${token}` }),
                     params: httpParams,
                     reportProgress: true,
@@ -93,12 +93,12 @@ export class FileUploadDownloadService {
      *
      * @returns {Observable<any>} `Observable<any>`
      *
-     * * ### Example:
+     * ### Example:
      *
      * `getToken();`
      */
     getToken(): Observable<any> {
-        return this.httpRequest.post(this.tokenUrl, null);
+        return this.httpRequest.post(`${this.apiPaths.files}/uploadToken`, null);
     }
 
     /**
@@ -108,12 +108,12 @@ export class FileUploadDownloadService {
      * @param {string} fileId
      * @returns {Observable<FileDetailsResponse>} `Observable<FileDetailsResponse>`
      *
-     * * ### Example:
+     * ### Example:
      *
      * `downloadFileDetails('ha98s7dh8a7shd87');`
      */
     downloadFileDetails(fileId: string): Observable<FileDetailsResponse> {
-        return this.httpRequest.get(`${this.uploadFileUrl}/byIdOrUrl?fileIdOrUrl=${fileId}`);
+        return this.httpRequest.get(`${this.apiPaths.files}/byIdOrUrl?fileIdOrUrl=${fileId}`);
     }
 
     /**
@@ -123,7 +123,7 @@ export class FileUploadDownloadService {
      * @param {string} fileUrl
      * @returns {Observable<any>} `Observable<any>`
      *
-     * * ### Example:
+     * ### Example:
      *
      * `downloadFileFromUrl('/image.jpg');`
      */
@@ -138,11 +138,11 @@ export class FileUploadDownloadService {
      * @param {string} fileId
      * @returns {Observable<any>} `Observable<any>`
      *
-     * * ### Example:
+     * ### Example:
      *
      * `getFileUrl('/image.jpg');`
      */
     getFileUrl(fileId: string): Observable<any> {
-        return this.httpRequest.get(`${this.uploadFileUrl}/download?fileId=${fileId}`);
+        return this.httpRequest.get(`${this.apiPaths.files}/download?fileId=${fileId}`);
     }
 }
