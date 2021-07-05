@@ -9,20 +9,41 @@ import { OcEmbedVideoService } from './oc-embed-video.service';
     styleUrls: ['./oc-video.component.scss'],
 })
 export class OcVideoComponent {
-    @Input()
-    set videoUrl(videoUrl: string) {
+    /**
+     * The video url setter. Defines video source and calls loadVideo() method.
+     * Default: empty
+     */
+    @Input() set videoUrl(videoUrl: string) {
         this.url = videoUrl;
         this.loadVideo();
     }
 
+    /**
+     * URL variable of the component. Defines through `videoUrl` Input.
+     */
     url: string;
-    loadInIframe = true;
-    loadInVideo = false;
-    showVideoLoader = false;
+    /**
+     * Flag that indicates that the video should load in a frame
+     */
+    loadInIframe: boolean = true;
+    /**
+     * Flag that indicates that the video should load in a video tag
+     */
+    loadInVideo: boolean = false;
+    /**
+     * Flag for the video loader spinner.
+     */
+    showVideoLoader: boolean = false;
+    /**
+     * Preview data for the video url
+     */
     previewData: SafeHtml;
 
     constructor(private embedService: OcEmbedVideoService, private spinner: NgxSpinnerService) {}
 
+    /**
+     * Loads video. Checks preview data and video format. Shows and hides spinner.
+     */
     loadVideo(): void {
         this.spinner.show();
         this.showVideoLoader = true;

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BroadcastChannel } from 'broadcast-channel';
-import { API_URL } from '../../public-api';
+import { API_URL } from '../oc-ng-common-service.module';
 
 export const XSRF_HEADER_NAME = new InjectionToken<string>('XSRF_HEADER_NAME');
 
