@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
+import { AppModel, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 
 /**
  * Represents the one App Card for the vertical list of apps.
@@ -10,25 +10,29 @@ import { FullAppData } from '@openchannel/angular-common-components/src/lib/comm
     templateUrl: './oc-app-short-info.component.html',
     styleUrls: ['./oc-app-short-info.component.scss'],
 })
-export class OcAppShortInfoComponent {
+export class OcAppShortInfoComponent implements OnInit {
     /**
      * (Required)
      * App data object for current component.
      */
     @Input() set app(app: FullAppData) {
         if (!app) {
-            console.error('@Input() appData is required!');
+            console.error('@Input() app is required!');
         } else {
             this.cardApp = app;
             this.cardApp.icon = app.icon ? this.sanitizer.bypassSecurityTrustResourceUrl(app.icon as string) : '';
         }
     }
-
+    /**
+     * The index of the price model in the array, default is 0
+     */
+    @Input() priceModelIndex: number = 0;
     /**
      * (Optional)
      * Template for the dropdown menu. If not set - no dropdown menu will appear.
      */
     @Input() customDropdown: TemplateRef<any>;
+
     /**
      * (Optional)
      *  Path to the custom Default App Icon that will be shown when the app has no icon.
@@ -42,6 +46,11 @@ export class OcAppShortInfoComponent {
     @Output() readonly clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
 
     cardApp: FullAppData;
+    currentModel: AppModel;
 
     constructor(private sanitizer: DomSanitizer) {}
+
+    ngOnInit(): void {
+        this.currentModel = this.cardApp.model[this.priceModelIndex] || this.cardApp.model[0];
+    }
 }
