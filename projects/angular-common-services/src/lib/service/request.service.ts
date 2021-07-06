@@ -5,33 +5,30 @@ import { Page } from '../model/api/page.model';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
 import { RequestModel, RequestModelResponse, RequestStatusModel } from '../model/api/request.model';
 import { HttpHeaders } from '@angular/common/http';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 /**
-
  * Description: API service for getting and modifying Request model.<br>
-
+ *
  * Endpoints:<br>
-
+ *
  * GET 'v2/requests'<br>
-
+ *
  * POST 'v2/requests'<br>
-
+ *
  * GET 'v2/requests/{requestId}'<br>
-
+ *
  * PATCH 'v2/requests/{requestId}'<br>
-
+ *
  * DELETE 'v2/requests/{requestId}'<br>
-
+ *
  * POST 'v2/requests/{requestId}/status'<br>
-
  */
 @Injectable({
     providedIn: 'root',
 })
 export class RequestService {
-    private readonly REQUEST_URL = 'v2/requests';
-
-    constructor(private httpService: HttpRequestService) {}
+    constructor(private httpService: HttpRequestService, private apiPaths: OcApiPaths) {}
 
     /**
      *
@@ -42,7 +39,7 @@ export class RequestService {
      * @param {HttpHeaders} headers - (optional) (default: empty HttpHeaders object)
      * @returns {Observable<Page<RequestModelResponse>>} `Observable<Page<RequestModelResponse>>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `getAllRequest(1,10,{"Authorization":"Bearer as98hd90ahsd98has9d8ha98sd"})`
      */
@@ -51,7 +48,7 @@ export class RequestService {
             params: new OcHttpParams().append('pageNumber', String(pageNumber)).append('limit', String(limit)),
         };
         options.headers = headers;
-        return this.httpService.get(this.REQUEST_URL, options);
+        return this.httpService.get(this.apiPaths.requests, options);
     }
 
     /**
@@ -63,7 +60,7 @@ export class RequestService {
      * @param {HttpHeaders} headers - (optional) (default: empty HttpHeaders object)
      * @returns {Observable<RequestModelResponse>} `Observable<RequestModelResponse>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `createRequest({
      *     name:'name',
@@ -80,7 +77,7 @@ export class RequestService {
      * )`
      */
     createRequest(request: RequestModel, autoSubmit = true, headers: HttpHeaders = new HttpHeaders()): Observable<RequestModelResponse> {
-        return this.httpService.post(this.REQUEST_URL, autoSubmit ? { ...request, autoSubmit } : request, { headers });
+        return this.httpService.post(this.apiPaths.requests, autoSubmit ? { ...request, autoSubmit } : request, { headers });
     }
 
     /**
@@ -92,7 +89,7 @@ export class RequestService {
      * @param {HttpHeaders} headers - (optional) (default: empty HttpHeaders object)
      * @returns {Observable<RequestModelResponse>} `Observable<RequestModelResponse>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `updateRequest(
      * 'h0a978shd90ahs',
@@ -110,7 +107,7 @@ export class RequestService {
      * )`
      */
     updateRequest(requestId: string, request: RequestModel, headers: HttpHeaders = new HttpHeaders()): Observable<RequestModelResponse> {
-        return this.httpService.patch(`${this.REQUEST_URL}/${requestId}`, request, { headers });
+        return this.httpService.patch(`${this.apiPaths.requests}/${requestId}`, request, { headers });
     }
 
     /**
@@ -121,12 +118,12 @@ export class RequestService {
      * @param {HttpHeaders} headers - (optional) (default: empty HttpHeaders object)
      * @returns {Observable<RequestModelResponse>} `Observable<RequestModelResponse>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `getRequest('8a7hs8d7has8d7', {"Authorization":"Bearer as98hd90ahsd98has9d8ha98sd"})`
      */
     getRequest(requestId: string, headers: HttpHeaders = new HttpHeaders()): Observable<RequestModelResponse> {
-        return this.httpService.get(`${this.REQUEST_URL}/${requestId}`, { headers });
+        return this.httpService.get(`${this.apiPaths.requests}/${requestId}`, { headers });
     }
 
     /**
@@ -137,12 +134,12 @@ export class RequestService {
      * @param {HttpHeaders} headers - (optional) (default: empty HttpHeaders object)
      * @returns {Observable<boolean>} `Observable<boolean>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `deleteRequest('8a7hs8d7has8d7', {"Authorization":"Bearer as98hd90ahsd98has9d8ha98sd"});`
      */
     deleteRequest(requestId: string, headers: HttpHeaders = new HttpHeaders()): Observable<boolean> {
-        return this.httpService.delete(`${this.REQUEST_URL}/${requestId}`, { headers });
+        return this.httpService.delete(`${this.apiPaths.requests}/${requestId}`, { headers });
     }
 
     /**
@@ -154,7 +151,7 @@ export class RequestService {
      * @param {HttpHeaders} headers - (optional) (default: empty HttpHeaders object)
      * @returns {Observable<RequestModelResponse>} `Observable<RequestModelResponse>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `updateRequestStatus(
      * 'ajs09d8ja9s8d',
@@ -170,6 +167,6 @@ export class RequestService {
         status: RequestStatusModel,
         headers: HttpHeaders = new HttpHeaders(),
     ): Observable<RequestModelResponse> {
-        return this.httpService.post(`${this.REQUEST_URL}/${requestId}/status`, status, { headers });
+        return this.httpService.post(`${this.apiPaths.requests}/${requestId}/status`, status, { headers });
     }
 }

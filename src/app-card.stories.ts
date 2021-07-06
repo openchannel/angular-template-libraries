@@ -1,5 +1,6 @@
 import { moduleMetadata } from '@storybook/angular';
-import { OcAppCardComponent, OcMarketComponentsModule } from '@openchannel/angular-common-components/src/lib/market-components';
+import { OcAppCardComponent, OcMarketComponentsModule
+} from '@openchannel/angular-common-components/src/lib/market-components';
 import { OcCommonLibModule, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
@@ -46,6 +47,14 @@ const app1: FullAppData = {
             type: 'free',
             trial: 0,
         },
+        {
+            license: 'single',
+            modelId: '5f22dd91b5ad376fff8431a6',
+            price: 10,
+            currency: 'EUR',
+            type: 'single',
+            trial: 0,
+        },
     ],
     name: 'FirstApp',
     lastUpdated: 1432696823474,
@@ -85,11 +94,11 @@ const app1: FullAppData = {
             developerId: '3dcfdd48ed6b4f9d8b6a3e23deb36249',
             model: [
                 {
-                    license: 'single',
-                    modelId: '5f22dd91b5ad376fff8431a6',
-                    price: 0,
-                    currency: 'USD',
-                    type: 'free',
+                license: 'single',
+                modelId: '5f22dd91b5ad376fff8431a6',
+                price: 0,
+                currency: 'USD',
+                type: 'free',
                     trial: 0,
                 },
             ],
@@ -185,6 +194,22 @@ const app2: FullAppData = {
             type: 'single',
             trial: 0,
         },
+        {
+            license: 'single',
+            modelId: '5f22dd91b5ad376fff8431a6',
+            price: 15,
+            currency: 'EUR',
+            type: 'single',
+            trial: 0,
+        },
+        {
+            license: 'single',
+            modelId: '5f22dd91b5ad376fff8431a6',
+            price: 0,
+            currency: 'EUR',
+            type: 'free',
+            trial: 0,
+        },
     ],
     name: 'Test App',
     lastUpdated: 1432696823474,
@@ -217,10 +242,12 @@ export const Card = AppCardComponent.bind({});
 
 Card.args = {
     app: app1,
+    priceModelIndex: 0,
 };
 
 export const CardWithDescriptionTag = AppCardComponent.bind({});
 
 CardWithDescriptionTag.args = {
     app: app2,
+    priceModelIndex: 0,
 };
