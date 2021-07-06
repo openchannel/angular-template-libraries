@@ -68,10 +68,10 @@ export class OcReviewListComponent implements OnChanges {
     @Input() menuUrl: string = 'assets/angular-common-components/dots-menu.svg';
     /**
      * (optional)
-     * Id of the review of the current authorized user.
-     * If this Input does not empty - dropdown menu will be shown on this review.
+     * Id of the current authorized user which has a review in this list.
+     * If this Input does not empty - dropdown menu will be shown on his review.
      */
-    @Input() appOwnerReviewId: string = '';
+    @Input() currentUserId: string = '';
 
     /**
      * Event emitter for writing a new review.

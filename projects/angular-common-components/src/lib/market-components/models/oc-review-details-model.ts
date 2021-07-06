@@ -7,7 +7,8 @@ import { ComponentsUser, ComponentsUserAccount } from '@openchannel/angular-comm
  *     reviewOwnerName: 'John Doe',
  *     rating: 300,
  *     review: 'Some review text',
- *     userId: '5565322ae4b0a70b13a4563b'
+ *     userId: '5565322ae4b0a70b13a4563b',
+ *     reviewId: '88434hjd67487hjs3445h',
  * }
  */
 export class OCReviewDetails {
@@ -15,7 +16,7 @@ export class OCReviewDetails {
     rating: number;
     review: string;
     userId?: string;
-    reviewId: string;
+    reviewId?: string;
 }
 
 /**
