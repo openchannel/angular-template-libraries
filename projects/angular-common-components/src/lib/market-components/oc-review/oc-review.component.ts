@@ -120,12 +120,10 @@ export class OcReviewComponent implements OnInit, OnDestroy {
      * @return Review
      */
     private fillReviewData(): Review {
-        let resultData: Review;
-        resultData = {
+        return {
             ...this.reviewForm.getRawValue(),
             rating: this.reviewForm.get('rating').value * 100,
         };
-        return resultData;
     }
 
     /**
