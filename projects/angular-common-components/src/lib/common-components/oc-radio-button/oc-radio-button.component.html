@@ -1,0 +1,15 @@
+<label class="form-radio-button">
+    <input (click)="onChosenRadio()"
+           [disabled]="disabled"
+           (blur)="onBlur()"
+           [name]="radioButtonGroupName"
+           [value]="radioButtonValue"
+           autocomplete="off"
+           class="form-radio-button__input form-radio-button__input_hidden"
+           id="customRadio"
+           type="radio">
+    <span class="form-radio-button__checkmark"></span>
+    <span class="form-radio-button__label">{{labelText}}
+        <span *ngIf="requiredIndicator" class="form-radio-button__required-glyph">*</span>
+    </span>
+</label>
