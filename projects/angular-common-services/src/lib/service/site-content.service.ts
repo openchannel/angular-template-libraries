@@ -3,17 +3,32 @@ import { Observable } from 'rxjs';
 import { HttpRequestService } from './http-request-services';
 import { SiteContentResponse } from '../model/api/custom-content.model';
 import { HttpHeaders } from '@angular/common/http';
+import { OcApiPaths } from '../oc-ng-common-service.module';
+import { OcHttpParams } from '../model/api/http-params-encoder-model';
+import { Page } from '../model/api/page.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class SiteContentService {
-    private readonly CONTENT_URL = 'v2/sites';
 
-    constructor(private httpService: HttpRequestService) {}
+    constructor(private httpService: HttpRequestService, private apiPaths: OcApiPaths) {}
 
-    getContentById(siteId: string, contentId: string, headers: HttpHeaders = new HttpHeaders()): Observable<SiteContentResponse> {
-        const config = `${this.CONTENT_URL}/${siteId}/content/${contentId}`;
-        return this.httpService.get(config, { headers });
+    getAllContent(
+        pageNumber: number,
+        limit: number,
+        sort: string,
+        query: string,
+        headers: HttpHeaders = new HttpHeaders(),
+    ): Observable<Page<SiteContentResponse>> {
+
+        return this.httpService.get(`${this.apiPaths.sites}/content`, {
+            headers,
+            params: new OcHttpParams()
+                .append('pageNumber', String(pageNumber))
+                .append('limit', String(limit))
+                .append('sort', sort)
+                .append('query', query),
+        });
     }
 }
