@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="info-card__content-data">
-                <span class="info-card__content-price">{{cardApp.model[0] | price}}</span>
+                <span class="info-card__content-price">{{currentModel | price}}</span>
                 <oc-rating class="info-card__content-rating"
                            [rating]="cardApp.rating ? cardApp.rating/100 : 0"
                            [reviewCount]="cardApp.reviewCount"
