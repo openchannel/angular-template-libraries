@@ -3,7 +3,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup } from '@angular/forms';
 import { AppFormModel } from '../model/app-form-model';
 
-
 /**
  * Form modal component. Represents form in modal window and all related logic.
  *
@@ -33,7 +32,7 @@ import { AppFormModel } from '../model/app-form-model';
 @Component({
     selector: 'oc-form-modal',
     templateUrl: './oc-form-modal.component.html',
-    styleUrls: ['./oc-form-modal.component.scss'],
+    styleUrls: ['./oc-form-modal.component.css'],
 })
 export class OcFormModalComponent {
     /**

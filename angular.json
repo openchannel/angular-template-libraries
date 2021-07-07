@@ -7,7 +7,7 @@
       "projectType": "library",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "css"
         }
       },
       "root": "",
@@ -15,6 +15,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
+          "extractCss": true,
           "options": {
             "tsConfig": "projects/angular-common-components/tsconfig.lib.json",
             "project": "projects/angular-common-components/ng-package.json"
@@ -27,6 +28,7 @@
         },
         "test": {
           "builder": "@angular-builders/jest:run",
+          "extractCss": true,
           "options": {
             "jestConfig": "projects/angular-common-components/jest.config.js",
             "tsConfig": "projects/angular-common-components/tsconfig.spec.json",
@@ -35,6 +37,7 @@
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
+          "extractCss": true,
           "options": {
             "tsConfig": [
               "projects/angular-common-components/tsconfig.lib.json",

@@ -9,7 +9,7 @@ import { GalleryItem } from '@openchannel/angular-common-components/src/lib/comm
 @Component({
     selector: 'oc-image-gallery',
     templateUrl: './oc-image-gallery.component.html',
-    styleUrls: ['./oc-image-gallery.component.scss'],
+    styleUrls: ['./oc-image-gallery.component.css'],
 })
 export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
     /**

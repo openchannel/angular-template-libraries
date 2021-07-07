@@ -5,7 +5,7 @@ import { FullAppData } from '@openchannel/angular-common-components/src/lib/comm
 @Component({
     selector: 'oc-app-card',
     templateUrl: './oc-app-card.component.html',
-    styleUrls: ['./oc-app-card.component.scss'],
+    styleUrls: ['./oc-app-card.component.css'],
 })
 export class OcAppCardComponent {
     /**

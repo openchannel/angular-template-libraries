@@ -8,7 +8,7 @@ import { FullAppData } from '@openchannel/angular-common-components/src/lib/comm
 @Component({
     selector: 'oc-app-short-info',
     templateUrl: './oc-app-short-info.component.html',
-    styleUrls: ['./oc-app-short-info.component.scss'],
+    styleUrls: ['./oc-app-short-info.component.css'],
 })
 export class OcAppShortInfoComponent {
     /**

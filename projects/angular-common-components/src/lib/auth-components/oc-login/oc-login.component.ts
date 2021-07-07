@@ -14,7 +14,7 @@ import { ComponentsUserLoginModel } from '../models/auth-types.model';
 @Component({
     selector: 'oc-login',
     templateUrl: './oc-login.component.html',
-    styleUrls: ['./oc-login.component.scss'],
+    styleUrls: ['./oc-login.component.css'],
 })
 export class OcLoginComponent {
     /**

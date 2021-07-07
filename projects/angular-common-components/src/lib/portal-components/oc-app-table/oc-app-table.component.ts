@@ -19,7 +19,7 @@ export interface SortChosen {
 @Component({
     selector: 'oc-app-table',
     templateUrl: './oc-app-table.component.html',
-    styleUrls: ['./oc-app-table.component.scss'],
+    styleUrls: ['./oc-app-table.component.css'],
 })
 export class OcAppTableComponent {
     /**

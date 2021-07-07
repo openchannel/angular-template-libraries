@@ -4,7 +4,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
     selector: 'oc-textarea',
     templateUrl: './oc-textarea.component.html',
-    styleUrls: ['./oc-textarea.component.scss'],
+    styleUrls: ['./oc-textarea.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'oc-content-modal',
     templateUrl: './oc-content-modal.component.html',
-    styleUrls: ['./oc-content-modal.component.scss'],
+    styleUrls: ['./oc-content-modal.component.css'],
 })
 export class OcContentModalComponent implements AfterViewInit {
     @ViewChild('contentModal', { static: false }) contentModal: ElementRef;

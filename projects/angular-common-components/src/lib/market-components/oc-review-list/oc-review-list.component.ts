@@ -9,7 +9,7 @@ import { OCReviewDetails } from '../models/oc-review-details-model';
 @Component({
     selector: 'oc-review-list',
     templateUrl: './oc-review-list.component.html',
-    styleUrls: ['./oc-review-list.component.scss'],
+    styleUrls: ['./oc-review-list.component.css'],
 })
 export class OcReviewListComponent implements OnChanges {
     baseReviewsList: OCReviewDetails[] = [];

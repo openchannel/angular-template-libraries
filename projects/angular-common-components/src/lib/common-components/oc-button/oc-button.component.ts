@@ -8,7 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
     selector: 'oc-button',
     templateUrl: './oc-button.component.html',
-    // styleUrls: ['./oc-button.component.scss'],
+    styleUrls: ['./oc-button.component.css'],
 })
 export class OcButtonComponent implements OnChanges {
     /**

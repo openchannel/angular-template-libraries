@@ -6,7 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
     selector: 'oc-video',
     templateUrl: './oc-video.component.html',
-    styleUrls: ['./oc-video.component.scss'],
+    styleUrls: ['./oc-video.component.css'],
 })
 export class OcVideoComponent {
     /**

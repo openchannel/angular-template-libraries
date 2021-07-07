@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
     selector: 'oc-text-search',
     templateUrl: './oc-text-search.component.html',
-    styleUrls: ['./oc-text-search.component.scss'],
+    styleUrls: ['./oc-text-search.component.css'],
 })
 export class OcTextSearchComponent {
     /**
