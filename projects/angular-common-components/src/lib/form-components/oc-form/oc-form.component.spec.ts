@@ -15,6 +15,7 @@ import { By } from '@angular/platform-browser';
 import { FileDetails } from '@openchannel/angular-common-components/src/lib/form-components';
 import { Observable } from 'rxjs';
 import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
+import { MockMultiSelectCheckboxList } from '@openchannel/angular-common-components/src/mock/mock';
 
 @Component({
     selector: 'oc-tooltip-label',
@@ -375,6 +376,7 @@ describe('OcFormComponent', () => {
                     MockButtonComponent,
                     MockInputComponent,
                     MockPasswordComponent,
+                    MockMultiSelectCheckboxList,
                 ],
                 imports: [FormsModule, ReactiveFormsModule],
             }).compileComponents();

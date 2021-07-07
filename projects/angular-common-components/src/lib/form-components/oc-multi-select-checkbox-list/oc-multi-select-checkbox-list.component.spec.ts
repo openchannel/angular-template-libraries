@@ -11,10 +11,7 @@ describe('OcMultiSelectCheckboxListComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [
-                    OcMultiSelectCheckboxListComponent,
-                    MockCheckboxComponent
-                ],
+                declarations: [OcMultiSelectCheckboxListComponent, MockCheckboxComponent],
             }).compileComponents();
         }),
     );

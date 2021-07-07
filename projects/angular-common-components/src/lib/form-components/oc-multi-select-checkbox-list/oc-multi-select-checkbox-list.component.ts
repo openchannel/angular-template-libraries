@@ -6,6 +6,10 @@ interface LocalDropdownItem extends DropdownItem {
     selected: boolean;
 }
 
+/**
+ * Multi select checkbox list component. Represent input for search tags by a list of checkboxes.
+ * @example <oc-multi-select-checkbox-list (selectedItemsOutput)="yourFunction($event)" [itemsArray]="['1']" [defaultItemsArray]="['1']">
+ */
 @Component({
     selector: 'oc-multi-select-checkbox-list',
     templateUrl: './oc-multi-select-checkbox-list.component.html',
@@ -19,16 +23,25 @@ interface LocalDropdownItem extends DropdownItem {
     ],
 })
 export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueAccessor {
+    /**
+     * Sets an array which contains all dropdown items.
+     * @type {DropdownItemType[]}.
+     */
     @Input('itemsArray') set setItemsArray(items: DropdownItemType[]) {
         this.itemsArray = this.mapToArrayWithDropdownItem(items);
     }
 
+    /**
+     * Sets an array which contains all default dropdown items.
+     * @type {DropdownItemType[]}.
+     */
     @Input('defaultItemsArray') set setDefaultItemsArray(items: DropdownItemType[]) {
         this.defaultItemsArray = this.mapToArrayWithDropdownItem(items);
     }
 
     /**
-     * Set result items array value
+     * Sets result items array value.
+     * Updates component data.
      */
     @Input() set value(items: DropdownItemType[]) {
         this.itemsArray.forEach(item => (item.selected = false));
@@ -36,6 +49,9 @@ export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueA
         this.updateComponentData();
     }
 
+    /**
+     * Event emitter, passes checked items when components updates.
+     */
     @Output() readonly selectedItemsOutput: EventEmitter<DropdownItemType[]> = new EventEmitter<DropdownItemType[]>();
 
     itemsArray: LocalDropdownItem[] = [];
@@ -48,10 +64,19 @@ export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueA
         this.updateComponentData();
     }
 
+    /**
+     * Takes itemsArray or defaultItemsArray as a parameter.
+     * Calls createDropDownItem method for each item.
+     * Returns an array of items with LocalDropdownItem type.
+     */
     mapToArrayWithDropdownItem(rawItems: DropdownItemType[] = []): LocalDropdownItem[] {
         return (rawItems || []).map(item => this.createDropDownItem(item));
     }
 
+    /**
+     * Checks for existing values of each item.
+     * Sets 'selected' property as false.
+     */
     createDropDownItem(item: DropdownItemType | any): LocalDropdownItem {
         if (item !== null && item !== undefined) {
             if (item.hasOwnProperty('label') && item.hasOwnProperty('value')) {
@@ -69,6 +94,11 @@ export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueA
         }
     }
 
+    /**
+     * A group of methods to check changes of selected values.
+     * updateSelectValueForItem method - finds a current selected item if it exists.
+     * Checks if current item is selected.
+     */
     switchItemStatus(item: LocalDropdownItem, withOnChange: boolean = true): void {
         this.updateSelectValueForItem(item, !item.selected, withOnChange);
     }
@@ -88,25 +118,16 @@ export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueA
     }
 
     /**
-     * Update component filters and result value
-     */
-    updateComponentData(): void {
-        const selectedItems = this.itemsArray.filter(item => item.selected).map(item => item.value);
-        this.onChange(selectedItems);
-        this.selectedItemsOutput.emit(selectedItems);
-    }
-
-    /**
-     * Calls this function with new value. When user wrote something in the component
-     * It needs to know that new data has been entered in the control.
+     * Calls this function with new value.
+     * When user writes something in the component, it needs to know that new data has entered the control.
      */
     registerOnChange(onChange: (value: any) => void): void {
         this.onChange = onChange;
     }
 
     /**
-     * Calls this function when user left chosen component.
-     * It needs for validation
+     * Calls this function when user leaves chosen component.
+     * It is needed for validation.
      */
     registerOnTouched(onTouched: () => void): void {
         this.onTouched = onTouched;
@@ -114,13 +135,12 @@ export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueA
 
     /**
      * (Optional)
-     * the method will be called by the control when the [disabled] state changes.
+     * The method will be called by the control when the [disabled] state changes.
      */
-    setDisabledState(isDisabled: boolean): void {
-    }
+    setDisabledState(isDisabled: boolean): void {}
 
     /**
-     * this method will be called by the control to pass the value to our component.
+     * This method will be called by the control to pass the value to our component.
      * It is used if the value is changed through the code outside
      * (setValue or changing the variable that ngModel is tied to),
      * as well as to set the initial value.
@@ -129,9 +149,16 @@ export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueA
         this.mapToArrayWithDropdownItem(value).forEach(item => this.selectItemStatus(item));
     }
 
-    private onTouched = () => {
-    };
+    /**
+     * Updates component filters and result value.
+     */
+    private updateComponentData(): void {
+        const selectedItems = this.itemsArray.filter(item => item.selected).map(item => item.value);
+        this.onChange(selectedItems);
+        this.selectedItemsOutput.emit(selectedItems);
+    }
 
-    private onChange: (value: any) => void = () => {
-    };
+    private onTouched = () => {};
+
+    private onChange: (value: any) => void = () => {};
 }

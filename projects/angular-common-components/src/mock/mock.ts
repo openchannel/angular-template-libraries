@@ -11,7 +11,7 @@ import {
 } from '@angular/forms';
 import { AppTypeFieldModel, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 import { OcCheckboxData, OcEditUserFormConfig, OCOrganization } from '@openchannel/angular-common-components/src/lib/auth-components';
-import { FieldValueModel } from '@openchannel/angular-common-components/src/lib/form-components';
+import { DropdownItemType, FieldValueModel } from '@openchannel/angular-common-components/src/lib/form-components';
 
 @Component({
     selector: 'oc-label',
@@ -126,8 +126,8 @@ export class MockFormComponent {
     @Input() generatedForm: FormGroup;
     @Input() successButtonText: string = 'Submit';
     @Input() showButton: boolean = true;
-    @Output() formSubmitted = new EventEmitter<any>();
-    @Output() cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() readonly formSubmitted = new EventEmitter<any>();
+    @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     formData = {
         name: 'Test name',
@@ -136,7 +136,7 @@ export class MockFormComponent {
         skills: ['angular'],
     };
 
-    submitForm() {
+    submitForm(): any {
         this.formSubmitted.emit(this.formData);
     }
 }
@@ -173,7 +173,7 @@ export class MockTitleComponent {
 
 @Component({
     selector: 'oc-dynamic-field-array',
-    template: ''
+    template: '',
 })
 export class MockDynamicFieldArrayComponent {
     @Input() dfaFormArray: FormArray;
@@ -216,22 +216,32 @@ export class MockEditUserFormComponent {
 
 @Component({
     selector: 'oc-tag-element',
-    template: ''
+    template: '',
 })
 export class MockTagComponent {
     @Input() title: string;
     @Input() closeMarker: boolean = false;
     @Input() deleteTagImgUrl: string = '~@openchannel/angular-common-components/assets/img/close-icon.svg';
-    @Output() clickEmitter = new EventEmitter<string>();
+    @Output() readonly clickEmitter = new EventEmitter<string>();
 }
 
 @Component({
     selector: 'oc-dynamic-array-preview',
-    template: ''
+    template: '',
 })
 export class MockDynamicArrayPreview {
     @Input() fieldValues: FieldValueModel[];
     @Input() fieldDefinition: AppTypeFieldModel;
     @Input() dfaForm: FormGroup;
     @Input() hideLabel: boolean;
+}
+
+@Component({
+    selector: 'oc-multi-select-checkbox-list',
+    template: '',
+})
+export class MockMultiSelectCheckboxList {
+    @Input() itemsArray: DropdownItemType[];
+    @Input() defaultItemsArray: DropdownItemType[];
+    @Output() readonly selectedItemsOutput = new EventEmitter<DropdownItemType[]>();
 }
