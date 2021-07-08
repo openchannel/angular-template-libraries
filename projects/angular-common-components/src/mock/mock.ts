@@ -111,7 +111,7 @@ export class MockCheckboxComponent implements ControlValueAccessor {
     @Input() labelText: string;
     @Input() requiredIndicator: boolean = false;
     @Input() formControl: FormControl;
-    @Input() set value(v: boolean) {}
+    @Input() setValue: boolean;
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}

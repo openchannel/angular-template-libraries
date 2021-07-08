@@ -8,6 +8,7 @@
 <ng-template #dropdownItemNgt let-item>
     <div [id]="'multi-checkbox-item-' + item.label" class="dropdown-multi-checkbox__group">
         <oc-checkbox
+                [disabled]="disabled"
                 [value]="item.selected"
                 (isCheckedChange)="switchItemStatus(item)"
                 class="dropdown-multi-checkbox__group-checkbox"></oc-checkbox>

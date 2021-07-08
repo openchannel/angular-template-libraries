@@ -56,6 +56,7 @@ export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueA
 
     itemsArray: LocalDropdownItem[] = [];
     defaultItemsArray: LocalDropdownItem[] = [];
+    disabled: boolean = false;
 
     ngOnInit(): void {
         if (this.defaultItemsArray.length > 0) {
@@ -137,7 +138,9 @@ export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueA
      * (Optional)
      * The method will be called by the control when the [disabled] state changes.
      */
-    setDisabledState(isDisabled: boolean): void {}
+    setDisabledState(isDisabled: boolean): void {
+        this.disabled = isDisabled;
+    }
 
     /**
      * This method will be called by the control to pass the value to our component.
