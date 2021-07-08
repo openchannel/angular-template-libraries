@@ -26,3 +26,21 @@ export const DefaultVideo = VideoComponent.bind({});
 DefaultVideo.args = {
     videoUrl: 'https://www.youtube.com/watch?v=DGQwd1_dpuc',
 };
+
+export const WistiaVideo = VideoComponent.bind({});
+
+WistiaVideo.args = {
+    videoUrl: 'https://softkit.wistia.com/medias/ou1sr5h6jt',
+};
+
+export const VidyardVideo = VideoComponent.bind({});
+
+VidyardVideo.args = {
+    videoUrl: 'https://share.vidyard.com/watch/nmczXbtJDXrHm9LpLTkrEB',
+};
+
+export const BrightcoveVideo = VideoComponent.bind({});
+
+BrightcoveVideo.args = {
+    videoUrl: 'https://players.brightcove.net/6259025838001/default_default/index.html?videoId=6259291147001',
+};
