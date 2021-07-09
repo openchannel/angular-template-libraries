@@ -32,6 +32,7 @@ export class OcAppShortInfoComponent implements OnInit {
      * Template for the dropdown menu. If not set - no dropdown menu will appear.
      */
     @Input() customDropdown: TemplateRef<any>;
+
     /**
      * (Optional)
      *  Path to the custom Default App Icon that will be shown when the app has no icon.

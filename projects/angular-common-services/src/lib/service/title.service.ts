@@ -39,9 +39,9 @@ export class TitleService {
      * @returns {void}
      *
      * ### Example
-     *``
+     * ``
      * setPrefix("Prefix")
-     *``
+     * ``
      */
     setPrefix(subtitle: string): void {
         const siteTitle = `${subtitle ? `${subtitle} | ` : ''}${this.title}`;
@@ -54,9 +54,9 @@ export class TitleService {
      * @returns {void}
      *
      * ### Example
-     *``
+     * ``
      * setPostfix("Postfix")
-     *``
+     * ``
      */
     setPostfix(subtitle: string): void {
         const siteTitle = `${this.title}${subtitle ? ` | ${subtitle}` : ''}`;
@@ -71,9 +71,9 @@ export class TitleService {
      * @returns {void}
      *
      * ### Example
-     *``
+     * ``
      * setSpecialTitle("Title", true)
-     *``
+     * ``
      */
     setSpecialTitle(newTitlePart: string, rightPart?: boolean): void {
         if (rightPart) {
