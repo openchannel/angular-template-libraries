@@ -1,10 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
     selector: 'oc-radio-button',
     templateUrl: './oc-radio-button.component.html',
     styleUrls: ['./oc-radio-button.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => OcRadioButtonComponent),
+            multi: true,
+        },
+    ],
 })
 export class OcRadioButtonComponent implements OnInit, ControlValueAccessor {
     /** Set value from AbstractControl, like `ngModel` or `formControl` */
@@ -21,6 +28,7 @@ export class OcRadioButtonComponent implements OnInit, ControlValueAccessor {
     @Input() radioButtonGroupName: string = '';
 
     radioButtonValue: any;
+    isChecked: boolean = false;
     constructor() {}
 
     ngOnInit(): void {}
@@ -28,7 +36,10 @@ export class OcRadioButtonComponent implements OnInit, ControlValueAccessor {
      * Sending data to the formControl when this radio button has been clicked.
      */
     onChosenRadio(): void {
-        this.onChange(this.radioButtonValue);
+        this.isChecked = !this.isChecked;
+        if (this.isChecked) {
+            this.onChange(this.radioButtonValue);
+        }
     }
     /**
      * Register blur action. This is necessary for form control validation.
@@ -64,8 +75,8 @@ export class OcRadioButtonComponent implements OnInit, ControlValueAccessor {
      * as well as to set the initial value.
      */
     writeValue(obj: any): void {
-        if (obj || obj === 0) {
-            this.radioButtonValue = obj;
+        if (obj === this.radioButtonValue) {
+            this.isChecked = true;
         }
     }
 

@@ -122,6 +122,7 @@ import { OcRadioButtonComponent } from './oc-radio-button/oc-radio-button.compon
         EllipsisDirective,
         SafePipe,
         OcContentModalComponent,
+        OcRadioButtonComponent,
     ],
     providers: [NgbActiveModal],
 })

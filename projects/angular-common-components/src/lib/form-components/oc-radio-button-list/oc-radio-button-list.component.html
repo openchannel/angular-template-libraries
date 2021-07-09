@@ -1,1 +1,12 @@
-<p>oc-radio-button-list works!</p>
+<div class="radio-button-list">
+    <div class="radio-button-list__group">
+        <div *ngFor="let item of itemsArray" class="radio-button-list__item">
+            <ng-container [ngTemplateOutlet]="customRadioItemRef ? customRadioItemRef : defaultRadioItemTemplate"
+                          [ngTemplateOutletContext]="{$implicit: item}"></ng-container>
+        </div>
+    </div>
+</div>
+
+<ng-template #defaultRadioItemTemplate let-item>
+
+</ng-template>
