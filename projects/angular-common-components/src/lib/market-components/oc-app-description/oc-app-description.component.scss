@@ -22,6 +22,6 @@
         @include font-medium();
         @include font-size-md();
         cursor: pointer;
-        color: #537cfd;
+        color: $primary;
     }
 }

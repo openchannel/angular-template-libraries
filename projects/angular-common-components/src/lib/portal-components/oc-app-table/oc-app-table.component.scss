@@ -85,7 +85,7 @@
     &__td {
         padding: 2rem 0;
         vertical-align: middle;
-        border-top: 1px solid rgba(201, 213, 234, 0.5);
+        border-top: 1px solid rgba($info, 0.5);
 
         &:last-child {
             border-top: 1px solid $info;
@@ -151,7 +151,7 @@
             &.oc-table__text-status {
                 @include font-medium();
                 cursor: pointer;
-                color: #333;
+                color: $body-color;
             }
 
             &.oc-table__summary-text {

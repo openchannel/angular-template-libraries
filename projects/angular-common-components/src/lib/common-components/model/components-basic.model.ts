@@ -61,3 +61,7 @@ export interface ComponentsPage<T> {
     pageNumber: number;
     list: T[];
 }
+
+export interface RadioItem<T> extends DropdownModel<T> {
+    checked: boolean;
+}
