@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -13,11 +13,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
         },
     ],
 })
-export class OcRadioButtonComponent implements OnInit, ControlValueAccessor {
+export class OcRadioButtonComponent implements ControlValueAccessor {
     /** Set value from AbstractControl, like `ngModel` or `formControl` */
     @Input() set value(val: any) {
         this.radioButtonValue = val;
-        this.onChange(this.radioButtonValue);
     }
     /** Set `disable` state for color input. User can not interact with this component */
     @Input() disabled: boolean = false;
@@ -25,13 +24,12 @@ export class OcRadioButtonComponent implements OnInit, ControlValueAccessor {
     @Input() labelText: string;
     /** Sets asterisk near the label text. Which means that this control is required */
     @Input() requiredIndicator: boolean = false;
+    /** Set radio button group name property for the Radio Button, this is necessary for creation of a radio button group */
     @Input() radioButtonGroupName: string = '';
 
     radioButtonValue: any;
     isChecked: boolean = false;
-    constructor() {}
 
-    ngOnInit(): void {}
     /**
      * Sending data to the formControl when this radio button has been clicked.
      */
