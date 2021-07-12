@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 @Component({
     selector: 'oc-activation',
     templateUrl: './oc-activation.component.html',
-    styleUrls: ['./oc-activation.component.scss'],
+    styleUrls: ['./oc-activation.component.css'],
 })
 export class OcActivationComponent {
     /**

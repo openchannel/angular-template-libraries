@@ -9,7 +9,7 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'oc-rating',
     templateUrl: './oc-rating.component.html',
-    styleUrls: ['./oc-rating.component.scss'],
+    styleUrls: ['./oc-rating.component.css'],
 })
 export class OcRatingComponent {
     /**

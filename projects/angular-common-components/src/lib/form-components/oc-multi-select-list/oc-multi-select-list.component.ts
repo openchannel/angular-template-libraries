@@ -10,7 +10,7 @@ import { difference } from 'lodash';
 @Component({
     selector: 'oc-multi-select-list',
     templateUrl: './oc-multi-select-list.component.html',
-    styleUrls: ['./oc-multi-select-list.component.scss'],
+    styleUrls: ['./oc-multi-select-list.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

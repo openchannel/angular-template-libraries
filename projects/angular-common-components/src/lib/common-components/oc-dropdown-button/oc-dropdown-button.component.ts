@@ -25,7 +25,7 @@ import { DropdownModel } from '../model/components-basic.model';
 @Component({
     selector: 'oc-dropdown-button',
     templateUrl: './oc-dropdown-button.component.html',
-    styleUrls: ['./oc-dropdown-button.component.scss'],
+    styleUrls: ['./oc-dropdown-button.component.css'],
 })
 export class OcDropdownButtonComponent {
     /**
