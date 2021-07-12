@@ -2,10 +2,8 @@
   "name": "oc-angular-template-libraries",
   "version": "2.5.0",
   "scripts": {
-    "clean-css": "find ./projects/angular-common-components -type f -name \"*.css*\" | xargs rm",
-    "generate-mock-css": "find ./projects/angular-common-components -type f -name \"*.html\" | sed 's/\\.html/\\.css/g' | xargs touch",
-    "postbuild": "npm run gather-components-styles",
     "prebuild": "npm run clean-css && npm run generate-mock-css",
+    "postbuild": "npm run gather-components-styles",
     "ng": "./node_modules/.bin/ng",
     "start": "./node_modules/.bin/ng serve",
     "build": "./node_modules/.bin/ng build",
@@ -33,6 +31,8 @@
     "start-compodoc-service-watch": "compodoc -p tsconfig.json projects/angular-common-services/src -d ./development/documentation/service -s -r 8801 -d ./development/documentation/service --watch",
     "start-compodoc-components-watch": "compodoc -p tsconfig.json projects/angular-common-components/src -d ./development/documentation/components -s -r 8802 -d ./development/documentation/components --watch",
     "gather-components-styles": "scss-bundle -c scss-bundle.config.json",
+    "clean-css": "find ./projects/angular-common-components -type f -name \"*.css*\" | xargs rm",
+    "generate-mock-css": "find ./projects/angular-common-components -type f -name \"*.html\" | sed 's/\\.html/\\.css/g' | xargs touch",
     "watch-scss": "npm run clean-css && sass --watch ./projects/angular-common-components/src/lib"
   },
   "private": true,

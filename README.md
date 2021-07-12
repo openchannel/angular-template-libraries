@@ -123,13 +123,17 @@ npm i --save @ng-bootstrap/ng-bootstrap@6.0.2 @tinymce/tinymce-angular@4.2.0 ang
 
 ### Connect library to project
 
-1. `ng build angular-common-components`
+1. `npm run clean-css && npm run generate-mock-css`
 
-2. `cd dist/angular-common-components`
+2. `ng build angular-common-components`
+
+3. `npm run gather-components-styles`
+
+4. `cd dist/angular-common-components`
 
 5. `sudo npm link` Then copy result link.
 
-4. In your angular project run:<br> `npm install file:<{absolute path to angular-common-components}/dist/angular-common-components>`
+6. In your angular project run:<br> `npm install file:<{absolute path to angular-common-components}/dist/angular-common-components>`
 
 ### Build Project with watching file changes
 Run `ng build angular-common-components --watch`
@@ -155,7 +159,9 @@ Run `cd ./dist/angular-common-components && npm publish`
 
 * Build Project
 
-  ``ng build``
+  - `` npm run clean-css && sass --watch ./projects/angular-common-components/src/lib ``
+
+  - ``ng build``
 
 * Create doc for storybook
 
