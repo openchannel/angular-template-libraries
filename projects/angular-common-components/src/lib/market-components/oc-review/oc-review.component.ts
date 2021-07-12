@@ -100,11 +100,10 @@ export class OcReviewComponent implements OnInit, OnDestroy {
      * checking form and emits review data if form is valid. Otherwise, invalid form fields will be highlighted.
      */
     submitReview(): void {
+        this.reviewForm.markAllAsTouched();
         if (this.reviewForm.valid && !this.submitInProgress) {
             this.reviewFormData.emit(this.fillReviewData());
-            return;
         }
-        this.reviewForm.markAllAsTouched();
     }
 
     clearForm(): void {
