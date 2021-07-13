@@ -65,6 +65,7 @@ import { OcRadioButtonListComponent } from './oc-radio-button-list/oc-radio-butt
         OcFormModalComponent,
         OcDynamicArrayPreviewComponent,
         OcTooltipLabelComponent,
+        OcRadioButtonListComponent,
     ],
 })
 export class OcFormComponentsModule {}

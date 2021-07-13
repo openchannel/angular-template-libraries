@@ -1,5 +1,5 @@
 import { Component, forwardRef, Input, OnInit, TemplateRef } from '@angular/core';
-import { RadioItem } from '@openchannel/angular-common-components/src/lib/common-components';
+import { DropdownModel, RadioItemValue } from '@openchannel/angular-common-components/src/lib/common-components';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -15,18 +15,33 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     ],
 })
 export class OcRadioButtonListComponent implements OnInit, ControlValueAccessor {
+    @Input() set value(value: RadioItemValue) {
+        this.componentValue = value;
+    }
     /**
      * (Optional)
      * Custom template for the radio list item. If not set, default radio list item will be shown.
      * @default null
      */
-    @Input() customRadioItemRef: TemplateRef<RadioItem<string | number | boolean>>;
+    @Input() customRadioItemRef: TemplateRef<DropdownModel<RadioItemValue>> = null;
     /** Set `disable` state for this component. User can not interact with it and change the value */
     @Input() disabled: boolean = false;
+    /** Array which will be used for generating a group of the radio buttons */
+    @Input() itemsArray: DropdownModel<RadioItemValue>[] = [];
+    /** Name of the radio button group */
+    @Input() radioButtonGroup: string = '';
+
+    componentValue: RadioItemValue = null;
 
     constructor() {}
 
     ngOnInit(): void {}
+
+    onValueChanged(value: RadioItemValue): void {
+        if (value !== this.componentValue) {
+            this.componentValue = value;
+        }
+    }
     /**
      * Register touch action
      */
@@ -62,7 +77,7 @@ export class OcRadioButtonListComponent implements OnInit, ControlValueAccessor 
      */
     writeValue(obj: any): void {
         if (obj) {
-
+            this.componentValue = obj;
         }
     }
     /**

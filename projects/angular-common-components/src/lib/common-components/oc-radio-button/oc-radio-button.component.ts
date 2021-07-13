@@ -34,10 +34,7 @@ export class OcRadioButtonComponent implements ControlValueAccessor {
      * Sending data to the formControl when this radio button has been clicked.
      */
     onChosenRadio(): void {
-        this.isChecked = true;
-        if (this.isChecked) {
-            this.onChange(this.radioButtonValue);
-        }
+        this.onChange(this.radioButtonValue);
     }
     /**
      * Register blur action. This is necessary for form control validation.
