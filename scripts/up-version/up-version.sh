@@ -49,3 +49,4 @@ git add '../../package-lock.json'
 git add '../../changelog.md'
 git commit --amend -m "Up version to ${PACKAGE_VERSION}"
 git push
+git push origin --tags
