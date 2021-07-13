@@ -1,6 +1,5 @@
-<label class="form-radio-button">
-    <input (click)="onChosenRadio()"
-           [disabled]="disabled"
+<label class="form-radio-button" (click)="onChosenRadio()">
+    <input [disabled]="disabled"
            (blur)="onBlur()"
            [name]="radioButtonGroupName"
            [value]="radioButtonValue"

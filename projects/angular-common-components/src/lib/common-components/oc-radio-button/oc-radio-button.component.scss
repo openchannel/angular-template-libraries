@@ -9,7 +9,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    padding-left: 16px;
+    padding-left: 2rem;
 
     &__input {
 
@@ -20,11 +20,10 @@
             height: 0;
             width: 0;
 
-            &:checked + .form-radio-button__checkmark:before {
-                display: block;
-            }
-
             &:checked + .form-radio-button__checkmark {
+                &:before {
+                    display: block;
+                }
                 border-color: $primary;
             }
 
@@ -58,7 +57,7 @@
     }
 
     &__label {
-        @include font-size-sm();
+        @include font-size-md();
         color: $body-color;
         line-height: 16px;
         margin-left: 8px;

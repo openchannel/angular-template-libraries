@@ -34,7 +34,7 @@ export class OcRadioButtonComponent implements ControlValueAccessor {
      * Sending data to the formControl when this radio button has been clicked.
      */
     onChosenRadio(): void {
-        this.isChecked = !this.isChecked;
+        this.isChecked = true;
         if (this.isChecked) {
             this.onChange(this.radioButtonValue);
         }
@@ -73,9 +73,7 @@ export class OcRadioButtonComponent implements ControlValueAccessor {
      * as well as to set the initial value.
      */
     writeValue(obj: any): void {
-        if (obj === this.radioButtonValue) {
-            this.isChecked = true;
-        }
+        this.isChecked = obj === this.radioButtonValue;
     }
 
     /**
