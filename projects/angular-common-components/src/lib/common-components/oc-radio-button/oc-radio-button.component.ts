@@ -1,6 +1,15 @@
 import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+/**
+ * Represents the simple radio button component. It supports the `ngModel` and `formControl`.
+ * @example
+ * <oc-radio-button [value]="myValue"
+ *                  labelText="Test label"
+ *                  [ngModel]="resultValue"
+ *                  (ngModelChange)="onValueChanged($event)"
+ *                  [requiredIndicator]="true"></oc-radio-button>
+ */
 @Component({
     selector: 'oc-radio-button',
     templateUrl: './oc-radio-button.component.html',

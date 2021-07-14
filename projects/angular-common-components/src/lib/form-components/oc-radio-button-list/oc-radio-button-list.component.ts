@@ -2,6 +2,14 @@ import { Component, forwardRef, Input, TemplateRef } from '@angular/core';
 import { DropdownModel, RadioItemValue } from '@openchannel/angular-common-components/src/lib/common-components';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+/**
+ * Component represents a radio button group where user can choose only one value.
+ * This component supports the `ngModel` or `formControl`.
+ * @example
+ * <oc-radio-button-list [ngModel]="myValue"
+ *                       [itemsArray]="[{ label: 'First', value: 1 }, { label: 'Second', value: 2 }]"
+ *                       radioButtonGroup="order"></oc-radio-button-list>
+ */
 @Component({
     selector: 'oc-radio-button-list',
     templateUrl: './oc-radio-button-list.component.html',
