@@ -18,7 +18,12 @@ import { FieldValueModel } from '@openchannel/angular-common-components/src/lib/
     template: '',
 })
 export class MockLabelComponent {
+    /** Label text */
     @Input() text: string = '';
+    /** Show indicator of required field */
+    @Input() required: boolean = false;
+    /** Set global classes for label */
+    @Input() class: string = '';
 }
 
 @Component({
@@ -143,13 +148,24 @@ export class MockFormComponent {
 @Component({
     selector: 'oc-rating',
     template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockRatingComponent),
+            multi: true,
+        },
+    ],
 })
-export class MockRatingComponent {
+export class MockRatingComponent implements ControlValueAccessor {
     @Input() rating: number = 0;
     @Input() reviewCount: number = 0;
     @Input() label = '';
     @Input() labelClass = 'font-m font-med';
     @Input() type: 'single-star' | 'multi-star' = 'single-star';
+    @Input() disabled: boolean = false;
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
 }
 
 @Component({
