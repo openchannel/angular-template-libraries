@@ -18,6 +18,10 @@ export class OcRadioButtonListComponent implements ControlValueAccessor {
     @Input() set value(value: RadioItemValue) {
         this.componentValue = value;
     }
+    /** Array which will be used for generating a group of the radio buttons */
+    @Input('itemsArray') set listItemsArray(value: any[]) {
+        this.itemsArray = value.map(item => this.mapToDropdownModel(item));
+    }
     /**
      * (Optional)
      * Custom template for the radio list item. If not set, default radio list item will be shown.
@@ -26,16 +30,20 @@ export class OcRadioButtonListComponent implements ControlValueAccessor {
     @Input() customRadioItemRef: TemplateRef<DropdownModel<RadioItemValue>> = null;
     /** Set `disable` state for this component. User can not interact with it and change the value */
     @Input() disabled: boolean = false;
-    /** Array which will be used for generating a group of the radio buttons */
-    @Input() itemsArray: DropdownModel<RadioItemValue>[] = [];
     /** Name of the radio button group */
     @Input() radioButtonGroup: string = '';
 
     componentValue: RadioItemValue = null;
+    itemsArray: DropdownModel<RadioItemValue>[] = [];
 
+    /**
+     * Catching changes of ngModel and setting new value if it has been changed
+     * @param {RadioItemValue} value value of the chosen radio button
+     */
     onValueChanged(value: RadioItemValue): void {
         if (value !== this.componentValue) {
             this.componentValue = value;
+            this.onChange(this.componentValue);
         }
     }
     /**
@@ -75,6 +83,31 @@ export class OcRadioButtonListComponent implements ControlValueAccessor {
         if (obj) {
             this.componentValue = obj;
         }
+    }
+    /**
+     * Transform item of the values array to [Dropdown model]{@link DropdownModel}
+     * @param item item of the options array
+     * @private
+     */
+    private mapToDropdownModel(item: any): DropdownModel<RadioItemValue> {
+        if (item && !item.hasOwnProperty('label')) {
+            return {
+                label: typeof item !== 'string' ? item.toString() : this.toTitleCase(item),
+                value: item,
+            };
+        } else {
+            return item;
+        }
+    }
+    /**
+     * Transform value text to the proper label
+     * @param str string value of the items array
+     * @private
+     */
+    private toTitleCase(str: string): string {
+        return str.replace(/\b\w+/g, txt => {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
     }
     /**
      * @ignore
