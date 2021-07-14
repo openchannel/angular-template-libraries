@@ -50,7 +50,7 @@ export class OcReviewComponent implements OnInit, OnDestroy {
      * Also it applies a spinner to the `submit` button.
      * @default false
      */
-    @Input() reviewSubmitInProgress: boolean = false;
+    @Input() submitInProgress: boolean = false;
     /**
      * Emits the fresh Review data to the parent component on `submit` button click or on form value changes.
      */
@@ -100,15 +100,14 @@ export class OcReviewComponent implements OnInit, OnDestroy {
      * checking form and emits review data if form is valid. Otherwise, invalid form fields will be highlighted.
      */
     submitReview(): void {
-        if (this.reviewForm.valid && !this.reviewSubmitInProgress) {
-            this.reviewFormData.emit(this.fillReviewData());
-            return;
-        }
         this.reviewForm.markAllAsTouched();
+        if (this.reviewForm.valid && !this.submitInProgress) {
+            this.reviewFormData.emit(this.fillReviewData());
+        }
     }
 
     clearForm(): void {
-        if (!this.reviewSubmitInProgress) {
+        if (!this.submitInProgress) {
             this.reviewForm.reset();
             this.cancelReview.emit(true);
         }

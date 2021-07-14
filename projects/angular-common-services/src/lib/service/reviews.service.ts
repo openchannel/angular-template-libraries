@@ -106,7 +106,7 @@ export class ReviewsService {
      * `updateReview({reviewId: "5565322ae4b0a70b13a4563b", headline: "Good App", rating: 400, description: ""})`
      */
     updateReview(reviewData: ReviewResponse): Observable<ReviewResponse> {
-        return this.httpService.post(`${this.apiPaths.reviews}/${reviewData.reviewId}`, reviewData);
+        return this.httpService.patch(`${this.apiPaths.reviews}/${reviewData.reviewId}`, reviewData);
     }
 
     /**

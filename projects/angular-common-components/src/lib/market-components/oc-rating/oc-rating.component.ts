@@ -32,7 +32,7 @@ export class OcRatingComponent implements ControlValueAccessor {
      * @type {number}.
      * @default 0.
      */
-    @Input() rating: number = 0;
+    @Input() rating: number;
 
     /**
      * The number of the application reviews.
@@ -63,6 +63,10 @@ export class OcRatingComponent implements ControlValueAccessor {
     constructor(config: NgbRatingConfig) {
         config.max = 5;
         config.readonly = true;
+    }
+
+    onLeave(): void {
+        this.onTouched();
     }
     /**
      * Calls this function with new value. When user wrote something in the component
@@ -98,9 +102,11 @@ export class OcRatingComponent implements ControlValueAccessor {
     /**
      * Catching rate changes and inform ngForm about value changes.
      */
-    onRateChange(): void {
-        this.onChange(this.rating);
-        this.onTouched();
+    onRateChange(newRate: number): void {
+        if (newRate > 0) {
+            this.rating = newRate;
+            this.onChange(this.rating);
+        }
     }
 
     private onTouched = () => {};
