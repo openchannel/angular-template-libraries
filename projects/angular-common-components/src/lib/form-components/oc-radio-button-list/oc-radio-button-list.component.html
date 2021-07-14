@@ -8,7 +8,8 @@
 <ng-template #defaultRadioItemTemplate let-item>
  <oc-radio-button [value]="item.value"
                   [labelText]="item.label"
+                  [ngModelOptions]="{standalone: true}"
                   [radioButtonGroupName]="radioButtonGroup"
                   (ngModelChange)="onValueChanged($event)"
-                  [ngModel]="componentValue"></oc-radio-button>
+                  [ngModel]="componentValue" ngDefaultControl></oc-radio-button>
 </ng-template>

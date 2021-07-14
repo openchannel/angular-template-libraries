@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, forwardRef, Input, TemplateRef } from '@angular/core';
 import { DropdownModel, RadioItemValue } from '@openchannel/angular-common-components/src/lib/common-components';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -14,7 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
         },
     ],
 })
-export class OcRadioButtonListComponent implements OnInit, ControlValueAccessor {
+export class OcRadioButtonListComponent implements ControlValueAccessor {
     @Input() set value(value: RadioItemValue) {
         this.componentValue = value;
     }
@@ -32,10 +32,6 @@ export class OcRadioButtonListComponent implements OnInit, ControlValueAccessor 
     @Input() radioButtonGroup: string = '';
 
     componentValue: RadioItemValue = null;
-
-    constructor() {}
-
-    ngOnInit(): void {}
 
     onValueChanged(value: RadioItemValue): void {
         if (value !== this.componentValue) {
