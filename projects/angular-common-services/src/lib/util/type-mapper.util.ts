@@ -1,5 +1,5 @@
 import { cloneDeep, each, forIn, get, map, set } from 'lodash';
-import {OptionValue, TypeFieldModel, TypeModel} from '../model/api/type-model';
+import { OptionValue, TypeFieldModel, TypeModel } from '../model/api/type-model';
 
 export class TypeMapperUtils {
     /**

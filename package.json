@@ -3,7 +3,7 @@
   "version": "2.8.0",
   "scripts": {
     "prebuild": "npm run clean-css && npm run generate-mock-css",
-    "postbuild": "npm run gather-components-styles && npm run exclude-mixins",
+    "postbuild": "npm run gather-components-styles && npm run exclude-mixins && npm run replace-relative-scss-urls",
     "ng": "./node_modules/.bin/ng",
     "start": "./node_modules/.bin/ng serve",
     "build": "./node_modules/.bin/ng build",
@@ -32,7 +32,8 @@
     "exclude-mixins": "sed -i.bak -n '/@mixin/,/^$/!p' dist/angular-common-components/assets/styles/general-styles.scss",
     "clean-css": "find ./projects/angular-common-components -type f -name \"*.css*\" | xargs rm -f",
     "generate-mock-css": "find ./projects/angular-common-components -type f -name \"*.html\" | sed 's/\\.html/\\.css/g' | xargs touch",
-    "watch-scss": "npm run clean-css && sass --watch ./projects/angular-common-components/src/lib"
+    "watch-scss": "npm run clean-css && sass --watch ./projects/angular-common-components/src/lib",
+    "replace-relative-scss-urls": "sed -i 's|url(../../../../assets/img|url(../img|g' dist/angular-common-components/assets/styles/general-styles.scss"
   },
   "private": true,
   "dependencies": {
