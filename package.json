@@ -3,7 +3,7 @@
   "version": "2.8.0",
   "scripts": {
     "prebuild": "npm run clean-css && npm run generate-mock-css",
-    "postbuild": "npm run gather-components-styles",
+    "postbuild": "npm run gather-components-styles && npm run exclude-mixins",
     "ng": "./node_modules/.bin/ng",
     "start": "./node_modules/.bin/ng serve",
     "build": "./node_modules/.bin/ng build",
@@ -29,6 +29,7 @@
     "start-compodoc-service-watch": "compodoc -p tsconfig.json projects/angular-common-services/src -d ./development/documentation/service -s -r 8801 -d ./development/documentation/service --watch",
     "start-compodoc-components-watch": "compodoc -p tsconfig.json projects/angular-common-components/src -d ./development/documentation/components -s -r 8802 -d ./development/documentation/components --watch",
     "gather-components-styles": "scss-bundle -c scss-bundle.config.json",
+    "exclude-mixins": "sed -i.bak -n '/@mixin/,/^$/!p' dist/angular-common-components/assets/styles/general-styles.scss",
     "clean-css": "find ./projects/angular-common-components -type f -name \"*.css*\" | xargs rm -f",
     "generate-mock-css": "find ./projects/angular-common-components -type f -name \"*.html\" | sed 's/\\.html/\\.css/g' | xargs touch",
     "watch-scss": "npm run clean-css && sass --watch ./projects/angular-common-components/src/lib"
