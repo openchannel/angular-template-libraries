@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { AppModel, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 
 /**
@@ -20,7 +19,7 @@ export class OcAppShortInfoComponent implements OnInit {
             console.error('@Input() app is required!');
         } else {
             this.cardApp = app;
-            this.cardApp.icon = app.icon ? this.sanitizer.bypassSecurityTrustResourceUrl(app.icon as string) : '';
+            this.cardApp.icon = app.icon || '';
         }
     }
     /**
@@ -48,7 +47,7 @@ export class OcAppShortInfoComponent implements OnInit {
     cardApp: FullAppData;
     currentModel: AppModel;
 
-    constructor(private sanitizer: DomSanitizer) {}
+    constructor() {}
 
     ngOnInit(): void {
         this.currentModel = this.cardApp.model[this.priceModelIndex] || this.cardApp.model[0];

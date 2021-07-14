@@ -104,14 +104,4 @@ describe('OcAppCategoriesComponent', () => {
             expect(location.path()).toEqual('/mock-router?test=test');
         });
     });
-
-    it('should safe image', () => {
-        const url = component.safeImage('image.url');
-        expect(url).toBeTruthy();
-    });
-
-    it('should safe style', () => {
-        const url = component.safeStyle('image.link');
-        expect(url).toBeTruthy();
-    });
 });
