@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { EmbedVideoService } from 'ngx-embed-video';
 import { SafeHtml } from '@angular/platform-browser';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { OcEmbedVideoService } from './oc-embed-video.service';
 
 @Component({
     selector: 'oc-video',
@@ -39,7 +39,7 @@ export class OcVideoComponent {
      */
     previewData: SafeHtml;
 
-    constructor(private embedService: EmbedVideoService, private spinner: NgxSpinnerService) {}
+    constructor(private embedService: OcEmbedVideoService, private spinner: NgxSpinnerService) {}
 
     /**
      * Loads video. Checks preview data and video format. Shows and hides spinner.
