@@ -28,8 +28,9 @@ const filePatternValues = {
     ISSUE_KEY: (issue) => issue ? issue.key : '',
     ISSUE_NAME: (issue) => issue ? issue.fields.summary : '',
     ISSUE_TYPE: (issue) => issue ? issue.fields.issuetype.name : '',
+    DATE: (issue) => new Date().toLocaleDateString("en"),
 }
-const filePatternHeader = "## Release notes - PROJECT_NAME - Version PACKAGE_VERSION<br>\n"
+const filePatternHeader = "## Release notes - PROJECT_NAME - Version PACKAGE_VERSION (DATE)<br>\n"
 const filePatternTitle = `### ISSUE_TYPE<br>\n`
 const filePatternIssue = `ISSUE_KEY - ISSUE_NAME<br>\n`
 
@@ -85,7 +86,7 @@ getIssuesFromAPI(jiraSubDomain, jiraEmail, jiraApiKey, jiraReleaseVersion, jiraM
     .then(response => sortIssuesByType(response.issues))
     .then(availableIssues => buildFile(availableIssues))
     .then(fileBody => {
-        fs.writeFile(resultFilePath, fileBody, (err) => {
+        prependFile(resultFilePath, fileBody, (err) => {
             if (err) {
                 console.error('Can\'t save file by path :', resultFilePath);
                 process.exit(1);
@@ -97,3 +98,14 @@ getIssuesFromAPI(jiraSubDomain, jiraEmail, jiraApiKey, jiraReleaseVersion, jiraM
         console.error('Unknown error', err);
         process.exit(1);
     });
+
+function prependFile(file, data, callback) {
+    const oldData = fs.readFileSync(file);
+    const fd = fs.openSync(file, 'w+');
+    const buffer = new Buffer(data);
+
+    fs.writeSync(fd, buffer, 0, buffer.length, 0); //write new data
+    fs.writeSync(fd, oldData, 0, oldData.length, buffer.length); //append old data
+
+    fs.close(fd, callback);
+}

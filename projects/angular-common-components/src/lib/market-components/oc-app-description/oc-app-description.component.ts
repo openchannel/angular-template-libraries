@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-
 /**
  * Component represents heading and text which could be the description of the app or something else.
  * Description text can be truncated by a quantity of the characters. Also, it can contain HTML tags.
@@ -46,9 +44,9 @@ export class OcAppDescriptionComponent implements OnInit {
     /** Text of the trigger button */
     currentShowDescriptionText: string;
     /** Current main text. Can contain HTML tags. */
-    currentDescriptionText: SafeHtml;
+    currentDescriptionText: string;
 
-    constructor(private sanitizer: DomSanitizer) {}
+    constructor() {}
 
     ngOnInit(): void {
         this.initDescriptionWithShowOption(this.showFullDescription);
@@ -81,7 +79,7 @@ export class OcAppDescriptionComponent implements OnInit {
             tempDescriptionHtml = this.truncateWithHTML(this.tempDescription, this.truncateTextLength);
         }
         this.isTruncatedText = tempDescriptionHtml && tempDescriptionHtml.length !== this.tempDescription.length;
-        this.currentDescriptionText = this.sanitizer.bypassSecurityTrustHtml(tempDescriptionHtml);
+        this.currentDescriptionText = tempDescriptionHtml;
     }
 
     /**
