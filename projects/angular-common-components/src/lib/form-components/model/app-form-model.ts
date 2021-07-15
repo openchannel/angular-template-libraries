@@ -11,7 +11,6 @@ export interface AppFormField {
     fields?: AppFormField[];
     placeholder?: string;
     category?: string;
-    specialType?: string;
 }
 
 export interface AppFormModel {
