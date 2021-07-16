@@ -60,7 +60,7 @@ import { AppFormModel } from '../model/app-form-model';
 @Component({
     selector: 'oc-form',
     templateUrl: './oc-form.component.html',
-    styleUrls: ['./oc-form.component.scss'],
+    styleUrls: ['./oc-form.component.css'],
 })
 export class OcFormComponent implements OnInit, OnDestroy, OnChanges {
     /**

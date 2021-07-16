@@ -8,7 +8,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
     selector: 'oc-checkbox',
     templateUrl: './oc-checkbox.component.html',
-    styleUrls: ['./oc-checkbox.component.scss'],
+    styleUrls: ['./oc-checkbox.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

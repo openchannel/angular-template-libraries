@@ -15,7 +15,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
     selector: 'oc-app-description',
     templateUrl: './oc-app-description.component.html',
-    styleUrls: ['./oc-app-description.component.scss'],
+    styleUrls: ['./oc-app-description.component.css'],
 })
 export class OcAppDescriptionComponent implements OnInit {
     /** Main text of the component. */

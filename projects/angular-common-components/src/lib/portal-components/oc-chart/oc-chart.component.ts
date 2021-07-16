@@ -21,7 +21,7 @@ chartPoint.src = 'assets/angular-common-components/chart_point.svg';
 @Component({
     selector: 'oc-chart',
     templateUrl: './oc-chart.component.html',
-    styleUrls: ['./oc-chart.component.scss'],
+    styleUrls: ['./oc-chart.component.css'],
 })
 export class OcChartComponent implements OnChanges, OnInit {
     @ViewChild('myCanvas') myCanvas: ElementRef<HTMLCanvasElement>;

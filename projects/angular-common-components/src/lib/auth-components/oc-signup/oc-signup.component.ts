@@ -6,7 +6,7 @@ import { ComponentsUserRegistrationModel } from '../models/auth-types.model';
 @Component({
     selector: 'oc-signup',
     templateUrl: './oc-signup.component.html',
-    styleUrls: ['./oc-signup.component.scss'],
+    styleUrls: ['./oc-signup.component.css'],
 })
 export class OcSignupComponent {
     /**

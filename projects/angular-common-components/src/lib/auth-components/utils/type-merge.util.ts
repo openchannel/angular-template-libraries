@@ -25,7 +25,7 @@ export class TypeMergeUtils {
     static findFieldsWithCustomPrefixes(formResult: any, prefixes?: string[]) {
         const result = {};
         if (formResult) {
-            forIn(prefixes, prefix => {
+            forIn(prefixes, (prefix: string) => {
                 const marker = `customData.${prefix}`;
                 forIn(formResult, (value, key) => {
                     if (key.startsWith(marker)) {
@@ -44,7 +44,7 @@ export class TypeMergeUtils {
         if (formResult) {
             forIn(formResult, (value, key) => {
                 let requireField = true;
-                forIn(prefixes, prefix => {
+                forIn(prefixes, (prefix: string) => {
                     const marker = `customData.${prefix}`;
                     requireField = requireField && !(key.startsWith(marker) || key.startsWith(prefix));
                 });

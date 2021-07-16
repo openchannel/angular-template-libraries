@@ -81,11 +81,11 @@
 // headings and texts
 
 @mixin default-heading {
-
+// this comment is essential because we need to have some line here for build process, see npm run exclude-mixins script. DO NOT DELETE
 }
 
 @mixin default-text {
-
+// this comment is essential because we need to have some line here for build process, see npm run exclude-mixins script. DO NOT DELETE
 }
 
 // template elements

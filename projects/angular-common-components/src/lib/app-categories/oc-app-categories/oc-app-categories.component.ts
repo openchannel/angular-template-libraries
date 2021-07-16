@@ -7,7 +7,7 @@ import { AppCategoryDetail } from '../models/app-category-model';
 @Component({
     selector: 'oc-app-categories',
     templateUrl: './oc-app-categories.component.html',
-    styleUrls: ['./oc-app-categories.component.scss'],
+    styleUrls: ['./oc-app-categories.component.css'],
 })
 export class OcAppCategoriesComponent {
     @ViewChild('carousel', { static: false }) carouselRef: CarouselComponent;

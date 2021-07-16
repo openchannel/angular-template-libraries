@@ -15,7 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
     selector: 'oc-input',
     templateUrl: './oc-input.component.html',
-    styleUrls: ['./oc-input.component.scss'],
+    styleUrls: ['./oc-input.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
