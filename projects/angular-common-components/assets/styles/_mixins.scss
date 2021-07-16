@@ -138,20 +138,20 @@
     top: 70px;
     transform: translate(0, 44px);
     width: 136px;
-
+    // this comment is essential because we need to have some line here for build process, see npm run exclude-mixins script. DO NOT DELETE
     .dropdown-item {
         border-bottom: 1px solid $info;
         @include font-size-md();
         padding: 14px 42px;
     }
-
+    // this comment is essential because we need to have some line here for build process, see npm run exclude-mixins script. DO NOT DELETE
     .dropdown-item:hover, .dropdown-item:focus {
         background-color: $dropdown-background;
         box-shadow: 0 1px 0 $info;
         color: $primary;
         outline: none;
     }
-
+    // this comment is essential because we need to have some line here for build process, see npm run exclude-mixins script. DO NOT DELETE
     .dropdown-item:active {
         box-shadow: 0 1px 0 $info;
         color: $primary;
