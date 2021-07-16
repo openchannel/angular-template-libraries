@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
+import { Observable } from 'rxjs/internal/Observable';
+import { of, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { SiteConfig } from '../model/components/frontend.model';
 import { TitleService } from './title.service';
 
@@ -21,9 +24,9 @@ import { TitleService } from './title.service';
 })
 export class SiteConfigService {
     siteConfig: SiteConfig;
+    private siteConfigSetupTrigger: Subject<void> = new Subject<void>();
 
-    constructor(private titleService: TitleService, private metaService: Meta) {
-    }
+    constructor(private titleService: TitleService, private metaService: Meta) {}
 
     /**
      * Description: Set up meta tags from the Site Config
@@ -101,5 +104,10 @@ export class SiteConfigService {
         this.titleService.title = this.siteConfig.title;
         this.setMeta();
         this.setFavicon();
+        this.siteConfigSetupTrigger.next();
+    }
+
+    getSiteConfigAsObservable(): Observable<SiteConfig> {
+        return this.siteConfig ? of(this.siteConfig) : this.siteConfigSetupTrigger.pipe(map(() => this.siteConfig));
     }
 }
