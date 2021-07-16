@@ -9,7 +9,11 @@ import {
     FormControl,
     FormGroup,
 } from '@angular/forms';
-import { AppTypeFieldModel, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
+import {
+    AppTypeFieldModel, DropdownModel,
+    FullAppData,
+    RadioItemValue
+} from '@openchannel/angular-common-components/src/lib/common-components';
 import { OcCheckboxData, OcEditUserFormConfig, OCOrganization } from '@openchannel/angular-common-components/src/lib/auth-components';
 import { FieldValueModel } from '@openchannel/angular-common-components/src/lib/form-components';
 
@@ -231,7 +235,7 @@ export class MockEditUserFormComponent {
 
 @Component({
     selector: 'oc-tag-element',
-    template: ''
+    template: '',
 })
 export class MockTagComponent {
     @Input() title: string;
@@ -242,11 +246,41 @@ export class MockTagComponent {
 
 @Component({
     selector: 'oc-dynamic-array-preview',
-    template: ''
+    template: '',
 })
 export class MockDynamicArrayPreview {
     @Input() fieldValues: FieldValueModel[];
     @Input() fieldDefinition: AppTypeFieldModel;
     @Input() dfaForm: FormGroup;
     @Input() hideLabel: boolean;
+}
+
+@Component({
+    selector: 'oc-radio-button-list',
+    template: '',
+})
+export class MockRadioButtonListComponent implements ControlValueAccessor {
+    @Input() value: RadioItemValue;
+    @Input() customRadioItemRef: TemplateRef<DropdownModel<RadioItemValue>> = null;
+    @Input() disabled: boolean = false;
+    @Input() itemsArray: DropdownModel<RadioItemValue>[] = [];
+    @Input() radioButtonGroup: string = '';
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-radio-button',
+    template: '',
+})
+export class MockRadioButtonComponent implements ControlValueAccessor {
+    @Input() value: any;
+    @Input() disabled: boolean = false;
+    @Input() labelText: string;
+    @Input() requiredIndicator: boolean = false;
+    @Input() radioButtonGroupName: string = '';
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
 }
