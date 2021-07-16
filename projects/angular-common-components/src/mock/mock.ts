@@ -122,7 +122,9 @@ export class MockCheckboxComponent implements ControlValueAccessor {
     @Input() labelText: string;
     @Input() requiredIndicator: boolean = false;
     @Input() formControl: FormControl;
-    @Input() setValue: boolean;
+    @Input() value: boolean;
+    @Input() disabled: boolean;
+    @Output() readonly isCheckedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
@@ -271,6 +273,13 @@ export class MockMultiSelectCheckboxList {
 @Component({
     selector: 'oc-radio-button-list',
     template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockRadioButtonListComponent),
+            multi: true,
+        },
+    ],
 })
 export class MockRadioButtonListComponent implements ControlValueAccessor {
     @Input() value: RadioItemValue;
@@ -286,6 +295,13 @@ export class MockRadioButtonListComponent implements ControlValueAccessor {
 @Component({
     selector: 'oc-radio-button',
     template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockRadioButtonComponent),
+            multi: true,
+        },
+    ],
 })
 export class MockRadioButtonComponent implements ControlValueAccessor {
     @Input() value: any;
@@ -301,7 +317,7 @@ export class MockRadioButtonComponent implements ControlValueAccessor {
 
 @Component({
     template: '',
-    selector: 'oc-dropbox'
+    selector: 'oc-dropbox',
 })
 export class MockDropboxComponent {
     @Input() placeHolder: string;
@@ -321,4 +337,34 @@ export class MockInitialsComponent {
     @Input() initialsName: string;
     @Input() primaryInitialType: 'name' | 'image' = 'name';
     @Input() initialsNameCharactersLimit: number = 2;
+}
+
+@Component({
+    template: '',
+    selector: 'oc-dropdown-multi-app',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockDropdownMultiApp),
+            multi: true,
+        },
+    ],
+})
+export class MockDropdownMultiApp implements ControlValueAccessor {
+    @Input() dropdownPlaceholder: string = '';
+    @Input() dropdownClearTextAfterSelect: boolean = true;
+
+    @Input() dropdownCustomDropdownItemTemplateRef: TemplateRef<any>;
+    @Input() dropdownCustomTagTemplateRef: TemplateRef<any>;
+
+    @Input() defaultAppIDs: string[] = [];
+
+    @Input() itemPreviewName: string = 'App Name :';
+    @Input() itemPreviewId: string = 'Id :';
+    @Input() itemPreviewVersion: string = 'Version :';
+    @Input() value: string[] | any;
+    @Output() readonly selectedAppsOutput: EventEmitter<FullAppData[]> = new EventEmitter<FullAppData[]>();
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
 }
