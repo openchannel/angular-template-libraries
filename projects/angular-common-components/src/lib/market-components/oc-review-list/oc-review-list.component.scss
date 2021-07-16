@@ -24,9 +24,14 @@
     }
   }
   &__one-review {
-    margin-top: 5rem;
+    margin-top: 3rem;
     &-heading {
       @include font-medium();
+      line-height: 5rem;
+    }
+    &-head {
+      display: flex;
+      justify-content: space-between;
     }
     &-rating {
       display: block;
@@ -54,6 +59,23 @@
   &__empty-result-heading {
     margin-top: 5rem;
   }
+
+  &__menu {
+    cursor: pointer;
+    text-align: right;
+    &-icon-dots {
+      border: 1px solid $info;
+      border-radius: 4px;
+      padding: 19px;
+    }
+  }
 }
 
+// Dropdown menu style
+.dropdown-menu {
+  @include oc-dropdown-menu($primary, $info);
+}
 
+.icon-recolor {
+  fill: $body-color;
+}
