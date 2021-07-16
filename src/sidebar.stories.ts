@@ -75,6 +75,18 @@ WithImages.args = {
             checked: false,
             expanded: false,
             icon: 'assets/angular-common-components/star.svg',
+            values: [
+                {
+                    label: 'Subcategory 1',
+                    checked: false,
+                    icon: 'assets/angular-common-components/star.svg',
+                },
+                {
+                    label: 'Subcategory 2',
+                    checked: false,
+                    icon: 'assets/angular-common-components/star.svg',
+                },
+            ],
         },
         {
             label: 'Category 4',
