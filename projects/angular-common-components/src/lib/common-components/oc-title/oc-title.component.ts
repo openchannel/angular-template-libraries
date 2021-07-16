@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
     selector: 'oc-title',
     templateUrl: './oc-title.component.html',
-    styleUrls: ['./oc-title.component.scss'],
+    styleUrls: ['./oc-title.component.css'],
 })
 export class OcTitleComponent {
     /**

@@ -9,7 +9,7 @@ import { OCReviewDetails, ReviewListOptionType } from '../models/oc-review-detai
 @Component({
     selector: 'oc-review-list',
     templateUrl: './oc-review-list.component.html',
-    styleUrls: ['./oc-review-list.component.scss'],
+    styleUrls: ['./oc-review-list.component.css'],
 })
 export class OcReviewListComponent implements OnChanges {
     /**

@@ -2,10 +2,12 @@
   "name": "oc-angular-template-libraries",
   "version": "2.10.0-1",
   "scripts": {
+    "prebuild": "npm run clean-css && npm run generate-mock-css",
+    "postbuild": "npm run gather-components-styles && npm run exclude-mixins && npm run replace-relative-scss-urls",
     "ng": "./node_modules/.bin/ng",
     "start": "./node_modules/.bin/ng serve",
     "build": "./node_modules/.bin/ng build",
-    "build-prod": "./node_modules/.bin/ng build --prod",
+    "build-prod": "npm run build --prod",
     "test": "npm run test:lib",
     "test:lib": "jest --config projects/angular-common-components/jest.config.js --collectCoverage --maxWorkers=4",
     "test:watch": "jest --config projects/angular-common-components/jest.config.js --watch --coverage --collectCoverageFrom=\"src/**/*${npm_config_folderName}*/**/*.{ts,html}\" -- \"${npm_config_folderName}\"",
@@ -26,7 +28,13 @@
     "angular-common-services-pack": "npm run build-prod angular-common-services && npm run angular-common-services",
     "angular-common-services-up-version": "cd projects/angular-common-services/ && npm --no-git-tag-version version prerelease",
     "start-compodoc-service-watch": "compodoc -p tsconfig.json projects/angular-common-services/src -d ./development/documentation/service -s -r 8801 -d ./development/documentation/service --watch",
-    "start-compodoc-components-watch": "compodoc -p tsconfig.json projects/angular-common-components/src -d ./development/documentation/components -s -r 8802 -d ./development/documentation/components --watch"
+    "start-compodoc-components-watch": "compodoc -p tsconfig.json projects/angular-common-components/src -d ./development/documentation/components -s -r 8802 -d ./development/documentation/components --watch",
+    "gather-components-styles": "scss-bundle -c scss-bundle.config.json",
+    "exclude-mixins": "sed -i.bak -n '/@mixin/,/^$/!p' dist/angular-common-components/assets/styles/general-styles.scss",
+    "clean-css": "find ./projects/angular-common-components -type f -name \"*.css*\" | xargs rm -f",
+    "generate-mock-css": "find ./projects/angular-common-components -type f -name \"*.html\" | sed 's/\\.html/\\.css/g' | xargs touch",
+    "watch-scss": "npm run clean-css && sass --watch ./projects/angular-common-components/src/lib",
+    "replace-relative-scss-urls": "sed -i 's|url(../../../../assets/img|url(../img|g' dist/angular-common-components/assets/styles/general-styles.scss"
   },
   "private": true,
   "dependencies": {
@@ -97,11 +105,12 @@
     "prettier": "^2.2.1",
     "protractor": "~7.0.0",
     "sass-lint": "^1.13.1",
+    "scss-bundle": "^3.1.2",
     "ts-jest": "^26.4.1",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.7",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.3.0"
+    "tslint-plugin-prettier": "^2.3.0",
+    "typescript": "~4.0.7"
   }
 }

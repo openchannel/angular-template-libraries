@@ -21,7 +21,7 @@ import { ComponentsUserLoginModel } from '../models/auth-types.model';
 @Component({
     selector: 'oc-forgot-password',
     templateUrl: './oc-forgot-password.component.html',
-    styleUrls: ['./oc-forgot-password.component.scss'],
+    styleUrls: ['./oc-forgot-password.component.css'],
 })
 export class OcForgotPasswordComponent {
     /**

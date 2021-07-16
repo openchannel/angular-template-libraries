@@ -10,7 +10,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
     selector: 'oc-rating',
     templateUrl: './oc-rating.component.html',
-    styleUrls: ['./oc-rating.component.scss'],
+    styleUrls: ['./oc-rating.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

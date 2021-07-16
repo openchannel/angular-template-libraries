@@ -10,7 +10,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
     selector: 'oc-password',
     templateUrl: './oc-password.component.html',
-    styleUrls: ['./oc-password.component.scss'],
+    styleUrls: ['./oc-password.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
