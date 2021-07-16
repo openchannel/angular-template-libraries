@@ -12,12 +12,12 @@
                          *ngFor="let appCategory of data; index as i;">
                 <div class="categories__card"
                      [ngClass]="appCategory.categoryCardClass ? appCategory.categoryCardClass : ''"
-                     [style.background-image]="appCategory.categoryBackgroundImage ? safeStyle(appCategory.categoryBackgroundImage) : ''"
+                     [style.background-image]="appCategory.categoryBackgroundImage || ''"
                      [class.long-card]="data.length < 4"
                      (click)="navigateToCategory(appCategory.categoryQuery)">
                     <div class="categories__card-logo">
                         <img *ngIf="appCategory.categoryLogo"
-                             [src]="safeImage(appCategory.categoryLogo)"
+                             [src]="appCategory.categoryLogo"
                              alt="category-icon">
                     </div>
                     <div class="categories__card-text"
