@@ -1,0 +1,27 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.dropdown-multi-checkbox {
+  &__group {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    min-height: 46px;
+
+    &-checkbox {
+      margin-right: 10px;
+      margin-top: 15px;
+      margin-left: 16px;
+      cursor: pointer;
+    }
+
+    &-text {
+      @include font-size-md();
+      margin-top: auto;
+      margin-bottom: auto;
+      cursor: pointer;
+      word-break: break-word;
+      text-overflow: ellipsis;
+    }
+  }
+}

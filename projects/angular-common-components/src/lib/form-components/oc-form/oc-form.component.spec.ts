@@ -15,6 +15,7 @@ import { By } from '@angular/platform-browser';
 import { FileDetails } from '@openchannel/angular-common-components/src/lib/form-components';
 import { Observable } from 'rxjs';
 import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
+import { MockMultiSelectCheckboxList } from '@openchannel/angular-common-components/src/mock/mock';
 import { MockRadioButtonListComponent } from '@openchannel/angular-common-components/src/mock/mock';
 
 @Component({
@@ -377,6 +378,7 @@ describe('OcFormComponent', () => {
                     MockInputComponent,
                     MockPasswordComponent,
                     MockRadioButtonListComponent,
+                    MockMultiSelectCheckboxList,
                 ],
                 imports: [FormsModule, ReactiveFormsModule],
             }).compileComponents();

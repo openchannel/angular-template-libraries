@@ -527,6 +527,32 @@ oc-select {
     }
 }
 
+// Custom style for dropdown-multi-checkbox
+.dropdown-multi-checkbox {
+    .dropdown-menu {
+        .dropdown-item {
+            &:hover {
+                background-color: $dropdown-light;
+            }
+
+            &:active {
+                color: $dropdown-item-text-hover;
+                background-color: $dropdown-light;
+            }
+
+            &:focus {
+                outline: none;
+                color: $dropdown-item-text-hover;
+                background-color: $dropdown-light;
+            }
+        }
+    }
+    &__label-text .oc-button {
+        text-align: left;
+    }
+}
+
+
 .svg-primary {
 
     path {
