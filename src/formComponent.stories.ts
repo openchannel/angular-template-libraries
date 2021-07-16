@@ -542,11 +542,9 @@ FormWithMultiSelect.args = {
     },
 };
 
+export const FormWithMultiCheckboxes = FormGroupComponent.bind({});
 
-
-export const FormWithMultiAppDropdown = FormGroupComponent.bind({});
-
-FormWithMultiAppDropdown.args = {
+FormWithMultiCheckboxes.args = {
     formJsonData: {
         formId: 'test',
         name: 'test',
@@ -554,6 +552,7 @@ FormWithMultiAppDropdown.args = {
         fields: [
             {
                 attributes: {
+                    subType: 'checkbox',
                     required: true,
                     maxCount: 3,
                     minCount: 2,
@@ -573,6 +572,7 @@ FormWithMultiAppDropdown.args = {
         ],
     },
 };
+
 export const FormWithDynamicFieldArray = FormGroupComponent.bind({});
 
 FormWithDynamicFieldArray.args = {
@@ -938,6 +938,28 @@ FormWithFileUpload.args = {
                 required: null,
                 attributes: {},
                 options: null,
+            },
+        ],
+    },
+};
+
+export const FormWithRadioButtonList = FormGroupComponent.bind({});
+FormWithRadioButtonList.args = {
+    formJsonData: {
+        formId: 'test',
+        name: 'test',
+        createdDate: 1599982592157,
+        fields: [
+            {
+                id: 'role',
+                label: 'Role',
+                description: '',
+                defaultValue: 'user',
+                type: 'dropdownList',
+                required: null,
+                attributes: { required: true, subType: 'radioButton' },
+                options: ['admin', 'user', 'test'],
+                subFieldDefinitions: null,
             },
         ],
     },

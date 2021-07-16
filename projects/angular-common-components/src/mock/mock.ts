@@ -9,9 +9,14 @@ import {
     FormControl,
     FormGroup,
 } from '@angular/forms';
-import { AppTypeFieldModel, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
+import {
+    AppTypeFieldModel,
+    DropdownModel,
+    FullAppData,
+    RadioItemValue,
+} from '@openchannel/angular-common-components/src/lib/common-components';
 import { OcCheckboxData, OcEditUserFormConfig, OCOrganization } from '@openchannel/angular-common-components/src/lib/auth-components';
-import { FieldValueModel } from '@openchannel/angular-common-components/src/lib/form-components';
+import { FieldValueModel, DropdownItemType } from '@openchannel/angular-common-components/src/lib/form-components';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -117,6 +122,7 @@ export class MockCheckboxComponent implements ControlValueAccessor {
     @Input() labelText: string;
     @Input() requiredIndicator: boolean = false;
     @Input() formControl: FormControl;
+    @Input() setValue: boolean;
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
@@ -131,8 +137,8 @@ export class MockFormComponent {
     @Input() generatedForm: FormGroup;
     @Input() successButtonText: string = 'Submit';
     @Input() showButton: boolean = true;
-    @Output() formSubmitted = new EventEmitter<any>();
-    @Output() cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() readonly formSubmitted = new EventEmitter<any>();
+    @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     formData = {
         name: 'Test name',
@@ -141,7 +147,7 @@ export class MockFormComponent {
         skills: ['angular'],
     };
 
-    submitForm() {
+    submitForm(): any {
         this.formSubmitted.emit(this.formData);
     }
 }
@@ -189,7 +195,7 @@ export class MockTitleComponent {
 
 @Component({
     selector: 'oc-dynamic-field-array',
-    template: ''
+    template: '',
 })
 export class MockDynamicFieldArrayComponent {
     @Input() dfaFormArray: FormArray;
@@ -232,24 +238,64 @@ export class MockEditUserFormComponent {
 
 @Component({
     selector: 'oc-tag-element',
-    template: ''
+    template: '',
 })
 export class MockTagComponent {
     @Input() title: string;
     @Input() closeMarker: boolean = false;
     @Input() deleteTagImgUrl: string = '~@openchannel/angular-common-components/assets/img/close-icon.svg';
-    @Output() clickEmitter = new EventEmitter<string>();
+    @Output() readonly clickEmitter = new EventEmitter<string>();
 }
 
 @Component({
     selector: 'oc-dynamic-array-preview',
-    template: ''
+    template: '',
 })
 export class MockDynamicArrayPreview {
     @Input() fieldValues: FieldValueModel[];
     @Input() fieldDefinition: AppTypeFieldModel;
     @Input() dfaForm: FormGroup;
     @Input() hideLabel: boolean;
+}
+
+@Component({
+    selector: 'oc-multi-select-checkbox-list',
+    template: '',
+})
+export class MockMultiSelectCheckboxList {
+    @Input() itemsArray: DropdownItemType[];
+    @Input() defaultItemsArray: DropdownItemType[];
+    @Output() readonly selectedItemsOutput = new EventEmitter<DropdownItemType[]>();
+}
+
+@Component({
+    selector: 'oc-radio-button-list',
+    template: '',
+})
+export class MockRadioButtonListComponent implements ControlValueAccessor {
+    @Input() value: RadioItemValue;
+    @Input() customRadioItemRef: TemplateRef<DropdownModel<RadioItemValue>> = null;
+    @Input() disabled: boolean = false;
+    @Input() itemsArray: DropdownModel<RadioItemValue>[] = [];
+    @Input() radioButtonGroup: string = '';
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-radio-button',
+    template: '',
+})
+export class MockRadioButtonComponent implements ControlValueAccessor {
+    @Input() value: any;
+    @Input() disabled: boolean = false;
+    @Input() labelText: string;
+    @Input() requiredIndicator: boolean = false;
+    @Input() radioButtonGroupName: string = '';
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
 }
 
 

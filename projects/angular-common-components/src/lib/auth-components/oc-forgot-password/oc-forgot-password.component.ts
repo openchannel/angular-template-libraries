@@ -72,9 +72,8 @@ export class OcForgotPasswordComponent {
      */
     submitForm(form: NgForm): void {
         if (!this.process) {
-            if (!form.valid) {
-                form.control.markAllAsTouched();
-            } else {
+            form.form.markAllAsTouched();
+            if (form.valid) {
                 this.submit.emit();
             }
         }

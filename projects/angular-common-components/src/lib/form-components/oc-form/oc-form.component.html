@@ -18,9 +18,18 @@
           <oc-textarea *ngSwitchCase="'longText'"
                        formControlName="{{formElement?.id}}"
                        [placeholder]="formElement?.placeholder"></oc-textarea>
-          <oc-select *ngSwitchCase="'dropdownList'"
-                     formControlName="{{formElement?.id}}"
-                     [selectValArr]="formElement?.options"></oc-select>
+          <ng-container *ngSwitchCase="'dropdownList'">
+            <ng-container [ngSwitch]="formElement?.attributes?.subType">
+              <oc-radio-button-list *ngSwitchCase="'radioButton'"
+                                    [formControlName]="formElement?.id"
+                                    [itemsArray]="formElement?.options"
+                                    [radioButtonGroup]="formElement?.id"></oc-radio-button-list>
+              <oc-select *ngSwitchDefault
+                         [formControlName]="formElement?.id"
+                         [selectValArr]="formElement?.options"></oc-select>
+            </ng-container>
+          </ng-container>
+
           <oc-file-upload *ngSwitchCase="'singleFile'"
                           formControlName="{{formElement?.id}}"
                           isMultiFile="true"
@@ -99,10 +108,22 @@
           <oc-dropdown-multi-app *ngSwitchCase="'multiApp'"
                                  formControlName="{{formElement?.id}}"
                                  [defaultAppIDs]="formElement?.options"></oc-dropdown-multi-app>
-          <oc-multi-select-list  *ngSwitchCase="'multiselectList'"
-                                 formControlName="{{formElement?.id}}"
-                                 [availableItemsList]="formElement?.options ? formElement?.options : ['']"
-                                 [label]="formElement?.label"></oc-multi-select-list>
+          <ng-container *ngSwitchCase="'multiselectList'">
+
+            <ng-container [ngSwitch]="formElement?.attributes?.subType">
+
+              <oc-multi-select-checkbox-list *ngSwitchCase="'checkbox'"
+                                             formControlName="{{formElement?.id}}"
+                                             [itemsArray]="formElement?.options"
+                                             [defaultItemsArray]="formElement.defaultValue"></oc-multi-select-checkbox-list>
+
+              <oc-multi-select-list *ngSwitchDefault
+                      formControlName="{{formElement?.id}}"
+                      [availableItemsList]="formElement?.options ? formElement?.options : ['']"
+                      [label]="formElement?.label"></oc-multi-select-list>
+
+              </ng-container>
+          </ng-container>
           <oc-dynamic-field-array  *ngSwitchCase="'dynamicFieldArray'"
                                    [fieldDefinitionData]="formElement"
                                    [dfaFormArray]="customForm.get(formElement.id)"></oc-dynamic-field-array>

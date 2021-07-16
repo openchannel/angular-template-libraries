@@ -1,9 +1,11 @@
 import { AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AppTypeFieldModel } from '@openchannel/angular-common-components/src/lib/common-components';
 import { cloneDeep } from 'lodash';
+import { AppFormField } from '../model/app-form-model';
 
 export class OcFormGenerator {
-    static getFormByConfig(fieldsDefinitions: AppTypeFieldModel[]) {
+    // tslint:disable-next-line:typedef
+    static getFormByConfig(fieldsDefinitions: AppFormField[]) {
         const group = {};
         fieldsDefinitions.forEach(inputTemplate => {
             switch (inputTemplate?.type) {
@@ -215,7 +217,7 @@ export class OcFormGenerator {
     /**
      * Return 'minLength' validation error, when array length < min.
      */
-    static validatorMinLengthArray(min: number, label: string, showLengthErrorText?: boolean) {
+    static validatorMinLengthArray(min: number, label: string, showLengthErrorText?: boolean): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             if (!c.value || c.value.length === 0 || c.value.length >= min) {
                 return null;
@@ -238,7 +240,7 @@ export class OcFormGenerator {
     /**
      * Return 'maxLength' validation error, when array length > max.
      */
-    static validatorMaxLengthArray(max: number, label: string, showLengthErrorText?: boolean) {
+    static validatorMaxLengthArray(max: number, label: string, showLengthErrorText?: boolean): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             if (!c.value || c.value.length === 0 || c.value.length <= max) {
                 return null;
@@ -262,7 +264,7 @@ export class OcFormGenerator {
      * Custom validator
      * for the url type control
      */
-    static urlValidator() {
+    static urlValidator(): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             // regex for url validation
             const reg = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm);
@@ -279,7 +281,7 @@ export class OcFormGenerator {
     /**
      * Custom validator for color control
      */
-    static colorValidator() {
+    static colorValidator(): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             const value = c.value;
             if ((value.charAt(0) === '#' && value.length === 7) || value === '') {
@@ -295,7 +297,7 @@ export class OcFormGenerator {
      * Custom validator of min characters for rich text.
      * Check only characters, not tags
      */
-    static richTextMinCharactersValidator(min: number) {
+    static richTextMinCharactersValidator(min: number): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             const characters = c.value.replace(/<[^>]*>/g, '');
             if (characters.length >= min) {
@@ -313,7 +315,7 @@ export class OcFormGenerator {
      * Custom validator of max characters for rich text.
      * Check only characters, not tags
      */
-    static richTextMaxCharactersValidator(max: number) {
+    static richTextMaxCharactersValidator(max: number): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             const characters = c.value.replace(/<[^>]*>/g, '');
             if (characters.length <= max) {
@@ -330,7 +332,7 @@ export class OcFormGenerator {
     /**
      * Custom validator of password
      */
-    static passwordValidator() {
+    static passwordValidator(): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%!^&]).{8,}$/;
             const password = c.value ? c.value : '';
@@ -346,7 +348,7 @@ export class OcFormGenerator {
      * for 'numberTags' component type
      * @param maxCount max count of the tags
      */
-    static fillArrayForNumberTags(maxCount): number[] {
+    static fillArrayForNumberTags(maxCount: number): number[] {
         const resultArr: number[] = [];
         for (let i = 0; i < maxCount; i++) {
             resultArr.push(i + 1);
@@ -356,7 +358,7 @@ export class OcFormGenerator {
     /**
      * Custom validator for numbers
      */
-    static numberTagsValidator(label: string) {
+    static numberTagsValidator(label: string): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             const numberArray = c.value as any[];
             if (numberArray) {
@@ -377,7 +379,7 @@ export class OcFormGenerator {
     /**
      * Custom validator for boolean
      */
-    static booleanTagsValidator(label: string) {
+    static booleanTagsValidator(label: string): ValidatorFn {
         const booleanAcceptedValues: boolean[] = [true, false];
 
         return (c: AbstractControl): { [key: string]: any } => {
