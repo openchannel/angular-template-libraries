@@ -22,6 +22,7 @@ export * from './oc-select-expandable/oc-select-expandable.component';
 export * from './oc-video/oc-video.component';
 export * from './oc-social-links/oc-social-links.component';
 export * from './oc-content-modal/oc-content-modal.component';
+export * from './oc-initials/oc-initials.component';
 
 /** Pipes */
 export * from './pipe/camelcase.pipe';

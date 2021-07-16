@@ -91,6 +91,10 @@ export class OcFormGenerator {
                     }
                     this.setValidators(group[inputTemplate.id], inputTemplate, { isList: true });
                     break;
+                case 'multiApp':
+                    group[inputTemplate.id] = new FormControl(inputTemplate?.defaultValue || []);
+                    this.setValidators(group[inputTemplate.id], inputTemplate, { isList: true });
+                    break;
                 case 'dynamicFieldArray':
                     group[inputTemplate.id] = new FormArray([]);
                     if (inputTemplate.defaultValue && inputTemplate.defaultValue.length > 0) {
