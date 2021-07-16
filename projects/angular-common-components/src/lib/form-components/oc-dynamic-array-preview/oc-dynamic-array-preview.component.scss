@@ -1,3 +1,4 @@
+@import '../../../../assets/styles/theme';
 
 .array-preview {
   &__field {
@@ -31,7 +32,7 @@
         overflow-wrap: break-word;
       }
       &__color{
-        color: #444;
+        color: $body-color;
         line-height: 20px;
         min-height: 40px;
         min-width: 40px;

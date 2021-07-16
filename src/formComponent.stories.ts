@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { EmbedVideoService } from 'ngx-embed-video';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { storyMockProviderAppSearchService } from 'src/dropdown-multi-app.stories';
 
 class StubFileUploadDownloadService {
     constructor() {}
@@ -94,7 +95,7 @@ class StubFileUploadDownloadService {
 
 const modules = {
     imports: [OcFormComponentsModule, HttpClientModule, BrowserAnimationsModule],
-    providers: [EmbedVideoService],
+    providers: [EmbedVideoService, storyMockProviderAppSearchService],
 };
 
 export default {
@@ -541,6 +542,37 @@ FormWithMultiSelect.args = {
     },
 };
 
+export const FormWithMultiCheckboxes = FormGroupComponent.bind({});
+
+FormWithMultiCheckboxes.args = {
+    formJsonData: {
+        formId: 'test',
+        name: 'test',
+        createdDate: 1599982592157,
+        fields: [
+            {
+                attributes: {
+                    subType: 'checkbox',
+                    required: true,
+                    maxCount: 3,
+                    minCount: 2,
+                },
+                options: ['601ab171d0c0c60baf65433e', '601ab170d0c0c60baf654326'],
+                category: 'CUSTOM',
+                defaultValue: [],
+                description: null,
+                id: 'multi-app-dropdown',
+                isOpen: false,
+                isValid: true,
+                deleteable: false,
+                label: 'Multi App Dropdown',
+                placeholder: null,
+                type: 'multiApp',
+            },
+        ],
+    },
+};
+
 export const FormWithDynamicFieldArray = FormGroupComponent.bind({});
 
 FormWithDynamicFieldArray.args = {
@@ -906,6 +938,28 @@ FormWithFileUpload.args = {
                 required: null,
                 attributes: {},
                 options: null,
+            },
+        ],
+    },
+};
+
+export const FormWithRadioButtonList = FormGroupComponent.bind({});
+FormWithRadioButtonList.args = {
+    formJsonData: {
+        formId: 'test',
+        name: 'test',
+        createdDate: 1599982592157,
+        fields: [
+            {
+                id: 'role',
+                label: 'Role',
+                description: '',
+                defaultValue: 'user',
+                type: 'dropdownList',
+                required: null,
+                attributes: { required: true, subType: 'radioButton' },
+                options: ['admin', 'user', 'test'],
+                subFieldDefinitions: null,
             },
         ],
     },

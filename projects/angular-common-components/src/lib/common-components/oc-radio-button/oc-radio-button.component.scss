@@ -1,0 +1,70 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.form-radio-button {
+    display: flex;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding-left: 2rem;
+
+    &__input {
+
+        &_hidden {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+
+            &:checked + .form-radio-button__checkmark {
+                &:before {
+                    display: block;
+                }
+                border-color: $primary;
+            }
+
+            &:focus + .form-radio-button__checkmark {
+                border-color: $primary;
+            }
+        }
+    }
+
+    &__checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 16px;
+        width: 16px;
+        display: block;
+        border: 1px solid $info;
+        border-radius: 50%;
+
+        &:before {
+            content: '';
+            position: absolute;
+            display: none;
+            left: 4px;
+            top: 4px;
+            width: 6px;
+            height: 6px;
+            background-color: $primary;
+            border-radius: 50%;
+        }
+    }
+
+    &__label {
+        @include font-size-md();
+        color: $body-color;
+        line-height: 16px;
+        margin-left: 8px;
+    }
+
+    &__required-glyph {
+        @include font-size-sm();
+        color: $danger;
+    }
+}

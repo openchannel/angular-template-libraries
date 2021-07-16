@@ -130,3 +130,30 @@
         opacity: .5;
     }
 }
+
+@mixin oc-dropdown-menu($primary: #537cfd, $info: #c9d5ea, $dropdown-background: rgb(201, 213, 234)) {
+    border: 1px solid $info;
+    left: 76px;
+    padding: 0;
+    top: 70px;
+    transform: translate(0, 44px);
+    width: 136px;
+
+    .dropdown-item {
+        border-bottom: 1px solid $info;
+        @include font-size-md();
+        padding: 14px 42px;
+    }
+
+    .dropdown-item:hover, .dropdown-item:focus {
+        background-color: $dropdown-background;
+        box-shadow: 0 1px 0 $info;
+        color: $primary;
+        outline: none;
+    }
+
+    .dropdown-item:active {
+        box-shadow: 0 1px 0 $info;
+        color: $primary;
+    }
+}

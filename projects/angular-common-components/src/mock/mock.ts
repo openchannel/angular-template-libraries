@@ -9,16 +9,27 @@ import {
     FormControl,
     FormGroup,
 } from '@angular/forms';
-import { AppTypeFieldModel, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
+import {
+    AppTypeFieldModel,
+    DropdownModel,
+    FullAppData,
+    RadioItemValue,
+} from '@openchannel/angular-common-components/src/lib/common-components';
 import { OcCheckboxData, OcEditUserFormConfig, OCOrganization } from '@openchannel/angular-common-components/src/lib/auth-components';
-import { FieldValueModel } from '@openchannel/angular-common-components/src/lib/form-components';
+import { FieldValueModel, DropdownItemType } from '@openchannel/angular-common-components/src/lib/form-components';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'oc-label',
     template: '',
 })
 export class MockLabelComponent {
+    /** Label text */
     @Input() text: string = '';
+    /** Show indicator of required field */
+    @Input() required: boolean = false;
+    /** Set global classes for label */
+    @Input() class: string = '';
 }
 
 @Component({
@@ -111,6 +122,7 @@ export class MockCheckboxComponent implements ControlValueAccessor {
     @Input() labelText: string;
     @Input() requiredIndicator: boolean = false;
     @Input() formControl: FormControl;
+    @Input() setValue: boolean;
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
@@ -125,8 +137,8 @@ export class MockFormComponent {
     @Input() generatedForm: FormGroup;
     @Input() successButtonText: string = 'Submit';
     @Input() showButton: boolean = true;
-    @Output() formSubmitted = new EventEmitter<any>();
-    @Output() cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() readonly formSubmitted = new EventEmitter<any>();
+    @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     formData = {
         name: 'Test name',
@@ -135,7 +147,7 @@ export class MockFormComponent {
         skills: ['angular'],
     };
 
-    submitForm() {
+    submitForm(): any {
         this.formSubmitted.emit(this.formData);
     }
 }
@@ -143,13 +155,24 @@ export class MockFormComponent {
 @Component({
     selector: 'oc-rating',
     template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockRatingComponent),
+            multi: true,
+        },
+    ],
 })
-export class MockRatingComponent {
+export class MockRatingComponent implements ControlValueAccessor {
     @Input() rating: number = 0;
     @Input() reviewCount: number = 0;
     @Input() label = '';
     @Input() labelClass = 'font-m font-med';
     @Input() type: 'single-star' | 'multi-star' = 'single-star';
+    @Input() disabled: boolean = false;
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
 }
 
 @Component({
@@ -172,7 +195,7 @@ export class MockTitleComponent {
 
 @Component({
     selector: 'oc-dynamic-field-array',
-    template: ''
+    template: '',
 })
 export class MockDynamicFieldArrayComponent {
     @Input() dfaFormArray: FormArray;
@@ -215,22 +238,87 @@ export class MockEditUserFormComponent {
 
 @Component({
     selector: 'oc-tag-element',
-    template: ''
+    template: '',
 })
 export class MockTagComponent {
     @Input() title: string;
     @Input() closeMarker: boolean = false;
     @Input() deleteTagImgUrl: string = '~@openchannel/angular-common-components/assets/img/close-icon.svg';
-    @Output() clickEmitter = new EventEmitter<string>();
+    @Output() readonly clickEmitter = new EventEmitter<string>();
 }
 
 @Component({
     selector: 'oc-dynamic-array-preview',
-    template: ''
+    template: '',
 })
 export class MockDynamicArrayPreview {
     @Input() fieldValues: FieldValueModel[];
     @Input() fieldDefinition: AppTypeFieldModel;
     @Input() dfaForm: FormGroup;
     @Input() hideLabel: boolean;
+}
+
+@Component({
+    selector: 'oc-multi-select-checkbox-list',
+    template: '',
+})
+export class MockMultiSelectCheckboxList {
+    @Input() itemsArray: DropdownItemType[];
+    @Input() defaultItemsArray: DropdownItemType[];
+    @Output() readonly selectedItemsOutput = new EventEmitter<DropdownItemType[]>();
+}
+
+@Component({
+    selector: 'oc-radio-button-list',
+    template: '',
+})
+export class MockRadioButtonListComponent implements ControlValueAccessor {
+    @Input() value: RadioItemValue;
+    @Input() customRadioItemRef: TemplateRef<DropdownModel<RadioItemValue>> = null;
+    @Input() disabled: boolean = false;
+    @Input() itemsArray: DropdownModel<RadioItemValue>[] = [];
+    @Input() radioButtonGroup: string = '';
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-radio-button',
+    template: '',
+})
+export class MockRadioButtonComponent implements ControlValueAccessor {
+    @Input() value: any;
+    @Input() disabled: boolean = false;
+    @Input() labelText: string;
+    @Input() requiredIndicator: boolean = false;
+    @Input() radioButtonGroupName: string = '';
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
+}
+
+
+@Component({
+    template: '',
+    selector: 'oc-dropbox'
+})
+export class MockDropboxComponent {
+    @Input() placeHolder: string;
+    @Input() items: string [];
+    @Input() customSearch: (text: Observable<string>) => Observable<readonly any[]>;
+    @Input() clearFormAfterSelect: boolean = false;
+    @Input() dropElementTemplate: TemplateRef<any>;
+}
+
+
+@Component({
+    template: '',
+    selector: 'oc-initials',
+})
+export class MockInitialsComponent {
+    @Input() initialsImageURL: string;
+    @Input() initialsName: string;
+    @Input() primaryInitialType: 'name' | 'image' = 'name';
+    @Input() initialsNameCharactersLimit: number = 2;
 }

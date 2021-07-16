@@ -1,5 +1,4 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl, SafeStyle } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { AppCategoryDetail } from '../models/app-category-model';
@@ -56,15 +55,7 @@ export class OcAppCategoriesComponent {
         },
         nav: false,
     };
-    constructor(private sanitizer: DomSanitizer, private router: Router) {}
-
-    safeImage(logoUrl: string): SafeResourceUrl {
-        return this.sanitizer.bypassSecurityTrustResourceUrl(logoUrl);
-    }
-
-    safeStyle(imageLink: string): SafeStyle {
-        return this.sanitizer.bypassSecurityTrustStyle(`url(${imageLink})`);
-    }
+    constructor(private router: Router) {}
     /** Navigates to the category page */
     navigateToCategory(routerQuery?: any): void {
         if (routerQuery) {

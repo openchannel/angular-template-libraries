@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { SafeResourceUrl } from '@angular/platform-browser';
 import { AppModel, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 
 @Component({
@@ -21,7 +21,7 @@ export class OcAppCardComponent implements OnInit {
     @Input() set app(appData: FullAppData) {
         this.appData = appData;
         if (this.appData?.icon) {
-            this.appIcon = this.sanitizer.bypassSecurityTrustResourceUrl(this.appData.icon as string);
+            this.appIcon = this.appData?.icon;
         }
     }
     /**
@@ -34,12 +34,13 @@ export class OcAppCardComponent implements OnInit {
      */
     @Output() readonly clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
 
-    appIcon: SafeResourceUrl = 'assets/angular-common-components/standard-app-icon.svg';
+    appIcon: SafeResourceUrl | string = 'assets/angular-common-components/standard-app-icon.svg';
+
     appData: FullAppData;
 
     currentModel: AppModel;
 
-    constructor(private sanitizer: DomSanitizer) {}
+    constructor() {}
 
     ngOnInit(): void {
         this.currentModel = this.appData.model[this.priceModelIndex] || this.appData.model[0];

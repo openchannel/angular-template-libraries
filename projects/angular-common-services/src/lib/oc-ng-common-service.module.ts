@@ -35,6 +35,7 @@ interface OcEndpointApiPaths {
     userRoles: string;
     users: string;
     userTypes: string;
+    sites: string;
 }
 
 /**
@@ -69,6 +70,7 @@ export class OcApiPaths implements OcEndpointApiPaths {
     userRoles: string;
     userTypes: string;
     users: string;
+    sites: string;
 }
 
 const ocEndpointApiPathsDefault: OcEndpointApiPaths = {
@@ -100,6 +102,7 @@ const ocEndpointApiPathsDefault: OcEndpointApiPaths = {
     userRoles: 'userRoles',
     users: 'users',
     userTypes: 'userTypes',
+    sites: 'sites',
 };
 
 /**

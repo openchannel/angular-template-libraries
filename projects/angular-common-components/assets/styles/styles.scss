@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
     &[type='primary'] {
 
         .progress {
-            background-color: #e9ecef;
+            background-color: darken($light, 4);
             height: 4px;
         }
     }
@@ -383,6 +383,19 @@ a.link {
   }
 }
 
+// Special field label for the oc-dropdown-multi-app component
+
+.dropdown-multi-app__search-input-field {
+    width: 100%;
+    .dropdown-menu .dropdown-item {
+        height: 54px;
+        padding: 4px;
+        @include media-breakpoint-sm {
+            height: auto;
+        }
+    }
+}
+
 .modal-button {
     width: 255px;
 }
@@ -417,14 +430,14 @@ a.link {
                                 }
 
                                 &:hover {
-                                    background: #f4f4f4;
+                                    background: $editor-btn-hover;
                                 }
                             }
 
                             .tox-tbtn {
 
                                 &:hover {
-                                    background: #f4f4f4;
+                                    background: $editor-btn-hover;
                                 }
 
                                 svg {
@@ -450,14 +463,14 @@ a.link {
                                 }
 
                                 &:hover {
-                                    background: #f4f4f4;
+                                    background: $editor-btn-hover;
                                 }
                             }
 
                             .tox-tbtn {
 
                                 &:hover {
-                                    background: #f4f4f4;
+                                    background: $editor-btn-hover;
                                 }
 
                                 svg {
@@ -526,6 +539,32 @@ oc-select {
         }
     }
 }
+
+// Custom style for dropdown-multi-checkbox
+.dropdown-multi-checkbox {
+    .dropdown-menu {
+        .dropdown-item {
+            &:hover {
+                background-color: $dropdown-light;
+            }
+
+            &:active {
+                color: $dropdown-item-text-hover;
+                background-color: $dropdown-light;
+            }
+
+            &:focus {
+                outline: none;
+                color: $dropdown-item-text-hover;
+                background-color: $dropdown-light;
+            }
+        }
+    }
+    &__label-text .oc-button {
+        text-align: left;
+    }
+}
+
 
 .svg-primary {
 

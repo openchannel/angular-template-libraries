@@ -22,8 +22,8 @@ $dropdown-item-text-hover: #537cfd !default;
 $dropdown-item-text-alternative: #333333 !default;
 $dropdown-light: #f4f7fc !default;
 
-// REST
-$light-blue: #e6f3fc;
+// MAIN COLORS
+$light-blue: #e6f3fc !default;
 $body-color: #333333 !default;
 $primary: #537cfd !default;
 $secondary: #727272 !default;
@@ -48,17 +48,20 @@ $review: #537cfd !default;
 
 $error-bg: #ffe0e0 !default;
 $error: #6e2c2c !default;
-$profile: #06b088 !default;
 
 $gray: #ced4da !default;
 $gray-600: #6c757d !default;
 
 // USERNAME INITIALS CIRCLE
-$gradient-top: #eeebff;
-$gradient-bottom: #f8f7ff;
+$gradient-top: #eeebff !default;
+$gradient-bottom: #f8f7ff !default;
 
-$profile-gradient-top: #e8f0e7;
-$profile-gradient-bottom: #f5fff4;
+$profile-gradient-top: #e8f0e7 !default;
+$profile-gradient-bottom: #f5fff4 !default;
+$profile: #06b088 !default;
+
+// TINY RICH EDITOR COLORS
+$editor-btn-hover:  #f4f4f4 !default;
 
 // OVERRIDING BOOTSTRAP SPACERS
 $spacer: 1rem;
