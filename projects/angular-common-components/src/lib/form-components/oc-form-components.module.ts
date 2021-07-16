@@ -21,6 +21,7 @@ import { OcFormModalComponent } from './oc-form-modal/oc-form-modal.component';
 import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 import { OcDynamicArrayPreviewComponent } from './oc-dynamic-array-preview/oc-dynamic-array-preview.component';
 import { OcMultiSelectCheckboxListComponent } from './oc-multi-select-checkbox-list/oc-multi-select-checkbox-list.component';
+import { OcRadioButtonListComponent } from './oc-radio-button-list/oc-radio-button-list.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { OcMultiSelectCheckboxListComponent } from './oc-multi-select-checkbox-l
         OcFormModalComponent,
         OcDynamicArrayPreviewComponent,
         OcMultiSelectCheckboxListComponent,
+        OcRadioButtonListComponent,
     ],
     imports: [
         CommonModule,
@@ -66,6 +68,7 @@ import { OcMultiSelectCheckboxListComponent } from './oc-multi-select-checkbox-l
         OcDynamicArrayPreviewComponent,
         OcTooltipLabelComponent,
         OcMultiSelectCheckboxListComponent,
+        OcRadioButtonListComponent,
     ],
 })
 export class OcFormComponentsModule {}

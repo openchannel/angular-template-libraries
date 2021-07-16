@@ -131,7 +131,7 @@
     }
 }
 
-@mixin oc-dropdown-menu($primary: #537cfd, $info: #c9d5ea) {
+@mixin oc-dropdown-menu($primary: #537cfd, $info: #c9d5ea, $dropdown-background: rgb(201, 213, 234)) {
     border: 1px solid $info;
     left: 76px;
     padding: 0;
@@ -146,7 +146,7 @@
     }
 
     .dropdown-item:hover, .dropdown-item:focus {
-        background-color: rgba(201, 213, 234, 0.1);
+        background-color: $dropdown-background;
         box-shadow: 0 1px 0 $info;
         color: $primary;
         outline: none;

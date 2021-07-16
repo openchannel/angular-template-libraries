@@ -14,6 +14,7 @@ export * from './oc-tooltip-label/oc-tooltip-label.component';
 export * from './oc-video-url/oc-video-url.component';
 export * from './oc-form-modal/oc-form-modal.component';
 export * from './oc-dynamic-array-preview/oc-dynamic-array-preview.component';
+export * from './oc-radio-button-list/oc-radio-button-list.component';
 
 /** Models */
 export * from './model/app-form-model';
