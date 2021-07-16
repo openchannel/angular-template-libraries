@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
     &[type='primary'] {
 
         .progress {
-            background-color: #e9ecef;
+            background-color: darken($light, 4);
             height: 4px;
         }
     }
@@ -417,14 +417,14 @@ a.link {
                                 }
 
                                 &:hover {
-                                    background: #f4f4f4;
+                                    background: $editor-btn-hover;
                                 }
                             }
 
                             .tox-tbtn {
 
                                 &:hover {
-                                    background: #f4f4f4;
+                                    background: $editor-btn-hover;
                                 }
 
                                 svg {
@@ -450,14 +450,14 @@ a.link {
                                 }
 
                                 &:hover {
-                                    background: #f4f4f4;
+                                    background: $editor-btn-hover;
                                 }
                             }
 
                             .tox-tbtn {
 
                                 &:hover {
-                                    background: #f4f4f4;
+                                    background: $editor-btn-hover;
                                 }
 
                                 svg {

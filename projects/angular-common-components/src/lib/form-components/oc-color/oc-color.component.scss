@@ -11,7 +11,7 @@
 
   &__display {
     width: 46px;
-    background-color: #e4e8ec;
+    background-color: $gray;
     border-right: none;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -31,7 +31,7 @@
     width: 46px;
     margin-left: 2rem;
     padding: 0.5rem 0.7rem;
-    background-color: #fff;
+    background-color: $white;
     position: relative;
     color: $body-color;
 
@@ -40,7 +40,7 @@
     }
 
     &:focus {
-      border-color: #c9d5ea;
+      border-color: $info;
     }
 
     &-icon {
