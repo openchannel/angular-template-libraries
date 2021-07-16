@@ -910,3 +910,25 @@ FormWithFileUpload.args = {
         ],
     },
 };
+
+export const FormWithRadioButtonList = FormGroupComponent.bind({});
+FormWithRadioButtonList.args = {
+    formJsonData: {
+        formId: 'test',
+        name: 'test',
+        createdDate: 1599982592157,
+        fields: [
+            {
+                id: 'role',
+                label: 'Role',
+                description: '',
+                defaultValue: 'user',
+                type: 'dropdownList',
+                required: null,
+                attributes: { required: true, subType: 'radioButton' },
+                options: ['admin', 'user', 'test'],
+                subFieldDefinitions: null,
+            },
+        ],
+    },
+};
