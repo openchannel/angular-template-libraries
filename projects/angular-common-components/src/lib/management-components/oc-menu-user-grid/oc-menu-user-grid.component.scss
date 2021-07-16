@@ -4,6 +4,13 @@
 .user-grid-container {
   position: relative;
 
+  .dropup,
+  .dropright,
+  .dropdown,
+  .dropleft {
+    position: initial;
+  }
+
   .user-grid-overlay {
     @include media-breakpoint-xl {
       position: absolute;
@@ -183,10 +190,6 @@
       padding: 19px;
     }
   }
-}
-
-.dropup, .dropright, .dropdown, .dropleft {
-  position: initial;
 }
 
 // Dropdown menu style
