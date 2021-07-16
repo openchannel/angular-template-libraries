@@ -19,7 +19,7 @@ describe('OcDynamicArrayPreviewComponent', () => {
     const MULTI_IMAGE_ID = 'multiImage';
     const DYNAMIC_FIELD_ARRAY_ID = 'dynamicFieldArray';
 
-    const RICH_TEXT_VALUE = '<p><span style="text-decoration: line-through;"><em>a<strong>b</strong></em></span></p>';
+    const RICH_TEXT_VALUE = '<p><span><em>a<strong>b</strong></em></span></p>';
 
     const fieldDefinition: AppTypeFieldModel = {
         id: 'testId',

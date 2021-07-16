@@ -47,3 +47,4 @@ export * from './interfaces/social-link.model';
 
 /** Services */
 export * from './oc-error/oc-error-service';
+export * from './oc-video/oc-embed-video.service';

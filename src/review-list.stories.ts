@@ -1,5 +1,3 @@
-import { storiesOf } from '@storybook/angular';
-import { withA11y } from '@storybook/addon-a11y';
 import {
     OcRatingComponent,
     OCReviewDetails,
@@ -10,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { moduleMetadata } from '@storybook/angular';
 
 const modules = {
     imports: [NgbModule, AngularSvgIconModule.forRoot(), HttpClientTestingModule, NgxSpinnerModule],
@@ -33,40 +32,47 @@ appReview3.reviewOwnerName = 'Marie A.';
 
 const appReview4 = new OCReviewDetails();
 appReview4.rating = 2;
-appReview4.review = 'I tried app. The app is good. But not recommeded';
+appReview4.review = 'I tried app. The app is good. But not recommended';
 appReview4.reviewOwnerName = 'Gautam T.';
 
-storiesOf('Review List [BEM]', module)
-    .addDecorator(withA11y)
-    .addParameters({
-        component: OcReviewListComponent,
-    })
-    .add('Empty', () => ({
-        component: OcReviewListComponent,
-        moduleMetadata: modules,
-        props: {
-            reviewListTitle: 'Most recent reviews',
-            reviewsList: [],
-            noReviewMessage: 'No Review for this app',
-        },
-    }))
-    .add('Some reviews', () => ({
-        component: OcReviewListComponent,
-        moduleMetadata: modules,
-        props: {
-            reviewsList: [appReview1],
-            totalReview: 1,
-            maxReviewDisplay: 3,
-            canWriteReview: true,
-        },
-    }))
-    .add('All', () => ({
-        component: OcReviewListComponent,
-        moduleMetadata: modules,
-        props: {
-            reviewsList: [appReview1, appReview2, appReview3, appReview4, appReview1, appReview2],
-            totalReview: 7,
-            maxReviewDisplay: 4,
-            canWriteReview: true,
-        },
-    }));
+export default {
+    title: 'Review List [BEM]',
+    component: OcReviewListComponent,
+    decorators: [moduleMetadata(modules)],
+    argTypes: { writeAReview: { action: 'New Review button has been clicked' } },
+};
+
+const ReviewListComponent = (args: OcReviewListComponent) => ({
+    component: OcReviewListComponent,
+    moduleMetadata: modules,
+    props: args,
+});
+
+export const Empty = ReviewListComponent.bind({});
+Empty.args = {
+    reviewListTitle: 'Most recent reviews',
+    reviewsList: [],
+    noReviewMessage: 'No Review for this app',
+};
+
+export const SomeReviews = ReviewListComponent.bind({});
+SomeReviews.args = {
+    reviewsList: [appReview1],
+    totalReview: 1,
+    maxReviewDisplay: 3,
+};
+
+export const All = ReviewListComponent.bind({});
+All.args = {
+    reviewsList: [appReview1, appReview2, appReview3, appReview4, appReview1, appReview2],
+    totalReview: 7,
+    maxReviewDisplay: 4,
+};
+
+export const CanNotWriteANewReview = ReviewListComponent.bind({});
+CanNotWriteANewReview.args = {
+    reviewsList: [appReview1],
+    totalReview: 7,
+    maxReviewDisplay: 4,
+    allowWriteReview: false,
+};

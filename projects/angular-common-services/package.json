@@ -1,6 +1,13 @@
 {
   "name": "@openchannel/angular-common-services",
   "version": "2.13.0-0",
+  "description": "Store models and services for creating a marketplace instance.",
+  "homepage": "https://github.com/openchannel/angular-template-libraries",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openchannel/angular-template-libraries.git"
+  },
+  "license": "MIT",
   "dependencies": {
     "tslib": "^2.0.0"
   },

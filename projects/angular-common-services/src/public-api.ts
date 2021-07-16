@@ -1,8 +1,7 @@
 /*
  * Public API Surface of angular-common-services
  */
-
-export * from './lib/oc-ng-common-service.module';
+export { CustomHttpClientXsrfModule, OcCommonServiceModule, OcEndpointApiPathsCustom } from './lib/oc-ng-common-service.module';
 export * from './lib/service/http-request-services';
 
 /* Api models*/
@@ -29,6 +28,7 @@ export * from './lib/model/api/type-model';
 export * from './lib/model/api/http-params-encoder-model';
 export * from './lib/model/api/properties.model';
 export * from './lib/model/api/request.model';
+export * from './lib/model/api/custom-content.model';
 
 /* Component models */
 export * from './lib/model/components/frontend.model';
@@ -63,6 +63,8 @@ export * from './lib/service/user-role.service';
 export * from './lib/service/statistic.service';
 export * from './lib/service/properties.service';
 export * from './lib/service/request.service';
+export * from './lib/service/site-content.service';
+export * from './lib/service/cms-site-content.service';
 
 /* Utils */
 export * from './lib/util/type-mapper.util';

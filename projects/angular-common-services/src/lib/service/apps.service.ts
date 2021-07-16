@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Page } from '../model/api/page.model';
 import { AppResponse, AppStatusValue, CreateAppModel, PublishAppVersionModel } from '../model/api/app-data-model';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 /**
  * Description: API service for getting and modifying apps.<br>
@@ -21,10 +22,7 @@ import { OcHttpParams } from '../model/api/http-params-encoder-model';
     providedIn: 'root',
 })
 export class AppsService {
-    private readonly APPS_URL = 'v2/apps';
-
-    constructor(private httpRequest: HttpRequestService) {
-    }
+    constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {}
 
     /**
      * Description: Searching apps returns App Pages based on query and text criteria.
@@ -39,20 +37,20 @@ export class AppsService {
      *
      *  @return Observable<Page<AppResponse>>
      *
-     * * ### Example:
+     * ### Example:
      *``
      * searchApp("My First App", "{"status.value": {"$in":["pending", "inDevelopment"]}}")
      *``
      */
     searchApp(searchText: string, query: string, fields: string[] = ['name']): Observable<Page<AppResponse | any>> {
-        const mainUrl = `${this.APPS_URL}/textSearch`;
+        const mainUrl = `${this.apiPaths.apps}/textSearch`;
 
         let params = new OcHttpParams().append('fields', JSON.stringify(fields)).appendRequiredParam('text', searchText, '');
         if (query) {
             params = params.append('query', query);
         }
 
-        return this.httpRequest.get(mainUrl, {params});
+        return this.httpRequest.get(mainUrl, { params });
     }
 
     /**
@@ -84,7 +82,7 @@ export class AppsService {
             .append('pageNumber', String(pageNumber))
             .append('limit', String(limit));
 
-        return this.httpRequest.get(this.APPS_URL, {params});
+        return this.httpRequest.get(this.apiPaths.apps, { params });
     }
 
     /**
@@ -102,7 +100,7 @@ export class AppsService {
      * ``
      */
     getAppBySafeName(appSafeName: string): Observable<AppResponse> {
-        return this.httpRequest.get(`${this.APPS_URL}/bySafeName/${appSafeName}`);
+        return this.httpRequest.get(`${this.apiPaths.apps}/bySafeName/${appSafeName}`);
     }
 
     /**
@@ -121,7 +119,7 @@ export class AppsService {
      * ``
      */
     createApp(createAppRequest: CreateAppModel): Observable<AppResponse> {
-        return this.httpRequest.post(this.APPS_URL, createAppRequest);
+        return this.httpRequest.post(this.apiPaths.apps, createAppRequest);
     }
 
     /**
@@ -139,7 +137,7 @@ export class AppsService {
      * ``
      */
     deleteApp(appId: string): Observable<any> {
-        return this.httpRequest.delete(`${this.APPS_URL}/${appId}`);
+        return this.httpRequest.delete(`${this.apiPaths.apps}/${appId}`);
     }
 
     /**
@@ -161,7 +159,7 @@ export class AppsService {
      * ``
      */
     publishAppByVersion(appId: string, publishAppVersionModel: PublishAppVersionModel): Observable<any> {
-        const mainUrl = `${this.APPS_URL}/${appId}/publish`;
+        const mainUrl = `${this.apiPaths.apps}/${appId}/publish`;
         return this.httpRequest.post(mainUrl, publishAppVersionModel);
     }
 
@@ -180,7 +178,7 @@ export class AppsService {
      * ``
      */
     getAppById(appId: string): Observable<AppResponse> {
-        return this.httpRequest.get(`${this.APPS_URL}/${appId}`);
+        return this.httpRequest.get(`${this.apiPaths.apps}/${appId}`);
     }
 
     /**
@@ -203,7 +201,7 @@ export class AppsService {
      * ``
      */
     changeAppStatus(appId: string, version: number, status: AppStatusValue, reason?: string): Observable<any> {
-        const mainUrl = `${this.APPS_URL}/${appId}/versions/${version}/status`;
+        const mainUrl = `${this.apiPaths.apps}/${appId}/versions/${version}/status`;
         const body = {
             status,
             reason: reason ? reason : '',

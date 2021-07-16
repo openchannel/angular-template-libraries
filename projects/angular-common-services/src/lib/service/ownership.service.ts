@@ -1,26 +1,24 @@
-import {Injectable} from '@angular/core';
-import {HttpRequestService} from './http-request-services';
-import {Observable} from 'rxjs';
-import {CreateOwnershipModel, OwnershipModelResponse} from '../model/api/ownership.model';
-import {HttpHeaders} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpRequestService } from './http-request-services';
+import { Observable } from 'rxjs';
+import { CreateOwnershipModel, OwnershipModelResponse } from '../model/api/ownership.model';
+import { HttpHeaders } from '@angular/common/http';
+import { OcApiPaths } from '../oc-ng-common-service.module';
 
 /**
-
  * Description: API service for managing Ownership.<br>
-
+ *
  * Endpoints:<br>
-
+ *
  * POST 'v2/ownership/install'<br>
-
+ *
  * POST 'v2/ownership/uninstall/{ownershipId}'<br>
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class OwnershipService {
-    private readonly OWNERSHIP_URL = 'v2/ownership';
-
-    constructor(private httpRequest: HttpRequestService) {}
+    constructor(private httpRequest: HttpRequestService, private apiPaths: OcApiPaths) {}
 
     /**
      *
@@ -30,7 +28,7 @@ export class OwnershipService {
      * @param {HttpHeaders} headers (optional) (default: empty HttpHeaders object)
      * @returns {Observable<OwnershipModelResponse>} `Observable<OwnershipModelResponse>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `installOwnership(
      * {
@@ -41,7 +39,7 @@ export class OwnershipService {
      * )`
      */
     installOwnership(ownership: CreateOwnershipModel, headers: HttpHeaders = new HttpHeaders()): Observable<OwnershipModelResponse> {
-        return this.httpRequest.post(`${this.OWNERSHIP_URL}/install`, ownership, { headers });
+        return this.httpRequest.post(`${this.apiPaths.ownership}/install`, ownership, { headers });
     }
 
     /**
@@ -52,11 +50,11 @@ export class OwnershipService {
      * @param {HttpHeaders} headers (optional) (default: empty HttpHeaders object)
      * @returns {Observable<OwnershipModelResponse>} `Observable<OwnershipModelResponse>`
      *
-     * * ### Example:
+     * ### Example
      *
      * `uninstallOwnership('0a8hs09dhas09d8h9', {"Authorization":"Bearer as98hd90ahsd98has9d8ha98sd"})`
      */
     uninstallOwnership(ownershipId: string, headers: HttpHeaders = new HttpHeaders()): Observable<OwnershipModelResponse> {
-        return this.httpRequest.post(`${this.OWNERSHIP_URL}/uninstall/${ownershipId}`, {}, { headers });
+        return this.httpRequest.post(`${this.apiPaths.ownership}/uninstall/${ownershipId}`, {}, { headers });
     }
 }

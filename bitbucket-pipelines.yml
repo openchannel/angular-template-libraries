@@ -83,6 +83,11 @@ definitions:
           - export AWS_S3="`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value`"
           - aws s3 sync --delete storybook-static/ s3://$AWS_S3
           - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /*
+    - step: &release-up-version-with-a-git-tag
+        name: "Release up version with a GIT tag"
+        script:
+          - chmod +x ./scripts/* && cd ./scripts/up-version
+          - /bin/bash up-version.sh ${JIRA_EMAIL} ${JIRA_API_KEY} ${RELEASE_VERSION} ${PACKAGE_VERSION} 'angular-template-libraries'
 pipelines:
   pull-requests:
     '**':
@@ -107,6 +112,11 @@ pipelines:
       - step:
           <<: *deploy-app
           deployment: us1
+    Up Lib Version:
+      - variables:
+          - name: RELEASE_VERSION
+          - name: PACKAGE_VERSION
+      - step: *release-up-version-with-a-git-tag
   branches:
     develop:
       - step: *build-test-sonarcloud
