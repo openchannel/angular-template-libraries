@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { EmbedVideoService } from 'ngx-embed-video';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { storyMockProviderAppSearchService } from 'src/dropdown-multi-app.stories';
 
 class StubFileUploadDownloadService {
     constructor() {}
@@ -94,7 +95,7 @@ class StubFileUploadDownloadService {
 
 const modules = {
     imports: [OcFormComponentsModule, HttpClientModule, BrowserAnimationsModule],
-    providers: [EmbedVideoService],
+    providers: [EmbedVideoService, storyMockProviderAppSearchService],
 };
 
 export default {
@@ -552,18 +553,21 @@ FormWithMultiCheckboxes.args = {
             {
                 attributes: {
                     subType: 'checkbox',
+                    required: true,
+                    maxCount: 3,
+                    minCount: 2,
                 },
-                options: ['One', 'Two', 'Three', 'Five'],
+                options: ['601ab171d0c0c60baf65433e', '601ab170d0c0c60baf654326'],
                 category: 'CUSTOM',
-                defaultValue: ['One', 'Two'],
+                defaultValue: [],
                 description: null,
-                id: 'multi-select-test',
+                id: 'multi-app-dropdown',
                 isOpen: false,
                 isValid: true,
                 deleteable: false,
-                label: 'Multi Checkboxes',
+                label: 'Multi App Dropdown',
                 placeholder: null,
-                type: 'multiselectList',
+                type: 'multiApp',
             },
         ],
     },

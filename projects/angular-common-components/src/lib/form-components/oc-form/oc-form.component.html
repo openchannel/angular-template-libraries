@@ -105,6 +105,9 @@
           <oc-datetime-picker *ngSwitchCase="'datetime'"
                               formControlName="{{formElement?.id}}"
                               [type]="formElement?.type"></oc-datetime-picker>
+          <oc-dropdown-multi-app *ngSwitchCase="'multiApp'"
+                                 formControlName="{{formElement?.id}}"
+                                 [defaultAppIDs]="formElement?.options"></oc-dropdown-multi-app>
           <ng-container *ngSwitchCase="'multiselectList'">
 
             <ng-container [ngSwitch]="formElement?.attributes?.subType">

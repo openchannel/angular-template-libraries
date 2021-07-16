@@ -40,6 +40,7 @@ import { EllipsisDirective } from './directive/ellipsis.directive';
 import { SafePipe } from './pipe/safe.pipe';
 import { OcSocialLinksComponent } from './oc-social-links/oc-social-links.component';
 import { OcContentModalComponent } from './oc-content-modal/oc-content-modal.component';
+import { OcInitialsComponent } from './oc-initials/oc-initials.component';
 import { OcRadioButtonComponent } from './oc-radio-button/oc-radio-button.component';
 
 @NgModule({
@@ -76,6 +77,7 @@ import { OcRadioButtonComponent } from './oc-radio-button/oc-radio-button.compon
         EllipsisDirective,
         SafePipe,
         OcContentModalComponent,
+        OcInitialsComponent,
         OcRadioButtonComponent,
     ],
     imports: [
@@ -123,6 +125,7 @@ import { OcRadioButtonComponent } from './oc-radio-button/oc-radio-button.compon
         SafePipe,
         OcContentModalComponent,
         OcRadioButtonComponent,
+        OcInitialsComponent,
     ],
     providers: [NgbActiveModal],
 })

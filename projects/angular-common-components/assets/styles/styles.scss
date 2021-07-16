@@ -383,6 +383,19 @@ a.link {
   }
 }
 
+// Special field label for the oc-dropdown-multi-app component
+
+.dropdown-multi-app__search-input-field {
+    width: 100%;
+    .dropdown-menu .dropdown-item {
+        height: 54px;
+        padding: 4px;
+        @include media-breakpoint-sm {
+            height: auto;
+        }
+    }
+}
+
 .modal-button {
     width: 255px;
 }
