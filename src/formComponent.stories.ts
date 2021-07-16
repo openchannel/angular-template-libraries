@@ -541,6 +541,34 @@ FormWithMultiSelect.args = {
     },
 };
 
+export const FormWithMultiCheckboxes = FormGroupComponent.bind({});
+
+FormWithMultiCheckboxes.args = {
+    formJsonData: {
+        formId: 'test',
+        name: 'test',
+        createdDate: 1599982592157,
+        fields: [
+            {
+                attributes: {
+                    subType: 'checkbox',
+                },
+                options: ['One', 'Two', 'Three', 'Five'],
+                category: 'CUSTOM',
+                defaultValue: ['One', 'Two'],
+                description: null,
+                id: 'multi-select-test',
+                isOpen: false,
+                isValid: true,
+                deleteable: false,
+                label: 'Multi Checkboxes',
+                placeholder: null,
+                type: 'multiselectList',
+            },
+        ],
+    },
+};
+
 export const FormWithDynamicFieldArray = FormGroupComponent.bind({});
 
 FormWithDynamicFieldArray.args = {

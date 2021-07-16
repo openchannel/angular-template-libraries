@@ -96,10 +96,22 @@
           <oc-datetime-picker *ngSwitchCase="'datetime'"
                               formControlName="{{formElement?.id}}"
                               [type]="formElement?.type"></oc-datetime-picker>
-          <oc-multi-select-list  *ngSwitchCase="'multiselectList'"
-                                 formControlName="{{formElement?.id}}"
-                                 [availableItemsList]="formElement?.options ? formElement?.options : ['']"
-                                 [label]="formElement?.label"></oc-multi-select-list>
+          <ng-container *ngSwitchCase="'multiselectList'">
+
+            <ng-container [ngSwitch]="formElement?.attributes?.subType">
+
+              <oc-multi-select-checkbox-list *ngSwitchCase="'checkbox'"
+                                             formControlName="{{formElement?.id}}"
+                                             [itemsArray]="formElement?.options"
+                                             [defaultItemsArray]="formElement.defaultValue"></oc-multi-select-checkbox-list>
+
+              <oc-multi-select-list *ngSwitchDefault
+                      formControlName="{{formElement?.id}}"
+                      [availableItemsList]="formElement?.options ? formElement?.options : ['']"
+                      [label]="formElement?.label"></oc-multi-select-list>
+
+              </ng-container>
+          </ng-container>
           <oc-dynamic-field-array  *ngSwitchCase="'dynamicFieldArray'"
                                    [fieldDefinitionData]="formElement"
                                    [dfaFormArray]="customForm.get(formElement.id)"></oc-dynamic-field-array>
