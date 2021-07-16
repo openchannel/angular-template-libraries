@@ -4,6 +4,13 @@
 .user-grid-container {
   position: relative;
 
+  .dropup,
+  .dropright,
+  .dropdown,
+  .dropleft {
+    position: initial;
+  }
+
   .user-grid-overlay {
     @include media-breakpoint-xl {
       position: absolute;
@@ -19,7 +26,7 @@
     @include media-breakpoint-xl {
       overflow-x: auto;
       border-radius: 4px;
-      border: 1px solid #c9d5ea;
+      border: 1px solid $button-info;
     }
   }
 }
@@ -185,10 +192,6 @@
   }
 }
 
-.dropup, .dropright, .dropdown, .dropleft {
-  position: initial;
-}
-
 // Dropdown menu style
 .dropdown-menu {
   border: 1px solid $info;
@@ -205,7 +208,7 @@
   }
 
   .dropdown-item:hover, .dropdown-item:focus {
-    background-color: rgba(201, 213, 234, 0.1);
+    background-color: rgba($dropdown-border, 0.1);
     box-shadow: 0 1px 0 $info;
     color: $primary;
     outline: none;
