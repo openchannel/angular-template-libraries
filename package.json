@@ -8,6 +8,8 @@
     "start": "./node_modules/.bin/ng serve",
     "build": "./node_modules/.bin/ng build",
     "build-prod": "npm run build --prod",
+    "build-components": "npm run build angular-common-components",
+    "build-components-watch": "npm-watch build-components",
     "test": "npm run test:lib",
     "test:lib": "jest --config projects/angular-common-components/jest.config.js --collectCoverage --maxWorkers=4",
     "test:watch": "jest --config projects/angular-common-components/jest.config.js --watch --coverage --collectCoverageFrom=\"src/**/*${npm_config_folderName}*/**/*.{ts,html}\" -- \"${npm_config_folderName}\"",
@@ -35,6 +37,16 @@
     "generate-mock-css": "find ./projects/angular-common-components -type f -name \"*.html\" | sed 's/\\.html/\\.css/g' | xargs touch",
     "watch-scss": "npm run clean-css && sass --watch ./projects/angular-common-components/src/lib",
     "replace-relative-scss-urls": "sed -i 's|url(../../../../assets/img|url(../img|g' dist/angular-common-components/assets/styles/general-styles.scss"
+  },
+  "watch": {
+    "build-components": {
+      "patterns": ["projects/angular-common-components"],
+      "ignore": ["projects/angular-common-components/coverage"],
+      "extensions": "ts,html,scss,spec",
+      "quiet": true,
+      "legacyWatch": true,
+      "runOnChangeOnly": false
+    }
   },
   "private": true,
   "dependencies": {
@@ -111,6 +123,7 @@
     "tslint": "~6.1.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.3.0",
-    "typescript": "~4.0.7"
+    "typescript": "~4.0.7",
+    "npm-watch": "^0.10.0"
   }
 }
