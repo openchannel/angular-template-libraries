@@ -26,9 +26,9 @@ export interface ChartStatisticModel {
  */
 export interface ChartStatisticDataModel {
     /** data that will be shown on Y axis */
-    labelsY: number[];
+    labelsY: string[];
     /** data that will be shown on X axis */
-    labelsX: string[] | number[];
+    labelsX: string[];
     /**
      * labels that will be shown in tabular data.
      * It's necessary if `tabular` data view option is applied
