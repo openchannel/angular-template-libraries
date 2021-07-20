@@ -1,6 +1,6 @@
-import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
-import { normalizeCommonJSImport } from '../utils/normalizeCommonJSImport';
+import { CategoryScale, Chart, Legend, LinearScale, LineController, LineElement, PointElement, Tooltip } from 'chart.js';
 import {
     ChartOptionsChange,
     ChartStatisticFiledModel,
@@ -9,8 +9,6 @@ import {
     ChartStatisticPeriodModel,
 } from '../models/oc-chart.model';
 import { DropdownModel } from '@openchannel/angular-common-components/src/lib/common-components';
-
-const importChart = normalizeCommonJSImport(import('chart.js'));
 
 const chartPoint = new Image();
 chartPoint.src = 'assets/angular-common-components/chart_point.svg';
@@ -23,7 +21,7 @@ chartPoint.src = 'assets/angular-common-components/chart_point.svg';
     templateUrl: './oc-chart.component.html',
     styleUrls: ['./oc-chart.component.css'],
 })
-export class OcChartComponent implements OnChanges, OnInit {
+export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
     @ViewChild('myCanvas') myCanvas: ElementRef<HTMLCanvasElement>;
 
     /**
@@ -116,19 +114,13 @@ export class OcChartComponent implements OnChanges, OnInit {
      * @private
      */
     private chart: any;
-    /**
-     * @ignore
-     * @private
-     */
-    private Chart;
 
     /**
      * Angular lifecycle function. Init on component creation.
      * Setting the {@link tabularLabelsHeader}. Connecting chart lib, loading chart and dropdown menu items.
      */
-    async ngOnInit(): Promise<void> {
-        this.tabularLabelsHeader = this.chartData.periods.find(period => period.active).tabularLabel;
-        await this.connectChartLib();
+    ngOnInit(): void {
+        this.tabularLabelsHeader = this.chartData?.periods?.find(period => period.active).tabularLabel;
         this.updateDropdownValues();
     }
 
@@ -136,12 +128,15 @@ export class OcChartComponent implements OnChanges, OnInit {
      * Angular lifecycle function. Triggering on every changes of the Input of component.
      * Reloads chart on any chart data changes.
      */
-    async ngOnChanges(changes: SimpleChanges) {
-        await this.connectChartLib();
-        if (changes.chartData.previousValue !== changes.chartData.currentValue) {
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.chartData?.previousValue !== changes.chartData?.currentValue) {
             this.fillTabularData();
             this.reloadChart();
         }
+    }
+
+    ngAfterViewInit(): void {
+        this.reloadChart();
     }
 
     /**
@@ -165,17 +160,18 @@ export class OcChartComponent implements OnChanges, OnInit {
         gradientFill.addColorStop(0, '#e7eef7');
         gradientFill.addColorStop(1, 'rgba(240, 247, 255, 0.25)');
 
-        this.chart = new this.Chart(this.context, {
+        Chart.register(CategoryScale, LineController, PointElement, LineElement, LinearScale, Tooltip, Legend);
+
+        this.chart = new Chart(this.context, {
             type: 'line',
             data: {
-                labels: this.chartData?.data?.labelsX ? this.chartData.data.labelsX : [],
+                labels: this.chartData?.data?.labelsX || [],
                 datasets: [
                     {
-                        label: '',
                         data: this.chartData?.data?.labelsY ? this.chartData.data.labelsY : [],
                         backgroundColor: this.isBackgroundColor ? gradientFill : 'transparent',
                         borderColor: 'rgba(83, 124, 253, 1)',
-                        lineTension: 0,
+                        tension: 0,
                         borderWidth: 1.7,
                     },
                 ],
@@ -183,36 +179,6 @@ export class OcChartComponent implements OnChanges, OnInit {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                legend: {
-                    display: false,
-                },
-                tooltips: {
-                    enabled: true,
-                    intersect: false,
-                    position: 'nearest',
-                    backgroundColor: '#FFF',
-                    titleFontSize: 14,
-                    titleFontColor: '#333333',
-                    bodyFontColor: '#727272',
-                    borderColor: '#c9d5ea',
-                    borderWidth: 1,
-                    titleMarginBottom: 6,
-                    bodyFontSize: 12,
-                    xPadding: 12,
-                    yPadding: 12,
-                    caretPadding: 20,
-                    displayColors: false,
-                    titleAlign: 'center',
-                    bodyAlign: 'center',
-                    callbacks: {
-                        title: (tooltipItem, data) => {
-                            return '  ' + tooltipItem[0].value + '  ';
-                        },
-                        label: (tooltipItem, data) => {
-                            return tooltipItem.label;
-                        },
-                    },
-                },
                 elements: {
                     point: {
                         radius: this.enablePoints ? 2 : 0,
@@ -227,49 +193,76 @@ export class OcChartComponent implements OnChanges, OnInit {
                     },
                 },
                 scales: {
-                    xAxes: [
-                        {
-                            position: 'bottom',
-                            gridLines: {
-                                display: false,
-                            },
-                            ticks: {
-                                autoSkip: true,
-                                padding: 8,
-                                fontColor: '#727272',
-                                maxRotation: 0,
-                                autoSkipPadding: 20,
-                                callback(value: any, index, values) {
-                                    if (value.length >= 8) {
-                                        return value.substring(0, 3);
-                                    }
-                                    return value;
-                                },
+                    x: {
+                        position: 'bottom',
+                        grid: {
+                            display: false,
+                        },
+                        ticks: {
+                            autoSkip: true,
+                            padding: 8,
+                            color: '#727272',
+                            maxRotation: 0,
+                            autoSkipPadding: 20,
+                            callback(rawValue: any): any {
+                                const value = this.getLabelForValue(rawValue);
+                                if (value.length >= 8) {
+                                    return value.substring(0, 3);
+                                }
+                                return value;
                             },
                         },
-                    ],
-                    yAxes: [
-                        {
-                            gridLines: {
-                                drawBorder: false,
-                                color: 'rgba(201, 213, 234, 0.4)',
-                                zeroLineWidth: 0,
-                            },
-                            ticks: {
-                                autoSkip: true,
-                                min: 0,
-                                beginAtZero: true,
-                                fontColor: '#727272',
-                                lineHeight: 3,
-                                callback(value: any, index, values) {
-                                    if (value > 999) {
-                                        return value / 1000 + 'k';
-                                    }
-                                    return value;
-                                },
+                    },
+                    y: {
+                        grid: {
+                            drawBorder: false,
+                            color: 'rgba(201, 213, 234, 0.4)',
+                            lineWidth: 1,
+                        },
+                        min: 0,
+                        beginAtZero: true,
+                        ticks: {
+                            autoSkip: true,
+                            color: '#727272',
+                            callback(value: any, index: number, values: any[]): any {
+                                if (value > 999) {
+                                    return value / 1000 + 'k';
+                                }
+                                return value;
                             },
                         },
-                    ],
+                    },
+                },
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    tooltip: {
+                        enabled: true,
+                        intersect: false,
+                        position: 'nearest',
+                        backgroundColor: '#FFF',
+                        titleFont: {
+                            size: 14,
+                        },
+                        titleColor: '#333333',
+                        bodyColor: '#727272',
+                        borderColor: '#c9d5ea',
+                        borderWidth: 1,
+                        titleMarginBottom: 6,
+                        bodyFont: {
+                            size: 12,
+                        },
+                        padding: 12,
+                        caretPadding: 20,
+                        displayColors: false,
+                        titleAlign: 'center',
+                        bodyAlign: 'center',
+                        callbacks: {
+                            title: tooltipItem => `  ${tooltipItem[0].formattedValue}  `,
+                            label: tooltipItem => tooltipItem.label,
+                        },
+                    },
                 },
             },
         });
@@ -339,19 +332,6 @@ export class OcChartComponent implements OnChanges, OnInit {
         }
     }
 
-    /**
-     * Checking for loaded chartJs lib and connects it of not connected.
-     */
-    async connectChartLib() {
-        if (!this.Chart) {
-            this.Chart = (await importChart).Chart;
-        }
-    }
-
-    /**
-     * Updating chart options and fields and throw changed value to the parent component.
-     * @private
-     */
     private updateChartData(): void {
         let period = null;
         let field = null;
