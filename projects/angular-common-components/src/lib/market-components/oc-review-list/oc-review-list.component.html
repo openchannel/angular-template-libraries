@@ -5,14 +5,15 @@
                    type="primary" class="review-list__header-button">
         </oc-button>
     </div>
-    <ng-content></ng-content>
+    <div class="review-list__options">
+        <ng-content></ng-content>
+    </div>
     <div *ngIf="displayedReviews && displayedReviews.length>0 ; else emptyList">
         <div *ngFor="let review of displayedReviews" class="review-list__one-review">
             <div class="review-list__one-review-head">
                 <h5 class="review-list__one-review-heading">{{review.reviewOwnerName}}</h5>
                 <div class="review-list__one-review-action-menu" *ngIf="review.userId === currentUserId">
-                    <ng-container [ngTemplateOutlet]="reviewMenuTemplate">
-                    </ng-container>
+                    <ng-container [ngTemplateOutlet]="reviewMenuTemplate"></ng-container>
                 </div>
             </div>
             <div class="review-list__one-review-rating-label">Rating</div>
