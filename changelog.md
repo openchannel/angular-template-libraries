@@ -1,3 +1,8 @@
+## Release notes - angular-template-libraries - Version 2.10.0-3 (7/20/2021)<br>
+### Story<br>
+AT-513 - A User should delete an app review<br>
+AT-512 - A User should edit an app review<br>
+AT-511 - A User should write an app review for approval<br>
 ## Release notes - angular-template-libraries - Version 2.9.0 (7/15/2021)<br>
 ### Task<br>
 AT-1331 - CMS support on Templates<br>
