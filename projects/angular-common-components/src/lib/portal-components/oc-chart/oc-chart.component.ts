@@ -165,10 +165,9 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
         this.chart = new Chart(this.context, {
             type: 'line',
             data: {
-                labels: this.chartData?.data?.labelsX ? this.chartData.data.labelsX : [],
+                labels: this.chartData?.data?.labelsX || [],
                 datasets: [
                     {
-                        label: '',
                         data: this.chartData?.data?.labelsY ? this.chartData.data.labelsY : [],
                         backgroundColor: this.isBackgroundColor ? gradientFill : 'transparent',
                         borderColor: 'rgba(83, 124, 253, 1)',
@@ -205,7 +204,8 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                             color: '#727272',
                             maxRotation: 0,
                             autoSkipPadding: 20,
-                            callback(value: any, index: number, values: any[]): any {
+                            callback(rawValue: any): any {
+                                const value = this.getLabelForValue(rawValue);
                                 if (value.length >= 8) {
                                     return value.substring(0, 3);
                                 }
@@ -217,7 +217,7 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                         grid: {
                             drawBorder: false,
                             color: 'rgba(201, 213, 234, 0.4)',
-                            lineWidth: 0,
+                            lineWidth: 1,
                         },
                         min: 0,
                         beginAtZero: true,
