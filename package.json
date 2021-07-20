@@ -40,8 +40,12 @@
   },
   "watch": {
     "build-components": {
-      "patterns": ["projects/angular-common-components"],
-      "ignore": ["projects/angular-common-components/coverage"],
+      "patterns": [
+        "projects/angular-common-components"
+      ],
+      "ignore": [
+        "projects/angular-common-components/coverage"
+      ],
       "extensions": "ts,html,scss,spec",
       "quiet": true,
       "legacyWatch": true,

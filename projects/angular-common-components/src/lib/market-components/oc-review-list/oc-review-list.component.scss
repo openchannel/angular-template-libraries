@@ -2,80 +2,106 @@
 @import '../../../../assets/styles/theme';
 
 .review-list {
-  @include media-breakpoint-sm {
-    padding-bottom: 10rem;
-    position: relative;
-  }
-  display: flex;
-  flex-direction: column;
-  &__header {
-    align-items: center;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    &-heading {
-      margin-bottom: 0;
+    flex-direction: column;
+    @include media-breakpoint-sm {
+        padding-bottom: 10rem;
+        position: relative;
     }
-    &-button {
-      @include media-breakpoint-sm {
-        bottom: 0;
-        position: absolute;
-      }
-    }
-  }
-  &__one-review {
-    margin-top: 3rem;
-    &-heading {
-      @include font-medium();
-      line-height: 5rem;
-    }
-    &-head {
-      display: flex;
-      justify-content: space-between;
-    }
-    &-rating {
-      display: block;
-      margin-bottom: 1rem;
-      &-label {
-        @include font-size-sm();
-        color: $text-color;
-        line-height: 16px;
+
+    &__header {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
         margin-bottom: 1rem;
-        @include default-text();
-      }
-    }
-    &-text {
-      @include font-size-md();
-    }
-  }
-  &__drop-down {
-    @include font-medium();
-    color: $primary;
-    cursor: pointer;
-    display: inline-block;
-    @include font-size-md();
-    margin-right: 55px;
-  }
-  &__empty-result-heading {
-    margin-top: 5rem;
-  }
 
-  &__menu {
-    cursor: pointer;
-    text-align: right;
-    &-icon-dots {
-      border: 1px solid $info;
-      border-radius: 4px;
-      padding: 19px;
+        &-heading {
+            margin-bottom: 0;
+        }
+
+        &-button {
+            @include media-breakpoint-sm {
+                bottom: 0;
+                position: absolute;
+            }
+        }
     }
-  }
-}
 
-// Dropdown menu style
-.dropdown-menu {
-  @include oc-dropdown-menu($primary, $info);
-}
+    &__options {
 
-.icon-recolor {
-  fill: $body-color;
+        .dropdown-menu {
+            @include oc-dropdown-menu($primary, $info);
+            width: auto;
+            min-width: 136px;
+
+            .dropdown-item {
+                padding: 14px 16px;
+            }
+        }
+    }
+
+    &__one-review {
+        margin-top: 3rem;
+
+        &-heading {
+            @include font-medium();
+            line-height: 5rem;
+        }
+
+        &-head {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &-rating {
+            display: block;
+            margin-bottom: 1rem;
+
+            &-label {
+                @include font-size-sm();
+                color: $text-color;
+                line-height: 16px;
+                margin-bottom: 1rem;
+                @include default-text();
+            }
+        }
+
+        &-text {
+            @include font-size-md();
+        }
+    }
+
+    &__drop-down {
+        @include font-medium();
+        @include font-size-md();
+        color: $primary;
+        cursor: pointer;
+        display: inline-block;
+        margin-right: 55px;
+    }
+
+    &__empty-result-heading {
+        margin-top: 5rem;
+    }
+
+    &__menu {
+        cursor: pointer;
+        text-align: right;
+
+        &-icon-dots {
+            border: 1px solid $info;
+            border-radius: 4px;
+            padding: 19px;
+        }
+
+        .dropdown-menu {
+            @include oc-dropdown-menu($primary, $info);
+            width: auto;
+            min-width: 136px;
+        }
+    }
+
+    .icon-recolor {
+        fill: $body-color;
+    }
 }
