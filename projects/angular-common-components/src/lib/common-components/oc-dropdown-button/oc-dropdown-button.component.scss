@@ -5,6 +5,7 @@
     height: 100%;
     position: relative;
     width: 100%;
+    user-select: none;
 
     &__placeholder-container {
         @include font-size-md();
@@ -17,5 +18,9 @@
         &:after {
             display: none;
         }
+    }
+
+    &__menu {
+        width: 100%;
     }
 }

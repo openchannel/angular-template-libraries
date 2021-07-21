@@ -1,6 +1,6 @@
 {
   "name": "oc-angular-template-libraries",
-  "version": "2.10.0-3",
+  "version": "2.10.0-4",
   "scripts": {
     "prebuild": "npm run clean-css && npm run generate-mock-css",
     "postbuild": "npm run gather-components-styles && npm run exclude-mixins && npm run replace-relative-scss-urls",
@@ -36,6 +36,7 @@
     "clean-css": "find ./projects/angular-common-components -type f -name \"*.css*\" | xargs rm -f",
     "generate-mock-css": "find ./projects/angular-common-components -type f -name \"*.html\" | sed 's/\\.html/\\.css/g' | xargs touch",
     "watch-scss": "npm run clean-css && sass --watch ./projects/angular-common-components/src/lib",
+    "scss-to-css": "npm run clean-css && sass ./projects/angular-common-components/src/lib",
     "replace-relative-scss-urls": "sed -i 's|url(../../../../assets/img|url(../img|g' dist/angular-common-components/assets/styles/general-styles.scss"
   },
   "watch": {
