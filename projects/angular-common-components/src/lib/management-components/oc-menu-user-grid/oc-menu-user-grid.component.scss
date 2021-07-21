@@ -141,12 +141,12 @@
 
         &_role {
             color: $primary;
-            font-weight: 700;
+            font-weight: 500;
             text-transform: capitalize;
         }
 
         &_status {
-            font-weight: 700;
+            font-weight: 500;
             text-transform: capitalize;
         }
     }
@@ -188,7 +188,7 @@
         }
 
         &-text {
-            font-weight: 700;
+            font-weight: 500;
             @include media-breakpoint-md {
                 white-space: nowrap;
             }
