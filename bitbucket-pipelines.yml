@@ -57,7 +57,7 @@ definitions:
 
     - step: &build-app
         name: "Build"
-        image: node:14.15.4-alpine3.12
+        image: node:12.22-alpine
         script:
           - npm install
           - npm run angular-common-services-pack
