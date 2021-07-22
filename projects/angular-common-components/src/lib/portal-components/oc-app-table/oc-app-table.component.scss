@@ -92,12 +92,16 @@
             height: 66px;
         }
 
+        &_nodata {
+            text-align: center;
+        }
+
         &_blank {
+            width: 2.5rem;
+            border-top: none;
             @include media-breakpoint-md {
                 width: 1rem;
             }
-            width: 2.5rem;
-            border-top: none;
         }
 
         &_flex {
