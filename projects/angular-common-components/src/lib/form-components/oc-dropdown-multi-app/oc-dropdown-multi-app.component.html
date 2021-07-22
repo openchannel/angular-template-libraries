@@ -1,6 +1,7 @@
 <div class="dropdown-multi-app">
     <div class="dropdown-multi-app__search">
-        <oc-dropbox [placeHolder]="dropdownPlaceholder"
+        <oc-dropbox (focusout)="onTouched()"
+                    [placeHolder]="dropdownPlaceholder"
                     [clearFormAfterSelect]="dropdownClearTextAfterSelect"
                     [customSearch]="appsSearchFn"
                     [dropElementTemplate]="dropdownCustomDropdownItemTemplateRef
