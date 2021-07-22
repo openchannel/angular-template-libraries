@@ -300,7 +300,7 @@ export class OcFormGenerator {
     static richTextMinCharactersValidator(min: number): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             const characters = c.value.replace(/<[^>]*>/g, '');
-            if (characters.length >= min) {
+            if (!characters || characters.length >= min) {
                 return null;
             } else {
                 return {

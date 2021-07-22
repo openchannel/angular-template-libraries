@@ -151,6 +151,6 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
         this.dropBoxItems = this.findAvailableDropBoxItems();
     }
 
-    private onTouched = () => {};
+    onTouched = () => {};
     private onChange: (value: any) => void = () => {};
 }
