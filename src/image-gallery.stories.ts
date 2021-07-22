@@ -28,13 +28,13 @@ const imageItem: GalleryItem = {
 export const SmallGallery = ImageGalleryComponent.bind({});
 
 SmallGallery.args = {
-    displayGallery: [imageItem, imageItem, imageItem],
+    gallery: [imageItem, imageItem, imageItem],
     maxItems: 3,
 };
 
 export const ExtendedGallery = ImageGalleryComponent.bind({});
 
 ExtendedGallery.args = {
-    displayGallery: [imageItem, imageItem, imageItem, imageItem, imageItem, imageItem],
+    gallery: [imageItem, imageItem, imageItem, imageItem, imageItem, imageItem],
     maxItems: 5,
 };
