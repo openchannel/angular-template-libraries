@@ -62,6 +62,7 @@ definitions:
           - npm run angular-common-services-pack
           - npm run build-prod angular-common-components && npm run angular-common-components-pack
           - npm run docs:json
+          - npm run scss-to-css
           - npm run build-storybook
         artifacts:
           - storybook-static/**
