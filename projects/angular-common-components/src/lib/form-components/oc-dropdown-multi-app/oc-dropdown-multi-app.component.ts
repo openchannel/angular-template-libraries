@@ -84,6 +84,8 @@ export class OcDropdownMultiAppComponent implements OnInit, OnDestroy, ControlVa
         this.loadAppsByIDsAndPutToResultArray(this.selectAppIDs(value)).subscribe();
     }
 
+    onTouched = () => {};
+
     private loadAppsByIDsAndPutToResultArray(appIdArray: string[]): Observable<FullAppData[]> {
         if (appIdArray?.length > 0) {
             return this.appSearchService.loadDefaultApps(appIdArray).pipe(
@@ -103,8 +105,6 @@ export class OcDropdownMultiAppComponent implements OnInit, OnDestroy, ControlVa
     private selectAppIDs(data: any): string[] {
         return Array.isArray(data) ? (data as []).filter(isString) : [];
     }
-
-    private onTouched = () => {};
 
     private onChange: (value: any) => void = () => {};
 }

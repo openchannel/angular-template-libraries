@@ -100,23 +100,14 @@ export class OcRadioButtonListComponent implements ControlValueAccessor {
     private mapToDropdownModel(item: any): DropdownModel<RadioItemValue> {
         if (item && !item.hasOwnProperty('label')) {
             return {
-                label: typeof item !== 'string' ? item.toString() : this.toTitleCase(item),
+                label: item.toString() || '',
                 value: item,
             };
         } else {
             return item;
         }
     }
-    /**
-     * Transform value text to the proper label
-     * @param str string value of the items array
-     * @private
-     */
-    private toTitleCase(str: string): string {
-        return str.replace(/\b\w+/g, txt => {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        });
-    }
+
     /**
      * @ignore
      */

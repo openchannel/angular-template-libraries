@@ -1,5 +1,5 @@
 <div class="multiselect">
-  <oc-dropbox class="multiselect__dropbox"
+  <oc-dropbox class="multiselect__dropbox" (focusout)="onTouched()"
               *ngIf="dropBoxItems?.length > 0"
               [items]="dropBoxItems"
               [placeHolder]="'Select ' + label"
