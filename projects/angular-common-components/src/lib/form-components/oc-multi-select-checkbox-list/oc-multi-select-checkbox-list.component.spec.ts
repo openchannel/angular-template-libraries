@@ -26,22 +26,22 @@ describe('OcMultiSelectCheckboxListComponent', () => {
     });
 
     it('show all items', () => {
-        component.setItemsArray = ['A', 'B'];
+        component.itemsArray = ['A', 'B'];
         fixture.detectChanges();
         expect(findItemById('A')).toBeDefined();
         expect(findItemById('B')).toBeDefined();
     });
 
     it('init default values', () => {
-        component.setItemsArray = ['A', 'B', 'C'];
-        component.setDefaultItemsArray = ['B'];
+        component.itemsArray = ['A', 'B', 'C'];
+        component.defaultItemsArray = ['B'];
         spyOn(component.selectedItemsOutput, 'emit');
         fixture.detectChanges();
         expect(component.selectedItemsOutput.emit).toHaveBeenCalledWith(['B']);
     });
 
     it('select an item', () => {
-        component.setItemsArray = ['A', 'B', 'C'];
+        component.itemsArray = ['A', 'B', 'C'];
         spyOn(component.selectedItemsOutput, 'emit');
 
         fixture.detectChanges();
