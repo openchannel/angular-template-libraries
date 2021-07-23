@@ -2,10 +2,10 @@
 @import '../../../../assets/styles/theme';
 
 .error {
-  &__feedback {
-    @include font-size-sm();
-    color: $danger;
-    display: block;
-    margin-top: 6px;
-  }
+    &__feedback {
+        @include font-size-sm();
+        color: $danger;
+        display: block;
+        margin-top: 6px;
+    }
 }

@@ -1,22 +1,22 @@
 .multiselect {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-
-  &__tag {
-    margin-right: 1rem;
-    margin-top: 1rem;
-  }
-
-  &__dropbox {
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 
-    &-element {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: center;
-      padding: 1rem;
+    &__tag {
+        margin-right: 1rem;
+        margin-top: 1rem;
     }
-  }
+
+    &__dropbox {
+        width: 100%;
+
+        &-element {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            padding: 1rem;
+        }
+    }
 }

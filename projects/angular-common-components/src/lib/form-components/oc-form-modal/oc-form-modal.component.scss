@@ -2,52 +2,56 @@
 @import '../../../../assets/styles/mixins';
 
 .form-modal {
-  @include modal-body($white, $info);
-  &__header {
-    align-items: flex-start;
-    border-bottom: 1px solid $info;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    padding: 3rem;
-    @include media-breakpoint-sm {
-      padding: 2rem;
-    }
-    &-heading {
-      margin-bottom: 0;
-      text-align: center;
-      width: 100%;
-      @include font-size-lg();
-    }
-    &-close-icon {
-      cursor: pointer;
-      fill: $black;
-      height: 16px;
-      outline: none;
-      width: 16px;
-    }
-  }
+    @include modal-body($white, $info);
 
-  &__modal-inner {
-    padding: 2rem 3.5rem 5rem;
-    @include media-breakpoint-sm {
-      padding: 0 2rem 4rem;
-    }
-  }
+    &__header {
+        align-items: flex-start;
+        border-bottom: 1px solid $info;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding: 3rem;
+        @include media-breakpoint-sm {
+            padding: 2rem;
+        }
 
-  &__buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 4.5rem;
-    width: 100%;
-    @include media-breakpoint-sm {
-      margin-top: 4rem;
-      flex-direction: column;
+        &-heading {
+            margin-bottom: 0;
+            text-align: center;
+            width: 100%;
+            @include font-size-lg();
+        }
+
+        &-close-icon {
+            cursor: pointer;
+            fill: $black;
+            height: 16px;
+            outline: none;
+            width: 16px;
+        }
     }
-    &-button {
-      @include media-breakpoint-sm {
-        margin-top: 2rem;
-      }
+
+    &__modal-inner {
+        padding: 2rem 3.5rem 5rem;
+        @include media-breakpoint-sm {
+            padding: 0 2rem 4rem;
+        }
     }
-  }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 4.5rem;
+        width: 100%;
+        @include media-breakpoint-sm {
+            margin-top: 4rem;
+            flex-direction: column;
+        }
+
+        &-button {
+            @include media-breakpoint-sm {
+                margin-top: 2rem;
+            }
+        }
+    }
 }

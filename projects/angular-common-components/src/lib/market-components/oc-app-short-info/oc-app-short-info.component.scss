@@ -2,123 +2,123 @@
 @import '../../../../assets/styles/mixins';
 
 .card-wrapper {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  border: 1px solid $info;
-  border-radius: 4px;
-  padding: 16px;
-  position: relative;
-  min-height: 110px;
-  @include media-breakpoint-sm {
-    min-height: 129px;
-  }
-
-  .info-card__dropdown {
-
-    &_desktop {
-      display: block;
-      @include media-breakpoint-sm {
-        display: none;
-      }
-    }
-
-    &_mobile {
-      display: none;
-      @include media-breakpoint-sm {
-        display: block;
-      }
-    }
-  }
-
-  .info-card {
-    width: inherit;
+    width: 100%;
     display: flex;
-    flex-grow: 1;
-    @include media-breakpoint-xl {
-      width: calc(100% - 68px);
-    }
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid $info;
+    border-radius: 4px;
+    padding: 16px;
+    position: relative;
+    min-height: 110px;
     @include media-breakpoint-sm {
-      width: 100%;
+        min-height: 129px;
     }
 
-    &__logo {
-      flex-basis: 60px;
-      flex-shrink: 0;
-      height: auto;
-      @include media-breakpoint-sm {
-        flex-basis: 50px;
-      }
+    .info-card__dropdown {
 
-      &-image {
-        width: 100%;
-      }
-    }
-
-    &__content {
-      margin-left: 2rem;
-      width: calc(100% - 90px);
-      @include media-breakpoint-sm {
-        width: calc(100% - 66px);
-      }
-
-      &-wrapper {
-        @include media-breakpoint-sm {
-          display: flex;
-          align-items: flex-start;
-          justify-content: space-between;
+        &_desktop {
+            display: block;
+            @include media-breakpoint-sm {
+                display: none;
+            }
         }
-      }
 
-      &-name {
-        @include font-medium();
-        display: inline-block;
-        margin-bottom: 0.5rem;
-        line-height: 19px;
-        height: 19px;
-      }
+        &_mobile {
+            display: none;
+            @include media-breakpoint-sm {
+                display: block;
+            }
+        }
+    }
 
-      &-data {
+    .info-card {
+        width: inherit;
         display: flex;
-        flex-wrap: wrap;
-        margin-bottom: 0.5rem;
+        flex-grow: 1;
+        @include media-breakpoint-xl {
+            width: calc(100% - 68px);
+        }
         @include media-breakpoint-sm {
-          justify-content: space-between;
+            width: 100%;
         }
 
-        .info-card__content-price {
-          @include font-medium();
-          @include font-size-md();
-          color: $primary;
-          min-width: 130px;
-          flex-shrink: 0;
-          margin-bottom: 1rem;
-          margin-right: 1rem;
-          @include media-breakpoint-sm {
-            min-width: unset;
-            flex-shrink: 1;
-            flex-basis: auto;
-          }
-        }
-
-        .info-card__content-rating {
-          @include media-breakpoint-sm {
-            margin-right: 1rem;
+        &__logo {
+            flex-basis: 60px;
             flex-shrink: 0;
-          }
-        }
-      }
+            height: auto;
+            @include media-breakpoint-sm {
+                flex-basis: 50px;
+            }
 
-      &-summary {
-        @include font-medium();
-        @include font-size-md();
-        line-height: 2.3rem;
-        height: 2.3rem;
-        margin-bottom: 0;
-        color: $text-color;
-        @include default-text();
-      }
+            &-image {
+                width: 100%;
+            }
+        }
+
+        &__content {
+            margin-left: 2rem;
+            width: calc(100% - 90px);
+            @include media-breakpoint-sm {
+                width: calc(100% - 66px);
+            }
+
+            &-wrapper {
+                @include media-breakpoint-sm {
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: space-between;
+                }
+            }
+
+            &-name {
+                @include font-medium();
+                display: inline-block;
+                margin-bottom: 0.5rem;
+                line-height: 19px;
+                height: 19px;
+            }
+
+            &-data {
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: 0.5rem;
+                @include media-breakpoint-sm {
+                    justify-content: space-between;
+                }
+
+                .info-card__content-price {
+                    @include font-medium();
+                    @include font-size-md();
+                    color: $primary;
+                    min-width: 130px;
+                    flex-shrink: 0;
+                    margin-bottom: 1rem;
+                    margin-right: 1rem;
+                    @include media-breakpoint-sm {
+                        min-width: unset;
+                        flex-shrink: 1;
+                        flex-basis: auto;
+                    }
+                }
+
+                .info-card__content-rating {
+                    @include media-breakpoint-sm {
+                        margin-right: 1rem;
+                        flex-shrink: 0;
+                    }
+                }
+            }
+
+            &-summary {
+                @include font-medium();
+                @include font-size-md();
+                line-height: 2.3rem;
+                height: 2.3rem;
+                margin-bottom: 0;
+                color: $text-color;
+                @include default-text();
+            }
+        }
     }
-  }
 }
