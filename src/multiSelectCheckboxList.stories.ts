@@ -23,8 +23,16 @@ const MultiSelectCheckboxList = (args: OcMultiSelectCheckboxListComponent) => ({
 export const BasicMultiSelectCheckboxList = MultiSelectCheckboxList.bind({});
 
 BasicMultiSelectCheckboxList.args = {
-    label: 'Multi select checkbox list',
-    itemsArray: ['item1', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7'],
-    defaultItemsArray: ['item1', 'item2'],
+    checkboxItemsArray: [
+        {
+            label: 'checkbox 1',
+        },
+        {
+            label: 'checkbox 2',
+        },
+        {
+            label: 'checkbox 3',
+        },
+    ],
     resultFormData: action('resultFormData'),
 };

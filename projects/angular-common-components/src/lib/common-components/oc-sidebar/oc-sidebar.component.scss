@@ -2,57 +2,67 @@
 @import '../../../../assets/styles/theme';
 
 .recolor-svg {
-  path {
-    fill: $body-color;
-  }
-}
-.oc-sidebar {
-  &__navigation {
-    background-color: $white;
-    max-width: 265px;
-  }
-  &__heading {
-    @include font-medium();
-    font-size: 16px;
-  }
-  &__list {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    list-style: none;
-    margin-bottom: 0;
-    margin-top: 2rem;
-    padding-left: 0;
-    &-item {
-      cursor: pointer;
-      margin-bottom: 3rem;
-      &-expand-line {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-      }
-      &-text {
-        color: $body-color;
-        text-decoration: none;
-        @include font-size-md();
-        border-radius: 4px;
-        cursor: pointer;
-        padding: 2px;
-        &:hover {
-          font-weight: 500;
-        }
-        &:focus {
-          border: 1px solid $focus-border;
-        }
-        &_margin {
-          margin-top: 2rem;
-        }
-      }
+    path {
+        fill: $body-color;
     }
-  }
-  &__sublist {
-    list-style: none;
-    padding-left: 3rem;
-  }
+}
+
+.oc-sidebar {
+    &__navigation {
+        background-color: $white;
+        max-width: 265px;
+    }
+
+    &__heading {
+        @include font-medium();
+        font-size: 16px;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        list-style: none;
+        margin-bottom: 0;
+        margin-top: 2rem;
+        padding-left: 0;
+
+        &-item {
+            cursor: pointer;
+            margin-bottom: 3rem;
+
+            &-expand-line {
+                align-items: center;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            &-text {
+                color: $body-color;
+                text-decoration: none;
+                @include font-size-md();
+                border-radius: 4px;
+                cursor: pointer;
+                padding: 2px;
+
+                &:hover {
+                    font-weight: 500;
+                }
+
+                &:focus {
+                    border: 1px solid $focus-border;
+                }
+
+                &_margin {
+                    margin-top: 2rem;
+                }
+            }
+        }
+    }
+
+    &__sublist {
+        list-style: none;
+        padding-left: 3rem;
+    }
 }
 

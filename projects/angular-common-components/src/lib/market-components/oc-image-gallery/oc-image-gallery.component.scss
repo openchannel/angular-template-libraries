@@ -2,39 +2,42 @@
 @import '../../../../assets/styles/mixins';
 
 .image-gallery {
-  display: flex;
-  @include media-breakpoint-lg {
-    flex-wrap: wrap;
-  }
-  @include media-breakpoint-md {
-    flex-direction: column;
-  }
-  &__item {
-    flex-basis: auto;
-    flex-grow: 1;
-    flex-shrink: 2;
-    max-width: 100%;
-    min-width: 0;
-    padding: 0 2rem;
-    text-align: center;
+    display: flex;
     @include media-breakpoint-lg {
-      max-width: 50%;
+        flex-wrap: wrap;
     }
     @include media-breakpoint-md {
-      margin-bottom: 2rem;
-      width: 100%;
+        flex-direction: column;
     }
-    @include media-breakpoint-sm {
-      max-width: 100%;
+
+    &__item {
+        flex-basis: auto;
+        flex-grow: 1;
+        flex-shrink: 2;
+        max-width: 100%;
+        min-width: 0;
+        padding: 0 2rem;
+        text-align: center;
+        @include media-breakpoint-lg {
+            max-width: 50%;
+        }
+        @include media-breakpoint-md {
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+        @include media-breakpoint-sm {
+            max-width: 100%;
+        }
+
+        &-title {
+            @include font-size-lg();
+            @include font-medium();
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        &-description {
+            @include font-size-md();
+        }
     }
-    &-title {
-      @include font-size-lg();
-      @include font-medium();
-      margin-bottom: 1rem;
-      margin-top: 2rem;
-    }
-    &-description {
-      @include font-size-md();
-    }
-  }
 }

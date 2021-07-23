@@ -1,32 +1,39 @@
 .review {
-  &__heading {
-    margin-bottom: 2rem;
-  }
-  &__form {
-    &-group {
-      margin-bottom: 3rem;
-      &:last-child {
-        margin-bottom: 0;
-      }
+    &__heading {
+        margin-bottom: 2rem;
     }
-    &-label {
-      display: block;
-      margin-bottom: 1rem;
+
+    &__form {
+        &-group {
+            margin-bottom: 3rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &-label {
+            display: block;
+            margin-bottom: 1rem;
+        }
     }
-  }
-  &__rating {
-    margin-top: 1rem;
-  }
-  &__buttons-section {
-    display: flex;
-    margin-top: 6rem;
-    justify-content: flex-end;
-  }
-  &__button {
-    display: block;
-    width: 160px;
-    &-cancel {
-      margin-right: 6rem;
+
+    &__rating {
+        margin-top: 1rem;
     }
-  }
+
+    &__buttons-section {
+        display: flex;
+        margin-top: 6rem;
+        justify-content: flex-end;
+    }
+
+    &__button {
+        display: block;
+        width: 160px;
+
+        &-cancel {
+            margin-right: 6rem;
+        }
+    }
 }

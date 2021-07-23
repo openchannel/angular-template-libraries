@@ -542,9 +542,9 @@ FormWithMultiSelect.args = {
     },
 };
 
-export const FormWithMultiCheckboxes = FormGroupComponent.bind({});
+export const FormWithMultiAppDropdown = FormGroupComponent.bind({});
 
-FormWithMultiCheckboxes.args = {
+FormWithMultiAppDropdown.args = {
     formJsonData: {
         formId: 'test',
         name: 'test',
@@ -552,7 +552,6 @@ FormWithMultiCheckboxes.args = {
         fields: [
             {
                 attributes: {
-                    subType: 'checkbox',
                     required: true,
                     maxCount: 3,
                     minCount: 2,
@@ -568,6 +567,37 @@ FormWithMultiCheckboxes.args = {
                 label: 'Multi App Dropdown',
                 placeholder: null,
                 type: 'multiApp',
+            },
+        ],
+    },
+};
+
+export const FormWithMultiCheckboxes = FormGroupComponent.bind({});
+
+FormWithMultiCheckboxes.args = {
+    formJsonData: {
+        formId: 'test',
+        name: 'test',
+        createdDate: 1599982592157,
+        fields: [
+            {
+                attributes: {
+                    subType: 'checkbox',
+                    required: true,
+                    maxCount: 3,
+                    minCount: 2,
+                },
+                options: ['aaa', 'bb'],
+                category: 'CUSTOM',
+                defaultValue: [],
+                description: null,
+                id: 'multi-checkbox',
+                isOpen: false,
+                isValid: true,
+                deleteable: false,
+                label: 'Multi checkboxes',
+                placeholder: null,
+                type: 'multiselectList',
             },
         ],
     },
