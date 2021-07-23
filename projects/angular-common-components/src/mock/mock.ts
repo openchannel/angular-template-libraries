@@ -72,10 +72,9 @@ export class MockButtonComponent {
     @Input() text: string = '';
     @Input() disabled: boolean = false;
     @Input() type: 'primary' | 'secondary' | 'link' = 'primary';
-    @Input() class: string;
     @Input() customClass: string;
     @Input() style: string;
-    @Input() process: string;
+    @Input() process: boolean;
     @Input() customTemplate: TemplateRef<any>;
 }
 

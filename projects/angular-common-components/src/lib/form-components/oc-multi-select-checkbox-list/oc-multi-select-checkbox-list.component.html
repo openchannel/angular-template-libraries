@@ -1,5 +1,5 @@
 <div class="dropdown-multi-checkbox">
-    <div *ngFor="let item of itemsArray">
+    <div *ngFor="let item of checkboxItemsArray">
         <ng-container [ngTemplateOutlet]="dropdownItemNgt"
                       [ngTemplateOutletContext]="{$implicit: item}"></ng-container>
     </div>

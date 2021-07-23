@@ -13,7 +13,7 @@ interface LocalDropdownItem extends DropdownItem {
 @Component({
     selector: 'oc-multi-select-checkbox-list',
     templateUrl: './oc-multi-select-checkbox-list.component.html',
-    styleUrls: ['./oc-multi-select-checkbox-list.component.scss'],
+    styleUrls: ['./oc-multi-select-checkbox-list.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -27,16 +27,16 @@ export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueA
      * Sets an array which contains all dropdown items.
      * @type {DropdownItemType[]}.
      */
-    @Input('itemsArray') set setItemsArray(items: DropdownItemType[]) {
-        this.itemsArray = this.mapToArrayWithDropdownItem(items);
+    @Input() set itemsArray(items: DropdownItemType[]) {
+        this.checkboxItemsArray = this.mapToArrayWithDropdownItem(items);
     }
 
     /**
      * Sets an array which contains all default dropdown items.
      * @type {DropdownItemType[]}.
      */
-    @Input('defaultItemsArray') set setDefaultItemsArray(items: DropdownItemType[]) {
-        this.defaultItemsArray = this.mapToArrayWithDropdownItem(items);
+    @Input() set defaultItemsArray(items: DropdownItemType[]) {
+        this.defaultCheckboxItemsArray = this.mapToArrayWithDropdownItem(items);
     }
 
     /**
@@ -44,7 +44,7 @@ export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueA
      * Updates component data.
      */
     @Input() set value(items: DropdownItemType[]) {
-        this.itemsArray.forEach(item => (item.selected = false));
+        this.checkboxItemsArray.forEach(item => (item.selected = false));
         this.mapToArrayWithDropdownItem(items).forEach(selectedItem => this.selectItemStatus(selectedItem, false));
         this.updateComponentData();
     }
@@ -54,13 +54,13 @@ export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueA
      */
     @Output() readonly selectedItemsOutput: EventEmitter<DropdownItemType[]> = new EventEmitter<DropdownItemType[]>();
 
-    itemsArray: LocalDropdownItem[] = [];
-    defaultItemsArray: LocalDropdownItem[] = [];
+    checkboxItemsArray: LocalDropdownItem[] = [];
+    defaultCheckboxItemsArray: LocalDropdownItem[] = [];
     disabled: boolean = false;
 
     ngOnInit(): void {
-        if (this.defaultItemsArray.length > 0) {
-            this.defaultItemsArray.forEach(defaultItem => this.selectItemStatus(defaultItem));
+        if (this.defaultCheckboxItemsArray.length > 0) {
+            this.defaultCheckboxItemsArray.forEach(defaultItem => this.selectItemStatus(defaultItem));
         }
         this.updateComponentData();
     }
@@ -109,7 +109,7 @@ export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueA
     }
 
     updateSelectValueForItem(item: DropdownItem, selectedValue: boolean, withOnChange: boolean = true): void {
-        const selectItem = this.itemsArray.find(resultItem => resultItem.label === item.label);
+        const selectItem = this.checkboxItemsArray.find(resultItem => resultItem.label === item.label);
         if (selectItem) {
             selectItem.selected = selectedValue;
             if (withOnChange) {
@@ -156,7 +156,7 @@ export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueA
      * Updates component filters and result value.
      */
     private updateComponentData(): void {
-        const selectedItems = this.itemsArray.filter(item => item.selected).map(item => item.value);
+        const selectedItems = this.checkboxItemsArray.filter(item => item.selected).map(item => item.value);
         this.onChange(selectedItems);
         this.selectedItemsOutput.emit(selectedItems);
     }
