@@ -9,7 +9,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
     selector: 'oc-rich-text-editor',
     templateUrl: './oc-rich-text-editor.component.html',
-    styleUrls: ['./oc-rich-text-editor.component.scss'],
+    styleUrls: ['./oc-rich-text-editor.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

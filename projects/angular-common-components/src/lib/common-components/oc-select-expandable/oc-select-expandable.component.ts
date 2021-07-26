@@ -4,7 +4,7 @@ import { SelectModel } from '../model/components-basic.model';
 @Component({
     selector: 'oc-select-expandable',
     templateUrl: './oc-select-expandable.component.html',
-    styleUrls: ['./oc-select-expandable.component.scss'],
+    styleUrls: ['./oc-select-expandable.component.css'],
 })
 export class OcSelectExpandableComponent implements OnInit {
     /**

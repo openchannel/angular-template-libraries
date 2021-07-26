@@ -14,7 +14,7 @@ import { FieldValueModel, FormArrayItem, PreviewLabel } from '../model/dynamic-a
 @Component({
     selector: 'oc-dynamic-field-array',
     templateUrl: './oc-dynamic-field-array.component.html',
-    styleUrls: ['./oc-dynamic-field-array.component.scss'],
+    styleUrls: ['./oc-dynamic-field-array.component.css'],
 })
 export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
     /**

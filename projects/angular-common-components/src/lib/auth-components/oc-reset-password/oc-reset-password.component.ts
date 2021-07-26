@@ -8,7 +8,7 @@ import { ComponentsUserResetPassword } from '../models/auth-types.model';
 @Component({
     selector: 'oc-reset-password',
     templateUrl: './oc-reset-password.component.html',
-    styleUrls: ['./oc-reset-password.component.scss'],
+    styleUrls: ['./oc-reset-password.component.css'],
 })
 export class OcResetPasswordComponent {
     /**

@@ -34,7 +34,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'oc-confirmation-modal',
     templateUrl: './oc-confirmation-modal.component.html',
-    styleUrls: ['./oc-confirmation-modal.component.scss'],
+    styleUrls: ['./oc-confirmation-modal.component.css'],
 })
 export class OcConfirmationModalComponent {
     /**

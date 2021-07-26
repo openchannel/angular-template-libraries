@@ -14,6 +14,8 @@ export interface OCReviewDetailsResponse {
     reviewOwnerName: string;
     rating: number;
     review: string;
+    userId?: string;
+    reviewId?: string;
 }
 
 export interface ChartStatisticDataModelResponse {

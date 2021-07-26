@@ -2,221 +2,215 @@
 @import '../../../../assets/styles/mixins';
 
 .user-grid-container {
-  position: relative;
+    position: relative;
 
-  .user-grid-overlay {
-    @include media-breakpoint-xl {
-      position: absolute;
-      top: 68px;
-      bottom: 67px;
-      right: 1px;
-      width: 18px;
-      background: linear-gradient(90deg, transparent, white 75%, white);
+    .dropup,
+    .dropright,
+    .dropdown,
+    .dropleft {
+        position: initial;
     }
-  }
 
-  .user-grid-wrapper {
-    @include media-breakpoint-xl {
-      overflow-x: auto;
-      border-radius: 4px;
-      border: 1px solid #c9d5ea;
+    .user-grid-overlay {
+        @include media-breakpoint-xl {
+            position: absolute;
+            top: 68px;
+            bottom: 67px;
+            right: 1px;
+            width: 18px;
+            background: linear-gradient(90deg, transparent, white 75%, white);
+        }
     }
-  }
+
+    .user-grid-wrapper {
+        @include media-breakpoint-xl {
+            overflow-x: auto;
+            border-radius: 4px;
+            border: 1px solid $button-info;
+        }
+    }
 }
 
 .user-table {
-  background-color: $white;
-  border: 1px solid $info;
-  border-collapse: inherit;
-  border-radius: 4px;
-  border-spacing: 0;
-  vertical-align: middle;
-  width: 100%;
-
-  @include media-breakpoint-xl {
-    border: none;
-  }
-
-  &__head {
-    &-cell {
-      align-items: center;
-      border-bottom: 1px solid $info;
-      border-top: 1px solid $info;
-      line-height: 18px;
-      padding: 3rem 42px 3rem 0;
-      vertical-align: middle;
-      white-space: nowrap;
-    }
-    &-name {
-      max-width: 15%;
-      padding-left: 2rem;
-      .user-table__th-row {
-        cursor: pointer;
-      }
-    }
-
-    &-email {
-      max-width: 15%;
-      .user-table__th-row {
-        cursor: pointer;
-      }
-    }
-
-    &-data {
-      width: 82px;
-      .user-table__th-row {
-        cursor: pointer;
-      }
-    }
-
-    &-role {
-      width: 47px;
-      .user-table__th-row {
-        cursor: pointer;
-      }
-    }
-
-    &-status {
-      cursor: pointer;
-      width: 43px;
-    }
-
-    &-action {
-      padding-right: 2rem;
-      width: 52px;
-    }
-    &-sort-icon {
-      cursor: pointer;
-      margin-left: 1rem;
-    }
-  }
-
-  &__th-row {
-    @include font-size-md();
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-  }
-
-  &__row {
-    &:first-child {
-      .user-table__head-cell,
-      .user-table__row-td {
-        border-top: 0;
-      }
-    }
-    &_highlight-user {
-      background-color: rgba($light, .5);
-    }
-  }
-
-  &__td-row {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-  }
-
-  &__text {
-    @include font-size-md();
-    color: $text-color;
-    @include default-text();
-    &_dark {
-      color: $body-color;
-    }
-    &_role {
-      color: $primary;
-      font-weight: 700;
-      text-transform: capitalize;
-    }
-    &_status {
-      font-weight: 700;
-      text-transform: capitalize;
-    }
-  }
-
-  &__row-td {
-    border-top: 1px solid $gray;
-    padding: 2rem 42px 2rem 0;
+    background-color: $white;
+    border: 1px solid $info;
+    border-collapse: inherit;
+    border-radius: 4px;
+    border-spacing: 0;
     vertical-align: middle;
-    &:first-of-type {
-      padding-left: 16px;
+    width: 100%;
+
+    @include media-breakpoint-xl {
+        border: none;
     }
-  }
 
-  .action-menu {
-    padding-right: 16px;
-  }
+    &__head {
+        &-cell {
+            align-items: center;
+            border-bottom: 1px solid $info;
+            border-top: 1px solid $info;
+            line-height: 18px;
+            padding: 3rem 42px 3rem 0;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
 
-  &__last-grid-row {
-    border-top: 1px solid $info;
-    height: 66px;
-  }
+        &-name {
+            max-width: 15%;
+            padding-left: 2rem;
 
-  &__profile {
-    @include font-medium();
-    background-image: linear-gradient(to bottom, $profile-gradient-top, $profile-gradient-bottom);
-    border-radius: 20px;
-    color: $profile;
-    height: 40px;
-    margin: 0 12px 0 0;
-    min-width: 40px;
-    padding: 8px 0;
-    text-align: center;
-    width: 40px;
-    &_invited {
-      background-image: linear-gradient(to bottom, $gradient-top, $gradient-bottom);
-      color: $primary;
+            .user-table__th-row {
+                cursor: pointer;
+            }
+        }
+
+        &-email {
+            max-width: 15%;
+
+            .user-table__th-row {
+                cursor: pointer;
+            }
+        }
+
+        &-data {
+            width: 82px;
+
+            .user-table__th-row {
+                cursor: pointer;
+            }
+        }
+
+        &-role {
+            width: 47px;
+
+            .user-table__th-row {
+                cursor: pointer;
+            }
+        }
+
+        &-status {
+            cursor: pointer;
+            width: 43px;
+        }
+
+        &-action {
+            padding-right: 2rem;
+            width: 52px;
+        }
+
+        &-sort-icon {
+            cursor: pointer;
+            margin-left: 1rem;
+        }
     }
-    &-text {
-      font-weight: 700;
-      @include media-breakpoint-md {
-        white-space: nowrap;
-      }
+
+    &__th-row {
+        @include font-size-md();
+        align-items: center;
+        display: flex;
+        flex-direction: row;
     }
-  }
-  &__menu {
-    cursor: pointer;
-    text-align: right;
-    &-icon-dots {
-      border: 1px solid $info;
-      border-radius: 4px;
-      padding: 19px;
+
+    &__row {
+        &:first-child {
+            .user-table__head-cell,
+            .user-table__row-td {
+                border-top: 0;
+            }
+        }
+
+        &_highlight-user {
+            background-color: rgba($light, .5);
+        }
     }
-  }
-}
 
-.dropup, .dropright, .dropdown, .dropleft {
-  position: initial;
-}
+    &__td-row {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+    }
 
-// Dropdown menu style
-.dropdown-menu {
-  border: 1px solid $info;
-  left: 76px;
-  padding: 0;
-  top: 70px;
-  transform: translate(0, 44px);
-  width: 136px;
+    &__text {
+        @include font-size-md();
+        color: $text-color;
+        @include default-text();
 
-  .dropdown-item {
-    border-bottom: 1px solid $info;
-    @include font-size-md();
-    padding: 14px 42px;
-  }
+        &_dark {
+            color: $body-color;
+        }
 
-  .dropdown-item:hover, .dropdown-item:focus {
-    background-color: rgba(201, 213, 234, 0.1);
-    box-shadow: 0 1px 0 $info;
-    color: $primary;
-    outline: none;
-  }
+        &_role {
+            color: $primary;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
 
-  .dropdown-item:active {
-    box-shadow: 0 1px 0 $info;
-    color: $primary;
-  }
+        &_status {
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+    }
+
+    &__row-td {
+        border-top: 1px solid $gray;
+        padding: 2rem 42px 2rem 0;
+        vertical-align: middle;
+
+        &:first-of-type {
+            padding-left: 16px;
+        }
+    }
+
+    .action-menu {
+        padding-right: 16px;
+    }
+
+    &__last-grid-row {
+        border-top: 1px solid $info;
+        height: 66px;
+    }
+
+    &__profile {
+        @include font-medium();
+        background-image: linear-gradient(to bottom, $profile-gradient-top, $profile-gradient-bottom);
+        border-radius: 20px;
+        color: $profile;
+        height: 40px;
+        margin: 0 12px 0 0;
+        min-width: 40px;
+        padding: 8px 0;
+        text-align: center;
+        width: 40px;
+
+        &_invited {
+            background-image: linear-gradient(to bottom, $gradient-top, $gradient-bottom);
+            color: $primary;
+        }
+
+        &-text {
+            font-weight: 500;
+            @include media-breakpoint-md {
+                white-space: nowrap;
+            }
+        }
+    }
+
+    &__menu {
+        cursor: pointer;
+        text-align: right;
+
+        &-icon-dots {
+            border: 1px solid $info;
+            border-radius: 4px;
+            padding: 19px;
+        }
+
+        .dropdown-menu {
+            @include oc-dropdown-menu($primary, $info);
+        }
+    }
 }
 
 .icon-recolor {
-  fill: $body-color;
+    fill: $body-color;
 }

@@ -10,7 +10,7 @@ import { SidebarValue } from '../model/components-basic.model';
 @Component({
     selector: 'oc-sidebar',
     templateUrl: './oc-sidebar.component.html',
-    styleUrls: ['./oc-sidebar.component.scss'],
+    styleUrls: ['./oc-sidebar.component.css'],
 })
 export class OcSidebarComponent {
     /**

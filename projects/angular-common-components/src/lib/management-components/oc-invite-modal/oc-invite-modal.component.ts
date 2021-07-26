@@ -15,7 +15,7 @@ import { ModalInviteUserModel, ModalUpdateUserModel } from '../models/oc-modal.m
 @Component({
     selector: 'oc-invite-modal',
     templateUrl: './oc-invite-modal.component.html',
-    styleUrls: ['./oc-invite-modal.component.scss'],
+    styleUrls: ['./oc-invite-modal.component.css'],
 })
 export class OcInviteModalComponent implements OnInit {
     /**

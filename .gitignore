@@ -6,6 +6,9 @@ development
 
 *.iml
 *.log
+*.css
+*.css.map
+
 documentation.json
 .idea
 

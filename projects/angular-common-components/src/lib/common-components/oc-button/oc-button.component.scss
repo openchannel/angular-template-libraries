@@ -2,7 +2,6 @@
 @import '../../../../assets/styles/mixins';
 
 .oc-button {
-    border: 0;
     border-radius: 4px;
     min-height: 52px;
     min-width: 160px;
@@ -28,7 +27,7 @@
 
     &_primary {
         background-color: $button-primary;
-        border-color: $button-primary;
+        border: 2px solid $button-primary;
         color: $white;
 
         &:hover {
@@ -57,7 +56,7 @@
 
     &_secondary {
         background-color: $white;
-        border: 1px solid $button-info;
+        border: 2px solid $button-info;
 
         &:hover {
             box-shadow: 1px 5px 30px 0 rgba(lighten($button-secondary, 34%), 0.5);
@@ -85,7 +84,7 @@
 
     &_danger {
         background-color: $button-danger;
-        border-color: $button-danger;
+        border: 2px solid $button-danger;
         color: $white;
 
         &:hover {

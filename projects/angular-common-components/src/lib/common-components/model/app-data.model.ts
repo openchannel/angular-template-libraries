@@ -235,15 +235,18 @@ export class FullAppData {
         this.children = appData.children || [];
         this.parent = appData.parent;
         this.ownership = appData?.ownership;
+
         // custom data mapping
-        this.icon = appData.customData[customDataConfig.icon] || '';
-        this.logo = appData.customData[customDataConfig.logo] || '';
-        this.summary = appData.customData[customDataConfig.summary] || '';
-        this.description = appData.customData[customDataConfig.description] || '';
-        this.video = appData.customData[customDataConfig.video] || '';
-        this.images = appData.customData[customDataConfig.images] || [];
-        this.categories = appData.customData[customDataConfig.categories] || [];
-        this.author = appData.customData[customDataConfig.author] || '';
-        this.gallery = appData.customData[customDataConfig.gallery] || [];
+        if (customDataConfig) {
+            this.icon = appData.customData[customDataConfig.icon] || '';
+            this.logo = appData.customData[customDataConfig.logo] || '';
+            this.summary = appData.customData[customDataConfig.summary] || '';
+            this.description = appData.customData[customDataConfig.description] || '';
+            this.video = appData.customData[customDataConfig.video] || '';
+            this.images = appData.customData[customDataConfig.images] || [];
+            this.categories = appData.customData[customDataConfig.categories] || [];
+            this.author = appData.customData[customDataConfig.author] || '';
+            this.gallery = appData.customData[customDataConfig.gallery] || [];
+        }
     }
 }

@@ -13,7 +13,7 @@ import { OverallRatingSummary } from '../models/overall-rating-summary-model';
 @Component({
     selector: 'oc-overall-rating',
     templateUrl: './oc-overall-rating.component.html',
-    styleUrls: ['./oc-overall-rating.component.scss'],
+    styleUrls: ['./oc-overall-rating.component.css'],
 })
 export class OcOverallRatingComponent {
     /**

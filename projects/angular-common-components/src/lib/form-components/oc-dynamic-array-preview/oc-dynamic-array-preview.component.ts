@@ -16,7 +16,7 @@ import { AppTypeFieldModel } from '@openchannel/angular-common-components/src/li
 @Component({
     selector: 'oc-dynamic-array-preview',
     templateUrl: './oc-dynamic-array-preview.component.html',
-    styleUrls: ['./oc-dynamic-array-preview.component.scss'],
+    styleUrls: ['./oc-dynamic-array-preview.component.css'],
 })
 export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDestroy {
     readonly DYNAMIC_FIELD_ARRAY_KEY = 'dynamicFieldArray';
