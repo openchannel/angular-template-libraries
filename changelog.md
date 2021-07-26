@@ -1,3 +1,6 @@
+## Release notes - angular-template-libraries - Version 2.9.0 (7/15/2021)<br>
+### Task<br>
+AT-1331 - CMS support on Templates<br>
 ## Release notes - angular-template-libraries - Version 2.8.2 (7/13/2021)<br>
 ### Task<br>
 AT-1430 - [Hotfix] Change license back to MIT<br>
