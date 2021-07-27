@@ -52,7 +52,7 @@ definitions:
         script:
           - git remote set-url origin git@github.com:openchannel/angular-template-libraries.git
           - git remote -v
-          - git push origin master:main
+          - git push origin --force master:main
           - git push origin --tags
 
     - step: &build-app
