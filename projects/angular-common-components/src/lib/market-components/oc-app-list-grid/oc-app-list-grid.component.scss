@@ -1,0 +1,95 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.app-list {
+
+    &_empty {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 2.5rem 0 0 0;
+    }
+
+    &__card {
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid rgba($info, 0.5);
+        padding: 16px 23px 16px 16px;
+        margin-bottom: 16px;
+        line-height: 1;
+        border-radius: 4px;
+
+        &-wrapper {
+            display: flex;
+            flex-wrap: nowrap;
+            margin: 0;
+            width: 100%;
+
+            .app-list__card-image {
+                flex-shrink: 0;
+                flex-basis: 44px;
+                margin-right: 22px;
+
+                img {
+                    cursor: pointer;
+                    width: 100%;
+                }
+            }
+
+            .app-list__card-data {
+                padding: 0;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+
+                .app-list__card-name {
+                    @include font-medium();
+                    line-height: 19px;
+                    margin-bottom: 0.5rem;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    margin-right: 20px;
+                }
+
+                .app-list__card-info {
+                    display: flex;
+                    align-items: center;
+                    @include media-breakpoint-sm {
+                        margin-right: 20px;
+                    }
+                }
+
+                .app-list__card-price {
+                    @include font-medium();
+                    width: 130px;
+                    @include font-size-md();
+                    line-height: 16px;
+                    color: $primary;
+                }
+            }
+
+            .app-list__card-arrow {
+                cursor: pointer;
+                height: 12px;
+                position: absolute;
+                right: 24px;
+                top: calc(50% - 6px);
+                width: auto;
+                @include media-breakpoint-sm {
+                    top: 17px;
+                }
+
+                path {
+                    fill: $body-color;
+                }
+            }
+        }
+
+        &-container {
+            &-link {
+                color: $body-color;
+            }
+        }
+    }
+}

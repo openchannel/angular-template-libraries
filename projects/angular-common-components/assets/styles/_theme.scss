@@ -1,0 +1,104 @@
+// LINKS
+$link-primary: #537cfd !default;
+$link-secondary: #727272 !default;
+
+// BUTTONS
+$button-primary: #537cfd !default;
+$button-secondary: #727272 !default;
+$button-danger: #ff6262 !default;
+$button-border-focus: #a9befe !default;
+$button-info: #c9d5ea !default;
+$button-secondary-color: #333333 !default;
+
+// HEADINGS AND SIMPLE TEXT
+$heading-color: #333333 !default;
+$text-color: #727272 !default;
+
+// DROPDOWNS
+$dropdown-border: #c9d5ea !default;
+$dropdown-item-background: transparent !default;
+$dropdown-item-text: #212529 !default;
+$dropdown-item-text-hover: #537cfd !default;
+$dropdown-item-text-alternative: #333333 !default;
+$dropdown-light: #f4f7fc !default;
+
+// MAIN COLORS
+$light-blue: #e6f3fc !default;
+$body-color: #333333 !default;
+$primary: #537cfd !default;
+$secondary: #727272 !default;
+
+$focus-border: #a9befe !default;
+$danger: #ff6262 !default;
+$info: #c9d5ea !default;
+$light: #f4f7fc !default;
+$yellow: #ffc820 !default;
+$green-alert: #74b675 !default;
+$black: #000 !default;
+$white: #fff !default;
+$dark: #343a40;
+
+// APPS STATUS COLOR INDICATOR
+$approved: #81cf7c !default;
+$draft: #dcdcdc !default;
+$pending: #69dbff !default;
+$suspended: #f8be1c !default;
+$rejected: #ff6262 !default;
+$review: #537cfd !default;
+
+$error-bg: #ffe0e0 !default;
+$error: #6e2c2c !default;
+
+$gray: #ced4da !default;
+$gray-600: #6c757d !default;
+
+// USERNAME INITIALS CIRCLE
+$gradient-top: #eeebff !default;
+$gradient-bottom: #f8f7ff !default;
+
+$profile-gradient-top: #e8f0e7 !default;
+$profile-gradient-bottom: #f5fff4 !default;
+$profile: #06b088 !default;
+
+// TINY RICH EDITOR COLORS
+$editor-btn-hover:  #f4f4f4 !default;
+
+// OVERRIDING BOOTSTRAP SPACERS
+$spacer: 1rem;
+$spacers: (
+    0 _5: (
+        $spacer * .5
+    ),
+    1: $spacer,
+    2: ($spacer * 2),
+    3: (
+        $spacer * 3
+    ),
+    4: (
+        $spacer * 4
+    ),
+    5: (
+        $spacer * 5
+    ),
+    6: (
+        $spacer * 6
+    ),
+    7: (
+        $spacer * 7
+    ),
+    8: (
+        $spacer * 8
+    )
+);
+
+@mixin root-prop($prop: null, $value: null) {
+    @if ($prop and $value) {
+        #{$prop}: $value;
+    }
+}
+
+// VARIABLE FOR IMAGE CROPPER
+:root {
+    @include root-prop(--root-prop, rgba(0, 0, 0, 0.5));
+}
+

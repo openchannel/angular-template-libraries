@@ -1,8 +1,0 @@
-<div class="description">
-  <h4 class="description__heading" [ngClass]="headerClass">{{_header}}</h4>
-  <p #description class="description__text" [innerHTML]="appDescription"
-     [class.hid-description]="!showFullDescription">
-  </p>
-  <span class="description__show-more" *ngIf="!showFullDescription"
-        (click)="showFullDescription = true">{{expandDescriptionText}}</span>
-</div>

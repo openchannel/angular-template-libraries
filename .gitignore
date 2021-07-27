@@ -1,5 +1,16 @@
+dist
+node_modules/
+storybook-assets/
+storybook-static/
+development
+
 *.iml
 *.log
+*.css
+*.css.map
 
-.idea/
-node_modules/
+documentation.json
+.idea
+
+coverage/
+development/

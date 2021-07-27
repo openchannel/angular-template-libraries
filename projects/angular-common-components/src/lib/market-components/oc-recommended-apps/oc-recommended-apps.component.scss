@@ -1,0 +1,37 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.recommended-apps {
+
+    &_empty {
+        margin-top: 2.5rem;
+    }
+
+    &__heading {
+        @include media-breakpoint-md {
+            @include font-size-lg();
+        }
+    }
+
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 2.5rem 0 0 0;
+        width: 100%;
+        justify-content: space-between;
+
+        .recommended-apps__card {
+            background-color: $white;
+            border-radius: 4px;
+            width: 32%;
+            margin-bottom: 1rem;
+            padding: 2rem;
+            @include media-breakpoint-lg {
+                width: 48%;
+            }
+            @include media-breakpoint-md {
+                width: 100%;
+            }
+        }
+    }
+}

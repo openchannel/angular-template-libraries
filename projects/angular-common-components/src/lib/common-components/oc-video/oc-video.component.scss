@@ -1,0 +1,35 @@
+
+.oc-video {
+    &__loader {
+        padding: 1rem;
+        position: relative;
+    }
+
+    &__container {
+        width: 100%;
+    }
+
+    &__preview {
+        display: flex;
+        justify-content: center;
+
+        &-data {
+            flex: 0 0 100%;
+            max-width: 380px;
+            width: 100%;
+        }
+    }
+
+    &__frame {
+        align-items: center;
+        display: flex;
+        flex: 0 0 100%;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+
+        &-video {
+            outline: 0;
+        }
+    }
+}

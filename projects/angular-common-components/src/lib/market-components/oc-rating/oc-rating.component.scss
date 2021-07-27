@@ -1,0 +1,51 @@
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/theme';
+
+.oc-rating {
+
+    &-single {
+        align-items: center;
+        display: flex;
+
+        &__rating-star {
+            height: 16px;
+            vertical-align: unset;
+            width: 16px;
+        }
+
+        &__label {
+            color: $text-color;
+            margin-left: 1rem;
+            @include default-text();
+
+            &.medium {
+                @include font-medium();
+            }
+
+            &.md {
+                @include font-size-md();
+            }
+        }
+    }
+
+    &-multi {
+
+        &__star {
+            color: $text-color;
+            position: relative;
+            @include default-text();
+
+            &_filled {
+                color: $yellow;
+            }
+
+            &_half-color {
+                bottom: -3px;
+                color: $yellow;
+                left: 0;
+                overflow: hidden;
+                position: absolute;
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.description {
+    width: 100%;
+
+    &__heading {
+        margin-bottom: 2rem;
+    }
+
+    &__text {
+        color: $text-color;
+        margin-bottom: 0;
+        @include default-text();
+
+        &_visible {
+          height: auto;
+        }
+    }
+
+    &__show-more {
+        @include font-medium();
+        @include font-size-md();
+        cursor: pointer;
+        color: $primary;
+    }
+}

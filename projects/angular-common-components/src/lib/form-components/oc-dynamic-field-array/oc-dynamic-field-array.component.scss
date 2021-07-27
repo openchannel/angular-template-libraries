@@ -1,0 +1,57 @@
+@import '../../../../assets/styles/theme';
+
+.cards-interface {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    word-break: break-word;
+
+    &__icons-handler {
+        display: flex;
+        margin-left: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    &__added-item {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    &__preview {
+        width: 100%;
+        border: 1px solid $info;
+        border-radius: 4px;
+        margin-bottom: 1.5rem;
+
+        &-header {
+            box-shadow: inset 0 -1px 0 0 $info;
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 2.5rem;
+
+            &-text {
+                font-size: 24px;
+                margin-bottom: 0;
+                word-break: break-word;
+            }
+        }
+
+        &-icon {
+            cursor: pointer;
+            width: 16px;
+            vertical-align: top;
+            margin-left: 1rem;
+        }
+
+        &-content {
+            padding: 1.5rem 2.5rem 2rem;
+        }
+
+        &-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2.5rem 2.5rem;
+        }
+    }
+}

@@ -1,0 +1,248 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.oc-table {
+    width: 1110px;
+    vertical-align: middle;
+    background-color: white;
+    border-spacing: 0;
+    border-collapse: inherit;
+
+    &-container {
+        position: relative;
+
+        &__overlay {
+            bottom: 67px;
+            top: 47px;
+            position: absolute;
+            right: 1px;
+            background-image: linear-gradient(to right, rgba($white, 0), $white);
+            width: 46px;
+        }
+    }
+
+    &-wrapper {
+        border-radius: 4px;
+        border: 1px solid $info;
+        overflow-x: auto;
+
+    }
+
+    &__head {
+        height: 66px;
+    }
+
+    &__th {
+        @include font-size-md();
+        border-bottom: 1px solid $info;
+        border-top: 1px solid $info;
+        padding: 1.5rem 0;
+        vertical-align: middle;
+        cursor: pointer;
+
+        &:first-child,
+        &:last-child {
+            width: 2.5rem;
+        }
+    }
+
+    &__icon-down {
+        padding-left: 8px;
+    }
+
+    &__icon-up {
+        padding-right: 8px;
+        transform: rotate(180deg);
+    }
+
+    &__name {
+        width: 26%;
+    }
+
+    &__summary {
+        width: 33%;
+    }
+
+    &__data {
+        width: 14%;
+    }
+
+    &__status {
+        width: 9%;
+    }
+
+    &__action {
+        width: 10%;
+    }
+
+    tr:first-child {
+        th,
+        td {
+            border-top: none;
+        }
+    }
+
+    &__td {
+        padding: 2rem 0;
+        vertical-align: middle;
+        border-top: 1px solid rgba($info, 0.5);
+
+        &:last-child {
+            border-top: 1px solid $info;
+            height: 66px;
+        }
+
+        &_nodata {
+            text-align: center;
+        }
+
+        &_blank {
+            width: 2.5rem;
+            border-top: none;
+            @include media-breakpoint-md {
+                width: 1rem;
+            }
+        }
+
+        &_flex {
+            display: flex;
+            align-items: center;
+
+            .oc-table__td-col {
+                padding-left: 1.5rem;
+            }
+        }
+
+        .oc-table__app-icon {
+            max-width: 44px;
+            min-width: 44px;
+
+            &_padded {
+                padding: 0 16px;
+                box-sizing: content-box;
+                min-width: 20px;
+                max-width: 20px;
+                height: 25px;
+            }
+        }
+
+        .oc-table__app-name {
+            @include font-medium();
+            margin-bottom: 0;
+            cursor: pointer;
+            padding-right: 1rem;
+            word-break: break-word;
+            @include font-size-md();
+            color: $body-color;
+        }
+
+        .oc-table__app-version {
+            @include font-size-sm();
+            color: $text-color;
+            @include default-text();
+        }
+
+        .oc-table__text-wrapper {
+            @include font-size-md();
+            color: $text-color;
+            @include default-text();
+
+            &_blank {
+                padding: 0 26px;
+                height: 44px;
+            }
+
+            &.oc-table__text-status {
+                @include font-medium();
+                cursor: pointer;
+                color: $body-color;
+            }
+
+            &.oc-table__summary-text {
+                --webkit-line-clamp: 2;
+                max-height: 40px;
+                overflow: hidden;
+                word-break: break-word;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                padding-right: 8px;
+            }
+
+            &.oc-table__indicator {
+                width: 10px;
+                height: 10px;
+                display: inline-block;
+                border-radius: 50%;
+                margin-right: 5px;
+                background-color: $white;
+
+                &.in-development {
+                    background-color: $draft;
+                }
+
+                &.in-review {
+                    background-color: $review;
+                }
+
+                &.pending {
+                    background-color: $pending;
+                }
+
+                &.approved {
+                    background-color: $approved;
+                }
+
+                &.rejected {
+                    background-color: $rejected;
+                }
+
+                &.suspended {
+                    background-color: $suspended;
+                }
+            }
+        }
+    }
+
+    &__dropdown {
+        float: right;
+        cursor: pointer;
+
+        &-dots {
+            padding: 19px;
+            border: 1px solid $info;
+            border-radius: 4px;
+        }
+
+        .dropdown {
+            position: static;
+        }
+
+        .dropdown-menu {
+            padding: 0;
+            min-width: 136px;
+            border: 1px solid $info;
+            top: 70px;
+            left: 76px;
+            transform: translate(0px, 44px);
+
+            .dropdown-item {
+                @include font-size-md();
+                padding: 14px 42px;
+                border-bottom: 1px solid $info;
+            }
+
+            .dropdown-item:hover,
+            .dropdown-item:focus {
+                background-color: rgba(201, 213, 234, 0.1);
+                color: $primary;
+                outline: none;
+            }
+
+            .dropdown-item:active {
+                color: $primary;
+                box-shadow: 0 1px 0 $info;
+            }
+        }
+    }
+}

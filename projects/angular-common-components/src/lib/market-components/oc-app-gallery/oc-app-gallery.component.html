@@ -1,0 +1,46 @@
+<div class="gallery">
+    <div class="gallery__header">
+        <div class="gallery__header-top">
+            <h4 class="gallery__heading">{{appGalleryTitle}}</h4>
+            <a class="gallery__more" id="seeAllLink"
+               *ngIf="moreAppsTitle && !seeAllUrl"
+               (click)="clickMoreApps.emit()">
+                <ng-container *ngTemplateOutlet="seeAllLink"></ng-container>
+            </a>
+            <a class="gallery__more" id="seeAllLinkRouter"
+               *ngIf="moreAppsTitle && seeAllUrl"
+               [routerLink]="seeAllUrl">
+                <ng-container *ngTemplateOutlet="seeAllLink"></ng-container>
+            </a>
+        </div>
+        <p class="gallery__description" id="description">{{appGalleryDescription}}</p>
+    </div>
+    <div class="gallery__content"
+         *ngIf="appsArr && appsArr.length > 0; else emptyData">
+        <div class="gallery__content-card"
+             *ngFor="let app of appsArr;" (click)="clickAppCard.emit(app)">
+            <a *ngIf="routerLinkForOneApp" [routerLink]="[routerLinkForOneApp, getAppValueByParameter(app)]">
+                <ng-container [ngTemplateOutlet]="customAppCardTemplate? customAppCardTemplate : defaultCard"
+                              [ngTemplateOutletContext]="{$implicit: app}"></ng-container>
+            </a>
+            <ng-container *ngIf="!routerLinkForOneApp"
+                          [ngTemplateOutlet]="customAppCardTemplate? customAppCardTemplate : defaultCard"
+                          [ngTemplateOutletContext]="{$implicit: app}"></ng-container>
+        </div>
+    </div>
+</div>
+
+<ng-template #emptyData>
+    <div class="gallery__no-content">
+        <h5 class="gallery__no-content-text">{{noAppMessage}}</h5>
+    </div>
+</ng-template>
+
+<ng-template #defaultCard let-app>
+    <oc-app-card [app]="app"></oc-app-card>
+</ng-template>
+
+<ng-template #seeAllLink>
+    <span class="gallery__more-text">{{moreAppsTitle}}</span>
+    <svg-icon svgClass="gallery__more-icon" [src]="routerIcon"></svg-icon>
+</ng-template>

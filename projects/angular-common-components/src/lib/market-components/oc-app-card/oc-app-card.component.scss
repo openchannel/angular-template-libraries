@@ -1,0 +1,54 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.oc-card {
+    display: flex;
+    cursor: pointer;
+
+    &__icon {
+        height: 74px;
+        flex-shrink: 0;
+
+        img {
+            width: 44px;
+            height: 44px;
+            object-fit: cover;
+        }
+    }
+
+    &__content {
+        margin-left: 2rem;
+        padding: 0;
+        width: 100%;
+
+        &-name {
+            @include font-medium();
+            height: 19px;
+            line-height: 19px;
+            margin-bottom: 1rem;
+            color: $body-color;
+        }
+
+        &-info {
+            display: flex;
+            margin-bottom: 0.5rem;
+
+            .oc-card__content-price {
+                @include font-medium();
+                @include font-size-md();
+                color: $primary;
+                min-width: 100px;
+                margin-bottom: 0;
+            }
+        }
+
+        &-summary {
+            height: 2.3rem;
+            line-height: 2.3rem;
+            @include font-size-md();
+            margin-bottom: 0;
+            color: $text-color;
+            @include default-text();
+        }
+    }
+}

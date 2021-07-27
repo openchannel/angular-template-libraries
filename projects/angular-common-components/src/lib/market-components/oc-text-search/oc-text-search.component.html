@@ -1,0 +1,27 @@
+<div class="text-search">
+    <div class="text-search__container">
+        <input class="text-search__input" [placeholder]="placeHolder" type="text"
+               [(ngModel)]="searchText"
+               (ngModelChange)="searchTextChange.emit($event)" (keydown.enter)="enterAction()">
+        <svg-icon *ngIf="hasMagnifier"
+                  class="text-search__icon" src="assets/angular-common-components/text-search-icon.svg"
+                  svgClass="text-search__icon-svg"
+                  (click)="enterAction()"></svg-icon>
+    </div>
+    <div class="text-search__controls">
+        <oc-button *ngIf="hasClearTextControl"
+                   (click)="clearInput()"
+                   [text]="clearButtonText"
+                   [customClass]="'oc-button_small-size'"
+                   type="secondary"
+                   class="clear-button">
+        </oc-button>
+        <oc-button *ngIf="!hasMagnifier"
+                   (click)="enterAction()"
+                   [text]="searchButtonText"
+                   [customClass]="'oc-button_small-size'"
+                   type="primary"
+                   class="search-button">
+        </oc-button>
+    </div>
+</div>

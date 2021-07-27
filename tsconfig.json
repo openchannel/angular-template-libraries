@@ -1,0 +1,39 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@openchannel/angular-common-components": [
+        "dist/angular-common-components/*",
+        "dist/angular-common-components"
+      ],
+      "@openchannel/angular-common-components/*": [
+        "projects/angular-common-components/*",
+        "projects/angular-common-components"
+      ],
+      "@openchannel/angular-common-services": [
+        "dist/angular-common-services/angular-common-services",
+        "dist/angular-common-services"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

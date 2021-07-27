@@ -1,0 +1,33 @@
+<div class="review">
+    <h4 class="review__heading">{{heading}}</h4>
+    <form [formGroup]="reviewForm" class="review__form">
+        <div class="review__form-group">
+            <oc-label text="Rating" [required]="true" class="review__form-label"></oc-label>
+            <oc-rating type="multi-star"
+                       formControlName="rating"
+                       class="review__form-field review__rating"></oc-rating>
+            <oc-error field="rating" [control]="reviewForm.get('rating')" class="review__form-error"></oc-error>
+        </div>
+        <div class="review__form-group">
+            <oc-label text="Title" [required]="true" class="review__form-label"></oc-label>
+            <oc-input formControlName="headline" class="review__form-field review__input"></oc-input>
+            <oc-error field="headline" [control]="reviewForm.get('headline')" class="review__form-error"></oc-error>
+        </div>
+        <div class="review__form-group">
+            <oc-label text="Review" [required]="true" class="review__form-label"></oc-label>
+            <oc-textarea formControlName="description" class="review__form-field review__textarea"></oc-textarea>
+            <oc-error field="description" [control]="reviewForm.get('description')" class="review__form-error"></oc-error>
+        </div>
+    </form>
+    <div class="review__buttons-section" *ngIf="enableButtons">
+        <oc-button *ngIf="!hidCancelButton"
+                   [text]="cancelButtonText" type="secondary"
+                   class="review__button review__button-cancel"
+                   (click)="clearForm()"></oc-button>
+        <oc-button [text]="submitButtonText"
+                   type="primary"
+                   class="review__button review__button-submit"
+                   [process]="submitInProgress"
+                   (click)="submitReview()"></oc-button>
+    </div>
+</div>

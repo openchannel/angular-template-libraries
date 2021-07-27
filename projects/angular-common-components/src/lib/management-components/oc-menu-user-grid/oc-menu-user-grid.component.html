@@ -1,0 +1,119 @@
+<div class="user-grid-container">
+    <div class="user-grid-overlay"></div>
+    <div class="user-grid-wrapper">
+        <table aria-describedby="user-management-table"
+               class="user-table"
+               [infiniteScrollThrottle]="50"
+               (scrolled)="onScrollDown()"
+               infiniteScroll>
+            <thead class="user-table__head">
+            <tr class="user-table__row">
+                <ng-container
+                        [ngTemplateOutletContext]="{$implicit:{width: 'user-table__head-name', name: 'Name', field: 'name'}}"
+                        [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+                <ng-container
+                        [ngTemplateOutletContext]="{$implicit:{width: 'user-table__head-email',name: 'Email', field: 'email'}}"
+                        [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+                <ng-container
+                        [ngTemplateOutletContext]="{$implicit:{width: 'user-table__head-data', name: 'Date Added', field: 'date'}}"
+                        [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+                <ng-container
+                        [ngTemplateOutletContext]="{$implicit:{width: 'user-table__head-role', name: 'Role', field: 'role'}}"
+                        [ngTemplateOutlet]="sortIconTemplate">
+                </ng-container>
+                <th class="user-table__head-status user-table__head-cell" scope="col">
+                    <div class="user-table__th-row">Status</div>
+                </th>
+                <th class="user-table__head-action user-table__head-cell" scope="col"></th>
+            </tr>
+            </thead>
+            <tbody class="user-table__body">
+            <ng-template [ngForOf]="properties.data.list" let-user let-i="index" ngFor>
+                <tr [class.user-table__row_highlight-user]="user.inviteStatus === 'INVITED'" class="user-table__row">
+                    <!-- Name -->
+                    <td class="user-table__row-td">
+                        <div class="user-table__td-row">
+                            <div class="user-table__profile"
+                                 [class.user-table__profile_invited]="user.inviteStatus === 'INVITED'">{{initials(user)}}</div>
+                            <span class="user-table__text user-table__text_dark user-table__profile-text">{{user.name}}</span>
+                        </div>
+                    </td>
+                    <!-- Email -->
+                    <td class="user-table__row-td">
+                        <div class="user-table__td-row">
+                            <span class="user-table__text">{{user.email}}</span>
+                        </div>
+                    </td>
+                    <!-- Date Added -->
+                    <td class="user-table__row-td">
+                        <div class="user-table__td-row">
+                            <span class="user-table__text">{{user.created | date:'M/d/yyyy'}}</span>
+                        </div>
+                    </td>
+                    <!-- Role -->
+                    <td class="user-table__row-td">
+                        <div class="user-table__td-row">
+                            <span class="user-table__text user-table__text_role">
+                                {{(user?.roles?.length > 0 ? user.roles[0] : '') | lowercase}} </span>
+                        </div>
+                    </td>
+                    <!-- Status-->
+                    <td class="user-table__row-td">
+                        <div class="user-table__td-row">
+                            <span class="user-table__text user-table__text_status"
+                                  [ngClass]="user.inviteStatus === 'ACTIVE' ? 'user-table__text_dark' : ''">
+                                {{user.inviteStatus | lowercase}}
+                            </span>
+                        </div>
+                    </td>
+                    <!-- Options -->
+                    <td class="user-table__row-td action-menu">
+                        <ng-container [ngTemplateOutletContext]="{ $implicit: {data: user, child: false, index: i} }"
+                                      [ngTemplateOutlet]="appMenuTemplate">
+                        </ng-container>
+                    </td>
+                </tr>
+            </ng-template>
+            <tr *ngIf="!properties.data.list || properties.data.list.length == 0" class="user-table__row">
+                <td class="user-table__row-td oc-text-center last-grid-row" colspan="8">
+                    <span class="user-table__text">No Users Found</span>
+                </td>
+            </tr>
+            <tr *ngIf="properties.data.list.length > 0" class="user-table__row">
+                <td class="user-table__row-td user-table__last-grid-row" colspan="8">
+                    <span></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <ng-template #appMenuTemplate let-user>
+            <div class="user-table__menu">
+                <div ngbDropdown placement="bottom-right top-right">
+                    <img [src]="menuUrl" alt="more-icon" class="user-table__menu-icon-dots" ngbDropdownToggle>
+                    <div ngbDropdownMenu>
+                        <ng-container *ngFor="let menuAction of properties.options">
+                            <button (click)="action(menuAction, user.data)"
+                                    ngbDropdownItem [ngClass]="'menu-' + menuAction | lowercase">
+                                {{menuAction | titlecase}}
+                            </button>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template #sortIconTemplate let-column>
+            <th [ngClass]="column.width" scope="col" class="user-table__head-cell">
+                <div class="user-table__th-row" (click)="sortUsersBy(column.field)">{{column.name}}
+                    <div class="user-table__head-sort-icon">
+                        <svg-icon [src]="sortIcon"></svg-icon>
+                    </div>
+                </div>
+            </th>
+        </ng-template>
+    </div>
+</div>

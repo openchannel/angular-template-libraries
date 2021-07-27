@@ -1,0 +1,95 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.get-started {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    @include media-breakpoint-lg {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    @include media-breakpoint-sm {
+        padding: 0 17px;
+    }
+
+    &__logo {
+        padding-right: 0;
+        margin-right: 80px;
+        @include media-breakpoint-lg {
+            margin: 0 0 2rem 0;
+        }
+        @include media-breakpoint-sm {
+            width: 50px;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &__info {
+        padding-left: 1rem;
+        margin-top: 1rem;
+        flex-basis: 500px;
+        @include media-breakpoint-lg {
+            flex-basis: auto;
+        }
+        @include media-breakpoint-md {
+            padding-left: 0;
+            margin-top: 0;
+        }
+
+        &-heading {
+            margin: 0;
+            @include media-breakpoint-sm {
+                font-size: 24px;
+                line-height: 36px;
+            }
+        }
+
+        &-desc {
+            @include font-size-md();
+            margin: 2.5rem 0;
+            width: 75%;
+            color: $text-color;
+            @include default-text();
+            @include media-breakpoint-sm {
+                width: 100%;
+                margin: 1rem 0 0;
+            }
+        }
+    }
+
+    &__button {
+        width: 260px;
+        display: block;
+        @include media-breakpoint-sm {
+            margin: 2rem 0 0;
+        }
+
+        & .oc-button {
+            padding: 0;
+        }
+    }
+
+    &_search {
+        flex-direction: column;
+        text-align: center;
+
+        &__button {
+            margin: 2.5rem auto 0;
+            padding: 0 2.5rem;
+            flex: 0 0 25%;
+            max-width: 25%;
+            @include media-breakpoint-md {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+            &-wrapper {
+                display: block;
+            }
+        }
+    }
+}

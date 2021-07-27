@@ -1,0 +1,29 @@
+<div class="card-wrapper">
+    <div class="info-card">
+        <div class="info-card__logo">
+            <img class="info-card__logo-image"
+                 [src]="cardApp.icon ? cardApp.icon : defaultAppIcon" alt="">
+        </div>
+        <div class="info-card__content">
+            <div class="info-card__content-wrapper">
+                <p class="info-card__content-name" ellipsis (click)="clickByAppCard.emit(cardApp)">{{cardApp.name}}</p>
+                <div class="info-card__dropdown info-card__dropdown_mobile">
+                    <ng-container *ngTemplateOutlet="customDropdown"></ng-container>
+                </div>
+            </div>
+            <div class="info-card__content-data">
+                <span class="info-card__content-price">{{currentModel | price}}</span>
+                <oc-rating class="info-card__content-rating"
+                           [rating]="cardApp.rating ? cardApp.rating/100 : 0"
+                           [reviewCount]="cardApp.reviewCount"
+                           type="single-star"></oc-rating>
+            </div>
+            <p class="info-card__content-summary" ellipsis *ngIf="cardApp.summary || cardApp.description">
+                {{(cardApp.summary ? cardApp.summary : cardApp.description) | replaceHtmlTags}}
+            </p>
+        </div>
+    </div>
+    <div class="info-card__dropdown info-card__dropdown_desktop">
+        <ng-container *ngTemplateOutlet="customDropdown"></ng-container>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.select-expandable {
+    user-select: none;
+
+    &__sidebar {
+        background-color: $light;
+        border-radius: 4px;
+        min-width: 100%;
+        padding: 0 2rem;
+    }
+
+    &__heading {
+        @include font-medium();
+        cursor: pointer;
+        font-size: 2rem;
+        line-height: 18px;
+        margin-bottom: 0;
+        padding: 16px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .select-expandable__icon {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    &__options {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+
+        &.collapse:not(.show) {
+            display: none;
+        }
+
+        .select-expandable__option {
+            height: 46px;
+
+            label {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                margin: 0;
+                cursor: pointer;
+            }
+
+            &-input {
+                height: 16px;
+                width: 16px;
+                cursor: pointer;
+            }
+
+            &-label {
+                margin-left: 0.5rem;
+                @include font-size-md();
+            }
+        }
+    }
+}

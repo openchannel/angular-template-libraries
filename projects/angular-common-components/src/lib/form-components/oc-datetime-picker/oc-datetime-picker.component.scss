@@ -1,0 +1,194 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.date-picker {
+    width: 100%;
+
+    &__input {
+        outline: none;
+
+        &-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &::after {
+            display: none;
+        }
+
+        .date-picker__format {
+
+            &-text {
+                @include font-regular();
+            }
+        }
+
+        .date-picker__icon {
+            height: 24px;
+            margin-bottom: 1px;
+        }
+    }
+
+    &__dropdown {
+        padding: 0;
+        margin-top: 2.5rem;
+        user-select: none;
+
+        &-popover {
+            height: auto;
+            width: 250px;
+            @include font-size-md();
+
+            &-date {
+                height: 280px;
+            }
+        }
+
+        &-banner {
+            height: 30px;
+            display: flex;
+            color: black;
+            padding: 16px 16px 0;
+            justify-content: space-between;
+
+            .date-picker__dropdown-detail {
+                @include font-size-sm();
+            }
+
+            .date-picker__dropdown-icon {
+                cursor: pointer;
+            }
+        }
+
+        &-content {
+            padding: 16px 16px 0;
+            @include font-size-md();
+
+            .date-picker__calendar-header {
+                background: $white;
+                border-bottom: 1px solid $gray;
+                padding: 5px 0;
+                @include font-size-sm();
+                color: $text-color;
+                @include default-text();
+            }
+
+            .date-picker__calendar-days {
+                background: $white;
+
+                .date-picker__calendar-day {
+                    border: 1px solid transparent;
+
+                    &:hover {
+                        background: $light;
+                        border-radius: 4px;
+                    }
+                }
+
+                .date-picker__selected-day {
+                    color: $primary;
+                    background-color: $light;
+                    border-radius: 4px;
+                }
+
+                .date-picker__prev-month {
+                    color: $text-color;
+                    @include default-text();
+
+                    &:hover {
+                        background: $white;
+                        cursor: default;
+                    }
+                }
+            }
+
+            .date-picker__calendar-header,
+            .date-picker__calendar-days {
+                width: 100%;
+
+                td {
+                    cursor: pointer;
+                    width: 33px;
+                    height: 32px;
+                    text-align: center;
+                    padding: 5px 0;
+
+                    span {
+                        display: block;
+                        @include font-size-sm();
+                    }
+                }
+            }
+        }
+    }
+
+    &__time-view {
+        background: $white;
+        width: 100%;
+        z-index: 1;
+        padding: 0 16px 16px;
+
+        .date-picker__time {
+            font-size: 36px;
+            width: 100%;
+            margin: 0 auto;
+            padding-top: 16px;
+            font-weight: 300;
+            display: flex;
+            border-top: 1px solid $gray;
+
+            &-hours,
+            &-minutes {
+                display: flex;
+                flex-direction: column;
+                user-select: none;
+            }
+
+            &-hours {
+                margin-right: 8px;
+            }
+
+            &-minutes {
+                margin-left: 8px;
+            }
+
+            &-header {
+                text-align: center;
+                @include font-size-md();
+            }
+
+            &-manipulators {
+                display: flex;
+                align-items: center;
+                padding: 8px 2px;
+                border-bottom: 1px solid $gray;
+
+                .date-picker__time-calendar-icon {
+                    cursor: pointer;
+                    width: 16px;
+                    font-size: 10px;
+                    text-align: center;
+                    vertical-align: middle;
+                }
+
+                input {
+                    display: inline-block;
+                    width: calc(100% - 32px);
+                    background: none;
+                    border: none;
+                    text-align: center;
+                    cursor: pointer;
+                    font-family: inherit;
+                    @include font-size-md();
+                    font-weight: 300;
+                    padding: 0 10px;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+    }
+}

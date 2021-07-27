@@ -1,0 +1,89 @@
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/theme';
+
+.overall-rating {
+    min-width: 255px;
+
+    &__header {
+        align-items: flex-end;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+
+        &-label {
+            @include font-size-lg();
+            @include font-medium();
+        }
+    }
+
+    &__rating {
+        align-items: flex-end;
+        display: flex;
+
+        &-result {
+            font-size: 38px;
+            line-height: 38px;
+            margin-bottom: 0;
+        }
+
+        &-max {
+            @include font-size-lg();
+            @include font-medium();
+        }
+    }
+
+    &__reviews-header {
+        margin-bottom: 2rem;
+
+        &-label {
+            @include font-size-md();
+            color: $text-color;
+            @include default-text();
+        }
+
+        &-reviews-count {
+            color: $primary;
+            margin-bottom: 8px;
+            width: 130px;
+            @include font-size-md();
+        }
+    }
+
+    &__star {
+        @include font-size-md();
+        color: rgba($body-color, .4);
+        height: 14px;
+        line-height: 14px;
+        position: relative;
+
+        &_filled {
+            color: $yellow;
+        }
+    }
+
+    &__rate {
+        &-header {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__progressbar {
+        display: block;
+        margin-bottom: 2rem;
+
+        .progress {
+            height: 8px;
+        }
+
+        &-label {
+            @include font-size-md();
+            color: $text-color;
+            height: 14px;
+            line-height: 14px;
+            @include default-text();
+        }
+    }
+}

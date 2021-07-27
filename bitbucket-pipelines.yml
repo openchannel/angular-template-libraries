@@ -1,0 +1,130 @@
+image: node:10.15.3
+
+definitions:
+  caches:
+    sonar: ~/.sonar/cache  # Caching SonarCloud artifacts will speed up your build
+  services:
+    docker:
+      memory: 2048
+  steps:
+    - step: &build-test-sonarcloud
+        name: Build, test and analyze on SonarCloud
+        max-time: 15
+        caches:
+          - sonar
+        script:
+          - npm install --quiet
+          - npm run build-prod angular-common-services
+          - npm run build-prod angular-common-components
+          - npm run test
+          - pipe: sonarsource/sonarcloud-scan:1.2.1
+            variables:
+              SONAR_SCANNER_OPTS: -Xmx2048m
+              SONAR_TOKEN: ${SONAR_TOKEN}
+              EXTRA_ARGS: '-Dsonar.sources="projects/angular-common-components/src,projects/angular-common-services/src"
+              -Dsonar.tests=projects/angular-common-components/src
+              -Dsonar.test.inclusions="**/testing/**,**/*.spec.ts"
+              -Dsonar.typescript.lcov.reportPaths=projects/angular-common-components/coverage/lcov.info'
+    - step: &build-and-push-new-version-of-services
+        name: Push services to npm
+        script:
+          - npm install --quiet
+          - npm run build-prod angular-common-services
+          - npm run angular-common-services-pack
+          - pipe: atlassian/npm-publish:0.3.2
+            variables:
+              NPM_TOKEN: $NPM_TOKEN
+              FOLDER: 'dist/angular-common-services'
+              EXTRA_ARGS: '--access public'
+    - step: &build-and-push-new-version-of-components
+        name: Push components to npm
+        script:
+          - npm install --quiet
+          - npm run build-prod angular-common-components
+          - npm run angular-common-components-pack
+          - pipe: atlassian/npm-publish:0.3.2
+            variables:
+              NPM_TOKEN: $NPM_TOKEN
+              FOLDER: 'dist/angular-common-components'
+              EXTRA_ARGS: '--access public'
+    - step: &push-to-github
+        name: Push to GitHub
+        script:
+          - git remote set-url origin git@github.com:openchannel/angular-template-libraries.git
+          - git remote -v
+          - git push origin master:main
+          - git push origin --tags
+
+    - step: &build-app
+        name: "Build"
+        script:
+          - npm install
+          - npm run angular-common-services-pack
+          - npm run build-prod angular-common-components && npm run angular-common-components-pack
+          - npm run docs:json
+          - npm run scss-to-css
+          - npm run build-storybook
+        artifacts:
+          - storybook-static/**
+
+    - step: &deploy-app
+        name: "Deploy to Environment"
+        image: atlassian/pipelines-awscli
+        script:
+          - source infra/config-files/${CONFIG_FILE_SUFFIX}
+
+          - chmod +x infra/scripts/*
+          - export CERTIFICATE_ARN=`./infra/scripts/getCertificate.sh us-east-1 *.${HOSTED_ZONE_NAME:0:-1}`
+
+          - aws cloudformation deploy --region $REGION --stack-name ${CLOUDFORMATION_STACKNAME}-cloudfront --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset --template-file infra/cloudformation/service-cloudfront.yml --parameter-overrides CNAME=$SITE_URL CertificateArn=$CERTIFICATE_ARN ProjectName=$APP_NAME ClusterName=$CLUSTER_NAME PrefixName=$PREFIX_NAME
+          - echo "aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/DISTRIBUTION_ID --output text --query Parameter.Value"
+          - echo "aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value"
+          - export DISTRIBUTION_ID=`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/DISTRIBUTION_ID --output text --query Parameter.Value`
+          - export AWS_S3="`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value`"
+          - aws s3 sync --delete storybook-static/ s3://$AWS_S3
+          - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /*
+    - step: &release-up-version-with-a-git-tag
+        name: "Release up version with a GIT tag"
+        script:
+          - chmod +x ./scripts/* && cd ./scripts/up-version
+          - /bin/bash up-version.sh ${JIRA_EMAIL} ${JIRA_API_KEY} ${RELEASE_VERSION} ${PACKAGE_VERSION} 'angular-template-libraries'
+pipelines:
+  pull-requests:
+    '**':
+      - step: *build-test-sonarcloud
+  custom:
+    publish-components:
+      - step: *build-and-push-new-version-of-components
+    publish-services:
+      - step: *build-and-push-new-version-of-services
+    Deploy to dev1:
+      - step: *build-app
+      - step:
+          <<: *deploy-app
+          deployment: dev1
+    Deploy to stage1:
+      - step: *build-app
+      - step:
+          <<: *deploy-app
+          deployment: stage1
+    Deploy to us1:
+      - step: *build-app
+      - step:
+          <<: *deploy-app
+          deployment: us1
+    Up Lib Version:
+      - variables:
+          - name: RELEASE_VERSION
+          - name: PACKAGE_VERSION
+      - step: *release-up-version-with-a-git-tag
+  branches:
+    develop:
+      - step: *build-test-sonarcloud
+    release/*:
+      - step: *build-test-sonarcloud
+    master:
+      - step: *build-test-sonarcloud
+      - step: *push-to-github
+      - parallel:
+          - step: *build-and-push-new-version-of-services
+          - step: *build-and-push-new-version-of-components

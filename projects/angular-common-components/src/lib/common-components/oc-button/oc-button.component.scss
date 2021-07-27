@@ -1,0 +1,133 @@
+@import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
+
+.oc-button {
+    border-radius: 4px;
+    min-height: 52px;
+    min-width: 160px;
+    padding: 10px 20px;
+    position: relative;
+    transition: all .3s ease;
+    width: 100%;
+
+    &:focus {
+        border: 2px solid $button-border-focus;
+        box-shadow: none;
+        outline: none;
+    }
+
+    &:disabled {
+        opacity: .35;
+    }
+
+    &__text {
+        @include font-medium();
+        @include font-size-md();
+    }
+
+    &_primary {
+        background-color: $button-primary;
+        border: 2px solid $button-primary;
+        color: $white;
+
+        &:hover {
+            box-shadow: 1px 5px 30px 0 rgba(mix($black, $button-primary, 10%), 0.5);
+        }
+
+        &:not(:disabled):not(.disabled):active {
+            background-color: mix($black, $button-primary, 10%);
+        }
+
+        &-spinner {
+            background-color: mix($black, $button-primary, 10%);
+        }
+
+        .oc-button__text {
+            color: $white;
+        }
+
+        .oc-button__spinner {
+
+            .la-ball-spin {
+                color: $white;
+            }
+        }
+    }
+
+    &_secondary {
+        background-color: $white;
+        border: 2px solid $button-info;
+
+        &:hover {
+            box-shadow: 1px 5px 30px 0 rgba(lighten($button-secondary, 34%), 0.5);
+        }
+
+        &:not(:disabled):not(.disabled):active {
+            background-color: $button-info;
+        }
+
+        &-spinner {
+            background-color: $button-info;
+        }
+
+        .oc-button__text {
+            color: $button-secondary-color;
+        }
+
+        .oc-button__spinner {
+
+            .la-ball-spin {
+                color: $button-secondary-color;
+            }
+        }
+    }
+
+    &_danger {
+        background-color: $button-danger;
+        border: 2px solid $button-danger;
+        color: $white;
+
+        &:hover {
+            box-shadow: 1px 5px 30px 0 rgba(mix($black, $button-danger, 10%), 0.5);
+        }
+
+        &:not(:disabled):not(.disabled):active {
+            background-color: mix($black, $button-danger, 10%);
+        }
+
+        &-spinner {
+            background-color: mix($black, $button-danger, 10%);
+        }
+
+        .oc-button__text {
+            color: $white;
+        }
+
+        .oc-button__spinner {
+
+            .la-ball-spin {
+                color: $white;
+            }
+        }
+    }
+
+    &_link {
+        background-color: transparent;
+        color: $button-primary;
+        height: auto;
+        min-height: unset;
+        min-width: unset;
+        padding: 2px;
+        text-decoration: none;
+        width: auto;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:not(:disabled):not(.disabled):active {
+            color: mix($black, $button-primary, 10%);
+            text-decoration: underline;
+        }
+    }
+}

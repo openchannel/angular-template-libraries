@@ -1,0 +1,86 @@
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/theme';
+
+.gallery {
+    @include media-breakpoint-md {
+        position: relative;
+    }
+
+    &__header {
+        &-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__heading {
+        @include media-breakpoint-md {
+            padding-left: 0;
+        }
+        padding: 0 1rem;
+    }
+
+    &__description {
+        @include font-size-md();
+        color: $text-color;
+        margin-bottom: 0;
+        padding: 0 1rem;
+        @include default-text();
+        @include media-breakpoint-md {
+            padding-left: 0;
+        }
+
+    }
+
+    &__more {
+        @include media-breakpoint-md {
+            bottom: 0;
+            position: absolute;
+        }
+        cursor: pointer;
+
+        &-text {
+            @include font-medium();
+            @include font-size-md();
+            padding-right: 0.5rem;
+            color: $primary;
+        }
+
+        &-icon {
+            height: 10px;
+            width: auto;
+            color: $primary;
+        }
+    }
+
+    &__content {
+        padding-top: 5rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        &-card {
+            @include media-breakpoint-lg {
+                width: 49%;
+            }
+            @include media-breakpoint-md {
+                width: 100%;
+            }
+            margin-bottom: 40px;
+            padding: 1rem;
+            width: 49%;
+        }
+    }
+
+    &__no-content {
+        margin: 0 0 2.5rem;
+        display: flex;
+        flex-wrap: wrap;
+
+        &-text {
+            margin-top: 1rem;
+            padding: 0 1rem;
+        }
+    }
+}
