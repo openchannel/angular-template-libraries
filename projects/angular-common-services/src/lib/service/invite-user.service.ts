@@ -88,7 +88,7 @@ export class InviteUserService {
      *
      * `sendUserInvite('ha9s8hd9a8shd','company', {});`
      */
-    sendUserInvite(userInviteTemplateId: string, company: string, inviteData: any): Observable<any> {
+    sendUserInvite(company: string, inviteData: any, userInviteTemplateId: string = 'default'): Observable<any> {
         return this.sendInvite('users', company, inviteData, { userInviteTemplateId });
     }
 
@@ -162,7 +162,7 @@ export class InviteUserService {
      *
      * `sendDeveloperInvite('9ahs09d8jas9d8', 'company', {})`
      */
-    sendDeveloperInvite(developerInviteTemplateId: string, company: string, inviteData: any): Observable<any> {
+    sendDeveloperInvite(company: string, inviteData: any, developerInviteTemplateId: string = 'default'): Observable<any> {
         return this.sendInvite('developers', company, inviteData, { developerInviteTemplateId });
     }
 
@@ -233,11 +233,9 @@ export class InviteUserService {
         userInviteData: any,
         inviteIDs: { developerInviteTemplateId: string } | { userInviteTemplateId: string },
     ): Observable<any> {
-        const mailBody = `<a href="${window.location.origin}/invite/{token}">Accept Invitation</a>`;
         const body = {
             ...userInviteData,
             ...inviteIDs,
-            body: mailBody,
             customData: { company, ...(userInviteData?.customData ? userInviteData.customData : {}) },
         };
         return this.httpService.post(`${this.apiPaths.invites}/${userType}`, body);
