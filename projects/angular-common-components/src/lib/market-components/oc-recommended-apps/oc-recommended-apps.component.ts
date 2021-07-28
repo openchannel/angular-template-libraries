@@ -10,7 +10,7 @@ import { get } from 'lodash';
 @Component({
     selector: 'oc-recommended-apps',
     templateUrl: './oc-recommended-apps.component.html',
-    styleUrls: ['./oc-recommended-apps.component.scss'],
+    styleUrls: ['./oc-recommended-apps.component.css'],
 })
 export class OcRecommendedAppsComponent {
     /**

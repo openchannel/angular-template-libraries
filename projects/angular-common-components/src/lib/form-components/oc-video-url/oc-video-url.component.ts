@@ -4,7 +4,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
     selector: 'oc-video-url',
     templateUrl: './oc-video-url.component.html',
-    styleUrls: ['./oc-video-url.component.scss'],
+    styleUrls: ['./oc-video-url.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

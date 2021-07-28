@@ -6,7 +6,7 @@ import { ComponentsUserRegistrationModel } from '../models/auth-types.model';
 @Component({
     selector: 'oc-signup',
     templateUrl: './oc-signup.component.html',
-    styleUrls: ['./oc-signup.component.scss'],
+    styleUrls: ['./oc-signup.component.css'],
 })
 export class OcSignupComponent {
     /**
@@ -64,6 +64,11 @@ export class OcSignupComponent {
      * @type {boolean}.
      */
     @Input() showSignupFeedbackPage: boolean;
+
+    /**
+     * showSignupFeedbackPage change emitter
+     */
+    @Output() showSignupFeedbackPageChange = new EventEmitter<boolean>();
 
     /**
      * Shows or hides a signup company block of the form.

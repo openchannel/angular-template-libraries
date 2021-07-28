@@ -9,7 +9,7 @@ import { OcErrorService } from './oc-error-service';
 @Component({
     selector: 'oc-error',
     templateUrl: './oc-error.component.html',
-    styleUrls: ['./oc-error.component.scss'],
+    styleUrls: ['./oc-error.component.css'],
 })
 export class OcErrorComponent {
     /**

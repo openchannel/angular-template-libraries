@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 @Component({
     selector: 'oc-label',
     templateUrl: './oc-label.component.html',
-    styleUrls: ['./oc-label.component.scss'],
+    styleUrls: ['./oc-label.component.css'],
 })
 export class OcLabelComponent {
     /** Label text */

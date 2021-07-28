@@ -46,7 +46,7 @@
             </oc-button>
             <div class="result__sign-up-message">
                 <oc-label text="Don't have an account yet?"></oc-label>
-                <a class="result__link" (click)="showSignupFeedbackPage = !showSignupFeedbackPage"> Sign Up</a>
+                <a class="result__link" (click)="showSignupFeedbackPageChange.emit(false)"> Sign Up</a>
             </div>
         </div>
     </form>

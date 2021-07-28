@@ -9,7 +9,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
     selector: 'oc-color',
     templateUrl: './oc-color.component.html',
-    styleUrls: ['./oc-color.component.scss'],
+    styleUrls: ['./oc-color.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

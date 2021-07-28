@@ -21,7 +21,7 @@ import { NgStyle } from '@angular/common';
 @Component({
     selector: 'oc-dropbox',
     templateUrl: './oc-dropbox.component.html',
-    styleUrls: ['./oc-dropbox.component.scss'],
+    styleUrls: ['./oc-dropbox.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

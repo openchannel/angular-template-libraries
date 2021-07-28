@@ -8,7 +8,7 @@ export interface TypeFieldModel {
     label?: string;
     defaultValue?: any;
     attributes?: any;
-    options?: OptionValue[] | string[];
+    options?: OptionValue[] | string[] | any[];
     fields?: TypeFieldModel[];
 }
 

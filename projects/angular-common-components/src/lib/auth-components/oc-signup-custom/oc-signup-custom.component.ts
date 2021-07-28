@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
 @Component({
     selector: 'oc-signup-custom',
     templateUrl: './oc-signup-custom.component.html',
-    styleUrls: ['./oc-signup-custom.component.scss'],
+    styleUrls: ['./oc-signup-custom.component.css'],
 })
 export class OcSignupCustomComponent {
     /**
@@ -56,6 +56,10 @@ export class OcSignupCustomComponent {
      * @type {boolean}.
      */
     @Input() showSignupFeedbackPage: boolean = false;
+    /**
+     * showSignupFeedbackPage change emitter
+     */
+    @Output() showSignupFeedbackPageChange = new EventEmitter<boolean>();
     /**
      * Flag that showing that form for sign up is loading.
      */

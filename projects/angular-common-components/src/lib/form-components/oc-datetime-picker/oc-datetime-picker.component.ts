@@ -10,7 +10,7 @@ import { DayOfMonth } from '../model/datetime.model';
 @Component({
     selector: 'oc-datetime-picker',
     templateUrl: './oc-datetime-picker.component.html',
-    styleUrls: ['./oc-datetime-picker.component.scss'],
+    styleUrls: ['./oc-datetime-picker.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

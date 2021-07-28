@@ -179,3 +179,5 @@ export interface ComponentsPage<T> {
     pageNumber: number;
     list: T[];
 }
+
+export type RadioItemValue = string | number | boolean;
