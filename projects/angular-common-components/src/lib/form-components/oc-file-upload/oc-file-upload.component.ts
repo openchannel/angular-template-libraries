@@ -29,7 +29,7 @@ import { FileDetails, FileType, FileUploaderService } from '../model/file.model'
 @Component({
     selector: 'oc-file-upload',
     templateUrl: './oc-file-upload.component.html',
-    styleUrls: ['./oc-file-upload.component.scss'],
+    styleUrls: ['./oc-file-upload.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

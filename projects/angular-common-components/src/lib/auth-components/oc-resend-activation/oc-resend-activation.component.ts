@@ -8,7 +8,7 @@ import { ComponentsUserActivationModel } from '../models/auth-types.model';
 @Component({
     selector: 'oc-resend-activation',
     templateUrl: './oc-resend-activation.component.html',
-    styleUrls: ['./oc-resend-activation.component.scss'],
+    styleUrls: ['./oc-resend-activation.component.css'],
 })
 export class OcResendActivationComponent {
     /**

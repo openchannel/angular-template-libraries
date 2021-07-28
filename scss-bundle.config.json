@@ -1,0 +1,7 @@
+{
+  "bundlerOptions": {
+    "entryFile": "./projects/angular-common-components/src/lib/components-styles.scss",
+    "outFile": "./dist/angular-common-components/assets/styles/general-styles.scss",
+    "dedupeGlobs": ["./projects/angular-common-components/assets/styles/_theme.scss", "./projects/angular-common-components/assets/styles/_mixins.scss"]
+  }
+}

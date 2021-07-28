@@ -15,8 +15,10 @@ import { OcReviewListComponent } from './oc-review-list/oc-review-list.component
 import { OcTextSearchComponent } from './oc-text-search/oc-text-search.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
+import { OcReviewComponent } from './oc-review/oc-review.component';
+import { OcFormComponentsModule } from '@openchannel/angular-common-components/src/lib/form-components';
 
 @NgModule({
     declarations: [
@@ -33,8 +35,9 @@ import { OcCommonLibModule } from '@openchannel/angular-common-components/src/li
         OcRecommendedAppsComponent,
         OcReviewListComponent,
         OcTextSearchComponent,
+        OcReviewComponent,
     ],
-    imports: [CommonModule, NgbModule, OcCommonLibModule, RouterModule, FormsModule],
+    imports: [CommonModule, NgbModule, OcCommonLibModule, RouterModule, FormsModule, ReactiveFormsModule, OcFormComponentsModule],
     exports: [
         OcAppCardComponent,
         OcAppDescriptionComponent,
@@ -49,6 +52,7 @@ import { OcCommonLibModule } from '@openchannel/angular-common-components/src/li
         OcRecommendedAppsComponent,
         OcReviewListComponent,
         OcTextSearchComponent,
+        OcReviewComponent,
     ],
 })
 export class OcMarketComponentsModule {}

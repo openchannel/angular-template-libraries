@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
     selector: 'oc-app-get-started',
     templateUrl: './oc-app-get-started.component.html',
-    styleUrls: ['./oc-app-get-started.component.scss'],
+    styleUrls: ['./oc-app-get-started.component.css'],
 })
 export class OcAppGetStartedComponent {
     /** Path to the main image of the component */

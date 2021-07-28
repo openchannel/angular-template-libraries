@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
     selector: 'oc-tooltip-label',
     templateUrl: './oc-tooltip-label.component.html',
-    styleUrls: ['./oc-tooltip-label.component.scss'],
+    styleUrls: ['./oc-tooltip-label.component.css'],
 })
 export class OcTooltipLabelComponent {
     /**

@@ -36,7 +36,7 @@ export declare type SortField = 'name' | 'email' | 'date' | 'role';
 @Component({
     selector: 'oc-menu-user-grid',
     templateUrl: './oc-menu-user-grid.component.html',
-    styleUrls: ['./oc-menu-user-grid.component.scss'],
+    styleUrls: ['./oc-menu-user-grid.component.css'],
 })
 export class OcMenuUserGridComponent {
     /**

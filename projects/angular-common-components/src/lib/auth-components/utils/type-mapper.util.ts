@@ -52,7 +52,7 @@ export class TypeMapperUtils {
         const clonedFields: T[] = cloneDeep(fields);
         each(clonedFields, field => {
             if (field?.options) {
-                field.options = map(field.options, option => (option?.value !== undefined ? option.value : option));
+                field.options = map(field.options, option => (option['value'] !== undefined ? option['value'] : option));
             }
             if (field?.fields) {
                 field.fields = this.normalizeOptions(field.fields);

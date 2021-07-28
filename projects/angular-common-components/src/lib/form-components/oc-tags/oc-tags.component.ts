@@ -5,7 +5,7 @@ import { OcDropboxComponent } from '@openchannel/angular-common-components/src/l
 @Component({
     selector: 'oc-tags',
     templateUrl: './oc-tags.component.html',
-    styleUrls: ['./oc-tags.component.scss'],
+    styleUrls: ['./oc-tags.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

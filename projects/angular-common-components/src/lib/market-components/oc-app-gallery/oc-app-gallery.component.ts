@@ -5,7 +5,7 @@ import { get } from 'lodash';
 @Component({
     selector: 'oc-app-gallery',
     templateUrl: './oc-app-gallery.component.html',
-    styleUrls: ['./oc-app-gallery.component.scss'],
+    styleUrls: ['./oc-app-gallery.component.css'],
 })
 export class OcAppGalleryComponent {
     /**

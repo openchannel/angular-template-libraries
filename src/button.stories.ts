@@ -12,9 +12,18 @@ export default {
     decorators: [moduleMetadata(modules)],
 };
 
+// const ButtonComponent = (args: OcButtonComponent) => ({
+//     component: OcButtonComponent,
+//     moduleMetadata: modules,
+//     props: args,
+// });
+
 const ButtonComponent = (args: OcButtonComponent) => ({
     component: OcButtonComponent,
-    moduleMetadata: modules,
+    template: `
+        <div>
+            <oc-button [text]="text" [type]="typeButton" [process]="process || false"></oc-button>
+        </div>`,
     props: args,
 });
 
@@ -22,28 +31,28 @@ export const Primary = ButtonComponent.bind({});
 
 Primary.args = {
     text: 'Submit',
-    type: 'primary',
+    typeButton: 'primary',
 };
 
 export const Secondary = ButtonComponent.bind({});
 
 Secondary.args = {
     text: 'Cancel',
-    type: 'secondary',
+    typeButton: 'secondary',
 };
 
 export const Link = ButtonComponent.bind({});
 
 Link.args = {
     text: 'Submit',
-    type: 'link',
+    typeButton: 'link',
 };
 
 export const Progress = ButtonComponent.bind({});
 
 Progress.args = {
     text: 'Submit',
-    type: 'primary',
+    typeButton: 'primary',
     process: true,
 };
 
@@ -51,6 +60,6 @@ export const ProgressSecondary = ButtonComponent.bind({});
 
 ProgressSecondary.args = {
     text: 'Submit',
-    type: 'secondary',
+    typeButton: 'secondary',
     process: true,
 };

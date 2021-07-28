@@ -3,81 +3,82 @@
 
 .featured-apps {
 
-  &__heading {
+    &__heading {
 
-    &-text {
-      margin-bottom: 2rem;
-      text-align: left;
-      @include media-breakpoint-md {
-        padding-left: 2rem;
-      }
-    }
-  }
-
-  &__container {
-    overflow-x: auto;
-    display: flex;
-    justify-content: space-between;
-    @include media-breakpoint-md {
-      margin-left: 2rem;
+        &-text {
+            margin-bottom: 2rem;
+            text-align: left;
+            @include media-breakpoint-md {
+                padding-left: 2rem;
+            }
+        }
     }
 
-    .featured-apps__card {
-      background-color: $white;
-      border: 1px solid $white;
-      border-radius: 4px;
-      cursor: pointer;
-      height: 330px;
-      margin-bottom: 68px;
-      width: 255px;
-      @include media-breakpoint-xl {
-        margin-bottom: 5rem;
-        margin-right: 2rem;
-        min-width: 240px;
-      }
-
-      &:hover {
-        border: 1px solid $primary;
-      }
-
-      &-body {
-        color: $body-color;
-        display: block;
-        @include font-size-md();
-        margin-top: 74px;
-        padding: 0 16px 16px;
-        text-align: center;
-        text-decoration: none;
-
-        &:hover {
-          color: $body-color;
-          text-decoration: none;
+    &__container {
+        overflow-x: auto;
+        display: flex;
+        justify-content: space-between;
+        @include media-breakpoint-md {
+            margin-left: 2rem;
         }
 
-        .featured-apps__card-img {
-          width: 110px;
-          height: 110px;
-          margin: 0 auto 13px;
+        .featured-apps__card {
+            background-color: $white;
+            border: 1px solid $white;
+            border-radius: 4px;
+            cursor: pointer;
+            height: 330px;
+            margin-bottom: 68px;
+            width: 255px;
+            @include media-breakpoint-xl {
+                margin-bottom: 5rem;
+                margin-right: 2rem;
+                min-width: 240px;
+            }
 
-          img {
-            display: block;
-            margin: auto;
-            width: 100%;
-          }
-        }
+            &:hover {
+                border: 1px solid $primary;
+            }
 
-        .featured-apps__card-name {
-          @include font-medium();
-          font-size: 20px;
-          height: 72px;
-        }
+            &-body {
+                @include font-size-md();
+                display: block;
+                margin-top: 74px;
+                padding: 0 16px 16px;
+                text-align: center;
+                text-decoration: none;
 
-        .featured-apps__card-description {
-          @include font-size-sm();
-          height: 36px;
-          display: block;
+                &:hover {
+                    text-decoration: none;
+                }
+
+                .featured-apps__card-img {
+                    width: 110px;
+                    height: 110px;
+                    margin: 0 auto 13px;
+
+                    img {
+                        display: block;
+                        margin: auto;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .featured-apps__card-name {
+                    @include font-medium();
+                    font-size: 20px;
+                    height: 72px;
+                }
+
+                .featured-apps__card-description {
+                    @include font-size-sm();
+                    height: 36px;
+                    display: block;
+                    color: $body-color;
+                }
+            }
         }
-      }
     }
-  }
 }

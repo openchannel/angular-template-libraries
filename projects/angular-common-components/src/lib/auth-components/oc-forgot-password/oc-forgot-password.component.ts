@@ -21,7 +21,7 @@ import { ComponentsUserLoginModel } from '../models/auth-types.model';
 @Component({
     selector: 'oc-forgot-password',
     templateUrl: './oc-forgot-password.component.html',
-    styleUrls: ['./oc-forgot-password.component.scss'],
+    styleUrls: ['./oc-forgot-password.component.css'],
 })
 export class OcForgotPasswordComponent {
     /**
@@ -72,9 +72,8 @@ export class OcForgotPasswordComponent {
      */
     submitForm(form: NgForm): void {
         if (!this.process) {
-            if (!form.valid) {
-                form.control.markAllAsTouched();
-            } else {
+            form.form.markAllAsTouched();
+            if (form.valid) {
                 this.submit.emit();
             }
         }
