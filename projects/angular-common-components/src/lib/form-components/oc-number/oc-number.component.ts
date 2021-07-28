@@ -10,7 +10,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
     selector: 'oc-number',
     templateUrl: './oc-number.component.html',
-    styleUrls: ['./oc-number.component.scss'],
+    styleUrls: ['./oc-number.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

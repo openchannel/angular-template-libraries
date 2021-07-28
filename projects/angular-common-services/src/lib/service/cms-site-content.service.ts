@@ -97,7 +97,7 @@ export abstract class CMSSiteContentService {
         return tempPathsData;
     }
 
-    private tryGetContentByPath(cmsData: any, path: string): string {
+    private tryGetContentByPath(cmsData: any, path: any): string {
         if (has(cmsData, path)) {
             return get(cmsData, path);
         } else {

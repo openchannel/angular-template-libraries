@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
 @Component({
     selector: 'oc-signup-custom',
     templateUrl: './oc-signup-custom.component.html',
-    styleUrls: ['./oc-signup-custom.component.scss'],
+    styleUrls: ['./oc-signup-custom.component.css'],
 })
 export class OcSignupCustomComponent {
     /**

@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 @Component({
     selector: 'oc-profile-navbar',
     templateUrl: './oc-profile-navbar.component.html',
-    styleUrls: ['./oc-profile-navbar.component.scss'],
+    styleUrls: ['./oc-profile-navbar.component.css'],
 })
 export class OcProfileNavbarComponent {
     /**

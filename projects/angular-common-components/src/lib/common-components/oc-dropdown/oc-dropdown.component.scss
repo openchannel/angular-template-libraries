@@ -3,8 +3,10 @@
 
 .dropdown-label {
     display: inline-block;
+    user-select: none;
 
-    &__text {
+    &__text[aria-expanded='true'],
+    &__text[aria-expanded='false'] {
         @include font-size-md();
         @include font-medium();
         color: $dropdown-item-text-hover;
@@ -14,7 +16,6 @@
         cursor: pointer;
 
         &:after {
-            display: inline-block;
             margin-left: 0.5em;
             content: "";
             border-top: 0.4em solid;

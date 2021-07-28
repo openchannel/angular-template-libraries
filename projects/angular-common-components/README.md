@@ -46,7 +46,7 @@ Includes components for portal and market (form builder, form components, file u
     "@tinymce/tinymce-angular": "4.2.0",
     "angular-svg-icon": "11.0.0",
     "bootstrap": "4.6.0",
-    "chart.js": "2.9.3",
+    "chart.js": "3.3.2",
     "ngx-color-picker": "10.1.0",
     "ngx-embed-video": "1.0.4",
     "ngx-image-cropper": "3.1.9",
@@ -61,7 +61,7 @@ Before installation please check **required libs** [README.md](../../README.md#r
 
 1. Install dependencies
 ```sh
-npm i --save @ng-bootstrap/ng-bootstrap@6.0.2 @tinymce/tinymce-angular@4.2.0 angular-svg-icon@11.0.0 bootstrap@4.6.0 chart.js@2.9.3 ngx-color-picker@10.1.0 ngx-embed-video@1.0.4 ngx-image-cropper@3.1.9 ngx-infinite-scroll@10.0.0 ngx-owl-carousel-o@4.0.0 ngx-spinner@9.0.2 tinymce@5.6.2  
+npm i --save @ng-bootstrap/ng-bootstrap@6.0.2 @tinymce/tinymce-angular@4.2.0 angular-svg-icon@11.0.0 bootstrap@4.6.0 chart.js@3.3.2 ngx-color-picker@10.1.0 ngx-embed-video@1.0.4 ngx-image-cropper@3.1.9 ngx-infinite-scroll@10.0.0 ngx-owl-carousel-o@4.0.0 ngx-spinner@9.0.2 tinymce@5.6.2  
 ```
 2. Install library `npm i @openchannel/angular-common-components`
 

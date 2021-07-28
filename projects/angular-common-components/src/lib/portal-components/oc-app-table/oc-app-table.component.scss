@@ -85,19 +85,23 @@
     &__td {
         padding: 2rem 0;
         vertical-align: middle;
-        border-top: 1px solid rgba(201, 213, 234, 0.5);
+        border-top: 1px solid rgba($info, 0.5);
 
         &:last-child {
             border-top: 1px solid $info;
             height: 66px;
         }
 
+        &_nodata {
+            text-align: center;
+        }
+
         &_blank {
+            width: 2.5rem;
+            border-top: none;
             @include media-breakpoint-md {
                 width: 1rem;
             }
-            width: 2.5rem;
-            border-top: none;
         }
 
         &_flex {
@@ -151,7 +155,7 @@
             &.oc-table__text-status {
                 @include font-medium();
                 cursor: pointer;
-                color: #333;
+                color: $body-color;
             }
 
             &.oc-table__summary-text {
@@ -210,6 +214,10 @@
             border-radius: 4px;
         }
 
+        .dropdown {
+            position: static;
+        }
+
         .dropdown-menu {
             padding: 0;
             min-width: 136px;
@@ -237,8 +245,4 @@
             }
         }
     }
-}
-
-.dropup, .dropright, .dropdown, .dropleft {
-    position: unset;
 }

@@ -8,7 +8,7 @@ import { DropdownModel } from '@openchannel/angular-common-components/src/lib/co
     template: '',
 })
 export class MockDropdownButtonComponent {
-    @Output() selectedChange: EventEmitter<DropdownModel<any>> = new EventEmitter<DropdownModel<any>>();
+    @Output() readonly selectedChange: EventEmitter<DropdownModel<any>> = new EventEmitter<DropdownModel<any>>();
 
     @Input() minDropdownWidth: string = 'Sort by';
 
@@ -23,13 +23,26 @@ export class MockSvgIconComponent {
     @Input() src: string;
     @Input() svgClass: string;
 }
+// Needed for chart.js constructor
+declare global {
+    interface Window {
+        ResizeObserver: any;
+    }
+}
 
+window.ResizeObserver =
+    window.ResizeObserver ||
+    jest.fn().mockImplementation(() => ({
+        disconnect: jest.fn(),
+        observe: jest.fn(),
+        unobserve: jest.fn(),
+    }));
 describe('OcChartComponent', () => {
     let component: OcChartComponent;
     let fixture: ComponentFixture<OcChartComponent>;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
+    beforeEach(() => {
+        TestBed.configureTestingModule({
             declarations: [OcChartComponent, MockDropdownButtonComponent, MockSvgIconComponent],
         }).compileComponents();
     });
