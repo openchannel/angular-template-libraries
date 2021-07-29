@@ -1,3 +1,10 @@
+## Release notes - angular-template-libraries - Version 2.11.0 (7/29/2021)<br>
+### Task<br>
+AT-1433 - customize the Filter component<br>
+### Bug<br>
+AT-1384 - [Portal] Duplicate value showing in DFA fields when same name fields available in that app type<br>
+AT-1322 - [DFA] Sequence inside the DFA fields has been changed while adding new item to DFA Field.<br>
+AT-1205 - [Portal / Market][Signup][Activation page sign up link] Developer is not able to sign up.<br>
 ## Release notes - angular-template-libraries - Version 2.10.0 (7/26/2021)<br>
 ### Bug<br>
 AT-1432 - [Market] [UI] [Featured] App Icon and App name Overlap.<br>
