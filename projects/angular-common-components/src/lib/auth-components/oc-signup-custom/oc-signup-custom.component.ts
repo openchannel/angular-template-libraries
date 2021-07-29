@@ -57,6 +57,10 @@ export class OcSignupCustomComponent {
      */
     @Input() showSignupFeedbackPage: boolean = false;
     /**
+     * showSignupFeedbackPage change emitter
+     */
+    @Output() showSignupFeedbackPageChange = new EventEmitter<boolean>();
+    /**
      * Flag that showing that form for sign up is loading.
      */
     @Input() formConfigsLoading: boolean = true;
