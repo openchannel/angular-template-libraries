@@ -38,7 +38,7 @@ OneLevel.args = {
             label: 'Category 3',
             checked: false,
             expanded: false,
-            sublist: [
+            values: [
                 {
                     label: 'Subcategory 1',
                     checked: false,
@@ -52,6 +52,46 @@ OneLevel.args = {
         {
             label: 'Category 4',
             checked: true,
+        },
+    ],
+};
+
+export const WithImages = SidebarComponent.bind({});
+WithImages.args = {
+    title: 'App Category',
+    sidebarModel: [
+        {
+            label: 'Category 1',
+            checked: false,
+            icon: 'assets/angular-common-components/star.svg',
+        },
+        {
+            label: 'Category 2',
+            checked: false,
+            icon: 'assets/angular-common-components/chart_point.svg',
+        },
+        {
+            label: 'Category 3',
+            checked: false,
+            expanded: false,
+            icon: 'assets/angular-common-components/star.svg',
+            values: [
+                {
+                    label: 'Subcategory 1',
+                    checked: false,
+                    icon: 'assets/angular-common-components/star.svg',
+                },
+                {
+                    label: 'Subcategory 2',
+                    checked: false,
+                    icon: 'assets/angular-common-components/star.svg',
+                },
+            ],
+        },
+        {
+            label: 'Category 4',
+            checked: true,
+            icon: 'assets/angular-common-components/star.svg',
         },
     ],
 };
