@@ -35,6 +35,7 @@
                 align-items: center;
                 display: flex;
                 justify-content: space-between;
+                user-select: none;
             }
 
             &-text {
@@ -44,6 +45,10 @@
                 border-radius: 4px;
                 cursor: pointer;
                 padding: 2px;
+
+                &_bold {
+                    font-weight: bold;
+                }
 
                 &:hover {
                     font-weight: 500;
