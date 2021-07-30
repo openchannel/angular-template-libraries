@@ -9,7 +9,8 @@
                        class="oc-sidebar__list-item-text">
                         {{select.label}}
                     </a>
-                    <div (click)="onClickSidebar(select)"
+                    <div class="oc-sidebar__list-item-wrapper"
+                         (click)="onClickSidebar(select)"
                          *ngIf="!baseNavigation">
                         <span class="oc-sidebar__list-item-text"
                               [class.oc-sidebar__list-item-text_bold]="select.checked">
