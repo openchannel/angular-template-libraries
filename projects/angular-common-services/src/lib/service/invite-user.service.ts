@@ -80,7 +80,7 @@ export class InviteUserService {
      * Description: Sending invite to the user
      *
      * @param {any} inviteData - (required) data from invite form
-     * @param {string} userInviteTemplateId - (required) id of the email template
+     * @param {string} templateId - (required) id of the email template
      * @param {string} company - (required) name of the inviter company
      * @returns {Observable<any>} `Observable<any>`
      *
@@ -88,8 +88,8 @@ export class InviteUserService {
      *
      * `sendUserInvite('ha9s8hd9a8shd','company', {});`
      */
-    sendUserInvite(company: string, inviteData: any, userInviteTemplateId: string = 'default'): Observable<any> {
-        return this.sendInvite('users', company, inviteData, { userInviteTemplateId });
+    sendUserInvite(company: string, inviteData: any, templateId?: string): Observable<any> {
+        return this.sendInvite('users', company, inviteData, { userInviteTemplateId: templateId || 'default' });
     }
 
     /**
@@ -154,7 +154,7 @@ export class InviteUserService {
      * Description: Sending invite to the user
      *
      * @param {any} inviteData - (required) data from invite form
-     * @param {string} developerInviteTemplateId - (required) id of the email template
+     * @param {string} templateId - (required) id of the email template
      * @param {string} company - (required) name of the inviter company
      * @returns {Observable<any>} `Observable<any>`
      *
@@ -162,8 +162,8 @@ export class InviteUserService {
      *
      * `sendDeveloperInvite('9ahs09d8jas9d8', 'company', {})`
      */
-    sendDeveloperInvite(company: string, inviteData: any, developerInviteTemplateId: string = 'default'): Observable<any> {
-        return this.sendInvite('developers', company, inviteData, { developerInviteTemplateId });
+    sendDeveloperInvite(company: string, inviteData: any, templateId?: string): Observable<any> {
+        return this.sendInvite('developers', company, inviteData, { developerInviteTemplateId: templateId || 'default' });
     }
 
     /**
