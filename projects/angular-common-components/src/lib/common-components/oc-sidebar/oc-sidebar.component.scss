@@ -30,13 +30,22 @@
         &-item {
             cursor: pointer;
             margin-bottom: 3rem;
-
+      &-group {
+        align-items: center;
+        display: flex;
+        width: 100%;
+      }
             &-expand-line {
                 align-items: center;
                 display: flex;
                 justify-content: space-between;
             }
-
+      &-image {
+        margin-right: 1rem;
+        max-width: 4rem;
+        height: auto;
+        width: 100%;
+      }
             &-text {
                 color: $body-color;
                 text-decoration: none;
@@ -52,10 +61,6 @@
                 &:focus {
                     border: 1px solid $focus-border;
                 }
-
-                &_margin {
-                    margin-top: 2rem;
-                }
             }
         }
     }
@@ -63,6 +68,9 @@
     &__sublist {
         list-style: none;
         padding-left: 3rem;
+    &-item {
+      margin-top: 2rem;
+    }
     }
 }
 
