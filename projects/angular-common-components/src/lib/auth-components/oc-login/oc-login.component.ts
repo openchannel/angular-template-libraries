@@ -68,6 +68,11 @@ export class OcLoginComponent {
     @Input() notVerifiedEmailErrorCode: string = 'email_not_verified';
 
     /**
+     * Error code for password change required.
+     */
+    @Input() passwordResetRequiredErrorCode: string = 'password_reset_required';
+
+    /**
      * Output event that emits on model change and pass Login model
      */
     @Output() readonly loginModelChange: EventEmitter<ComponentsUserLoginModel> = new EventEmitter<ComponentsUserLoginModel>();
@@ -129,9 +134,9 @@ export class OcLoginComponent {
      * Checks if there are server errors for provided model
      * @returns boolean
      */
-    hasServerError(email: NgModel, errorCode: string): boolean {
-        if (email.errors) {
-            const serverErrorValidator = email.errors.serverErrorValidator;
+    hasServerError(control: NgModel, errorCode: string): boolean {
+        if (control.errors) {
+            const serverErrorValidator = control.errors.serverErrorValidator;
             if (serverErrorValidator && serverErrorValidator.code === errorCode) {
                 return true;
             }
