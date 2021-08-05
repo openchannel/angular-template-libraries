@@ -65,6 +65,7 @@ export * from './lib/service/properties.service';
 export * from './lib/service/request.service';
 export * from './lib/service/site-content.service';
 export * from './lib/service/cms-site-content.service';
+export * from './lib/service/prerender-requests-watcher.service';
 
 /* Utils */
 export * from './lib/util/type-mapper.util';
