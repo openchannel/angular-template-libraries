@@ -4,6 +4,7 @@ import { OcResendActivationComponent } from './oc-resend-activation.component';
 import {
     MockButtonComponent,
     MockErrorComponent,
+    MockHeadingTagDirective,
     MockInputComponent,
     MockLabelComponent,
     MockRoutingComponent,
@@ -29,6 +30,7 @@ describe('OcResendActivationComponent', () => {
                     MockInputComponent,
                     MockErrorComponent,
                     MockRoutingComponent,
+                    MockHeadingTagDirective,
                 ],
                 providers: [NgModel],
                 imports: [

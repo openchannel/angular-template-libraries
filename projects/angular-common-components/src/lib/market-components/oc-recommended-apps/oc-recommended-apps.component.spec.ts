@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { OcRecommendedAppsComponent } from './oc-recommended-apps.component';
 import { By } from '@angular/platform-browser';
 import { FullAppData, StatElement } from '@openchannel/angular-common-components/src/lib/common-components';
-import { MockAppCardComponent } from '@openchannel/angular-common-components/src/mock/mock';
+import { MockAppCardComponent, MockHeadingTagDirective } from '@openchannel/angular-common-components/src/mock/mock';
 import { RouterTestingModule } from '@angular/router/testing';
 
 const stat: StatElement = {
@@ -60,7 +60,7 @@ describe('OcRecommendedAppsComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcRecommendedAppsComponent, MockAppCardComponent],
+                declarations: [OcRecommendedAppsComponent, MockAppCardComponent, MockHeadingTagDirective],
                 imports: [RouterTestingModule.withRoutes([])],
             }).compileComponents();
         }),
@@ -82,7 +82,7 @@ describe('OcRecommendedAppsComponent', () => {
 
         fixture.detectChanges();
 
-        const title: HTMLHeadingElement = fixture.debugElement.query(By.css('h4')).nativeElement;
+        const title: HTMLHeadingElement = fixture.debugElement.query(By.css('h2')).nativeElement;
 
         expect(title.textContent).toContain('Test Recommended');
     });

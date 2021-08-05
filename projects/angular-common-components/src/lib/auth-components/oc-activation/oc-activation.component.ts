@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentsUserActivationModel } from '../models/auth-types.model';
 import { NgForm } from '@angular/forms';
+import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 @Component({
     selector: 'oc-activation',
@@ -52,6 +53,14 @@ export class OcActivationComponent {
      * Emitting that Activate button was pressed
      */
     @Output() submit = new EventEmitter<any>();
+
+    /**
+     * Heading tag of title
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() headingTag: HeadingTag = 'h1';
 
     submitForm(form: NgForm): void {
         if (!this.process) {
