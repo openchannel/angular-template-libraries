@@ -9,6 +9,7 @@ import {
     MockCheckboxComponent,
     MockEditUserFormComponent,
     MockErrorComponent,
+    MockHeadingTagDirective,
     MockInputComponent,
     MockLabelComponent,
     MockPasswordComponent,
@@ -36,6 +37,7 @@ describe('OcSignupCustomComponent', () => {
                     MockButtonComponent,
                     MockCheckboxComponent,
                     MockRoutingComponent,
+                    MockHeadingTagDirective,
                 ],
                 providers: [NgModel],
                 imports: [

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/co
 import { Router } from '@angular/router';
 import { OcEditUserFormConfig, OcEditUserResult } from '../models/oc-edit-user-form.model';
 import { FormGroup } from '@angular/forms';
+import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 @Component({
     selector: 'oc-signup-custom',
@@ -80,6 +81,13 @@ export class OcSignupCustomComponent {
      * Returns last data from the user form on sign up action.
      */
     @Output() readonly resultUserData = new EventEmitter<OcEditUserResult>();
+    /**
+     * Heading tag of title
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() headingTag: HeadingTag = 'h1';
 
     resultFormValue: OcEditUserResult;
     formGroup: FormGroup;
