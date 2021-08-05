@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ComponentsUserLoginModel } from '../models/auth-types.model';
+import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 /**
  * Forgot password component. Represents component with forgot password logic.
@@ -63,6 +64,14 @@ export class OcForgotPasswordComponent {
      * Submit output event emitter.
      */
     @Output() readonly submit = new EventEmitter<void>();
+
+    /**
+     * Heading tag of title
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() headingTag: HeadingTag = 'h1';
 
     constructor(private router: Router) {}
 

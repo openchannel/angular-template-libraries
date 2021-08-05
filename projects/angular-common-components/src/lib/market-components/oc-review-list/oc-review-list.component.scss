@@ -17,6 +17,7 @@
 
         &-heading {
             margin-bottom: 0;
+            font-size: 24px;
         }
 
         &-button {
@@ -46,6 +47,7 @@
         &-heading {
             @include font-medium();
             line-height: 5rem;
+            font-size: 20px;
         }
 
         &-head {

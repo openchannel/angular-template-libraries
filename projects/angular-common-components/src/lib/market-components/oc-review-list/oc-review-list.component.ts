@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { OCReviewDetails, ReviewListOptionType } from '../models/oc-review-details-model';
+import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 /**
  * Review list component.
@@ -18,6 +19,22 @@ export class OcReviewListComponent implements OnChanges {
      * Default 'Most recent reviews'.
      */
     @Input() reviewListTitle: string = 'Most recent reviews';
+
+    /**
+     * Heading tag of title
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() headingTag: HeadingTag = 'h2';
+
+    /**
+     * Heading tag of review title
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() reviewHeadingTag: HeadingTag = 'h3';
 
     /**
      * The total review count of the list.

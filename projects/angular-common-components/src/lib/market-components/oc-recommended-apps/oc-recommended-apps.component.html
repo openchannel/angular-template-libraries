@@ -1,5 +1,5 @@
 <div class="recommended-apps">
-    <h4 class="recommended-apps__heading">{{recommendedAppTitle}}</h4>
+    <h2 [headingTag]="headingTag" class="recommended-apps__heading">{{recommendedAppTitle}}</h2>
     <div class="recommended-apps__container"
          *ngIf="appList && appList.length > 0; else emptyData">
         <div class="recommended-apps__card" *ngFor="let app of appList;" (click)="this.clickByAppCard.emit(app)">

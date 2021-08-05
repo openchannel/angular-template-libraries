@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { OcReviewListComponent } from './oc-review-list.component';
 import { By } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { MockButtonComponent, MockRatingComponent } from '@openchannel/angular-common-components/src/mock/mock';
+import { MockButtonComponent, MockHeadingTagDirective, MockRatingComponent } from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcReviewListComponent', () => {
     let component: OcReviewListComponent;
@@ -12,7 +12,7 @@ describe('OcReviewListComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcReviewListComponent, MockButtonComponent, MockRatingComponent],
+                declarations: [OcReviewListComponent, MockButtonComponent, MockRatingComponent, MockHeadingTagDirective],
                 imports: [CommonModule],
             }).compileComponents();
         }),
