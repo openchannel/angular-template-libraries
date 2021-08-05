@@ -53,4 +53,16 @@ export class PrerenderRequestsWatcherService {
             document.getElementsByTagName('head')[0].prepend(renderScript);
         }
     }
+
+    create404MetaTag(): void {
+        const meta404 = document.createElement('meta');
+        meta404.name = 'prerender-status-code';
+        meta404.content = '404';
+        meta404.id = 'prerender404';
+        document.getElementsByTagName('head')[0].appendChild(meta404);
+    }
+
+    remove404MetaTag(): void {
+        document.querySelector('#prerender404').remove();
+    }
 }
