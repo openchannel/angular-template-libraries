@@ -27,4 +27,3 @@ export interface InviteDeveloperModel extends AbstractInviteModel {
     developerId?: string;
     developerAccountId?: string;
 }
-
