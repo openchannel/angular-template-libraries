@@ -60,7 +60,7 @@ export class OcSidebarComponent {
      * Emits parent sidebar model and child sidebar model.
      */
     onClickSidebar(parentSidebar: SidebarValue, childSidebar?: SidebarValue): void {
-        if (parentSidebar.values && parentSidebar.values.length > 0) {
+        if (parentSidebar.values?.length > 0 && !childSidebar) {
             parentSidebar.expanded = !parentSidebar.expanded;
         } else {
             this.sidebarChange.emit({ parent: parentSidebar, child: childSidebar });

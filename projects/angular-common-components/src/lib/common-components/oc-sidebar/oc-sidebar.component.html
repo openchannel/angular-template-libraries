@@ -16,13 +16,13 @@
                               [class.oc-sidebar__list-item-text_bold]="select.checked">
                             {{select.label}}
                         </span>
-                        <svg-icon *ngIf="select.values && select.values.length > 0"
+                        <svg-icon *ngIf="select.values?.length > 0"
                                   [src]="select.expanded ? toggleIconUp : toggleIconDown"
                                   class="oc-sidebar__list-item-toggle"
                                   svgClass="recolor-svg"></svg-icon>
                     </div>
                 </div>
-                <ul class="oc-sidebar__sublist" *ngIf="select.values && select.values.length > 0"
+                <ul class="oc-sidebar__sublist" *ngIf="select.values?.length > 0"
                     [ngbCollapse]="!select.expanded">
                     <li *ngFor="let subValue of select.values" class="oc-sidebar__sublist-item">
                         <img [src]="subValue.icon" alt="" class="oc-sidebar__list-item-image" *ngIf="subValue.icon">
