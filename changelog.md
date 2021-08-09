@@ -1,3 +1,8 @@
+## Release notes - angular-template-libraries - Version 2.13.0 (8/5/2021)<br>
+### Bug<br>
+AT-1449 - [SelfHosted Sites][Market] Featured section on top of Market Site is not visible.<br>
+AT-1348 - [Market][App Details] Vimeo channel link displayed as an invalid link in Portal and Market. Youtube channel not working.<br>
+AT-1141 - [UI][Marketsite][Tablet] App details: Video goes out of the border of the page.<br>
 ## Release notes - angular-template-libraries - Version 2.12.0 (8/4/2021)<br>
 ### Subtask<br>
 AT-1462 - [CAP] Update email validator on the CAP side<br>
