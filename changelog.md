@@ -1,3 +1,8 @@
+## Release notes - angular-template-libraries - Version 2.15.0 (8/10/2021)<br>
+### Story<br>
+AT-1422 - A user is able to be guided when they are forced to reset their account password.<br>
+### Bug<br>
+AT-1396 - Session is still valid after logout<br>
 ## Release notes - angular-template-libraries - Version 2.14.0 (8/10/2021)<br>
 ### Bug<br>
 AT-1482 - [Hotfix][Market][App Details] Getting 400 error for /views API call, "BAD_REQUEST", message: "This endpoint can be called once every 24 hours.<br>
