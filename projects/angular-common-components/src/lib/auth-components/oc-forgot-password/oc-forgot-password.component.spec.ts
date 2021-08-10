@@ -9,6 +9,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import {
     MockButtonComponent,
     MockErrorComponent,
+    MockHeadingTagDirective,
     MockInputComponent,
     MockLabelComponent,
     MockRoutingComponent,
@@ -32,6 +33,7 @@ describe('OcForgotPasswordComponent', () => {
                     MockButtonComponent,
                     MockSvgIconComponent,
                     MockRoutingComponent,
+                    MockHeadingTagDirective,
                 ],
                 providers: [NgModel],
                 imports: [

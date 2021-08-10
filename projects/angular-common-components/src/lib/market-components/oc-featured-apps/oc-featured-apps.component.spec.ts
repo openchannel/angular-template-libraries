@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { FullAppData, StatElement, HtmlTagsReplacerPipe } from '@openchannel/angular-common-components/src/lib/common-components';
-import { MockRoutingComponent } from '@openchannel/angular-common-components/src/mock/mock';
+import { MockHeadingTagDirective, MockRoutingComponent } from '@openchannel/angular-common-components/src/mock/mock';
 
 const statElement: StatElement = {
     '90day': 20,
@@ -65,7 +65,7 @@ describe('OcFeaturedAppsComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcFeaturedAppsComponent, MockRoutingComponent, HtmlTagsReplacerPipe],
+                declarations: [OcFeaturedAppsComponent, MockRoutingComponent, HtmlTagsReplacerPipe, MockHeadingTagDirective],
                 imports: [RouterTestingModule.withRoutes([{ path: 'mock-router/:id', component: MockRoutingComponent }])],
             }).compileComponents();
             router = TestBed.inject(Router);
@@ -91,8 +91,8 @@ describe('OcFeaturedAppsComponent', () => {
 
         fixture.detectChanges();
 
-        const label: HTMLHeadingElement = fixture.debugElement.query(By.css('h4')).nativeElement;
-        const appName: HTMLHeadingElement = fixture.debugElement.query(By.css('h5')).nativeElement;
+        const label: HTMLHeadingElement = fixture.debugElement.query(By.css('h2')).nativeElement;
+        const appName: HTMLHeadingElement = fixture.debugElement.query(By.css('h3')).nativeElement;
         const appDescription: HTMLSpanElement = fixture.debugElement.query(By.css('span')).nativeElement;
         const appImage: HTMLImageElement = fixture.debugElement.query(By.css('img')).nativeElement;
 
@@ -108,7 +108,7 @@ describe('OcFeaturedAppsComponent', () => {
 
         fixture.detectChanges();
 
-        const noAppsHeading: HTMLHeadingElement = fixture.debugElement.query(By.css('h5')).nativeElement;
+        const noAppsHeading: HTMLHeadingElement = fixture.debugElement.query(By.css('h3')).nativeElement;
 
         expect(noAppsHeading.textContent).toContain('No Featured Apps');
     });

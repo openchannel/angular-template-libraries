@@ -3,7 +3,6 @@ import { TypeFieldModel, TypeModel } from '../models/oc-type-definition.model';
 import { TypeMapperUtils } from './type-mapper.util';
 
 export class TypeMergeUtils {
-
     static mergeTypes<T extends TypeFieldModel>(
         beforeType: TypeModel<T> | null,
         oldData: any | null,
@@ -22,7 +21,7 @@ export class TypeMergeUtils {
         };
     }
 
-    static findFieldsWithCustomPrefixes(formResult: any, prefixes?: string[]) {
+    static findFieldsWithCustomPrefixes(formResult: any, prefixes?: string[]): any {
         const result = {};
         if (formResult) {
             forIn(prefixes, (prefix: string) => {
@@ -39,7 +38,7 @@ export class TypeMergeUtils {
         return TypeMapperUtils.buildDataForSaving(result);
     }
 
-    static findFieldsWithoutCustomPrefixes(formResult: any, prefixes?: string[]) {
+    static findFieldsWithoutCustomPrefixes(formResult: any, prefixes?: string[]): any {
         const result = {};
         if (formResult) {
             forIn(formResult, (value, key) => {

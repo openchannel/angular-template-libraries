@@ -4,6 +4,7 @@ import { OcResetPasswordComponent } from './oc-reset-password.component';
 import {
     MockButtonComponent,
     MockErrorComponent,
+    MockHeadingTagDirective,
     MockLabelComponent,
     MockPasswordComponent,
     MockRoutingComponent,
@@ -30,6 +31,7 @@ describe('OcResetPasswordComponent', () => {
                     MockErrorComponent,
                     MockPasswordComponent,
                     MockRoutingComponent,
+                    MockHeadingTagDirective,
                 ],
                 providers: [NgModel],
                 imports: [

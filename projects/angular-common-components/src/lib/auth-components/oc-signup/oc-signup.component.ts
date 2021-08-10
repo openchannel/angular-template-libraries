@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ComponentsUserRegistrationModel } from '../models/auth-types.model';
+import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 @Component({
     selector: 'oc-signup',
@@ -83,8 +84,15 @@ export class OcSignupComponent {
      * @type {*}.
      */
     @Output() readonly submitClick = new EventEmitter<any>();
-    imagePath: any;
-    closeResult = '';
+
+    /**
+     * Heading tag of title
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() headingTag: HeadingTag = 'h1';
+
     constructor(private router: Router) {}
 
     /**
