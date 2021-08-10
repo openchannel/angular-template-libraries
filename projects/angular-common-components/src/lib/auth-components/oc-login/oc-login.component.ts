@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { ComponentsUserLoginModel } from '../models/auth-types.model';
+import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 /**
  * Login component. Represent login page with auth logic.
  *
@@ -86,6 +87,14 @@ export class OcLoginComponent {
      * Output event that emits on click to activation link button and pass Link email value
      */
     @Output() readonly sendActivationLink: EventEmitter<string> = new EventEmitter<string>();
+
+    /**
+     * Heading tag of title
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() headingTag: HeadingTag = 'h1';
 
     /**
      * Submit function emit changed login value check form on validity and submit `true` if everything is ok.

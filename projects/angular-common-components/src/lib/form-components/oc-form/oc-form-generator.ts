@@ -195,7 +195,7 @@ export class OcFormGenerator {
             }
         });
         if (additional && additional.isEmail) {
-            validators.push(Validators.email);
+            validators.push(this.emailValidator());
         }
         if (additional && additional.isUrl) {
             validators.push(this.urlValidator());
@@ -397,6 +397,18 @@ export class OcFormGenerator {
                 return null;
             }
             return null;
+        };
+    }
+
+    static emailValidator(): ValidatorFn {
+        return (c: AbstractControl): { [key: string]: any } => {
+            const regex = /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            const email = c.value ? c.value : '';
+            if (email.match(regex)) {
+                return null;
+            } else {
+                return { email: true };
+            }
         };
     }
 }

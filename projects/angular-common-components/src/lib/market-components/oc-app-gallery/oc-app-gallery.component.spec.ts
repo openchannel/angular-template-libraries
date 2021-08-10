@@ -6,9 +6,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { FullAppData, StatElement } from '@openchannel/angular-common-components/src/lib/common-components';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import {
     MockAppCardComponent,
+    MockHeadingTagDirective,
     MockRoutingComponent,
     MockSvgIconComponent
 } from '@openchannel/angular-common-components/src/mock/mock';
@@ -67,7 +67,7 @@ describe('OcAppGalleryComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcAppGalleryComponent, MockAppCardComponent, MockRoutingComponent, MockSvgIconComponent],
+                declarations: [OcAppGalleryComponent, MockAppCardComponent, MockRoutingComponent, MockSvgIconComponent, MockHeadingTagDirective],
                 imports: [CommonModule, RouterTestingModule.withRoutes([{ path: 'mock-router', component: MockRoutingComponent }])],
             }).compileComponents();
             router = TestBed.inject(Router);
@@ -90,7 +90,7 @@ describe('OcAppGalleryComponent', () => {
     });
 
     it('should show data', () => {
-        const galleryTitle = fixture.debugElement.query(By.css('h4')).nativeElement;
+        const galleryTitle = fixture.debugElement.query(By.css('h2')).nativeElement;
         const galleryDescription = fixture.debugElement.query(By.css('#description')).nativeElement;
 
         expect(galleryTitle.textContent).toContain('Test Apps');

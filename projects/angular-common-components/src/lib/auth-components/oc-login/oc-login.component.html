@@ -7,7 +7,7 @@
                      [src]="companyLogoUrl">
             </div>
             <div class="login__header">
-                <h4 class="login__header-heading">Log In</h4>
+                <h1 [headingTag]="headingTag" class="login__header-heading">Log In</h1>
                 <oc-label text="Log in into your account" class="login__header-invitation"></oc-label>
             </div>
             <div class="login__error login__warn-block" *ngIf="hasServerError(email, incorrectEmailErrorCode)">

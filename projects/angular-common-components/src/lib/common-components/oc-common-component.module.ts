@@ -42,6 +42,7 @@ import { OcSocialLinksComponent } from './oc-social-links/oc-social-links.compon
 import { OcContentModalComponent } from './oc-content-modal/oc-content-modal.component';
 import { OcInitialsComponent } from './oc-initials/oc-initials.component';
 import { OcRadioButtonComponent } from './oc-radio-button/oc-radio-button.component';
+import { HeadingTagDirective } from "./directive/heading-tag.directive";
 
 @NgModule({
     declarations: [
@@ -75,6 +76,7 @@ import { OcRadioButtonComponent } from './oc-radio-button/oc-radio-button.compon
         CheckboxRequiredDirective,
         HtmlTagsReplacerPipe,
         EllipsisDirective,
+        HeadingTagDirective,
         SafePipe,
         OcContentModalComponent,
         OcInitialsComponent,
@@ -122,6 +124,7 @@ import { OcRadioButtonComponent } from './oc-radio-button/oc-radio-button.compon
         CheckboxRequiredDirective,
         HtmlTagsReplacerPipe,
         EllipsisDirective,
+        HeadingTagDirective,
         SafePipe,
         OcContentModalComponent,
         OcRadioButtonComponent,

@@ -8,6 +8,7 @@
 }
 
 .oc-sidebar {
+
     &__navigation {
         background-color: $white;
         max-width: 265px;
@@ -30,29 +31,38 @@
         &-item {
             cursor: pointer;
             margin-bottom: 3rem;
-      &-group {
-        align-items: center;
-        display: flex;
-        width: 100%;
-      }
+
             &-expand-line {
-                align-items: center;
                 display: flex;
-                justify-content: space-between;
+                align-items: center;
+                user-select: none;
             }
-      &-image {
-        margin-right: 1rem;
-        max-width: 4rem;
-        height: auto;
-        width: 100%;
-      }
+
+            &-wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-grow: 1;
+            }
+
+            &-image {
+                margin-right: 1rem;
+                max-width: 4rem;
+                height: auto;
+                width: 100%;
+            }
+
             &-text {
+                @include font-size-md();
                 color: $body-color;
                 text-decoration: none;
-                @include font-size-md();
                 border-radius: 4px;
                 cursor: pointer;
                 padding: 2px;
+
+                &_bold {
+                    font-weight: bold;
+                }
 
                 &:hover {
                     font-weight: 500;
@@ -68,9 +78,10 @@
     &__sublist {
         list-style: none;
         padding-left: 3rem;
-    &-item {
-      margin-top: 2rem;
-    }
+
+        &-item {
+            margin-top: 2rem;
+        }
     }
 }
 
