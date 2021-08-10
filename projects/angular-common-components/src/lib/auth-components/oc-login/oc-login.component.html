@@ -10,8 +10,11 @@
                 <h1 [headingTag]="headingTag" class="login__header-heading">Log In</h1>
                 <oc-label text="Log in into your account" class="login__header-invitation"></oc-label>
             </div>
-            <div class="login__error" *ngIf="hasServerError(email, incorrectEmailErrorCode)">
+            <div class="login__error login__warn-block" *ngIf="hasServerError(email, incorrectEmailErrorCode)">
                 The email and password you have provided is incorrect.
+            </div>
+            <div class="login__warn login__warn-block" *ngIf="hasServerError(password, passwordResetRequiredErrorCode)">
+                Your password must be changed. We’ve sent an email to {{email.value}} with a link to help you reset your password.
             </div>
             <div class="login__error" *ngIf="hasServerError(email, notVerifiedEmailErrorCode)">
                 This account has not been activated yet. <br>

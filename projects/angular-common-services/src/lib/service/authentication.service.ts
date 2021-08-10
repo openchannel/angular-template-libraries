@@ -34,8 +34,11 @@ export class AuthenticationService {
     }
 
     logOut(): Observable<void> {
-        return this.httpService.post(`${this.apiPaths.authorization}/logout`,
-            {refreshToken: this.authHolderService.refreshToken});
+        const requestBody = {
+            accessToken: this.authHolderService.accessToken,
+            refreshToken: this.authHolderService.refreshToken,
+        };
+        return this.httpService.post(`${this.apiPaths.authorization}/logout`, requestBody);
     }
 
     refreshTokenSilent(): Observable<any> {
