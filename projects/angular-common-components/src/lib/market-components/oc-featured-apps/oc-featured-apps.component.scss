@@ -8,6 +8,7 @@
         &-text {
             margin-bottom: 2rem;
             text-align: left;
+            font-size: 24px;
             @include media-breakpoint-md {
                 padding-left: 2rem;
             }

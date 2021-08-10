@@ -34,6 +34,7 @@ export * from './pipe/safe.pipe';
 
 /** Directives */
 export * from './directive/ellipsis.directive';
+export * from './directive/heading-tag.directive';
 export * from './validators/email-validator.directive';
 export * from './validators/drag-drop.directive';
 export * from './validators/checkbox-required.directive';
@@ -45,6 +46,7 @@ export * from './model/app-data.model';
 export * from './model/components-basic.model';
 export * from './model/oc-sidebar-model';
 export * from './interfaces/social-link.model';
+export * from './interfaces/heading-tag.interface';
 
 /** Services */
 export * from './oc-error/oc-error-service';

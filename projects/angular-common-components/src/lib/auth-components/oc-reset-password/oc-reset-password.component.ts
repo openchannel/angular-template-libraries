@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentsUserResetPassword } from '../models/auth-types.model';
+import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 /**
  * A reset password component. A form, which allows user to change his account password.
@@ -48,6 +49,14 @@ export class OcResetPasswordComponent {
      * @type {*}.
      */
     @Output() readonly submit: EventEmitter<any> = new EventEmitter<any>();
+
+    /**
+     * Heading tag of title
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() headingTag: HeadingTag = 'h1';
 
     /**
      * Submits a reset password form.

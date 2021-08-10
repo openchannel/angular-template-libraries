@@ -9,6 +9,7 @@ import { By } from '@angular/platform-browser';
 import {
     MockButtonComponent,
     MockErrorComponent,
+    MockHeadingTagDirective,
     MockInputComponent,
     MockLabelComponent,
     MockRoutingComponent,
@@ -30,6 +31,7 @@ describe('OcActivationComponent', () => {
                     MockButtonComponent,
                     MockInputComponent,
                     MockRoutingComponent,
+                    MockHeadingTagDirective,
                 ],
                 imports: [
                     FormsModule,
