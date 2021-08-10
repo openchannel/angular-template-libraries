@@ -42,14 +42,22 @@
         margin-bottom: 2rem;
     }
 
-    &__error {
+    &__warn-block{
         @include font-size-sm();
-        background-color: $error-bg;
         border-radius: 4px;
-        color: $error;
         margin: 2rem 0 3rem;
         padding: 15px 10px 15px 9px;
         text-align: center;
+    }
+
+    &__error {
+        background-color: $error-bg;
+        color: $error;
+    }
+
+    &__warn {
+        background-color: $light-blue;
+        color: $primary;
     }
 
     &__forgot-block {
