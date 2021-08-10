@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, Input, Output, TemplateRef } from '@angular/core';
+import {Component, Directive, EventEmitter, forwardRef, Input, Output, TemplateRef} from '@angular/core';
 import {
     AbstractControl,
     AbstractControlDirective,
@@ -12,7 +12,7 @@ import {
 import {
     AppTypeFieldModel,
     DropdownModel,
-    FullAppData,
+    FullAppData, HeadingTag,
     RadioItemValue,
 } from '@openchannel/angular-common-components/src/lib/common-components';
 import { OcCheckboxData, OcEditUserFormConfig, OCOrganization } from '@openchannel/angular-common-components/src/lib/auth-components';
@@ -366,4 +366,11 @@ export class MockDropdownMultiApp implements ControlValueAccessor {
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
+}
+
+@Directive({
+    selector: '[headingTag]',
+})
+export class MockHeadingTagDirective {
+    @Input() headingTag: HeadingTag;
 }

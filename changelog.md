@@ -1,3 +1,18 @@
+## Release notes - angular-template-libraries - Version 2.13.0 (8/5/2021)<br>
+### Bug<br>
+AT-1449 - [SelfHosted Sites][Market] Featured section on top of Market Site is not visible.<br>
+AT-1348 - [Market][App Details] Vimeo channel link displayed as an invalid link in Portal and Market. Youtube channel not working.<br>
+AT-1141 - [UI][Marketsite][Tablet] App details: Video goes out of the border of the page.<br>
+## Release notes - angular-template-libraries - Version 2.12.0 (8/4/2021)<br>
+### Subtask<br>
+AT-1462 - [CAP] Update email validator on the CAP side<br>
+### Story<br>
+AT-1416 - A user is able to implement any kind of statistic from CAP<br>
+### Task<br>
+AT-1385 - Allow customization of heading tags<br>
+### Bug<br>
+AT-1364 - Don't use '**' patterns<br>
+AT-605 - [My Profile] [Email] It allows to update the invalid format email address.<br>
 ## Release notes - angular-template-libraries - Version 2.11.0 (7/29/2021)<br>
 ### Task<br>
 AT-1433 - customize the Filter component<br>

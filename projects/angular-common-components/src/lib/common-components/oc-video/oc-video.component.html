@@ -5,9 +5,7 @@
         </ngx-spinner>
     </div>
     <div *ngIf="!showVideoLoader" class="oc-video__container">
-        <div class="oc-video__preview">
-            <div [innerHTML]="previewData" class="oc-video__preview-data"></div>
-        </div>
+        <div class="oc-video__preview" [innerHTML]="previewData"></div>
         <div class="oc-video__frame" *ngIf="!loadInIframe">
             <video class="oc-video__frame-video" width="300" *ngIf="loadInVideo" [src]="url" controls></video>
         </div>
