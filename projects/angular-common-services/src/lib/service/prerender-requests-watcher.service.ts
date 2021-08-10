@@ -65,4 +65,16 @@ export class PrerenderRequestsWatcherService {
     remove404MetaTag(): void {
         document.querySelector('#prerender404').remove();
     }
+
+    create301MetaTag(location: string): void {
+        const meta303 = document.createElement('meta');
+        const meta303Redirect = document.createElement('meta');
+
+        meta303.name = 'prerender-status-code';
+        meta303.content = '301';
+        meta303Redirect.name = 'prerender-header';
+        meta303Redirect.content = `Location: ${location}`;
+        document.getElementsByTagName('head')[0].appendChild(meta303);
+        document.getElementsByTagName('head')[0].appendChild(meta303Redirect);
+    }
 }
