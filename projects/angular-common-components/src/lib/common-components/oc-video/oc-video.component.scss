@@ -1,5 +1,5 @@
-
 .oc-video {
+
     &__loader {
         padding: 1rem;
         position: relative;
@@ -12,12 +12,8 @@
     &__preview {
         display: flex;
         justify-content: center;
-
-        &-data {
-            flex: 0 0 100%;
-            max-width: 380px;
-            width: 100%;
-        }
+        max-width: 380px;
+        margin: auto;
     }
 
     &__frame {
