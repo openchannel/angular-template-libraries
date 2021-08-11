@@ -48,7 +48,7 @@ export class OcResetPasswordComponent {
      * Uses ResetPasswordForm.
      * @type {*}.
      */
-    @Output() readonly submit: EventEmitter<any> = new EventEmitter<any>();
+    @Output() readonly buttonClick: EventEmitter<any> = new EventEmitter<any>();
 
     /**
      * Heading tag of title
@@ -66,9 +66,9 @@ export class OcResetPasswordComponent {
     submitForm(form: any): void {
         if (!form.valid || this.process) {
             form.control.markAllAsTouched();
-            this.submit.emit(false);
+            this.buttonClick.emit(false);
         } else {
-            this.submit.emit(true);
+            this.buttonClick.emit(true);
         }
     }
 
