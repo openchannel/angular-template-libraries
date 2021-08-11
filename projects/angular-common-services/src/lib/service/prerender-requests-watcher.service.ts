@@ -19,7 +19,9 @@ export class PrerenderRequestsWatcherService {
         this.buffer.push(
             httpEvent.pipe(
                 catchError(error => {
-                    console.log('error occurred', error.status);
+                    if (error.status === 301) {
+                        this.create301MetaTag(error.location);
+                    }
                     return of(error);
                 }),
             ),
@@ -27,17 +29,13 @@ export class PrerenderRequestsWatcherService {
         forkJoin(this.buffer)
             .pipe(delay(this.sleepAfterLastRequestMS), takeUntil(this.close))
             .subscribe((responses: HttpResponse<any>[]) => {
-                console.log('All responses count:', responses.length, ' data: ', responses);
                 this.checkErrorsOrChangeStatus(responses);
             });
     }
 
     checkErrorsOrChangeStatus(responses: HttpResponse<any>[]): void {
-        const anyError: HttpResponse<any>[] = responses.filter(resp => resp?.status !== 200);
-        console.log('founded errors', anyError);
-        if (anyError.length === 0) {
-            this.setPrerenderStatus(true);
-        }
+        const anyError: HttpResponse<any>[] = responses.filter(resp => resp?.status >= 300);
+        this.setPrerenderStatus(anyError.length === 0);
     }
 
     setPrerenderStatus(ready: boolean): void {
@@ -76,5 +74,13 @@ export class PrerenderRequestsWatcherService {
         meta303Redirect.content = `Location: ${location}`;
         document.getElementsByTagName('head')[0].appendChild(meta303);
         document.getElementsByTagName('head')[0].appendChild(meta303Redirect);
+    }
+
+    clearPrerenderMeta(): void {
+        document.querySelectorAll('meta').forEach(item => {
+            if (item.name.includes('prerender')) {
+                item.remove();
+            }
+        });
     }
 }
