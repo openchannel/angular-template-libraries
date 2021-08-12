@@ -29,6 +29,7 @@ export * from './lib/model/api/http-params-encoder-model';
 export * from './lib/model/api/properties.model';
 export * from './lib/model/api/request.model';
 export * from './lib/model/api/custom-content.model';
+export * from './lib/model/api/prerender-endpoints-config.model';
 
 /* Component models */
 export * from './lib/model/components/frontend.model';
@@ -69,3 +70,6 @@ export * from './lib/service/prerender-requests-watcher.service';
 
 /* Utils */
 export * from './lib/util/type-mapper.util';
+
+/* Interceptors */
+export * from './lib/interceptors/http-requests-watcher.interceptor';
