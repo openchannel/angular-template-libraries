@@ -35,6 +35,7 @@ export class PrerenderRequestsWatcherService {
 
     checkErrorsOrChangeStatus(responses: HttpResponse<any>[]): void {
         const anyError: HttpResponse<any>[] = responses.filter(resp => resp?.status >= 300);
+        console.log('hey! Im work!', anyError);
         this.setPrerenderStatus(anyError.length === 0);
     }
 

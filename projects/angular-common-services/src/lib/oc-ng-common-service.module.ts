@@ -3,6 +3,11 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpRequestService } from './service/http-request-services';
 import { HttpXsrfExtractor, HttpXsrfInterceptor, XSRF_HEADER_NAME } from './xsrf/xsrf';
 import { forIn, get } from 'lodash';
+import {
+    API_SPECIAL_ENDPOINTS,
+    HttpRequestsWatcherInterceptor,
+} from 'projects/angular-common-services/src/lib/interceptors/http-requests-watcher.interceptor';
+import { PrerenderEndpointsConfig } from 'projects/angular-common-services/src/lib/model/api/prerender-endpoints-config.model';
 
 export const API_URL = new InjectionToken<string>('API_URL');
 
@@ -197,6 +202,26 @@ export class CustomHttpClientXsrfModule {
             providers: [
                 options.headerName ? { provide: XSRF_HEADER_NAME, useValue: options.headerName } : [],
                 options.apiUrl ? { provide: API_URL, useValue: options.apiUrl } : [],
+            ],
+        };
+    }
+}
+
+@NgModule({
+    providers: [HttpRequestsWatcherInterceptor, { provide: HTTP_INTERCEPTORS, useExisting: HttpRequestsWatcherInterceptor, multi: true }],
+})
+export class NetlifyPrerenderModule {
+    static withOptions(
+        options: {
+            endpointsConfigForPrerender?: PrerenderEndpointsConfig;
+        } = {},
+    ): ModuleWithProviders<NetlifyPrerenderModule> {
+        return {
+            ngModule: NetlifyPrerenderModule,
+            providers: [
+                options.endpointsConfigForPrerender
+                    ? { provide: API_SPECIAL_ENDPOINTS, useValue: options.endpointsConfigForPrerender }
+                    : [],
             ],
         };
     }
