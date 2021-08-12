@@ -1,7 +1,7 @@
 /*
  * Public API Surface of angular-common-services
  */
-export { CustomHttpClientXsrfModule, OcCommonServiceModule, OcEndpointApiPathsCustom } from './lib/oc-ng-common-service.module';
+export { CustomHttpClientXsrfModule, OcCommonServiceModule, NetlifyPrerenderModule, OcEndpointApiPathsCustom } from './lib/oc-ng-common-service.module';
 export * from './lib/service/http-request-services';
 
 /* Api models*/
