@@ -1,3 +1,7 @@
+## Release notes - angular-template-libraries - Version 2.16.0 (8/11/2021)<br>
+### Bug<br>
+AT-1463 - [Portal][DFA > Videos] When user try to delete 1st item (video), it deletes the last item (video) if the items were not saved.<br>
+AT-1459 - Endpoint /auth/external/token returning 500 error using Google as an Auth provider<br>
 ## Release notes - angular-template-libraries - Version 2.15.0 (8/10/2021)<br>
 ### Story<br>
 AT-1422 - A user is able to be guided when they are forced to reset their account password.<br>
