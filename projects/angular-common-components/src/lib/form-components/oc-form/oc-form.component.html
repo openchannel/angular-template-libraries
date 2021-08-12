@@ -69,7 +69,7 @@
                      [placeholder]="formElement?.placeholder"></oc-number>
           <oc-checkbox *ngSwitchCase="'checkbox'"
                        formControlName="{{formElement?.id}}"
-                       [labelText]="formElement?.label"
+                       [labelText]="formElement?.description"
                        [requiredIndicator]="formElement?.attributes.required"></oc-checkbox>
           <oc-input *ngSwitchCase="'emailAddress'"
                     formControlName="{{formElement?.id}}"

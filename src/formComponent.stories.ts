@@ -290,7 +290,7 @@ FormWithCheckboxComponent.args = {
                 },
                 category: 'CUSTOM',
                 defaultValue: true,
-                description: '',
+                description: 'Terms of service',
                 id: 'test-checkbox',
                 isOpen: false,
                 isValid: true,
