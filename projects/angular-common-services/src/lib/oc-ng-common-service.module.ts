@@ -205,9 +205,7 @@ export class CustomHttpClientXsrfModule {
 }
 
 @NgModule({
-    providers: [
-        HttpRequestsWatcherInterceptor,
-        { provide: HTTP_INTERCEPTORS, useExisting: HttpRequestsWatcherInterceptor, multi: true }],
+    providers: [HttpRequestsWatcherInterceptor, { provide: HTTP_INTERCEPTORS, useExisting: HttpRequestsWatcherInterceptor, multi: true }],
 })
 export class NetlifyPrerenderModule {
     static withOptions(
