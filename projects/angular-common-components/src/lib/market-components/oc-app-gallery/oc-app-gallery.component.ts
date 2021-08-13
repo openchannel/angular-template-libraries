@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 import { get } from 'lodash';
+import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 @Component({
     selector: 'oc-app-gallery',
     templateUrl: './oc-app-gallery.component.html',
-    styleUrls: ['./oc-app-gallery.component.scss'],
+    styleUrls: ['./oc-app-gallery.component.css'],
 })
 export class OcAppGalleryComponent {
     /**
@@ -61,6 +62,15 @@ export class OcAppGalleryComponent {
      * @default 'appId'
      */
     @Input() appNavigationParam: string = 'appId';
+
+    /**
+     * Heading tag of label
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() headingTag: HeadingTag = 'h2';
+
     /**
      * Sending current app data on click by App card.
      *

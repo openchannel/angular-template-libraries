@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/co
 import { Router } from '@angular/router';
 import { OcEditUserFormConfig, OcEditUserResult } from '../models/oc-edit-user-form.model';
 import { FormGroup } from '@angular/forms';
+import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 @Component({
     selector: 'oc-signup-custom',
     templateUrl: './oc-signup-custom.component.html',
-    styleUrls: ['./oc-signup-custom.component.scss'],
+    styleUrls: ['./oc-signup-custom.component.css'],
 })
 export class OcSignupCustomComponent {
     /**
@@ -57,6 +58,10 @@ export class OcSignupCustomComponent {
      */
     @Input() showSignupFeedbackPage: boolean = false;
     /**
+     * showSignupFeedbackPage change emitter
+     */
+    @Output() showSignupFeedbackPageChange = new EventEmitter<boolean>();
+    /**
      * Flag that showing that form for sign up is loading.
      */
     @Input() formConfigsLoading: boolean = true;
@@ -76,6 +81,13 @@ export class OcSignupCustomComponent {
      * Returns last data from the user form on sign up action.
      */
     @Output() readonly resultUserData = new EventEmitter<OcEditUserResult>();
+    /**
+     * Heading tag of title
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() headingTag: HeadingTag = 'h1';
 
     resultFormValue: OcEditUserResult;
     formGroup: FormGroup;

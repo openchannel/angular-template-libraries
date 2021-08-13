@@ -6,7 +6,7 @@ import { OcEmbedVideoService } from './oc-embed-video.service';
 @Component({
     selector: 'oc-video',
     templateUrl: './oc-video.component.html',
-    styleUrls: ['./oc-video.component.scss'],
+    styleUrls: ['./oc-video.component.css'],
 })
 export class OcVideoComponent {
     /**

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { ComponentsUserLoginModel } from '../models/auth-types.model';
+import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 /**
  * Login component. Represent login page with auth logic.
  *
@@ -14,7 +15,7 @@ import { ComponentsUserLoginModel } from '../models/auth-types.model';
 @Component({
     selector: 'oc-login',
     templateUrl: './oc-login.component.html',
-    styleUrls: ['./oc-login.component.scss'],
+    styleUrls: ['./oc-login.component.css'],
 })
 export class OcLoginComponent {
     /**
@@ -68,6 +69,11 @@ export class OcLoginComponent {
     @Input() notVerifiedEmailErrorCode: string = 'email_not_verified';
 
     /**
+     * Error code for password change required.
+     */
+    @Input() passwordResetRequiredErrorCode: string = 'password_reset_required';
+
+    /**
      * Output event that emits on model change and pass Login model
      */
     @Output() readonly loginModelChange: EventEmitter<ComponentsUserLoginModel> = new EventEmitter<ComponentsUserLoginModel>();
@@ -81,6 +87,14 @@ export class OcLoginComponent {
      * Output event that emits on click to activation link button and pass Link email value
      */
     @Output() readonly sendActivationLink: EventEmitter<string> = new EventEmitter<string>();
+
+    /**
+     * Heading tag of title
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() headingTag: HeadingTag = 'h1';
 
     /**
      * Submit function emit changed login value check form on validity and submit `true` if everything is ok.
@@ -129,9 +143,9 @@ export class OcLoginComponent {
      * Checks if there are server errors for provided model
      * @returns boolean
      */
-    hasServerError(email: NgModel, errorCode: string): boolean {
-        if (email.errors) {
-            const serverErrorValidator = email.errors.serverErrorValidator;
+    hasServerError(control: NgModel, errorCode: string): boolean {
+        if (control.errors) {
+            const serverErrorValidator = control.errors.serverErrorValidator;
             if (serverErrorValidator && serverErrorValidator.code === errorCode) {
                 return true;
             }

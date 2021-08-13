@@ -1,6 +1,6 @@
 <div class="featured-apps">
     <div class="featured-apps__heading">
-        <h4 class="featured-apps__heading-text">{{label}}</h4>
+        <h2 [headingTag]="headingTag" class="featured-apps__heading-text">{{label}}</h2>
     </div>
     <div class="featured-apps__container"
          *ngIf="data && data.length > 0; else emptyData">
@@ -20,16 +20,16 @@
 </div>
 
 <ng-template #emptyData>
-    <h5>{{emptyDataMessage}}</h5>
+    <h3>{{emptyDataMessage}}</h3>
 </ng-template>
 
 <ng-template #defaultFeatureAppCard let-app>
     <div class="featured-apps__card">
         <a class="featured-apps__card-body {{customClasses}}">
             <div class="featured-apps__card-img">
-                <img src="{{app.icon}}" alt="">
+                <img *ngIf="app.icon" src="{{app.icon}}" alt="">
             </div>
-            <h5 class="featured-apps__card-name" ellipsis>{{app.name}}</h5>
+            <h3 [headingTag]="appHeadingTag" class="featured-apps__card-name" ellipsis>{{app.name}}</h3>
             <span class="featured-apps__card-description" ellipsis>{{(app.summary ? app.summary : app.description) | replaceHtmlTags}}</span>
         </a>
     </div>

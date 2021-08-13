@@ -26,6 +26,7 @@
         max-height: 228px;
         padding: 0;
         right: 0;
+        width: 100%;
 
         &-item {
             @include font-size-md();

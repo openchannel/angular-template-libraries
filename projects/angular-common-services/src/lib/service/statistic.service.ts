@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequestService } from './http-request-services';
 import { Observable } from 'rxjs';
 import { OcApiPaths } from '../oc-ng-common-service.module';
+import { HttpHeaders } from '@angular/common/http';
 
 /**
  * Description: API service for work with statistic.<br>
@@ -20,6 +21,7 @@ export class StatisticService {
      * Description: Increment visits to app
      *
      * @param {string} appId - (required)
+     * @param {HttpHeaders} headers - (optional)
      * @returns {Observable<any>} `Observable<any>`
      *
      * ### Example
@@ -27,8 +29,8 @@ export class StatisticService {
      * `recordVisitToApp('a2sd876ags7dd6g')`
      *
      */
-    recordVisitToApp(appId: string): Observable<any> {
+    recordVisitToApp(appId: string, headers?: HttpHeaders): Observable<any> {
         const mainUrl = `${this.apiPaths.stats}/increment/views`;
-        return this.httpRequest.post(mainUrl, { appId });
+        return this.httpRequest.post(mainUrl, { appId }, headers ? { headers } : {});
     }
 }

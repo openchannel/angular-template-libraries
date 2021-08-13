@@ -8,7 +8,7 @@ import { get } from 'lodash';
 @Component({
     selector: 'oc-app-list-grid',
     templateUrl: './oc-app-list-grid.component.html',
-    styleUrls: ['./oc-app-list-grid.component.scss'],
+    styleUrls: ['./oc-app-list-grid.component.css'],
 })
 export class OcAppListGridComponent {
     /**

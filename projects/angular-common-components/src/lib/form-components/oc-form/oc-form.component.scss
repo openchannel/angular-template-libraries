@@ -2,98 +2,99 @@
 @import '../../../../assets/styles/mixins';
 
 .form {
-  &__field {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    display: flex;
-    flex-direction: column;
-    @include media-breakpoint-sm {
-      margin-top: 3rem;
-      margin-bottom: 3rem;
-    }
-
-    &_direction_row_reverse {
-      flex-direction: row-reverse;
-      @include media-breakpoint-md {
-        flex-direction: column;
-      }
-    }
-
-    &_direction_row_normal {
-      flex-direction: row;
-      @include media-breakpoint-md {
-        flex-direction: column;
-      }
-    }
-
-    &-label {
-      flex: 0 0 25%;
-      margin-bottom: 1rem;
-
-      &_row {
-        @include media-breakpoint-md {
-          max-width: 100%;
-        }
-        align-items: center;
+    &__field {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
         display: flex;
-        height: 46px;
-        max-width: 25%;
-        min-width: 60px;
-      }
-
-      &_position_left {
-        margin-right: 1rem;
-        padding-left: 0;
-        justify-content: flex-start;
-      }
-
-      &_position_right {
-        margin-left: 1rem;
-        padding-right: 0;
-        justify-content: flex-end;
-      }
-    }
-
-    &-input {
-      width: 100%;
-    }
-    &-custom-error {
-      @include font-size-sm();
-      color: $danger;
-      margin-top: 6px;
-    }
-  }
-
-  &__buttons {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 1.5rem 0 1rem;
-
-    .form__button {
-
-      & + .form__button {
-        margin-left: 1.5rem;
-      }
-    }
-
-    &_justify_center {
-      justify-content: center;
-    }
-
-    &_justify_start {
-      justify-content: flex-start;
-    }
-
-    &_direction_row_reverse {
-      flex-direction: row-reverse;
-
-      .form__button {
-
-        & + .form__button {
-          margin-left: 0;
-          margin-right: 1.5rem;
+        flex-direction: column;
+        @include media-breakpoint-sm {
+            margin-top: 3rem;
+            margin-bottom: 3rem;
         }
-      }
+
+        &_direction_row_reverse {
+            flex-direction: row-reverse;
+            @include media-breakpoint-md {
+                flex-direction: column;
+            }
+        }
+
+        &_direction_row_normal {
+            flex-direction: row;
+            @include media-breakpoint-md {
+                flex-direction: column;
+            }
+        }
+
+        &-label {
+            flex: 0 0 25%;
+            margin-bottom: 1rem;
+
+            &_row {
+                @include media-breakpoint-md {
+                    max-width: 100%;
+                }
+                align-items: center;
+                display: flex;
+                height: 46px;
+                max-width: 25%;
+                min-width: 60px;
+            }
+
+            &_position_left {
+                margin-right: 1rem;
+                padding-left: 0;
+                justify-content: flex-start;
+            }
+
+            &_position_right {
+                margin-left: 1rem;
+                padding-right: 0;
+                justify-content: flex-end;
+            }
+        }
+
+        &-input {
+            width: 100%;
+        }
+
+        &-custom-error {
+            @include font-size-sm();
+            color: $danger;
+            margin-top: 6px;
+        }
     }
-  }
+
+    &__buttons {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 1.5rem 0 1rem;
+
+        .form__button {
+
+            & + .form__button {
+                margin-left: 1.5rem;
+            }
+        }
+
+        &_justify_center {
+            justify-content: center;
+        }
+
+        &_justify_start {
+            justify-content: flex-start;
+        }
+
+        &_direction_row_reverse {
+            flex-direction: row-reverse;
+
+            .form__button {
+
+                & + .form__button {
+                    margin-left: 0;
+                    margin-right: 1.5rem;
+                }
+            }
+        }
+    }
 }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 import { get } from 'lodash';
+import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 /**
  * Recommended apps component. Renders a list of applications, tha are recommended for a user.
@@ -10,7 +11,7 @@ import { get } from 'lodash';
 @Component({
     selector: 'oc-recommended-apps',
     templateUrl: './oc-recommended-apps.component.html',
-    styleUrls: ['./oc-recommended-apps.component.scss'],
+    styleUrls: ['./oc-recommended-apps.component.css'],
 })
 export class OcRecommendedAppsComponent {
     /**
@@ -33,6 +34,14 @@ export class OcRecommendedAppsComponent {
      * @default 'Recommended Apps'.
      */
     @Input() recommendedAppTitle: string = 'Recommended Apps';
+
+    /**
+     * Heading tag of title
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() headingTag: HeadingTag = 'h2';
 
     /**
      * Custom template for the app card.

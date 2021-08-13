@@ -1,3 +1,71 @@
+## Release notes - angular-template-libraries - Version 2.16.0 (8/11/2021)<br>
+### Bug<br>
+AT-1463 - [Portal][DFA > Videos] When user try to delete 1st item (video), it deletes the last item (video) if the items were not saved.<br>
+AT-1459 - Endpoint /auth/external/token returning 500 error using Google as an Auth provider<br>
+## Release notes - angular-template-libraries - Version 2.15.0 (8/10/2021)<br>
+### Story<br>
+AT-1422 - A user is able to be guided when they are forced to reset their account password.<br>
+### Bug<br>
+AT-1396 - Session is still valid after logout<br>
+## Release notes - angular-template-libraries - Version 2.14.0 (8/10/2021)<br>
+### Bug<br>
+AT-1482 - [Hotfix][Market][App Details] Getting 400 error for /views API call, "BAD_REQUEST", message: "This endpoint can be called once every 24 hours.<br>
+AT-1455 - Improve left sidebar filter clickable area<br>
+## Release notes - angular-template-libraries - Version 2.13.0 (8/5/2021)<br>
+### Bug<br>
+AT-1449 - [SelfHosted Sites][Market] Featured section on top of Market Site is not visible.<br>
+AT-1348 - [Market][App Details] Vimeo channel link displayed as an invalid link in Portal and Market. Youtube channel not working.<br>
+AT-1141 - [UI][Marketsite][Tablet] App details: Video goes out of the border of the page.<br>
+## Release notes - angular-template-libraries - Version 2.12.0 (8/4/2021)<br>
+### Subtask<br>
+AT-1462 - [CAP] Update email validator on the CAP side<br>
+### Story<br>
+AT-1416 - A user is able to implement any kind of statistic from CAP<br>
+### Task<br>
+AT-1385 - Allow customization of heading tags<br>
+### Bug<br>
+AT-1364 - Don't use '**' patterns<br>
+AT-605 - [My Profile] [Email] It allows to update the invalid format email address.<br>
+## Release notes - angular-template-libraries - Version 2.11.0 (7/29/2021)<br>
+### Task<br>
+AT-1433 - customize the Filter component<br>
+### Bug<br>
+AT-1384 - [Portal] Duplicate value showing in DFA fields when same name fields available in that app type<br>
+AT-1322 - [DFA] Sequence inside the DFA fields has been changed while adding new item to DFA Field.<br>
+AT-1205 - [Portal / Market][Signup][Activation page sign up link] Developer is not able to sign up.<br>
+## Release notes - angular-template-libraries - Version 2.10.0 (7/26/2021)<br>
+### Bug<br>
+AT-1432 - [Market] [UI] [Featured] App Icon and App name Overlap.<br>
+### Story<br>
+AT-511 - A User should write an app review for approval<br>
+### Bug<br>
+AT-1426 - [Market/Portal][Forgot Password] Forgot Password button does nothing on the Market and Portal sites.<br>
+AT-1401 - Change styles placing in oc-menu-user-grid, because it affects some components(right placement in description)<br>
+AT-1393 - Change styles according to attached ones to wrap elements on tablet view in oc-image-gallery<br>
+### Task<br>
+AT-1388 - If the validation mode is introspection then the attributes from the introspection response should be part of claim mappings<br>
+AT-1386 - idToken should not be required when the validation mode is Introspection<br>
+### Bug<br>
+AT-1372 - Button size should not resize when user clicks on it<br>
+### Task<br>
+AT-1368 - A user is able to access GET /reviews/{reviewId} from CAP<br>
+AT-1367 - In CAP turn off caching for stage1 and dev1 environments<br>
+### Bug<br>
+AT-1431 - [Market] [UI] App name and Price value overlap.<br>
+AT-1364 - Don't use '**' patterns<br>
+### Story<br>
+AT-1350 - Multi select list field display options<br>
+AT-1349 - Dropdown list field display options<br>
+### Task<br>
+AT-1343 - [Component][File Upload] File Upload area should have cursor: pointer, CSS so user get hand cursor.<br>
+AT-1319 - Update chart.js version<br>
+AT-1276 - Manage files properties in a centralized file<br>
+AT-1275 - Manage CSS properties in a centralized file<br>
+### Story<br>
+AT-513 - A User should delete an app review<br>
+AT-512 - A User should edit an app review<br>
+### Task<br>
+AT-1365 - Components should respect fields' min and max definitions<br>
 ## Release notes - angular-template-libraries - Version 2.9.0 (7/15/2021)<br>
 ### Task<br>
 AT-1331 - CMS support on Templates<br>

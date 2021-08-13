@@ -10,5 +10,10 @@
         </span>
     </ng-template>
 
-    <ngb-rating [(rate)]="rating" [max]="5" [readonly]="true" [starTemplate]="t"></ngb-rating>
+    <ngb-rating [rate]="rating"
+                [max]="5"
+                [readonly]="disabled"
+                [starTemplate]="t"
+                (leave)="onLeave()"
+                (rateChange)="onRateChange($event)"></ngb-rating>
 </div>

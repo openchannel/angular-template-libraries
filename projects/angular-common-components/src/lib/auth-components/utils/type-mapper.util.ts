@@ -1,5 +1,5 @@
 import { cloneDeep, each, forIn, get, map, set } from 'lodash';
-import { TypeFieldModel, TypeModel } from '../models/oc-type-definition.model';
+import { OptionValue, TypeFieldModel, TypeModel } from '../models/oc-type-definition.model';
 
 export class TypeMapperUtils {
     /**
@@ -52,7 +52,7 @@ export class TypeMapperUtils {
         const clonedFields: T[] = cloneDeep(fields);
         each(clonedFields, field => {
             if (field?.options) {
-                field.options = map(field.options, option => (option?.value !== undefined ? option.value : option));
+                field.options = map(field.options, (option: OptionValue) => (option?.value !== undefined ? option.value : option));
             }
             if (field?.fields) {
                 field.fields = this.normalizeOptions(field.fields);

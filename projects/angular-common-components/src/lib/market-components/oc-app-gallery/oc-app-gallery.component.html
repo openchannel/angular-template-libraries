@@ -1,7 +1,7 @@
 <div class="gallery">
     <div class="gallery__header">
         <div class="gallery__header-top">
-            <h4 class="gallery__heading">{{appGalleryTitle}}</h4>
+            <h2 [headingTag]="headingTag" class="gallery__heading">{{appGalleryTitle}}</h2>
             <a class="gallery__more" id="seeAllLink"
                *ngIf="moreAppsTitle && !seeAllUrl"
                (click)="clickMoreApps.emit()">

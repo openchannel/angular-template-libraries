@@ -2,34 +2,36 @@
 @import '../../../../assets/styles/mixins';
 
 .edit-user-form {
-  &__type-label {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-  }
-  &__consent {
-    &__checkbox {
-      align-items: flex-start;
-      display: flex;
-
-      &-input {
-        height: 16px;
-      }
+    &__type-label {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
     }
 
-    &__label {
-      @include font-size-sm();
+    &__consent {
+        &__checkbox {
+            align-items: flex-start;
+            display: flex;
+
+            &-input {
+                height: 16px;
+            }
+        }
+
+        &__label {
+            @include font-size-sm();
+        }
+
+        &__link {
+            @include font-size-sm();
+            @include font-medium();
+        }
     }
 
-    &__link {
-      @include font-size-sm();
-      @include font-medium();
+    &__empty_form_configs {
+        text-align: center;
+        color: $danger;
+        font-size: 16px;
     }
-  }
-  &__empty_form_configs {
-    text-align: center;
-    color: $danger;
-    font-size: 16px;
-  }
 }

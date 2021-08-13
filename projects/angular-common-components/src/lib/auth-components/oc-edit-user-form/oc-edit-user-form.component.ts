@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TypeFieldModel, TypeModel } from '../models/oc-type-definition.model';
 import { OcCheckboxData, OcEditUserFormConfig, OcEditUserResult, OCOrganization } from '../models/oc-edit-user-form.model';
@@ -7,7 +7,7 @@ import { TypeMergeUtils } from '../utils/type-merge.util';
 @Component({
     selector: 'oc-edit-user-form',
     templateUrl: './oc-edit-user-form.component.html',
-    styleUrls: ['./oc-edit-user-form.component.scss'],
+    styleUrls: ['./oc-edit-user-form.component.css'],
 })
 export class OcEditUserFormComponent implements OnInit {
     private readonly ORG_PREFIX = 'org--';

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 import { get } from 'lodash';
+import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 /**
  * Featured apps component. Renders a list of applications, that are featured by a user.
@@ -10,7 +11,7 @@ import { get } from 'lodash';
 @Component({
     selector: 'oc-featured-apps',
     templateUrl: './oc-featured-apps.component.html',
-    styleUrls: ['./oc-featured-apps.component.scss'],
+    styleUrls: ['./oc-featured-apps.component.css'],
 })
 export class OcFeaturedAppsComponent {
     /**
@@ -26,6 +27,22 @@ export class OcFeaturedAppsComponent {
      * @default: 'Featured'
      */
     @Input() label: string = 'Featured';
+
+    /**
+     * Heading tag of label
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() headingTag: HeadingTag = 'h2';
+
+    /**
+     * Heading tag of app label
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() appHeadingTag: HeadingTag = 'h3';
 
     /**
      * The message that will be shown when there are no featured apps.

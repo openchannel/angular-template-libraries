@@ -10,7 +10,7 @@ import { SidebarValue } from '../model/components-basic.model';
 @Component({
     selector: 'oc-sidebar',
     templateUrl: './oc-sidebar.component.html',
-    styleUrls: ['./oc-sidebar.component.scss'],
+    styleUrls: ['./oc-sidebar.component.css'],
 })
 export class OcSidebarComponent {
     /**
@@ -60,6 +60,10 @@ export class OcSidebarComponent {
      * Emits parent sidebar model and child sidebar model.
      */
     onClickSidebar(parentSidebar: SidebarValue, childSidebar?: SidebarValue): void {
-        this.sidebarChange.emit({ parent: parentSidebar, child: childSidebar });
+        if (parentSidebar.values?.length > 0 && !childSidebar) {
+            parentSidebar.expanded = !parentSidebar.expanded;
+        } else {
+            this.sidebarChange.emit({ parent: parentSidebar, child: childSidebar });
+        }
     }
 }

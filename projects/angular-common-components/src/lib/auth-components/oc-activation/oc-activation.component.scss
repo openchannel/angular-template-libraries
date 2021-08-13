@@ -2,50 +2,62 @@
 @import '../../../../assets/styles/mixins';
 
 .activation {
-  @include media-breakpoint-sm {
-    width: 100%;
-    height: 100vh;
-  }
-  &__card-body {
-    @include card-body;
-  }
-  &__logo {
-    margin-bottom: 4rem;
-    text-align: center;
-    &-img {
-      max-width: 100%;
+    @include media-breakpoint-sm {
+        width: 100%;
+        height: 100vh;
     }
-  }
-  &__header {
-    text-align: center;
-    margin-bottom: 4rem;
-    &-heading {
-      margin-bottom: 1rem;
+
+    &__card-body {
+        @include card-body;
     }
-  }
-  &__form-group {
-    &-label {
-      display: block;
-      margin-bottom: 1rem;
+
+    &__logo {
+        margin-bottom: 4rem;
+        text-align: center;
+
+        &-img {
+            max-width: 100%;
+        }
     }
-  }
-  &__button {
-    display: block;
-    margin: 4rem 0 3rem;
-    width: 100%;
-  }
-  &__reactivation {
-    margin-bottom: 2rem;
-    text-align: center;
-    &-label {
-      margin-bottom: 0;
+
+    &__header {
+        text-align: center;
+        margin-bottom: 4rem;
+
+        &-heading {
+            margin-bottom: 1rem;
+            font-size: 3rem;
+        }
     }
-  }
-  &__sign-up {
-    text-align: center;
-  }
-  &__link {
-    @include font-size-md();
-    @include font-medium();
-  }
+
+    &__form-group {
+        &-label {
+            display: block;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__button {
+        display: block;
+        margin: 4rem 0 3rem;
+        width: 100%;
+    }
+
+    &__reactivation {
+        margin-bottom: 2rem;
+        text-align: center;
+
+        &-label {
+            margin-bottom: 0;
+        }
+    }
+
+    &__sign-up {
+        text-align: center;
+    }
+
+    &__link {
+        @include font-size-md();
+        @include font-medium();
+    }
 }

@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
     &[type='primary'] {
 
         .progress {
-            background-color: #e9ecef;
+            background-color: darken($light, 4);
             height: 4px;
         }
     }
@@ -277,7 +277,7 @@ oc-textarea {
 }
 
 .menu-preview:hover {
-    background: url(~@openchannel/angular-common-components/assets/img/view.svg) no-repeat 15px;
+    background: url(~@openchannel/angular-common-components/assets/img/view_h.svg) no-repeat 15px;
 }
 
 .min-vw-auto {
@@ -326,9 +326,17 @@ a.link {
             border-bottom: 0;
         }
 
-        &.active, &:active {
+        &:hover,
+        &:focus,
+        &.active,
+        &:active {
+            outline: none;
             background-color: rgba($dropdown-border, .2);
             color: $dropdown-item-text-hover;
+        }
+
+        &:hover {
+            background-color: rgba($dropdown-border, .1);
         }
     }
 }
@@ -373,14 +381,29 @@ a.link {
 }
 
 .cards-interface__preview-header {
-  .array-preview {
-    .array-preview__field {
-      margin: 0;
-      &-content__tags-item {
-        margin-bottom: 8px;
-      }
+    .array-preview {
+        .array-preview__field {
+            margin: 0;
+
+            &-content__tags-item {
+                margin-bottom: 8px;
+            }
+        }
     }
-  }
+}
+
+// Special field label for the oc-dropdown-multi-app component
+
+.dropdown-multi-app__search-input-field {
+    width: 100%;
+
+    .dropdown-menu .dropdown-item {
+        height: 54px;
+        padding: 4px;
+        @include media-breakpoint-sm {
+            height: auto;
+        }
+    }
 }
 
 .modal-button {
@@ -417,14 +440,14 @@ a.link {
                                 }
 
                                 &:hover {
-                                    background: #f4f4f4;
+                                    background: $editor-btn-hover;
                                 }
                             }
 
                             .tox-tbtn {
 
                                 &:hover {
-                                    background: #f4f4f4;
+                                    background: $editor-btn-hover;
                                 }
 
                                 svg {
@@ -450,14 +473,14 @@ a.link {
                                 }
 
                                 &:hover {
-                                    background: #f4f4f4;
+                                    background: $editor-btn-hover;
                                 }
                             }
 
                             .tox-tbtn {
 
                                 &:hover {
-                                    background: #f4f4f4;
+                                    background: $editor-btn-hover;
                                 }
 
                                 svg {
@@ -526,6 +549,33 @@ oc-select {
         }
     }
 }
+
+// Custom style for dropdown-multi-checkbox
+.dropdown-multi-checkbox {
+    .dropdown-menu {
+        .dropdown-item {
+            &:hover {
+                background-color: $dropdown-light;
+            }
+
+            &:active {
+                color: $dropdown-item-text-hover;
+                background-color: $dropdown-light;
+            }
+
+            &:focus {
+                outline: none;
+                color: $dropdown-item-text-hover;
+                background-color: $dropdown-light;
+            }
+        }
+    }
+
+    &__label-text .oc-button {
+        text-align: left;
+    }
+}
+
 
 .svg-primary {
 

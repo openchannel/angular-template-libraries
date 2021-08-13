@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { OcReviewListComponent } from './oc-review-list.component';
 import { By } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { MockButtonComponent, MockRatingComponent } from '@openchannel/angular-common-components/src/mock/mock';
+import { MockButtonComponent, MockHeadingTagDirective, MockRatingComponent } from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcReviewListComponent', () => {
     let component: OcReviewListComponent;
@@ -12,7 +12,7 @@ describe('OcReviewListComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcReviewListComponent, MockButtonComponent, MockRatingComponent],
+                declarations: [OcReviewListComponent, MockButtonComponent, MockRatingComponent, MockHeadingTagDirective],
                 imports: [CommonModule],
             }).compileComponents();
         }),
@@ -47,11 +47,13 @@ describe('OcReviewListComponent', () => {
                 reviewOwnerName: 'John Doe',
                 rating: 5,
                 review: 'Cool App!',
+                reviewId: '43423df434gfg1212kkd',
             },
             {
                 reviewOwnerName: 'Jane Doe',
                 rating: 2,
                 review: '',
+                reviewId: '434jg43df434gfg1212kkd',
             },
         ];
         fixture.detectChanges();
@@ -81,6 +83,7 @@ describe('OcReviewListComponent', () => {
             reviewOwnerName: 'John Doe',
             rating: 5,
             review: 'Cool App!',
+            reviewId: '43423df434gfg1212kkd',
         };
         component.reviewListTitle = 'Most Recent Reviews';
         component.maxReviewDisplay = 2;
@@ -97,5 +100,12 @@ describe('OcReviewListComponent', () => {
         await fixture.whenStable().then(() => {
             expect(button.textContent).toContain('Collapse');
         });
+    });
+
+    it('should hid the review button', () => {
+        component.allowWriteReview = false;
+
+        fixture.detectChanges();
+        expect(fixture.debugElement.query(By.css('.review-list__header-button'))).toBeFalsy();
     });
 });

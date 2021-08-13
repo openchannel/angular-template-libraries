@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
     selector: 'oc-tag-element',
     templateUrl: './oc-tag-element.component.html',
-    styleUrls: ['./oc-tag-element.component.scss'],
+    styleUrls: ['./oc-tag-element.component.css'],
 })
 export class OcTagElementComponent {
     /**

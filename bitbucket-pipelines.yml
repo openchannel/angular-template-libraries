@@ -52,17 +52,17 @@ definitions:
         script:
           - git remote set-url origin git@github.com:openchannel/angular-template-libraries.git
           - git remote -v
-          - git push origin master:main
-          - git push origin --tags
+          - git push origin --force master:main
+          - git push origin --force --tags
 
     - step: &build-app
         name: "Build"
-        image: node:14.15.4-alpine3.12
         script:
           - npm install
           - npm run angular-common-services-pack
           - npm run build-prod angular-common-components && npm run angular-common-components-pack
           - npm run docs:json
+          - npm run scss-to-css
           - npm run build-storybook
         artifacts:
           - storybook-static/**

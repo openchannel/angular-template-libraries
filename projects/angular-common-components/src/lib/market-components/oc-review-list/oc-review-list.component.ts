@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { OCReviewDetails } from '../models/oc-review-details-model';
+import { OCReviewDetails, ReviewListOptionType } from '../models/oc-review-details-model';
+import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 /**
  * Review list component.
@@ -9,17 +10,31 @@ import { OCReviewDetails } from '../models/oc-review-details-model';
 @Component({
     selector: 'oc-review-list',
     templateUrl: './oc-review-list.component.html',
-    styleUrls: ['./oc-review-list.component.scss'],
+    styleUrls: ['./oc-review-list.component.css'],
 })
 export class OcReviewListComponent implements OnChanges {
-    baseReviewsList: OCReviewDetails[] = [];
-
     /**
      * Review list title.
      * @type {string}.
      * Default 'Most recent reviews'.
      */
     @Input() reviewListTitle: string = 'Most recent reviews';
+
+    /**
+     * Heading tag of title
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() headingTag: HeadingTag = 'h2';
+
+    /**
+     * Heading tag of review title
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() reviewHeadingTag: HeadingTag = 'h3';
 
     /**
      * The total review count of the list.
@@ -30,7 +45,7 @@ export class OcReviewListComponent implements OnChanges {
     /**
      * The maximum number of reviews to display.
      * @type {number}.
-     * @default.
+     * @default 3
      */
     @Input() maxReviewDisplay: number = 3;
 
@@ -57,13 +72,38 @@ export class OcReviewListComponent implements OnChanges {
     }
 
     /**
+     * Allow the user write a review. When `true` - review button will be shown.
+     * @default true
+     */
+    @Input() allowWriteReview: boolean = true;
+
+    /**
+     * Path to the custom icon for the hidden menu toggle button.
+     *
+     * @default dots-menu.svg
+     */
+    @Input() menuUrl: string = 'assets/angular-common-components/dots-menu.svg';
+    /**
+     * (optional)
+     * Id of the current authorized user which has a review in this list.
+     * If this Input does not empty - dropdown menu will be shown on his review.
+     */
+    @Input() currentUserId: string = '';
+
+    /**
      * Event emitter for writing a new review.
      * @type {*}.
      */
     @Output() readonly writeAReview: EventEmitter<any> = new EventEmitter<any>();
+    /**
+     * Emits chosen action from the review dropdown menu to the parent.
+     */
+    @Output() readonly chosenAction: EventEmitter<ReviewListOptionType> = new EventEmitter<ReviewListOptionType>();
 
+    baseReviewsList: OCReviewDetails[] = [];
     displayedReviews: OCReviewDetails[] = [];
 
+    reviewMenuOptions: ReviewListOptionType[] = ['EDIT', 'DELETE'];
 
     /**
      * Checks for any changes in the component.
