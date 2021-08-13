@@ -48,7 +48,7 @@ export class OcResendActivationComponent {
      * Uses ResetPasswordForm.
      * @type {*}.
      */
-    @Output() readonly submit: EventEmitter<any> = new EventEmitter<any>();
+    @Output() readonly buttonClick: EventEmitter<any> = new EventEmitter<any>();
 
     /**
      * Heading tag of title
@@ -68,7 +68,7 @@ export class OcResendActivationComponent {
             if (!form.valid) {
                 form.control.markAllAsTouched();
             }
-            this.submit.emit(form.valid);
+            this.buttonClick.emit(form.valid);
         }
     }
 }
