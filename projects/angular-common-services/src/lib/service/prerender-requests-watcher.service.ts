@@ -15,8 +15,6 @@ export class PrerenderRequestsWatcherService {
     private close = new Subject<void>();
     private sleepAfterLastRequestMS = 1000;
 
-    constructor() {}
-
     /**
      * Adding a new observable with api request to the watcher. This function checking of the all requests fulfillment.
      * @param httpEvent observable with a request data
