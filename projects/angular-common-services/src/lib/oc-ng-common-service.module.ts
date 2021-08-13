@@ -204,6 +204,9 @@ export class CustomHttpClientXsrfModule {
     }
 }
 
+/**
+ * default api endpoints config for the pre-render interceptor.
+ */
 const defaultEndpoints: PrerenderEndpointsConfig = {
     excludeAPICall: [],
 };
