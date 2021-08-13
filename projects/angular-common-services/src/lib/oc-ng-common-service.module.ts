@@ -204,6 +204,10 @@ export class CustomHttpClientXsrfModule {
     }
 }
 
+const defaultEndpoints: PrerenderEndpointsConfig = {
+    excludeAPICall: [],
+};
+
 @NgModule({
     providers: [HttpRequestsWatcherInterceptor, { provide: HTTP_INTERCEPTORS, useExisting: HttpRequestsWatcherInterceptor, multi: true }],
 })
@@ -216,9 +220,10 @@ export class NetlifyPrerenderModule {
         return {
             ngModule: NetlifyPrerenderModule,
             providers: [
-                options.endpointsConfigForPrerender
-                    ? { provide: PrerenderEndpointsConfig, useValue: options.endpointsConfigForPrerender }
-                    : [],
+                {
+                    provide: PrerenderEndpointsConfig,
+                    useValue: options.endpointsConfigForPrerender ? options.endpointsConfigForPrerender : defaultEndpoints,
+                },
             ],
         };
     }
