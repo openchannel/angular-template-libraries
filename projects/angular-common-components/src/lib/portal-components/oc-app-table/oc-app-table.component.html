@@ -6,8 +6,8 @@
                (scrolled)="onScrollDown()"
                infiniteScroll
                aria-describedby="App listing table">
-            <thead class="oc-table__head">
-                <tr>
+            <thead>
+                <tr class="oc-table__head">
                     <th class="oc-table__th oc-table__placeholder" scope="col"></th>
                     <th class="oc-table__th oc-table__name" scope="col" (click)="sortAppsBy('name')">Name
                         <img [src]="sortingObjects[0].ascending ? ascendingSortIcon ? ascendingSortIcon:
