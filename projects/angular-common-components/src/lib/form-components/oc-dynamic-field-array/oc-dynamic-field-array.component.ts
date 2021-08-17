@@ -135,14 +135,6 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Returns an DFA field index.
-     * Used in ngFor loop to render DFA form array controls.
-     */
-    trackByFieldIndex(index: number, item: any): number {
-        return index;
-    }
-
-    /**
      * Creates a new config for created form.
      * Maps DFA form array controls and returns new object.
      * Subscribes to all preview field changes.
