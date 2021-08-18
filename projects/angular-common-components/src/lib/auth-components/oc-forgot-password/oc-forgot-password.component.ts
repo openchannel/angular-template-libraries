@@ -63,7 +63,7 @@ export class OcForgotPasswordComponent {
     /**
      * Submit output event emitter.
      */
-    @Output() readonly submit = new EventEmitter<void>();
+    @Output() readonly buttonClick = new EventEmitter<void>();
 
     /**
      * Heading tag of title
@@ -83,7 +83,7 @@ export class OcForgotPasswordComponent {
         if (!this.process) {
             form.form.markAllAsTouched();
             if (form.valid) {
-                this.submit.emit();
+                this.buttonClick.emit();
             }
         }
     }
