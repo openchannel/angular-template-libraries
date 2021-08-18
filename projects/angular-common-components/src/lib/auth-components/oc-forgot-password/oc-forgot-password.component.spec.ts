@@ -80,40 +80,40 @@ describe('OcForgotPasswordComponent', () => {
     it('should emit event on form button click when form valid', async () => {
         component.process = false;
         component.loginModel.email = 'test@test.com';
-        spyOn(component.submit, 'emit');
+        spyOn(component.buttonClick, 'emit');
         fixture.detectChanges();
 
         await fixture.whenStable().then(() => {
             const button = fixture.debugElement.query(By.css('oc-button')).nativeElement;
             button.click();
-            expect(component.submit.emit).toHaveBeenCalledWith();
+            expect(component.buttonClick.emit).toHaveBeenCalledWith();
         });
     });
 
     it('button should not emmit submit when form not valid', async () => {
         component.process = false;
         component.loginModel.email = '';
-        spyOn(component.submit, 'emit');
+        spyOn(component.buttonClick, 'emit');
 
         fixture.detectChanges();
 
         await fixture.whenStable().then(() => {
             const button = fixture.debugElement.query(By.css('oc-button')).nativeElement;
             button.click();
-            expect(component.submit.emit).toHaveBeenCalledTimes(0);
+            expect(component.buttonClick.emit).toHaveBeenCalledTimes(0);
         });
     });
 
     it('button should not emmit submit when process is on', () => {
         component.process = true;
-        spyOn(component.submit, 'emit');
+        spyOn(component.buttonClick, 'emit');
 
         fixture.detectChanges();
 
         const button = fixture.debugElement.query(By.css('oc-button')).nativeElement;
         button.click();
 
-        expect(component.submit.emit).toHaveBeenCalledTimes(0);
+        expect(component.buttonClick.emit).toHaveBeenCalledTimes(0);
     });
 
     it('should redirect to login page', async () => {
