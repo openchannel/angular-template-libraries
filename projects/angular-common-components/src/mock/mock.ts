@@ -1,4 +1,4 @@
-import {Component, Directive, EventEmitter, forwardRef, Input, Output, TemplateRef} from '@angular/core';
+import { Component, Directive, EventEmitter, forwardRef, Input, Output, TemplateRef } from '@angular/core';
 import {
     AbstractControl,
     AbstractControlDirective,
@@ -12,12 +12,14 @@ import {
 import {
     AppTypeFieldModel,
     DropdownModel,
-    FullAppData, HeadingTag,
+    FullAppData,
+    HeadingTag,
     RadioItemValue,
 } from '@openchannel/angular-common-components/src/lib/common-components';
 import { OcCheckboxData, OcEditUserFormConfig, OCOrganization } from '@openchannel/angular-common-components/src/lib/auth-components';
-import { FieldValueModel, DropdownItemType } from '@openchannel/angular-common-components/src/lib/form-components';
+import { FieldValueModel, DropdownItemType, FileDetails } from '@openchannel/angular-common-components/src/lib/form-components';
 import { Observable } from 'rxjs';
+import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
 
 @Component({
     selector: 'oc-label',
@@ -104,6 +106,12 @@ export class MockPasswordComponent {
      *  @default 'text'
      */
     @Input() inputType: string = 'text';
+
+    registerOnChange(fn: any): void {}
+
+    registerOnTouched(fn: any): void {}
+
+    writeValue(obj: any): void {}
 }
 
 @Component({
@@ -135,6 +143,33 @@ export class MockCheckboxComponent implements ControlValueAccessor {
 })
 export class MockFormComponent {
     @Input() formJsonData: any;
+    @Input() generatedForm: FormGroup;
+    @Input() successButtonText: string = 'Submit';
+    @Input() showButton: boolean = true;
+    @Output() readonly formSubmitted = new EventEmitter<any>();
+    @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    formData = {
+        name: 'Test name',
+        role: 'admin',
+        aboutme: '',
+        skills: ['angular'],
+    };
+
+    submitForm(): any {
+        this.formSubmitted.emit(this.formData);
+    }
+}
+
+@Component({
+    template: '',
+    selector: 'oc-single-form',
+})
+export class MockSingleFormComponent {
+    @Input() formJsonData: any;
+    @Input() buttonPosition: string;
+    @Input() labelPosition: string;
+    @Input() process: boolean;
     @Input() generatedForm: FormGroup;
     @Input() successButtonText: string = 'Submit';
     @Input() showButton: boolean = true;
@@ -313,19 +348,17 @@ export class MockRadioButtonComponent implements ControlValueAccessor {
     writeValue(obj: any): void {}
 }
 
-
 @Component({
     template: '',
     selector: 'oc-dropbox',
 })
 export class MockDropboxComponent {
     @Input() placeHolder: string;
-    @Input() items: string [];
+    @Input() items: string[];
     @Input() customSearch: (text: Observable<string>) => Observable<readonly any[]>;
     @Input() clearFormAfterSelect: boolean = false;
     @Input() dropElementTemplate: TemplateRef<any>;
 }
-
 
 @Component({
     template: '',
@@ -373,4 +406,215 @@ export class MockDropdownMultiApp implements ControlValueAccessor {
 })
 export class MockHeadingTagDirective {
     @Input() headingTag: HeadingTag;
+}
+
+@Component({
+    selector: 'oc-tooltip-label',
+    template: '',
+})
+export class MockTooltipComponent {
+    @Input() text: string = '';
+    @Input() required: boolean = false;
+    @Input() description: string = '';
+    @Input() labelClass: string = '';
+}
+
+@Component({
+    selector: 'oc-rich-text-editor',
+    template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockRichEditorComponent),
+            multi: true,
+        },
+    ],
+})
+export class MockRichEditorComponent implements ControlValueAccessor {
+    @Input() placeholder: string = '';
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-textarea',
+    template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockTextareaComponent),
+            multi: true,
+        },
+    ],
+})
+export class MockTextareaComponent implements ControlValueAccessor {
+    placeholderValue: string = '';
+
+    @Input() set placeholder(placeholder: string) {
+        if (placeholder) {
+            this.placeholderValue = placeholder;
+        }
+    }
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-tags',
+    template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockTagsComponent),
+            multi: true,
+        },
+    ],
+})
+export class MockTagsComponent implements ControlValueAccessor {
+    @Input() placeHolderInputName: string = '';
+    @Input() title: string;
+    @Input() availableTags: string[] = [];
+    @Input() placeholder: string;
+    @Input() minTagLength: number = 1;
+    @Input() maxTagLength: number = null;
+    @Input() minTagsCount: number;
+    @Input() maxTagsCount: number = null;
+    @Input() tagsType: 'string' | 'boolean' | 'number' = 'string';
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-file-upload',
+    template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockFileUploadComponent),
+            multi: true,
+        },
+    ],
+})
+export class MockFileUploadComponent implements ControlValueAccessor {
+    @Input() isMultiFile = false;
+    @Input() defaultFileIcon = '';
+    @Input() fileType: string;
+    @Input() uploadIconUrl;
+    @Input() acceptType;
+    @Input() imageWidth;
+    @Input() imageHeight;
+    @Input() mockUploadingFile: () => FileDetails;
+    @Input() fileUploadRequest: (
+        file: FormData,
+        isPrivate: boolean,
+        hash?: string[],
+    ) => Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent>;
+    @Input() fileDetailsRequest: (fileId: string) => Observable<FileDetails>;
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-number',
+    template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockNumberComponent),
+            multi: true,
+        },
+    ],
+})
+export class MockNumberComponent implements ControlValueAccessor {
+    @Input() placeholder: string = '';
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-color',
+    template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockColorComponent),
+            multi: true,
+        },
+    ],
+})
+export class MockColorComponent implements ControlValueAccessor {
+    @Input() placeholder: string = '';
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-video-url',
+    template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockVideoUrlComponent),
+            multi: true,
+        },
+    ],
+})
+export class MockVideoUrlComponent implements ControlValueAccessor {
+    @Input() placeholder: string;
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-datetime-picker',
+    template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockDateTimeComponent),
+            multi: true,
+        },
+    ],
+})
+export class MockDateTimeComponent implements ControlValueAccessor {
+    @Input()
+    type: 'datetime' | 'date';
+    @Input()
+    settings: any;
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-multi-select-list',
+    template: '',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => MockMultiSelectComponent),
+            multi: true,
+        },
+    ],
+})
+export class MockMultiSelectComponent implements ControlValueAccessor {
+    @Input() label: string = '';
+    @Input() set availableItemsList(value: any[]) {
+        if (value && value.length > 0) {
+            this.availableItems = value;
+        } else {
+            throw Error('availableItemsList is required!');
+        }
+    }
+    availableItems: string[] = [];
+    registerOnChange(fn: any): void {}
+    registerOnTouched(fn: any): void {}
+    writeValue(obj: any): void {}
 }
