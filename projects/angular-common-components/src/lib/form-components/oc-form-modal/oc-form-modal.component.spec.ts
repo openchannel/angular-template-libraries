@@ -63,7 +63,6 @@ describe('OcFormModalComponent', () => {
                         minChars: 10,
                     },
                     options: null,
-                    subFieldDefinitions: null,
                 },
                 {
                     id: 'role',
@@ -74,7 +73,6 @@ describe('OcFormModalComponent', () => {
                     required: null,
                     attributes: { required: true },
                     options: ['admin', 'user', 'test'],
-                    subFieldDefinitions: null,
                 },
                 {
                     id: 'aboutme',
@@ -89,7 +87,6 @@ describe('OcFormModalComponent', () => {
                         minChars: 10,
                     },
                     options: null,
-                    subFieldDefinitions: null,
                 },
                 {
                     id: 'skills',
@@ -104,7 +101,6 @@ describe('OcFormModalComponent', () => {
                         required: true,
                     },
                     options: null,
-                    subFieldDefinitions: null,
                 },
             ],
         };
