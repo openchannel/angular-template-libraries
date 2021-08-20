@@ -52,7 +52,7 @@ export class OcActivationComponent {
     /**
      * Emitting that Activate button was pressed
      */
-    @Output() submit = new EventEmitter<any>();
+    @Output() readonly buttonClick = new EventEmitter<any>();
 
     /**
      * Heading tag of title
@@ -67,7 +67,7 @@ export class OcActivationComponent {
             if (!form.valid) {
                 form.control.markAllAsTouched();
             }
-            this.submit.emit(form.valid);
+            this.buttonClick.emit(form.valid);
         }
     }
 }
