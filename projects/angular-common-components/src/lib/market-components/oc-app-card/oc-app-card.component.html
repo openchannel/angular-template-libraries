@@ -7,7 +7,7 @@
 
 <ng-template #cardBody>
     <div class="oc-card__icon">
-        <img class="img-fluid" [src]="appIcon" alt="">
+        <img class="oc-card__icon-img img-fluid" [src]="appIcon" [alt]="appData.name || 'app-logo'">
     </div>
     <div class="oc-card__content">
         <p class="oc-card__content-name" ellipsis>{{appData.name}}</p>
