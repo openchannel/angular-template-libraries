@@ -1,6 +1,6 @@
 <div class="form-steps">
     <ng-container *ngIf="hasFieldGroup; else singleForm">
-        <h5 class="form-steps__label">Step{{currentStep}}.{{currentForm.label ? currentForm.label.label : ''}}</h5>
+        <h5 class="form-steps__label">Step {{currentStep}}. {{currentForm.label ? currentForm.label.label : ''}}</h5>
         <oc-single-form [formJsonData]="currentForm.formConfig"
                         [generatedForm]="currentForm"
                         [showButton]="false"
