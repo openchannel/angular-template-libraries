@@ -25,14 +25,11 @@ export class HttpRequestsWatcherInterceptor implements HttpInterceptor {
     constructor(private endpoints: PrerenderEndpointsConfig, private requestWatcher: PrerenderRequestsWatcherService) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const event = next.handle(request);
         const notForBotUrl = this.endpoints.excludeAPICall.find(url => request.url.includes(url));
 
-        if (isbot(request.headers.get('User-Agent')) && notForBotUrl) {
+        if (isbot(navigator.userAgent) && notForBotUrl) {
             return EMPTY;
         }
-
-        this.requestWatcher.addHttpEvent(event);
-        return event;
+        return this.requestWatcher.addHttpEvent(next.handle(request));
     }
 }

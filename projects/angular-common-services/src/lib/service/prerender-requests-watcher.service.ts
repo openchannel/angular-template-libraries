@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { forkJoin, Observable, of, Subject } from 'rxjs';
-import { catchError, delay, takeUntil } from 'rxjs/operators';
-import { HttpEvent, HttpResponse } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, delay, filter, finalize, tap } from 'rxjs/operators';
+import { HttpEvent, HttpResponse, HttpResponseBase } from '@angular/common/http';
 
 /**
  * Description: This service for the Netlify pre-rendering. It's getting data about requests, changing pre-render status
@@ -11,40 +11,46 @@ import { HttpEvent, HttpResponse } from '@angular/common/http';
     providedIn: 'root',
 })
 export class PrerenderRequestsWatcherService {
-    private buffer: Observable<HttpEvent<any>>[] = [];
-    private close = new Subject<void>();
+    private buffer: HttpEvent<any>[] = [];
+
     private sleepAfterLastRequestMS = 1000;
+    private requestCount = 0;
 
     /**
      * Adding a new observable with api request to the watcher. This function checking of the all requests fulfillment.
      * @param httpEvent observable with a request data
      */
-    addHttpEvent(httpEvent: Observable<HttpEvent<any>>): void {
+    addHttpEvent(httpEvent: Observable<HttpEvent<any>>): Observable<HttpEvent<any>> {
         this.setPrerenderStatus(false);
-        this.close.next();
-        this.buffer.push(
-            httpEvent.pipe(
-                catchError(error => {
-                    if (error.status === 301) {
-                        this.create301MetaTag(error.location);
-                    }
-                    return of(error);
-                }),
-            ),
+        this.requestCount++;
+        return httpEvent.pipe(
+            tap(response => this.buffer.push(response)),
+            catchError(error => {
+                this.buffer.push(error);
+                return throwError(error);
+            }),
+            finalize(() => this.handleLastResponse()),
         );
-        forkJoin(this.buffer)
-            .pipe(delay(this.sleepAfterLastRequestMS), takeUntil(this.close))
-            .subscribe((responses: HttpResponse<any>[]) => {
-                this.checkErrorsOrChangeStatus(responses);
-            });
     }
 
+    /** HttpEvent<any> | HttpErrorResponse ? */
+    handleLastResponse(): void {
+        of(1)
+            .pipe(
+                delay(this.sleepAfterLastRequestMS),
+                tap(() => this.requestCount--),
+                filter(() => this.requestCount === 0),
+            )
+            .subscribe(() => {
+                this.checkErrorsOrChangeStatus(this.buffer as HttpResponse<any>[]);
+            });
+    }
     /**
      * Checking of api error responses and changing pre-render status.
      * @param responses array of the responses
      */
-    checkErrorsOrChangeStatus(responses: HttpResponse<any>[]): void {
-        const anyError: HttpResponse<any>[] = responses.filter(resp => resp?.status >= 300);
+    checkErrorsOrChangeStatus(responses: HttpEvent<any>[]): void {
+        const anyError: HttpEvent<any>[] = responses.filter(resp => resp instanceof HttpResponseBase && resp?.status >= 300);
         this.setPrerenderStatus(anyError.length === 0);
     }
 
