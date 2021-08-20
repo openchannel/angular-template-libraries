@@ -56,38 +56,38 @@ describe('OcResendActivationComponent', () => {
 
     it('should emit false value on form button click', () => {
         component.process = false;
-        spyOn(component.submit, 'emit');
+        spyOn(component.buttonClick, 'emit');
 
         fixture.detectChanges();
 
         const button = fixture.debugElement.query(By.css('oc-button')).nativeElement;
         button.click();
 
-        expect(component.submit.emit).toHaveBeenCalledWith(false);
+        expect(component.buttonClick.emit).toHaveBeenCalledWith(false);
     });
 
     it('button should not emmit submit when process is on', () => {
         component.process = true;
-        spyOn(component.submit, 'emit');
+        spyOn(component.buttonClick, 'emit');
 
         fixture.detectChanges();
 
         const button = fixture.debugElement.query(By.css('oc-button')).nativeElement;
         button.click();
 
-        expect(component.submit.emit).toHaveBeenCalledTimes(0);
+        expect(component.buttonClick.emit).toHaveBeenCalledTimes(0);
     });
 
     it('should emit true value on form button click', async () => {
         component.process = false;
         component.activationModel.email = 'test@test.com';
-        spyOn(component.submit, 'emit');
+        spyOn(component.buttonClick, 'emit');
         fixture.detectChanges();
 
         await fixture.whenStable().then(() => {
             const button = fixture.debugElement.query(By.css('oc-button')).nativeElement;
             button.click();
-            expect(component.submit.emit).toHaveBeenCalledWith(true);
+            expect(component.buttonClick.emit).toHaveBeenCalledWith(true);
         });
     });
 });
