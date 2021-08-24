@@ -2,7 +2,11 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { OcFormComponent } from './oc-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { MockButtonComponent, MockSingleFormComponent } from '@openchannel/angular-common-components/src/mock/mock';
+import {
+    MockButtonComponent,
+    MockSingleFormComponent,
+    MockTooltipComponent
+} from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcFormComponent', () => {
     let component: OcFormComponent;
@@ -11,7 +15,13 @@ describe('OcFormComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcFormComponent, MockSingleFormComponent, MockButtonComponent],
+                declarations: [
+                    OcFormComponent,
+                    MockSingleFormComponent,
+                    MockButtonComponent,
+                    MockTooltipComponent,
+                    MockSingleFormComponent,
+                ],
                 imports: [FormsModule, ReactiveFormsModule],
             }).compileComponents();
         }),

@@ -17,7 +17,12 @@ import {
     RadioItemValue,
 } from '@openchannel/angular-common-components/src/lib/common-components';
 import { OcCheckboxData, OcEditUserFormConfig, OCOrganization } from '@openchannel/angular-common-components/src/lib/auth-components';
-import { FieldValueModel, DropdownItemType, FileDetails } from '@openchannel/angular-common-components/src/lib/form-components';
+import {
+    FieldValueModel,
+    DropdownItemType,
+    FileDetails,
+    FormType
+} from '@openchannel/angular-common-components/src/lib/form-components';
 import { Observable } from 'rxjs';
 import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
 
@@ -146,6 +151,7 @@ export class MockFormComponent {
     @Input() generatedForm: FormGroup;
     @Input() successButtonText: string = 'Submit';
     @Input() showButton: boolean = true;
+    @Input() displayType: FormType = 'page';
     @Output() readonly formSubmitted = new EventEmitter<any>();
     @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -173,6 +179,7 @@ export class MockSingleFormComponent {
     @Input() generatedForm: FormGroup;
     @Input() successButtonText: string = 'Submit';
     @Input() showButton: boolean = true;
+    @Input() showGroupHeading: boolean = true;
     @Output() readonly formSubmitted = new EventEmitter<any>();
     @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
