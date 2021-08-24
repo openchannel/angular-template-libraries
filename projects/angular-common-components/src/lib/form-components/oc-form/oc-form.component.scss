@@ -43,4 +43,11 @@
             }
         }
     }
+
+    &__label {
+        & .tooltip-label__text {
+            @include font-size-lg();
+            @include font-medium();
+        }
+    }
 }

@@ -113,6 +113,11 @@ export class OcFormComponent implements OnInit, OnChanges {
      */
     @Input() showSubmitButton: boolean = true;
 
+    /**
+     * Flag to show group heading
+     */
+    @Input() showGroupHeading: boolean = true;
+
     customForm: FormArray;
     hasFieldGroup: boolean = false;
     resultData: any = {};
@@ -162,6 +167,11 @@ export class OcFormComponent implements OnInit, OnChanges {
         this.currentStepChange.emit(this.currentStep);
     }
 
+    navigateSteps(direction: string): void {
+        direction === 'next' ? this.currentStep++ : this.currentStep--;
+        this.currentStepChange.emit(this.currentStep);
+    }
+
     /**
      * Updates and emits form on change
      */
@@ -180,6 +190,10 @@ export class OcFormComponent implements OnInit, OnChanges {
 
     get isLastStep(): boolean {
         return this.customForm ? this.currentStep === this.customForm.length : true;
+    }
+
+    get stepLabel(): string {
+        return `Step${this.currentStep}.${this.currentForm.label ? this.currentForm.label.label : ''}`;
     }
 
     private setStep(step: number): void {

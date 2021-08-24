@@ -111,6 +111,11 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
     @Input() process: boolean = false;
 
     /**
+     * Flag to show group heading
+     */
+    @Input() showGroupHeading: boolean = true;
+
+    /**
      * Already generated Form Group
      */
     @Input() generatedForm: FormGroup;

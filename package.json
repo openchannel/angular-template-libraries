@@ -17,11 +17,11 @@
     "lint": "./node_modules/.bin/ng lint",
     "e2e": "./node_modules/.bin/ng e2e",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
-    "copy-assets": "mkdir -p storybook-assets/assets && cp -r projects/angular-common-components/assets/img/ storybook-assets/assets/angular-common-components/",
+    "copy-assets": "mkdir -p storybook-assets/assets && cp -r projects/angular-common-components/assets/img/ storybook-assets/assets/angular-common-components/ && cp -r node_modules/tinymce storybook-assets/tinymce",
     "storybook": "npm run copy-assets && start-storybook -p 6006 -s ./projects/angular-common-components,./storybook-assets",
     "storybook-update-and-run": "npm install && ./node_modules/.bin/ng build && npx --userconfig .npmrc sb@latest upgrade && npm run storybook",
     "storybook-withoutdocs": "start-storybook -p 6006 -s projects/",
-    "copy-assets-for-static-storybook": "mkdir -p ./storybook-static/assets/angular-common-components && cp -r ./projects/angular-common-components/assets/img/* ./storybook-static/assets/angular-common-components",
+    "copy-assets-for-static-storybook": "mkdir -p ./storybook-static/assets/angular-common-components && cp -r ./projects/angular-common-components/assets/img/* ./storybook-static/assets/angular-common-components && cp -r node_modules/tinymce storybook-static/tinymce",
     "build-storybook": "build-storybook && npm run copy-assets-for-static-storybook",
     "angular-common-components-pack": "cd dist/angular-common-components/ && npm pack",
     "angular-common-components-up-version": "cd projects/angular-common-components/ && npm --no-git-tag-version version prerelease",
@@ -82,7 +82,8 @@
     "resize-observer-polyfill": "^1.5.1",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "tinymce": "^5.6.2"
   },
   "devDependencies": {
     "@angular-builders/jest": "^10.0.1",

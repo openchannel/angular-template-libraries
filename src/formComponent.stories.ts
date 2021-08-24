@@ -1043,14 +1043,14 @@ WizardForm.args = {
             {
                 id: 'customData.contact-information',
                 label: 'Contact information',
-                description: '',
+                description: 'Here is description!',
                 type: 'fieldGroup',
                 attributes: {},
             },
             {
                 id: 'customData.contact-1',
                 label: 'contact 1',
-                description: '',
+                description: 'Description of contact',
                 type: 'text',
                 attributes: { maxChars: null, required: true, minChars: null, group: 'contact-information' },
             },

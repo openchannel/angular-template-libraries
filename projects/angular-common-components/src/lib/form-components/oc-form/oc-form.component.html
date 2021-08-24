@@ -1,6 +1,9 @@
 <div class="form-steps">
     <ng-container *ngIf="hasFieldGroup; else singleForm">
-        <h5 class="form-steps__label">Step {{currentStep}}. {{currentForm.label ? currentForm.label.label : ''}}</h5>
+        <oc-tooltip-label [text]="stepLabel"
+                          class="form-steps__label"
+                          [required]="currentForm.label?.attributes?.required"
+                          [description]="currentForm.label?.description"></oc-tooltip-label>
         <oc-single-form [formJsonData]="currentForm.formConfig"
                         [generatedForm]="currentForm"
                         [showButton]="false"
@@ -41,6 +44,7 @@
                     [labelPosition]="labelPosition"
                     [process]="process"
                     [showButton]="false"
+                    [showGroupHeading]="showGroupHeading"
                     (isFormInvalid)="isFormInvalid.emit($event)"
                     (formDataUpdated)="formDataUpdated.emit($event)"
                     (createdForm)="createdForm.emit($event)"></oc-single-form>
