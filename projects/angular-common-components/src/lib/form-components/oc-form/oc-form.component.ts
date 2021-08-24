@@ -167,11 +167,6 @@ export class OcFormComponent implements OnInit, OnChanges {
         this.currentStepChange.emit(this.currentStep);
     }
 
-    navigateSteps(direction: string): void {
-        direction === 'next' ? this.currentStep++ : this.currentStep--;
-        this.currentStepChange.emit(this.currentStep);
-    }
-
     /**
      * Updates and emits form on change
      */
