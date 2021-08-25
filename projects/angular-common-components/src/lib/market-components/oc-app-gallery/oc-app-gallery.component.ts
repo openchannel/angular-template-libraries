@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
-import { FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
+import { FullAppData, HeadingTag } from '@openchannel/angular-common-components/src/lib/common-components';
 import { get } from 'lodash';
-import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 @Component({
     selector: 'oc-app-gallery',
@@ -80,11 +79,11 @@ export class OcAppGalleryComponent {
      *
      * Return {FullAppData}
      */
-    @Output() clickAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
+    @Output() readonly clickAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
     /**
      * Emitter for click by moreAppsTitle.
      */
-    @Output() clickMoreApps: EventEmitter<void> = new EventEmitter<void>();
+    @Output() readonly clickMoreApps: EventEmitter<void> = new EventEmitter<void>();
 
     getAppValueByParameter(app: FullAppData): string {
         if (this.appNavigationParam) {
