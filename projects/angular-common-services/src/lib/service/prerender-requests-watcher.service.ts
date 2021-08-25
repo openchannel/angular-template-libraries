@@ -42,7 +42,7 @@ export class PrerenderRequestsWatcherService {
                 filter(() => this.requestCount === 0),
             )
             .subscribe(() => {
-                setTimeout(() => this.checkErrorsOrChangeStatus(this.buffer as HttpResponse<any>[]), 3000);
+                this.checkErrorsOrChangeStatus(this.buffer as HttpResponse<any>[]);
             });
     }
     /**
