@@ -1,6 +1,7 @@
 <div class="form-steps">
     <ng-container *ngIf="hasFieldGroup; else singleForm">
-        <oc-tooltip-label [text]="stepLabel"
+        <oc-tooltip-label *ngIf="showGroupHeading"
+                          [text]="stepLabel"
                           class="form-steps__label"
                           [required]="currentForm.label?.attributes?.required"
                           [description]="currentForm.label?.description"></oc-tooltip-label>
