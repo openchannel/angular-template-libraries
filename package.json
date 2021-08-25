@@ -1,6 +1,6 @@
 {
   "name": "oc-angular-template-libraries",
-  "version": "2.17.0-9",
+  "version": "2.17.0-10",
   "scripts": {
     "prebuild": "npm run clean-css && npm run generate-mock-css",
     "postbuild": "npm run gather-components-styles && npm run exclude-mixins && npm run replace-relative-scss-urls",
