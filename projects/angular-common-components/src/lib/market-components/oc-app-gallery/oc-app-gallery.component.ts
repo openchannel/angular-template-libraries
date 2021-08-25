@@ -53,12 +53,14 @@ export class OcAppGalleryComponent {
     @Input() seeAllUrl: string | any[];
     /**
      * Router link which will be used for navigation by app card click.
+     * Using for the default app card only.
      * @example
      * '/apps'
      */
     @Input() routerLinkForOneApp: string;
     /**
      * Key name of the App object which will be chosen like navigation parameter for the Router link.
+     * Using only with the default app card template.
      * @default 'appId'
      */
     @Input() appNavigationParam: string = 'appId';
@@ -72,7 +74,9 @@ export class OcAppGalleryComponent {
     @Input() headingTag: HeadingTag = 'h2';
 
     /**
-     * Sending current app data on click by App card.
+     * @deprecated
+     * Sending current app data on click by App card. It is deprecated, use {@link routerLinkForOneApp} with
+     * {@link appNavigationParam} for the redirect.
      *
      * Return {FullAppData}
      */
