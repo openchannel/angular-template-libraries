@@ -5,16 +5,12 @@
     <div class="featured-apps__container"
          *ngIf="data && data.length > 0; else emptyData">
         <div class="featured-apps__card-wrapper" *ngFor="let app of data;" (click)="this.clickByAppCard.emit(app)">
-            <a *ngIf="mainRouterLink" [routerLink]="[mainRouterLink, getAppValueByParameter(app)]">
+            <a [routerLink]="[mainRouterLink, getAppValueByParameter(app)]">
                 <ng-container
                         [ngTemplateOutlet]="customFeaturedAppCardTemplate ? customFeaturedAppCardTemplate : defaultFeatureAppCard"
                         [ngTemplateOutletContext]="{$implicit: app}">
                 </ng-container>
             </a>
-            <ng-container *ngIf="!mainRouterLink"
-                          [ngTemplateOutlet]="customFeaturedAppCardTemplate ? customFeaturedAppCardTemplate : defaultFeatureAppCard"
-                          [ngTemplateOutletContext]="{$implicit: app}">
-            </ng-container>
         </div>
     </div>
 </div>

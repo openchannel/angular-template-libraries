@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
-import { FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
+import { FullAppData, HeadingTag } from '@openchannel/angular-common-components/src/lib/common-components';
 import { get } from 'lodash';
-import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 /**
  * Featured apps component. Renders a list of applications, that are featured by a user.
@@ -83,7 +82,9 @@ export class OcFeaturedAppsComponent {
     @Input() navigationParam: string;
 
     /**
-     * Emitter for click by App card.
+     * @deprecated
+     * Emitter for click by App card. It is deprecated. If you want to get data for redirect only - use {@link mainRouterLink}
+     * with {@link navigationParam}.
      * @type {FullAppData}.
      */
     @Output() readonly clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
