@@ -1,4 +1,4 @@
-<a class="oc-card" (click)="clickByApp()">
+<div class="oc-card" (click)="clickByApp()">
     <div class="oc-card__icon">
         <img class="img-fluid" [src]="appIcon" alt="">
     </div>
@@ -12,4 +12,4 @@
         </div>
         <p class="oc-card__content-summary" ellipsis>{{(appData.summary ? appData.summary : appData.description ) | replaceHtmlTags}}</p>
     </div>
-</a>
+</div>
