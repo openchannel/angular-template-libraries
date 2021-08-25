@@ -66,6 +66,7 @@ export class OcFeaturedAppsComponent {
     /**
      * Router link for each app card.
      * Will end with chosen navigation parameter.
+     * Using for the default app card. If you are using the custom card - you must create your own router link on the card template.
      * @type {string}.
      * @default: ''.
      * @example.
@@ -75,6 +76,7 @@ export class OcFeaturedAppsComponent {
 
     /**
      * Key name of the App object which will be chosen like navigation parameter for the Router link.
+     * Using only with the default app card template.
      * @type {string}.
      * @example.
      * 'appId'.

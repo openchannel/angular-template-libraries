@@ -18,13 +18,13 @@
 </ng-template>
 
 <ng-template #defaultFeatureAppCard let-app>
-    <div class="featured-apps__card">
-        <a class="featured-apps__card-body {{customClasses}}" [routerLink]="[mainRouterLink, getAppValueByParameter(app)]">
+    <a class="featured-apps__card" [routerLink]="[mainRouterLink, getAppValueByParameter(app)]">
+        <div class="featured-apps__card-body {{customClasses}}">
             <div class="featured-apps__card-img">
                 <img *ngIf="app.icon" src="{{app.icon}}" alt="">
             </div>
             <h3 [headingTag]="appHeadingTag" class="featured-apps__card-name" ellipsis>{{app.name}}</h3>
             <span class="featured-apps__card-description" ellipsis>{{(app.summary ? app.summary : app.description) | replaceHtmlTags}}</span>
-        </a>
-    </div>
+        </div>
+    </a>
 </ng-template>
