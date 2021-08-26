@@ -1,10 +1,16 @@
-import { FileDetails, OcFormComponent, OcFormComponentsModule } from '@openchannel/angular-common-components/src/lib/form-components';
+import {
+    FileDetails,
+    FileUploaderService,
+    OcFormComponent,
+    OcFormComponentsModule,
+} from '@openchannel/angular-common-components/src/lib/form-components';
 import { moduleMetadata } from '@storybook/angular';
 import { Observable, of } from 'rxjs';
 import { EmbedVideoService } from 'ngx-embed-video';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { storyMockProviderAppSearchService } from 'src/dropdown-multi-app.stories';
+import { FileUploadDownloadService } from '@openchannel/angular-common-services';
 
 class StubFileUploadDownloadService {
     constructor() {}
@@ -93,9 +99,28 @@ class StubFileUploadDownloadService {
     }
 }
 
+class FileServiceStub extends FileUploaderService {
+    constructor() {
+        super();
+    }
+
+    fileUploadRequest(file: FormData, isPrivate: boolean, hash?: string[]): Observable<any> {
+        return new Observable();
+    }
+
+    fileDetailsRequest(fileId: string): Observable<any> {
+        return new Observable();
+    }
+}
+
 const modules = {
     imports: [OcFormComponentsModule, HttpClientModule, BrowserAnimationsModule],
-    providers: [EmbedVideoService, storyMockProviderAppSearchService],
+    providers: [
+        EmbedVideoService,
+        storyMockProviderAppSearchService,
+        { provide: FileUploadDownloadService, useClass: StubFileUploadDownloadService },
+        { provide: FileUploaderService, useClass: FileServiceStub },
+    ],
 };
 
 export default {
@@ -132,7 +157,7 @@ FormWithTestData.args = {
                     minChars: 10,
                 },
                 options: null,
-                subFieldDefinitions: null,
+                fields: null,
             },
             {
                 id: 'role',
@@ -143,7 +168,7 @@ FormWithTestData.args = {
                 required: null,
                 attributes: { required: true },
                 options: ['admin', 'user', 'test'],
-                subFieldDefinitions: null,
+                fields: null,
             },
             {
                 id: 'aboutme',
@@ -158,7 +183,7 @@ FormWithTestData.args = {
                     minChars: 10,
                 },
                 options: null,
-                subFieldDefinitions: null,
+                fields: null,
             },
             {
                 id: 'skills',
@@ -173,7 +198,7 @@ FormWithTestData.args = {
                     required: true,
                 },
                 options: ['angular', 'react', 'react native', 'spring'],
-                subFieldDefinitions: null,
+                fields: null,
             },
         ],
     },
@@ -200,7 +225,7 @@ FormWithRequiredOnly.args = {
                     minChars: null,
                 },
                 options: null,
-                subFieldDefinitions: null,
+                fields: null,
             },
             {
                 id: 'role',
@@ -211,7 +236,7 @@ FormWithRequiredOnly.args = {
                 required: null,
                 attributes: { required: true },
                 options: ['admin', 'user', 'test'],
-                subFieldDefinitions: null,
+                fields: null,
             },
             {
                 id: 'aboutme',
@@ -226,7 +251,7 @@ FormWithRequiredOnly.args = {
                     minChars: null,
                 },
                 options: null,
-                subFieldDefinitions: null,
+                fields: null,
             },
             {
                 id: 'skills',
@@ -241,7 +266,7 @@ FormWithRequiredOnly.args = {
                     required: true,
                 },
                 options: null,
-                subFieldDefinitions: null,
+                fields: null,
             },
         ],
     },
@@ -629,7 +654,7 @@ FormWithDynamicFieldArray.args = {
                 isValid: true,
                 label: 'Test Dynamic field array',
                 placeholder: null,
-                subFieldDefinitions: [
+                fields: [
                     {
                         attributes: {
                             maxChars: null,
@@ -989,8 +1014,119 @@ FormWithRadioButtonList.args = {
                 required: null,
                 attributes: { required: true, subType: 'radioButton' },
                 options: ['admin', 'user', 'test'],
-                subFieldDefinitions: null,
+                fields: null,
             },
         ],
     },
+};
+
+export const WizardForm = FormGroupComponent.bind({});
+WizardForm.args = {
+    formJsonData: {
+        appTypeId: 'dfa-field',
+        label: 'Wizard App Type',
+        description: null,
+        createdDate: 1612460763356,
+        fields: [
+            {
+                id: 'name',
+                label: 'Name',
+                type: 'text',
+                attributes: { maxChars: null, required: true, minChars: null },
+            },
+            {
+                id: 'customData.description',
+                label: 'description',
+                type: 'richText',
+                attributes: { maxChars: null, required: null, minChars: null, group: '' },
+            },
+            {
+                id: 'customData.contact-information',
+                label: 'Contact information',
+                description: 'Here is description!',
+                type: 'fieldGroup',
+                attributes: {},
+            },
+            {
+                id: 'customData.contact-1',
+                label: 'contact 1',
+                description: 'Description of contact',
+                type: 'text',
+                attributes: { maxChars: null, required: true, minChars: null, group: 'contact-information' },
+            },
+            {
+                id: 'customData.contact-2',
+                label: 'contact 2',
+                description: '',
+                type: 'longText',
+                attributes: { maxChars: null, required: true, minChars: null, group: 'contact-information' },
+            },
+            {
+                id: 'customData.images',
+                label: 'Images',
+                description: '',
+                type: 'fieldGroup',
+                attributes: {},
+            },
+            {
+                id: 'customData.images-1',
+                label: 'Images 1',
+                description: '',
+                type: 'singleImage',
+                attributes: {
+                    width: null,
+                    required: true,
+                    hash: null,
+                    accept: null,
+                    height: null,
+                    group: 'images',
+                },
+            },
+            {
+                id: 'customData.images-2',
+                label: 'Images 2',
+                description: '',
+                type: 'singleFile',
+                attributes: { required: true, hash: null, accept: null, group: 'images' },
+            },
+            {
+                id: 'customData.personal-data',
+                label: 'Personal Data',
+                description: '',
+                type: 'fieldGroup',
+                attributes: {},
+            },
+            {
+                id: 'customData.personal-1',
+                label: 'Personal 1',
+                description: '',
+                type: 'color',
+                attributes: { required: null, group: 'personal-data' },
+            },
+            {
+                id: 'customData.personal-2',
+                label: 'Personal 2',
+                description: '',
+                type: 'emailAddress',
+                attributes: { required: true, group: 'personal-data' },
+            },
+            {
+                id: 'customData.personal-3',
+                label: 'Personal 3',
+                description: '',
+                type: 'richText',
+                attributes: { maxChars: null, required: true, minChars: null, group: 'personal-data' },
+            },
+            {
+                id: 'customData.general-test-field',
+                label: 'General test field',
+                description: '',
+                defaultValue: [],
+                type: 'tags',
+                attributes: { minCount: null, maxCount: null, required: true, group: '' },
+            },
+        ],
+    },
+    displayType: 'wizard',
+    buttonPosition: 'justify',
 };
