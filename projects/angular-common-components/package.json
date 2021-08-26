@@ -1,6 +1,6 @@
 {
   "name": "@openchannel/angular-common-components",
-  "version": "2.18.0-0",
+  "version": "2.18.0",
   "description": "Includes components for portal and market (form builder, form components, file upload, app cards, login, signup, inputs, etc)",
   "homepage": "https://github.com/openchannel/angular-template-libraries",
   "repository": {

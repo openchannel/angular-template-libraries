@@ -1,3 +1,7 @@
+## Release notes - angular-template-libraries - Version 2.18.0 (8/26/2021)<br>
+### Bug<br>
+AT-1442 - User enumeration<br>
+AT-1440 - Parallel session is valid after password change<br>
 ## Release notes - angular-template-libraries - Version 2.17.0 (8/26/2021)<br>
 ### Bug<br>
 AT-1452 - [Reviews] Reviews description should be limited to 2000 characters and not 1000 character.<br>
