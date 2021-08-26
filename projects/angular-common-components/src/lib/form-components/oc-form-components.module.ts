@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { OcColorComponent } from './oc-color/oc-color.component';
 import { OcDatetimePickerComponent } from './oc-datetime-picker/oc-datetime-picker.component';
 import { OcFileUploadComponent } from './oc-file-upload/oc-file-upload.component';
+import { OcSingleFormComponent } from './oc-single-form/oc-single-form.component';
 import { OcFormComponent } from './oc-form/oc-form.component';
 import { OcMultiSelectListComponent } from './oc-multi-select-list/oc-multi-select-list.component';
 import { OcNumberComponent } from './oc-number/oc-number.component';
@@ -29,6 +30,7 @@ import { OcRadioButtonListComponent } from './oc-radio-button-list/oc-radio-butt
         OcColorComponent,
         OcDatetimePickerComponent,
         OcFileUploadComponent,
+        OcSingleFormComponent,
         OcFormComponent,
         OcMultiSelectListComponent,
         OcNumberComponent,
@@ -58,6 +60,7 @@ import { OcRadioButtonListComponent } from './oc-radio-button-list/oc-radio-butt
         OcColorComponent,
         OcDatetimePickerComponent,
         OcFileUploadComponent,
+        OcSingleFormComponent,
         OcFormComponent,
         OcMultiSelectListComponent,
         OcNumberComponent,

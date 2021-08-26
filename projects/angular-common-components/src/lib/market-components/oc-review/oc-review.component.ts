@@ -88,7 +88,7 @@ export class OcReviewComponent implements OnInit, OnDestroy {
         this.reviewForm = this.fb.group({
             rating: [reviewData?.rating ? reviewData.rating / 100 : null, [Validators.required]],
             headline: [reviewData?.headline, [Validators.required]],
-            description: [reviewData?.description || '', [Validators.required]],
+            description: [reviewData?.description || '', [Validators.required, Validators.maxLength(2000)]],
         });
         if (!this.enableButtons) {
             this.subscribeToForm();

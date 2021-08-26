@@ -1,3 +1,8 @@
+## Release notes - angular-template-libraries - Version 2.17.0 (8/26/2021)<br>
+### Bug<br>
+AT-1452 - [Reviews] Reviews description should be limited to 2000 characters and not 1000 character.<br>
+### Story<br>
+AT-1345 - Support field groups on Templates<br>
 ## Release notes - angular-template-libraries - Version 2.16.1 (8/18/2021)<br>
 ### Bug<br>
 AT-1475 - [Market / Portal][Forgot Password] When Reset Password, Getting same 2 API calls and same 2 Reset Password emails. <br>
