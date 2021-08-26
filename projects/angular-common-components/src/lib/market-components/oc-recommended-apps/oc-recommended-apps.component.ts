@@ -51,6 +51,8 @@ export class OcRecommendedAppsComponent {
 
     /**
      * Router link for one app when clicked.
+     * Using for the default app card. If you are using the custom card - you must
+     * create your own router link on the card template.
      * @type {string | any}.
      * @example
      * '/details'.
@@ -59,6 +61,7 @@ export class OcRecommendedAppsComponent {
 
     /**
      * Key name of the App object which will be chosen like navigation parameter for the Router link.
+     * Using only with the default app card template.
      * @type {string}.
      * @example
      * 'appId'.
@@ -66,7 +69,9 @@ export class OcRecommendedAppsComponent {
     @Input() appNavigationParam: string;
 
     /**
-     * Emitter for click on App card.
+     * @deprecated
+     * Emitter for click on App card. It is deprecated. If you want to get data for redirect only - use
+     * {@link routerLinkForOneApp} with {@link appNavigationParam}.
      * @type {FullAppData}.
      */
     @Output() readonly clickByAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();

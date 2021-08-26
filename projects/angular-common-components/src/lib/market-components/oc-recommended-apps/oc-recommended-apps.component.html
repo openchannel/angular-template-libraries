@@ -3,13 +3,7 @@
     <div class="recommended-apps__container"
          *ngIf="appList && appList.length > 0; else emptyData">
         <div class="recommended-apps__card" *ngFor="let app of appList;" (click)="this.clickByAppCard.emit(app)">
-            <a *ngIf="routerLinkForOneApp" [routerLink]="[routerLinkForOneApp, getAppValueByParameter(app)]">
-                <ng-container [ngTemplateOutlet]="customAppCardTemplate ? customAppCardTemplate : defaultAppCard"
-                              [ngTemplateOutletContext]="{$implicit: app}">
-                </ng-container>
-            </a>
-            <ng-container *ngIf="!routerLinkForOneApp"
-                          [ngTemplateOutlet]="customAppCardTemplate ? customAppCardTemplate : defaultAppCard"
+            <ng-container [ngTemplateOutlet]="customAppCardTemplate ? customAppCardTemplate : defaultAppCard"
                           [ngTemplateOutletContext]="{$implicit: app}">
             </ng-container>
         </div>
@@ -21,5 +15,7 @@
 </ng-template>
 
 <ng-template #defaultAppCard let-app>
-    <oc-app-card [app]="app"></oc-app-card>
+    <a [routerLink]="[routerLinkForOneApp, getAppValueByParameter(app)]">
+        <oc-app-card [app]="app"></oc-app-card>
+    </a>
 </ng-template>
