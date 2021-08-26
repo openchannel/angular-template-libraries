@@ -7,8 +7,8 @@ import {
     MockInputComponent,
     MockLabelComponent,
     MockRatingComponent,
+    MockTextareaComponent,
 } from '@openchannel/angular-common-components/src/mock/mock';
-import { MockTextareaComponent } from '@openchannel/angular-common-components/src/lib/form-components/oc-form/oc-form.component.spec';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
