@@ -7,7 +7,6 @@ export interface AppFormFieldResponse {
     required?: any;
     attributes: string[];
     options?: any;
-    subFieldDefinitions?: AppFormFieldResponse[];
     fields?: AppFormFieldResponse[];
     placeholder: string;
 }
