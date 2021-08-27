@@ -3,7 +3,7 @@
         <img [src]="getStartedImage" alt="featured-logo" class="get-started__logo-image">
     </div>
     <div class="get-started__info">
-        <h3 class="get-started__info-heading">{{getStartedHeader}}</h3>
+        <h3 [headingTag]="getStartedHeadingTag" [headingTagContent]="getStartedHeader" class="get-started__info-heading"></h3>
         <p class="get-started__info-desc">{{getStartedDescription}}</p>
         <oc-button class="get-started__button"
                    (click)="listAppGetStarted()"
