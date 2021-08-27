@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpRequestService } from './http-request-services';
 import { OCNativeCustomSignup, OCNativeDefaultSignup, UserLoginModel } from '../model/api/user-login-model';
-import { SignUpByInviteRequest } from '../model/api/login.model';
+import { LoginResponse, SignUpByInviteRequest } from '../model/api/login.model';
 import { UserResetPassword } from '../model/api/user-activation-model';
 import { ChangePasswordRequest } from '../model/api/change-password.model';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
@@ -185,7 +185,7 @@ export class NativeLoginService {
      *      newPassword: 'newPassword'
      * });`
      */
-    changePassword(request: ChangePasswordRequest): Observable<any> {
+    changePassword(request: ChangePasswordRequest): Observable<any | LoginResponse> {
         return this.httpRequest.post(`${this.apiPaths.authorizationNative}/change-password`, request);
     }
 }

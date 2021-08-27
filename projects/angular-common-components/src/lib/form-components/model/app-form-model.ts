@@ -7,7 +7,6 @@ export interface AppFormField {
     required?: any;
     attributes?: AppFormFieldAttributes;
     options?: any;
-    subFieldDefinitions?: AppFormField[];
     fields?: AppFormField[];
     placeholder?: string;
     category?: string;
@@ -31,4 +30,9 @@ export interface AppFormFieldAttributes {
     ordering?: 'append' | 'prepend';
     rowLabel?: string;
     subType?: string;
+    group?: string;
+    width?: number;
+    height?: number;
+    hash?: string;
+    accept?: any;
 }
