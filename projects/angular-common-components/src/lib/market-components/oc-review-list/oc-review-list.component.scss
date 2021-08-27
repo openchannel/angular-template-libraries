@@ -69,6 +69,7 @@
         }
 
         &-text {
+            word-break: break-word;
             @include font-size-md();
         }
     }
