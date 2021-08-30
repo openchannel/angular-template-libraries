@@ -29,6 +29,7 @@ export * from './lib/model/api/http-params-encoder-model';
 export * from './lib/model/api/properties.model';
 export * from './lib/model/api/request.model';
 export * from './lib/model/api/custom-content.model';
+export * from './lib/model/api/meta-tag.model';
 
 /* Component models */
 export * from './lib/model/components/frontend.model';
@@ -65,6 +66,7 @@ export * from './lib/service/properties.service';
 export * from './lib/service/request.service';
 export * from './lib/service/site-content.service';
 export * from './lib/service/cms-site-content.service';
+export * from './lib/service/meta-tag.service';
 
 /* Utils */
 export * from './lib/util/type-mapper.util';
