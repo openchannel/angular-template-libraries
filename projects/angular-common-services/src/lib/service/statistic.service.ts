@@ -33,4 +33,22 @@ export class StatisticService {
         const mainUrl = `${this.apiPaths.stats}/increment/views`;
         return this.httpRequest.post(mainUrl, { appId }, headers ? { headers } : {});
     }
+
+    /**
+     * Description: Increment app statistic field
+     *
+     * @param {string} field - (required)
+     * @param {string} appId - (required)
+     * @param {HttpHeaders} headers - (optional)
+     * @returns {Observable<any>} `Observable<any>`
+     *
+     * ### Example
+     *
+     * `record('installs','a2sd876ags7dd6g')`
+     *
+     */
+    record(field: string, appId: string, headers?: HttpHeaders): Observable<any> {
+        const mainUrl = `${this.apiPaths.stats}/increment/${field}`;
+        return this.httpRequest.post(mainUrl, { appId }, headers ? { headers } : {});
+    }
 }
