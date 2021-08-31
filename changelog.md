@@ -1,3 +1,15 @@
+## Release notes - angular-template-libraries - Version 2.19.0 (8/31/2021)<br>
+### Bug<br>
+AT-1502 - All rate limiting should be keyed by siteId<br>
+AT-1489 - Signup no rate limits<br>
+AT-1447 - Request submit no rate limits<br>
+AT-1446 - Form submit no rate limits<br>
+AT-1443 - Password brute force<br>
+AT-1441 - Password reset no rate limits<br>
+### Task<br>
+AT-1200 - Follow best practices for prerendering<br>
+### Bug<br>
+AT-1199 - Error messages displayed on market site in prerender view<br>
 ## Release notes - angular-template-libraries - Version 2.18.0 (8/26/2021)<br>
 ### Bug<br>
 AT-1442 - User enumeration<br>
