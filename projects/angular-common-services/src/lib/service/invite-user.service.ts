@@ -80,7 +80,7 @@ export class InviteUserService {
      * Description: Sending invite to the user
      *
      * @param {any} inviteData - (required) data from invite form
-     * @param {string} userInviteTemplateId - (required) id of the email template
+     * @param {string} templateId - (required) id of the email template
      * @param {string} company - (required) name of the inviter company
      * @returns {Observable<any>} `Observable<any>`
      *
@@ -88,8 +88,8 @@ export class InviteUserService {
      *
      * `sendUserInvite('ha9s8hd9a8shd','company', {});`
      */
-    sendUserInvite(userInviteTemplateId: string, company: string, inviteData: any): Observable<any> {
-        return this.sendInvite('users', company, inviteData, { userInviteTemplateId });
+    sendUserInvite(company: string, inviteData: any, templateId: string = 'default'): Observable<any> {
+        return this.sendInvite('users', company, inviteData, { userInviteTemplateId: templateId });
     }
 
     /**
@@ -154,16 +154,16 @@ export class InviteUserService {
      * Description: Sending invite to the user
      *
      * @param {any} inviteData - (required) data from invite form
-     * @param {string} developerInviteTemplateId - (required) id of the email template
+     * @param {string} templateId - (required) id of the email template
      * @param {string} company - (required) name of the inviter company
      * @returns {Observable<any>} `Observable<any>`
      *
      * ### Example
      *
-     * `sendDeveloperInvite('9ahs09d8jas9d8', 'company', {})`
+     * `sendDeveloperInvite('company', {})`
      */
-    sendDeveloperInvite(developerInviteTemplateId: string, company: string, inviteData: any): Observable<any> {
-        return this.sendInvite('developers', company, inviteData, { developerInviteTemplateId });
+    sendDeveloperInvite(company: string, inviteData: any, templateId: string = 'default'): Observable<any> {
+        return this.sendInvite('developers', company, inviteData, { developerInviteTemplateId: templateId });
     }
 
     /**
@@ -233,11 +233,9 @@ export class InviteUserService {
         userInviteData: any,
         inviteIDs: { developerInviteTemplateId: string } | { userInviteTemplateId: string },
     ): Observable<any> {
-        const mailBody = `<a href="${window.location.origin}/invite/{token}">Accept Invitation</a>`;
         const body = {
             ...userInviteData,
             ...inviteIDs,
-            body: mailBody,
             customData: { company, ...(userInviteData?.customData ? userInviteData.customData : {}) },
         };
         return this.httpService.post(`${this.apiPaths.invites}/${userType}`, body);
