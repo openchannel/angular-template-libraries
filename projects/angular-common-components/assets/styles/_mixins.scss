@@ -154,3 +154,9 @@
         color: $primary;
     }
 }
+
+@mixin image-alt-text {
+    white-space: pre-wrap;
+    overflow: hidden;
+    display: inline-block;
+}

@@ -21,7 +21,6 @@ import { AppFormModel } from '../model/app-form-model';
  *                                    required: null,
  *                                    attributes: {required: true},
  *                                    options: ['admin', 'user', 'test'],
- *                                    subFieldDefinitions: null
  *                                  }
  *                              ]
  *                         }"

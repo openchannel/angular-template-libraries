@@ -7,11 +7,11 @@ import {
     MockFormComponent,
     MockPasswordComponent,
     MockSelectComponent,
+    MockTooltipComponent,
 } from '@openchannel/angular-common-components/src/mock/mock';
 import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { MockTooltipComponent } from '@openchannel/angular-common-components/src/lib/form-components/oc-form/oc-form.component.spec';
 
 describe('OcEditUserFormComponent', () => {
     let component: OcEditUserFormComponent;
