@@ -1,4 +1,4 @@
-## Release notes - angular-template-libraries - Version 2.20.0 (8/31/2021)<br>
+## Release notes - angular-template-libraries - Version 2.19.0 (8/31/2021)<br>
 ### Bug<br>
 AT-1502 - All rate limiting should be keyed by siteId<br>
 AT-1489 - Signup no rate limits<br>
