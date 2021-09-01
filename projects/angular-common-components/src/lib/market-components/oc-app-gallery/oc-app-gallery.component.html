@@ -19,13 +19,8 @@
          *ngIf="appsArr && appsArr.length > 0; else emptyData">
         <div class="gallery__content-card"
              *ngFor="let app of appsArr;" (click)="clickAppCard.emit(app)">
-            <a *ngIf="routerLinkForOneApp" [routerLink]="[routerLinkForOneApp, getAppValueByParameter(app)]">
                 <ng-container [ngTemplateOutlet]="customAppCardTemplate? customAppCardTemplate : defaultCard"
                               [ngTemplateOutletContext]="{$implicit: app}"></ng-container>
-            </a>
-            <ng-container *ngIf="!routerLinkForOneApp"
-                          [ngTemplateOutlet]="customAppCardTemplate? customAppCardTemplate : defaultCard"
-                          [ngTemplateOutletContext]="{$implicit: app}"></ng-container>
         </div>
     </div>
 </div>
@@ -37,7 +32,9 @@
 </ng-template>
 
 <ng-template #defaultCard let-app>
-    <oc-app-card [app]="app"></oc-app-card>
+    <a [routerLink]="[routerLinkForOneApp, getAppValueByParameter(app)]">
+        <oc-app-card [app]="app"></oc-app-card>
+    </a>
 </ng-template>
 
 <ng-template #seeAllLink>
