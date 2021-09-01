@@ -1,11 +1,4 @@
-<a class="oc-card" *ngIf="appRedirectLink" [routerLink]="appRedirectLink">
-    <ng-container *ngTemplateOutlet="cardBody"></ng-container>
-</a>
-<a class="oc-card" *ngIf="!appRedirectLink" (click)="clickByApp()">
-    <ng-container *ngTemplateOutlet="cardBody"></ng-container>
-</a>
-
-<ng-template #cardBody>
+<div class="oc-card" (click)="clickByApp()">
     <div class="oc-card__icon">
         <img class="img-fluid" [src]="appIcon" alt="">
     </div>
@@ -19,4 +12,4 @@
         </div>
         <p class="oc-card__content-summary" ellipsis>{{(appData.summary ? appData.summary : appData.description ) | replaceHtmlTags}}</p>
     </div>
-</ng-template>
+</div>
