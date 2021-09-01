@@ -10,6 +10,9 @@ AT-1441 - Password reset no rate limits<br>
 AT-1200 - Follow best practices for prerendering<br>
 ### Bug<br>
 AT-1199 - Error messages displayed on market site in prerender view<br>
+## Release notes - angular-template-libraries - Version 2.18.1 (8/31/2021)<br>
+### Bug<br>
+AT-1375 - [HOTFIX][Market] When click on Download/Install/Buy Now/Contact Us button, statistics are not increasing for that App<br>
 ## Release notes - angular-template-libraries - Version 2.18.0 (8/26/2021)<br>
 ### Bug<br>
 AT-1442 - User enumeration<br>
