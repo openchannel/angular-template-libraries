@@ -144,17 +144,6 @@ describe('OcAppListGridComponent', () => {
         });
     });
 
-    it('should emit an app', () => {
-        const appCard: HTMLDivElement = fixture.debugElement.query(By.css('#appCard')).nativeElement;
-
-        spyOn(component.gotoDetails, 'emit');
-
-        appCard.click();
-        fixture.detectChanges();
-
-        expect(component.gotoDetails.emit).toHaveBeenCalledWith(component.appList[0]);
-    });
-
     it('should show Free price on empty model', () => {
         app.model = [];
         component.appList = [app];
