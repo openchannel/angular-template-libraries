@@ -1,3 +1,12 @@
+## Release notes - angular-template-libraries - Version 2.21.0 (9/2/2021)<br>
+### Bug<br>
+AT-1500 - [UI][Create App] Single space is required in between Step #. and Field Group Label for Wizard view.<br>
+AT-1498 - [Hotfix] New customers are ending up in the wrong environment (dev1 and stage1) when trying to use Angular templates<br>
+AT-1479 - Apps grid on manage apps page should not show horizontal scroll bar when viewing from desktop<br>
+### Task<br>
+AT-1381 - Deploy compodoc<br>
+AT-916 - Remove GET /v2/users/all endpoint from CAP<br>
+AT-788 - Need compodoc documentation for Application Form Service<br>
 ## Release notes - angular-template-libraries - Version 2.20.0 (9/2/2021)<br>
 ### Bug<br>
 AT-1483 - [Market/Portal][Email] Email field is not required yet Email field throws format validation.<br>

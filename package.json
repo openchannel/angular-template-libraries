@@ -1,6 +1,6 @@
 {
   "name": "oc-angular-template-libraries",
-  "version": "2.20.0",
+  "version": "2.21.0",
   "scripts": {
     "prebuild": "npm run clean-css && npm run generate-mock-css",
     "postbuild": "npm run gather-components-styles && npm run exclude-mixins && npm run replace-relative-scss-urls",
@@ -25,12 +25,13 @@
     "build-storybook": "build-storybook && npm run copy-assets-for-static-storybook",
     "angular-common-components-pack": "cd dist/angular-common-components/ && npm pack",
     "angular-common-components-up-version": "cd projects/angular-common-components/ && npm --no-git-tag-version version prerelease",
-    "angular-common-components-watch": "./node_modules/.bin/ng build angular-common-components --watch",
     "angular-common-services": "cd dist/angular-common-services/ && npm pack",
     "angular-common-services-pack": "npm run build-prod angular-common-services && npm run angular-common-services",
     "angular-common-services-up-version": "cd projects/angular-common-services/ && npm --no-git-tag-version version prerelease",
-    "start-compodoc-service-watch": "compodoc -p tsconfig.json projects/angular-common-services/src -d ./development/documentation/service -s -r 8801 -d ./development/documentation/service --watch",
-    "start-compodoc-components-watch": "compodoc -p tsconfig.json projects/angular-common-components/src -d ./development/documentation/components -s -r 8802 -d ./development/documentation/components --watch",
+    "build-compodoc-services": "cd projects/angular-common-services && ../../node_modules/.bin/compodoc -n 'Angular common services' -p ./tsconfig.compodoc.json -d ../../compodoc-static/services --hideGenerator ${npm_config_startOptions}",
+    "build-compodoc-components": "cd projects/angular-common-components && ../../node_modules/.bin/compodoc -n 'Angular common components' -p ./tsconfig.compodoc.json -d ../../compodoc-static/components --hideGenerator ${npm_config_startOptions}",
+    "start-compodoc-service-watch": "npm run build-compodoc-services --startOptions=\"-s -w -r 8801\"",
+    "start-compodoc-components-watch": "npm run build-compodoc-components --startOptions=\"-s -w -r 8802\"",
     "gather-components-styles": "scss-bundle -c scss-bundle.config.json",
     "exclude-mixins": "sed -i.bak -n '/@mixin/,/^$/!p' dist/angular-common-components/assets/styles/general-styles.scss",
     "clean-css": "find ./projects/angular-common-components -type f -name \"*.css*\" | xargs rm -f",
@@ -116,6 +117,7 @@
     "bootstrap": "^4.4.1",
     "chart.js": "^3.3.2",
     "codelyzer": "^6.0.0",
+    "isbot": "^3.3.1",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "jest": "^26.5.3",
@@ -123,6 +125,7 @@
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "ng-packagr": "^11.2.3",
+    "npm-watch": "^0.10.0",
     "prettier": "^2.2.1",
     "protractor": "~7.0.0",
     "sass-lint": "^1.13.1",
@@ -132,8 +135,6 @@
     "tslint": "~6.1.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.3.0",
-    "typescript": "~4.0.7",
-    "npm-watch": "^0.10.0",
-    "isbot": "^3.3.1"
+    "typescript": "~4.0.7"
   }
 }

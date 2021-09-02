@@ -1,17 +1,36 @@
+import { User } from './user.model';
+
 export interface Status {
     value: string;
 }
 
-export interface ReviewResponse {
-    reviewId?: string;
+export interface UserReviewModel extends Omit<User, 'permissions' | 'roles'> {
+    accountCount: number;
+}
+
+export interface ReviewModel {
     rating: number;
     description: string;
     headline: string;
-    appId: string;
-    appName?: string;
-    userId?: string;
-    appVersion?: number;
-    status?: Status;
+    type?: string;
     customData?: any;
-    reportDate?: number | Date;
+}
+
+export interface CreateReviewRequest extends ReviewModel {
+    appId: string;
+}
+
+export interface UpdateReviewRequest extends ReviewModel {
+    reviewId: string;
+}
+
+export interface ReviewResponse extends ReviewModel {
+    reviewId: string;
+    appId: string;
+    userId: string;
+    appName: string;
+    status: Status;
+    appVersion: number;
+    reportDate: number | Date;
+    user: UserReviewModel;
 }
