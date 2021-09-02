@@ -1,3 +1,11 @@
+## Release notes - angular-template-libraries - Version 2.20.0 (9/2/2021)<br>
+### Bug<br>
+AT-1483 - [Market/Portal][Email] Email field is not required yet Email field throws format validation.<br>
+AT-1481 - [logs-prod] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler 500 Server Error for HTTP POST "/v2/stats/increment/views"<br>
+### Task<br>
+AT-1456 - Improve checkbox component label and description<br>
+### Bug<br>
+AT-1445 - Email content spoofing<br>
 ## Release notes - angular-template-libraries - Version 2.19.0 (8/31/2021)<br>
 ### Bug<br>
 AT-1502 - All rate limiting should be keyed by siteId<br>
