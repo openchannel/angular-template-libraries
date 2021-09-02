@@ -69,7 +69,7 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
      * Checks component changes and dynamically updates fields data.
      */
     ngOnChanges(changes: SimpleChanges): void {
-        if (difference(changes.fieldValues.currentValue, changes.fieldValues.previousValue)?.length > 0) {
+        if (difference(changes.fieldValues.currentValue, changes.fieldValues.previousValue)?.length > 0 && this.dfaForm) {
             this.buildFieldsData();
         }
     }
@@ -102,7 +102,7 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
                     tempFiledValue = this.fieldValues.find(value => field?.id === value.fieldId)?.fieldValue;
                 }
                 if (result.type === this.DYNAMIC_FIELD_ARRAY_KEY) {
-                    result.formArrayDFA = this.dfaForm.get(result.id) as FormArray;
+                    result.formArrayDFA = this.dfaForm?.get(result.id) as FormArray;
                 }
 
                 result.isValidField = this.isValidDataForFieldType(field.type, tempFiledValue);
