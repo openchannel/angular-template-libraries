@@ -17,10 +17,14 @@ Parameters:
   HostedZoneName:
     Type: String
     Default: "openchannel.io."
+  Logging:
+    Type: "String"
+    Default: ""
 
 Conditions:
   hasTypeProj: !Not [!Equals [!Ref TypeProj, ""]]
   OutUs1: !Not [!Equals [!Ref "AWS::Region", "us-east-1"]] 
+  doesntLogging: !Equals [!Ref Logging, ""]
 
 Resources:
 
@@ -81,10 +85,13 @@ Resources:
         Status: 'Enabled'
       LoggingConfiguration:
         !If
-          - OutUs1
-          - DestinationBucketName: !Sub "${PrefixName}-access"
-            LogFilePrefix: !Sub "/${ProjectName}"
+          - doesntLogging
           - !Ref "AWS::NoValue"
+          - !If
+            - OutUs1
+            - DestinationBucketName: !Sub "${PrefixName}-access"
+              LogFilePrefix: !Sub "/${ProjectName}"
+            - !Ref "AWS::NoValue"
 #==========================================================================================
   cloudfrontoriginaccessidentity:
     DependsOn: EncryptedS3Bucket

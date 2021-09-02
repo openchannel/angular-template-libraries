@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Page } from '../model/api/page.model';
 import { HttpRequestService } from './http-request-services';
-import { User, UserCompanyModel } from '../model/api/user.model';
+import { UserCompanyModel } from '../model/api/user.model';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
 import { HttpHeaders } from '@angular/common/http';
 import { TypeFieldModel, TypeModel } from '../model/api/type-model';
@@ -32,48 +32,6 @@ import { OcApiPaths } from '../oc-ng-common-service.module';
 })
 export class UsersService {
     constructor(private httpService: HttpRequestService, private apiPaths: OcApiPaths) {}
-
-    /**
-     *
-     * Description: Get list of users by ids.
-     *
-     * @param {string[]} userIds - (optional) Array of strings (User Ids)
-     * @returns {Observable<Page<User>>} Observable<Page<User>>
-     *
-     * ### Example
-     *``
-     * getUsersByIds(['a2sd876ags7dd6g','3v874hy98374vr93'])
-     *``
-     */
-    getUsersByIds(userIds?: string[]): Observable<Page<User>> {
-        const mainUrl = `${this.apiPaths.users}/all`;
-
-        const dStr = userIds ? `['${userIds.join("','")}']` : '';
-        const params = new OcHttpParams().append('query', `{'userId': {'$in': ${dStr}}}`);
-
-        return this.httpService.get(mainUrl, { params });
-    }
-
-    /**
-     *
-     * Description: Get list of users with pagination.
-     *
-     * @param {number} pageNumber - (optional) Current page index. Starts from >= 1
-     * @param {number} limit - (optional) Count users into response. Starts from >= 1.
-     * @returns {Observable<Page<User>>} Observable<Page<User>>
-     *
-     * ### Example
-     *``
-     * searchApp(1,100)
-     *``
-     */
-    getUsers(pageNumber?: number, limit?: number): Observable<Page<User>> {
-        const mainUrl = `${this.apiPaths.users}/all`;
-
-        const params = new OcHttpParams().append('pageNumber', String(pageNumber)).append('limit', String(limit));
-
-        return this.httpService.get(mainUrl, { params });
-    }
 
     /**
      *
