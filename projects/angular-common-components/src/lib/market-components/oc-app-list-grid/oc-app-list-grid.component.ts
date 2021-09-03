@@ -35,7 +35,8 @@ export class OcAppListGridComponent {
     @Input() customAppCardTemplate: TemplateRef<FullAppData>;
     /**
      * (Optional)
-     * Base routerLink for one app. Path to the page to which will be redirected, by click on the app card.
+     * Base routerLink for one app. Path to the page to which will be redirected, by click on the default app card.
+     * For the custom app card template you should create your own router link.
      *
      * ### Example:
      * ``
@@ -54,7 +55,9 @@ export class OcAppListGridComponent {
      */
     @Input() appNavigationParam: string = '';
     /**
+     * @deprecated
      * The emitter reports that current app card has been clicked. Return current app object data.
+     * It is deprecated. Use {@link baseLinkForOneApp} with {@link appNavigationParam} for redirect.
      */
     @Output() readonly gotoDetails: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
 
