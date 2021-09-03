@@ -11,6 +11,11 @@ export interface AppFormFieldResponse {
     placeholder: string;
 }
 
+/**
+ * Used as response body for getting a form.<br>
+ * [Get Forms API endpoint]{@link getForms}<br>
+ * [Get Form by ID API endpoint]{@link getForm}<br>
+ */
 export interface AppFormModelResponse {
     formId: string;
     name: string;
@@ -18,10 +23,18 @@ export interface AppFormModelResponse {
     fields?: AppFormFieldResponse[];
 }
 
+/**
+ * Status for form submission. Can be one of: 'open', 'closed'.
+ */
 export interface FormSubmissionStatus {
     value: string;
 }
 
+/**
+ * Used as response body for create form submission.<br>
+ * [API endpoint]{@link createFormSubmission}<br>
+ * [Openchannel docs]{@link https://support.openchannel.io/documentation/api/user-api/forms/create-form-submission/}
+ */
 export interface FormSubmissionModel {
     formSubmissionId: string;
     formId: string;
@@ -36,6 +49,11 @@ export interface FormSubmissionModel {
     formData: any;
 }
 
+/**
+ * Used as request body for create form submission.<br>
+ * [API endpoint]{@link createFormSubmission}<br>
+ * [Openchannel docs]{@link https://support.openchannel.io/documentation/api/user-api/forms/create-form-submission/}
+ */
 export interface CreateFormSubmissionModel {
     name: string;
     appId: string;

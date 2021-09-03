@@ -188,7 +188,7 @@ export class OcFormComponent implements OnInit, OnChanges {
     }
 
     get stepLabel(): string {
-        return `Step${this.currentStep}.${this.currentForm.label ? this.currentForm.label.label : ''}`;
+        return `Step ${this.currentStep}. ${this.currentForm.label ? this.currentForm.label.label : ''}`;
     }
 
     private setStep(step: number): void {

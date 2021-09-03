@@ -4,6 +4,8 @@ import { cloneDeep } from 'lodash';
 import { AppFormField } from '../model/app-form-model';
 
 export class OcFormGenerator {
+    private static readonly emailRegex = /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
     // tslint:disable-next-line:typedef
     static getFormByConfig(fieldsDefinitions: AppFormField[]) {
         const group = {};
@@ -402,9 +404,8 @@ export class OcFormGenerator {
 
     static emailValidator(): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
-            const regex = /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-            const email = c.value ? c.value : '';
-            if (email.match(regex)) {
+            const email = c.value;
+            if (!email || email.match(this.emailRegex)) {
                 return null;
             } else {
                 return { email: true };
