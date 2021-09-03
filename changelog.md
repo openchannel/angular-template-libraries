@@ -1,3 +1,7 @@
+## Release notes - angular-template-libraries - Version 2.23.0 (9/3/2021)<br>
+### Bug<br>
+AT-1493 - Product screenshot not being displayed on new sites<br>
+AT-1215 - [User Management] A User/Developer Admin should not be able to delete themselves.<br>
 ## Release notes - angular-template-libraries - Version 2.21.0 (9/2/2021)<br>
 ### Bug<br>
 AT-1500 - [UI][Create App] Single space is required in between Step #. and Field Group Label for Wizard view.<br>
