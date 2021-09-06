@@ -23,7 +23,7 @@ export class OcAppDescriptionComponent implements OnInit {
     }
 
     /** Header of the App Description section. */
-    @Input() header: string = '';
+    @Input() header: string = 'sadfasdsad';
     /**
      * Heading tag of [title]{@link header}
      * @type {HeadingTag}.

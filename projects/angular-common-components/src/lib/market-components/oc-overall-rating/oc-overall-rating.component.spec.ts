@@ -41,7 +41,7 @@ describe('OcOverallRatingComponent', () => {
         component.overallReviewLabel = 'Test Rating';
         fixture.detectChanges();
 
-        const showRating = fixture.debugElement.query(By.css('h1')).nativeElement;
+        const showRating = fixture.debugElement.query(By.css('.overall-rating__rating-result')).nativeElement;
         const showLabel = fixture.debugElement.query(By.css('#reviewLabel')).nativeElement;
         const reviewCount = fixture.debugElement.query(By.css('#reviewCount')).nativeElement;
 
