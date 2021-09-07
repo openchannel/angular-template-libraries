@@ -105,15 +105,15 @@ export class FileUploadDownloadService {
      *
      * Description: Get file details
      *
-     * @param {string} fileId
+     * @param {string} fileId, {headers?}
      * @returns {Observable<FileDetailsResponse>} `Observable<FileDetailsResponse>`
      *
      * ### Example:
      *
      * `downloadFileDetails('ha98s7dh8a7shd87');`
      */
-    downloadFileDetails(fileId: string): Observable<FileDetailsResponse> {
-        return this.httpRequest.get(`${this.apiPaths.files}/byIdOrUrl?fileIdOrUrl=${fileId}`);
+    downloadFileDetails(fileId: string, headers: HttpHeaders = new HttpHeaders()): Observable<FileDetailsResponse> {
+        return this.httpRequest.get(`${this.apiPaths.files}/byIdOrUrl?fileIdOrUrl=${fileId}`, { headers });
     }
 
     /**
