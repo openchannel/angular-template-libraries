@@ -28,6 +28,7 @@
             border: 1px solid $white;
             border-radius: 4px;
             cursor: pointer;
+            display: block;
             height: 330px;
             margin-bottom: 68px;
             width: 255px;
@@ -39,19 +40,15 @@
 
             &:hover {
                 border: 1px solid $primary;
+                text-decoration: none;
             }
 
             &-body {
                 @include font-size-md();
-                display: block;
                 margin-top: 74px;
                 padding: 0 16px 16px;
                 text-align: center;
                 text-decoration: none;
-
-                &:hover {
-                    text-decoration: none;
-                }
 
                 .featured-apps__card-img {
                     width: 110px;

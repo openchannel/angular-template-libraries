@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
-import { FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
+import { FullAppData, HeadingTag } from '@openchannel/angular-common-components/src/lib/common-components';
 import { get } from 'lodash';
-import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 @Component({
     selector: 'oc-app-gallery',
@@ -53,12 +52,14 @@ export class OcAppGalleryComponent {
     @Input() seeAllUrl: string | any[];
     /**
      * Router link which will be used for navigation by app card click.
+     * Using for the default app card only.
      * @example
      * '/apps'
      */
     @Input() routerLinkForOneApp: string;
     /**
      * Key name of the App object which will be chosen like navigation parameter for the Router link.
+     * Using only with the default app card template.
      * @default 'appId'
      */
     @Input() appNavigationParam: string = 'appId';
@@ -72,15 +73,17 @@ export class OcAppGalleryComponent {
     @Input() headingTag: HeadingTag = 'h2';
 
     /**
-     * Sending current app data on click by App card.
+     * @deprecated
+     * Sending current app data on click by App card. It is deprecated, use {@link routerLinkForOneApp} with
+     * {@link appNavigationParam} for the redirect.
      *
      * Return {FullAppData}
      */
-    @Output() clickAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
+    @Output() readonly clickAppCard: EventEmitter<FullAppData> = new EventEmitter<FullAppData>();
     /**
      * Emitter for click by moreAppsTitle.
      */
-    @Output() clickMoreApps: EventEmitter<void> = new EventEmitter<void>();
+    @Output() readonly clickMoreApps: EventEmitter<void> = new EventEmitter<void>();
 
     getAppValueByParameter(app: FullAppData): string {
         if (this.appNavigationParam) {

@@ -21,7 +21,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
  *   modalRef.componentInstance.modalTitle = 'Submit app';
  *   modalRef.componentInstance.modalText = 'Submit this app to the marketplace now?';
  *   modalRef.componentInstance.confirmButtonText = 'Yes, submit it';
- *   modalRef.componentInstance.cancelButtonText = 'No, cancel';
+ *   modalRef.componentInstance.rejectButtonText = 'No, cancel';
  *
  *   // getting modal data through the promise
  *   modalRef.result.then(
