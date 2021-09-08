@@ -1,3 +1,11 @@
+## Release notes - angular-template-libraries - Version 2.24.0 (9/8/2021)<br>
+### Bug<br>
+AT-1493 - Product screenshot not being displayed on new sites<br>
+### Task<br>
+AT-1461 - Automate versioning and realease notes within Bitbucket pipelines<br>
+AT-1203 - Set meta tags that allow social media sites to display a proper image for app details pages when sharing the link<br>
+AT-1202 - Set image alt text for images on app cards and logos on app details page<br>
+AT-1201 - Set meta description tags on site<br>
 ## Release notes - angular-template-libraries - Version 2.23.0 (9/3/2021)<br>
 ### Bug<br>
 AT-1493 - Product screenshot not being displayed on new sites<br>
