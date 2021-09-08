@@ -28,6 +28,7 @@ definitions:
     - step: &build-and-push-new-version-of-services
         name: Push services to npm
         script:
+          - git pull
           - npm install --quiet
           - npm run build-prod angular-common-services
           - npm run angular-common-services-pack
@@ -39,6 +40,7 @@ definitions:
     - step: &build-and-push-new-version-of-components
         name: Push components to npm
         script:
+          - git pull
           - npm install --quiet
           - npm run build-prod angular-common-components
           - npm run angular-common-components-pack
@@ -112,11 +114,30 @@ definitions:
           - export AWS_S3="`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value`"
           - aws s3 sync --delete storybook-static/ s3://$AWS_S3
           - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /*
-    - step: &release-up-version-with-a-git-tag
-        name: "Release up version with a GIT tag"
+
+    - step: &up-project-version
+        name: "Up version"
         script:
-          - chmod +x ./scripts/* && cd ./scripts/up-version
-          - /bin/bash up-version.sh ${JIRA_EMAIL} ${JIRA_API_KEY} ${RELEASE_VERSION} ${PACKAGE_VERSION} 'angular-template-libraries'
+          - /bin/bash ./scripts/package-json-version/script.sh $PROJECT_VERSION
+          - git add .
+          - git commit -m "Up version to $PROJECT_VERSION."
+          - git push
+
+    - step: &create-changelog-with-git-tag
+        name: "Create changelog and add git tag"
+        script:
+          # Get current package.json version
+          - projectVerion=$(node -e "console.log(require('./package.json').version)")
+          # Validate package.json version
+          - if [[ ! $projectVerion == +([0-9]).+([0-9]).+([0-9]) ]]; then echo "Error. package.json file includes prerelease version $projectVerion. Must be like '1.1.1'. Please change version."; exit 1; fi
+          # Install required libs for changelog script
+          - npm i --prefix ./scripts/changelog-builder
+          # Generate new changelog file or skip
+          - EMAIL=${JIRA_EMAIL} API_KEY=${JIRA_API_KEY} RELEASE_VERSION=${JIRA_RELEASE_VERSION} PROJECT_VERSION=$projectVerion node ./scripts/changelog-builder/script.js
+          # Commit and push
+          - if [[ ! -z $(git status --porcelain) ]]; then git add . ; git commit -m "Created changelog.md for $JIRA_RELEASE_VERSION release." ; git push ; else echo 'Changelog not changed.'; fi
+          # Create git tag and push
+          - /bin/bash ./scripts/create-and-push-github-tag/script.sh "${PUSH_TAG_FORCE}"
 pipelines:
   pull-requests:
     '**':
@@ -141,11 +162,28 @@ pipelines:
       - step:
           <<: *deploy-app
           deployment: us1
-    Up Lib Version:
+    Up version:
       - variables:
-          - name: RELEASE_VERSION
-          - name: PACKAGE_VERSION
-      - step: *release-up-version-with-a-git-tag
+          - name: PROJECT_VERSION
+      - step: *up-project-version
+    Up version and publish:
+      - variables:
+          - name: PROJECT_VERSION
+      - step: *build-test-sonarcloud
+      - step: *up-project-version
+      - parallel:
+          - step: *build-and-push-new-version-of-services
+          - step: *build-and-push-new-version-of-components
+    Publish services and components:
+      - step: *build-test-sonarcloud
+      - parallel:
+          - step: *build-and-push-new-version-of-services
+          - step: *build-and-push-new-version-of-components
+    Create changelog and Git Tag:
+      - variables:
+          - name: JIRA_RELEASE_VERSION
+          - name: PUSH_TAG_FORCE
+      - step: *create-changelog-with-git-tag
     Dev1 compodoc (services):
       - step: *build_compodoc_documentation_for_services
       - step:
