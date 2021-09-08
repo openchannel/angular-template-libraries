@@ -1,3 +1,7 @@
+## Release notes - angular-template-libraries - Version 2.25.0 (9/8/2021)<br>
+### Task<br>
+AT-1420 - Make the developerInviteTemplateId and userInviteTemplateId configurable and only allow sending developerInviteTemplateId/userInviteTemplateId, type, roles and email parameters in CAP endpoint<br>
+AT-1204 - For each page, use heading tags to properly describe the layout of the pages<br>
 ## Release notes - angular-template-libraries - Version 2.24.0 (9/8/2021)<br>
 ### Bug<br>
 AT-1493 - Product screenshot not being displayed on new sites<br>
