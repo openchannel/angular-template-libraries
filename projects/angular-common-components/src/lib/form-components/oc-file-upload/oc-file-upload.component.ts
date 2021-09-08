@@ -614,13 +614,16 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      */
     private loadDetails(urls: string[]): void {
         urls.forEach(fileUrl => {
-            this.fileUploaderService.fileDetailsRequest(fileUrl).subscribe(
-                detail => this.fileDetailArr.push({ ...detail, fileUploadProgress: 100 }),
-                () => {
-                    this.fileDetailArr.push(this.externallyHostedImageHandler(fileUrl));
-                },
-                () => this.emitChanges(),
-            );
+            this.fileUploaderService
+                .fileDetailsRequest(fileUrl)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(
+                    detail => this.fileDetailArr.push({ ...detail, fileUploadProgress: 100 }),
+                    () => {
+                        this.fileDetailArr.push(this.externallyHostedImageHandler(fileUrl));
+                    },
+                    () => this.emitChanges(),
+                );
         });
     }
 

@@ -105,7 +105,8 @@ export class FileUploadDownloadService {
      *
      * Description: Get file details
      *
-     * @param {string} fileId, {headers?}
+     * @param {string} fileId,
+     * @param {HttpHeaders} headers
      * @returns {Observable<FileDetailsResponse>} `Observable<FileDetailsResponse>`
      *
      * ### Example:
