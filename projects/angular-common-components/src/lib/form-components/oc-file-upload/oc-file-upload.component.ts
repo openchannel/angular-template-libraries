@@ -586,6 +586,10 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         }
     }
 
+    /**
+     * @private Uses fileUploadService to get file details.
+     * @param {string} urlData
+     */
     private getFileDetails(urlData: string): void {
         this.fileUploaderService
             .fileDetailsRequest(urlData)
