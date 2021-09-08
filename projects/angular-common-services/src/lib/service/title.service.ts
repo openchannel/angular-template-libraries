@@ -44,8 +44,7 @@ export class TitleService {
      * ``
      */
     setPrefix(subtitle: string): void {
-        const siteTitle = `${subtitle ? `${subtitle} | ` : ''}${this.title}`;
-        this.titleService.setTitle(siteTitle);
+        this.setTitleFromTwoParts(subtitle, this.title);
     }
     /**
      *  Description: Set subtitle on the right side of a pipe
@@ -59,8 +58,7 @@ export class TitleService {
      * ``
      */
     setPostfix(subtitle: string): void {
-        const siteTitle = `${this.title}${subtitle ? ` | ${subtitle}` : ''}`;
-        this.titleService.setTitle(siteTitle);
+        this.setTitleFromTwoParts(this.title, subtitle);
     }
 
     /**
@@ -80,6 +78,16 @@ export class TitleService {
             this.setPostfix(newTitlePart);
         } else {
             this.setPrefix(newTitlePart);
+        }
+    }
+
+    private setTitleFromTwoParts(firstPart: string, secondPart: string): void {
+        const normalizedFirstPart = firstPart?.trim();
+        const normalizedSecondPart = secondPart?.trim();
+        if (normalizedFirstPart && normalizedSecondPart) {
+            this.titleService.setTitle(`${normalizedFirstPart} | ${normalizedSecondPart}`);
+        } else {
+            this.titleService.setTitle(normalizedFirstPart || normalizedSecondPart || '');
         }
     }
 }
