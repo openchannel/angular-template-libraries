@@ -573,28 +573,35 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         if (!this.fileUploaderService.fileDetailsRequest) {
             console.error('Please, set the FileDetailsRequest function');
         } else if (urlData) {
+            this.fileDetailArr = [];
             if (this.isMultiFileSupport() && typeof urlData !== 'string') {
-                this.loadDetails(urlData);
+                urlData.forEach(fileUrl => {
+                    this.getFileDetails(fileUrl);
+                });
             } else if (typeof urlData === 'string') {
-                this.fileUploaderService
-                    .fileDetailsRequest(urlData)
-                    .pipe(takeUntil(this.destroy$))
-                    .subscribe(
-                        res => {
-                            this.fileDetailArr = res ? [{ ...res, fileUploadProgress: 100 }] : [];
-                            this.emitChanges();
-                        },
-                        error => {
-                            if (error.error.code === 404) {
-                                this.fileDetailArr = [this.externallyHostedImageHandler(urlData)];
-                                this.emitChanges();
-                            }
-                        },
-                    );
+                this.getFileDetails(urlData);
             } else {
                 console.error('initValues function error: something wrong with provided data');
             }
         }
+    }
+
+    private getFileDetails(urlData: string): void {
+        this.fileUploaderService
+            .fileDetailsRequest(urlData)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(
+                res => {
+                    this.fileDetailArr.push({ ...res, fileUploadProgress: 100 });
+                    this.emitChanges();
+                },
+                error => {
+                    if (error.error.code === 404) {
+                        this.fileDetailArr.push(this.externallyHostedImageHandler(urlData));
+                        this.emitChanges();
+                    }
+                },
+            );
     }
 
     /**
@@ -606,25 +613,6 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         fileDetails.name = urlData;
         fileDetails.fileUrl = urlData;
         return { ...fileDetails, fileUploadProgress: 100 };
-    }
-
-    /**
-     * @private Load files details and add it to details array
-     * @param {string[]} urls
-     */
-    private loadDetails(urls: string[]): void {
-        urls.forEach(fileUrl => {
-            this.fileUploaderService
-                .fileDetailsRequest(fileUrl)
-                .pipe(takeUntil(this.destroy$))
-                .subscribe(
-                    detail => this.fileDetailArr.push({ ...detail, fileUploadProgress: 100 }),
-                    () => {
-                        this.fileDetailArr.push(this.externallyHostedImageHandler(fileUrl));
-                    },
-                    () => this.emitChanges(),
-                );
-        });
     }
 
     /**
