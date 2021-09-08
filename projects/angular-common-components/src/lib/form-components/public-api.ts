@@ -3,6 +3,7 @@ export * from './oc-color/oc-color.component';
 export * from './oc-datetime-picker/oc-datetime-picker.component';
 export * from './oc-dynamic-field-array/oc-dynamic-field-array.component';
 export * from './oc-file-upload/oc-file-upload.component';
+export * from './oc-single-form/oc-single-form.component';
 export * from './oc-form/oc-form.component';
 export * from './oc-multi-select-list/oc-multi-select-list.component';
 export * from './oc-multi-select-checkbox-list/oc-multi-select-checkbox-list.component';

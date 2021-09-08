@@ -25,10 +25,6 @@ export class OcAppCardComponent implements OnInit {
         }
     }
     /**
-     * The RouterLink will lead to another page by click on the App card.
-     */
-    @Input() appRedirectLink: any[] | string | null | undefined = null;
-    /**
      * Emitting click by App card. Works only when appRedirectLink does not applied.
      * Emmit Full App Data
      */

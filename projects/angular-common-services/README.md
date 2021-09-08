@@ -25,6 +25,7 @@ Store models and services for creating a marketplace instance:
 
     "jwt-decode": "3.1.2",
     "broadcast-channel": "3.5.3",
+    "isbot": "^3.3.1"
 
 ## Services Installation
 
@@ -70,6 +71,24 @@ export class AppModule {}
 Example:  
 ```
 CustomHttpClientXsrfModule.withOptions({ headerName: 'X-CSRF-TOKEN', apiUrl: 'https://client-api.openchannel.io/' })
+```
+
+### Import NetlifyPrerenderModule
+Note: NetlifyPrerenderModule provide HttpRequestsWatcherInterceptor for the Netlify pre-render.  
+Add import to app.module
+```sh
+@NgModule({
+    imports: [
+        ...
+        NetlifyPrerenderModule.withOptions({ endpointsConfigForPrerender: 'your pre-render config can be passed here' }),
+    ]
+})
+export class AppModule {}
+```
+
+Example:
+```
+   NetlifyPrerenderModule.withOptions({ endpointsConfigForPrerender: yourPrerenderEndpointsConfig }),
 ```
 
 ## Connect library to project by link
