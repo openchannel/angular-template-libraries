@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HeadingTag } from '@openchannel/angular-common-components/src/lib/common-components';
 /**
  * Component represents heading and text which could be the description of the app or something else.
  * Description text can be truncated by a quantity of the characters. Also, it can contain HTML tags.
@@ -22,7 +23,13 @@ export class OcAppDescriptionComponent implements OnInit {
     }
 
     /** Header of the App Description section. */
-    @Input() header: string = '';
+    @Input() header: string = 'sadfasdsad';
+    /**
+     * Heading tag of [title]{@link header}
+     * @type {HeadingTag}.
+     */
+    @Input() headerTag: HeadingTag = 'h4';
+
     /** Show full description always. Text for expand description will not be shown. */
     @Input() showFullDescription: boolean = false;
     /** String with classes that will be applied to the header. */

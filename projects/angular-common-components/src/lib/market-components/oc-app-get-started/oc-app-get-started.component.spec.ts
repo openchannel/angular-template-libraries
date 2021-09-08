@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { OcAppGetStartedComponent } from './oc-app-get-started.component';
 import { By } from '@angular/platform-browser';
-import { MockButtonComponent } from '@openchannel/angular-common-components/src/mock/mock';
+import { MockButtonComponent, MockHeadingTagDirective } from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcAppGetStartedComponent', () => {
     let component: OcAppGetStartedComponent;
@@ -11,7 +11,7 @@ describe('OcAppGetStartedComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcAppGetStartedComponent, MockButtonComponent],
+                declarations: [OcAppGetStartedComponent, MockButtonComponent, MockHeadingTagDirective],
             }).compileComponents();
         }),
     );

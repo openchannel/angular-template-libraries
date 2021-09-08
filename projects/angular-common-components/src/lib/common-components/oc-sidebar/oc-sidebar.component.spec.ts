@@ -4,6 +4,7 @@ import { OcSidebarComponent } from './oc-sidebar.component';
 import { Component, Input } from '@angular/core';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MockHeadingTagDirective } from '@openchannel/angular-common-components/src/mock/mock';
 
 @Component({
     selector: 'svg-icon',
@@ -20,7 +21,7 @@ describe('OcSidebarComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcSidebarComponent, MockSvgIconComponent],
+                declarations: [OcSidebarComponent, MockSvgIconComponent, MockHeadingTagDirective],
                 imports: [NgbCollapseModule, RouterTestingModule.withRoutes([])],
             }).compileComponents();
         }),
