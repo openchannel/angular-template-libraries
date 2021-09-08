@@ -620,6 +620,25 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     }
 
     /**
+     * @private Load files details and add it to details array
+     * @param {string[]} urls
+     */
+    private loadDetails(urls: string[]): void {
+        urls.forEach(fileUrl => {
+            this.fileUploaderService
+                .fileDetailsRequest(fileUrl)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(
+                    detail => this.fileDetailArr.push({ ...detail, fileUploadProgress: 100 }),
+                    () => {
+                        this.fileDetailArr.push(this.externallyHostedImageHandler(fileUrl));
+                    },
+                    () => this.emitChanges(),
+                );
+        });
+    }
+
+    /**
      * @private Returns array with file ids and URLs
      * @param {FileDetails[]} files
      * @returns {string[]} `string[]`
