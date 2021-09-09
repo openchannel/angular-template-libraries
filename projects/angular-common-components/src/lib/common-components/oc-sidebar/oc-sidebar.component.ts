@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { OcSidebarSelectModel } from '../model/oc-sidebar-model';
 import { SidebarValue } from '../model/components-basic.model';
+import { HeadingTag } from '../interfaces/heading-tag.interface';
 
 /**
  * Sidebar component. It is used as a tool for quick search of applications.
@@ -20,6 +21,11 @@ export class OcSidebarComponent {
      */
     @Input() title: string;
 
+    /**
+     * Heading tag of [title]{@link title}
+     * @type {HeadingTag}.
+     */
+    @Input() titleHeadingTag: HeadingTag = 'h2';
     /**
      * Sidebar config, contains array of sidebar list items.
      * @type {SidebarValue[]}.

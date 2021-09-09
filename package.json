@@ -1,6 +1,6 @@
 {
   "name": "oc-angular-template-libraries",
-  "version": "2.23.0",
+  "version": "2.25.0",
   "scripts": {
     "prebuild": "npm run clean-css && npm run generate-mock-css",
     "postbuild": "npm run gather-components-styles && npm run exclude-mixins && npm run replace-relative-scss-urls",
@@ -11,7 +11,7 @@
     "build-components": "npm run build angular-common-components",
     "build-components-watch": "npm-watch build-components",
     "test": "npm run test:lib",
-    "test:lib": "jest --config projects/angular-common-components/jest.config.js --collectCoverage --maxWorkers=4",
+    "test:lib": "jest --config projects/angular-common-components/jest.config.js --collectCoverage --runInBand",
     "test:watch": "jest --config projects/angular-common-components/jest.config.js --watch --coverage --collectCoverageFrom=\"src/**/*${npm_config_folderName}*/**/*.{ts,html}\" -- \"${npm_config_folderName}\"",
     "sass-lint": "node_modules/.bin/sass-lint -c .scss-lint.yml",
     "lint": "./node_modules/.bin/ng lint",

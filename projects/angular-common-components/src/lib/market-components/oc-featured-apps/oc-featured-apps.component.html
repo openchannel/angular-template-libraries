@@ -21,7 +21,7 @@
     <a class="featured-apps__card" [routerLink]="[mainRouterLink, getAppValueByParameter(app)]">
         <div class="featured-apps__card-body {{customClasses}}">
             <div class="featured-apps__card-img">
-                <img *ngIf="app.icon" src="{{app.icon}}" alt="">
+                <img *ngIf="app.icon" src="{{app.icon}}" [alt]="app.name || 'app-logo'">
             </div>
             <h3 [headingTag]="appHeadingTag" class="featured-apps__card-name" ellipsis>{{app.name}}</h3>
             <span class="featured-apps__card-description" ellipsis>{{(app.summary ? app.summary : app.description) | replaceHtmlTags}}</span>

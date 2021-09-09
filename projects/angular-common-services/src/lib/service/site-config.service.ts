@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { Meta, MetaDefinition } from '@angular/platform-browser';
 import { Observable } from 'rxjs/internal/Observable';
 import { of, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -13,9 +13,9 @@ import { TitleService } from './title.service';
  *
  * Methods:
  *
- * setMeta
+ * setMeta - set meta tags from the config array
  *
- * setFavicon
+ * setFavicon - set favicon from the config
  *
  * initSiteConfiguration
  */
@@ -29,15 +29,31 @@ export class SiteConfigService {
     constructor(private titleService: TitleService, private metaService: Meta) {}
 
     /**
-     * Description: Set up meta tags from the Site Config
+     * Description: Set up meta tags for the site
+     * @param {MetaDefinition[]} metaTags array of the meta tags that will be set on the current site
      *
-     * @returns {void}
      *
      * ### Example
-     * ``setMeta()``
+     * ```
+     * const meta = [
+     *  {
+     *     id: "customDescription",
+     *     name: "description",
+     *     content: "some description"
+     *  },
+     *  {
+     *     id: "authorMeta",
+     *     name: "author",
+     *     content: "OpenChannel"
+     *  }
+     * ]
+     *
+     *
+     * setMeta(meta)
+     * ```
      */
-    setMeta(): void {
-        this.metaService.addTags(this.siteConfig.metaTags);
+    setMeta(metaTags: MetaDefinition[]): void {
+        this.metaService.addTags(metaTags);
     }
 
     /**
@@ -102,7 +118,7 @@ export class SiteConfigService {
     initSiteConfiguration(config: SiteConfig): void {
         this.siteConfig = config;
         this.titleService.title = this.siteConfig.title;
-        this.setMeta();
+        this.setMeta(config.metaTags);
         this.setFavicon();
         this.siteConfigSetupTrigger.next();
     }

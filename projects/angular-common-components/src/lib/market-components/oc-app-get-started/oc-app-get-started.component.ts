@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { HeadingTag } from '@openchannel/angular-common-components/src/lib/common-components';
 
 @Component({
     selector: 'oc-app-get-started',
@@ -13,6 +14,14 @@ export class OcAppGetStartedComponent {
      * @default: 'List Your App in our App Store'
      */
     @Input() getStartedHeader: string = 'List Your App in our App Store';
+
+    /**
+     * Heading tag of header [getStartedHeader]{@link getStartedHeader}
+     * @type {HeadingTag}.
+     * @example.
+     * 'h2'.
+     */
+    @Input() getStartedHeadingTag: HeadingTag = 'h3';
     /**
      * Main text of the component. Placed under title
      */
