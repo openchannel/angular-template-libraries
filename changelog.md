@@ -10,6 +10,10 @@ AT-379 - A search engine can be blocked from crawling the site based on search e
 ### Bug<br>
 AT-1511 - [Portal / Market] [Alias Email] Email field does not accepts the alias emails.<br>
 AT-1406 - [Dev1][Portal] Getting error when selecting an App Type.<br>
+## Release notes - angular-template-libraries - Version 2.26.0 (9/13/2021)<br>
+### Bug<br>
+AT-1511 - [Portal / Market] [Alias Email] Email field does not accepts the alias emails.<br>
+AT-1406 - [Dev1][Portal] Getting error when selecting an App Type.<br>
 ## Release notes - angular-template-libraries - Version 2.25.0 (9/8/2021)<br>
 ### Task<br>
 AT-1420 - Make the developerInviteTemplateId and userInviteTemplateId configurable and only allow sending developerInviteTemplateId/userInviteTemplateId, type, roles and email parameters in CAP endpoint<br>
