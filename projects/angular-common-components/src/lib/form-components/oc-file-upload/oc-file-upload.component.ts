@@ -3,8 +3,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { base64ToFile, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { of, Subject, Subscription } from 'rxjs';
-import { mergeMap, takeUntil } from 'rxjs/operators';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { FileDetails, FileType, FileUploaderService } from '../model/file.model';
 
 /**
@@ -573,16 +573,13 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         if (!this.fileUploaderService.fileDetailsRequest) {
             console.error('Please, set the FileDetailsRequest function');
         } else if (urlData) {
+            this.fileDetailArr = [];
             if (this.isMultiFileSupport() && typeof urlData !== 'string') {
-                this.loadDetails(urlData);
+                urlData.forEach(fileUrl => {
+                    this.getFileDetails(fileUrl);
+                });
             } else if (typeof urlData === 'string') {
-                this.fileUploaderService
-                    .fileDetailsRequest(urlData)
-                    .pipe(takeUntil(this.destroy$))
-                    .subscribe(res => {
-                        this.fileDetailArr = res ? [{ ...res, fileUploadProgress: 100 }] : [];
-                        this.emitChanges();
-                    });
+                this.getFileDetails(urlData);
             } else {
                 console.error('initValues function error: something wrong with provided data');
             }
@@ -590,17 +587,36 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     }
 
     /**
-     * @private Load files details and add it to details array
-     * @param {string[]} urls
+     * @private Uses fileUploadService to get file details.
+     * @param {string} urlData
      */
-    private loadDetails(urls: string[]): void {
-        of(...urls)
-            .pipe(mergeMap(fileUrl => this.fileUploaderService.fileDetailsRequest(fileUrl)))
+    private getFileDetails(urlData: string): void {
+        this.fileUploaderService
+            .fileDetailsRequest(urlData)
+            .pipe(takeUntil(this.destroy$))
             .subscribe(
-                detail => this.fileDetailArr.push({ ...detail, fileUploadProgress: 100 }),
-                () => {},
-                () => this.emitChanges(),
+                res => {
+                    this.fileDetailArr.push({ ...res, fileUploadProgress: 100 });
+                    this.emitChanges();
+                },
+                error => {
+                    if (error.error.code === 404) {
+                        this.fileDetailArr.push(this.externallyHostedImageHandler(urlData));
+                        this.emitChanges();
+                    }
+                },
             );
+    }
+
+    /**
+     * @private Creates an object when the image is externally hosted
+     * @returns {FileDetails}
+     */
+    private externallyHostedImageHandler(urlData: string): FileDetails {
+        const fileDetails = new FileDetails();
+        fileDetails.name = urlData;
+        fileDetails.fileUrl = urlData;
+        return { ...fileDetails, fileUploadProgress: 100 };
     }
 
     /**
