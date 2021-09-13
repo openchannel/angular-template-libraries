@@ -17,6 +17,7 @@ import { FieldValueModel, FormArrayItem, PreviewLabel } from '../model/dynamic-a
     styleUrls: ['./oc-dynamic-field-array.component.css'],
 })
 export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
+    @Input() previewMode: boolean = false;
     /**
      * Fields definition config necessary for the DFA generation.
      * Throws an error if no value provided.
@@ -92,6 +93,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
                 formData: null,
                 previewLabel: null,
                 previewFiledValues: null,
+                previewCollapsedDFAFields: false,
             });
             this.dfaFormArray.push(newGroup);
         } else {
@@ -101,6 +103,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
                 formData: null,
                 previewLabel: null,
                 previewFiledValues: null,
+                previewCollapsedDFAFields: false,
             });
             this.dfaFormArray.insert(0, newGroup);
         }
@@ -148,6 +151,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
                     formData: control.value,
                     previewLabel: null,
                     previewFiledValues: null,
+                    previewCollapsedDFAFields: false,
                 };
             });
             this.subscribeToAllPreviewFieldChanges();
