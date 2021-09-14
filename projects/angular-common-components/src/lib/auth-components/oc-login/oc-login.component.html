@@ -7,7 +7,7 @@
                      [src]="companyLogoUrl">
             </div>
             <div class="login__header">
-                <h1 [headingTag]="headingTag" class="login__header-heading">Log In</h1>
+                <h1 [headingTag]="headingTag" class="login__header-heading">Log in</h1>
                 <oc-label text="Log in into your account" class="login__header-invitation"></oc-label>
             </div>
             <div class="login__error login__warn-block" *ngIf="hasServerError(email, incorrectEmailErrorCode)">
@@ -55,8 +55,8 @@
                        class="login__button">
             </oc-button>
             <div class="login__sign-up">
-                Dont have an account yet?
-                <a *ngIf="signupUrl" class="login__sign-up-link" [routerLink]="signupUrl">Sign Up</a>
+                Don't have an account yet?
+                <a *ngIf="signupUrl" class="login__sign-up-link" [routerLink]="signupUrl">Sign up</a>
             </div>
         </div>
     </form>
