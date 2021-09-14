@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ReviewResponse } from '../model/api/review.model';
+import { CreateReviewRequest, ReviewResponse, UpdateReviewRequest } from '../model/api/review.model';
 import { Page } from '../model/api/page.model';
 import { HttpRequestService } from './http-request-services';
-import { map, mergeMap, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { UsersService } from './users.service';
-import { User } from '../model/api/user.model';
 import { QueryUtil } from '../util/query.util';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
 import { OCReviewDetailsResponse } from '../model/components/frontend.model';
@@ -59,27 +58,15 @@ export class ReviewsService {
             params = params.append('pageNumber', String(page)).append('limit', String(limit));
         }
 
-        let reviewPage: Page<ReviewResponse>;
         return this.httpService.get(this.apiPaths.reviews, { params }).pipe(
-            tap((pageData: Page<ReviewResponse>) => (reviewPage = pageData)),
-            mergeMap((pageData: Page<ReviewResponse>) => this.usersService.getUsersByIds(pageData.list.map(value => value.userId))),
-            map((userPage: Page<User>) => {
-                const idToUser = new Map<string, User>();
-                userPage.list.forEach(user => idToUser.set(user.userId, user));
-
-                const reviews = reviewPage.list.map(review => {
-                    return {
-                        rating: review.rating,
-                        review: review.description,
-                        reviewOwnerName: idToUser.get(review.userId).name,
-                        userId: review.userId,
-                        reviewId: review.reviewId,
-                    };
-                });
-
+            map((reviewPage: Page<ReviewResponse>) => {
                 return {
                     ...reviewPage,
-                    list: reviews,
+                    list: reviewPage.list.map(review => ({
+                        ...review,
+                        review: review.description,
+                        reviewOwnerName: review.user.name,
+                    })),
                 };
             }),
         );
@@ -93,7 +80,7 @@ export class ReviewsService {
      * ### Example:
      * `createReview({appId: 5565322ae4b0a70b13a4563b, headline: "Good App", rating: 400, description: ""})`
      */
-    createReview(reviewData: ReviewResponse): Observable<ReviewResponse> {
+    createReview(reviewData: ReviewResponse | CreateReviewRequest): Observable<ReviewResponse> {
         return this.httpService.post(this.apiPaths.reviews, reviewData);
     }
 
@@ -105,7 +92,7 @@ export class ReviewsService {
      * ### Example:
      * `updateReview({reviewId: "5565322ae4b0a70b13a4563b", headline: "Good App", rating: 400, description: ""})`
      */
-    updateReview(reviewData: ReviewResponse): Observable<ReviewResponse> {
+    updateReview(reviewData: ReviewResponse | UpdateReviewRequest): Observable<ReviewResponse> {
         return this.httpService.patch(`${this.apiPaths.reviews}/${reviewData.reviewId}`, reviewData);
     }
 

@@ -413,6 +413,8 @@ export class MockDropdownMultiApp implements ControlValueAccessor {
 })
 export class MockHeadingTagDirective {
     @Input() headingTag: HeadingTag;
+    @Input() set headingTagContent(content: string) {
+    }
 }
 
 @Component({

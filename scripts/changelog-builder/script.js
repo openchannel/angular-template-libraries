@@ -1,15 +1,18 @@
 const fetch = require('node-fetch');
 const Buffer = require('buffer').Buffer;
-const fs = require('fs')
+const fs = require('fs');
 
-if (!(process.env.EMAIL && process.env.API_KEY && process.env.RELEASE_VERSION && process.env.PACKAGE_VERSION)) {
+if (!(process.env.EMAIL && process.env.API_KEY && process.env.RELEASE_VERSION && process.env.PROJECT_VERSION)) {
     console.error('Creating changelog.md failed. Missed required inputs : ' +
         (!process.env.EMAIL ? 'EMAIL,' : '') +
         (!process.env.API_KEY ? 'API_KEY,' : '') +
         (!process.env.RELEASE_VERSION ? 'RELEASE_VERSION,' : '') +
-        (!process.env.PACKAGE_VERSION ? 'PACKAGE_VERSION,' : ''))
+        (!process.env.PROJECT_VERSION ? 'PROJECT_VERSION,' : ''))
     process.exit(1);
 }
+// # constant
+const resultFilePath = './changelog.md';
+const projectName = 'angular-template-libraries';
 
 // #=== Script Inputs API & GIT settings
 const jiraSubDomain = process.env.SUBDOMAIN || 'openchannel';
@@ -17,23 +20,28 @@ const jiraEmail = process.env.EMAIL;
 const jiraApiKey = process.env.API_KEY;
 const jiraReleaseVersion = process.env.RELEASE_VERSION;
 const jiraMaxIssues = 100;
-const packageVersion = process.env.PACKAGE_VERSION;
-const gitRepoName = process.env.GIT_REPOSITORY_NAME || 'Project'
-const resultFilePath = process.env.RESULT_FILE_PATH || '../../changelog.md';
+const projectVersion = process.env.PROJECT_VERSION;
 
 // Options for creating file
 const filePatternValues = {
-    PROJECT_NAME: (issue) => gitRepoName,
-    PACKAGE_VERSION: (issue) => packageVersion,
+    PROJECT_NAME: (issue) => projectName,
+    PROJECT_VERSION: (issue) => projectVersion,
     ISSUE_KEY: (issue) => issue ? issue.key : '',
     ISSUE_NAME: (issue) => issue ? issue.fields.summary : '',
     ISSUE_TYPE: (issue) => issue ? issue.fields.issuetype.name : '',
     DATE: (issue) => new Date().toLocaleDateString("en"),
 }
-const filePatternHeader = "## Release notes - PROJECT_NAME - Version PACKAGE_VERSION (DATE)<br>\n"
+
+// Changelog pattern
+const filePatternHeader = "## Release notes - PROJECT_NAME - Version PROJECT_VERSION (DATE)<br>\n"
 const filePatternTitle = `### ISSUE_TYPE<br>\n`
 const filePatternIssue = `ISSUE_KEY - ISSUE_NAME<br>\n`
 
+function isExistsCurrentVersionInChangelog(changelogFileBuffer) {
+    const newChangelogTitle = replacePatternValues(null, filePatternHeader, filePatternValues);
+    const oldChangelogTitle = changelogFileBuffer.subarray(0, newChangelogTitle.length).toString();
+    return oldChangelogTitle.includes(projectVersion);
+}
 
 async function getIssuesFromAPI(jiraSubDomain, jiraEmail, jiraApiKey, jiraFixVersion, maxIssues) {
     console.log(`Gets issues from JIRA for ${jiraFixVersion}`);
@@ -82,30 +90,39 @@ function replacePatternValues(issueObj, patternStr, values) {
     return tempStr;
 }
 
-getIssuesFromAPI(jiraSubDomain, jiraEmail, jiraApiKey, jiraReleaseVersion, jiraMaxIssues)
-    .then(response => sortIssuesByType(response.issues))
-    .then(availableIssues => buildFile(availableIssues))
-    .then(fileBody => {
-        prependFile(resultFilePath, fileBody, (err) => {
-            if (err) {
-                console.error('Can\'t save file by path :', resultFilePath);
+function createChangelog() {
+    const oldChangelogFileBuffer = fs.readFileSync(resultFilePath);
+    if(isExistsCurrentVersionInChangelog(oldChangelogFileBuffer)) {
+        console.log(`Changelog was not changed, because already includes ${projectVersion} version.`);
+        process.exit(0);
+    } else {
+        getIssuesFromAPI(jiraSubDomain, jiraEmail, jiraApiKey, jiraReleaseVersion, jiraMaxIssues)
+            .then(response => sortIssuesByType(response.issues))
+            .then(availableIssues => buildFile(availableIssues))
+            .then(fileBody => {
+                prependFile(resultFilePath, oldChangelogFileBuffer, fileBody, (err) => {
+                    if (err) {
+                        console.error('Can\'t save file by path :', resultFilePath);
+                        process.exit(1);
+                    }
+                    console.log('Created a new changelog.md:\n' + fileBody);
+                })
+            })
+            .catch((err) => {
+                console.error('Unknown error', err);
                 process.exit(1);
-            }
-            console.log('Created a new changelog.md:\n' + fileBody);
-        })
-    })
-    .catch((err) => {
-        console.error('Unknown error', err);
-        process.exit(1);
-    });
+            });
+    }
+}
 
-function prependFile(file, data, callback) {
-    const oldData = fs.readFileSync(file);
-    const fd = fs.openSync(file, 'w+');
+function prependFile(filePath, oldFileBuffer, data, callback) {
+    const fd = fs.openSync(filePath, 'w+');
     const buffer = new Buffer(data);
 
     fs.writeSync(fd, buffer, 0, buffer.length, 0); //write new data
-    fs.writeSync(fd, oldData, 0, oldData.length, buffer.length); //append old data
+    fs.writeSync(fd, oldFileBuffer, 0, oldFileBuffer.length, buffer.length); //append old data
 
     fs.close(fd, callback);
 }
+
+createChangelog();
