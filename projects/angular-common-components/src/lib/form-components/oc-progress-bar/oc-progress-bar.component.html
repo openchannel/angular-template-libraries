@@ -6,8 +6,9 @@
                      'form-progressbar__item_invalid': step.state === 'invalid'}">
         <div class="form-progressbar__item-content">
             <div class="form-progressbar__item-content-shape">
-        <span class="form-progressbar__item-content-status"
-              *ngIf="step.state !== 'finished'">{{step.state === 'pristine' ? i + 1: '!'}}</span>
+                <span class="form-progressbar__item-content-status"
+                      *ngIf="step.state !== 'finished'">{{step.state === 'pristine' ? i + 1 : '!'}}</span>
+                <div class="form-progressbar__item-content-animation"></div>
                 <div class="form-progressbar__item-content-status"
                      *ngIf="step.state === 'finished'">
                     <img class="form-progressbar__item-content-status-icon"
