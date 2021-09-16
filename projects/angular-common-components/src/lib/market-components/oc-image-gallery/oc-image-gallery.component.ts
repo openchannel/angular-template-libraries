@@ -38,7 +38,7 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
 
     /** Custom dimensions of the media content */
     @Input() mediaDimensions: GalleryMediaDimensions = {
-        width: '350px',
+        width: '100%',
         height: '192px',
     };
 
