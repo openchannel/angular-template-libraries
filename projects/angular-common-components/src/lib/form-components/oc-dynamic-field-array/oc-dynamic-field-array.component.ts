@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
 import { AppTypeFieldModel } from '@openchannel/angular-common-components/src/lib/common-components';
@@ -13,10 +13,11 @@ import { FieldValueModel, FormArrayItem, PreviewLabel } from '../model/dynamic-a
  */
 @Component({
     selector: 'oc-dynamic-field-array',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './oc-dynamic-field-array.component.html',
     styleUrls: ['./oc-dynamic-field-array.component.css'],
 })
-export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
+export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy , OnChanges{
     @Input() previewMode: boolean = false;
     /**
      * Fields definition config necessary for the DFA generation.
@@ -41,12 +42,21 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
     fieldDefinition: AppTypeFieldModel;
     destroy$: Subject<boolean> = new Subject<boolean>();
     previewLabelSubscription$: Subject<boolean> = new Subject<boolean>();
-
+    /**
+     * Initial array length for {@link dfaFormArray}. Used for compare with a new array length.
+     */
+    currentDFALength: number;
     /**
      * Generates config for created forms on component initializing.
      */
     ngOnInit(): void {
         this.generateConfigForCreatedForms();
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (this.currentDFALength !== this.dfaFormArray.length) {
+            this.generateConfigForCreatedForms();
+        }
     }
 
     /**
@@ -143,6 +153,8 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy {
      * Subscribes to all preview field changes.
      */
     private generateConfigForCreatedForms(): void {
+        this.currentDFALength = this.dfaFormArray.length;
+
         if (this.dfaFormArray && this.dfaFormArray.controls.length > 0) {
             this.formsArrayConfig = this.dfaFormArray.controls.map(control => {
                 return {

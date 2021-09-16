@@ -2,7 +2,7 @@
     <div class="cards-interface__added-item"
          *ngFor="let formItem of dfaFormArray.controls; let i = index;" >
         <div class="cards-interface__preview">
-            <div class="cards-interface__preview-header" [attr.oc-collapsed]="formsArrayConfig[i].previewCollapsedDFAFields">
+            <div class="cards-interface__preview-header">
                 <!--     Dynamic field title       -->
                 <ng-container *ngIf="formsArrayConfig[i].previewLabel.defaultLabel">
                     <h3 class="cards-interface__preview-header-text">{{formsArrayConfig[i].previewLabel.defaultLabel}}</h3>
@@ -38,6 +38,7 @@
                 <oc-dynamic-array-preview
                         [fieldValues]="formsArrayConfig[i].previewFiledValues"
                         [fieldDefinition]="fieldDefinition"
+                        [previewDFAMode]="previewMode"
                         [dfaForm]="formItem"></oc-dynamic-array-preview>
             </div>
             <ng-container *ngIf="!previewMode && formsArrayConfig[i].isEdit">
