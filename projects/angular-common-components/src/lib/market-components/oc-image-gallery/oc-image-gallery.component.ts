@@ -1,5 +1,6 @@
 import { AfterContentInit, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { GalleryItem } from '@openchannel/angular-common-components/src/lib/common-components';
+import { GalleryMediaDimensions } from '../models/image-gallery.model';
 
 /**
  * Image gallery component. Show list of images with title and description.
@@ -21,6 +22,25 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
 
     /** Quantity of images that will be shown */
     @Input() maxItems: number = 3;
+    /**
+     * Display of title and description of the gallery item. Details are displayed by default.
+     *
+     * @default true
+     */
+    @Input() displayDetails: boolean = true;
+    /**
+     * This parameter changes the gallery display. If arrow controllers are applied - gallery will be displayed as carousel.
+     * Otherwise as grid. Default: grid.
+     *
+     * @default false
+     */
+    @Input() allowArrowControllers: boolean = false;
+
+    /** Custom dimensions of the media content */
+    @Input() mediaDimensions: GalleryMediaDimensions = {
+        width: '350px',
+        height: '192px',
+    };
 
     /** Main input gallery array */
     mainGallery: GalleryItem[] = [];

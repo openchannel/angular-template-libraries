@@ -1,8 +1,14 @@
 <div class="image-gallery">
     <div class="image-gallery__item" *ngFor="let item of displayGallery">
-        <img [src]="item.image"
-             height="192" alt="icon" class="image-gallery__item-image">
-        <p class="image-gallery__item-title">{{item.title}}</p>
-        <span class="image-gallery__item-description">{{item.description}}</span>
+        <div class="image-gallery__item-media"
+             [style.width]="mediaDimensions.width"
+             [style.height]="mediaDimensions.height">
+            <img [src]="item.image"
+                 alt="icon" class="image-gallery__item-image">
+        </div>
+        <div class="image-gallery__item-details" *ngIf="displayDetails">
+            <p class="image-gallery__item-title">{{item.title}}</p>
+            <span class="image-gallery__item-description">{{item.description}}</span>
+        </div>
     </div>
 </div>
