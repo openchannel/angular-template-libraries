@@ -12,7 +12,7 @@
             </div>
             <div class="activation__form-group">
                 <oc-label text="Activation code" class="activation__form-group-label"></oc-label>
-                <oc-input #code=ngModel [(ngModel)]="activationModel.code" placeholder="Activation Code"
+                <oc-input #code=ngModel [(ngModel)]="activationModel.code" placeholder="Activation code"
                           name="code" ngDefaultControl required="true" class="activation__form-group-input"></oc-input>
                 <oc-error [control]="code" field="code" class="activation__form-group-error"></oc-error>
             </div>
@@ -25,7 +25,7 @@
                 <a id="reactivation" class="activation__link" [routerLink]="resendActivationUrl"> Resend it </a>
             </div>
             <div class="activation__sign-up">
-                <oc-label class="activation__reactivation-label" text="Dont have an account yet?"></oc-label>
+                <oc-label class="activation__reactivation-label" text="Don't have an account yet?"></oc-label>
                 <a id="signup" class="activation__link" [routerLink]="signupUrl"> Sign up </a>
             </div>
         </div>
