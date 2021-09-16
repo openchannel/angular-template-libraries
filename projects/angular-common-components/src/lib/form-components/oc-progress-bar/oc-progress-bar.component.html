@@ -1,9 +1,23 @@
 <div class="form-progressbar">
     <div class="form-progressbar__item"
-         *ngFor="let step of progressbarData; index as i">
-        <oc-progress-bar-item [stepNumber]="i + 1"
-                              [currentStep]="currentStep"
-                              [stepsLength]="progressbarData.length"
-                              [step]="step"></oc-progress-bar-item>
+         *ngFor="let step of progressbarData; index as i"
+         [ngClass]="{'form-progressbar__item_current': currentStep === i + 1,
+                     'form-progressbar__item_finished': step.state === 'finished',
+                     'form-progressbar__item_invalid': step.state === 'invalid'}">
+        <div class="form-progressbar__item-content">
+            <div class="form-progressbar__item-content-shape">
+        <span class="form-progressbar__item-content-status"
+              *ngIf="step.state !== 'finished'">{{step.state === 'pristine' ? i + 1: '!'}}</span>
+                <div class="form-progressbar__item-content-status"
+                     *ngIf="step.state === 'finished'">
+                    <img class="form-progressbar__item-content-status-icon"
+                         src="assets/angular-common-components/icon-check.svg" alt="icon-check">
+                </div>
+            </div>
+            <div class="form-progressbar__item-content-title">{{step.title}}</div>
+        </div>
+        <div class="form-progressbar__item-divider"
+             *ngIf="i + 1 < progressbarData.length"
+             [class.form-progressbar__item-divider_straight]="!step.defaultDivider"></div>
     </div>
 </div>
