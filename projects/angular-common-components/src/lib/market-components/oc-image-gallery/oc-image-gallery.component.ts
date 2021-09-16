@@ -5,7 +5,12 @@ import { GalleryMediaDimensions } from '../models/image-gallery.model';
 /**
  * Image gallery component. Show list of images with title and description.
  *
- * @example <oc-image-gallery [gallery]="[{image: '/img.png', title: 'Image', descriptiom: 'Description of image'}]" [maxItems]="5">
+ * @example
+ * <oc-image-gallery [gallery]="[{image: "/img.png", title: "Image", description: "Description of image"}]"
+ *                   [maxItems]="5" [displayDetails]="true"
+ *                   [allowArrowControllers]="true"
+ *                   [mediaDimensions]="{width: "auto", height: "192px"}"
+ *                   [expandOnClick]="true">
  */
 @Component({
     selector: 'oc-image-gallery',
@@ -41,6 +46,12 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
         width: '100%',
         height: '192px',
     };
+    /**
+     * Allow opening full size of the media item by click.
+     * This will call a modal window with slider. Disabled by default
+     * @default false
+     */
+    @Input() expandOnClick: boolean = false;
 
     /** Main input gallery array */
     mainGallery: GalleryItem[] = [];

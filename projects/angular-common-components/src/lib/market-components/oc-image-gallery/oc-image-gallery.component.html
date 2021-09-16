@@ -3,8 +3,9 @@
         <div class="image-gallery__item-media"
              [style.width]="mediaDimensions.width"
              [style.height]="mediaDimensions.height">
-            <img [src]="item.image"
+            <img [src]="item.image" *ngIf="item.image"
                  alt="icon" class="image-gallery__item-image">
+            <oc-video [videoUrl]="item.video" *ngIf="item.video && !item.image"></oc-video>
         </div>
         <div class="image-gallery__item-details" *ngIf="displayDetails">
             <p class="image-gallery__item-title">{{item.title}}</p>
