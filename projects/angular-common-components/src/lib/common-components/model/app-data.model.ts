@@ -66,12 +66,14 @@ export interface CustomDataAppConfig {
  * Gallery Item interface
  * @property {string} title - String value with image title
  * @property {string} description - String value with description for the title
- * @property {string} image - Image URL value
+ * @property {string} image - Image URL value, not set this value if your data is video
+ * @property {string} video Video URL value, not set this value if your data is image
  */
 export interface GalleryItem {
     title: string;
     description: string;
-    image: string;
+    image?: string;
+    video?: string;
 }
 
 export interface App {
