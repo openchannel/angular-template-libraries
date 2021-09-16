@@ -2,6 +2,11 @@
 
 .form-steps {
 
+    &__description {
+        font-size: 14px;
+        margin-top: 1rem;
+    }
+
     &__options {
         display: flex;
         justify-content: space-between;

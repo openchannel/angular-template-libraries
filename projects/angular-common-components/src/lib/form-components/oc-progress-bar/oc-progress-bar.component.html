@@ -1,0 +1,9 @@
+<div class="form-progressbar">
+    <div class="form-progressbar__item"
+         *ngFor="let step of progressbarData; index as i">
+        <oc-progress-bar-item [stepNumber]="i + 1"
+                              [currentStep]="currentStep"
+                              [stepsLength]="progressbarData.length"
+                              [step]="step"></oc-progress-bar-item>
+    </div>
+</div>
