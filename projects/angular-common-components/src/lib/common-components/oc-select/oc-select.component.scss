@@ -10,9 +10,7 @@
         width: 100%;
 
         .oc-button {
-            @include media-breakpoint-sm {
-                min-height: 46px;
-            }
+            min-height: 46px;
         }
 
         &::after {
