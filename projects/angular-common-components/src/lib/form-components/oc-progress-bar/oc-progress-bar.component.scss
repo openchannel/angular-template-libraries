@@ -99,7 +99,10 @@
             }
 
             .form-progressbar__item-content-animation {
-                border: 1px solid #ffb0b0;
+                border: 2px solid #ffb0b0;
+                @include media-breakpoint-md {
+                    border: 1px solid #ffb0b0;
+                }
             }
 
             .form-progressbar__item-content-title {
