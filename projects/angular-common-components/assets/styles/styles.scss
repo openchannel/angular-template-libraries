@@ -683,3 +683,7 @@ oc-button.tags__button-add {
         line-height: 19px;
     }
 }
+
+.oc-card__icon-img {
+    @include image-alt-text
+}

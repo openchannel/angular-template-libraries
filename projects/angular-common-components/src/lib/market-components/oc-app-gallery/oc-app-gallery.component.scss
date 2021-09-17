@@ -7,51 +7,25 @@
     }
 
     &__header {
+
         &-top {
-            display: flex;
-            justify-content: space-between;
             margin-bottom: 1rem;
-        }
-    }
-
-    &__heading {
-        padding: 0 1rem;
-        font-size: 24px;
-        @include media-breakpoint-md {
-            padding-left: 0;
-        }
-    }
-
-    &__description {
-        @include font-size-md();
-        color: $text-color;
-        margin-bottom: 0;
-        padding: 0 1rem;
-        @include default-text();
-        @include media-breakpoint-md {
-            padding-left: 0;
+            padding: 0 1rem;
+            font-size: 24px;
+            @include media-breakpoint-md {
+                padding-left: 0;
+            }
         }
 
-    }
-
-    &__more {
-        @include media-breakpoint-md {
-            bottom: 0;
-            position: absolute;
-        }
-        cursor: pointer;
-
-        &-text {
-            @include font-medium();
+        &-description {
             @include font-size-md();
-            padding-right: 0.5rem;
-            color: $primary;
-        }
-
-        &-icon {
-            height: 10px;
-            width: auto;
-            color: $primary;
+            color: $text-color;
+            margin-bottom: 0;
+            padding: 0 1rem;
+            @include default-text();
+            @include media-breakpoint-md {
+                padding-left: 0;
+            }
         }
     }
 
@@ -62,15 +36,45 @@
         justify-content: space-between;
 
         &-card {
+            margin-bottom: 40px;
+            padding: 1rem;
+            width: 49%;
             @include media-breakpoint-lg {
                 width: 49%;
             }
             @include media-breakpoint-md {
                 width: 100%;
             }
-            margin-bottom: 40px;
-            padding: 1rem;
-            width: 49%;
+        }
+
+        &-more {
+            width: 100%;
+            margin-bottom: 6rem;
+            margin-top: -2rem;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            .gallery__content-link {
+                cursor: pointer;
+                @include media-breakpoint-md {
+                    bottom: 0;
+                    position: absolute;
+                }
+
+                &-text {
+                    @include font-medium();
+                    @include font-size-md();
+                    padding-right: 0.5rem;
+                    color: $primary;
+                }
+
+                &-icon {
+                    height: 10px;
+                    width: auto;
+                    color: $primary;
+                }
+            }
         }
     }
 

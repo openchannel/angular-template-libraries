@@ -28,6 +28,7 @@ definitions:
     - step: &build-and-push-new-version-of-services
         name: Push services to npm
         script:
+          - git pull
           - npm install --quiet
           - npm run build-prod angular-common-services
           - npm run angular-common-services-pack
@@ -39,6 +40,7 @@ definitions:
     - step: &build-and-push-new-version-of-components
         name: Push components to npm
         script:
+          - git pull
           - npm install --quiet
           - npm run build-prod angular-common-components
           - npm run angular-common-components-pack
@@ -67,11 +69,23 @@ definitions:
         artifacts:
           - storybook-static/**
 
-    - step: &deploy-app
+    - step: &build_compodoc_documentation_for_services
+        name: "Build compodoc documentation for services"
+        image: node
+        script:
+          - npm i
+          - npm run build-compodoc-services
+        artifacts:
+          - compodoc-static/**
+
+    - step: &deploy-compodoc
         name: "Deploy to Environment"
         image: atlassian/pipelines-awscli
         script:
+          - unset CNAME
+          - export CNAME=${COMPODOC_CNAME}
           - source infra/config-files/${CONFIG_FILE_SUFFIX}
+          - export PREFIX_NAME="openchannel-compodoc-${ENVIRONMENT}"
 
           - chmod +x infra/scripts/*
           - export CERTIFICATE_ARN=`./infra/scripts/getCertificate.sh us-east-1 *.${HOSTED_ZONE_NAME:0:-1}`
@@ -81,13 +95,49 @@ definitions:
           - echo "aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value"
           - export DISTRIBUTION_ID=`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/DISTRIBUTION_ID --output text --query Parameter.Value`
           - export AWS_S3="`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value`"
+          - aws s3 sync --delete compodoc-static/services/ s3://$AWS_S3
+          - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /*
+
+    - step: &deploy-app
+        name: "Deploy to Environment"
+        image: atlassian/pipelines-awscli
+        script:
+          - source infra/config-files/${CONFIG_FILE_SUFFIX}
+
+          - chmod +x infra/scripts/*
+          - export CERTIFICATE_ARN=`./infra/scripts/getCertificate.sh us-east-1 *.${HOSTED_ZONE_NAME:0:-1}`
+
+          - aws cloudformation deploy --region $REGION --stack-name ${CLOUDFORMATION_STACKNAME}-cloudfront --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset --template-file infra/cloudformation/service-cloudfront.yml --parameter-overrides CNAME=$SITE_URL CertificateArn=$CERTIFICATE_ARN ProjectName=$APP_NAME ClusterName=$CLUSTER_NAME PrefixName=$PREFIX_NAME Logging="true"
+          - echo "aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/DISTRIBUTION_ID --output text --query Parameter.Value"
+          - echo "aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value"
+          - export DISTRIBUTION_ID=`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/DISTRIBUTION_ID --output text --query Parameter.Value`
+          - export AWS_S3="`aws ssm get-parameter --region $REGION --with-decryption --name /ECS-CLUSTER/${CLUSTER_NAME}/${APP_NAME}/AWS_S3 --output text --query Parameter.Value`"
           - aws s3 sync --delete storybook-static/ s3://$AWS_S3
           - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /*
-    - step: &release-up-version-with-a-git-tag
-        name: "Release up version with a GIT tag"
+
+    - step: &up-project-version
+        name: "Up version"
         script:
-          - chmod +x ./scripts/* && cd ./scripts/up-version
-          - /bin/bash up-version.sh ${JIRA_EMAIL} ${JIRA_API_KEY} ${RELEASE_VERSION} ${PACKAGE_VERSION} 'angular-template-libraries'
+          - /bin/bash ./scripts/package-json-version/script.sh $PROJECT_VERSION
+          - git add .
+          - git commit -m "Up version to $PROJECT_VERSION."
+          - git push
+
+    - step: &create-changelog-with-git-tag
+        name: "Create changelog and add git tag"
+        script:
+          # Get current package.json version
+          - projectVerion=$(node -e "console.log(require('./package.json').version)")
+          # Validate package.json version
+          - if [[ ! $projectVerion == +([0-9]).+([0-9]).+([0-9]) ]]; then echo "Error. package.json file includes prerelease version $projectVerion. Must be like '1.1.1'. Please change version."; exit 1; fi
+          # Install required libs for changelog script
+          - npm i --prefix ./scripts/changelog-builder
+          # Generate new changelog file or skip
+          - EMAIL=${JIRA_EMAIL} API_KEY=${JIRA_API_KEY} RELEASE_VERSION=${JIRA_RELEASE_VERSION} PROJECT_VERSION=$projectVerion node ./scripts/changelog-builder/script.js
+          # Commit and push
+          - if [[ ! -z $(git status --porcelain) ]]; then git add . ; git commit -m "Created changelog.md for $JIRA_RELEASE_VERSION release." ; git push ; else echo 'Changelog not changed.'; fi
+          # Create git tag and push
+          - /bin/bash ./scripts/create-and-push-github-tag/script.sh "${PUSH_TAG_FORCE}"
 pipelines:
   pull-requests:
     '**':
@@ -112,11 +162,44 @@ pipelines:
       - step:
           <<: *deploy-app
           deployment: us1
-    Up Lib Version:
+    Up version:
       - variables:
-          - name: RELEASE_VERSION
-          - name: PACKAGE_VERSION
-      - step: *release-up-version-with-a-git-tag
+          - name: PROJECT_VERSION
+      - step: *up-project-version
+    Up version and publish:
+      - variables:
+          - name: PROJECT_VERSION
+      - step: *build-test-sonarcloud
+      - step: *up-project-version
+      - parallel:
+          - step: *build-and-push-new-version-of-services
+          - step: *build-and-push-new-version-of-components
+    Publish services and components:
+      - step: *build-test-sonarcloud
+      - parallel:
+          - step: *build-and-push-new-version-of-services
+          - step: *build-and-push-new-version-of-components
+    Create changelog and Git Tag:
+      - variables:
+          - name: JIRA_RELEASE_VERSION
+          - name: PUSH_TAG_FORCE
+      - step: *create-changelog-with-git-tag
+    Dev1 compodoc (services):
+      - step: *build_compodoc_documentation_for_services
+      - step:
+          <<: *deploy-compodoc
+          deployment: dev1
+    Stage1 compodoc (services):
+      - step: *build_compodoc_documentation_for_services
+      - step:
+          <<: *deploy-compodoc
+          deployment: stage1
+    US1 compodoc (services):
+      - step: *build_compodoc_documentation_for_services
+      - step:
+          <<: *deploy-compodoc
+          deployment: us1
+
   branches:
     develop:
       - step: *build-test-sonarcloud

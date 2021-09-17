@@ -1,3 +1,36 @@
+## Release notes - angular-template-libraries - Version 2.25.0 (9/8/2021)<br>
+### Task<br>
+AT-1420 - Make the developerInviteTemplateId and userInviteTemplateId configurable and only allow sending developerInviteTemplateId/userInviteTemplateId, type, roles and email parameters in CAP endpoint<br>
+AT-1204 - For each page, use heading tags to properly describe the layout of the pages<br>
+## Release notes - angular-template-libraries - Version 2.24.0 (9/8/2021)<br>
+### Bug<br>
+AT-1493 - Product screenshot not being displayed on new sites<br>
+### Task<br>
+AT-1461 - Automate versioning and realease notes within Bitbucket pipelines<br>
+AT-1203 - Set meta tags that allow social media sites to display a proper image for app details pages when sharing the link<br>
+AT-1202 - Set image alt text for images on app cards and logos on app details page<br>
+AT-1201 - Set meta description tags on site<br>
+## Release notes - angular-template-libraries - Version 2.23.0 (9/3/2021)<br>
+### Bug<br>
+AT-1493 - Product screenshot not being displayed on new sites<br>
+AT-1215 - [User Management] A User/Developer Admin should not be able to delete themselves.<br>
+## Release notes - angular-template-libraries - Version 2.21.0 (9/2/2021)<br>
+### Bug<br>
+AT-1500 - [UI][Create App] Single space is required in between Step #. and Field Group Label for Wizard view.<br>
+AT-1498 - [Hotfix] New customers are ending up in the wrong environment (dev1 and stage1) when trying to use Angular templates<br>
+AT-1479 - Apps grid on manage apps page should not show horizontal scroll bar when viewing from desktop<br>
+### Task<br>
+AT-1381 - Deploy compodoc<br>
+AT-916 - Remove GET /v2/users/all endpoint from CAP<br>
+AT-788 - Need compodoc documentation for Application Form Service<br>
+## Release notes - angular-template-libraries - Version 2.20.0 (9/2/2021)<br>
+### Bug<br>
+AT-1483 - [Market/Portal][Email] Email field is not required yet Email field throws format validation.<br>
+AT-1481 - [logs-prod] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler 500 Server Error for HTTP POST "/v2/stats/increment/views"<br>
+### Task<br>
+AT-1456 - Improve checkbox component label and description<br>
+### Bug<br>
+AT-1445 - Email content spoofing<br>
 ## Release notes - angular-template-libraries - Version 2.19.0 (8/31/2021)<br>
 ### Bug<br>
 AT-1502 - All rate limiting should be keyed by siteId<br>

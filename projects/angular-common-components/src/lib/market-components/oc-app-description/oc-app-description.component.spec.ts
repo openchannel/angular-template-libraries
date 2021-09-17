@@ -4,6 +4,7 @@ import { OcAppDescriptionComponent } from './oc-app-description.component';
 import { FormsModule } from '@angular/forms';
 import { OcCommonLibModule } from '../../common-components/';
 import { By } from '@angular/platform-browser';
+import { MockHeadingTagDirective } from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcAppDescriptionComponent', () => {
     let component: OcAppDescriptionComponent;
@@ -12,7 +13,7 @@ describe('OcAppDescriptionComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcAppDescriptionComponent],
+                declarations: [OcAppDescriptionComponent, MockHeadingTagDirective],
                 imports: [FormsModule, OcCommonLibModule],
             }).compileComponents();
         }),
@@ -26,24 +27,6 @@ describe('OcAppDescriptionComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
-    });
-
-    it('header normal value', () => {
-        const header = 'Header';
-        setHeaderText(header);
-        expect(getHeaderText()).toEqual(header);
-    });
-
-    it('header non null', () => {
-        const header = null;
-        setHeaderText(header);
-        expect(getHeaderText()).toEqual('');
-    });
-
-    it('header non undefined', () => {
-        const header = undefined;
-        setHeaderText(header);
-        expect(getHeaderText()).toEqual('');
     });
 
     it('description normal value', () => {
@@ -91,10 +74,6 @@ describe('OcAppDescriptionComponent', () => {
     function setHeaderText(header: string): void {
         component.header = header;
         fixture.detectChanges();
-    }
-
-    function getHeaderText(): string {
-        return fixture.nativeElement.querySelector('#ocAppDescriptionHeaderTextId').innerHTML;
     }
 
     function setDescriptionText(description: string): void {

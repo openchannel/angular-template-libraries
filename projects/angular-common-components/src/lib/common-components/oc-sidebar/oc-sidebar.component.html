@@ -1,6 +1,6 @@
 <div class="oc-sidebar">
     <nav class="oc-sidebar__navigation">
-        <span class="oc-sidebar__heading">{{title}}</span>
+        <h2 [headingTag]="titleHeadingTag" [headingTagContent]="title" class="oc-sidebar__heading"></h2>
         <ul class="oc-sidebar__list">
             <li class="oc-sidebar__list-item" *ngFor="let select of sidebarModel">
                 <div class="oc-sidebar__list-item-expand-line">
