@@ -39,6 +39,12 @@
             object-fit: cover;
         }
 
+        &-video {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
         &-title {
             @include font-size-lg();
             @include font-medium();
@@ -48,10 +54,6 @@
 
         &-description {
             @include font-size-md();
-        }
-
-        &-details {
-
         }
     }
 }
