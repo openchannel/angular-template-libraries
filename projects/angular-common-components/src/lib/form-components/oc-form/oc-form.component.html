@@ -1,20 +1,27 @@
 <div class="form-steps">
     <ng-container *ngIf="hasFieldGroup; else singleForm">
-        <oc-progress-bar *ngIf="showProgressBar"
-                         [progressbarData]="progressBarSteps"
-                         [currentStep]="currentStep"></oc-progress-bar>
-        <oc-tooltip-label *ngIf="showGroupHeading"
-                          [text]="stepLabel"
-                          class="form-steps__label"
-                          [required]="currentForm.label?.attributes?.required"
-                          [description]="currentForm.label?.description"></oc-tooltip-label>
-        <p class="form-steps__description"
-           *ngIf="showGroupDescription">{{stepDescription}}</p>
-        <oc-single-form [formJsonData]="currentForm.formConfig"
-                        [generatedForm]="currentForm"
-                        [showButton]="false"
-                        [labelPosition]="labelPosition"
-                        (formDataUpdated)="onFormDataUpdated($event)"></oc-single-form>
+        <div class="form-steps__content"
+             [class.form-steps__content-responsive]="showProgressBar">
+            <div class="form-steps__content-progressbar">
+                <oc-progress-bar *ngIf="showProgressBar"
+                                 [progressbarData]="progressBarSteps"
+                                 [currentStep]="currentStep"></oc-progress-bar>
+            </div>
+            <div class="form-steps__content-body">
+                <oc-tooltip-label *ngIf="showGroupHeading"
+                                  [text]="stepLabel"
+                                  class="form-steps__content-body-label"
+                                  [required]="currentForm.label?.attributes?.required"
+                                  [description]="currentForm.label?.description"></oc-tooltip-label>
+                <p class="form-steps__content-body-description"
+                   *ngIf="showGroupDescription">{{stepDescription}}</p>
+                <oc-single-form [formJsonData]="currentForm.formConfig"
+                                [generatedForm]="currentForm"
+                                [showButton]="false"
+                                [labelPosition]="labelPosition"
+                                (formDataUpdated)="onFormDataUpdated($event)"></oc-single-form>
+            </div>
+        </div>
     </ng-container>
     <div class="form-steps__options form-steps__options--{{buttonPosition}}"
          *ngIf="showButton">

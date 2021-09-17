@@ -7,22 +7,29 @@
     margin-top: 6rem;
     margin-bottom: 6rem;
     @include media-breakpoint-md {
-        margin-top: 5rem;
-        margin-bottom: 5rem;
+        flex-direction: column;
+        margin: 0;
     }
 
     &__item {
         display: flex;
         align-items: flex-start;
         flex-grow: 1;
+        @include media-breakpoint-md {
+            flex-direction: column;
+            align-items: center;
+        }
 
         &:last-child {
             max-width: 80px;
             @include media-breakpoint-md {
-                max-width: 60px;
+                max-width: unset;
             }
-            @media screen and (max-width: 400px) {
-                max-width: 50px;
+        }
+
+        & + .form-progressbar__item {
+            @include media-breakpoint-md() {
+                margin-top: 6rem;
             }
         }
 
@@ -35,7 +42,10 @@
             }
 
             .form-progressbar__item-content-animation {
-                animation: step-blast .5s ease 3 forwards;
+                animation: step-blast .7s ease-out 3 forwards;
+                @include media-breakpoint-md() {
+                    animation: step-blast-responsive .6s ease-out 3 forwards;
+                }
             }
 
             @keyframes step-blast {
@@ -47,6 +57,19 @@
                 to {
                     width: 70px;
                     height: 70px;
+                    opacity: 0;
+                }
+            }
+
+            @keyframes step-blast-responsive {
+                from {
+                    width: 33px;
+                    height: 33px;
+                    opacity: 1;
+                }
+                to {
+                    width: 150px;
+                    height: 150px;
                     opacity: 0;
                 }
             }
@@ -64,14 +87,6 @@
                 &-icon {
                     width: 2rem;
                     height: 2rem;
-                    @include media-breakpoint-md {
-                        width: 1.5rem;
-                        height: 1.5rem;
-                    }
-                    @media screen and (max-width: 400px) {
-                        width: 14px;
-                        height: 14px;
-                    }
                 }
             }
         }
@@ -84,7 +99,7 @@
             }
 
             .form-progressbar__item-content-animation {
-                border: 2px solid #ffb0b0;
+                border: 1px solid #ffb0b0;
             }
 
             .form-progressbar__item-content-title {
@@ -106,12 +121,9 @@
                 width: 80px;
                 height: 70px;
                 @include media-breakpoint-md {
-                    width: 60px;
-                    height: 50px;
-                }
-                @media screen and (max-width: 400px) {
-                    width: 50px;
-                    height: 50px;
+                    width: 35px;
+                    height: 35px;
+                    margin-bottom: .5rem;
                 }
             }
 
@@ -122,6 +134,11 @@
                 width: 46px;
                 height: 46px;
                 border-radius: 50%;
+                @include media-breakpoint-md {
+                    border: 1px solid #a9bdfe;
+                    width: 33px;
+                    height: 33px;
+                }
             }
 
             &-status {
@@ -137,9 +154,9 @@
                 @include font-medium();
                 @include font-size-md();
                 @include media-breakpoint-md {
+                    @include font-size-sm();
                     width: 35px;
                     height: 35px;
-                    @include font-size-sm();
                 }
             }
 
@@ -148,19 +165,13 @@
                 text-align: center;
                 margin: 0 -40px;
                 display: table;
-                @include media-breakpoint-md {
-                    margin: 0 -25px;
-                }
-
                 @include font-size-md();
                 @include media-breakpoint-md {
-                    max-width: 60px;
                     @include font-size-sm();
                     line-height: 14px;
-                }
-                @media screen and (max-width: 400px) {
-                    max-width: 50px;
-                    word-break: break-all;
+                    max-width: unset;
+                    margin: 0;
+                    word-break: break-word;
                 }
             }
         }
@@ -170,11 +181,18 @@
             border-top: 1px dashed $info;
             flex-grow: 1;
             @include media-breakpoint-md {
-                margin-top: 25px;
+                border-top: 2px dashed #e2e8f5;
+                margin-top: 0;
+                width: 35px;
+                transform: rotate(90deg);
+                transform-origin: 6px 12px;
             }
 
             &_straight {
                 border-top: 1px solid $info;
+                @include media-breakpoint-md {
+                    border-top: 2px solid #d1dbef;
+                }
             }
         }
     }

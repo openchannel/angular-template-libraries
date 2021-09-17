@@ -1,10 +1,58 @@
 @import '../../../../assets/styles/mixins';
 
 .form-steps {
+    @include media-breakpoint-md() {
+        margin-top: 4rem;
+    }
+    @include media-breakpoint-sm() {
+        margin-top: 3rem;
+    }
 
-    &__description {
-        font-size: 14px;
-        margin-top: 1rem;
+    &__content {
+
+        &-responsive {
+            @include media-breakpoint-md() {
+                display: flex;
+            }
+
+            .form-steps__content-progressbar {
+                @include media-breakpoint-md {
+                    flex-basis: 95px;
+                    flex-shrink: 0;
+                    margin-right: 4rem;
+                }
+                @media screen and (max-width: 400px) {
+                    flex-basis: 70px;
+                    margin-right: 1rem;
+                }
+            }
+
+            .form-steps__content-body {
+                @include media-breakpoint-md {
+                    max-width: calc(100% - 127px);
+                    width: 100%;
+                }
+                @media screen and (max-width: 400px) {
+                    max-width: calc(100% - 78px);
+                }
+            }
+        }
+
+        &-body {
+
+            &-label {
+
+                .tooltip-label__text {
+                    @include font-size-lg();
+                    @include font-medium();
+                }
+            }
+
+            &-description {
+                font-size: 14px;
+                margin-top: 1rem;
+            }
+        }
     }
 
     &__options {
@@ -46,13 +94,6 @@
                     margin-left: 0;
                 }
             }
-        }
-    }
-
-    &__label {
-        & .tooltip-label__text {
-            @include font-size-lg();
-            @include font-medium();
         }
     }
 }
