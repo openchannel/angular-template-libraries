@@ -1,4 +1,15 @@
 .oc-video {
+    height: 100%;
+    position: relative;
+    width: 100%;
+
+    &__content {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
 
     &__loader {
         padding: 1rem;
@@ -7,13 +18,19 @@
 
     &__container {
         width: 100%;
+        height: 100%;
     }
 
     &__preview {
         display: flex;
         justify-content: center;
-        max-width: 380px;
+        //max-width: 380px;
         margin: auto;
+        width: 100%;
+        height: 100%;
+        iframe {
+            width: 100%;
+        }
     }
 
     &__frame {
@@ -27,5 +44,10 @@
         &-video {
             outline: 0;
         }
+    }
+
+    &__image-placeholder {
+        width: 100%;
+        height: 100%;
     }
 }
