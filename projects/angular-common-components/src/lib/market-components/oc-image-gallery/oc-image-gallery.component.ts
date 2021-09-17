@@ -1,6 +1,7 @@
 import { AfterContentInit, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { GalleryItem } from '@openchannel/angular-common-components/src/lib/common-components';
 import { GalleryMediaDimensions } from '../models/image-gallery.model';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 /**
  * Image gallery component. Show list of images with title and description.
@@ -52,6 +53,32 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
      * @default false
      */
     @Input() expandOnClick: boolean = false;
+    /** Options for the carousel */
+    carouselOptions: OwlOptions = {
+        loop: true,
+        mouseDrag: false,
+        touchDrag: false,
+        pullDrag: true,
+        dots: false,
+        autoWidth: true,
+        navSpeed: 700,
+        navText: ['', ''],
+        responsive: {
+            0: {
+                items: 1,
+            },
+            400: {
+                items: 1,
+            },
+            740: {
+                items: 2,
+            },
+            940: {
+                items: 3,
+            },
+        },
+        nav: false,
+    };
 
     /** Main input gallery array */
     mainGallery: GalleryItem[] = [];

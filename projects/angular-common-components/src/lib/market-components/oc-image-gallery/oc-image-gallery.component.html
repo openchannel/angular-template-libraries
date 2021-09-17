@@ -1,5 +1,20 @@
 <div class="image-gallery">
-    <div class="image-gallery__item" *ngFor="let item of displayGallery">
+    <ng-container *ngIf="allowArrowControllers">
+        <owl-carousel-o [options]="carouselOptions" #carousel>
+            <ng-template carouselSlide *ngFor="let item of displayGallery" [width]="300">
+                    <ng-container [ngTemplateOutlet]="itemMedia" [ngTemplateOutletContext]="{$implicit: item}"></ng-container>
+            </ng-template>
+        </owl-carousel-o>
+    </ng-container>
+    <ng-container *ngIf="!allowArrowControllers">
+        <ng-container *ngFor="let item of displayGallery"
+                      [ngTemplateOutlet]="itemMedia"
+                      [ngTemplateOutletContext]="{$implicit: item}"></ng-container>
+    </ng-container>
+</div>
+
+<ng-template #itemMedia let-item>
+    <div class="image-gallery__item">
         <div class="image-gallery__item-media"
              [style.width]="mediaDimensions.width"
              [style.height]="mediaDimensions.height">
@@ -13,4 +28,4 @@
             <span class="image-gallery__item-description">{{item.description}}</span>
         </div>
     </div>
-</div>
+</ng-template>
