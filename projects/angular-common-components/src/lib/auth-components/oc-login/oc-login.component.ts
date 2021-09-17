@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { ComponentsUserLoginModel } from '../models/auth-types.model';
-import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
+import { HeadingTag } from '@openchannel/angular-common-components/src/lib/common-components';
 /**
  * Login component. Represent login page with auth logic.
  *
@@ -31,7 +31,7 @@ export class OcLoginComponent {
     /**
      * Text for the login button.
      */
-    @Input() loginButtonText: string = 'Log In';
+    @Input() loginButtonText: string = 'Log in';
 
     /**
      * Link to the Forgot password page.

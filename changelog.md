@@ -1,3 +1,10 @@
+## Release notes - angular-template-libraries - Version 2.28.0 (9/17/2021)<br>
+### Bug<br>
+AT-1174 - Wrong margin on portal homepage<br>
+AT-1163 - Wrong width of Login and Sign up buttons<br>
+AT-1161 - Dropdown field component has wrong height<br>
+AT-1101 - [Portal / Market site] Log in, Sign up, Forgot password pages are not as per mock designs.<br>
+AT-1094 - [UI][Marketsite][Homepage] "Get started as an app Developer" button should be center aligned and Home icon should be smaller.<br>
 ## Release notes - angular-template-libraries - Version 2.27.0 (9/15/2021)<br>
 ### Bug<br>
 AT-1509 - [Reset Password] Getting wrong password validation when entered password does not match expected criteria.<br>
@@ -6,6 +13,10 @@ AT-1496 - For marketplace, fix as many moderate and high package security vulner
 AT-1495 - For partner portal, fix as many moderate and high package security vulnerabilities as is convenient<br>
 ### Story<br>
 AT-379 - A search engine can be blocked from crawling the site based on search engine discoverability property<br>
+## Release notes - angular-template-libraries - Version 2.26.0 (9/13/2021)<br>
+### Bug<br>
+AT-1511 - [Portal / Market] [Alias Email] Email field does not accepts the alias emails.<br>
+AT-1406 - [Dev1][Portal] Getting error when selecting an App Type.<br>
 ## Release notes - angular-template-libraries - Version 2.26.0 (9/13/2021)<br>
 ### Bug<br>
 AT-1511 - [Portal / Market] [Alias Email] Email field does not accepts the alias emails.<br>
