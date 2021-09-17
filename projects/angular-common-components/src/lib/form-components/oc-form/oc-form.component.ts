@@ -182,8 +182,12 @@ export class OcFormComponent implements OnInit, OnChanges {
             this.updateProgressbarSteps(this.currentStep - 1);
             this.currentStep++;
         } else {
-            if (this.progressBarSteps[this.currentStep - 1].state === 'pristine') {
-                this.progressBarSteps[this.currentStep - 2].defaultDivider = true;
+            if (this.currentStep === this.progressBarSteps.length) { // TODO
+                this.updateProgressbarSteps(this.currentStep - 1);
+            } else {
+                if (this.progressBarSteps[this.currentStep - 1].state === 'pristine') {
+                    this.progressBarSteps[this.currentStep - 2].defaultDivider = true;
+                }
             }
             this.currentStep--;
         }

@@ -35,7 +35,7 @@
             }
 
             .form-progressbar__item-content-animation {
-                animation: step-blast 1s ease 1 forwards;
+                animation: step-blast .5s ease 3 forwards;
             }
 
             @keyframes step-blast {
@@ -74,10 +74,6 @@
                     }
                 }
             }
-
-            .form-progressbar__item-content-animation {
-                border: 2px solid $primary;
-            }
         }
 
         &_invalid {
@@ -88,7 +84,7 @@
             }
 
             .form-progressbar__item-content-animation {
-                border: 2px solid $danger;
+                border: 2px solid #ffb0b0;
             }
 
             .form-progressbar__item-content-title {
