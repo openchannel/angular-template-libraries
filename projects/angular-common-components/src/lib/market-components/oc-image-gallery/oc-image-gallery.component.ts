@@ -1,6 +1,6 @@
 import { AfterContentInit, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { GalleryItem } from '@openchannel/angular-common-components/src/lib/common-components';
-import { GalleryMediaDimensions } from '../models/image-gallery.model';
+import { GalleryIconsAssets, GalleryMediaDimensions } from '../models/image-gallery.model';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 /**
@@ -116,6 +116,15 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
      * @default 350
      */
     @Input() slideWidth: number = 350;
+    /**
+     * Config for paths of the icons used in this component.
+     * You can change icons by setting a new path in this config or create an `angular-common-components`
+     * folder in your `assets`, and then add your icon with the name from this config.
+     */
+    @Input() componentIconsPath: GalleryIconsAssets = {
+        arrowLeft: 'assets/angular-common-components/arrow-left-analog.svg',
+        arrowRight: 'assets/angular-common-components/arrow-right-analog.svg',
+    };
 
     /** Main input gallery array */
     mainGallery: GalleryItem[] = [];

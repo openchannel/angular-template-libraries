@@ -14,3 +14,25 @@ export interface GalleryMediaDimensions {
     height: string;
     width: string;
 }
+
+/**
+ * Interface for the configuration of the path of icons, used in [Image Gallery Component]{@link OcImageGalleryComponent}.
+ * @property {string} arrowRight path to the right arrow icon of the carousel
+ * @property {string} arrowLeft path to the left arrow icon of the carousel
+ * @property {string} closeIcon path to the close cross icon of the modal window
+ *
+ * @example
+ * {
+ *     arrowLeft: "assets/angular-common-components/arrow-left.svg",
+ *     arrowRight: "assets/angular-common-components/arrow-right.svg",
+ *     closeIcon: "assets/angular-common-components/cross.svg",
+ * }
+ */
+export interface GalleryIconsAssets {
+    /** path to the right arrow icon of the carousel */
+    arrowLeft?: string;
+    /** path to the left arrow icon of the carousel */
+    arrowRight?: string;
+    /** path to the close cross icon of the modal window */
+    closeIcon?: string;
+}

@@ -23,6 +23,9 @@
             cursor: pointer;
             position: absolute;
             top: 25%;
+            &_image-only {
+                top: 40%;
+            }
             &-left {
                 left: 0;
             }
