@@ -20,10 +20,10 @@
                 <!--     Dynamic field icons       -->
                 <div class="cards-interface__icons-handler">
                     <svg-icon *ngIf="previewMode"
-                              id="previewIconBtn" class="cards-interface__preview-icon"
-                              src="assets/angular-common-components/down-arrow.svg"
+                              id="previewIconBtn"
+                              class="cards-interface__preview-icon"
+                              src="assets/angular-common-components/down-arrow-v2.svg"
                               (click)="formsArrayConfig[i].previewCollapsedDFAFields = !formsArrayConfig[i].previewCollapsedDFAFields"></svg-icon>
-
                     <svg-icon *ngIf="!previewMode && !formsArrayConfig[i].isEdit"
                               id="editIconBtn" class="cards-interface__preview-icon"
                               src="assets/angular-common-components/edit.svg"
