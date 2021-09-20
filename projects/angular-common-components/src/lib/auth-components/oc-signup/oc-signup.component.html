@@ -5,8 +5,8 @@
                 <img alt="logo" class="sign-up__logo-img company-logo" [src]="companyLogoUrl">
             </div>
             <div class="sign-up__header">
-                <h1 [headingTag]="headingTag" class="sign-up__header-heading">Sign Up</h1>
-                <oc-label text="Enter your account details below" class="sign-up__header-invitation"></oc-label>
+                <h1 [headingTag]="headingTag" class="sign-up__header-heading">Sign up</h1>
+                <oc-label text="Enter your personal details below" class="sign-up__header-invitation"></oc-label>
             </div>
             <div class="sign-up__form-group sign-up__name">
                 <oc-label text="Name" class="sign-up__form-group-label"></oc-label>
@@ -14,19 +14,19 @@
                           placeholder="Name" name="uname" ngDefaultControl required="true" ocWhiteSpaceValidator></oc-input>
                 <oc-error [control]="uname" field="uname"></oc-error>
             </div>
-            <div class="sign-up__form-group sign-up__company" *ngIf="withCompany">
-                <oc-label text="Company" class="sign-up__form-group-label"></oc-label>
-                <oc-input #company=ngModel [(ngModel)]="signupModel.company"
-                          placeholder="Company" name="company" ngDefaultControl required="true"
-                          ocWhiteSpaceValidator></oc-input>
-                <oc-error [control]="company" field="company"></oc-error>
-            </div>
             <div class="sign-up__form-group sign-up__email">
                 <oc-label text="Email" class="sign-up__form-group-label"></oc-label>
                 <oc-input #email=ngModel [(ngModel)]="signupModel.email"
                           placeholder="Email" ocEmailValidator name="email" ngDefaultControl
                           required="true"></oc-input>
                 <oc-error [control]="email" field="email"></oc-error>
+            </div>
+            <div class="sign-up__form-group sign-up__company" *ngIf="withCompany">
+                <oc-label text="Company" class="sign-up__form-group-label"></oc-label>
+                <oc-input #company=ngModel [(ngModel)]="signupModel.company"
+                          placeholder="Company" name="company" ngDefaultControl required="true"
+                          ocWhiteSpaceValidator></oc-input>
+                <oc-error [control]="company" field="company"></oc-error>
             </div>
             <div class="sign-up__form-group sign-up__password">
                 <oc-label text="Password" class="sign-up__form-group-label"></oc-label>
@@ -44,20 +44,20 @@
                                  [(ngModel)]="signupModel.isChecked"></oc-checkbox>
                     <div class="consent__label">
                         I agree to
-                        <a class="consent__link" [href]="termsUrl" target="_blank"> Terms of Service</a>
+                        <a class="consent__link" [href]="termsUrl" target="_blank"> Terms of service</a>
                         and
-                        <a class="consent__link" [href]="policyUrl" target="_blank"> Data Processing Policy</a>
+                        <a class="consent__link" [href]="policyUrl" target="_blank"> Data processing policy</a>
                     </div>
                 </div>
                 <oc-error [control]="isChecked"
                           [modifyErrors]="[{validator: 'required', message: 'Please confirm this checkbox'}]"></oc-error>
             </div>
             <oc-button (click)="submitForm(signUpForm)"
-                       [process]="process" text="Sign Up" type="primary"
+                       [process]="process" text="Sign up" type="primary"
                        class="sign-up__button">
             </oc-button>
             <div class="sign-up__login">
-                Already have an account? <a class="sign-up__login-link" [routerLink]="loginUrl">Log In</a>
+                Already have an account? <a class="sign-up__login-link" [routerLink]="loginUrl">Log in</a>
             </div>
         </div>
     </form>
@@ -81,7 +81,7 @@
             </oc-button>
             <div class="result__sign-up-message">
                 <oc-label text="Don't have an account yet?"></oc-label>
-                <a class="result__link" (click)="showSignupFeedbackPageChange.emit(false)"> Sign Up</a>
+                <a class="result__link" (click)="showSignupFeedbackPageChange.emit(false)"> Sign up</a>
             </div>
         </div>
     </form>

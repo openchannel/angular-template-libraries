@@ -51,5 +51,5 @@ export abstract class FileUploaderService {
         isPrivate: boolean,
         hash?: string[],
     ): Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent>;
-    abstract fileDetailsRequest(fileId: string): Observable<FileDetails>;
+    abstract fileDetailsRequest(fileId: string, headers?: any): Observable<FileDetails>;
 }

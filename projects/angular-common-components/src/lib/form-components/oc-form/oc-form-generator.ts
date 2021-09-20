@@ -4,7 +4,8 @@ import { cloneDeep } from 'lodash';
 import { AppFormField } from '../model/app-form-model';
 
 export class OcFormGenerator {
-    private static readonly emailRegex = /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    private static readonly emailRegex =
+        /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])*$/;
 
     // tslint:disable-next-line:typedef
     static getFormByConfig(fieldsDefinitions: AppFormField[]) {

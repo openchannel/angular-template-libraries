@@ -1,10 +1,10 @@
 import { Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { base64ToFile, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { HttpEventType, HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { of, Subject, Subscription } from 'rxjs';
-import { mergeMap, takeUntil } from 'rxjs/operators';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { FileDetails, FileType, FileUploaderService } from '../model/file.model';
 
 /**
@@ -241,13 +241,14 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * Return allowed default or provided MIME type for file input
      */
     getAcceptedMIMEType(): string {
-        return this.acceptType ? this.acceptType : this.isFileTypeImage() ? 'image/*' : '*/*';
+        const setTypeIfImage = this.isFileTypeImage() ? 'image/*' : '*/*';
+        return this.acceptType ? this.acceptType : setTypeIfImage;
     }
 
     /**
      * On file drop handler
      */
-    onFileDropped($event, content?): void {
+    onFileDropped($event: any, content?: any): void {
         this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
         this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
     }
@@ -258,6 +259,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      */
     uploadFile(file: File): void {
         if (!this.fileUploaderService.fileUploadRequest) {
+            // tslint:disable-next-line:no-console
             console.error('Please, set the fileUploadRequest function');
         } else {
             this.isUploadInProcess = true;
@@ -272,7 +274,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
             this.uploadFileReq = this.fileUploaderService.fileUploadRequest(formData, this.isFileTypePrivate(), this.hash).subscribe(
                 (event: any) => {
                     if (event.type === HttpEventType.UploadProgress) {
-                        lastFileDetail.fileUploadProgress = Math.round((100 * event.loaded) / event.total) - 5;
+                        lastFileDetail.fileUploadProgress = Math.round((event.loaded * 100) / event.total) - 5;
                     } else if (event.type === HttpEventType.ResponseHeader) {
                         lastFileDetail.fileUploadProgress = 97;
                     } else if (event.type === HttpEventType.DownloadProgress) {
@@ -304,7 +306,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * This method is used to convert uploaded file response to fileDetails.
      */
-    convertFileUploadResToFileDetails(fileUploadRes): FileDetails {
+    convertFileUploadResToFileDetails(fileUploadRes: HttpResponse<FileDetails>): FileDetails {
         const fileDetails = new FileDetails();
         fileDetails.uploadDate = fileUploadRes.body.uploadDate;
         fileDetails.fileId = fileUploadRes.body.fileId;
@@ -321,7 +323,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * Handle file on browsing
      */
-    fileBrowseHandler(event, content?): void {
+    fileBrowseHandler(event: any, content?: any): void {
         this.onTouched();
 
         if (!event?.target?.files[0]?.name) {
@@ -518,6 +520,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         if (file && file.fileUploadProgress && file.fileUploadProgress === 100) {
             if (this.isFileTypePrivate()) {
                 if (!this.fileUploaderService.fileDetailsRequest) {
+                    // tslint:disable-next-line:no-console
                     console.error('Please, set the FileDetailsRequest function');
                 } else {
                     this.fileUploaderService
@@ -573,16 +576,13 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         if (!this.fileUploaderService.fileDetailsRequest) {
             console.error('Please, set the FileDetailsRequest function');
         } else if (urlData) {
+            this.fileDetailArr = [];
             if (this.isMultiFileSupport() && typeof urlData !== 'string') {
-                this.loadDetails(urlData);
+                urlData.forEach(fileUrl => {
+                    this.getFileDetails(fileUrl);
+                });
             } else if (typeof urlData === 'string') {
-                this.fileUploaderService
-                    .fileDetailsRequest(urlData)
-                    .pipe(takeUntil(this.destroy$))
-                    .subscribe(res => {
-                        this.fileDetailArr = res ? [{ ...res, fileUploadProgress: 100 }] : [];
-                        this.emitChanges();
-                    });
+                this.getFileDetails(urlData);
             } else {
                 console.error('initValues function error: something wrong with provided data');
             }
@@ -590,17 +590,59 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     }
 
     /**
-     * @private Load files details and add it to details array
-     * @param {string[]} urls
+     * @private Uses fileUploadService to get file details.
+     * @param {string} urlData
      */
-    private loadDetails(urls: string[]): void {
-        of(...urls)
-            .pipe(mergeMap(fileUrl => this.fileUploaderService.fileDetailsRequest(fileUrl)))
+    private getFileDetails(urlData: string): void {
+        this.fileUploaderService
+            .fileDetailsRequest(urlData)
+            .pipe(takeUntil(this.destroy$))
             .subscribe(
-                detail => this.fileDetailArr.push({ ...detail, fileUploadProgress: 100 }),
-                () => {},
-                () => this.emitChanges(),
+                res => {
+                    this.fileDetailArr = res ? [{ ...res, fileUploadProgress: 100 }] : [];
+                    this.emitChanges();
+                },
+                error => {
+                    if (error.error.code === 404) {
+                        this.fileDetailArr = [this.externallyHostedImageHandler(urlData)];
+                        this.emitChanges();
+                    }
+                },
             );
+    }
+
+    /**
+     * @private Uses fileUploadService to get file details.
+     * @param {string} urlData
+     */
+    private getFileDetails(urlData: string): void {
+        this.fileUploaderService
+            .fileDetailsRequest(urlData)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(
+                res => {
+                    this.fileDetailArr = res ? [{ ...res, fileUploadProgress: 100 }] : [];
+                    this.emitChanges();
+                },
+                error => {
+                    if (error.error.code === 404) {
+                        this.fileDetailArr = [this.externallyHostedImageHandler(urlData)];
+                        this.emitChanges();
+                    }
+                },
+            );
+        });
+    }
+
+    /**
+     * @private Creates an object when the image is externally hosted
+     * @returns {FileDetails}
+     */
+    private externallyHostedImageHandler(urlData: string): FileDetails {
+        const fileDetails = new FileDetails();
+        fileDetails.name = urlData;
+        fileDetails.fileUrl = urlData;
+        return { ...fileDetails, fileUploadProgress: 100 };
     }
 
     /**
