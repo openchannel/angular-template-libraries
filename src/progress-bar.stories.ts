@@ -23,13 +23,13 @@ ProgressBarSteps.args = {
     progressbarData: [
         {
             title: 'Step 1',
-            state: 'pristine',
-            defaultDivider: true,
+            state: 'finished',
+            defaultDivider: false,
         },
         {
             title: 'Contact information',
-            state: 'pristine',
-            defaultDivider: true,
+            state: 'invalid',
+            defaultDivider: false,
         },
         {
             title: 'Images',
@@ -47,5 +47,5 @@ ProgressBarSteps.args = {
             defaultDivider: true,
         },
     ],
-    currentStep: 1,
+    currentStep: 3,
 };
