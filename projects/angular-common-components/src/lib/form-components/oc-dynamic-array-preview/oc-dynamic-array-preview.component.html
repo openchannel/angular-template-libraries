@@ -88,7 +88,8 @@
 <ng-template #ngtDFA let-field>
     <oc-dynamic-field-array *ngIf="field?.formArrayDFA"
                             [dfaFormArray]="field.formArrayDFA"
-                            [fieldDefinitionData]="field"></oc-dynamic-field-array>
+                            [fieldDefinitionData]="field"
+                            [previewMode]="previewDFAMode"></oc-dynamic-field-array>
 </ng-template>
 
 <!-- List of images template-->

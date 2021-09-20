@@ -5,9 +5,8 @@ import { forkJoin, Observable, of, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { isArray } from 'rxjs/internal-compatibility';
 import { FileDetails, FileUploaderService } from '../model/file.model';
-import { difference } from 'lodash';
 import { AppTypeFieldModel } from '@openchannel/angular-common-components/src/lib/common-components';
-
+import { difference } from 'lodash';
 /**
  * Dynamic array preview component.
  * A group of field previews, rendered depending in fields type.
@@ -47,6 +46,8 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
      */
     @Input() hideLabel: boolean = false;
 
+    @Input() previewDFAMode: boolean = false;
+
     /**
      * Array of preview fields.
      * @type {PreviewFieldModel[]}.
@@ -69,7 +70,7 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
      * Checks component changes and dynamically updates fields data.
      */
     ngOnChanges(changes: SimpleChanges): void {
-        if (difference(changes.fieldValues.currentValue, changes.fieldValues.previousValue)?.length > 0) {
+        if (this.previewDFAMode && changes.fieldValues && difference(changes.fieldValues.currentValue, changes.fieldValues.previousValue)?.length > 0  && this.dfaForm) {
             this.buildFieldsData();
         }
     }

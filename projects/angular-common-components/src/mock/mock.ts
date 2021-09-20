@@ -243,6 +243,7 @@ export class MockTitleComponent {
 export class MockDynamicFieldArrayComponent {
     @Input() dfaFormArray: FormArray;
     @Input() fieldDefinitionData: AppTypeFieldModel;
+    @Input() previewMode: boolean;
 }
 
 @Component({
@@ -298,6 +299,7 @@ export class MockDynamicArrayPreview {
     @Input() fieldValues: FieldValueModel[];
     @Input() fieldDefinition: AppTypeFieldModel;
     @Input() dfaForm: FormGroup;
+    @Input() previewDFAMode: boolean;
     @Input() hideLabel: boolean;
 }
 
