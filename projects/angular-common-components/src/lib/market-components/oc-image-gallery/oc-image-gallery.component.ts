@@ -53,10 +53,40 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
      * @default false
      */
     @Input() expandOnClick: boolean = false;
-    /** Options for the carousel */
-    carouselOptions: OwlOptions = {
+    /**
+     * Options for the carousel. You can rewrite this options or add new
+     *
+     * #### default
+     * ```
+     * { loop: true,
+     *  mouseDrag: true,
+     *  touchDrag: false,
+     *  pullDrag: true,
+     *  dots: false,
+     *  autoWidth: true,
+     *  navSpeed: 700,
+     *  navText: ['', ''],
+     *  responsive: {
+     *       0: {
+     *           items: 1,
+     *       },
+     *       400: {
+     *           items: 1,
+     *       },
+     *       740: {
+     *           items: 2,
+     *       },
+     *       940: {
+     *           items: 3,
+     *       },
+     *   },
+     *   nav: false,
+     * }
+     * ```
+     */
+    @Input() carouselOptions: OwlOptions = {
         loop: true,
-        mouseDrag: false,
+        mouseDrag: true,
         touchDrag: false,
         pullDrag: true,
         dots: false,
@@ -79,6 +109,13 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
         },
         nav: false,
     };
+    /**
+     * Width of the slide. Will be applied only when {@link allowArrowControllers} is enabled.
+     * Quantity of slides to show depends on the width of the slide of the carousel.
+     * This number value will be transformed into size in `px`.
+     * @default 350
+     */
+    @Input() slideWidth: number = 350;
 
     /** Main input gallery array */
     mainGallery: GalleryItem[] = [];

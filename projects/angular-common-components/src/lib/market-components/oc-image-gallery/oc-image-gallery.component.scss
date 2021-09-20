@@ -4,6 +4,7 @@
 .image-gallery {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
     @include media-breakpoint-lg {
         flex-wrap: wrap;
     }
@@ -11,6 +12,25 @@
         flex-direction: column;
     }
 
+    &_paddings {
+        display: block;
+        padding: 0 4rem;
+        position: relative;
+    }
+
+    &__carousel {
+        &-nav {
+            cursor: pointer;
+            position: absolute;
+            top: 25%;
+            &-left {
+                left: 0;
+            }
+            &-right {
+                right: 0;
+            }
+        }
+    }
     &__item {
         flex-basis: calc(100%/3);
         flex-shrink: 2;

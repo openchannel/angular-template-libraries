@@ -1,10 +1,20 @@
-<div class="image-gallery">
+<div class="image-gallery" [class.image-gallery_paddings]="allowArrowControllers">
     <ng-container *ngIf="allowArrowControllers">
+        <div class="image-gallery__carousel-nav image-gallery__carousel-nav-left"
+             id="iconLeft"
+             (click)="carousel.prev()">
+            <img src="assets/angular-common-components/arrow-left-analog.svg" alt="previous slide">
+        </div>
         <owl-carousel-o [options]="carouselOptions" #carousel>
-            <ng-template carouselSlide *ngFor="let item of displayGallery" [width]="300">
+            <ng-template carouselSlide *ngFor="let item of displayGallery" [width]="slideWidth">
                     <ng-container [ngTemplateOutlet]="itemMedia" [ngTemplateOutletContext]="{$implicit: item}"></ng-container>
             </ng-template>
         </owl-carousel-o>
+        <div id="iconRight"
+             class="image-gallery__carousel-nav image-gallery__carousel-nav-right"
+             (click)="carousel.next()">
+            <img src="assets/angular-common-components/arrow-right-analog.svg" alt="next slide">
+        </div>
     </ng-container>
     <ng-container *ngIf="!allowArrowControllers">
         <ng-container *ngFor="let item of displayGallery"
@@ -12,6 +22,7 @@
                       [ngTemplateOutletContext]="{$implicit: item}"></ng-container>
     </ng-container>
 </div>
+
 
 <ng-template #itemMedia let-item>
     <div class="image-gallery__item">
