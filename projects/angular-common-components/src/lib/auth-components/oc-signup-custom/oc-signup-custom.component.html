@@ -5,8 +5,8 @@
                 <img alt="logo" class="sign-up__logo-img company-logo" [src]="companyLogoUrl">
             </div>
             <div class="sign-up__header">
-                <h1 [headingTag]="headingTag" class="sign-up__header-heading">Sign Up</h1>
-                <oc-label text="Enter your account details below" class="sign-up__header-invitation"></oc-label>
+                <h1 [headingTag]="headingTag" class="sign-up__header-heading">Sign up</h1>
+                <oc-label text="Enter your personal details below" class="sign-up__header-invitation"></oc-label>
             </div>
             <div *ngIf="!formConfigsLoading">
                 <oc-edit-user-form
@@ -19,10 +19,10 @@
                         (createdFormGroup)="formGroup = $event"
                         (resultFormDataChange)="resultFormValue = $event"></oc-edit-user-form>
                 <oc-button [process]="process" (click)="submitForm()"
-                           text="Sign Up" type="primary" class="sign-up__button"></oc-button>
+                           text="Sign up" type="primary" class="sign-up__button"></oc-button>
             </div>
             <div class="sign-up__login">
-                Already have an account? <a class="sign-up__login-link" [routerLink]="loginUrl">Log In</a>
+                Already have an account? <a class="sign-up__login-link" [routerLink]="loginUrl">Log in</a>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
             </oc-button>
             <div class="result__sign-up-message">
                 <oc-label text="Don't have an account yet?"></oc-label>
-                <a class="result__link" (click)="showSignupFeedbackPageChange.emit(false)"> Sign Up</a>
+                <a class="result__link" (click)="showSignupFeedbackPageChange.emit(false)"> Sign up</a>
             </div>
         </div>
     </form>
