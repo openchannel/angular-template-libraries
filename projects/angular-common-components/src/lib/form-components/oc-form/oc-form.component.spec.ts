@@ -142,20 +142,15 @@ describe('OcFormComponent', () => {
 
     it('should hide buttons', () => {
         component.showButton = false;
-
         fixture.detectChanges();
-
         const button = fixture.debugElement.query(By.css('oc-button'));
-
         expect(button).toBeNull();
     });
 
     it('should show text on button', () => {
         component.successButtonText = 'Text Button';
         fixture.detectChanges();
-
         const button = fixture.debugElement.queryAll(By.css('oc-button'))[1].componentInstance;
-
         expect(button.text).toEqual('Text Button');
     });
 });
