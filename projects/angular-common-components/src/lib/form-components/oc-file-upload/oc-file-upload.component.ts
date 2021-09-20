@@ -612,29 +612,6 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     }
 
     /**
-     * @private Uses fileUploadService to get file details.
-     * @param {string} urlData
-     */
-    private getFileDetails(urlData: string): void {
-        this.fileUploaderService
-            .fileDetailsRequest(urlData)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(
-                res => {
-                    this.fileDetailArr = res ? [{ ...res, fileUploadProgress: 100 }] : [];
-                    this.emitChanges();
-                },
-                error => {
-                    if (error.error.code === 404) {
-                        this.fileDetailArr = [this.externallyHostedImageHandler(urlData)];
-                        this.emitChanges();
-                    }
-                },
-            );
-        });
-    }
-
-    /**
      * @private Creates an object when the image is externally hosted
      * @returns {FileDetails}
      */
