@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import {
     MockButtonComponent,
+    MockProgressbarComponent,
     MockSingleFormComponent,
     MockTooltipComponent
 } from '@openchannel/angular-common-components/src/mock/mock';
@@ -21,6 +22,7 @@ describe('OcFormComponent', () => {
                     MockButtonComponent,
                     MockTooltipComponent,
                     MockSingleFormComponent,
+                    MockProgressbarComponent,
                 ],
                 imports: [FormsModule, ReactiveFormsModule],
             }).compileComponents();
