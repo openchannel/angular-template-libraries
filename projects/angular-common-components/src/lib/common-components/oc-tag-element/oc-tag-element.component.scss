@@ -26,23 +26,18 @@
         &-svg {
             height: 14px;
             width: 14px;
-
         }
-
-        .fill-close-icon {
-            fill: $info;
+        .close-icon-svg {
+            fill: $black;
         }
-    }
-
-    &:active {
-        background-color: $info;
     }
 
     &:focus {
         box-shadow: 0 0 0 2px $focus-border inset;
     }
-}
 
-.fill-close-icon {
-    fill: $body-color;
+    &:active {
+        box-shadow: unset;
+        background-color: $info;
+    }
 }
