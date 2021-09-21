@@ -6,7 +6,7 @@ import {
     MockButtonComponent,
     MockProgressbarComponent,
     MockSingleFormComponent,
-    MockTooltipComponent
+    MockTooltipComponent,
 } from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcFormComponent', () => {

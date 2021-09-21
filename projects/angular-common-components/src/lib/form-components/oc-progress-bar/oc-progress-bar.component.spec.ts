@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { OcProgressBarComponent } from './oc-progress-bar.component';
 import { FormsModule } from '@angular/forms';
+import { MockSvgIconComponent } from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcProgressBarComponent', () => {
     let component: OcProgressBarComponent;
@@ -9,7 +10,7 @@ describe('OcProgressBarComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcProgressBarComponent],
+                declarations: [OcProgressBarComponent, MockSvgIconComponent],
                 imports: [FormsModule],
             }).compileComponents();
         }),
