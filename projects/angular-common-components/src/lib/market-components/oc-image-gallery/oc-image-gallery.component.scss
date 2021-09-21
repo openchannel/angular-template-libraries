@@ -43,13 +43,7 @@
         text-align: center;
 
         @include media-breakpoint-lg {
-            max-width: 100%;
-        }
-        @include media-breakpoint-md {
             width: 100%;
-        }
-        @include media-breakpoint-sm {
-            max-width: 100%;
         }
 
         &-media {

@@ -8,7 +8,7 @@
             <img [src]="componentIconsPath.arrowLeft" alt="previous slide">
         </div>
         <owl-carousel-o [options]="carouselOptions" #carousel>
-            <ng-template carouselSlide *ngFor="let item of displayGallery" [width]="slideWidth">
+            <ng-template carouselSlide *ngFor="let item of displayGallery">
                     <ng-container [ngTemplateOutlet]="itemMedia" [ngTemplateOutletContext]="{$implicit: item}"></ng-container>
             </ng-template>
         </owl-carousel-o>

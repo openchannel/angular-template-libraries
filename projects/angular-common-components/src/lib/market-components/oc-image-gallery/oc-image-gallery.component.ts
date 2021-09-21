@@ -110,13 +110,6 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
         nav: false,
     };
     /**
-     * Width of the slide. Will be applied only when {@link allowArrowControllers} is enabled.
-     * Quantity of slides to show depends on the width of the slide of the carousel.
-     * This number value will be transformed into size in `px`.
-     * @default 350
-     */
-    @Input() slideWidth: number = 350;
-    /**
      * Config for paths of the icons used in this component.
      * You can change icons by setting a new path in this config or create an `angular-common-components`
      * folder in your `assets`, and then add your icon with the name from this config.
@@ -149,6 +142,10 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
      */
     private changeMaxImagesView(): void {
         this.displayGallery = [...this.mainGallery];
-        this.displayGallery.splice(this.maxItems);
+        if (this.allowArrowControllers) {
+            this.displayGallery.splice(this.mainGallery.length - 1);
+        } else {
+            this.displayGallery.splice(this.maxItems);
+        }
     }
 }
