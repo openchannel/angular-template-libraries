@@ -177,7 +177,7 @@ export class OcFormComponent implements OnInit, OnChanges {
         }
     }
 
-    navigateSteps(direction: string): void {
+    navigateSteps(direction: 'next' | 'previous'): void {
         if (direction === 'next') {
             this.updateProgressbarSteps(this.currentStep - 1);
             this.currentStep++;

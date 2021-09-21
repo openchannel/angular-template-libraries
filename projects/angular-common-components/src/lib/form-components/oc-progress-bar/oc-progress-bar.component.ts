@@ -5,6 +5,14 @@ import { FormProgressbarStep } from '../model/progress-bar-item.model';
  * Component is a visual progressbar which indicates a current form step a user is on.
  * It also shows steps validation.
  * It is used only in forms which have field groups and are rendered as steps.
+ * @example
+ * <oc-progress-bar *ngIf="showProgressBar"
+ *                  [currentStep]=1
+ *                  [progressbarData]="[{
+ *                      'title': 'Some step title',
+ *                      'state': 'pristine',
+ *                      'defaultDivider': true
+ *                  }]"></oc-progress-bar>
  */
 @Component({
     selector: 'oc-progress-bar',

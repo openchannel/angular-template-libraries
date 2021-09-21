@@ -21,7 +21,7 @@
         }
 
         &:last-child {
-            max-width: 80px;
+            max-width: 10rem;
             @include media-breakpoint-md {
                 max-width: unset;
             }
@@ -50,26 +50,26 @@
 
             @keyframes step-blast {
                 from {
-                    width: 46px;
-                    height: 46px;
+                    width: 5.5rem;
+                    height: 5.5rem;
                     opacity: 1;
                 }
                 to {
-                    width: 70px;
-                    height: 70px;
+                    width: 9rem;
+                    height: 9rem;
                     opacity: 0;
                 }
             }
 
             @keyframes step-blast-responsive {
                 from {
-                    width: 33px;
-                    height: 33px;
+                    width: 4rem;
+                    height: 4rem;
                     opacity: 1;
                 }
                 to {
-                    width: 150px;
-                    height: 150px;
+                    width: 19rem;
+                    height: 19rem;
                     opacity: 0;
                 }
             }
@@ -99,9 +99,9 @@
             }
 
             .form-progressbar__item-content-animation {
-                border: 2px solid #ffb0b0;
+                border: 2px solid $danger-light;
                 @include media-breakpoint-md {
-                    border: 1px solid #ffb0b0;
+                    border: 1px solid $danger-light;
                 }
             }
 
@@ -121,26 +121,26 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 80px;
-                height: 70px;
+                width: 10rem;
+                height: 8.75rem;
                 @include media-breakpoint-md {
-                    width: 35px;
-                    height: 35px;
+                    width: 4.5rem;
+                    height: 4.5rem;
                     margin-bottom: .5rem;
                 }
             }
 
             &-animation {
                 position: absolute;
-                border: 2px solid #a9bdfe;
+                border: 2px solid $focus-border;
                 z-index: 1;
-                width: 46px;
-                height: 46px;
+                width: 5.75rem;
+                height: 5.75rem;
                 border-radius: 50%;
                 @include media-breakpoint-md {
-                    border: 1px solid #a9bdfe;
-                    width: 33px;
-                    height: 33px;
+                    border: 1px solid $focus-border;
+                    width: calc(4.5rem - 2px);
+                    height: calc(4.25rem - 2px);
                 }
             }
 
@@ -149,8 +149,8 @@
                 justify-content: center;
                 align-items: center;
                 background: $light;
-                width: 48px;
-                height: 48px;
+                width: 6rem;
+                height: 6rem;
                 border-radius: 50%;
                 color: $primary;
                 z-index: 2;
@@ -158,20 +158,31 @@
                 @include font-size-md();
                 @include media-breakpoint-md {
                     @include font-size-sm();
-                    width: 35px;
-                    height: 35px;
+                    width: 4.5rem;
+                    height: 4.5rem;
+                }
+
+                &-icon {
+
+                    svg {
+                        display: block;
+                    }
+
+                    .recolor-icon {
+                        fill: $white;
+                    }
                 }
             }
 
             &-title {
-                max-width: 80px;
+                max-width: 10rem;
                 text-align: center;
-                margin: 0 -40px;
+                margin: 0 -5rem;
                 display: table;
                 @include font-size-md();
                 @include media-breakpoint-md {
                     @include font-size-sm();
-                    line-height: 14px;
+                    line-height: 1.75rem;
                     max-width: unset;
                     margin: 0;
                     word-break: break-word;
@@ -180,13 +191,13 @@
         }
 
         &-divider {
-            margin-top: 35px;
+            margin-top: 4.5rem;
             border-top: 1px dashed $info;
             flex-grow: 1;
             @include media-breakpoint-md {
-                border-top: 2px dashed #e2e8f5;
+                border-top: 2px dashed $info;
                 margin-top: 0;
-                width: 35px;
+                width: 4.5rem;
                 transform: rotate(90deg);
                 transform-origin: 6px 12px;
             }
@@ -194,7 +205,7 @@
             &_straight {
                 border-top: 1px solid $info;
                 @include media-breakpoint-md {
-                    border-top: 2px solid #d1dbef;
+                    border-top: 2px solid $info;
                 }
             }
         }

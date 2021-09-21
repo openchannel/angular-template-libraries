@@ -11,8 +11,8 @@
                 <div class="form-progressbar__item-content-animation"></div>
                 <div class="form-progressbar__item-content-status"
                      *ngIf="step.state === 'finished'">
-                    <img class="form-progressbar__item-content-status-icon"
-                         src="assets/angular-common-components/icon-check.svg" alt="icon-check">
+                    <svg-icon class="form-progressbar__item-content-status-icon"
+                              src="assets/angular-common-components/icon-check.svg"></svg-icon>
                 </div>
             </div>
             <div class="form-progressbar__item-content-title">{{step.title}}</div>
