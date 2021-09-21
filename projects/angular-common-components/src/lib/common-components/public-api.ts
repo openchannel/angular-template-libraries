@@ -24,6 +24,7 @@ export * from './oc-social-links/oc-social-links.component';
 export * from './oc-content-modal/oc-content-modal.component';
 export * from './oc-initials/oc-initials.component';
 export * from './oc-radio-button/oc-radio-button.component';
+export * from './oc-full-image-gallery-view-modal/oc-full-image-gallery-view-modal.component';
 
 /** Pipes */
 export * from './pipe/camelcase.pipe';

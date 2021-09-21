@@ -43,6 +43,7 @@ import { OcContentModalComponent } from './oc-content-modal/oc-content-modal.com
 import { OcInitialsComponent } from './oc-initials/oc-initials.component';
 import { OcRadioButtonComponent } from './oc-radio-button/oc-radio-button.component';
 import { HeadingTagDirective } from './directive/heading-tag.directive';
+import { OcFullImageGalleryViewModalComponent } from './oc-full-image-gallery-view-modal/oc-full-image-gallery-view-modal.component';
 
 @NgModule({
     declarations: [
@@ -81,6 +82,7 @@ import { HeadingTagDirective } from './directive/heading-tag.directive';
         OcContentModalComponent,
         OcInitialsComponent,
         OcRadioButtonComponent,
+        OcFullImageGalleryViewModalComponent,
     ],
     imports: [
         NgbModule,
@@ -129,6 +131,7 @@ import { HeadingTagDirective } from './directive/heading-tag.directive';
         OcContentModalComponent,
         OcRadioButtonComponent,
         OcInitialsComponent,
+        OcFullImageGalleryViewModalComponent
     ],
     providers: [NgbActiveModal],
 })
