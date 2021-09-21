@@ -44,6 +44,7 @@ import { OcInitialsComponent } from './oc-initials/oc-initials.component';
 import { OcRadioButtonComponent } from './oc-radio-button/oc-radio-button.component';
 import { HeadingTagDirective } from './directive/heading-tag.directive';
 import { OcFullImageGalleryViewModalComponent } from './oc-full-image-gallery-view-modal/oc-full-image-gallery-view-modal.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
     declarations: [
@@ -94,6 +95,7 @@ import { OcFullImageGalleryViewModalComponent } from './oc-full-image-gallery-vi
         HttpClientModule,
         EmbedVideo.forRoot(),
         AngularSvgIconModule.forRoot(),
+        CarouselModule,
     ],
     exports: [
         OcInputComponent,
@@ -131,7 +133,7 @@ import { OcFullImageGalleryViewModalComponent } from './oc-full-image-gallery-vi
         OcContentModalComponent,
         OcRadioButtonComponent,
         OcInitialsComponent,
-        OcFullImageGalleryViewModalComponent
+        OcFullImageGalleryViewModalComponent,
     ],
     providers: [NgbActiveModal],
 })

@@ -17,4 +17,3 @@ export * from './oc-market-components.module';
 /** Models */
 export * from './models/oc-review-details-model';
 export * from './models/overall-rating-summary-model';
-export * from './models/image-gallery.model';

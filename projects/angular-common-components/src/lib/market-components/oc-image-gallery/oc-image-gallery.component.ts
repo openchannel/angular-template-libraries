@@ -1,6 +1,5 @@
 import { AfterContentInit, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { GalleryItem } from '@openchannel/angular-common-components/src/lib/common-components';
-import { GalleryIconsAssets, GalleryMediaDimensions } from '../models/image-gallery.model';
+import { GalleryItem, GalleryIconsAssets, GalleryMediaDimensions } from '@openchannel/angular-common-components/src/lib/common-components';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 /**

@@ -1,4 +1,5 @@
 import { SafeResourceUrl } from '@angular/platform-browser';
+import { GalleryItem } from './image-gallery.model';
 
 export interface AppModel {
     type: string;
@@ -60,20 +61,6 @@ export interface CustomDataAppConfig {
     categories: string;
     author: string;
     gallery: string;
-}
-
-/**
- * Gallery Item interface
- * @property {string} title - String value with image title
- * @property {string} description - String value with description for the title
- * @property {string} image - Image URL value, not set this value if your data is video
- * @property {string} video Video URL value, not set this value if your data is image
- */
-export interface GalleryItem {
-    title: string;
-    description: string;
-    image?: string;
-    video?: string;
 }
 
 export interface App {

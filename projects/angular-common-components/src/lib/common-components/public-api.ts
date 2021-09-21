@@ -48,6 +48,7 @@ export * from './model/components-basic.model';
 export * from './model/oc-sidebar-model';
 export * from './interfaces/social-link.model';
 export * from './interfaces/heading-tag.interface';
+export * from './model/image-gallery.model';
 
 /** Services */
 export * from './oc-error/oc-error-service';
