@@ -10,6 +10,7 @@ export interface GalleryItem {
     description: string;
     image?: string;
     video?: string;
+    mediaWidth?: number;
 }
 
 /**

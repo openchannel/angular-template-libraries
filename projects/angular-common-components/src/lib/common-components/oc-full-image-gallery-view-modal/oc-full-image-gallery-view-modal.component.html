@@ -1,1 +1,28 @@
-<p>oc-full-image-gallery-view-modal works!</p>
+<div class="full-image-gallery-modal" [class.full-image-gallery-modal_full-screen]="galleryItems[activeItemIdx].video">
+    <!-- Left arrow navigation --->
+    <div class="full-image-gallery-modal__carousel-nav full-image-gallery-modal__carousel-nav-left"
+         id="iconLeft"
+         (click)="prevSlide()">
+        <svg-icon [src]="componentIconsPath.arrowLeft" svgClass="full-image-gallery-modal__carousel-nav-icon"></svg-icon>
+    </div>
+    <!-- Carousel --->
+    <div class="full-image-gallery-modal__item">
+        <div class="full-image-gallery-modal__media">
+            <img [src]="galleryItems[activeItemIdx].image" *ngIf="galleryItems[activeItemIdx].image" [alt]="galleryItems[activeItemIdx].title"
+                 class="full-image-gallery-modal__item-image">
+            <oc-video [videoUrl]="galleryItems[activeItemIdx].video" *ngIf="galleryItems[activeItemIdx].video && !galleryItems[activeItemIdx].image"
+                      class="full-image-gallery-modal__item-video"></oc-video>
+        </div>
+        <div class="full-image-gallery-modal__details" *ngIf="showDetails">
+            <p class="full-image-gallery-modal__details-title">{{galleryItems[activeItemIdx].title}}</p>
+            <span class="full-image-gallery-modal__details-description">{{galleryItems[activeItemIdx].description}}</span>
+        </div>
+    </div>
+    <!-- Right arrow navigation --->
+    <div class="full-image-gallery-modal__carousel-nav full-image-gallery-modal__carousel-nav-right"
+         id="iconRight"
+         (click)="nextSlide()">
+        <svg-icon [src]="componentIconsPath.arrowRight" svgClass="full-image-gallery-modal__carousel-nav-icon"></svg-icon>
+    </div>
+</div>
+
