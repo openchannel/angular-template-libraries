@@ -57,10 +57,7 @@
 
             .gallery__content-link {
                 cursor: pointer;
-                @include media-breakpoint-md {
-                    bottom: 0;
-                    position: absolute;
-                }
+                flex-shrink: 0;
 
                 &-text {
                     @include font-medium();
