@@ -566,6 +566,14 @@ export class MockColorComponent implements ControlValueAccessor {
 }
 
 @Component({
+    selector: 'oc-video',
+    template: '',
+})
+export class MockVideoComponent {
+    @Input() videoUrl: string;
+}
+
+@Component({
     selector: 'oc-video-url',
     template: '',
     providers: [
