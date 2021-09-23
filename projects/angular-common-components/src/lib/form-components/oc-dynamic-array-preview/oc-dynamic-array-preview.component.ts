@@ -7,6 +7,7 @@ import { isArray } from 'rxjs/internal-compatibility';
 import { FileDetails, FileUploaderService } from '../model/file.model';
 import { AppTypeFieldModel } from '@openchannel/angular-common-components/src/lib/common-components';
 import { difference } from 'lodash';
+import { VIDEO_URL_REGEX } from '../model/utils.model';
 /**
  * Dynamic array preview component.
  * A group of field previews, rendered depending in fields type.
@@ -126,10 +127,11 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
      */
     private isValidDataForFieldType(type: string, fieldValue: any): boolean {
         switch (type) {
+            case 'videoUrl':
+                return typeof fieldValue === 'string' && VIDEO_URL_REGEX().test(fieldValue);
             case 'text':
             case 'richText':
             case 'longText':
-            case 'videoUrl':
             case 'websiteUrl':
             case 'emailAddress':
             case 'singleImage':
