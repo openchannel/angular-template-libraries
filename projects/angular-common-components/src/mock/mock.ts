@@ -243,6 +243,7 @@ export class MockTitleComponent {
 export class MockDynamicFieldArrayComponent {
     @Input() dfaFormArray: FormArray;
     @Input() fieldDefinitionData: AppTypeFieldModel;
+    @Input() previewMode: boolean;
 }
 
 @Component({
@@ -298,6 +299,7 @@ export class MockDynamicArrayPreview {
     @Input() fieldValues: FieldValueModel[];
     @Input() fieldDefinition: AppTypeFieldModel;
     @Input() dfaForm: FormGroup;
+    @Input() previewDFAMode: boolean;
     @Input() hideLabel: boolean;
 }
 
@@ -561,6 +563,14 @@ export class MockColorComponent implements ControlValueAccessor {
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-video',
+    template: '',
+})
+export class MockVideoComponent {
+    @Input() videoUrl: string;
 }
 
 @Component({

@@ -55,6 +55,9 @@
                     <ng-container *ngSwitchCase="'multiPrivateFile'"
                                   [ngTemplateOutlet]="ngtMultiFile"
                                   [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
+                    <ng-container *ngSwitchCase="'videoUrl'"
+                                  [ngTemplateOutlet]="videoTemplate"
+                                  [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
                     <ng-container *ngSwitchDefault
                                   [ngTemplateOutlet]="ngtText"
                                   [ngTemplateOutletContext]="{$implicit: field}"></ng-container>
@@ -88,7 +91,8 @@
 <ng-template #ngtDFA let-field>
     <oc-dynamic-field-array *ngIf="field?.formArrayDFA"
                             [dfaFormArray]="field.formArrayDFA"
-                            [fieldDefinitionData]="field"></oc-dynamic-field-array>
+                            [fieldDefinitionData]="field"
+                            [previewMode]="previewDFAMode"></oc-dynamic-field-array>
 </ng-template>
 
 <!-- List of images template-->
@@ -150,5 +154,12 @@
         <img class="array-preview__field-content__file-single-icon" src="assets/angular-common-components/file_icon.svg"
              alt="file image">
         <span class="array-preview__field-content__file-single-title">{{fileName}}</span>
+    </div>
+</ng-template>
+
+
+<ng-template #videoTemplate let-field>
+    <div class="array-preview__field-content__video">
+        <oc-video [videoUrl]="field.fieldValue"></oc-video>
     </div>
 </ng-template>
