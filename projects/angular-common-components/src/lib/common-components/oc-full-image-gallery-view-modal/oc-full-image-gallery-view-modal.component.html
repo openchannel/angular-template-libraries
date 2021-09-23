@@ -1,4 +1,10 @@
 <div class="full-image-gallery-modal" [class.full-image-gallery-modal_full-screen]="galleryItems[activeItemIdx].video">
+    <!-- Modal Close icon --->
+    <div class="full-image-gallery-modal__close"
+         id="iconClose"
+         (click)="closeModal()">
+        <svg-icon [src]="componentIconsPath.closeIcon" svgClass="full-image-gallery-modal__close-icon"></svg-icon>
+    </div>
     <!-- Left arrow navigation --->
     <div class="full-image-gallery-modal__carousel-nav full-image-gallery-modal__carousel-nav-left"
          id="iconLeft"

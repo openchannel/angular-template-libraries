@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { OwlOptions } from 'ngx-owl-carousel-o';
 import { GalleryItem, GalleryIconsAssets } from '../model/image-gallery.model';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'oc-full-image-gallery-view-modal',
@@ -8,57 +8,47 @@ import { GalleryItem, GalleryIconsAssets } from '../model/image-gallery.model';
     styleUrls: ['./oc-full-image-gallery-view-modal.component.scss'],
 })
 export class OcFullImageGalleryViewModalComponent implements OnInit {
+    /**
+     * Items of the gallery to be shown in this modal by navigation.
+     * This is required parameter.
+     */
     @Input() galleryItems: GalleryItem[];
-
-    @Input() activeItemIdx: number;
-
+    /**
+     * Index of the item in array to be shown.
+     * First slide will be shown by default.
+     * @default 0
+     */
+    @Input() activeItemIdx: number = 0;
+    /**
+     * Display of title and description of the gallery item. Details are displayed by default.
+     * @default true
+     */
     @Input() showDetails: boolean = true;
-
+    /**
+     * Config for paths of the icons used in this component.
+     * You can change icons by setting a new path in this config or create an `angular-common-components`
+     * folder in your `assets`, and then add your icon with the name from this config.
+     */
     @Input() componentIconsPath: GalleryIconsAssets = {
         arrowLeft: 'assets/angular-common-components/arrow-left-analog.svg',
         arrowRight: 'assets/angular-common-components/arrow-right-analog.svg',
         closeIcon: 'assets/angular-common-components/close-icon.svg',
     };
+    /**
+     * Control of the current modal actions.
+     * @private
+     */
+    private modal: NgbActiveModal;
 
-    modalWidth: number = null;
-
-    carouselOptions: OwlOptions = {
-        loop: false,
-        mouseDrag: false,
-        touchDrag: false,
-        pullDrag: true,
-        dots: false,
-        autoWidth: true,
-        navSpeed: 700,
-        navText: ['', ''],
-        nav: false,
-        center: true,
-        items: 1,
-    };
-    constructor() {}
-
-    ngOnInit(): void {
-        this.getImagesWidth();
+    constructor(modal: NgbActiveModal) {
+        this.modal = modal;
     }
 
-    getImagesWidth(): void {
-        this.galleryItems.forEach(item => {
-            if (item.image) {
-                const img = new Image();
-                img.src = item.image;
+    ngOnInit(): void {}
 
-                img.onload = event => {
-                    item.mediaWidth = (event.currentTarget as HTMLImageElement).width;
-                };
-            } else {
-                item.mediaWidth = null;
-            }
-        });
-        setTimeout(() => {
-            this.modalWidth = this.galleryItems[0].mediaWidth;
-        }, 0);
-    }
-
+    /**
+     * Changing media item to the next. If it was the last item - first item will be shown again.
+     */
     nextSlide(): void {
         if (this.activeItemIdx === this.galleryItems.length) {
             this.activeItemIdx = 0;
@@ -67,11 +57,21 @@ export class OcFullImageGalleryViewModalComponent implements OnInit {
         }
     }
 
+    /**
+     * Changing media item to the previous. If it was the first item - last item will be shown again.
+     */
     prevSlide(): void {
         if (this.activeItemIdx === 0) {
             this.activeItemIdx = this.galleryItems.length - 1;
         } else {
             this.activeItemIdx--;
         }
+    }
+
+    /**
+     * Closing current modal.
+     */
+    closeModal(): void {
+        this.modal.dismiss();
     }
 }
