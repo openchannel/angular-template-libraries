@@ -18,12 +18,14 @@ export interface FormArrayItem {
     formData: any;
     previewLabel: PreviewLabel;
     previewFiledValues: FieldValueModel[];
+    previewCollapsedDFAFields: boolean;
 }
 
 export interface PreviewLabel {
     defaultLabel: string;
     customLabelValue?: FieldValueModel[];
     customLabelDefinition?: AppTypeFieldModel;
+    isCollapsedPreviewFields?: boolean;
 }
 
 export interface FieldValueModel {
