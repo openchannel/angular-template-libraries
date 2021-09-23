@@ -103,7 +103,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy , OnChang
                 formData: null,
                 previewLabel: null,
                 previewFiledValues: null,
-                previewCollapsedDFAFields: false,
+                previewCollapsedDFAFields: true,
             });
             this.dfaFormArray.push(newGroup);
         } else {
@@ -113,7 +113,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy , OnChang
                 formData: null,
                 previewLabel: null,
                 previewFiledValues: null,
-                previewCollapsedDFAFields: false,
+                previewCollapsedDFAFields: true,
             });
             this.dfaFormArray.insert(0, newGroup);
         }
@@ -163,7 +163,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy , OnChang
                     formData: control.value,
                     previewLabel: null,
                     previewFiledValues: null,
-                    previewCollapsedDFAFields: false,
+                    previewCollapsedDFAFields: this.previewMode || false,
                 };
             });
             this.subscribeToAllPreviewFieldChanges();

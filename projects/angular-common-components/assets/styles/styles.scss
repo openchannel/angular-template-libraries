@@ -393,6 +393,11 @@ a.link {
                         margin-bottom: 0;
                     }
                 }
+                &__video {
+                    .oc-video {
+                        width: min-content;
+                    }
+                }
             }
             margin: 0;
             &-content__tags-item {
