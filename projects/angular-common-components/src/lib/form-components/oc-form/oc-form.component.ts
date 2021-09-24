@@ -182,9 +182,7 @@ export class OcFormComponent implements OnInit, OnChanges {
             this.updateProgressbarSteps(this.currentStep - 1);
             this.currentStep++;
         } else {
-            if (this.currentForm.pristine) {
-                this.progressBarSteps[this.currentStep - 2].defaultDivider = true;
-            } else {
+            if (!this.currentForm.pristine) {
                 this.updateProgressbarSteps(this.currentStep - 1);
             }
             this.currentStep--;
@@ -198,7 +196,6 @@ export class OcFormComponent implements OnInit, OnChanges {
             this.progressBarSteps.push({
                 title: step.label ? step.label.label : `Step ${index + 1}`,
                 state: 'pristine',
-                defaultDivider: true,
             });
         });
     }
@@ -206,7 +203,6 @@ export class OcFormComponent implements OnInit, OnChanges {
     updateProgressbarSteps(index: number): void {
         this.currentForm.markAllAsTouched();
         this.progressBarSteps[index].state = this.currentForm.valid ? 'finished' : 'invalid';
-        this.progressBarSteps[index].defaultDivider = false;
     }
 
     /**

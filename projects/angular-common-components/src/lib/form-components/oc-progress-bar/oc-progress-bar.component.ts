@@ -32,4 +32,8 @@ export class OcProgressBarComponent {
      * @default: 1
      */
     @Input() currentStep: number = 1;
+
+    getNextStep(currentStep: number): FormProgressbarStep {
+        return this.progressbarData[currentStep];
+    }
 }

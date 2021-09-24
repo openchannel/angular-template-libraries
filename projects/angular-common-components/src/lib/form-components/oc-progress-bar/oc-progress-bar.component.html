@@ -19,6 +19,7 @@
         </div>
         <div class="form-progressbar__item-divider"
              *ngIf="i + 1 < progressbarData.length"
-             [class.form-progressbar__item-divider_straight]="!step.defaultDivider"></div>
+             [class.form-progressbar__item-divider_straight]="getNextStep(i + 1).state !== 'pristine' ||
+                                                              (getNextStep(i + 1).state === 'pristine' && currentStep === i + 2)"></div>
     </div>
 </div>
