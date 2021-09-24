@@ -12,13 +12,15 @@
     }
 
     .user-grid-overlay {
+        position: absolute;
+        top: 69px;
+        bottom: 69px;
+        right: 1px;
+        width: 18px;
+        background: linear-gradient(90deg, transparent, white 75%, white);
+        display: none;
         @include media-breakpoint-xl {
-            position: absolute;
-            top: 68px;
-            bottom: 67px;
-            right: 1px;
-            width: 18px;
-            background: linear-gradient(90deg, transparent, white 75%, white);
+            display: block;
         }
     }
 
