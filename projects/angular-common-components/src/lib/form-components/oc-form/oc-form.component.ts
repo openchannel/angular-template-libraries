@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef } from '@angular/core';
 import { AppFormField, AppFormModel } from '../model/app-form-model';
+import { FormProgressbarStep } from '../model/progress-bar-item.model';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
 
@@ -118,7 +119,18 @@ export class OcFormComponent implements OnInit, OnChanges {
      */
     @Input() showGroupHeading: boolean = true;
 
+    /**
+     * Flag to show group description
+     */
+    @Input() showGroupDescription: boolean = true;
+
+    /**
+     * Flag to show progressbar
+     */
+    @Input() showProgressBar: boolean = true;
+
     customForm: FormArray;
+    progressBarSteps: FormProgressbarStep[] = [];
     hasFieldGroup: boolean = false;
     resultData: any = {};
 
@@ -148,6 +160,9 @@ export class OcFormComponent implements OnInit, OnChanges {
     }
 
     onSubmitButtonClicked(): void {
+        if (this.showProgressBar) {
+            this.updateProgressbarSteps(this.currentStep - 1);
+        }
         this.customForm.markAllAsTouched();
         if (this.customForm.invalid) {
             for (let i = 0; i < this.customForm.length; i++) {
@@ -162,9 +177,32 @@ export class OcFormComponent implements OnInit, OnChanges {
         }
     }
 
-    navigateSteps(direction: string): void {
-        direction === 'next' ? this.currentStep++ : this.currentStep--;
+    navigateSteps(direction: 'next' | 'previous'): void {
+        if (direction === 'next') {
+            this.updateProgressbarSteps(this.currentStep - 1);
+            this.currentStep++;
+        } else {
+            if (!this.currentForm.pristine) {
+                this.updateProgressbarSteps(this.currentStep - 1);
+            }
+            this.currentStep--;
+        }
         this.currentStepChange.emit(this.currentStep);
+    }
+
+    generateProgressbarSteps(): void {
+        this.progressBarSteps = [];
+        this.customForm.controls.forEach((step: any, index) => {
+            this.progressBarSteps.push({
+                title: step.label ? step.label.label : `Step ${index + 1}`,
+                state: 'pristine',
+            });
+        });
+    }
+
+    updateProgressbarSteps(index: number): void {
+        this.currentForm.markAllAsTouched();
+        this.progressBarSteps[index].state = this.currentForm.valid ? 'finished' : 'invalid';
     }
 
     /**
@@ -189,6 +227,10 @@ export class OcFormComponent implements OnInit, OnChanges {
 
     get stepLabel(): string {
         return `Step ${this.currentStep}. ${this.currentForm.label ? this.currentForm.label.label : ''}`;
+    }
+
+    get stepDescription(): string {
+        return `Please fill the ${this.currentForm.label ? this.currentForm.label.label.toLowerCase() : 'information'} below`;
     }
 
     private setStep(step: number): void {
@@ -243,6 +285,7 @@ export class OcFormComponent implements OnInit, OnChanges {
         this.customForm.controls.forEach(form => {
             this.mapFormFieldsData(form.value);
         });
+        this.generateProgressbarSteps();
         this.createdForm.emit(this.customForm);
     }
 }
