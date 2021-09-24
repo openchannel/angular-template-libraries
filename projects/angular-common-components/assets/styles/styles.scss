@@ -692,3 +692,12 @@ oc-button.tags__button-add {
 .oc-card__icon-img {
     @include image-alt-text
 }
+
+.media-modal {
+    .modal-dialog {
+        @include media-breakpoint-md {
+            margin: auto;
+        }
+        max-width: max-content;
+    }
+}

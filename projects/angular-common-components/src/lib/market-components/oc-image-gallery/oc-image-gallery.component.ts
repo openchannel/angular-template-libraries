@@ -153,7 +153,6 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
             });
             mediaModalRef.componentInstance.galleryItems = this.displayGallery;
             mediaModalRef.componentInstance.activeItemIdx = index;
-            mediaModalRef.result.then();
         }
     }
 
