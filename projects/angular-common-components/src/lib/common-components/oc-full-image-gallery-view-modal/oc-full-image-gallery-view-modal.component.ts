@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { GalleryItem, GalleryIconsAssets } from '../model/image-gallery.model';
+import { Component, HostListener, Input } from '@angular/core';
+import { GalleryItem, GalleryIconsAssets, KEY_CODE } from '../model/image-gallery.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,7 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     templateUrl: './oc-full-image-gallery-view-modal.component.html',
     styleUrls: ['./oc-full-image-gallery-view-modal.component.scss'],
 })
-export class OcFullImageGalleryViewModalComponent implements OnInit {
+export class OcFullImageGalleryViewModalComponent {
     /**
      * Items of the gallery to be shown in this modal by navigation.
      * This is required parameter.
@@ -44,13 +44,19 @@ export class OcFullImageGalleryViewModalComponent implements OnInit {
         this.modal = modal;
     }
 
-    ngOnInit(): void {}
+    @HostListener('window:keyup', ['$event']) handleKeyUp(event: KeyboardEvent): void {
+        if (event.code === 'ArrowRight') {
+            this.nextSlide();
+        } else if (event.code === 'ArrowLeft') {
+            this.prevSlide();
+        }
+    }
 
     /**
      * Changing media item to the next. If it was the last item - first item will be shown again.
      */
     nextSlide(): void {
-        if (this.activeItemIdx === this.galleryItems.length) {
+        if (this.activeItemIdx === this.galleryItems.length - 1) {
             this.activeItemIdx = 0;
         } else {
             this.activeItemIdx++;
