@@ -6,8 +6,8 @@
  * @property {string} video Video URL value, not set this value if your data is image
  */
 export interface GalleryItem {
-    title: string;
-    description: string;
+    title?: string;
+    description?: string;
     image?: string;
     video?: string;
     mediaWidth?: number;
@@ -50,4 +50,9 @@ export interface GalleryIconsAssets {
     arrowRight?: string;
     /** path to the close cross icon of the modal window */
     closeIcon?: string;
+}
+
+export enum KEY_CODE {
+    RIGHT_ARROW = 39,
+    LEFT_ARROW = 37,
 }
