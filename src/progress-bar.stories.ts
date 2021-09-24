@@ -24,27 +24,22 @@ ProgressBarSteps.args = {
         {
             title: 'Step 1',
             state: 'finished',
-            defaultDivider: false,
         },
         {
             title: 'Contact information',
             state: 'invalid',
-            defaultDivider: false,
         },
         {
             title: 'Images',
             state: 'pristine',
-            defaultDivider: true,
         },
         {
             title: 'Personal Data',
             state: 'pristine',
-            defaultDivider: true,
         },
         {
             title: 'Step 5',
             state: 'pristine',
-            defaultDivider: true,
         },
     ],
     currentStep: 3,

@@ -23,27 +23,22 @@ describe('OcProgressBarComponent', () => {
             {
                 title: 'Step 1',
                 state: 'pristine',
-                defaultDivider: true,
             },
             {
                 title: 'Contact information',
                 state: 'pristine',
-                defaultDivider: true,
             },
             {
                 title: 'Images',
                 state: 'pristine',
-                defaultDivider: true,
             },
             {
                 title: 'Personal Data',
                 state: 'pristine',
-                defaultDivider: true,
             },
             {
                 title: 'Step 5',
                 state: 'pristine',
-                defaultDivider: true,
             },
         ];
         fixture.detectChanges();
