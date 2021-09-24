@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { base64ToFile, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
-import { HttpEventType, HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -42,7 +42,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * File input template reference
      */
-    @ViewChild('fileDropRef', { static: false }) fileInputVar: ElementRef<any>;
+    @ViewChild('fileDropRef', { static: false }) fileInputVar: ElementRef;
 
     /**
      * Set model value
@@ -176,16 +176,6 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     containsInvalidFile = false;
 
     /**
-     * Flag that allow maintain aspect ration logic or not
-     */
-    maintainAspectRatio = false;
-
-    /**
-     * Aspect ration value
-     */
-    aspectRatio: number;
-
-    /**
      * Scale value
      */
     scale = 1;
@@ -248,7 +238,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * On file drop handler
      */
-    onFileDropped($event: any, content?: any): void {
+    onFileDropped($event: any): void {
         this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
         this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
     }
@@ -456,12 +446,6 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         }
         if (this.imageHeight) {
             this.resizeToHeight = this.imageHeight;
-        }
-        if (this.imageWidth && this.imageHeight) {
-            this.aspectRatio = this.imageWidth / this.imageHeight;
-            this.maintainAspectRatio = true;
-        } else {
-            this.aspectRatio = 1;
         }
     }
 
