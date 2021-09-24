@@ -2,17 +2,20 @@
 @import '../../../../assets/styles/mixins';
 
 .oc-table {
-    width: 1108px;
+    width: 100%;
     vertical-align: middle;
     background-color: white;
     border-spacing: 0;
     border-collapse: inherit;
+    @include media-breakpoint-xxl() {
+        width: 1108px;
+    }
 
     &-container {
         position: relative;
 
         &__overlay {
-            bottom: 67px;
+            bottom: 47px;
             top: 47px;
             position: absolute;
             right: 1px;
