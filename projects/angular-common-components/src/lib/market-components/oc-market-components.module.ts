@@ -21,7 +21,6 @@ import { OcReviewComponent } from './oc-review/oc-review.component';
 import { OcFormComponentsModule } from '@openchannel/angular-common-components/src/lib/form-components';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -50,7 +49,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         OcFormComponentsModule,
         CarouselModule,
         AngularSvgIconModule.forRoot(),
-        BrowserAnimationsModule,
     ],
     exports: [
         OcAppCardComponent,

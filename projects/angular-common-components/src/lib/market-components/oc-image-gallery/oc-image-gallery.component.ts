@@ -1,6 +1,12 @@
 import { AfterContentInit, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { GalleryItem, GalleryIconsAssets, GalleryMediaDimensions } from '@openchannel/angular-common-components/src/lib/common-components';
+import {
+    GalleryItem,
+    GalleryIconsAssets,
+    GalleryMediaDimensions,
+    OcFullImageGalleryViewModalComponent,
+} from '@openchannel/angular-common-components/src/lib/common-components';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 /**
  * Image gallery component. Show list of images with title and description.
@@ -124,6 +130,8 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
     /** Spliced array */
     displayGallery: GalleryItem[] = [];
 
+    constructor(private modal: NgbModal) {}
+
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.maxItems && this.maxItems) {
             if (changes.maxItems.previousValue !== changes.maxItems.currentValue) {
@@ -134,6 +142,19 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
 
     ngAfterContentInit(): void {
         this.changeMaxImagesView();
+    }
+
+    openMediaModal(index: number): void {
+        if (this.expandOnClick) {
+            const mediaModalRef = this.modal.open(OcFullImageGalleryViewModalComponent, {
+                centered: true,
+                size: 'auto',
+                windowClass: 'media-modal',
+            });
+            mediaModalRef.componentInstance.galleryItems = this.displayGallery;
+            mediaModalRef.componentInstance.activeItemIdx = index;
+            mediaModalRef.result.then();
+        }
     }
 
     /**
