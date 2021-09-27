@@ -49,6 +49,10 @@ export class OcFullImageGalleryViewModalComponent implements OnInit {
         this.setWidthOfMedia();
     }
 
+    /**
+     * Listening to the event of keyboard keys and changing slides by arrow keys.
+     * @param event keyboard event with keys data
+     */
     @HostListener('window:keyup', ['$event']) handleKeyUp(event: KeyboardEvent): void {
         if (event.code === 'ArrowRight') {
             this.nextSlide();
@@ -86,6 +90,9 @@ export class OcFullImageGalleryViewModalComponent implements OnInit {
         this.modal.dismiss();
     }
 
+    /**
+     * Loading each image of the Gallery and getting the width if it is not set manually already.
+     */
     setWidthOfMedia(): void {
         this.galleryItems.forEach(item => {
             if (item.image && !item.mediaWidth) {
