@@ -6,10 +6,7 @@
     @include media-breakpoint-md {
         max-width: 80vw;
     }
-    max-width: 95vw;
-    position: relative;
-    width: max-content;
-    height: auto;
+    max-width: 90vw;
 
     &_full-screen {
         width: 100%;
@@ -34,25 +31,11 @@
 
     &__item {
         border-radius: 4px;
-        height: auto;
         text-align: left;
         overflow: hidden;
-        width: max-content;
-
-        &-media {
-            @include media-breakpoint-md {
-                max-width: 80vw;
-            }
-            max-width: 90vw;
-            max-height: 80vh;
-        }
 
         &-image {
-            @include media-breakpoint-md {
-                max-width: 80vw;
-            }
-            max-width: 90vw;
-            max-height: 80vh;
+            width: 100%;
         }
 
         &-video {

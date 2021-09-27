@@ -1,5 +1,5 @@
-import { Component, HostListener, Input } from '@angular/core';
-import { GalleryItem, GalleryIconsAssets, KEY_CODE } from '../model/image-gallery.model';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { GalleryItem, GalleryIconsAssets } from '../model/image-gallery.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,7 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     templateUrl: './oc-full-image-gallery-view-modal.component.html',
     styleUrls: ['./oc-full-image-gallery-view-modal.component.scss'],
 })
-export class OcFullImageGalleryViewModalComponent {
+export class OcFullImageGalleryViewModalComponent implements OnInit {
     /**
      * Items of the gallery to be shown in this modal by navigation.
      * This is required parameter.
@@ -37,11 +37,16 @@ export class OcFullImageGalleryViewModalComponent {
     /**
      * Control of the current modal actions.
      * @private
+     * @ignore
      */
     private modal: NgbActiveModal;
 
     constructor(modal: NgbActiveModal) {
         this.modal = modal;
+    }
+
+    ngOnInit(): void {
+        this.setWidthOfMedia();
     }
 
     @HostListener('window:keyup', ['$event']) handleKeyUp(event: KeyboardEvent): void {
@@ -79,5 +84,18 @@ export class OcFullImageGalleryViewModalComponent {
      */
     closeModal(): void {
         this.modal.dismiss();
+    }
+
+    setWidthOfMedia(): void {
+        this.galleryItems.forEach(item => {
+            if (item.image && !item.mediaWidth) {
+                const img = new Image();
+
+                img.src = item.image;
+                img.onload = event => {
+                    item.mediaWidth = (event.target as HTMLImageElement).width;
+                };
+            }
+        });
     }
 }

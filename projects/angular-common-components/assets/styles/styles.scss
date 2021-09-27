@@ -690,7 +690,7 @@ oc-button.tags__button-add {
 }
 
 .oc-card__icon-img {
-    @include image-alt-text
+    @include image-alt-text;
 }
 
 .media-modal {
@@ -699,5 +699,6 @@ oc-button.tags__button-add {
             margin: auto;
         }
         max-width: max-content;
+        margin: 5rem auto;
     }
 }
