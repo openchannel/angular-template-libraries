@@ -17,6 +17,7 @@ export * from './oc-form-modal/oc-form-modal.component';
 export * from './oc-dynamic-array-preview/oc-dynamic-array-preview.component';
 export * from './oc-dropdown-multi-app/oc-dropdown-multi-app.component';
 export * from './oc-radio-button-list/oc-radio-button-list.component';
+export * from './oc-progress-bar/oc-progress-bar.component';
 
 /** Models */
 export * from './model/app-form-model';
@@ -25,6 +26,10 @@ export * from './model/dynamic-array.model';
 export * from './model/datetime.model';
 export * from './model/dropdown-multi-app.model';
 export * from './model/multi-select-checkbox.model';
+export * from './model/progress-bar-item.model';
+
+/** Utils */
+export * from './model/utils.model';
 
 /** Form Generator */
 export * from './oc-form/oc-form-generator';
