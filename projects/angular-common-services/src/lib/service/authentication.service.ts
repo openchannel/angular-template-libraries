@@ -3,7 +3,7 @@ import { HttpRequestService } from './http-request-services';
 import { Observable, of, throwError } from 'rxjs';
 import { LoginRequest, LoginResponse, RefreshTokenRequest } from '../model/api/login.model';
 import { AuthHolderService } from './auth-holder.service';
-import { catchError, flatMap, map, tap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { OcApiPaths } from '../oc-ng-common-service.module';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
 import { SiteAuthConfig } from '../model/api/market.model';
@@ -61,7 +61,7 @@ export class AuthenticationService {
 
     tryLoginByRefreshToken(): Observable<boolean> {
         return of(this.authHolderService.isLoggedInUser()).pipe(
-            flatMap((isLogged: boolean) => {
+            mergeMap((isLogged: boolean) => {
                 if (isLogged) {
                     return of(isLogged);
                 } else if (!this.authHolderService.refreshToken) {
