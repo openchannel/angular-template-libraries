@@ -34,16 +34,8 @@ export class OcFullImageGalleryViewModalComponent implements OnInit {
         arrowRight: 'assets/angular-common-components/arrow-right-analog.svg',
         closeIcon: 'assets/angular-common-components/close-icon.svg',
     };
-    /**
-     * Control of the current modal actions.
-     * @private
-     * @ignore
-     */
-    private modal: NgbActiveModal;
 
-    constructor(modal: NgbActiveModal) {
-        this.modal = modal;
-    }
+    constructor(private modal: NgbActiveModal) {}
 
     ngOnInit(): void {
         this.setWidthOfMedia();
