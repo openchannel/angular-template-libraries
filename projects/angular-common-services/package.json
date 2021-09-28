@@ -1,6 +1,6 @@
 {
   "name": "@openchannel/angular-common-services",
-  "version": "2.27.0",
+  "version": "2.29.0",
   "description": "Store models and services for creating a marketplace instance.",
   "homepage": "https://github.com/openchannel/angular-template-libraries",
   "repository": {

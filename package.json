@@ -1,6 +1,6 @@
 {
   "name": "oc-angular-template-libraries",
-  "version": "2.27.0",
+  "version": "2.29.0",
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
     "prebuild": "npm run clean-css && npm run generate-mock-css",
@@ -9,8 +9,9 @@
     "start": "./node_modules/.bin/ng serve",
     "build": "./node_modules/.bin/ng build",
     "build-prod": "npm run build --prod",
-    "build-components": "npm run build angular-common-components",
-    "build-components-watch": "npm-watch build-components",
+    "build-components": "npm run build angular-common-components ",
+    "build-components-watch": "./scripts/build-components/build.sh --watch",
+    "build-components-storybook-watch": "./scripts/build-components/build-storybook.sh --watch",
     "test": "npm run test:lib",
     "test:lib": "jest --config projects/angular-common-components/jest.config.js --collectCoverage --runInBand",
     "test:watch": "jest --config projects/angular-common-components/jest.config.js --watch --coverage --collectCoverageFrom=\"src/**/*${npm_config_folderName}*/**/*.{ts,html}\" -- \"${npm_config_folderName}\"",
@@ -41,20 +42,6 @@
     "scss-to-css": "npm run clean-css && sass ./projects/angular-common-components/src/lib",
     "replace-relative-scss-urls": "sed -i 's|url(../../../../assets/img|url(../img|g' dist/angular-common-components/assets/styles/general-styles.scss"
   },
-  "watch": {
-    "build-components": {
-      "patterns": [
-        "projects/angular-common-components"
-      ],
-      "ignore": [
-        "projects/angular-common-components/coverage"
-      ],
-      "extensions": "ts,html,scss,spec",
-      "quiet": true,
-      "legacyWatch": true,
-      "runOnChangeOnly": false
-    }
-  },
   "private": true,
   "dependencies": {
     "@angular-devkit/core": "^11.2.14",
@@ -67,7 +54,7 @@
     "@angular/platform-browser": "~11.2.14",
     "@angular/platform-browser-dynamic": "~11.2.14",
     "@angular/router": "~11.2.14",
-    "@compodoc/compodoc": "1.1.11",
+    "@compodoc/compodoc": "^1.1.11",
     "angular-svg-icon": "^11.1.2",
     "broadcast-channel": "^3.5.3",
     "canvas": "^2.8.0",

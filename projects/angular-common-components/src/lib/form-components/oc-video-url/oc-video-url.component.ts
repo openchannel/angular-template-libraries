@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { VIDEO_URL_REGEX } from '../model/utils.model';
 
 @Component({
     selector: 'oc-video-url',
@@ -68,8 +69,7 @@ export class OcVideoUrlComponent implements ControlValueAccessor {
      * The value validates through the regex and function returns boolean variable.
      */
     verifyVideoUrl(): void {
-        const reg = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm);
-        this.isValidUrl = reg.test(this.videoUrl);
+        this.isValidUrl = VIDEO_URL_REGEX().test(this.videoUrl);
     }
 
     /**

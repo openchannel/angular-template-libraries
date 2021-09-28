@@ -1,19 +1,7 @@
 <div class="gallery">
     <div class="gallery__header">
-        <div class="gallery__header-top">
-            <h2 [headingTag]="headingTag" class="gallery__heading">{{appGalleryTitle}}</h2>
-            <a class="gallery__more" id="seeAllLink"
-               *ngIf="moreAppsTitle && !seeAllUrl"
-               (click)="clickMoreApps.emit()">
-                <ng-container *ngTemplateOutlet="seeAllLink"></ng-container>
-            </a>
-            <a class="gallery__more" id="seeAllLinkRouter"
-               *ngIf="moreAppsTitle && seeAllUrl"
-               [routerLink]="seeAllUrl">
-                <ng-container *ngTemplateOutlet="seeAllLink"></ng-container>
-            </a>
-        </div>
-        <p class="gallery__description" id="description">{{appGalleryDescription}}</p>
+        <h2 [headingTag]="headingTag" class="gallery__header-top">{{appGalleryTitle}}</h2>
+        <p class="gallery__header-description" id="description">{{appGalleryDescription}}</p>
     </div>
     <div class="gallery__content"
          *ngIf="appsArr && appsArr.length > 0; else emptyData">
@@ -21,6 +9,18 @@
              *ngFor="let app of appsArr;" (click)="clickAppCard.emit(app)">
                 <ng-container [ngTemplateOutlet]="customAppCardTemplate? customAppCardTemplate : defaultCard"
                               [ngTemplateOutletContext]="{$implicit: app}"></ng-container>
+        </div>
+        <div class="gallery__content-more">
+            <a class="gallery__content-link" id="seeAllLink"
+               *ngIf="moreAppsTitle && !seeAllUrl"
+               (click)="clickMoreApps.emit()">
+                <ng-container *ngTemplateOutlet="seeAllLink"></ng-container>
+            </a>
+            <a class="gallery__content-link" id="seeAllLinkRouter"
+               *ngIf="moreAppsTitle && seeAllUrl"
+               [routerLink]="seeAllUrl">
+                <ng-container *ngTemplateOutlet="seeAllLink"></ng-container>
+            </a>
         </div>
     </div>
 </div>
@@ -38,6 +38,6 @@
 </ng-template>
 
 <ng-template #seeAllLink>
-    <span class="gallery__more-text">{{moreAppsTitle}}</span>
-    <svg-icon svgClass="gallery__more-icon" [src]="routerIcon"></svg-icon>
+    <span class="gallery__content-link-text">{{moreAppsTitle}}</span>
+    <svg-icon svgClass="gallery__content-link-icon" [src]="routerIcon"></svg-icon>
 </ng-template>

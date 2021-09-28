@@ -4,7 +4,12 @@ import { OcDynamicArrayPreviewComponent } from './oc-dynamic-array-preview.compo
 import { FormGroup } from '@angular/forms';
 import { AppTypeFieldModel, HtmlTagsReplacerPipe, SafePipe } from '@openchannel/angular-common-components/src/lib/common-components';
 import { FieldValueModel } from '../model/dynamic-array.model';
-import { MockDynamicFieldArrayComponent, MockLabelComponent, MockTagComponent } from '@openchannel/angular-common-components/src/mock/mock';
+import {
+    MockDynamicFieldArrayComponent,
+    MockLabelComponent,
+    MockTagComponent,
+    MockVideoComponent,
+} from '@openchannel/angular-common-components/src/mock/mock';
 import { FileDetails, FileUploaderService, OcFormGenerator } from '@openchannel/angular-common-components/src/lib/form-components';
 import { Observable, of } from 'rxjs';
 import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
@@ -148,6 +153,7 @@ describe('OcDynamicArrayPreviewComponent', () => {
                 OcDynamicArrayPreviewComponent,
                 MockLabelComponent,
                 MockTagComponent,
+                MockVideoComponent,
                 MockDynamicFieldArrayComponent,
                 SafePipe,
                 HtmlTagsReplacerPipe,

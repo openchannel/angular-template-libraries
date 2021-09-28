@@ -66,6 +66,7 @@
         display: block;
         @include media-breakpoint-sm {
             margin: 2rem 0 0;
+            width: 100%;
         }
 
         & .oc-button {

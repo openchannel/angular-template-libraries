@@ -89,6 +89,10 @@
                 flex-direction: row;
                 flex-wrap: wrap;
             }
+
+            &__video {
+                margin-right: auto;
+            }
         }
     }
 }
