@@ -144,7 +144,9 @@ export class OcFormComponent implements OnInit, OnChanges {
             this.checkFormType(this.displayType);
         }
         if (changes.generatedForm && changes.generatedForm.previousValue !== changes.generatedForm.currentValue) {
-            this.customForm = new FormArray([this.generatedForm]);
+            if (this.hasFieldGroup) {
+                this.customForm = new FormArray([this.generatedForm]);
+            }
         }
     }
 
@@ -247,8 +249,6 @@ export class OcFormComponent implements OnInit, OnChanges {
                 this.customForm = null;
                 this.hasFieldGroup = false;
             }
-        } else {
-            this.customForm = new FormArray([this.generatedForm]);
         }
     }
 

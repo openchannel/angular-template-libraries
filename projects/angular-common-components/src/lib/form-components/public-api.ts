@@ -28,5 +28,8 @@ export * from './model/dropdown-multi-app.model';
 export * from './model/multi-select-checkbox.model';
 export * from './model/progress-bar-item.model';
 
+/** Utils */
+export * from './model/utils.model';
+
 /** Form Generator */
 export * from './oc-form/oc-form-generator';
