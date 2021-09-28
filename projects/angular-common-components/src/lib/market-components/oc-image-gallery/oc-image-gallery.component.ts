@@ -101,12 +101,15 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
         responsive: {
             0: {
                 items: 1,
+                touchDrag: true,
             },
             400: {
                 items: 1,
+                touchDrag: true,
             },
             740: {
                 items: 2,
+                touchDrag: true,
             },
             940: {
                 items: 3,
