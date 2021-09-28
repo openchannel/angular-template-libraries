@@ -54,7 +54,7 @@
     "@angular/platform-browser": "~11.2.14",
     "@angular/platform-browser-dynamic": "~11.2.14",
     "@angular/router": "~11.2.14",
-    "@compodoc/compodoc": "^1.1.11",
+    "@compodoc/compodoc": "^1.1.15",
     "angular-svg-icon": "^11.1.2",
     "broadcast-channel": "^3.5.3",
     "canvas": "^2.8.0",
