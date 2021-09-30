@@ -113,11 +113,10 @@
                 </div>
                 <image-cropper (imageCropped)="imageCropped($event)"
                                (loadImageFailed)="loadImageFailed()"
+                               [containWithinAspectRatio]="false"
+                               [maintainAspectRatio]="maintainAspectRatio"
+                               [aspectRatio]="aspectRatio"
                                [imageChangedEvent]="browsedFileEvent"
-                               [cropperMinWidth]="imageWidth"
-                               [cropperMinHeight]="imageHeight"
-                               [cropperMaxWidth]="imageWidth"
-                               [cropperMaxHeight]="imageHeight"
                                [resizeToWidth]="resizeToWidth"
                                [resizeToHeight]="resizeToHeight"
                                [transform]="transform" format="png" style="padding:0">

@@ -176,6 +176,16 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     containsInvalidFile = false;
 
     /**
+     * Flag that allow maintain aspect ratio logic or not
+     */
+    maintainAspectRatio = false;
+
+    /**
+     * Aspect ratio value
+     */
+    aspectRatio: number;
+
+    /**
      * Scale value
      */
     scale = 1;
@@ -446,6 +456,12 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         }
         if (this.imageHeight) {
             this.resizeToHeight = this.imageHeight;
+        }
+        if (this.imageWidth && this.imageHeight) {
+            this.aspectRatio = this.imageWidth / this.imageHeight;
+            this.maintainAspectRatio = true;
+        } else {
+            this.aspectRatio = 1;
         }
     }
 
