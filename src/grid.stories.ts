@@ -1,8 +1,8 @@
-import { moduleMetadata } from '@storybook/angular';
+import { componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 import {
     AppListing,
-    OcAppTableComponent,
     OcPortalComponentsModule,
+    OcAppTableComponent,
 } from '@openchannel/angular-common-components/src/lib/portal-components';
 import { FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 
@@ -13,7 +13,7 @@ const modules = {
 export default {
     title: 'App List [BEM]',
     component: OcAppTableComponent,
-    decorators: [moduleMetadata(modules)],
+    decorators: [moduleMetadata(modules), componentWrapperDecorator(story => `<div style="max-width: 1110px;">${story}</div>`)],
 };
 
 const ListGridComponent = (args: OcAppTableComponent) => ({
@@ -25,6 +25,43 @@ const statElement = {
     '90day': 10,
     '30day': 20,
     total: 30,
+};
+
+const appWithLargeFieldsChildApp: Partial<FullAppData> = {
+    name: '(child) Large app word word word word word word word word word word word word word word word',
+    version: 1.2,
+    created: 1432696823474,
+    customData: {
+        icon: '//d3grfap2l5ikgv.cloudfront.net/5f20f7ff579d1a20c527d847/public/5f255adfb5ad376fff84b6cf.png',
+        summary:
+            '(child) Large app summary summary summary summary summary summary summary summary summary summary ' +
+            'summary summary summary summary summary summary summary summary summary summary summary summary summary summary summary summary summary summary',
+    },
+    status: {
+        value: 'inDevelopment',
+        modifiedBy: 'developer',
+        reason: null,
+        lastUpdated: null,
+    },
+};
+
+const appWithLargeFields: Partial<FullAppData> = {
+    name: 'Large app word word word word word word word word word word word word word word word',
+    version: 1,
+    created: 1596122025249,
+    customData: {
+        icon: '//d3grfap2l5ikgv.cloudfront.net/5f20f7ff579d1a20c527d847/public/5f255adfb5ad376fff84b6cf.png',
+        summary:
+            'Large app summary summary summary summary summary summary summary summary summary summary ' +
+            'summary summary summary summary summary summary summary summary summary summary summary summary summary summary summary summary summary summary',
+    },
+    status: {
+        value: 'approved',
+        modifiedBy: 'developer',
+        reason: null,
+        lastUpdated: null,
+    },
+    children: [appWithLargeFieldsChildApp as FullAppData],
 };
 
 const app1: FullAppData = {
@@ -121,7 +158,8 @@ const app1: FullAppData = {
             appId: '5f22dd91b5ad376fff8431a7',
             safeName: ['firstapp'],
             customData: {
-                summary: 'New Test Summary',
+                summary:
+                    'New Test Summary, new Test Summary, new Test Summary, new Test Summary, new Test Summary, new Test Summary, new Test Summary, new Test Summary, new Test Summary, new Test Summary, new Test Summary',
                 'website-url': null,
                 'product-images': null,
                 icon: '//d3grfap2l5ikgv.cloudfront.net/5f20f7ff579d1a20c527d847/public/5f255adfb5ad376fff84b6cf.png',
@@ -354,7 +392,7 @@ const propsConfig: AppListing = {
     data: {
         pages: 50,
         pageNumber: 1,
-        list: [app1, app2, app3, app4, app5],
+        list: [appWithLargeFields as FullAppData, app1, app2, app3, app4, app5],
         count: 50,
     },
     options: ['EDIT', 'PREVIEW', 'PUBLISH', 'SUSPEND', 'DELETE'],
@@ -364,5 +402,23 @@ export const AppGrid = ListGridComponent.bind({});
 
 AppGrid.args = {
     properties: propsConfig,
+    noAppMessage: 'No Apps Has Been Added Yet',
+};
+
+export const AppGridEmpty = ListGridComponent.bind({});
+
+const propsConfigGridEmpty: AppListing = {
+    layout: 'table',
+    data: {
+        pages: 50,
+        pageNumber: 1,
+        list: [],
+        count: 50,
+    },
+    options: ['EDIT', 'PREVIEW', 'PUBLISH', 'SUSPEND', 'DELETE'],
+};
+
+AppGridEmpty.args = {
+    properties: propsConfigGridEmpty,
     noAppMessage: 'No Apps Has Been Added Yet',
 };

@@ -1,247 +1,232 @@
 @import '../../../../assets/styles/theme';
 @import '../../../../assets/styles/mixins';
 
-.oc-table {
-    width: 1108px;
-    vertical-align: middle;
-    background-color: white;
-    border-spacing: 0;
-    border-collapse: inherit;
-
-    &-container {
-        position: relative;
-
-        &__overlay {
-            bottom: 67px;
-            top: 47px;
-            position: absolute;
-            right: 1px;
-            background-image: linear-gradient(to right, rgba($white, 0), $white);
-            width: 46px;
-        }
-    }
-
-    &-wrapper {
-        border-radius: 4px;
-        border: 1px solid $info;
+.app-grid {
+    width: auto;
+    border: 1px solid $info;
+    border-radius: 4px;
+    position: relative;
+    &-scroller {
         overflow-x: auto;
-
     }
 
-    &__head {
-        height: 66px;
+    // white table overlay on the right side
+    &::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        width: 46px;
+        height: 100%;;
+        background-image: linear-gradient(to right, rgba($white, 0), $white);
     }
 
-    &__th {
-        @include font-size-md();
-        border-bottom: 1px solid $info;
-        border-top: 1px solid $info;
-        padding: 1.5rem 0;
-        vertical-align: middle;
-        cursor: pointer;
-
-        &:first-child,
-        &:last-child {
-            width: 2.5rem;
-        }
-    }
-
-    &__icon-down {
-        padding-left: 8px;
-    }
-
-    &__icon-up {
-        padding-right: 8px;
-        transform: rotate(180deg);
-    }
-
-    &__name {
-        width: 26%;
-    }
-
-    &__summary {
-        width: 33%;
-    }
-
-    &__data {
-        width: 14%;
-    }
-
-    &__status {
-        width: 9%;
-    }
-
-    &__action {
-        width: 10%;
-    }
-
-    tr:first-child {
-        th,
-        td {
-            border-top: none;
-        }
-    }
-
-    &__td {
-        padding: 2rem 0;
-        vertical-align: middle;
-        border-top: 1px solid rgba($info, 0.5);
-
-        &:last-child {
-            border-top: 1px solid $info;
-            height: 66px;
-        }
-
-        &_nodata {
-            text-align: center;
-        }
-
-        &_blank {
-            width: 2.5rem;
-            border-top: none;
-            @include media-breakpoint-md {
-                width: 1rem;
-            }
-        }
-
-        &_flex {
-            display: flex;
-            align-items: center;
-
-            .oc-table__td-col {
-                padding-left: 1.5rem;
-            }
-        }
-
-        .oc-table__app-icon {
-            max-width: 44px;
-            min-width: 44px;
-
-            &_padded {
-                padding: 0 16px;
-                box-sizing: content-box;
-                min-width: 20px;
-                max-width: 20px;
-                height: 25px;
-            }
-        }
-
-        .oc-table__app-name {
-            @include font-medium();
-            margin-bottom: 0;
-            cursor: pointer;
-            padding-right: 1rem;
-            word-break: break-word;
-            @include font-size-md();
-            color: $body-color;
-        }
-
-        .oc-table__app-version {
-            @include font-size-sm();
-            color: $text-color;
-            @include default-text();
-        }
-
-        .oc-table__text-wrapper {
-            @include font-size-md();
-            color: $text-color;
-            @include default-text();
-
-            &_blank {
-                padding: 0 26px;
-                height: 44px;
-            }
-
-            &.oc-table__text-status {
-                @include font-medium();
+    &-table {
+        width: 100%;
+        min-width: 928px;
+        &__header {
+            border-bottom: 1px solid $info;
+            &__sort-icon {
                 cursor: pointer;
-                color: $body-color;
+                margin-left: 8px;
             }
-
-            &.oc-table__summary-text {
-                --webkit-line-clamp: 2;
-                max-height: 40px;
-                overflow: hidden;
-                word-break: break-word;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                padding-right: 8px;
-            }
-
-            &.oc-table__indicator {
-                width: 10px;
-                height: 10px;
-                display: inline-block;
-                border-radius: 50%;
-                margin-right: 5px;
-                background-color: $white;
-
-                &.in-development {
-                    background-color: $draft;
+            &__cell {
+                height: 68px;
+                padding: 0 0 0 8px;
+                &-left-placeholder {
+                    padding: 0;
+                    width: 40px;
                 }
-
-                &.in-review {
-                    background-color: $review;
+                &-name {
+                    width: 256px;
                 }
-
-                &.pending {
-                    background-color: $pending;
+                &-summary {
+                    width: 352px;
                 }
-
-                &.approved {
-                    background-color: $approved;
+                &-create-date {
+                    width: 152px;
                 }
-
-                &.rejected {
-                    background-color: $rejected;
+                &-status {
+                    width: 152px;
                 }
-
-                &.suspended {
-                    background-color: $suspended;
+                &-app-options {
+                    width: 60px;
+                }
+                &-right-placeholder {
+                    padding: 0;
+                    width: 40px;
+                }
+                &-name-content, &-create-date-content, &-status-content {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    align-items: center;
+                    width: min-content;
+                    cursor: pointer;
+                }
+                &-name-content-text, &-create-date-content-text, &-status-content-text, &-summary-text {
+                    @include font-size-md();
+                    color: $heading-color;
+                    cursor: pointer;
                 }
             }
         }
-    }
-
-    &__dropdown {
-        float: right;
-        cursor: pointer;
-
-        &-dots {
-            padding: 19px;
-            border: 1px solid $info;
-            border-radius: 4px;
-        }
-
-        .dropdown {
-            position: static;
-        }
-
-        .dropdown-menu {
-            padding: 0;
-            min-width: 136px;
-            border: 1px solid $info;
-            top: 70px;
-            left: 76px;
-            transform: translate(0px, 44px);
-
-            .dropdown-item {
-                @include font-size-md();
-                padding: 14px 42px;
+        &__row {
+            height: 80px;
+            &__cell {
+                padding: 0 0 0 8px;
                 border-bottom: 1px solid $info;
-            }
+                &-left-placeholder {
+                    padding: 0;
+                    border-bottom: none;
+                }
+                &-name {
+                    &-content {
+                        max-height: 80px;
+                        display: flex;
+                        flex-wrap: nowrap;
+                        &-app-child-icon {
+                            margin: auto 24px auto 16px;
+                        }
+                        &-icon {
+                            margin: auto 16px auto 0;
+                            max-width: 40px;
+                            max-height: 40px;
+                        }
+                        &-text {
+                            display: flex;
+                            flex-direction: column;
+                            margin: auto auto auto 0;
 
-            .dropdown-item:hover,
-            .dropdown-item:focus {
-                background-color: rgba(201, 213, 234, 0.1);
-                color: $primary;
-                outline: none;
-            }
+                            &-title {
+                                @include font-size-md();
+                                @include font-medium();
+                                white-space: nowrap;
+                                max-width: 180px;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                margin-bottom: 8px;
+                            }
 
-            .dropdown-item:active {
-                color: $primary;
-                box-shadow: 0 1px 0 $info;
+                            &-version {
+                                @include font-regular();
+                                @include font-size-sm();
+                                margin-bottom: 0;
+                                color: $secondary;
+                            }
+                        }
+                    }
+                }
+
+                &-summary-text {
+                    color: $secondary;
+                    @include font-size-md();
+                    @include font-regular();
+                    display: block;
+                    overflow: hidden;
+                    max-height: 40px;
+                    display: -webkit-box;
+                }
+
+                &-create-date-text {
+                    @include font-size-md();
+                    @include font-regular();
+                    color: $secondary;
+                }
+
+                &-status {
+                    &-content {
+                        display: flex;
+                        flex-wrap: nowrap;
+                        align-items: center;
+                        :first-child {
+                            width: 8px;
+                            height: 8px;
+                            padding-right: 8px;
+                            margin-right: 16px;
+                            border-radius: 50%;
+                        }
+                        &-marker {
+                            &-in-development {
+                                background-color: $draft;
+                            }
+                            &-in-review {
+                                background-color: $review;
+                            }
+                            &-pending {
+                                background-color: $pending;
+                            }
+                            &-approved {
+                                background-color: $approved;
+                            }
+                            &-rejected {
+                                background-color: $rejected;
+                            }
+                            &-suspended {
+                                background-color: $suspended;
+                            }
+                        }
+                        &-text {
+                            @include font-size-md();
+                            @include font-medium();
+                        }
+                    }
+                }
+                &-app-options {
+                    &-dropdown {
+                        float: right;
+                        cursor: pointer;
+
+                        &-dots {
+                            padding: 19px;
+                            border: 1px solid $info;
+                            border-radius: 4px;
+                        }
+
+                        .dropdown {
+                            position: static;
+                        }
+
+                        .dropdown-menu {
+                            padding: 0;
+                            min-width: 136px;
+                            border: 1px solid $info;
+
+                            .dropdown-item {
+                                @include font-size-md();
+                                padding: 14px 42px;
+                                border-bottom: 1px solid $info;
+                            }
+
+                            .dropdown-item:hover,
+                            .dropdown-item:focus {
+                                background-color: rgba(201, 213, 234, 0.1);
+                                color: $primary;
+                                outline: none;
+                            }
+
+                            .dropdown-item:active {
+                                color: $primary;
+                                box-shadow: 0 1px 0 $info;
+                            }
+                        }
+                    }
+                }
+                &-right-placeholder {
+                    padding: 0;
+                    border-bottom: none;
+                }
+            }
+        }
+        &__bottom {
+            &-empty-list {
+                text-align: center;
+                height: 192px;
+                color: $secondary;
+                @include font-size-md();
+                @include font-regular();
+            }
+            &-not-empty-list {
+                border-top: 1px solid $info;
+                height: 68px;
             }
         }
     }

@@ -1,4 +1,68 @@
 import { ComponentsPage, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
+import { TemplateRef } from '@angular/core';
+
+/** Default column IDs. */
+export type ModifyColumnId =
+    | 'left-placeholder'
+    | 'name'
+    | 'summary'
+    | 'create-date'
+    | 'status'
+    | 'app-options'
+    | 'right-placeholder'
+    | string;
+
+/**
+ * Context for table cells, will added to your TemplateRef.<br>
+ * Used only for {@link ModifyColumnConfig.rowCellTemplate}.<br>
+ */
+export interface ColumnTemplateContext {
+    app: FullAppData;
+    isChild: boolean;
+    index: number;
+}
+
+/**
+ * Context for bottom table area.<br>
+ * Used only for {@link OcAppTableComponent#tableBottomRowTemplate}.
+ */
+export interface AppsNotFoundTemplateContext {
+    /** Count of table columns. */
+    columnCount: number;
+}
+
+export interface FieldPathConfig {
+    /**
+     * By this path will be get icon url from {@link FullAppData}.<br>
+     * Used for showing image in column 'Name'. Look: {@link ModifyColumnId}.<br>
+     */
+    appIconPath?: 'customData.icon' | string;
+    /**
+     * By this path will be get icon text from {@link FullAppData}.<br>
+     * Used for showing app description in column 'Name'. Look: {@link ModifyColumnId}.<br>
+     */
+    appDescriptionPath?: 'customData.summary' | string;
+}
+
+/**
+ * This config used for:<br>
+ * 1. Overriding default table cells {@link ModifyColumnId}.
+ * 2. Adding new table columns.
+ */
+export type ModifyColumnConfig = {
+    [key in ModifyColumnId]: {
+        /**
+         * Template for header cell.
+         * When non null, will be override default cell.
+         */
+        headerCellTemplate?: TemplateRef<any>;
+        /**
+         * Template for row cell (showing same app data, like: name, description, date etc.).
+         * When non null, will be override default cell.
+         */
+        rowCellTemplate?: TemplateRef<ColumnTemplateContext>;
+    };
+};
 
 /** Configuration model for the App Listing component */
 export interface AppListing {
