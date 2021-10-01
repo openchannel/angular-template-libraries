@@ -21,7 +21,8 @@ import {
     FieldValueModel,
     DropdownItemType,
     FileDetails,
-    FormType
+    FormType,
+    FormProgressbarStep,
 } from '@openchannel/angular-common-components/src/lib/form-components';
 import { Observable } from 'rxjs';
 import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
@@ -545,6 +546,15 @@ export class MockNumberComponent implements ControlValueAccessor {
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-progress-bar',
+    template: '',
+})
+export class MockProgressbarComponent {
+    @Input() progressbarData: FormProgressbarStep[] = [];
+    @Input() currentStep: number = 1;
 }
 
 @Component({
