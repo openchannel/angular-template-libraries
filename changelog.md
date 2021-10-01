@@ -1,3 +1,8 @@
+## Release notes - angular-template-libraries - Version 2.30.0 (10/1/2021)<br>
+### Task<br>
+AT-1507 - Field group improvements<br>
+### Story<br>
+AT-1494 - A user or developer is able to log in using OAuth 2.0 SSO<br>
 ## Release notes - angular-template-libraries - Version 2.29.0 (9/23/2021)<br>
 ### Bug<br>
 AT-1491 - [Portal] Multi-level DFA with Row label value selected from Dashboard, is showing error while adding field in that DFA.<br>
