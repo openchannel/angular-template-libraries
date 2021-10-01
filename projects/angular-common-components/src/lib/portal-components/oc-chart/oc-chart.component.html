@@ -18,11 +18,11 @@
         </div>
         <div class="chart__filter-buttons-container">
             <div class="chart__filter-buttons-container-tabs">
-                <svg-icon src="assets/angular-common-components/icon-tabular.svg"
+                <svg-icon [src]="tabularSvgIcon || 'assets/angular-common-components/icon-tabular.svg'"
                           class="chart__swap-type-button chart__tabular-button"
                           [class.chart__swap-type-button_active]="activeDataType === 'tabular'"
                           (click)="swapActiveDataType('tabular')"></svg-icon>
-                <svg-icon src="assets/angular-common-components/icon-graph.svg"
+                <svg-icon [src]="graphSvgIcon || 'assets/angular-common-components/icon-graph.svg'"
                           class="chart__swap-type-button chart__graph-button"
                           [class.chart__swap-type-button_active]="activeDataType === 'graph'"
                           (click)="swapActiveDataType('graph')"></svg-icon>

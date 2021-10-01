@@ -1,4 +1,15 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+    ViewChild,
+} from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { CategoryScale, Chart, Legend, LinearScale, LineController, LineElement, PointElement, Tooltip } from 'chart.js';
 import {
@@ -84,6 +95,14 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * 'https://example.site.com/image.png'
      */
     @Input() sortIcon: string = 'assets/angular-common-components/dropdown.svg';
+    /**
+     * Setup SVG icon for navigation to tabular view.
+     */
+    @Input() tabularSvgIcon: string = '';
+    /**
+     *  Setup SVG icon for navigation to graph view.
+     */
+    @Input() graphSvgIcon: string = '';
     /**
      * Notification about changing chart data options, like dropdown menu item changing or period switching.
      */
