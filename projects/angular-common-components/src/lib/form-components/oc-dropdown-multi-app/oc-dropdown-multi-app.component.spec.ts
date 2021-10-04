@@ -93,7 +93,7 @@ describe('OcDropdownMultiAppComponent', () => {
         const secondAppId = '601ab170d0c0c60baf654326';
 
         component.defaultAppIDs = [firstAppId, secondAppId];
-        spyOn(component.selectedAppsOutput, 'emit');
+        jest.spyOn(component.selectedAppsOutput, 'emit');
         fixture.detectChanges();
 
         expect(component.resultApps[0].appId).toEqual(firstAppId);
@@ -110,7 +110,7 @@ describe('OcDropdownMultiAppComponent', () => {
     });
 
     it('Add app to result array. Remove app from result array', () => {
-        spyOn(component.selectedAppsOutput, 'emit');
+        jest.spyOn(component.selectedAppsOutput, 'emit');
 
         // add app
         const appData = mockApps[0];

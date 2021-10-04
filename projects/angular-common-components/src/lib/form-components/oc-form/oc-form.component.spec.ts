@@ -133,7 +133,7 @@ describe('OcFormComponent', () => {
 
     it('should create', () => {
         component.displayType = 'wizard';
-        spyOn(component.createdForm, 'emit');
+        jest.spyOn(component.createdForm, 'emit');
         fixture.detectChanges();
 
         expect(component).toBeTruthy();
