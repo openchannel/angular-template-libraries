@@ -86,16 +86,16 @@
     "@babel/core": "^7.10.5",
     "@ng-bootstrap/ng-bootstrap": "^6.0.2",
     "@ng-select/ng-select": "^6.1.0",
-    "@storybook/addon-a11y": "^6.3.7",
-    "@storybook/addon-actions": "^6.3.7",
-    "@storybook/addon-backgrounds": "^6.3.7",
-    "@storybook/addon-controls": "^6.3.7",
-    "@storybook/addon-docs": "^6.3.7",
-    "@storybook/addon-links": "^6.3.7",
-    "@storybook/addon-storysource": "^6.3.7",
-    "@storybook/addon-viewport": "^6.3.7",
-    "@storybook/addons": "^6.3.7",
-    "@storybook/angular": "^6.3.7",
+    "@storybook/addon-a11y": "6.3.9",
+    "@storybook/addon-actions": "6.3.9",
+    "@storybook/addon-backgrounds": "6.3.9",
+    "@storybook/addon-controls": "6.3.9",
+    "@storybook/addon-docs": "6.3.9",
+    "@storybook/addon-links": "6.3.9",
+    "@storybook/addon-storysource": "6.3.9",
+    "@storybook/addon-viewport": "6.3.9",
+    "@storybook/addons": "6.3.9",
+    "@storybook/angular": "6.3.9",
     "@tinymce/tinymce-angular": "^4.2.1",
     "@types/chart.js": "^2.9.20",
     "@types/jasmine": "~3.6.0",
@@ -129,13 +129,19 @@
     "tslint": "~6.1.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.3.0",
-    "typescript": "~4.0.7"
+    "typescript": "~4.0.7",
+    "set-value": "4.1.0",
+    "immer": "9.0.6",
+    "prismjs": "1.25.0"
   },
   "resolutions": {
     "glob-parent": "5.1.2",
     "trim": "0.0.3",
     "browserslist": "4.16.5",
     "minimist": "1.2.3",
-    "merge": "2.1.1"
+    "merge": "2.1.1",
+    "set-value": "4.1.0",
+    "immer": "9.0.6",
+    "prismjs": "1.25.0"
   }
 }
