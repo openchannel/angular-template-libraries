@@ -1,6 +1,6 @@
 {
   "name": "oc-angular-template-libraries",
-  "version": "2.29.0",
+  "version": "2.30.1",
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
     "prebuild": "npm run clean-css && npm run generate-mock-css",
