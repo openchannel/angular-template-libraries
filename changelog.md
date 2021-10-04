@@ -1,3 +1,6 @@
+## Release notes - angular-template-libraries - Version 2.30.2 (10/4/2021)<br>
+### Bug<br>
+AT-1533 - [hotfix] Upgrade to compodoc 1.1.15<br>
 ## Release notes - angular-template-libraries - Version 2.30.1 (10/4/2021)<br>
 ### Bug<br>
 AT-1527 - [HOTFIX] 500 error occurring when trying to authenticate using Auth0<br>
