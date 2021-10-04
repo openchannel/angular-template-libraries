@@ -57,7 +57,7 @@ describe('OcAppCategoriesComponent', () => {
 
     it('should move slides to the next', () => {
         component.data = [appCategory1, appCategory1, appCategory1, appCategory1, appCategory1, appCategory1];
-        spyOn(component, 'nextSlide');
+        jest.spyOn(component, 'nextSlide');
 
         fixture.detectChanges();
 
@@ -69,7 +69,7 @@ describe('OcAppCategoriesComponent', () => {
 
     it('should move slides to the preview', () => {
         component.data = [appCategory1, appCategory1, appCategory1, appCategory1, appCategory1, appCategory1];
-        spyOn(component, 'prevSlide');
+        jest.spyOn(component, 'prevSlide');
         fixture.detectChanges();
 
         const leftScrollButton = fixture.debugElement.query(By.css('#iconLeft')).nativeElement;

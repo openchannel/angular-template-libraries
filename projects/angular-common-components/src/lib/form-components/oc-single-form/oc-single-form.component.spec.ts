@@ -316,7 +316,7 @@ describe('OcFormComponent', () => {
     });
 
     it('should create', () => {
-        spyOn(component.createdForm, 'emit');
+        jest.spyOn(component.createdForm, 'emit');
         fixture.detectChanges();
 
         expect(component).toBeTruthy();
@@ -406,7 +406,7 @@ describe('OcFormComponent', () => {
     });
 
     it('should send data', () => {
-        spyOn(component.formDataUpdated, 'emit');
+        jest.spyOn(component.formDataUpdated, 'emit');
         component.showButton = true;
         fixture.detectChanges();
 
