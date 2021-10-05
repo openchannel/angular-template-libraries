@@ -1,4 +1,4 @@
-<div (fileDropped)="onFileDropped($event,cropperModal)"
+<div (fileDropped)="onFileDropped($event)"
      *ngIf="(!fileDetailArr || fileDetailArr.length == 0) && !containsInvalidFile; else fileList"
      class="file-container file-container_without-files"
      ocFileDragDrop>
@@ -16,7 +16,9 @@
 </div>
 
 <ng-template #fileList>
-    <div class="file-container">
+    <div class="file-container"
+         (fileDropped)="onFileDropped($event)"
+         ocFileDragDrop>
         <div class="file-container__control" *ngIf="isMultiFileSupport() || containsInvalidFile">
             <div class="file-container__control-wrapper">
                 <img class="file-container__control-upload"
