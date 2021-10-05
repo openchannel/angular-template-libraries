@@ -1,4 +1,5 @@
 import {
+    AppFormModel,
     FileDetails,
     FileUploaderService,
     OcFormComponent,
@@ -11,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { storyMockProviderAppSearchService } from 'src/dropdown-multi-app.stories';
 import { FileUploadDownloadService } from '@openchannel/angular-common-services';
+import { ERROR_MESSAGES_STORY_PROVIDER } from './utils.model';
 
 class StubFileUploadDownloadService {
     constructor() {}
@@ -120,6 +122,7 @@ const modules = {
         storyMockProviderAppSearchService,
         { provide: FileUploadDownloadService, useClass: StubFileUploadDownloadService },
         { provide: FileUploaderService, useClass: FileServiceStub },
+        ERROR_MESSAGES_STORY_PROVIDER,
     ],
 };
 

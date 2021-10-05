@@ -10,8 +10,9 @@ import {
     FormGroup,
 } from '@angular/forms';
 import {
-    AppTypeFieldModel,
-    DropdownModel,
+    AbstractErrorMessageConfiguration,
+    AppTypeFieldModel, DefaultErrorMessageConfiguration,
+    DropdownModel, ErrorMessage, ErrorMessageFormId,
     FullAppData,
     HeadingTag,
     RadioItemValue,
@@ -26,6 +27,7 @@ import {
 } from '@openchannel/angular-common-components/src/lib/form-components';
 import { Observable } from 'rxjs';
 import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
+import { Provider } from '@angular/core';
 
 @Component({
     selector: 'oc-label',
@@ -69,7 +71,9 @@ export class MockInputComponent implements ControlValueAccessor {
 export class MockErrorComponent {
     @Input() control: AbstractControlDirective | AbstractControl | NgModel;
     @Input() field: string;
+    @Input() formId: ErrorMessageFormId;
     @Input() modifyErrors: string;
+    @Input() updateMessages: ErrorMessage;
 }
 
 @Component({
@@ -153,6 +157,7 @@ export class MockFormComponent {
     @Input() successButtonText: string = 'Submit';
     @Input() showButton: boolean = true;
     @Input() displayType: FormType = 'page';
+    @Input() formId: ErrorMessageFormId;
     @Output() readonly formSubmitted = new EventEmitter<any>();
     @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -181,6 +186,7 @@ export class MockSingleFormComponent {
     @Input() successButtonText: string = 'Submit';
     @Input() showButton: boolean = true;
     @Input() showGroupHeading: boolean = true;
+    @Input() formId: ErrorMessageFormId;
     @Output() readonly formSubmitted = new EventEmitter<any>();
     @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -245,6 +251,7 @@ export class MockDynamicFieldArrayComponent {
     @Input() dfaFormArray: FormArray;
     @Input() fieldDefinitionData: AppTypeFieldModel;
     @Input() previewMode: boolean;
+    @Input() formId: ErrorMessageFormId;
 }
 
 @Component({
@@ -279,6 +286,7 @@ export class MockEditUserFormComponent {
     @Input() defaultAccountData: OCOrganization;
     @Input() defaultOrganizationData: OCOrganization;
     @Input() customTermsDescription: TemplateRef<any>;
+    @Input() formId: ErrorMessageFormId;
 }
 
 @Component({
@@ -302,6 +310,7 @@ export class MockDynamicArrayPreview {
     @Input() dfaForm: FormGroup;
     @Input() previewDFAMode: boolean;
     @Input() hideLabel: boolean;
+    @Input() formId: ErrorMessageFormId;
 }
 
 @Component({
@@ -646,4 +655,10 @@ export class MockMultiSelectComponent implements ControlValueAccessor {
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
+}
+
+// support providers
+export const MOCK_PROVIDER_ERROR_MESSAGES: Provider = {
+    provide: AbstractErrorMessageConfiguration,
+    useValue: new DefaultErrorMessageConfiguration(),
 }

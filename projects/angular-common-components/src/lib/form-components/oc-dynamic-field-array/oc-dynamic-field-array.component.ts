@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
-import { AppTypeFieldModel } from '@openchannel/angular-common-components/src/lib/common-components';
+import { AppTypeFieldModel, ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { FieldValueModel, FormArrayItem, PreviewLabel } from '../model/dynamic-array.model';
@@ -17,7 +17,7 @@ import { FieldValueModel, FormArrayItem, PreviewLabel } from '../model/dynamic-a
     templateUrl: './oc-dynamic-field-array.component.html',
     styleUrls: ['./oc-dynamic-field-array.component.css'],
 })
-export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy , OnChanges{
+export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy, OnChanges {
     @Input() previewMode: boolean = false;
     /**
      * Fields definition config necessary for the DFA generation.
@@ -37,6 +37,9 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy , OnChang
      * @type {FormArray}.
      */
     @Input() dfaFormArray: FormArray;
+
+    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    @Input() formId: ErrorMessageFormId = null;
 
     formsArrayConfig: FormArrayItem[] = [];
     fieldDefinition: AppTypeFieldModel;

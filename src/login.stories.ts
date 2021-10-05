@@ -5,10 +5,13 @@ import { action } from '@storybook/addon-actions';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { ERROR_MESSAGES_STORY_PROVIDER } from './utils.model';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
-const modules = {
+const modules: NgModule = {
     imports: [OcCommonLibModule, BrowserAnimationsModule, RouterTestingModule, FormsModule],
+    providers: [ERROR_MESSAGES_STORY_PROVIDER],
 };
 
 const loginEmpty = new ComponentsUserLoginModel();
@@ -34,7 +37,7 @@ const defaultProps = {
     submit: action('clicked event'),
     forgotPwdUrl: 'forgotPwd',
     signupUrl: 'signup',
-  companyLogoUrl: 'assets/angular-common-components/logo-company.png',
+    companyLogoUrl: 'assets/angular-common-components/logo-company.png',
     loginModelChange: action('model changed'),
 };
 

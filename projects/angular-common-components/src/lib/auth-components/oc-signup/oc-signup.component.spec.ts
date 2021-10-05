@@ -37,7 +37,6 @@ describe('OcSignupComponent', () => {
                     MockRoutingComponent,
                     MockHeadingTagDirective,
                 ],
-                providers: [NgModel],
                 imports: [
                     FormsModule,
                     CommonModule,
@@ -47,6 +46,7 @@ describe('OcSignupComponent', () => {
                         { path: 'activation', component: MockRoutingComponent },
                     ]),
                 ],
+                providers: [NgModel],
             }).compileComponents();
             router = TestBed.inject(Router);
             location = TestBed.inject(Location);

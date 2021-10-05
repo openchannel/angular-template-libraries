@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentsUserActivationModel } from '../models/auth-types.model';
-import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
+import { ErrorMessageFormId, HeadingTag } from '@openchannel/angular-common-components/src/lib/common-components';
 
 /**
  * A resend activation component. A form, which allows user to retry sending account activation to email.
@@ -58,6 +58,8 @@ export class OcResendActivationComponent {
      */
     @Input() headingTag: HeadingTag = 'h1';
 
+    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    formId: ErrorMessageFormId = 'resendActivation';
     /**
      * Submits a resend activation form.
      * Marks all fields as touched.

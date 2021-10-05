@@ -1,67 +1,30 @@
-import { Component, Input } from '@angular/core';
-import { AbstractControl, AbstractControlDirective, NgModel } from '@angular/forms';
+import { Component, Inject, Input, OnInit, Optional } from '@angular/core';
+import { AbstractControl, AbstractControlDirective, FormArray, FormGroup, NgModel, ValidationErrors } from '@angular/forms';
 import { OcErrorService } from './oc-error-service';
+import { DefaultErrorMessageConfiguration, AbstractErrorMessageConfiguration } from '../model/oc-error.model';
 
 /**
- * An oc-error component. It is used to show error or errors list after validation.
- * Each error contains a text message.
+ * An oc-error component. It is used to show error or errors list after validation.<br>
+ * Each error contains a text message.<br>
+ * You can provide {@link DefaultErrorMessageConfiguration}
+ * message configs for creating some error messages.
  */
 @Component({
     selector: 'oc-error',
     templateUrl: './oc-error.component.html',
     styleUrls: ['./oc-error.component.css'],
 })
-export class OcErrorComponent {
-    /**
-     * The list of error messages.
-     */
-    private readonly errorMessages = {
-        required: () => 'Please fill out this field',
-        minlength: params => 'The min number of characters is ' + params.requiredLength,
-        maxlength: params => 'The max allowed number of characters is ' + params.requiredLength,
-        minCount: () => '',
-        maxCount: () => '',
-        minElementsCount: params => `Minimum ${params.requiredCount} ${params.fieldLabel} are required`,
-        maxElementsCount: params => `Maximum ${params.requiredCount} ${params.fieldLabel} are required`,
-        pattern: params => 'The required pattern is: ' + params.requiredPattern,
-        years: params => params.message,
-        countryCity: params => params.message,
-        uniqueName: params => params.message,
-        telephoneNumbers: params => params.message,
-        telephoneNumber: params => params.errorMessages,
-        emailValidator: () => 'Email seems to be invalid',
-        email: () => 'Email seems to be invalid',
-        websiteValidator: () => 'Please enter a valid URL',
-        appImageFileValidator: () => 'Please provide valid png/jpg/jpeg/gif image file',
-        appExpiredDateValidator: () => 'Please fill valid current or future date',
-        whiteSpaceValidator: () => 'Please fill valid value',
-        domainValidator: () => 'Please enter a valid domain',
-        phoneNumberValidator: params => params.message,
-        confirmPassword: () => 'Confirm password does not match to new password',
-        serverErrorValidator: params => params.message,
-        min: params => 'The minimum possible value is ' + params.min,
-        max: params => 'The maximum possible value is ' + params.max,
-        colorValidator: () => 'Please enter a valid Color value.',
-        booleanTagsValidator: params => params.fieldTitle + " can only contain boolean values ('true' or 'false')",
-        numberTagsValidator: params => params.fieldTitle + ' can only contain numeric values',
-        // tslint:disable-next-line:max-line-length
-        passwordValidator: () =>
-            'Password must contain 1 uppercase, 1 lowercase, 1 digit, 1 special char (one of @#$%!^&) and at least 8 characters long',
-        customError: message => message,
-    };
-
+export class OcErrorComponent implements OnInit {
     /**
      * An input for a specific control, to which an error would be related.
      * @type {AbstractControlDirective | AbstractControl | NgModel}.
      */
     @Input() control: AbstractControlDirective | AbstractControl | NgModel;
-
     /**
      * Server error field name.
      * @type {string}.
      */
     @Input() field: string;
-
     /**
      * Params for server error message.
      * @type {*}.
@@ -74,7 +37,44 @@ export class OcErrorComponent {
      */
     @Input() modifyErrors: [{ validator: string; message: string }];
 
-    constructor(public errorService: OcErrorService) {}
+    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    @Input() formId: string = null;
+    /**
+     * Path from control to parent form.
+     */
+    private fullControlPath: string;
+
+    constructor(public errorService: OcErrorService, private config: AbstractErrorMessageConfiguration) {}
+
+    ngOnInit(): void {
+        this.initFullControlPath(this.control);
+    }
+
+    /** Create a path from control to parent form. Put result to {@link fullControlPath} */
+    initFullControlPath(control: AbstractControlDirective | AbstractControl | NgModel): void {
+        if (!control) {
+            this.fullControlPath = '';
+        } else if (control instanceof NgModel || control instanceof AbstractControlDirective) {
+            this.fullControlPath = (control.path || []).join('.');
+        } else {
+            this.fullControlPath = this.initFullControlPathByAbstractControl(control, '');
+        }
+    }
+
+    /** Create a path from control to parent form with AbstractControl. */
+    initFullControlPathByAbstractControl(control: AbstractControl, fullPath: string): string {
+        const parent = control?.parent;
+        if (parent) {
+            if (parent instanceof FormArray) {
+                fullPath = this.initFullControlPathByAbstractControl(parent, `[*].${fullPath}`);
+            } else if (parent instanceof FormGroup) {
+                const { controls } = parent;
+                const controlName = Object.keys(controls).find(name => control === controls[name]) || null;
+                fullPath = this.initFullControlPathByAbstractControl(parent, `${controlName}${fullPath ? '.' + fullPath : ''}`);
+            }
+        }
+        return fullPath;
+    }
 
     /**
      * This function defines whether to show or not validation errors.
@@ -126,15 +126,17 @@ export class OcErrorComponent {
      * @type {string[]}.
      */
     listOfErrors(): string[] {
+        const { errors } = this.control;
         if (this.control) {
-            if (!this.control.errors) {
+            if (!errors) {
                 return [];
             }
-            return Object.keys(this.control.errors)
-                .map(field => this.getMessage(field, this.control.errors[field]))
+            return Object.keys(errors)
+                .map(field => this.getMessage(errors, field, errors[field]))
                 .filter(message => message);
         } else if (this.field) {
-            return [this.getMessage(this.field, this.errorParams)];
+            const fieldErrorMsg = this.getMessage(null, this.field, this.errorParams);
+            return fieldErrorMsg ? [fieldErrorMsg] : [];
         }
         return [];
     }
@@ -142,7 +144,8 @@ export class OcErrorComponent {
     /**
      * Finds a message with specific type and params.
      */
-    private getMessage(type: string, params: any): any {
+    private getMessage(errors: ValidationErrors | null, type: string, params: any): any {
+        // old override message implementation
         if (this.modifyErrors) {
             const errorMsg = this.modifyErrors.filter(update => update.validator === type)[0];
             if (errorMsg) {
@@ -150,6 +153,38 @@ export class OcErrorComponent {
                 return errorMsg?.message;
             }
         }
-        return this.errorMessages[type](params);
+
+        let messageFn;
+
+        const serverErrorCode = errors?.serverErrorValidator?.code || errors?.serverErrorValidator?.type;
+        if (serverErrorCode) {
+            // server error message
+            messageFn =
+                this.getErrorMessageFunction(serverErrorCode, 'serverValidators') ||
+                this.getErrorMessageFunction('defaultMessageHandler', 'serverValidators');
+        } else {
+            // field server error message
+            messageFn = this.getErrorMessageFunction(type, 'fieldValidators');
+        }
+
+        return messageFn?.(params) || null;
+    }
+
+    /**
+     * Used for getting error message by specific error key.
+     */
+    private getErrorMessageFunction(validatorId: string, validatorType: 'fieldValidators' | 'serverValidators'): (params: any) => string {
+        if (this.formId && this.config.specificFormValidators[this.formId]) {
+            const specificFieldFn =
+                this.config.specificFormValidators[this.formId].specificFields?.[this.fullControlPath]?.[validatorType]?.[validatorId];
+            if (specificFieldFn) {
+                return specificFieldFn;
+            }
+            const specificFn = this.config.specificFormValidators[this.formId][validatorType]?.[validatorId];
+            if (specificFn) {
+                return specificFn;
+            }
+        }
+        return this.config[validatorType]?.[validatorId];
     }
 }

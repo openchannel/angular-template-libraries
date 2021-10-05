@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
-import { FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
+import { FullAppData, HeadingTag } from '@openchannel/angular-common-components/src/lib/common-components';
 import { get } from 'lodash';
-import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
 
 /**
  * Recommended apps component. Renders a list of applications, tha are recommended for a user.
