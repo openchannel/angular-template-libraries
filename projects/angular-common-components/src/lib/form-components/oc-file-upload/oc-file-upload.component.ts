@@ -599,12 +599,12 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
             .pipe(takeUntil(this.destroy$))
             .subscribe(
                 res => {
-                    this.fileDetailArr = res ? [{ ...res, fileUploadProgress: 100 }] : [];
+                    this.fileDetailArr.push({ ...res, fileUploadProgress: 100 });
                     this.emitChanges();
                 },
                 error => {
                     if (error.error.code === 404) {
-                        this.fileDetailArr = [this.externallyHostedImageHandler(urlData)];
+                        this.fileDetailArr.push(this.externallyHostedImageHandler(urlData));
                         this.emitChanges();
                     }
                 },

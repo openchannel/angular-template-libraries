@@ -21,7 +21,8 @@ import {
     FieldValueModel,
     DropdownItemType,
     FileDetails,
-    FormType
+    FormType,
+    FormProgressbarStep,
 } from '@openchannel/angular-common-components/src/lib/form-components';
 import { Observable } from 'rxjs';
 import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
@@ -243,6 +244,7 @@ export class MockTitleComponent {
 export class MockDynamicFieldArrayComponent {
     @Input() dfaFormArray: FormArray;
     @Input() fieldDefinitionData: AppTypeFieldModel;
+    @Input() previewMode: boolean;
 }
 
 @Component({
@@ -298,6 +300,7 @@ export class MockDynamicArrayPreview {
     @Input() fieldValues: FieldValueModel[];
     @Input() fieldDefinition: AppTypeFieldModel;
     @Input() dfaForm: FormGroup;
+    @Input() previewDFAMode: boolean;
     @Input() hideLabel: boolean;
 }
 
@@ -546,6 +549,15 @@ export class MockNumberComponent implements ControlValueAccessor {
 }
 
 @Component({
+    selector: 'oc-progress-bar',
+    template: '',
+})
+export class MockProgressbarComponent {
+    @Input() progressbarData: FormProgressbarStep[] = [];
+    @Input() currentStep: number = 1;
+}
+
+@Component({
     selector: 'oc-color',
     template: '',
     providers: [
@@ -561,6 +573,14 @@ export class MockColorComponent implements ControlValueAccessor {
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-video',
+    template: '',
+})
+export class MockVideoComponent {
+    @Input() videoUrl: string;
 }
 
 @Component({

@@ -9,8 +9,7 @@
 
     &__icons-handler {
         display: flex;
-        margin-left: 1rem;
-        margin-bottom: 1.5rem;
+        margin: auto 0 auto 2rem;
     }
 
     &__added-item {
@@ -20,20 +19,21 @@
 
     &__preview {
         width: 100%;
-        border: 1px solid $info;
         border-radius: 4px;
         margin-bottom: 1.5rem;
-
+        border: 1px solid #c9d5ea;
         &-header {
-            box-shadow: inset 0 -1px 0 0 $info;
             display: flex;
-            justify-content: space-between;
             padding: 1.5rem 2.5rem;
-
+            min-height: 54px;
             &-text {
+                margin: auto auto auto 0;
                 font-size: 24px;
-                margin-bottom: 0;
                 word-break: break-word;
+            }
+            &-form {
+                width: 100%;
+                margin: auto auto auto 0;
             }
         }
 
@@ -45,6 +45,7 @@
         }
 
         &-content {
+            border-top: 1px solid #c9d5ea;
             padding: 1.5rem 2.5rem 2rem;
         }
 
