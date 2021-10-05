@@ -79,7 +79,7 @@ describe('OcSignupCustomComponent', () => {
 
     it('button should not emmit submit when process is on', () => {
         component.process = true;
-        spyOn(component.resultUserData, 'emit');
+        jest.spyOn(component.resultUserData, 'emit');
 
         component.formConfigsLoading = false;
         fixture.detectChanges();

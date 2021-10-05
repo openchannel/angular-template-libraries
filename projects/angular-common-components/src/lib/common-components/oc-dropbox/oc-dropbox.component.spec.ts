@@ -69,7 +69,7 @@ describe('OcDropboxComponent', () => {
     it('should change selected value', async () => {
         component.writeValue('selected2');
 
-        spyOn(component.selectedItem, 'emit');
+        jest.spyOn(component.selectedItem, 'emit');
 
         const dropbox = fixture.nativeElement.querySelector('input');
         fixture.detectChanges();

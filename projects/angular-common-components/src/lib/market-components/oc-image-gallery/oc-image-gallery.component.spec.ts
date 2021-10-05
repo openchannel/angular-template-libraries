@@ -4,6 +4,8 @@ import { OcImageGalleryComponent } from './oc-image-gallery.component';
 import { By } from '@angular/platform-browser';
 import { SimpleChange } from '@angular/core';
 import { GalleryItem } from '@openchannel/angular-common-components/src/lib/common-components';
+import { MockVideoComponent } from '@openchannel/angular-common-components/src/mock/mock';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 describe('OcImageGalleryComponent', () => {
     let component: OcImageGalleryComponent;
@@ -18,7 +20,8 @@ describe('OcImageGalleryComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcImageGalleryComponent],
+                declarations: [OcImageGalleryComponent, MockVideoComponent],
+                imports: [CarouselModule],
             }).compileComponents();
         }),
     );
