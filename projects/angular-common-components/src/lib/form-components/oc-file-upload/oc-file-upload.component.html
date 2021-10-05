@@ -1,4 +1,4 @@
-<div (fileDropped)="onFileDropped($event,cropperModal)"
+<div (fileDropped)="onFileDropped($event)"
      *ngIf="(!fileDetailArr || fileDetailArr.length == 0) && !containsInvalidFile; else fileList"
      class="file-container file-container_without-files"
      ocFileDragDrop>
@@ -113,12 +113,12 @@
                 </div>
                 <image-cropper (imageCropped)="imageCropped($event)"
                                (loadImageFailed)="loadImageFailed()"
+                               [containWithinAspectRatio]="false"
+                               [maintainAspectRatio]="maintainAspectRatio"
                                [aspectRatio]="aspectRatio"
                                [imageChangedEvent]="browsedFileEvent"
-                               [maintainAspectRatio]="maintainAspectRatio"
                                [resizeToWidth]="resizeToWidth"
                                [resizeToHeight]="resizeToHeight"
-                               [containWithinAspectRatio]="true"
                                [transform]="transform" format="png" style="padding:0">
                 </image-cropper>
                 <div class="cropper__body-image-validity" *ngIf="hasImageLoadError">
