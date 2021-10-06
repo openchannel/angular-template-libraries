@@ -155,9 +155,8 @@ export class OcErrorComponent implements OnInit {
         }
 
         let messageFn;
-
-        const serverErrorCode = errors?.serverErrorValidator?.code || errors?.serverErrorValidator?.type;
-        if (serverErrorCode) {
+        if (errors?.serverErrorValidator) {
+            const serverErrorCode = errors?.serverErrorValidator?.code || errors?.serverErrorValidator?.type || 'defaultMessageHandler';
             // server error message
             messageFn =
                 this.getErrorMessageFunction(serverErrorCode, 'serverValidators') ||
