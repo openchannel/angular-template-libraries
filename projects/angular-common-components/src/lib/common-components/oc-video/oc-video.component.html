@@ -1,13 +1,16 @@
 <div class="oc-video">
-    <div *ngIf="showVideoLoader" class="oc-video__loader">
-        <ngx-spinner type="ball-spin" bdColor="" color="black"
-                     [fullScreen]="false" size="small">
-        </ngx-spinner>
-    </div>
-    <div *ngIf="!showVideoLoader" class="oc-video__container">
-        <div class="oc-video__preview" [innerHTML]="previewData"></div>
-        <div class="oc-video__frame" *ngIf="!loadInIframe">
-            <video class="oc-video__frame-video" width="300" *ngIf="loadInVideo" [src]="url" controls></video>
+    <div class="oc-video__content">
+        <div *ngIf="showVideoLoader" class="oc-video__loader">
+            <ngx-spinner type="ball-spin" bdColor="" color="black"
+                         [fullScreen]="false" size="small">
+            </ngx-spinner>
+        </div>
+        <div *ngIf="!showVideoLoader" class="oc-video__container">
+            <div class="oc-video__preview" [innerHTML]="previewData"></div>
+            <div class="oc-video__frame" *ngIf="!loadInIframe">
+                <video class="oc-video__frame-video" width="100%" height="100%" *ngIf="loadInVideo" [src]="url" controls></video>
+            </div>
         </div>
     </div>
+    <img src="assets/angular-common-components/transparent-background.png" alt="" class="oc-video__image-placeholder">
 </div>

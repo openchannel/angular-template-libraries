@@ -75,7 +75,7 @@ describe('OcSelectExpandableComponent', () => {
     component.isCollapsed = false;
     component.collapsedOnInit = false;
 
-    spyOn(component.selectModelsChange, 'emit');
+    jest.spyOn(component.selectModelsChange, 'emit');
     fixture.detectChanges();
 
     const firstItem = fixture.debugElement.queryAll(By.css('input'))[0].nativeElement;

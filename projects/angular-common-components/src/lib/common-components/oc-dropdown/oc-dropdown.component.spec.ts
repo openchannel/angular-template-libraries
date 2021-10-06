@@ -35,7 +35,7 @@ describe('OcDropdownComponent', () => {
     it('should change and emit selected value', () => {
         const dropdownSelect = fixture.nativeElement.querySelector('#dropdownManual');
 
-        spyOn(component.selectedChange, 'emit');
+        jest.spyOn(component.selectedChange, 'emit');
         dropdownSelect.click();
         fixture.detectChanges();
 

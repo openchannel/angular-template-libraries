@@ -143,8 +143,10 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
      * Catching selected item from the dropdown list.
      * @param itemEvent item from the [NgbTypeaheadSelectItemEvent]{@link https://ng-bootstrap.github.io/#/components/typeahead/api#NgbTypeaheadSelectItemEvent}
      */
-    selectItem(itemEvent: NgbTypeaheadSelectItemEvent): void {
-        this.outputSelectedItem = itemEvent.item;
+    selectItem(itemEvent?: NgbTypeaheadSelectItemEvent): void {
+        if (itemEvent) {
+            this.outputSelectedItem = itemEvent.item;
+        }
         this.selectedItem.emit(this.outputSelectedItem);
         this.onChange(this.outputSelectedItem);
         this.clearForm(itemEvent);
@@ -155,9 +157,9 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
      * Clearing of the search input field.
      * @param itemEvent item from the [NgbTypeaheadSelectItemEvent]{@link https://ng-bootstrap.github.io/#/components/typeahead/api#NgbTypeaheadSelectItemEvent}
      */
-    clearForm(itemEvent: NgbTypeaheadSelectItemEvent): void {
+    clearForm(itemEvent?: NgbTypeaheadSelectItemEvent): void {
         if (this.clearFormAfterSelect) {
-            itemEvent.preventDefault();
+            itemEvent?.preventDefault();
             this.outputSelectedItem = '';
         }
     }

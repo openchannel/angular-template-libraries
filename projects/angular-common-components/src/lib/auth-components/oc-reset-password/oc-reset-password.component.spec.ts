@@ -57,7 +57,7 @@ describe('OcResetPasswordComponent', () => {
 
     it('should emit false value on form button click', () => {
         component.process = false;
-        spyOn(component.buttonClick, 'emit');
+        jest.spyOn(component.buttonClick, 'emit');
 
         fixture.detectChanges();
 
@@ -69,7 +69,7 @@ describe('OcResetPasswordComponent', () => {
 
     it('button should not emmit submit when process is on', () => {
         component.process = true;
-        spyOn(component.buttonClick, 'emit');
+        jest.spyOn(component.buttonClick, 'emit');
 
         fixture.detectChanges();
 
@@ -82,7 +82,7 @@ describe('OcResetPasswordComponent', () => {
     it('should emit true value on form button click when form valid', async () => {
         component.process = false;
         component.resetModel.newPassword = 'QwErTy1#';
-        spyOn(component.buttonClick, 'emit');
+        jest.spyOn(component.buttonClick, 'emit');
         fixture.detectChanges();
 
         await fixture.whenStable().then(() => {

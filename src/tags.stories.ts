@@ -19,8 +19,10 @@ const TagsComponent = (args: OcTagsComponent) => ({
     props: args,
 });
 
-export const DefaultTags = TagsComponent.bind({});
+export const EmptyTags = TagsComponent.bind({});
+EmptyTags.args = {};
 
+export const DefaultTags = TagsComponent.bind({});
 DefaultTags.args = {
     availableTags: [
         'default',

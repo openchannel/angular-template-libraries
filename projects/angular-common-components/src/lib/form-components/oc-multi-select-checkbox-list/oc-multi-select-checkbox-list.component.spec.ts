@@ -35,14 +35,14 @@ describe('OcMultiSelectCheckboxListComponent', () => {
     it('init default values', () => {
         component.itemsArray = ['A', 'B', 'C'];
         component.defaultItemsArray = ['B'];
-        spyOn(component.selectedItemsOutput, 'emit');
+        jest.spyOn(component.selectedItemsOutput, 'emit');
         fixture.detectChanges();
         expect(component.selectedItemsOutput.emit).toHaveBeenCalledWith(['B']);
     });
 
     it('select an item', () => {
         component.itemsArray = ['A', 'B', 'C'];
-        spyOn(component.selectedItemsOutput, 'emit');
+        jest.spyOn(component.selectedItemsOutput, 'emit');
 
         fixture.detectChanges();
         expect(component.selectedItemsOutput.emit).toHaveBeenCalledWith([]);

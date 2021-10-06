@@ -56,7 +56,7 @@ describe('OcResendActivationComponent', () => {
 
     it('should emit false value on form button click', () => {
         component.process = false;
-        spyOn(component.buttonClick, 'emit');
+        jest.spyOn(component.buttonClick, 'emit');
 
         fixture.detectChanges();
 
@@ -68,7 +68,7 @@ describe('OcResendActivationComponent', () => {
 
     it('button should not emmit submit when process is on', () => {
         component.process = true;
-        spyOn(component.buttonClick, 'emit');
+        jest.spyOn(component.buttonClick, 'emit');
 
         fixture.detectChanges();
 
@@ -81,7 +81,7 @@ describe('OcResendActivationComponent', () => {
     it('should emit true value on form button click', async () => {
         component.process = false;
         component.activationModel.email = 'test@test.com';
-        spyOn(component.buttonClick, 'emit');
+        jest.spyOn(component.buttonClick, 'emit');
         fixture.detectChanges();
 
         await fixture.whenStable().then(() => {
