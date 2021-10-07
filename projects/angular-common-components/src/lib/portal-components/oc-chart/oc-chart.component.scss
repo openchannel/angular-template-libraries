@@ -148,37 +148,13 @@
     }
 
     &__type-section {
-        @include font-size-md();
         @include media-breakpoint-md {
             width: 100%;
         }
+        min-width: 248px;
         border: 1px solid $info;
         border-radius: 4px;
         cursor: pointer;
-        width: 248px;
-
-        &-dropdown {
-            align-items: center;
-            display: flex;
-            padding: 2rem;
-
-            &-label {
-                margin: auto;
-                width: 192px;
-                @include font-size-md();
-                cursor: pointer;
-            }
-
-            &-icon {
-                cursor: pointer;
-                margin-left: auto;
-                margin-right: 2rem;
-
-                .recolor-icon {
-                    fill: $info;
-                }
-            }
-        }
 
         &:focus, &:active {
             border-color: $primary;

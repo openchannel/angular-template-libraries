@@ -692,3 +692,34 @@ oc-button.tags__button-add {
 .oc-card__icon-img {
     @include image-alt-text
 }
+
+.chart {
+    &__type-section {
+        height: 56px;
+        width: 248px;
+        .dropdown-button {
+            &__placeholder-container {
+                padding: 0 16px;
+                &-title {
+                    &-text {
+                        @include font-size-md();
+                    }
+                    &-collapse-icon {
+                        margin: auto 0 auto 8px;
+                        .recolor-icon {
+                            fill: $info;
+                            height: 14px;
+                            width: 14px;
+                        }
+                    }
+                }
+            }
+            &__menu {
+                max-height: 201px;
+                &-item-text {
+                    @include font-size-md();
+                }
+            }
+        }
+    }
+}

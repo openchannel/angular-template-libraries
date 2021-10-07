@@ -1,5 +1,6 @@
 <div class="chart">
     <div class="chart__options-container">
+        <ng-container [ngTemplateOutlet]="appDropdownTemplate || defaultAppDropdown"></ng-container>
         <div class="chart__period-container">
             <div *ngFor="let period of chartData?.periods"
                  [class.chart__period-item-active]="period.active"
@@ -27,19 +28,12 @@
                           [class.chart__swap-type-button_active]="activeDataType === 'graph'"
                           (click)="swapActiveDataType('graph')"></svg-icon>
             </div>
-            <oc-dropdown-button [minDropdownWidth]="minDropdownWidth"
+            <oc-dropdown-button *ngIf="dropdownTypes?.length > 0"
                                 [options]="dropdownTypes"
-                                (selectedChange)="updateChartFiled($event)"
+                                [selected]="dropdownSelectedType"
+                                (selectedChange)="updateChartOptions(chartData.fields, $event.id)"
                                 class="chart__type-section">
-                <div customPlaceholder
-                     class="chart__type-section-dropdown">
-                    <label class="chart__type-section-dropdown-label">
-                        {{dropdownSelectedType?.label ? dropdownSelectedType?.label : ''}}
-                    </label>
-                </div>
-                <svg-icon defaultPlaceholderIcon src="assets/angular-common-components/select-down.svg" class="chart__type-section-dropdown-icon"></svg-icon>
-                <svg-icon activePlaceholderIcon src="assets/angular-common-components/select-up.svg" class="chart__type-section-dropdown-icon"></svg-icon>
-            </oc-dropdown-button>
+           </oc-dropdown-button>
         </div>
     </div>
     <div class="chart__data-container">
@@ -103,3 +97,13 @@
         </div>
     </div>
 </div>
+
+<ng-template #defaultAppDropdown>
+    <oc-dropdown-button *ngIf="appDropdownSelectedValue"
+                        [options]="appDropdownValues"
+                        [selected]="appDropdownSelectedValue"
+                        [ascendingSvgIcon]="appDropdownAscendingSVGIcon"
+                        [descendingSvgIcon]="appDropdownDescendingSVGIcon"
+                        (selectedChange)="updateChartOptions(this.chartData.apps, $event.id)"
+                        class="chart__type-apps chart__type-section"></oc-dropdown-button>
+</ng-template>
