@@ -3,6 +3,7 @@ import { AppFormField, AppFormModel } from '../model/app-form-model';
 import { FormProgressbarStep } from '../model/progress-bar-item.model';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
+import { ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
 
 export interface FieldStep {
     label?: AppFormField;
@@ -104,6 +105,9 @@ export class OcFormComponent implements OnInit, OnChanges {
 
     /** Current wizard step */
     @Input() currentStep: number = 1;
+
+    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    @Input() formId: ErrorMessageFormId = null;
 
     /** Component emits on what step a user is, when he changes the step. */
     @Output() readonly currentStepChange = new EventEmitter<number>();

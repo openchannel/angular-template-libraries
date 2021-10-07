@@ -33,13 +33,13 @@ describe('OcResetPasswordComponent', () => {
                     MockRoutingComponent,
                     MockHeadingTagDirective,
                 ],
-                providers: [NgModel],
                 imports: [
                     FormsModule,
                     CommonModule,
                     BrowserModule,
                     RouterTestingModule.withRoutes([{ path: 'signup', component: MockRoutingComponent }]),
                 ],
+                providers: [NgModel],
             }).compileComponents();
             router = TestBed.inject(Router);
         }),

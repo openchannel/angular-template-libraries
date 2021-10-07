@@ -134,6 +134,119 @@ export class FileService extends FileUploaderService {
 export class AppModule {}
 ```
 
+7. Error messages for all forms. Have default implementation DefaultErrorMessageConfiguration.
+```sh
+@NgModule({
+    providers: [
+        { provide: AbstractErrorMessageConfiguration, useValue: new DefaultErrorMessageConfiguration() },
+    ],
+    bootstrap: [AppComponent],
+    entryComponents: [],
+})
+export class AppModule {}
+```
+If you want to update error messages follow this example:
+```sh
+import {
+    AbstractErrorMessageConfiguration,
+    DefaultErrorMessageConfiguration,
+} from '@openchannel/angular-common-components/src/lib/common-components';
+
+class CustomErrorMessageConfiguration extends DefaultErrorMessageConfiguration {
+    constructor() {
+        super(
+            {
+                # default field errors
+                required: () => '(default) Please fill out this field.',
+            },
+            {
+                # default server errors              
+                defaultMessageHandler: () => '(custom) Server error.',
+                email_is_incorrect: () => '(custom) Email is incorrect.',
+            },
+            {
+                # your custom form     
+                MY_FIRST_FORM: {
+                    specificFields: [
+                        {
+                            # field from current form
+                            fieldPath: 'text-id',
+                            fieldValidators: {
+                                # override previous error message 
+                                required: () => '(custom) (MY_FIRST_FORM) Please fill out this field',
+                            },
+                        },
+                    ],
+                },
+                # your custom form
+                MY_SECOND_FORM: {
+                    specificFields: [
+                        {
+                            fieldPath: 'text-id',
+                            fieldValidators: {
+                                required: () => '(custom) (MY_SECOND_FORM) Please fill out this field',
+                            },
+                        },
+                    ],
+                },
+                # this form from library
+                login: {
+                    specificFields: [
+                        {
+                            fieldPath: 'email',
+                            fieldValidators: {
+                                required: () => '(custom) Email is required field.',
+                            },
+                        },
+                    ],
+                },
+            },
+        );
+    }
+}
+
+@NgModule({
+    providers: [
+        { provide: AbstractErrorMessageConfiguration, useClass: CustomErrorMessageConfiguration },
+    ],
+    bootstrap: [AppComponent],
+    entryComponents: [],
+})
+export class AppModule {}
+
+
+# Your component (ts)
+@Component({
+  ...
+})
+export class YourComponent  {
+    formJsonData: Partial<AppFormField> = {
+        fields: [
+            {
+                id: 'text-id',
+                type: 'text',
+                label: 'My text label',
+                attributes: {
+                    required: true,
+                },
+            },
+        ],
+    };
+}
+
+# Your component (html)
+<div class="my-forms">
+  <!-- default login form, already have ID 'login' -->
+  <oc-login></oc-login>
+
+  <!--  your custom form, with ID 'MY_FIRST_FORM' -->
+  <oc-form formId="MY_FIRST_FORM" [formJsonData]="formJsonData"></oc-form>
+
+  <!--  your custom form with ID 'MY_SECOND_FORM'-->
+  <oc-form formId="MY_SECOND_FORM" [formJsonData]="formJsonData"> </oc-form>
+</div>
+```
+
 ### Connect library to project
 Note: Run commands from the root directory.
 

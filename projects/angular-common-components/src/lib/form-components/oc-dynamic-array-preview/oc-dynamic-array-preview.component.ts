@@ -5,7 +5,10 @@ import { forkJoin, Observable, of, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { isArray } from 'rxjs/internal-compatibility';
 import { FileDetails, FileUploaderService } from '../model/file.model';
-import { AppTypeFieldModel } from '@openchannel/angular-common-components/src/lib/common-components';
+import {
+    AppTypeFieldModel,
+    ErrorMessageFormId
+} from '@openchannel/angular-common-components/src/lib/common-components';
 import { difference } from 'lodash';
 import { VIDEO_URL_REGEX } from '../model/utils.model';
 /**
@@ -48,6 +51,9 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
     @Input() hideLabel: boolean = false;
 
     @Input() previewDFAMode: boolean = false;
+
+    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    @Input() formId: ErrorMessageFormId = null;
 
     /**
      * Array of preview fields.

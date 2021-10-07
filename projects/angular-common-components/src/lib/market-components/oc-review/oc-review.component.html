@@ -6,17 +6,17 @@
             <oc-rating type="multi-star"
                        formControlName="rating"
                        class="review__form-field review__rating"></oc-rating>
-            <oc-error field="rating" [control]="reviewForm.get('rating')" class="review__form-error"></oc-error>
+            <oc-error [formId]="formId" [control]="reviewForm.get('rating')" field="rating" class="review__form-error"></oc-error>
         </div>
         <div class="review__form-group">
             <oc-label text="Title" [required]="true" class="review__form-label"></oc-label>
             <oc-input formControlName="headline" class="review__form-field review__input"></oc-input>
-            <oc-error field="headline" [control]="reviewForm.get('headline')" class="review__form-error"></oc-error>
+            <oc-error [formId]="formId" [control]="reviewForm.get('headline')" field="headline" class="review__form-error"></oc-error>
         </div>
         <div class="review__form-group">
             <oc-label text="Review" [required]="true" class="review__form-label"></oc-label>
             <oc-textarea formControlName="description" class="review__form-field review__textarea"></oc-textarea>
-            <oc-error field="description" [control]="reviewForm.get('description')" class="review__form-error"></oc-error>
+            <oc-error [formId]="formId" [control]="reviewForm.get('description')" field="description" class="review__form-error"></oc-error>
         </div>
     </form>
     <div class="review__buttons-section" *ngIf="enableButtons">

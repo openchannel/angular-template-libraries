@@ -9,6 +9,7 @@ import { Observable, of } from 'rxjs';
 import { EmbedVideoService } from 'ngx-embed-video';
 import { HttpClient, HttpClientModule, HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ERROR_MESSAGES_STORY_PROVIDER } from './utils.model';
 
 class StubFileUploadDownloadService extends FileUploaderService {
     videoData: FileDetails = {
@@ -50,7 +51,12 @@ class StubFileUploadDownloadService extends FileUploaderService {
 
 const modules = {
     imports: [OcFormComponentsModule, HttpClientModule, BrowserAnimationsModule],
-    providers: [HttpClient, { provide: FileUploaderService, useClass: StubFileUploadDownloadService }, EmbedVideoService],
+    providers: [
+        HttpClient,
+        { provide: FileUploaderService, useClass: StubFileUploadDownloadService },
+        EmbedVideoService,
+        ERROR_MESSAGES_STORY_PROVIDER,
+    ],
 };
 
 export default {

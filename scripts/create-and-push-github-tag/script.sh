@@ -16,9 +16,10 @@ then
   exit 1
 fi
 
-git tag $tagName
+# Replace old git tag with --force flag
+git tag -f $tagName
 
-# push tag with --force flag only when is 'true'
+# Push tag with --force flag only when is 'true'
 if [ $PUSH_TAG_FORCE == true ]
 then
   git push origin --force $tagName
