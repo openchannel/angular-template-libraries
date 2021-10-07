@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentsUserResetPassword } from '../models/auth-types.model';
-import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
+import { ErrorMessageFormId, HeadingTag } from '@openchannel/angular-common-components/src/lib/common-components';
 
 /**
  * A reset password component. A form, which allows user to change his account password.
@@ -58,6 +58,8 @@ export class OcResetPasswordComponent {
      */
     @Input() headingTag: HeadingTag = 'h1';
 
+    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    formId: ErrorMessageFormId = 'resetPassword';
     /**
      * Submits a reset password form.
      * Marks all fields as touched.

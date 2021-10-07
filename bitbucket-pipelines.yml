@@ -120,7 +120,7 @@ definitions:
         script:
           - /bin/bash ./scripts/package-json-version/script.sh $PROJECT_VERSION
           - git add .
-          - git commit -m "Up version to $PROJECT_VERSION."
+          - git commit -m "Up version to $PROJECT_VERSION. [skip ci]"
           - git push
 
     - step: &create-changelog-with-git-tag
@@ -135,7 +135,7 @@ definitions:
           # Generate new changelog file or skip
           - EMAIL=${JIRA_EMAIL} API_KEY=${JIRA_API_KEY} RELEASE_VERSION=${JIRA_RELEASE_VERSION} PROJECT_VERSION=$projectVerion node ./scripts/changelog-builder/script.js
           # Commit and push
-          - if [[ ! -z $(git status --porcelain) ]]; then git add . ; git commit -m "Created changelog.md for $JIRA_RELEASE_VERSION release." ; git push ; else echo 'Changelog not changed.'; fi
+          - if [[ ! -z $(git status --porcelain) ]]; then git add . ; git commit -m "Created changelog.md for $JIRA_RELEASE_VERSION release. [skip ci]" ; git push ; else echo 'Changelog not changed.'; fi
           # Create git tag and push
           - /bin/bash ./scripts/create-and-push-github-tag/script.sh "${PUSH_TAG_FORCE}"
 pipelines:
@@ -183,6 +183,7 @@ pipelines:
       - variables:
           - name: JIRA_RELEASE_VERSION
           - name: PUSH_TAG_FORCE
+      - step: *build-test-sonarcloud
       - step: *create-changelog-with-git-tag
     Dev1 compodoc (services):
       - step: *build_compodoc_documentation_for_services

@@ -4,9 +4,12 @@ import { OcCommonLibModule } from '@openchannel/angular-common-components/src/li
 import { action } from '@storybook/addon-actions';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { ERROR_MESSAGES_STORY_PROVIDER } from './utils.model';
 
-const modules = {
+const modules: NgModule = {
     imports: [OcCommonLibModule, RouterTestingModule, FormsModule],
+    providers: [ERROR_MESSAGES_STORY_PROVIDER],
 };
 
 const signupEmpty = new ComponentsUserRegistrationModel();

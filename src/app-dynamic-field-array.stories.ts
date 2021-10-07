@@ -27,6 +27,7 @@ import {
 import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 import { Observable, of } from 'rxjs';
 import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
+import {ERROR_MESSAGES_STORY_PROVIDER} from './utils.model';
 
 class FileService extends FileUploaderService {
     fileDetailsRequest(fileId: string): Observable<FileDetails> {
@@ -73,7 +74,7 @@ const modules = {
         OcMultiSelectListComponent,
         OcDynamicArrayPreviewComponent,
     ],
-    providers: [{ provide: FileUploaderService, useClass: FileService }],
+    providers: [{ provide: FileUploaderService, useClass: FileService }, ERROR_MESSAGES_STORY_PROVIDER],
 };
 
 export default {

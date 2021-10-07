@@ -8,10 +8,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { action } from '@storybook/addon-actions';
+import { NgModule } from '@angular/core';
+import { ERROR_MESSAGES_STORY_PROVIDER } from './utils.model';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
-const modules = {
+const modules: NgModule = {
     imports: [OcCommonLibModule, RouterTestingModule.withRoutes([]), BrowserAnimationsModule, FormsModule],
+    providers: [ERROR_MESSAGES_STORY_PROVIDER],
 };
 
 const pwdEmpty = new ComponentsUserResetPassword();

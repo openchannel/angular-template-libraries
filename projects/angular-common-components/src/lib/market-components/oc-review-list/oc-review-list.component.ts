@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { OCReviewDetails, ReviewListOptionType } from '../models/oc-review-details-model';
-import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
+import { HeadingTag } from '@openchannel/angular-common-components/src/lib/common-components';
 
 /**
  * Review list component.

@@ -53,11 +53,13 @@
     &__error {
         background-color: $error-bg;
         color: $error;
+        margin-bottom: 4rem;
     }
 
     &__warn {
         background-color: $light-blue;
         color: $primary;
+        margin-bottom: 4rem;
     }
 
     &__forgot-block {

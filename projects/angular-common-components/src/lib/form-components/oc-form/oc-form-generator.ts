@@ -128,7 +128,10 @@ export class OcFormGenerator {
         },
     ): void {
         const validators: ValidatorFn[] = [];
-        const attributes = inputTemplate.attributes;
+        const { attributes } = inputTemplate;
+        if (!attributes) {
+            return;
+        }
         Object.keys(attributes).forEach(key => {
             switch (key) {
                 case 'required':
