@@ -2,7 +2,10 @@ import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/co
 import { Router } from '@angular/router';
 import { OcEditUserFormConfig, OcEditUserResult } from '../models/oc-edit-user-form.model';
 import { FormGroup } from '@angular/forms';
-import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
+import {
+    ErrorMessageFormId,
+    HeadingTag
+} from '@openchannel/angular-common-components/src/lib/common-components';
 
 @Component({
     selector: 'oc-signup-custom',
@@ -89,9 +92,11 @@ export class OcSignupCustomComponent {
      */
     @Input() headingTag: HeadingTag = 'h1';
 
+    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    @Input() formId: ErrorMessageFormId = 'signupCustom';
+
     resultFormValue: OcEditUserResult;
     formGroup: FormGroup;
-
     constructor(private router: Router) {}
 
     submitForm(): void {

@@ -11,9 +11,12 @@ import {
 } from '@openchannel/angular-common-components';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { action } from '@storybook/addon-actions';
+import { NgModule } from '@angular/core';
+import { ERROR_MESSAGES_STORY_PROVIDER } from './utils.model';
 
-const modules = {
+const modules: NgModule = {
     imports: [OcCommonLibModule, OcFormComponentsModule, ReactiveFormsModule, RouterTestingModule, FormsModule],
+    providers: [ERROR_MESSAGES_STORY_PROVIDER],
 };
 
 const accountTypeData: TypeModel<TypeFieldModel> = {

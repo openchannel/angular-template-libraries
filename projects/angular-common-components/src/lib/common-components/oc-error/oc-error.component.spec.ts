@@ -2,12 +2,11 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { OcErrorComponent } from './oc-error.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { OcErrorService } from './oc-error-service';
+import { MOCK_PROVIDER_ERROR_MESSAGES } from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcErrorComponent', () => {
     let component: OcErrorComponent;
     let fixture: ComponentFixture<OcErrorComponent>;
-    let service: OcErrorService;
 
     const testForm = new FormGroup({
         testControl: new FormControl([''], Validators.required),
@@ -17,6 +16,7 @@ describe('OcErrorComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 declarations: [OcErrorComponent],
+                providers: [MOCK_PROVIDER_ERROR_MESSAGES],
             }).compileComponents();
         }),
     );
@@ -24,7 +24,6 @@ describe('OcErrorComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(OcErrorComponent);
         component = fixture.componentInstance;
-        service = new OcErrorService();
         fixture.detectChanges();
     });
 

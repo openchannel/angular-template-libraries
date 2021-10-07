@@ -1,3 +1,10 @@
+## Release notes - angular-template-libraries - Version 2.32.0 (10/7/2021)<br>
+### Bug<br>
+AT-1508 - Drag and drop on multi file and image fields<br>
+### Task<br>
+AT-1505 - Allow customization of form error messages<br>
+### Bug<br>
+AT-1184 - [Market/Portal][Tags][Number Tags] User should able Add new Tags from Template and select which are exist in Dashboard.<br>
 ## Release notes - angular-template-libraries - Version 2.31.0 (10/5/2021)<br>
 ### Task<br>
 AT-1504 - Improve gallery component<br>

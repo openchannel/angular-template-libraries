@@ -249,8 +249,10 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * On file drop handler
      */
     onFileDropped($event: any): void {
-        this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
-        this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
+        if (this.isMultiFileSupport() || this.fileDetailArr.length === 0) {
+            this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
+            this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
+        }
     }
 
     /**

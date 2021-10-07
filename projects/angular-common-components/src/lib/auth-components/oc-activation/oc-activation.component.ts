@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentsUserActivationModel } from '../models/auth-types.model';
 import { NgForm } from '@angular/forms';
-import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
+import { ErrorMessageFormId, HeadingTag } from '@openchannel/angular-common-components/src/lib/common-components';
 
 @Component({
     selector: 'oc-activation',
@@ -61,6 +61,9 @@ export class OcActivationComponent {
      * 'h2'.
      */
     @Input() headingTag: HeadingTag = 'h1';
+
+    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    formId: ErrorMessageFormId = 'activation';
 
     submitForm(form: NgForm): void {
         if (!this.process) {

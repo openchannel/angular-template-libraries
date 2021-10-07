@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ComponentsUserLoginModel } from '../models/auth-types.model';
-import {HeadingTag} from "@openchannel/angular-common-components/src/lib/common-components";
+import { ErrorMessageFormId, HeadingTag } from '@openchannel/angular-common-components/src/lib/common-components';
 
 /**
  * Forgot password component. Represents component with forgot password logic.
@@ -72,6 +72,9 @@ export class OcForgotPasswordComponent {
      * 'h2'.
      */
     @Input() headingTag: HeadingTag = 'h1';
+
+    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    formId: ErrorMessageFormId = 'forgotPassword';
 
     constructor(private router: Router) {}
 

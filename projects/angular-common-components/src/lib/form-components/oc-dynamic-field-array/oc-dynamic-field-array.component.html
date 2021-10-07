@@ -13,6 +13,7 @@
                             [fieldValues]="formsArrayConfig[i].previewLabel.customLabelValue"
                             [fieldDefinition]="formsArrayConfig[i].previewLabel.customLabelDefinition"
                             [dfaForm]="formItem"
+                            [formId]="formId"
                             [previewDFAMode]="true"
                             [hideLabel]="true"
                     ></oc-dynamic-array-preview>
@@ -39,12 +40,14 @@
                         [fieldValues]="formsArrayConfig[i].previewFiledValues"
                         [fieldDefinition]="fieldDefinition"
                         [previewDFAMode]="previewMode"
+                        [formId]="formId"
                         [dfaForm]="formItem"></oc-dynamic-array-preview>
             </div>
             <ng-container *ngIf="!previewMode && formsArrayConfig[i].isEdit">
                 <div class="cards-interface__preview-content">
                     <oc-form [formJsonData]="fieldDefinition"
                              [generatedForm]="formItem"
+                             [formId]="formId"
                              [showButton]="false"></oc-form>
                 </div>
                 <div class="cards-interface__preview-buttons">

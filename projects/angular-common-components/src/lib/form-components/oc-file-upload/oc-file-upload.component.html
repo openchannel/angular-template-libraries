@@ -16,7 +16,9 @@
 </div>
 
 <ng-template #fileList>
-    <div class="file-container">
+    <div class="file-container"
+         (fileDropped)="onFileDropped($event)"
+         ocFileDragDrop>
         <div class="file-container__control" *ngIf="isMultiFileSupport() || containsInvalidFile">
             <div class="file-container__control-wrapper">
                 <img class="file-container__control-upload"
