@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 /**
@@ -75,6 +75,10 @@ export class OcConfirmationModalComponent {
      * Button displaying by default.
      */
     @Input() rejectButtonHide: boolean = false;
+    /**
+     * Custom class for the confirmation button.
+     */
+    @Input() confirmButtonClass: string = '';
     /**
      * Control of the current modal actions.
      * @private
