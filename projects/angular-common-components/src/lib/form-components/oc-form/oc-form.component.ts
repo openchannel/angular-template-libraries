@@ -157,10 +157,6 @@ export class OcFormComponent implements OnInit, OnChanges {
         };
     }
 
-    get currentForm(): OcFormGroup {
-        return this.customForm.controls[this.currentStep - 1] as OcFormGroup;
-    }
-
     onSubmitButtonClicked(): void {
         if (this.showProgressBar) {
             this.updateProgressbarSteps(this.currentStep - 1);
@@ -192,19 +188,40 @@ export class OcFormComponent implements OnInit, OnChanges {
         this.currentStepChange.emit(this.currentStep);
     }
 
-    generateProgressbarSteps(): void {
-        this.progressBarSteps = [];
-        this.customForm.controls.forEach((step: any, index) => {
-            this.progressBarSteps.push({
-                title: step.label ? step.label.label : `Step ${index + 1}`,
-                state: 'pristine',
-            });
-        });
+    jumpToStep(step: number): void {
+        const previousStep = this.currentStep;
+        const nextStep = step;
+        if (previousStep === nextStep) {
+            return;
+        } else if (previousStep < nextStep) {
+            for (let i = previousStep; i < nextStep; i++) {
+                this.updateProgressbarSteps(i - 1);
+            }
+        } else if (previousStep > nextStep) {
+            this.updateProgressbarSteps(this.currentStep - 1);
+        }
+        this.currentStep = step;
     }
 
     updateProgressbarSteps(index: number): void {
-        this.currentForm.markAllAsTouched();
+        const currentForm = this.customForm.controls[index] as OcFormGroup;
+        this.updateChildControlsValidity(currentForm);
         this.progressBarSteps[index].state = this.currentForm.valid ? 'finished' : 'invalid';
+    }
+
+    updateChildControlsValidity(currentControl: AbstractControl): void {
+        if (currentControl instanceof FormGroup) {
+            for (const control of Object.keys(currentControl.controls)) {
+                const controlName = currentControl.controls[control];
+                this.updateChildControlsValidity(controlName);
+            }
+        } else if (currentControl instanceof FormArray) {
+            currentControl.controls.forEach(value => {
+                this.updateChildControlsValidity(value);
+            });
+        } else {
+            currentControl.updateValueAndValidity();
+        }
     }
 
     /**
@@ -232,7 +249,14 @@ export class OcFormComponent implements OnInit, OnChanges {
     }
 
     get stepDescription(): string {
-        return `Please fill the ${this.currentForm.label ? this.currentForm.label.label.toLowerCase() : 'information'} below`;
+        if (this.currentForm.label) {
+            return this.currentForm.label.label;
+        }
+        return 'Please fill the information below';
+    }
+
+    get currentForm(): OcFormGroup {
+        return this.customForm.controls[this.currentStep - 1] as OcFormGroup;
     }
 
     private setStep(step: number): void {
@@ -250,6 +274,16 @@ export class OcFormComponent implements OnInit, OnChanges {
                 this.hasFieldGroup = false;
             }
         }
+    }
+
+    private generateProgressbar(): void {
+        this.progressBarSteps = [];
+        this.customForm.controls.forEach((step: any, index) => {
+            this.progressBarSteps.push({
+                title: step.label ? step.label.label : `Step ${index + 1}`,
+                state: 'pristine',
+            });
+        });
     }
 
     private generateStepsForm(data: AppFormModel): void {
@@ -285,7 +319,7 @@ export class OcFormComponent implements OnInit, OnChanges {
         this.customForm.controls.forEach(form => {
             this.mapFormFieldsData(form.value);
         });
-        this.generateProgressbarSteps();
+        this.generateProgressbar();
         this.createdForm.emit(this.customForm);
     }
 }

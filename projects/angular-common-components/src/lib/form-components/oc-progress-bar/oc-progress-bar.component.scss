@@ -2,19 +2,23 @@
 @import '../../../../assets/styles/theme';
 
 .form-progressbar {
-    display: flex;
-    justify-content: space-between;
     margin-top: 6rem;
     margin-bottom: 6rem;
+    overflow: hidden;
     @include media-breakpoint-md {
-        flex-direction: column;
         margin: 0;
+    }
+
+    &__slidebox {
+        display: flex;
+        justify-content: space-between;
+        transition: transform 0.4s ease;
     }
 
     &__item {
         display: flex;
         align-items: flex-start;
-        flex-grow: 1;
+        flex-shrink: 0;
         @include media-breakpoint-md {
             flex-direction: column;
             align-items: center;
@@ -116,6 +120,7 @@
             flex-direction: column;
             align-items: center;
             position: relative;
+            cursor: pointer;
 
             &-shape {
                 display: flex;
@@ -176,16 +181,14 @@
 
             &-title {
                 max-width: 10rem;
-                text-align: center;
-                margin: 0 -5rem;
-                display: table;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 @include font-size-md();
                 @include media-breakpoint-md {
                     @include font-size-sm();
                     line-height: 1.75rem;
                     max-width: unset;
-                    margin: 0;
-                    word-break: break-word;
                 }
             }
         }

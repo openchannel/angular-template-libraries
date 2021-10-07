@@ -4,6 +4,7 @@
              [class.form-steps__content-responsive]="showProgressBar">
             <div class="form-steps__content-progressbar">
                 <oc-progress-bar *ngIf="showProgressBar"
+                                 (jumpToStep)="jumpToStep($event)"
                                  [progressbarData]="progressBarSteps"
                                  [currentStep]="currentStep"></oc-progress-bar>
             </div>
