@@ -183,6 +183,7 @@ pipelines:
       - variables:
           - name: JIRA_RELEASE_VERSION
           - name: PUSH_TAG_FORCE
+      - step: *build-test-sonarcloud
       - step: *create-changelog-with-git-tag
     Dev1 compodoc (services):
       - step: *build_compodoc_documentation_for_services

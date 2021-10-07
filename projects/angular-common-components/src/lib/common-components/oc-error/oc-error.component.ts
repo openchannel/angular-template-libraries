@@ -1,7 +1,7 @@
-import { Component, Inject, Input, OnInit, Optional } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, AbstractControlDirective, FormArray, FormGroup, NgModel, ValidationErrors } from '@angular/forms';
 import { OcErrorService } from './oc-error-service';
-import { DefaultErrorMessageConfiguration, AbstractErrorMessageConfiguration } from '../model/oc-error.model';
+import { AbstractErrorMessageConfiguration } from '../model/oc-error.model';
 
 /**
  * An oc-error component. It is used to show error or errors list after validation.<br>

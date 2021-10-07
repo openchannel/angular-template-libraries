@@ -1,4 +1,4 @@
-import { Component, Directive, EventEmitter, forwardRef, Input, Output, TemplateRef } from '@angular/core';
+import { Component, Directive, EventEmitter, forwardRef, Input, Output, TemplateRef, Provider } from '@angular/core';
 import {
     AbstractControl,
     AbstractControlDirective,
@@ -27,7 +27,6 @@ import {
 } from '@openchannel/angular-common-components/src/lib/form-components';
 import { Observable } from 'rxjs';
 import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
-import { Provider } from '@angular/core';
 
 @Component({
     selector: 'oc-label',
