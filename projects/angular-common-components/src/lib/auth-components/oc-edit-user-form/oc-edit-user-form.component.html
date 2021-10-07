@@ -6,6 +6,7 @@
       <oc-select [selectValArr]="this.formConfigs"
                  [ngModel]="currentFormConfig"
                  (ngModelChange)="buildFormByConfig($event)"
+                 class="edit-user-form__type-select"
                  labelField="name"></oc-select>
     </ng-container>
     <oc-form *ngIf="mainFormModel"
@@ -20,7 +21,7 @@
           <ng-container *ngIf="customTermsDescription; else ngtDefaultTermsDescription"
                         [ngTemplateOutlet]="customTermsDescription"
                         [ngTemplateOutletContext]="{$implicit: { termsControl: termsControl, enableTermsCheckbox: enableTermsCheckbox}}"></ng-container>
-        
+
       </div>
       <oc-error [formId]="formId" [control]="termsControl"></oc-error>
     </div>

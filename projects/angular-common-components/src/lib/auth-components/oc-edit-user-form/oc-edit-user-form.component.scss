@@ -2,11 +2,17 @@
 @import '../../../../assets/styles/mixins';
 
 .edit-user-form {
-    &__type-label {
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        display: flex;
-        flex-direction: column;
+    &__type {
+        &-label {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        &-select {
+            display: block;
+            margin-bottom: 3rem;
+        }
     }
 
     &__consent {

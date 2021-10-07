@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { base64ToFile, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
-import { HttpEventType, HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -42,7 +42,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * File input template reference
      */
-    @ViewChild('fileDropRef', { static: false }) fileInputVar: ElementRef<any>;
+    @ViewChild('fileDropRef', { static: false }) fileInputVar: ElementRef;
 
     /**
      * Set model value
@@ -176,12 +176,12 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     containsInvalidFile = false;
 
     /**
-     * Flag that allow maintain aspect ration logic or not
+     * Flag that allow maintain aspect ratio logic or not
      */
     maintainAspectRatio = false;
 
     /**
-     * Aspect ration value
+     * Aspect ratio value
      */
     aspectRatio: number;
 
