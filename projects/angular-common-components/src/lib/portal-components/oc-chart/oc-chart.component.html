@@ -1,40 +1,36 @@
 <div class="chart">
     <div class="chart__options-container">
         <ng-container [ngTemplateOutlet]="appDropdownTemplate || defaultAppDropdown"></ng-container>
-        <div class="chart__period-container">
+        <div class="chart__period-container" >
             <div *ngFor="let period of chartData?.periods"
                  [class.chart__period-item-active]="period.active"
                  class="chart__period-item">
-                <label [for]="period.id"
-                       (click)="updateChartPeriod(period)"
+                <span (click)="updateChartPeriod(period)"
                        class="chart__period-item-label">
                     <input type="radio"
-                           [id]="period.id"
                            [checked]="period.active"
                            class="chart__period-item-radio">
                     <span class="chart__period-item-checkmark"></span>
                     <span class="chart__period-item-text">{{period.label}}</span>
-                </label>
+                </span>
             </div>
         </div>
-        <div class="chart__filter-buttons-container">
-            <div class="chart__filter-buttons-container-tabs">
-                <svg-icon [src]="tabularSvgIcon || 'assets/angular-common-components/icon-tabular.svg'"
-                          class="chart__swap-type-button chart__tabular-button"
-                          [class.chart__swap-type-button_active]="activeDataType === 'tabular'"
-                          (click)="swapActiveDataType('tabular')"></svg-icon>
-                <svg-icon [src]="graphSvgIcon || 'assets/angular-common-components/icon-graph.svg'"
-                          class="chart__swap-type-button chart__graph-button"
-                          [class.chart__swap-type-button_active]="activeDataType === 'graph'"
-                          (click)="swapActiveDataType('graph')"></svg-icon>
-            </div>
-            <oc-dropdown-button *ngIf="dropdownTypes?.length > 0"
-                                [options]="dropdownTypes"
-                                [selected]="dropdownSelectedType"
-                                (selectedChange)="updateChartOptions(chartData.fields, $event.id)"
-                                class="chart__type-section">
-           </oc-dropdown-button>
+        <div class="chart__swap-type">
+            <svg-icon [src]="tabularSvgIcon || 'assets/angular-common-components/icon-tabular.svg'"
+                      class="chart__swap-type-button chart__tabular-button"
+                      [class.chart__swap-type-button_active]="activeDataType === 'tabular'"
+                      (click)="swapActiveDataType('tabular')"></svg-icon>
+            <svg-icon [src]="graphSvgIcon || 'assets/angular-common-components/icon-graph.svg'"
+                      class="chart__swap-type-button chart__graph-button"
+                      [class.chart__swap-type-button_active]="activeDataType === 'graph'"
+                      (click)="swapActiveDataType('graph')"></svg-icon>
         </div>
+        <oc-dropdown-button *ngIf="dropdownTypes?.length > 0"
+                            [options]="dropdownTypes"
+                            [selected]="dropdownSelectedType"
+                            (selectedChange)="updateChartOptions(chartData.fields, $event.id)"
+                            class="chart__type-section">
+        </oc-dropdown-button>
     </div>
     <div class="chart__data-container">
         <div class="chart__data-container-canvas" *ngIf="activeDataType === 'graph'">

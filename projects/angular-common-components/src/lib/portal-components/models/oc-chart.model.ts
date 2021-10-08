@@ -19,7 +19,7 @@ export interface ChartStatisticModel {
     /**
      * apps dropdown
      */
-    apps: ChartStatisticFiledModel[];
+    apps?: ChartStatisticFiledModel[];
 }
 /**
  * Interface for the [Chart]{@link OcChartComponent} component's data.
@@ -111,7 +111,7 @@ export interface ChartOptionsChange {
     /** object of chosen period */
     period: ChartStatisticPeriodModel;
 
-    selectedApp: ChartStatisticParameterModel;
+    selectedApp?: ChartStatisticParameterModel;
 }
 
 /**

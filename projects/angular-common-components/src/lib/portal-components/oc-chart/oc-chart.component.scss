@@ -25,16 +25,8 @@
     }
 
     &__period-item {
-        @include media-breakpoint-md {
-            justify-content: flex-start;
-            padding: 0 0 2rem;
-        }
-        border-radius: 4px;
         cursor: pointer;
         display: flex;
-        justify-content: center;
-        padding: 2rem;
-        width: 152px;
 
         &-active {
             .chart__period-item-checkmark {
@@ -89,69 +81,32 @@
         }
     }
 
-    &__filter-buttons-container {
-        @include media-breakpoint-md {
-            align-items: flex-start;
-            flex-direction: column;
-        }
-        align-items: center;
+    &__swap-type {
         display: flex;
-
-        &-tabs {
-            @include media-breakpoint-md {
-                align-items: flex-start;
-                margin-bottom: 2rem;
-                margin-left: -6px;
-            }
-            align-items: flex-end;
+        flex-wrap: nowrap;
+        align-items: center;
+        &-button {
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
             display: flex;
-        }
-    }
 
-    &__swap-type-button {
-        align-items: center;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        height: 30px;
-        width: 30px;
-
-        .recolor-svg {
-            fill: $gray-600;
-        }
-
-        &:hover, &:focus {
-            background-color: $light;
-        }
-
-        &:focus {
-            border: 2px solid $focus-border;
-        }
-
-        &_active {
             .recolor-svg {
-                fill: $body-color;
+                fill: $gray-600;
+            }
+
+            &_active {
+                .recolor-svg {
+                    fill: $body-color;
+                }
             }
         }
-    }
-
-    &__tabular-button {
-        @include media-breakpoint-md {
-            margin-right: 3rem;
-        }
-        margin-right: 4rem;
-    }
-
-    &__graph-button {
-        margin-right: 5rem;
     }
 
     &__type-section {
         @include media-breakpoint-md {
             width: 100%;
         }
-        min-width: 248px;
         border: 1px solid $info;
         border-radius: 4px;
         cursor: pointer;
