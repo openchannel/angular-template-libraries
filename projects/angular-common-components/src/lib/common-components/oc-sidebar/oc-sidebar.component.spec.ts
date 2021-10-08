@@ -128,13 +128,13 @@ describe('OcSidebarComponent', () => {
                 },
             },
         };
-        component.toggleListButtonType = 'button';
+        component.toggleListButtonType = 'primary';
         // tslint:disable-next-line:no-lifecycle-call
         component.ngOnChanges(changes);
         fixture.detectChanges();
 
         const button = fixture.debugElement.query(By.css('.oc-sidebar__toggle-button'));
-        expect(component._toggleListButtonType).toEqual('primary');
+        expect(component.toggleListButtonType).toEqual('primary');
         expect(button).toBeTruthy();
     });
 });
