@@ -80,7 +80,7 @@ describe('OcForgotPasswordComponent', () => {
     it('should emit event on form button click when form valid', async () => {
         component.process = false;
         component.loginModel.email = 'test@test.com';
-        spyOn(component.buttonClick, 'emit');
+        jest.spyOn(component.buttonClick, 'emit');
         fixture.detectChanges();
 
         await fixture.whenStable().then(() => {
@@ -93,7 +93,7 @@ describe('OcForgotPasswordComponent', () => {
     it('button should not emmit submit when form not valid', async () => {
         component.process = false;
         component.loginModel.email = '';
-        spyOn(component.buttonClick, 'emit');
+        jest.spyOn(component.buttonClick, 'emit');
 
         fixture.detectChanges();
 
@@ -106,7 +106,7 @@ describe('OcForgotPasswordComponent', () => {
 
     it('button should not emmit submit when process is on', () => {
         component.process = true;
-        spyOn(component.buttonClick, 'emit');
+        jest.spyOn(component.buttonClick, 'emit');
 
         fixture.detectChanges();
 

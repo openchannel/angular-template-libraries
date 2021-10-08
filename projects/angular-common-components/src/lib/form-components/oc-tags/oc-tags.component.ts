@@ -83,49 +83,46 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
     }
 
     /**
-     * Checks if a current tag has value.
-     * Calls addTagToResultList().
-     * Removes the selected item value.
-     */
-    addCurrentTagToResultList(): void {
-        if (this.currentTag) {
-            this.addTagToResultList(this.normalizeTag(this.currentTag));
-            this.dropbox.outputSelectedItem = '';
-        }
-    }
-
-    /**
      * Takes a current tag as a parameter.
      * Checks if result tags list does not include a current tag.
      * Adds a current tag to the list of result tags.
      * Updates component data.
      * Removes the current tag value.
      */
-    addTagToResultList(tag: string): void {
+    addTagToResultList(rawTag: string): void {
+        const tag = this.normalizeTag(rawTag);
+        if (tag === '') {
+            return;
+        }
         if (!this.resultTags.includes(tag)) {
             this.resultTags = [...this.resultTags, tag];
             this.updateComponentData();
             this.currentTag = '';
+            this.dropbox.outputSelectedItem = '';
         }
     }
 
     /**
      * Takes a current tag as a parameter.
      * Checks the current tag type.
-     * Returns the trimmed version of tag.
+     * Returns the trimmed version of tag or null.
      */
-    normalizeTag(tag: string): any {
+    normalizeTag(tag: number | boolean | string): number | boolean | string {
+        // return empty string, when tag is empty.
+        if (typeof tag === 'string' && tag.trim().length === 0) {
+            return '';
+        }
         if (this.tagsType === 'number') {
             return isNaN(Number(tag)) ? tag : Number(tag);
         }
         if (this.tagsType === 'boolean') {
             try {
-                return JSON.parse(tag);
+                return JSON.parse(String(tag));
             } catch (e) {
-                return tag.trim();
+                return String(tag).trim();
             }
         }
-        return tag.trim();
+        return String(tag).trim();
     }
 
     /**

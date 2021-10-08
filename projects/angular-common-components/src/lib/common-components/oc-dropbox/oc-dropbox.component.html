@@ -11,8 +11,9 @@
          (ngModelChange)="inputChange.emit($event)"
          [ngbTypeahead]="search"
          (selectItem)="selectItem($event)"
+         (keyup.enter)="selectItem()"
          [ngStyle]="customNgStyle"
          [disabled]="disabled"
          [resultTemplate]="dropElementTemplate"/>
-  <span></span>
+  <span *ngIf="this.items?.length > 0"></span>
 </div>

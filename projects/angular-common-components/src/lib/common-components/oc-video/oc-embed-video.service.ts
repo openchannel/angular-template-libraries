@@ -32,7 +32,8 @@ export class OcEmbedVideoService extends EmbedVideoService {
 
     private prepareIframe(src: string): SafeHtml {
         return this.domSanitizer.bypassSecurityTrustHtml(
-            `<iframe src="${src}" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`,
+            `<iframe src="${src}" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen
+                    width="100%" height="100%"></iframe>`,
         );
     }
 }

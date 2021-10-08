@@ -1,3 +1,18 @@
+## Release notes - angular-template-libraries - Version 2.31.0 (10/5/2021)<br>
+### Task<br>
+AT-1504 - Improve gallery component<br>
+AT-779 - Improve tag form field component behaviour<br>
+## Release notes - angular-template-libraries - Version 2.30.2 (10/4/2021)<br>
+### Bug<br>
+AT-1533 - [hotfix] Upgrade to compodoc 1.1.15<br>
+## Release notes - angular-template-libraries - Version 2.30.1 (10/4/2021)<br>
+### Bug<br>
+AT-1527 - [HOTFIX] 500 error occurring when trying to authenticate using Auth0<br>
+## Release notes - angular-template-libraries - Version 2.30.0 (10/1/2021)<br>
+### Task<br>
+AT-1507 - Field group improvements<br>
+### Story<br>
+AT-1494 - A user or developer is able to log in using OAuth 2.0 SSO<br>
 ## Release notes - angular-template-libraries - Version 2.29.0 (9/23/2021)<br>
 ### Bug<br>
 AT-1491 - [Portal] Multi-level DFA with Row label value selected from Dashboard, is showing error while adding field in that DFA.<br>

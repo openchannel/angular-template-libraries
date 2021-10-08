@@ -130,7 +130,7 @@ describe('OcFormModalComponent', () => {
     });
 
     it('should close the modal', () => {
-        spyOn(component, 'dismiss');
+        jest.spyOn(component, 'dismiss');
         fixture.detectChanges();
 
         const closeBtn = fixture.debugElement.query(By.css('.form-modal__header-close-icon')).nativeElement;
