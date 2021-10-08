@@ -10,6 +10,7 @@ import {
     TypeFieldModel,
     TypeModel,
 } from '@openchannel/angular-common-components/src/lib/auth-components';
+import { ERROR_MESSAGES_STORY_PROVIDER } from './utils.model';
 
 @Component({
     selector: 'custom-signup-story',
@@ -105,8 +106,6 @@ export class CustomSignUpStoryComponent {
      */
     @Input() customTermsDescription: TemplateRef<any>;
     @Input() enableCustomTerms: boolean = false;
-
-    constructor() {}
 }
 
 export default {
@@ -116,6 +115,7 @@ export default {
         moduleMetadata({
             declarations: [CustomSignUpStoryComponent],
             imports: [CommonModule, OcCommonLibModule, RouterTestingModule, ReactiveFormsModule, OcAuthComponentsModule],
+            providers: [ERROR_MESSAGES_STORY_PROVIDER],
         }),
         componentWrapperDecorator(story => `<div style="margin: 3em">${story}</div>`),
     ],

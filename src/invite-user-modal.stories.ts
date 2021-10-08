@@ -1,9 +1,12 @@
-import {OcCommonLibModule, OcFormComponentsModule, OcInviteModalComponent} from '@openchannel/angular-common-components';
-import {moduleMetadata} from '@storybook/angular';
-import {of} from 'rxjs';
+import { OcCommonLibModule, OcFormComponentsModule, OcInviteModalComponent } from '@openchannel/angular-common-components';
+import { moduleMetadata } from '@storybook/angular';
+import { of } from 'rxjs';
+import { NgModule } from '@angular/core';
+import { ERROR_MESSAGES_STORY_PROVIDER } from './utils.model';
 
-const modules = {
+const modules : NgModule = {
     imports: [OcCommonLibModule, OcFormComponentsModule],
+    providers: [ERROR_MESSAGES_STORY_PROVIDER],
 };
 
 export default {

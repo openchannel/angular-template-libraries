@@ -34,13 +34,13 @@ describe('OcLoginComponent', () => {
                     MockPasswordComponent,
                     MockHeadingTagDirective,
                 ],
-                providers: [NgModel],
                 imports: [
                     FormsModule,
                     CommonModule,
                     BrowserModule,
                     RouterTestingModule.withRoutes([{ path: 'signup', component: MockRoutingComponent }]),
                 ],
+                providers: [NgModel],
             }).compileComponents();
             router = TestBed.inject(Router);
         }),

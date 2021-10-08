@@ -7,6 +7,7 @@
     <div modalContent class="form-modal__modal-inner">
         <oc-form [formJsonData]="formJsonData"
                  [showButton]="false"
+                 [formId]="formId"
                  (createdForm)="setCreatedForm($event)"
                  (formDataUpdated)="setDataFromForm($event)"></oc-form>
 

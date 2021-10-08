@@ -1,32 +1,33 @@
 <div class="edit-user-form">
-    <div *ngIf="this.formConfigs?.length > 0">
-        <ng-container *ngIf="enableTypesDropdown && this.formConfigs?.length > 1">
-            <oc-tooltip-label [text]="defaultTypeLabelText"
-                              class="edit-user-form__type-label"></oc-tooltip-label>
-            <oc-select [selectValArr]="this.formConfigs"
-                       [ngModel]="currentFormConfig"
-                       (ngModelChange)="buildFormByConfig($event)"
-                       labelField="name"></oc-select>
-        </ng-container>
-        <oc-form *ngIf="mainFormModel"
-                 [formJsonData]="mainFormModel"
-                 [showButton]="false"
-                 (createdForm)="setFormGroup($event);"
-                 (formDataUpdated)="buildAndEmitResultData($event)">
-        </oc-form>
-        <div *ngIf="enableTermsCheckbox && mainFormModel" class="edit-user-form__consent">
-            <div class="edit-user-form__consent__checkbox">
-                <ng-container *ngIf="customTermsDescription; else ngtDefaultTermsDescription"
-                              [ngTemplateOutlet]="customTermsDescription"
-                              [ngTemplateOutletContext]="{$implicit: { termsControl: termsControl, enableTermsCheckbox: enableTermsCheckbox}}"></ng-container>
-            
-            </div>
-            <oc-error [control]="termsControl"
-                      [modifyErrors]="[{validator: 'required', message: 'Please confirm this checkbox'}]"></oc-error>
-        </div>
+  <div *ngIf="this.formConfigs?.length > 0">
+    <ng-container *ngIf="enableTypesDropdown && this.formConfigs?.length > 1">
+      <oc-tooltip-label [text]="defaultTypeLabelText"
+                        class="edit-user-form__type-label"></oc-tooltip-label>
+      <oc-select [selectValArr]="this.formConfigs"
+                 [ngModel]="currentFormConfig"
+                 (ngModelChange)="buildFormByConfig($event)"
+                 class="edit-user-form__type-select"
+                 labelField="name"></oc-select>
+    </ng-container>
+    <oc-form *ngIf="mainFormModel"
+             [formJsonData]="mainFormModel"
+             [showButton]="false"
+             [formId]="formId"
+             (createdForm)="setFormGroup($event);"
+             (formDataUpdated)="buildAndEmitResultData($event)">
+    </oc-form>
+    <div *ngIf="enableTermsCheckbox && mainFormModel" class="edit-user-form__consent">
+      <div class="edit-user-form__consent__checkbox">
+          <ng-container *ngIf="customTermsDescription; else ngtDefaultTermsDescription"
+                        [ngTemplateOutlet]="customTermsDescription"
+                        [ngTemplateOutletContext]="{$implicit: { termsControl: termsControl, enableTermsCheckbox: enableTermsCheckbox}}"></ng-container>
+
+      </div>
+      <oc-error [formId]="formId" [control]="termsControl"></oc-error>
     </div>
-    <ng-template *ngIf="!this.currentFormConfig"
-                 [ngTemplateOutlet]="defaultEmptyConfigsErrorTemplate ? defaultEmptyConfigsErrorTemplate : emptyConfigsError"></ng-template>
+  </div>
+  <ng-template *ngIf="!this.currentFormConfig"
+               [ngTemplateOutlet]="defaultEmptyConfigsErrorTemplate ? defaultEmptyConfigsErrorTemplate : emptyConfigsError"></ng-template>
 </div>
 
 <ng-template #emptyConfigsError>

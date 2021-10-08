@@ -1,7 +1,19 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    Output,
+    TemplateRef,
+    ViewChild
+} from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { ComponentsUserLoginModel } from '../models/auth-types.model';
-import { HeadingTag } from '@openchannel/angular-common-components/src/lib/common-components';
+import {
+    ErrorContext,
+    ErrorMessageFormId,
+    HeadingTag,
+    OcErrorService,
+} from '@openchannel/angular-common-components/src/lib/common-components';
 /**
  * Login component. Represent login page with auth logic.
  *
@@ -62,16 +74,26 @@ export class OcLoginComponent {
      * Error code for incorrect email.
      */
     @Input() incorrectEmailErrorCode: string = 'email_is_incorrect';
-
+    /**
+     * Error html template for {@link incorrectEmailErrorCode}.
+     */
+    @Input() incorrectEmailErrorCodeTemplate: TemplateRef<ErrorContext>;
     /**
      * Error code for not activated email.
      */
     @Input() notVerifiedEmailErrorCode: string = 'email_not_verified';
-
+    /**
+     * Error html template for {@link notVerifiedEmailErrorCode}.
+     */
+    @Input() notVerifiedEmailErrorTemplate: TemplateRef<ErrorContext>;
     /**
      * Error code for password change required.
      */
     @Input() passwordResetRequiredErrorCode: string = 'password_reset_required';
+    /**
+     * Error html template for {@link passwordResetRequiredErrorCode}.
+     */
+    @Input() passwordResetRequiredErrorTemplate: TemplateRef<ErrorContext>;
 
     /**
      * Output event that emits on model change and pass Login model
@@ -95,6 +117,11 @@ export class OcLoginComponent {
      * 'h2'.
      */
     @Input() headingTag: HeadingTag = 'h1';
+
+    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    formId: ErrorMessageFormId = 'login';
+
+    constructor(public errorService: OcErrorService) {}
 
     /**
      * Submit function emit changed login value check form on validity and submit `true` if everything is ok.
@@ -122,35 +149,6 @@ export class OcLoginComponent {
         if (this.form.form.controls.password.errors && this.form.form.controls.password.errors.serverErrorValidator) {
             this.form.form.controls.password.setErrors(null);
         }
-    }
-
-    /**
-     * Checks if there are server errors for the whole form
-     * @returns boolean
-     */
-    isServerErrorExist(): boolean {
-        if (this.form) {
-            for (const control of Object.keys(this.form.controls)) {
-                if (this.form.controls[control].hasError('serverErrorValidator')) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Checks if there are server errors for provided model
-     * @returns boolean
-     */
-    hasServerError(control: NgModel, errorCode: string): boolean {
-        if (control.errors) {
-            const serverErrorValidator = control.errors.serverErrorValidator;
-            if (serverErrorValidator && serverErrorValidator.code === errorCode) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**

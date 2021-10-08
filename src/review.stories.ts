@@ -6,8 +6,10 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OcFormComponentsModule } from '@openchannel/angular-common-components/src/lib/form-components';
 import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
+import { NgModule } from '@angular/core';
+import { ERROR_MESSAGES_STORY_PROVIDER } from './utils.model';
 
-const modules = {
+const modules: NgModule = {
     imports: [
         AngularSvgIconModule.forRoot(),
         NgbModule,
@@ -18,6 +20,7 @@ const modules = {
         OcCommonLibModule,
     ],
     declarations: [OcRatingComponent],
+    providers: [ERROR_MESSAGES_STORY_PROVIDER],
 };
 
 export default {

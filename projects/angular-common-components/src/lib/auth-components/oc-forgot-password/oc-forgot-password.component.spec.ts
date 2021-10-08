@@ -35,7 +35,6 @@ describe('OcForgotPasswordComponent', () => {
                     MockRoutingComponent,
                     MockHeadingTagDirective,
                 ],
-                providers: [NgModel],
                 imports: [
                     FormsModule,
                     CommonModule,
@@ -46,6 +45,7 @@ describe('OcForgotPasswordComponent', () => {
                         { path: 'login', component: MockRoutingComponent },
                     ]),
                 ],
+                providers: [NgModel],
             }).compileComponents();
             router = TestBed.inject(Router);
             location = TestBed.inject(Location);

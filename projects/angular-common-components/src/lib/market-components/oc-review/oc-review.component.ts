@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Review } from '../models/oc-review-details-model';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
 
 @Component({
     selector: 'oc-review',
@@ -68,6 +69,8 @@ export class OcReviewComponent implements OnInit, OnDestroy {
      * @private
      */
     private destroy$: Subject<void> = new Subject();
+
+    formId: ErrorMessageFormId = 'review';
 
     constructor(private fb: FormBuilder) {}
 

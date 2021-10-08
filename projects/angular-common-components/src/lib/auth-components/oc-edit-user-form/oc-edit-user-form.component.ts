@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TypeFieldModel, TypeModel } from '../models/oc-type-definition.model';
 import { OcCheckboxData, OcEditUserFormConfig, OcEditUserResult, OCOrganization } from '../models/oc-edit-user-form.model';
 import { TypeMergeUtils } from '../utils/type-merge.util';
+import { ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
 
 @Component({
     selector: 'oc-edit-user-form',
@@ -23,7 +24,8 @@ export class OcEditUserFormComponent implements OnInit {
     @Input() defaultEmptyConfigsErrorTemplate: TemplateRef<any>;
     @Input() defaultEmptyConfigsErrorMessage: string = 'There are no forms configured';
     @Input() customTermsDescription: TemplateRef<any>;
-
+    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    @Input() formId: ErrorMessageFormId = 'editUser';
     @Output() resultFormDataChange = new EventEmitter<OcEditUserResult>();
     @Output() createdFormGroup = new EventEmitter<FormGroup>();
 

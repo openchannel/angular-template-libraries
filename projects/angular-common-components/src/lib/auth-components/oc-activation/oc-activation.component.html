@@ -14,7 +14,7 @@
                 <oc-label text="Activation code" class="activation__form-group-label"></oc-label>
                 <oc-input #code=ngModel [(ngModel)]="activationModel.code" placeholder="Activation code"
                           name="code" ngDefaultControl required="true" class="activation__form-group-input"></oc-input>
-                <oc-error [control]="code" field="code" class="activation__form-group-error"></oc-error>
+                <oc-error [formId]="formId" [control]="code" field="code" class="activation__form-group-error"></oc-error>
             </div>
             <oc-button (click)="submitForm(activationForm)"
                        [process]="process" text="Activate"
