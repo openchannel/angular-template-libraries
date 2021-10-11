@@ -95,11 +95,11 @@
 </div>
 
 <ng-template #defaultAppDropdown>
-    <oc-dropdown-button *ngIf="appDropdownSelectedValue"
-                        [options]="appDropdownValues"
-                        [selected]="appDropdownSelectedValue"
+    <oc-dropdown-button *ngIf="this.chartData?.apps?.activeItem"
+                        [options]="chartData.apps.items"
+                        [selected]="chartData.apps.activeItem"
                         [ascendingSvgIcon]="appDropdownAscendingSVGIcon"
                         [descendingSvgIcon]="appDropdownDescendingSVGIcon"
-                        (selectedChange)="updateChartOptions(this.chartData.apps, $event.id)"
+                        (selectedChange)="chartData.apps.activeItem = $event; updateChartData()"
                         class="chart__type-apps chart__type-section"></oc-dropdown-button>
 </ng-template>

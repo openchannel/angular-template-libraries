@@ -1,5 +1,10 @@
 import { moduleMetadata } from '@storybook/angular';
-import { ChartLayoutTypeModel, OcChartComponent, OcCommonLibModule } from 'projects/angular-common-components/src/public-api';
+import {
+    ChartLayoutTypeModel,
+    ChartStatisticAppModel,
+    OcChartComponent,
+    OcCommonLibModule
+} from 'projects/angular-common-components/src/public-api';
 import { sum } from 'lodash';
 import { NgModule } from '@angular/core';
 
@@ -102,37 +107,42 @@ const fields = [
     },
 ];
 
-const apps = [
-    {
-        id: 'all-app',
-        label: 'All apps',
-        active: true,
-    },
-    {
-        id: 'app-1',
-        label: 'API Connections',
-    },
-    {
-        id: 'app-2',
-        label: 'Lead Accounting',
-    },
-    {
-        id: 'app-3',
-        label: 'Full CRM',
-    },
-    {
-        id: 'app-4',
-        label: 'Intersect AI Prediction',
-    },
-    {
-        id: 'app-5',
-        label: 'Fuel CRM Lite',
-    },
-    {
-        id: 'app-6',
-        label: 'Long app name 12345678901234567890123456789012345678901234567890',
-    },
-];
+const selectedApp = {
+    id: 'all-app',
+    label: 'All apps',
+    active: true,
+};
+
+const apps = {
+    activeItem: selectedApp,
+    items: [
+        selectedApp,
+        {
+            id: 'app-1',
+            label: 'API Connections',
+        },
+        {
+            id: 'app-2',
+            label: 'Lead Accounting',
+        },
+        {
+            id: 'app-3',
+            label: 'Full CRM',
+        },
+        {
+            id: 'app-4',
+            label: 'Intersect AI Prediction',
+        },
+        {
+            id: 'app-5',
+            label: 'Fuel CRM Lite',
+        },
+        {
+            id: 'app-6',
+            label: 'Long app name 12345678901234567890123456789012345678901234567890',
+        },
+    ],
+};
 
 const ChartComponent = (args: OcChartComponent) => ({
     component: OcChartComponent,

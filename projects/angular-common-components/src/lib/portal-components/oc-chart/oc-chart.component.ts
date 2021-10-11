@@ -118,8 +118,6 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
     dropdownTypes: ChartStatisticFiledModel[];
     /** chosen item from the dropdown menu */
     dropdownSelectedType: ChartStatisticFiledModel;
-    appDropdownValues: ChartStatisticParameterModel[];
-    appDropdownSelectedValue: ChartStatisticParameterModel;
     /** 2d context for the chart canvas */
     context: CanvasRenderingContext2D;
     /** header text for the tabular data labels column */
@@ -354,11 +352,11 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
         }
     }
 
-    private updateChartData(): void {
+    updateChartData(): void {
         this.changeChartOptions.emit({
             field: this.chartData?.fields?.find(item => item?.active),
             period: this.chartData?.periods?.find(item => item?.active),
-            selectedApp: this.chartData?.apps?.find(item => item?.active),
+            selectedApp: this.chartData?.apps?.activeItem,
         });
     }
 
@@ -385,9 +383,6 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
     private updateDropdownValues(): void {
         this.dropdownTypes = this.chartData?.fields || [];
         this.dropdownSelectedType = this.dropdownTypes.find(v => v.active);
-
-        this.appDropdownValues = this.chartData?.apps || [];
-        this.appDropdownSelectedValue = this.appDropdownValues.find(v => v.active);
     }
 
     /**

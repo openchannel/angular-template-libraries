@@ -19,7 +19,10 @@ export interface ChartStatisticModel {
     /**
      * apps dropdown
      */
-    apps?: ChartStatisticFiledModel[];
+    apps?: {
+        activeItem: ChartStatisticAppModel;
+        items: ChartStatisticAppModel[];
+    };
 }
 /**
  * Interface for the [Chart]{@link OcChartComponent} component's data.
@@ -111,7 +114,7 @@ export interface ChartOptionsChange {
     /** object of chosen period */
     period: ChartStatisticPeriodModel;
 
-    selectedApp?: ChartStatisticParameterModel;
+    selectedApp?: ChartStatisticAppModel;
 }
 
 /**
@@ -125,6 +128,10 @@ export interface ChartStatisticParameterModel extends DropdownItemModel {
     label: string;
     /** marks parameter as chosen */
     active?: boolean;
+}
+
+export interface ChartStatisticAppModel extends DropdownItemModel {
+    id: string;
 }
 
 export enum ChartLayoutTypeModel {
