@@ -3,14 +3,9 @@
 
 .form {
     &__field {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
         display: flex;
         flex-direction: column;
-        @include media-breakpoint-sm {
-            margin-top: 3rem;
-            margin-bottom: 3rem;
-        }
 
         &_direction_row_reverse {
             flex-direction: row-reverse;

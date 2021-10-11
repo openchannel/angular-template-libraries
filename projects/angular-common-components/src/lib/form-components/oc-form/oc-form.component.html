@@ -1,15 +1,28 @@
 <div class="form-steps">
     <ng-container *ngIf="hasFieldGroup; else singleForm">
-        <oc-tooltip-label *ngIf="showGroupHeading"
-                          [text]="stepLabel"
-                          class="form-steps__label"
-                          [required]="currentForm.label?.attributes?.required"
-                          [description]="currentForm.label?.description"></oc-tooltip-label>
-        <oc-single-form [formJsonData]="currentForm.formConfig"
-                        [generatedForm]="currentForm"
-                        [showButton]="false"
-                        [labelPosition]="labelPosition"
-                        (formDataUpdated)="onFormDataUpdated($event)"></oc-single-form>
+        <div class="form-steps__content"
+             [class.form-steps__content-responsive]="showProgressBar">
+            <div class="form-steps__content-progressbar">
+                <oc-progress-bar *ngIf="showProgressBar"
+                                 [progressbarData]="progressBarSteps"
+                                 [currentStep]="currentStep"></oc-progress-bar>
+            </div>
+            <div class="form-steps__content-body">
+                <oc-tooltip-label *ngIf="showGroupHeading"
+                                  [text]="stepLabel"
+                                  class="form-steps__content-body-label"
+                                  [required]="currentForm.label?.attributes?.required"
+                                  [description]="currentForm.label?.description"></oc-tooltip-label>
+                <p class="form-steps__content-body-description"
+                   *ngIf="showGroupDescription">{{stepDescription}}</p>
+                <oc-single-form [formJsonData]="currentForm.formConfig"
+                                [generatedForm]="currentForm"
+                                [showButton]="false"
+                                [labelPosition]="labelPosition"
+                                [formId]="formId"
+                                (formDataUpdated)="onFormDataUpdated($event)"></oc-single-form>
+            </div>
+        </div>
     </ng-container>
     <div class="form-steps__options form-steps__options--{{buttonPosition}}"
          *ngIf="showButton">
@@ -23,13 +36,13 @@
                    class="form__button"
                    type="secondary"
                    text="Previous step"></oc-button>
+        <ng-container *ngIf="additionalButton"
+                      [ngTemplateOutlet]="additionalButton"></ng-container>
         <oc-button *ngIf="currentStep < customForm?.length"
                    (click)="navigateSteps('next')"
                    class="form__button"
                    type="primary"
                    text="Next step"></oc-button>
-        <ng-container *ngIf="additionalButton && isLastStep"
-                      [ngTemplateOutlet]="additionalButton"></ng-container>
         <oc-button *ngIf="showSubmitButton && isLastStep"
                    (click)="onSubmitButtonClicked()"
                    [process]="process"
@@ -43,6 +56,7 @@
     <oc-single-form [formJsonData]="formJsonData"
                     [generatedForm]="generatedForm"
                     [labelPosition]="labelPosition"
+                    [formId]="formId"
                     [process]="process"
                     [showButton]="false"
                     [showGroupHeading]="showGroupHeading"

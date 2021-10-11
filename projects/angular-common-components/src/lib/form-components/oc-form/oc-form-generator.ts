@@ -27,9 +27,7 @@ export class OcFormGenerator {
                     this.setValidators(group[inputTemplate?.id], inputTemplate, { isPassword: true });
                     break;
                 case 'tags':
-                    group[inputTemplate?.id] = new FormControl(
-                        inputTemplate?.defaultValue && inputTemplate?.defaultValue.length > 0 ? inputTemplate?.defaultValue : [],
-                    );
+                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue?.length > 0 ? inputTemplate?.defaultValue : []);
                     this.setValidators(group[inputTemplate?.id], inputTemplate, { isList: true });
                     break;
                 case 'multiFile':
@@ -63,20 +61,11 @@ export class OcFormGenerator {
                     this.setValidators(group[inputTemplate?.id], inputTemplate, { isColor: true });
                     break;
                 case 'booleanTags':
-                    group[inputTemplate?.id] = new FormControl(
-                        inputTemplate?.defaultValue ? inputTemplate?.defaultValue : ['true', 'false'],
-                    );
+                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue?.length ? inputTemplate?.defaultValue : []);
                     this.setValidators(group[inputTemplate?.id], inputTemplate, { isList: true, isBooleanTags: true });
                     break;
                 case 'numberTags':
-                    if (inputTemplate?.attributes.maxCount) {
-                        group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ? inputTemplate?.defaultValue : []);
-                        group[inputTemplate?.id].setValue(this.fillArrayForNumberTags(inputTemplate?.attributes.maxCount));
-                    } else {
-                        group[inputTemplate?.id] = new FormControl(
-                            inputTemplate?.defaultValue && inputTemplate?.defaultValue.length > 0 ? inputTemplate?.defaultValue : [1, 2, 3],
-                        );
-                    }
+                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue?.length > 0 ? inputTemplate?.defaultValue : []);
                     this.setValidators(group[inputTemplate?.id], inputTemplate, { isList: true, isNumberTags: true });
                     break;
                 case 'date':
@@ -139,7 +128,10 @@ export class OcFormGenerator {
         },
     ): void {
         const validators: ValidatorFn[] = [];
-        const attributes = inputTemplate.attributes;
+        const { attributes } = inputTemplate;
+        if (!attributes) {
+            return;
+        }
         Object.keys(attributes).forEach(key => {
             switch (key) {
                 case 'required':
@@ -345,18 +337,6 @@ export class OcFormGenerator {
                 return { passwordValidator: {} };
             }
         };
-    }
-    /**
-     * Creation of the number filled array
-     * for 'numberTags' component type
-     * @param maxCount max count of the tags
-     */
-    static fillArrayForNumberTags(maxCount: number): number[] {
-        const resultArr: number[] = [];
-        for (let i = 0; i < maxCount; i++) {
-            resultArr.push(i + 1);
-        }
-        return resultArr;
     }
     /**
      * Custom validator for numbers

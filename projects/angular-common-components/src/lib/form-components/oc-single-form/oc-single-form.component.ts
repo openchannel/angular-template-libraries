@@ -3,6 +3,7 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
 import { AppFormModel } from '../model/app-form-model';
+import { ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
 
 /**
  * Form component. Represents form builder from given config with customization.
@@ -119,6 +120,9 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
      * Already generated Form Group
      */
     @Input() generatedForm: FormGroup;
+
+    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    @Input() formId: ErrorMessageFormId = null;
 
     /**
      * Returning all form fields value to the parent component

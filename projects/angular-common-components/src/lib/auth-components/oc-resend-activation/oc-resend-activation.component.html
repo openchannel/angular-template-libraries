@@ -16,7 +16,7 @@
                 <oc-input #email=ngModel [(ngModel)]="activationModel.email" placeholder="Email"
                           name="code" ngDefaultControl required="true" ocEmailValidator
                           class="resend-activation__email-group-input"></oc-input>
-                <oc-error [control]="email" field="email" class="resend-activation__email-group-error"></oc-error>
+                <oc-error [formId]="formId" [control]="email" field="email" class="resend-activation__email-group-error"></oc-error>
             </div>
             <oc-button (click)="submitForm(activationForm)"
                        [process]="process" text="Resend"

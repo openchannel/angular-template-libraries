@@ -12,5 +12,4 @@ export const parameters = {
     viewports: MINIMAL_VIEWPORTS,
   },
   controls: { expanded: true },
-
 };

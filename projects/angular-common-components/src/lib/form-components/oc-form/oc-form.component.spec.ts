@@ -4,8 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import {
     MockButtonComponent,
+    MockProgressbarComponent,
     MockSingleFormComponent,
-    MockTooltipComponent
+    MockTooltipComponent,
 } from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcFormComponent', () => {
@@ -21,6 +22,7 @@ describe('OcFormComponent', () => {
                     MockButtonComponent,
                     MockTooltipComponent,
                     MockSingleFormComponent,
+                    MockProgressbarComponent,
                 ],
                 imports: [FormsModule, ReactiveFormsModule],
             }).compileComponents();
@@ -131,7 +133,7 @@ describe('OcFormComponent', () => {
 
     it('should create', () => {
         component.displayType = 'wizard';
-        spyOn(component.createdForm, 'emit');
+        jest.spyOn(component.createdForm, 'emit');
         fixture.detectChanges();
 
         expect(component).toBeTruthy();
@@ -140,20 +142,15 @@ describe('OcFormComponent', () => {
 
     it('should hide buttons', () => {
         component.showButton = false;
-
         fixture.detectChanges();
-
         const button = fixture.debugElement.query(By.css('oc-button'));
-
         expect(button).toBeNull();
     });
 
     it('should show text on button', () => {
         component.successButtonText = 'Text Button';
         fixture.detectChanges();
-
         const button = fixture.debugElement.queryAll(By.css('oc-button'))[1].componentInstance;
-
         expect(button.text).toEqual('Text Button');
     });
 });

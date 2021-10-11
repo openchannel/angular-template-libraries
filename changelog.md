@@ -1,3 +1,34 @@
+## Release notes - angular-template-libraries - Version 2.33.0 (10/7/2021)<br>
+### Task<br>
+AT-1221 - Improve image crop component<br>
+### Bug<br>
+AT-1162 - Mobile search result page should not open filters by default<br>
+AT-1100 - [UI][Marketsite][Android] Contact us, Invite a member, Buy now modals are not rendering as per the mock designs.<br>
+AT-1099 - [UI][Marketsite][Android] My Profile and My Company pages are not rendering as per Mock design.<br>
+### Task<br>
+AT-295 - Support larger screens breakpoints (≥1920px)<br>
+## Release notes - angular-template-libraries - Version 2.32.0 (10/7/2021)<br>
+### Bug<br>
+AT-1508 - Drag and drop on multi file and image fields<br>
+### Task<br>
+AT-1505 - Allow customization of form error messages<br>
+### Bug<br>
+AT-1184 - [Market/Portal][Tags][Number Tags] User should able Add new Tags from Template and select which are exist in Dashboard.<br>
+## Release notes - angular-template-libraries - Version 2.31.0 (10/5/2021)<br>
+### Task<br>
+AT-1504 - Improve gallery component<br>
+AT-779 - Improve tag form field component behaviour<br>
+## Release notes - angular-template-libraries - Version 2.30.2 (10/4/2021)<br>
+### Bug<br>
+AT-1533 - [hotfix] Upgrade to compodoc 1.1.15<br>
+## Release notes - angular-template-libraries - Version 2.30.1 (10/4/2021)<br>
+### Bug<br>
+AT-1527 - [HOTFIX] 500 error occurring when trying to authenticate using Auth0<br>
+## Release notes - angular-template-libraries - Version 2.30.0 (10/1/2021)<br>
+### Task<br>
+AT-1507 - Field group improvements<br>
+### Story<br>
+AT-1494 - A user or developer is able to log in using OAuth 2.0 SSO<br>
 ## Release notes - angular-template-libraries - Version 2.29.0 (9/23/2021)<br>
 ### Bug<br>
 AT-1491 - [Portal] Multi-level DFA with Row label value selected from Dashboard, is showing error while adding field in that DFA.<br>

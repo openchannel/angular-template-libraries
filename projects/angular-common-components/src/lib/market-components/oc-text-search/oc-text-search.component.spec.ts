@@ -43,7 +43,7 @@ describe('OcTextSearchComponent', () => {
         const input = fixture.debugElement.query(By.css('input'));
         input.nativeElement.value = 'Hello test!';
 
-        spyOn(component.enterSearch, 'emit');
+        jest.spyOn(component.enterSearch, 'emit');
         fixture.detectChanges();
         input.nativeElement.dispatchEvent(new Event('input'));
 
@@ -58,7 +58,7 @@ describe('OcTextSearchComponent', () => {
         const img: HTMLImageElement = fixture.debugElement.query(By.css('svg-icon')).nativeElement;
         input.value = 'Hello test!';
 
-        spyOn(component.enterSearch, 'emit');
+        jest.spyOn(component.enterSearch, 'emit');
         fixture.detectChanges();
 
         input.dispatchEvent(new Event('input'));

@@ -36,6 +36,7 @@ $yellow: #ffc820 !default;
 $green-alert: #74b675 !default;
 $black: #000 !default;
 $white: #fff !default;
+$danger-light: #ffb0b0 !default;
 $dark: #343a40;
 
 // APPS STATUS COLOR INDICATOR
@@ -89,6 +90,27 @@ $spacers: (
     8: (
         $spacer * 8
     )
+);
+
+// OVERRIDING BOOTSTRAP GRID BREAKPOINTS
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1400px,
+        xxxl: 1920px
+);
+
+// OVERRIDING BOOTSTRAP CONTAINER-MAX-WIDTHS
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px,
+        xxl: 1320px,
+        xxxl: 1820px
 );
 
 @mixin root-prop($prop: null, $value: null) {

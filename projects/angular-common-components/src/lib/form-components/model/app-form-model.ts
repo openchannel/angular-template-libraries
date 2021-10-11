@@ -1,3 +1,5 @@
+import { ErrorMessage } from '@openchannel/angular-common-components/src/lib/common-components';
+
 export interface AppFormField {
     id: string;
     label: string;
@@ -35,4 +37,5 @@ export interface AppFormFieldAttributes {
     height?: number;
     hash?: string;
     accept?: any;
+    overrideErrorMessage?: ErrorMessage;
 }

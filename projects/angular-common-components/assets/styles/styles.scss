@@ -617,23 +617,23 @@ oc-select {
         &:before {
             width: 0;
             height: 0;
-            border-right: 4px solid transparent;
-            border-left: 4px solid transparent;
-            border-top: 6px solid $info;
-            left: -1px;
-            top: -0.8px;
+            border-right: 6px solid transparent;
+            border-left: 6px solid transparent;
+            border-top: 8px solid #c9d5ea;
+            left: -3px;
+            top: -2.5px;
         }
 
         &:after {
-            content: '';
+            content: "";
             width: 0;
             height: 0;
             border-left: 3px solid transparent;
-            border-right: 3px solid transparent;
-            border-top: 4.5px solid $white;
+            border-right: 4px solid transparent;
+            border-top: 4.5px solid #fff;
             position: absolute;
-            left: 0;
-            top: -0.9px;
+            left: 0px;
+            top: -2.5px;
         }
     }
 
@@ -642,8 +642,8 @@ oc-select {
         color: $body-color;
         font-size: 12px;
         line-height: 1.5;
-        border-radius: 4px;
-        border: solid 1px $info;
+        border-radius: 6px;
+        border: solid 2px $info;
         padding: 3px 10px;
     }
 }
@@ -690,7 +690,17 @@ oc-button.tags__button-add {
 }
 
 .oc-card__icon-img {
-    @include image-alt-text
+    @include image-alt-text;
+}
+
+.media-modal {
+    .modal-dialog {
+        @include media-breakpoint-md {
+            margin: auto;
+        }
+        max-width: max-content;
+        margin: 5rem auto;
+    }
 }
 
 .chart {

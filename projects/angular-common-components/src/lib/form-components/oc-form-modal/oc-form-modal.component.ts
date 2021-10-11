@@ -2,6 +2,7 @@ import { Component, Input, TemplateRef } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup } from '@angular/forms';
 import { AppFormModel } from '../model/app-form-model';
+import { ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
 
 /**
  * Form modal component. Represents form in modal window and all related logic.
@@ -53,6 +54,9 @@ export class OcFormModalComponent {
      * Reject button template ref. Use it if you want to change deafault reject button.
      */
     @Input() rejectButton: TemplateRef<any>;
+
+    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    @Input() formId: ErrorMessageFormId = null;
 
     /**
      * Angular form group
