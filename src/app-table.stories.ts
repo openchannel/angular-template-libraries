@@ -1,8 +1,8 @@
-import { componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
+import { componentWrapperDecorator, moduleMetadata, Story } from '@storybook/angular';
 import {
     AppListing,
     OcPortalComponentsModule,
-    OcAppTableComponent,
+    OcAppTableComponent
 } from '@openchannel/angular-common-components/src/lib/portal-components';
 import { FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 
@@ -13,14 +13,19 @@ const modules = {
 export default {
     title: 'App List [BEM]',
     component: OcAppTableComponent,
-    decorators: [moduleMetadata(modules), componentWrapperDecorator(story => `<div style="max-width: 1110px;">${story}</div>`)],
+    decorators: [
+        moduleMetadata(modules),
+        componentWrapperDecorator(story => `<div style="max-width: 1110px;">${story}</div>`)
+    ],
 };
 
 const ListGridComponent = (args: OcAppTableComponent) => ({
     component: OcAppTableComponent,
     moduleMetadata: modules,
     props: args,
+    excludeStories: /.*[M|m]ock.*/,
 });
+
 const statElement = {
     '90day': 10,
     '30day': 20,
@@ -61,6 +66,7 @@ const appWithLargeFields: Partial<FullAppData> = {
         reason: null,
         lastUpdated: null,
     },
+    reviewCount: 25,
     children: [appWithLargeFieldsChildApp as FullAppData],
 };
 
@@ -404,6 +410,50 @@ AppGrid.args = {
     properties: propsConfig,
     noAppMessage: 'No Apps Has Been Added Yet',
 };
+
+const CustomAppTableTemplate: Story<OcAppTableComponent> = (args) => ({
+    template: `
+         <oc-app-table 
+         [properties]="properties" 
+         [noAppMessage]="noAppMessage"
+         [activeColumns]="activeColumns"
+         [modifyColumns]="{
+           'you-custom-review-column': { headerCellTemplate: reviewHeaderCell, rowCellTemplate: reviewRowCell },
+           'you-custom-description-column': { headerCellTemplate: descriptionHeaderCell, rowCellTemplate: descriptionRowCell },
+           'create-date': {rowCellTemplate: createdDateRowCell }
+         }">
+         </oc-app-table>
+         
+         <ng-template #reviewHeaderCell>
+             <span style="display: block; min-width: 100px;">Reviews</span>
+         </ng-template>
+         
+         <ng-template #reviewRowCell let-ctx>
+             <span>{{ctx.app.reviewCount}}</span>
+         </ng-template>
+         
+         <ng-template #descriptionHeaderCell>
+             <span>Description</span>
+         </ng-template>
+         
+         <ng-template #descriptionRowCell let-ctx>
+             <span style="max-height: 48px; display: block; overflow-y: hidden">{{ctx.app.customData.summary}}</span>
+         </ng-template>
+         
+         <ng-template #createdDateRowCell let-ctx >
+             <span style="max-height: 48px; display: block; overflow-y: hidden">{{ctx.app.created | date:'M:d:yyyy'}}</span>
+         </ng-template>`,
+    props: { ...args }
+});
+
+export const CustomAppTable = CustomAppTableTemplate.bind({});
+
+CustomAppTable.args = {
+    properties: propsConfig,
+    noAppMessage: 'No Apps Has Been Added Yet',
+    activeColumns: ['left-placeholder', 'create-date', 'name', 'you-custom-review-column', 'you-custom-description-column', 'status', 'app-options', 'right-placeholder']
+};
+
 
 export const AppGridEmpty = ListGridComponent.bind({});
 
