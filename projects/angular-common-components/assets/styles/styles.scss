@@ -619,7 +619,7 @@ oc-select {
             height: 0;
             border-right: 6px solid transparent;
             border-left: 6px solid transparent;
-            border-top: 8px solid #c9d5ea;
+            border-top: 8px solid $info;
             left: -3px;
             top: -2.5px;
         }
@@ -630,7 +630,7 @@ oc-select {
             height: 0;
             border-left: 3px solid transparent;
             border-right: 4px solid transparent;
-            border-top: 4.5px solid #fff;
+            border-top: 4.5px solid $white;
             position: absolute;
             left: 0px;
             top: -2.5px;
@@ -700,5 +700,34 @@ oc-button.tags__button-add {
         }
         max-width: max-content;
         margin: 5rem auto;
+    }
+}
+// Main class for the tooltip
+.oc-tooltip {
+    .tooltip-inner {
+        background-color: $white;
+        border: solid 1px $info;
+        color: $body-color;
+        @include font-size-sm;
+    }
+}
+.oc-tooltip.bs-tooltip-right, .bs-tooltip-auto[x-placement^="right"] {
+    .arrow:before {
+        border-right-color: $info;
+    }
+}
+.oc-tooltip.bs-tooltip-left, .bs-tooltip-auto[x-placement^="left"] {
+    .arrow:before {
+        border-left-color: $info;
+    }
+}
+.oc-tooltip.bs-tooltip-top, .bs-tooltip-auto[x-placement^="top"] {
+    .arrow:before {
+        border-top-color: $info;
+    }
+}
+.oc-tooltip.bs-tooltip-bottom, .bs-tooltip-auto[x-placement^="bottom"] {
+    .arrow:before {
+        border-bottom-color: $info;
     }
 }
