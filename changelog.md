@@ -1,3 +1,13 @@
+## Release notes - angular-template-libraries - Version 2.34.0 (10/12/2021)<br>
+### Bug<br>
+AT-1543 - Fix PROD log for CAP UnknownContentTypeException<br>
+### Task<br>
+AT-1379 - Show more/less button on filters component<br>
+### Bug<br>
+AT-1165 - Wrong font size for titles on app details page<br>
+AT-1026 - [Download][App Details] After force logging in user should be redirected to the App Details page.<br>
+AT-632 - Back to the App Store link is not working on app details page<br>
+AT-583 - [Edit App] Validation message is not showing for invalid data in fields,<br>
 ## Release notes - angular-template-libraries - Version 2.33.0 (10/7/2021)<br>
 ### Task<br>
 AT-1221 - Improve image crop component<br>

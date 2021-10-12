@@ -25,12 +25,23 @@
         flex-wrap: wrap;
         list-style: none;
         margin-bottom: 0;
-        margin-top: 2rem;
         padding-left: 0;
+
+        &_collapsing {
+            list-style: none;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-left: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            &_hidden {
+                max-height: 0;
+            }
+        }
 
         &-item {
             cursor: pointer;
-            margin-bottom: 3rem;
+            margin-top: 3rem;
 
             &-expand-line {
                 display: flex;
@@ -81,6 +92,16 @@
 
         &-item {
             margin-top: 2rem;
+        }
+    }
+
+    &__toggle-button {
+        display: block;
+        width: max-content;
+        .oc-button_link {
+            &:active, &:focus {
+                border: 0;
+            }
         }
     }
 }
