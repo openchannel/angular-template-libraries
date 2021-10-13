@@ -3,8 +3,9 @@ import {
     Component,
     ElementRef,
     EventEmitter,
+    HostListener,
     Input,
-    OnChanges,
+    OnChanges, OnInit,
     Output,
     QueryList,
     SimpleChanges,
@@ -29,7 +30,7 @@ import { FormProgressbarStep } from '../model/progress-bar-item.model';
     templateUrl: './oc-progress-bar.component.html',
     styleUrls: ['./oc-progress-bar.component.css'],
 })
-export class OcProgressBarComponent implements AfterViewInit, OnChanges {
+export class OcProgressBarComponent implements OnInit, AfterViewInit, OnChanges {
     @ViewChildren('progressBarSteps') progressBarSteps: QueryList<ElementRef>;
 
     /**
@@ -48,9 +49,10 @@ export class OcProgressBarComponent implements AfterViewInit, OnChanges {
     /**
      * You can set the number of steps to show.
      * If set to 0, this option is turned off and all the steps will be visible.
+     * Default value is passed from parent form component.
      * @default: 0
      */
-    @Input() maxStepsToShow: number = 6;
+    @Input() maxStepsToShow: number;
 
     /**
      * You can enable/disable text truncation for step titles.
@@ -58,16 +60,52 @@ export class OcProgressBarComponent implements AfterViewInit, OnChanges {
      */
     @Input() enableTextTruncate: boolean = true;
 
+    /**
+     * When a user clicks on a specific step, it emits step value to a form component.
+     */
     @Output() readonly jumpToStep = new EventEmitter<number>();
 
     staticOffsetValue: number;
     currentOffsetValue: number;
+    showSteps: number;
+
+    /**
+     * A listener that sets a static offset value for progressbar on window resize.
+     * On responsive view shows no more than three steps.
+     */
+    @HostListener('window:resize', ['$event']) onResize(event: any): void {
+        this.maxStepsToShow = event.target.innerWidth <= 768 ? 3 : this.showSteps;
+        this.getStaticOffsetValue();
+    }
+
+    ngOnInit(): void {
+        this.showSteps = this.maxStepsToShow;
+        if (window.innerWidth <= 768) {
+            this.maxStepsToShow = 3;
+        }
+    }
 
     ngAfterViewInit(): void {
-        this.staticOffsetValue = this.progressBarSteps.first.nativeElement.offsetWidth;
+        this.getStaticOffsetValue();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+        this.getCurrentOffsetValue(changes);
+    }
+
+    /**
+     * Sets a static offset value for progressbar.
+     */
+    getStaticOffsetValue(): void {
+        this.staticOffsetValue = this.progressBarSteps.first.nativeElement.offsetWidth;
+    }
+
+    /**
+     * Fired by onChanges, it is used to calculate progressBar slide effect offset when going out of its width.
+     * Math rounds are used to ceil and to floor depending on current step position and MaxStepsToShow value.
+     * 80 is a static width value of the last step, it cannot be changed.
+     */
+    getCurrentOffsetValue(changes: SimpleChanges): void {
         const currentStep = changes.currentStep.currentValue;
         if (currentStep <= Math.ceil(this.maxStepsToShow / 2)) {
             this.currentOffsetValue = 0;
@@ -82,10 +120,17 @@ export class OcProgressBarComponent implements AfterViewInit, OnChanges {
         }
     }
 
+    /**
+     * Returns index of an element in progressbarData array.
+     * Needed for showing progress line style.
+     */
     getNextStep(currentStep: number): FormProgressbarStep {
         return this.progressbarData[currentStep];
     }
 
+    /**
+     * Emits step click event to a form component.
+     */
     stepClicked(step: number): void {
         this.jumpToStep.emit(step);
     }

@@ -100,7 +100,7 @@ export class OcFormComponent implements OnInit, OnChanges {
      */
     @Output() readonly createdForm: EventEmitter<AbstractControl> = new EventEmitter();
 
-    /** PROPERTIES AND BINDINGS FOR WIZARD FORM */
+    // PROPERTIES AND BINDINGS FOR WIZARD FORM //
 
     /**
      * The form type, can be rendered as 'wizard' or classic 'single' form.
@@ -117,6 +117,11 @@ export class OcFormComponent implements OnInit, OnChanges {
      * Current wizard step.
      */
     @Input() currentStep: number = 1;
+
+    /**
+     * Current wizard step.
+     */
+    @Input() maxStepsToShow: number = 0;
 
     /**
      * Current form ID. Used for modifying error messages.

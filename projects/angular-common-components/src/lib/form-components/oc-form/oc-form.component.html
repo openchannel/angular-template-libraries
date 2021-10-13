@@ -1,10 +1,10 @@
 <div class="form-steps">
     <ng-container *ngIf="hasFieldGroups; else singleForm">
-        <div class="form-steps__content"
-             [class.form-steps__content-responsive]="showProgressBar">
+        <div class="form-steps__content">
             <div class="form-steps__content-progressbar">
                 <oc-progress-bar *ngIf="showProgressBar"
                                  (jumpToStep)="navigateStepsByClick($event)"
+                                 [maxStepsToShow]="maxStepsToShow"
                                  [progressbarData]="progressBarSteps"
                                  [currentStep]="currentStep"></oc-progress-bar>
             </div>
