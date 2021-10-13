@@ -16,7 +16,7 @@
         position: absolute;
         right: 0;
         width: 46px;
-        height: 100%;;
+        height: 100%;
         border-radius: 4px;
         background-image: linear-gradient(to right, rgba($white, 0), $white);
     }
@@ -121,7 +121,6 @@
                     color: $secondary;
                     @include font-size-md();
                     @include font-regular();
-                    display: block;
                     overflow: hidden;
                     max-height: 40px;
                     display: -webkit-box;
