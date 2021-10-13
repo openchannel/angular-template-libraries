@@ -20,9 +20,8 @@ const SidebarComponent = (args: OcSidebarComponent) => ({
     moduleMetadata: modules,
     props: args,
 });
-
+// tslint:disable-next-line:variable-name
 export const OneLevel = SidebarComponent.bind({});
-
 OneLevel.args = {
     title: 'App Category',
     sidebarModel: [
@@ -55,7 +54,7 @@ OneLevel.args = {
         },
     ],
 };
-
+// tslint:disable-next-line:variable-name
 export const WithImages = SidebarComponent.bind({});
 WithImages.args = {
     title: 'App Category',
@@ -92,6 +91,77 @@ WithImages.args = {
             label: 'Category 4',
             checked: true,
             icon: 'assets/angular-common-components/star.svg',
+        },
+    ],
+};
+
+// tslint:disable-next-line:variable-name
+export const ManyCategories = SidebarComponent.bind({});
+ManyCategories.args = {
+    title: 'App Category',
+    threshold: 8,
+    expandText: 'Show more',
+    collapseText: 'Show less',
+    toggleListButtonType: 'link',
+    sidebarModel: [
+        {
+            label: 'Category 1',
+            checked: false,
+        },
+        {
+            label: 'Category 2',
+            checked: false,
+        },
+        {
+            label: 'Category 3',
+            checked: false,
+            expanded: false,
+            values: [
+                {
+                    label: 'Subcategory 1',
+                    checked: false,
+                },
+                {
+                    label: 'Subcategory 2',
+                    checked: false,
+                },
+            ],
+        },
+        {
+            label: 'Category 4',
+            checked: true,
+        },
+        {
+            label: 'Category 5',
+            checked: false,
+        },
+        {
+            label: 'Category 6',
+            checked: false,
+        },
+        {
+            label: 'Category 7',
+            checked: false,
+        },
+        {
+            label: 'Category 8',
+            checked: false,
+        },
+        {
+            label: 'Category 9',
+            checked: false,
+        },
+        {
+            label: 'Category 10',
+            checked: false,
+        },
+        {
+            label: 'Category 11',
+            checked: false,
+        },
+        {
+            label: 'Category 12',
+            checked: false,
         },
     ],
 };

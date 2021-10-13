@@ -1,13 +1,14 @@
 @import '../../../../assets/styles/mixins';
 
 .form-steps {
+    @include media-breakpoint-md() {
+        margin-top: 4rem;
+    }
+    @include media-breakpoint-sm() {
+        margin-top: 3rem;
+    }
+
     &__content {
-        @include media-breakpoint-md() {
-            margin-top: 4rem;
-        }
-        @include media-breakpoint-sm() {
-            margin-top: 3rem;
-        }
 
         &-responsive {
             @include media-breakpoint-md() {
