@@ -120,7 +120,7 @@ export class DropdownModel<T> {
 }
 
 export interface OcDropdownStatus {
-    isCollapsed: true | false;
+    isCollapsed: boolean;
 }
 
 export interface DropdownItemModel {
