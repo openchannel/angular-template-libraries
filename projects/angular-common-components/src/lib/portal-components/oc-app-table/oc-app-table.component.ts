@@ -118,7 +118,6 @@ export class OcAppTableComponent implements AfterViewInit {
 
     /**
      * Modify getting text data for default cells ('Name' & 'Summary').<br>
-     * Default value: {@link fieldsPathConfig}.<br>
      * @param config Specific paths for getting a text value from {@link FullAppData}.
      */
     @Input() set selectAppFieldByPathConfig(config: FieldPathConfig) {
