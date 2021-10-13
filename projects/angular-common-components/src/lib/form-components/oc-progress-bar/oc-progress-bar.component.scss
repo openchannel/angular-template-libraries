@@ -181,14 +181,18 @@
 
             &-title {
                 max-width: 10rem;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
+                word-break: break-word;
                 @include font-size-md();
                 @include media-breakpoint-md {
                     @include font-size-sm();
                     line-height: 1.75rem;
                     max-width: unset;
+                }
+
+                &_truncate {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
         }

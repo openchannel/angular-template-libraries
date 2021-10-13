@@ -50,13 +50,13 @@ export class OcProgressBarComponent implements AfterViewInit, OnChanges {
      * If set to 0, this option is turned off and all the steps will be visible.
      * @default: 0
      */
-    @Input() maxStepsToShow: number = 5;
+    @Input() maxStepsToShow: number = 6;
 
     /**
      * You can enable/disable text truncation for step titles.
      * @default: true
      */
-    @Input() enableTextTruncate: boolean = false;
+    @Input() enableTextTruncate: boolean = true;
 
     @Output() readonly jumpToStep = new EventEmitter<number>();
 

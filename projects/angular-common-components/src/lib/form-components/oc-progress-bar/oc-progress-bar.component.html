@@ -6,9 +6,9 @@
              [ngClass]="{'form-progressbar__item_current': currentStep === i + 1,
                          'form-progressbar__item_finished': step.state === 'finished',
                          'form-progressbar__item_invalid': step.state === 'invalid'}"
-             [style.width]="progressbarData.length > maxStepsToShow && maxStepsToShow !== 0 ?
+             [style.width]="progressbarData.length > maxStepsToShow && maxStepsToShow > 0 ?
                          'calc(100% / ' + maxStepsToShow + ')' :
-                         'calc(100% / ' + progressbarData.length + ')'"
+                         'calc((100% - 80px) / ' + (progressbarData.length - 1) + ')'"
              #progressBarSteps>
             <div class="form-progressbar__item-content"
                  (click)="stepClicked(i + 1)">
@@ -23,6 +23,7 @@
                     </div>
                 </div>
                 <div class="form-progressbar__item-content-title"
+                     [class.form-progressbar__item-content-title_truncate]="enableTextTruncate"
                      title="{{enableTextTruncate ? step.title : ''}}">{{step.title}}</div>
             </div>
             <div class="form-progressbar__item-divider"

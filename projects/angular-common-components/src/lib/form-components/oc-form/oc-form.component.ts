@@ -37,58 +37,66 @@ export class OcFormComponent implements OnInit, OnChanges {
 
     /**
      * Show button on form.
-     * @default true
+     * @default true.
      */
     @Input() showButton: boolean = true;
 
     /**
      * Set position of the buttons.
      * Can be: "center", "left", "right".
-     * @default 'left'
+     * @default 'left'.
      */
     @Input() buttonPosition: 'center' | 'left' | 'right' | 'justify' = 'left';
 
     /**
      * Set custom text to success button.
-     * @default 'Submit'
+     * @default 'Submit'.
      */
     @Input() successButtonText: string = 'Submit';
 
     /**
      * Set position of the field label. Can be: "top", "left", "right".
-     * @default 'top'
+     * @default 'top'.
      */
     @Input() labelPosition: 'top' | 'left' | 'right' = 'top';
 
     /**
-     * Submitting process. `true` option will lock for
-     *  click and start the spinner in the submit button
+     * Submitting process.
+     * The `true` option will lock for click and start the spinner in the submit button.
      */
     @Input() process: boolean = false;
 
     /**
-     * Already generated Form Group. IMPORTANT! Works only for single page form.
+     * Already generated Form Group.
+     * IMPORTANT! Works only for single page form.
      */
     @Input() generatedForm: FormGroup;
 
     /**
-     * Returning all form fields value to the parent component
+     * Returning all form fields value to the parent component.
      */
     @Output() readonly formSubmitted: EventEmitter<any> = new EventEmitter();
 
-    /** Sending true when user cancel form submitting */
+    /**
+     * Sending true when user cancel form submitting.
+     */
     @Output() readonly cancelSubmit: EventEmitter<void> = new EventEmitter();
 
-    /** When need to get data of the form without buttons */
+    /**
+     * When need to get data of the form without buttons.
+     */
     @Output() readonly formDataUpdated: EventEmitter<any> = new EventEmitter();
 
     /**
-     * @Deprecated
-     * Send form valid status. IMPORTANT! Work only for single page form.
+     * @Deprecated.
+     * Send form valid status.
+     * IMPORTANT! Works only for single page form.
      */
     @Output() readonly isFormInvalid: EventEmitter<boolean> = new EventEmitter();
 
-    /** Emit created form */
+    /**
+     * Emits created form.
+     */
     @Output() readonly createdForm: EventEmitter<AbstractControl> = new EventEmitter();
 
     /** PROPERTIES AND BINDINGS FOR WIZARD FORM */
@@ -99,43 +107,63 @@ export class OcFormComponent implements OnInit, OnChanges {
      */
     @Input() displayType: FormType = 'page';
 
-    /** Custom template for the save button to show. */
+    /**
+     * Custom template for the save button to show.
+     */
     @Input() additionalButton: TemplateRef<any>;
 
-    /** Current wizard step */
+    /**
+     * Current wizard step.
+     */
     @Input() currentStep: number = 1;
 
-    /** Component emits on what step a user is, when he changes the step. */
+    /**
+     * Component emits on what step a user is, when he changes the step.
+     */
     @Output() readonly currentStepChange = new EventEmitter<number>();
 
     /**
      * Submitting process. `true` option will lock for
-     *  click and start the spinner in the submit button
+     * click and start the spinner in the submit button.
+     * @default true.
      */
     @Input() showSubmitButton: boolean = true;
 
     /**
-     * Flag to show group heading
+     * Flag to show group heading.
+     * @default true.
      */
     @Input() showGroupHeading: boolean = true;
 
     /**
-     * Flag to show group description
+     * Flag to show group description.
+     * @default true.
      */
     @Input() showGroupDescription: boolean = true;
 
     /**
-     * Flag to show progressbar
+     * Flag to show progressbar.
+     * @default true.
      */
     @Input() showProgressBar: boolean = true;
 
+    /**
+     * Input for query params.
+     * @default ''.
+     */
+    @Input() queryParams: string = '';
+
     customForm: FormArray;
     progressBarSteps: FormProgressbarStep[] = [];
-    hasFieldGroup: boolean = false;
+    hasFieldGroups: boolean = false;
     resultData: any = {};
+    formStatus: string;
 
     ngOnInit(): void {
         this.checkFormType(this.displayType);
+        if (this.queryParams === 'invalid') {
+            this.validateFromAppTable();
+        }
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -144,9 +172,25 @@ export class OcFormComponent implements OnInit, OnChanges {
             this.checkFormType(this.displayType);
         }
         if (changes.generatedForm && changes.generatedForm.previousValue !== changes.generatedForm.currentValue) {
-            if (this.hasFieldGroup) {
+            if (this.hasFieldGroups) {
                 this.customForm = new FormArray([this.generatedForm]);
             }
+        }
+    }
+
+    validateFromAppTable(): void {
+        if (this.hasFieldGroups) {
+            this.customForm.markAllAsTouched();
+            let foundInvalidStep = false;
+            let firstInvalidStep = 1;
+            for (let i = 0; i < this.customForm.length; i++) {
+                this.validateStep(i);
+                if (this.customForm.controls[i].invalid && !foundInvalidStep) {
+                    firstInvalidStep = i + 1;
+                    foundInvalidStep = true;
+                }
+            }
+            this.setStep(firstInvalidStep);
         }
     }
 
@@ -158,70 +202,54 @@ export class OcFormComponent implements OnInit, OnChanges {
     }
 
     onSubmitButtonClicked(): void {
-        if (this.showProgressBar) {
-            this.updateProgressbarSteps(this.currentStep - 1);
-        }
-        this.customForm.markAllAsTouched();
-        if (this.customForm.invalid) {
-            for (let i = 0; i < this.customForm.length; i++) {
-                const stepForm = this.customForm.controls[i];
-                if (stepForm.invalid) {
-                    this.setStep(i + 1);
-                    return;
+        if (this.displayType === 'wizard' && this.hasFieldGroups) {
+            this.validateStep(this.currentStep - 1);
+            this.customForm.markAllAsTouched();
+            if (this.customForm.invalid) {
+                for (let i = 0; i < this.customForm.length; i++) {
+                    const stepForm = this.customForm.controls[i];
+                    if (stepForm.invalid) {
+                        this.setStep(i + 1);
+                        return;
+                    }
                 }
+            } else {
+                this.formSubmitted.emit(this.resultData);
             }
         } else {
-            this.formSubmitted.emit(this.resultData);
+            if (this.customForm.valid) {
+                this.formSubmitted.emit(this.resultData); // TODO
+            }
         }
     }
 
-    navigateSteps(direction: 'next' | 'previous'): void {
-        if (direction === 'next') {
-            this.updateProgressbarSteps(this.currentStep - 1);
-            this.currentStep++;
-        } else {
-            if (!this.currentForm.pristine) {
-                this.updateProgressbarSteps(this.currentStep - 1);
-            }
-            this.currentStep--;
-        }
-        this.currentStepChange.emit(this.currentStep);
-    }
-
-    jumpToStep(step: number): void {
+    navigateStepsByClick(step: number): void {
         const previousStep = this.currentStep;
         const nextStep = step;
         if (previousStep === nextStep) {
             return;
         } else if (previousStep < nextStep) {
             for (let i = previousStep; i < nextStep; i++) {
-                this.updateProgressbarSteps(i - 1);
+                this.validateStep(i - 1);
             }
         } else if (previousStep > nextStep) {
-            this.updateProgressbarSteps(this.currentStep - 1);
+            this.validateStep(this.currentStep - 1);
         }
         this.currentStep = step;
+        this.currentStepChange.emit(this.currentStep);
     }
 
-    updateProgressbarSteps(index: number): void {
-        const currentForm = this.customForm.controls[index] as OcFormGroup;
-        this.updateChildControlsValidity(currentForm);
-        this.progressBarSteps[index].state = this.currentForm.valid ? 'finished' : 'invalid';
-    }
-
-    updateChildControlsValidity(currentControl: AbstractControl): void {
-        if (currentControl instanceof FormGroup) {
-            for (const control of Object.keys(currentControl.controls)) {
-                const controlName = currentControl.controls[control];
-                this.updateChildControlsValidity(controlName);
-            }
-        } else if (currentControl instanceof FormArray) {
-            currentControl.controls.forEach(value => {
-                this.updateChildControlsValidity(value);
-            });
+    navigateStepsByButtons(direction: 'next' | 'previous'): void {
+        if (direction === 'next') {
+            this.validateStep(this.currentStep - 1);
+            this.currentStep++;
         } else {
-            currentControl.updateValueAndValidity();
+            if (!this.currentForm.pristine) {
+                this.validateStep(this.currentStep - 1);
+            }
+            this.currentStep--;
         }
+        this.currentStepChange.emit(this.currentStep);
     }
 
     /**
@@ -232,16 +260,12 @@ export class OcFormComponent implements OnInit, OnChanges {
         this.formDataUpdated.emit(this.resultData);
     }
 
-    onFormCreated(form: FormGroup): void {
-        this.createdForm.emit(form);
-    }
-
     get isFirstStep(): boolean {
-        return this.customForm ? this.currentStep === 1 : true;
+        return !this.customForm || this.currentStep === 1;
     }
 
     get isLastStep(): boolean {
-        return this.customForm ? this.currentStep === this.customForm.length : true;
+        return !this.customForm || this.currentStep === this.customForm.length;
     }
 
     get stepLabel(): string {
@@ -267,11 +291,13 @@ export class OcFormComponent implements OnInit, OnChanges {
     private checkFormType(type: FormType): void {
         if (!this.generatedForm) {
             if (type === 'wizard') {
-                this.generateStepsForm(this.formJsonData);
-                this.hasFieldGroup = this.customForm.controls.length > 1;
+                this.createStepsFormArray(this.formJsonData);
+                this.hasFieldGroups = this.customForm.controls.length > 1;
+                if (this.hasFieldGroups) {
+                    this.generateProgressbar();
+                }
             } else {
-                this.customForm = null;
-                this.hasFieldGroup = false;
+                this.hasFieldGroups = false;
             }
         }
     }
@@ -286,7 +312,7 @@ export class OcFormComponent implements OnInit, OnChanges {
         });
     }
 
-    private generateStepsForm(data: AppFormModel): void {
+    private createStepsFormArray(data: AppFormModel): void {
         const formsArray: FieldStep[] = [];
         const currentFreeFieldsStep: FieldStep = {
             items: [],
@@ -319,7 +345,27 @@ export class OcFormComponent implements OnInit, OnChanges {
         this.customForm.controls.forEach(form => {
             this.mapFormFieldsData(form.value);
         });
-        this.generateProgressbar();
         this.createdForm.emit(this.customForm);
+    }
+
+    private validateStep(index: number): void {
+        const currentForm = this.customForm.controls[index] as OcFormGroup;
+        this.validateCurrentControl(currentForm);
+        this.progressBarSteps[index].state = currentForm.valid ? 'finished' : 'invalid';
+    }
+
+    private validateCurrentControl(currentControl: AbstractControl): void {
+        if (currentControl instanceof FormGroup) {
+            for (const control of Object.keys(currentControl.controls)) {
+                const controlName = currentControl.controls[control];
+                this.validateCurrentControl(controlName);
+            }
+        } else if (currentControl instanceof FormArray) {
+            currentControl.controls.forEach(value => {
+                this.validateCurrentControl(value);
+            });
+        } else {
+            currentControl.updateValueAndValidity();
+        }
     }
 }
