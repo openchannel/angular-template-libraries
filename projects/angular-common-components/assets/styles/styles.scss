@@ -731,3 +731,84 @@ oc-button.tags__button-add {
         border-bottom-color: $info;
     }
 }
+
+.chart {
+    &__tabular-button {
+        margin-right: 4rem;
+    }
+    &__period-item {
+        border-radius: 4px;
+        padding: 2rem;
+        width: 152px;
+        justify-content: center;
+    }
+    &__type-section {
+        height: 56px;
+        width: 248px;
+        min-width: 248px;
+        .dropdown-button {
+            &__placeholder-container {
+                padding: 0 16px;
+                &-title {
+                    &-text {
+                        @include font-size-md();
+                    }
+                    &-collapse-icon {
+                        margin: auto 0 auto 8px;
+                        .recolor-icon {
+                            fill: $info;
+                            height: 14px;
+                            width: 14px;
+                        }
+                    }
+                }
+            }
+            &__menu {
+                max-height: 201px;
+                &-item-text {
+                    @include font-size-md();
+                }
+            }
+        }
+    }
+    @include media-breakpoint-xl {
+        &__type-section {
+            width: 216px;
+            min-width: 216px;
+        }
+    }
+    @include media-breakpoint-lg {
+        &__type-section {
+            width: 160px;
+            min-width: 160px;
+        }
+        &__period-item {
+            padding: 16px 8px 16px 8px;
+            width: 100px;
+        }
+    }
+    @include media-breakpoint-md {
+        &__options-container {
+            flex-direction: column;
+            padding: 2rem;
+        }
+        &__type-apps {
+            margin-bottom: 16px;
+        }
+        &__swap-type {
+            margin-bottom: 16px;
+        }
+        &__period-item {
+            padding: 0;
+            :first-child {
+                margin-bottom: 16px;
+            }
+            justify-content: flex-start;
+        }
+    }
+    @include media-breakpoint-sm {
+        &__tabular-button {
+            margin-right: 3rem;
+        }
+    }
+}

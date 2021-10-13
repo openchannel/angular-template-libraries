@@ -45,6 +45,7 @@ import { OcRadioButtonComponent } from './oc-radio-button/oc-radio-button.compon
 import { HeadingTagDirective } from './directive/heading-tag.directive';
 import { OcFullImageGalleryViewModalComponent } from './oc-full-image-gallery-view-modal/oc-full-image-gallery-view-modal.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { GetTextByPathPipe } from './pipe/get-text-by-path.pipe';
 
 @NgModule({
     declarations: [
@@ -83,6 +84,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
         OcContentModalComponent,
         OcInitialsComponent,
         OcRadioButtonComponent,
+        GetTextByPathPipe,
         OcFullImageGalleryViewModalComponent,
     ],
     imports: [
@@ -111,6 +113,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
         CamelcasePipe,
         EllipsisPipe,
         PricePipe,
+        GetTextByPathPipe,
         PasswordValidatorDirective,
         PasswordToggleDirective,
         OcSelectExpandableComponent,
