@@ -83,7 +83,7 @@ describe('OcActivationComponent', () => {
 
     it('should emit false value on form button click', () => {
         component.process = false;
-        spyOn(component.buttonClick, 'emit');
+        jest.spyOn(component.buttonClick, 'emit');
 
         fixture.detectChanges();
 
@@ -95,7 +95,7 @@ describe('OcActivationComponent', () => {
 
     it('button should not emmit submit when process is on', () => {
         component.process = true;
-        spyOn(component.buttonClick, 'emit');
+        jest.spyOn(component.buttonClick, 'emit');
 
         fixture.detectChanges();
 

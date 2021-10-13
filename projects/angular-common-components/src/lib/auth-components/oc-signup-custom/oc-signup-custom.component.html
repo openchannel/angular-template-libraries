@@ -16,6 +16,7 @@
                         [enableTermsCheckbox]="{termsUrl: termsUrl, policyUrl: policyUrl}"
                         [defaultTypeLabelText]="defaultTypeLabelText"
                         [customTermsDescription]="customTermsDescription"
+                        [formId]="formId"
                         (createdFormGroup)="formGroup = $event"
                         (resultFormDataChange)="resultFormValue = $event"></oc-edit-user-form>
                 <oc-button [process]="process" (click)="submitForm()"

@@ -53,7 +53,7 @@ describe('OcAppGetStartedComponent', () => {
     it('should emit click on Button component', () => {
         component.getStartedType = 'search';
 
-        spyOn(component.getStarted, 'emit');
+        jest.spyOn(component.getStarted, 'emit');
 
         fixture.detectChanges();
 

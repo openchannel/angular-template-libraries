@@ -6,6 +6,7 @@
     <div modalContent class="invite-modal__modal-body">
         <oc-form [formJsonData]="formConfig"
                  [showButton]="false"
+                 [formId]="formId"
                  (createdForm)="setCreatedForm($event)"
                  (formDataUpdated)="setDataFromForm($event)"></oc-form>
         <div class="invite-modal__button-container">

@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { isString, merge } from 'lodash';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalInviteUserModel, ModalUpdateUserModel } from '../models/oc-modal.model';
+import { ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
 
 /**
  * Invite modal component. Represents component with configurable form for inviting user.
@@ -23,6 +24,8 @@ export class OcInviteModalComponent implements OnInit {
      */
     @Input() modalData: ModalInviteUserModel | ModalUpdateUserModel;
 
+    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    @Input() formId: ErrorMessageFormId = null;
     /**
      * Config for custom form generation
      */

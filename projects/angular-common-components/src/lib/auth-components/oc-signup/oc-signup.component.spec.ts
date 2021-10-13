@@ -37,7 +37,6 @@ describe('OcSignupComponent', () => {
                     MockRoutingComponent,
                     MockHeadingTagDirective,
                 ],
-                providers: [NgModel],
                 imports: [
                     FormsModule,
                     CommonModule,
@@ -47,6 +46,7 @@ describe('OcSignupComponent', () => {
                         { path: 'activation', component: MockRoutingComponent },
                     ]),
                 ],
+                providers: [NgModel],
             }).compileComponents();
             router = TestBed.inject(Router);
             location = TestBed.inject(Location);
@@ -77,7 +77,7 @@ describe('OcSignupComponent', () => {
 
     it('should emit true value on form button click when form valid', async () => {
         component.process = false;
-        spyOn(component.submitClick, 'emit');
+        jest.spyOn(component.submitClick, 'emit');
 
         component.signupModel = {
             uname: 'Test Test',
@@ -98,7 +98,7 @@ describe('OcSignupComponent', () => {
 
     it('button should not emmit submit when process is on', () => {
         component.process = true;
-        spyOn(component.submitClick, 'emit');
+        jest.spyOn(component.submitClick, 'emit');
 
         fixture.detectChanges();
 

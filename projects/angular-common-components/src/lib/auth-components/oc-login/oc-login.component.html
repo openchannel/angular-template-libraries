@@ -10,30 +10,29 @@
                 <h1 [headingTag]="headingTag" class="login__header-heading">Log in</h1>
                 <oc-label text="Log in into your account" class="login__header-invitation"></oc-label>
             </div>
-            <div class="login__error login__warn-block" *ngIf="hasServerError(email, incorrectEmailErrorCode)">
-                The email and password you have provided is incorrect.
-            </div>
-            <div class="login__warn login__warn-block" *ngIf="hasServerError(password, passwordResetRequiredErrorCode)">
-                Your password must be changed. We’ve sent an email to {{email.value}} with a link to help you reset your password.
-            </div>
-            <div class="login__error" *ngIf="hasServerError(email, notVerifiedEmailErrorCode)">
-                This account has not been activated yet. <br>
-                Please check your inbox for an activation email or <a (click)="onActivationLinkClick(email)" class="font-s font-med resend-link">resend the activation email</a>.
-            </div>
-            <div class="login__email" [class.login__email_margin_top]="!isServerErrorExist()">
+            <ng-container *ngIf="errorService.hasServerError(email, incorrectEmailErrorCode)"
+                          [ngTemplateOutlet]="incorrectEmailErrorCodeTemplate || defaultIncorrectEmailErrorCodeRef"
+                          [ngTemplateOutletContext]="{$implicit: {parentForm: loginForm}}"></ng-container>
+            <ng-container *ngIf="errorService.hasServerError(password, passwordResetRequiredErrorCode)"
+                          [ngTemplateOutlet]="passwordResetRequiredErrorTemplate || defaultPasswordResetRequiredErrorCodeRef"
+                          [ngTemplateOutletContext]="{$implicit: {parentForm: loginForm}}"></ng-container>
+            <ng-container *ngIf="errorService.hasServerError(email, notVerifiedEmailErrorCode)"
+                          [ngTemplateOutlet]="notVerifiedEmailErrorTemplate || defaultNotVerifiedEmailErrorCodeRef"
+                          [ngTemplateOutletContext]="{$implicit: {parentForm: loginForm}}"></ng-container>
+            <div class="login__email">
                 <oc-label text="Email" class="login__form-label login__email-label"></oc-label>
                 <oc-input #email=ngModel (ngModelChange)="onchange()" [(ngModel)]="loginModel.email"
                           placeholder="Email" ocEmailValidator name="email" ngDefaultControl
                           required="true"
                           class="login__email-input"></oc-input>
-                <oc-error [control]="email" field="email" class="login__email-error"></oc-error>
+                <oc-error [formId]="formId" [control]="email"  field="email" class="login__email-error"></oc-error>
             </div>
             <div class="login__password">
                 <oc-label text="Password" class="login__form-label login__password-label"></oc-label>
                 <oc-password #password=ngModel (ngModelChange)="onchange()" [(ngModel)]="loginModel.password"
                              placeholder="Password" class="login__password-input" name="password" ngDefaultControl
                              required="true"></oc-password>
-                <oc-error [control]="password" field="password" class="login__password-error"></oc-error>
+                <oc-error [formId]="formId" [control]="password" field="password" class="login__password-error"></oc-error>
             </div>
             <div class="login__forgot-block">
                 <div class="remember">
@@ -61,3 +60,22 @@
         </div>
     </form>
 </div>
+
+<ng-template #defaultIncorrectEmailErrorCodeRef>
+    <div class="login__error login__warn-block">
+        The email and password you have provided is incorrect.
+    </div>
+</ng-template>
+
+<ng-template #defaultPasswordResetRequiredErrorCodeRef let-ctx>
+    <div class="login__warn login__warn-block">
+        Your password must be changed. We’ve sent an email to {{ctx.parentForm.controls.email?.value}} with a link to help you reset your password.
+    </div>
+</ng-template>
+
+<ng-template #defaultNotVerifiedEmailErrorCodeRef let-ctx>
+    <div class="login__error">
+        This account has not been activated yet. <br>
+        Please check your inbox for an activation email or <a (click)="onActivationLinkClick(ctx.parentForm.controls.email)" class="font-s font-med resend-link">resend the activation email</a>.
+    </div>
+</ng-template>

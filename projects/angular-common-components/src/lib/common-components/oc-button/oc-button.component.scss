@@ -113,6 +113,8 @@
 
     &_link {
         background-color: transparent;
+        box-shadow: none;
+        border: 0;
         color: $button-primary;
         height: auto;
         min-height: unset;
@@ -123,6 +125,10 @@
 
         &:hover {
             text-decoration: underline;
+        }
+
+        &:active {
+            border: 0;
         }
 
         &:not(:disabled):not(.disabled):active {

@@ -68,7 +68,7 @@ describe('OcReviewListComponent', () => {
     it('should emit on button click', () => {
         component.reviewListTitle = 'Most Recent Reviews';
 
-        spyOn(component.writeAReview, 'emit');
+        jest.spyOn(component.writeAReview, 'emit');
 
         fixture.detectChanges();
 

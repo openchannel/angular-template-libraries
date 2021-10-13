@@ -128,6 +128,7 @@
                     </ng-container>
                     <oc-dynamic-field-array *ngSwitchCase="'dynamicFieldArray'"
                                             [fieldDefinitionData]="formElement"
+                                            [formId]="formId"
                                             [dfaFormArray]="customForm.get(formElement.id)"></oc-dynamic-field-array>
                     <p *ngSwitchCase="'dynamicFieldArray'" class="form__field-custom-error">
                         {{getDfaError(customForm.get(formElement.id), formElement.label)}}
@@ -136,7 +137,8 @@
                                  formControlName="{{formElement?.id}}"
                                  [placeholder]="formElement?.placeholder"></oc-password>
                 </div>
-                <oc-error [field]="formElement?.id"
+                <oc-error [formId]="formId"
+                          [field]="formElement?.id"
                           [control]="customForm.get(formElement?.id)"></oc-error>
             </div>
         </div>

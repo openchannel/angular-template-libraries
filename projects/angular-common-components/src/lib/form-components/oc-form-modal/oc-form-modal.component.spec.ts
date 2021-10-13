@@ -5,6 +5,7 @@ import { By } from '@angular/platform-browser';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MockSvgIconComponent } from '@openchannel/angular-common-components/src/mock/mock';
+import { ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
 
 const formData = {
     name: 'Test name',
@@ -23,6 +24,7 @@ export class OcFormMockComponent {
     @Output() formSubmitted = new EventEmitter<any>();
     @Output() cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Input() showButton: boolean = true;
+    @Input() formId: ErrorMessageFormId;
 
     submitForm() {
         this.formSubmitted.emit(formData);
@@ -130,7 +132,7 @@ describe('OcFormModalComponent', () => {
     });
 
     it('should close the modal', () => {
-        spyOn(component, 'dismiss');
+        jest.spyOn(component, 'dismiss');
         fixture.detectChanges();
 
         const closeBtn = fixture.debugElement.query(By.css('.form-modal__header-close-icon')).nativeElement;

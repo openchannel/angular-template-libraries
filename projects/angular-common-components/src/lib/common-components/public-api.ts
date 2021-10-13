@@ -24,6 +24,7 @@ export * from './oc-social-links/oc-social-links.component';
 export * from './oc-content-modal/oc-content-modal.component';
 export * from './oc-initials/oc-initials.component';
 export * from './oc-radio-button/oc-radio-button.component';
+export * from './oc-full-image-gallery-view-modal/oc-full-image-gallery-view-modal.component';
 
 /** Pipes */
 export * from './pipe/camelcase.pipe';
@@ -45,8 +46,10 @@ export * from './validators/password-validator.directive';
 export * from './model/app-data.model';
 export * from './model/components-basic.model';
 export * from './model/oc-sidebar-model';
+export * from './model/oc-error.model';
 export * from './interfaces/social-link.model';
 export * from './interfaces/heading-tag.interface';
+export * from './model/image-gallery.model';
 
 /** Services */
 export * from './oc-error/oc-error-service';

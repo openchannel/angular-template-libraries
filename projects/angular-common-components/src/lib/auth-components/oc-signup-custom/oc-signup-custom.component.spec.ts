@@ -39,7 +39,6 @@ describe('OcSignupCustomComponent', () => {
                     MockRoutingComponent,
                     MockHeadingTagDirective,
                 ],
-                providers: [NgModel],
                 imports: [
                     FormsModule,
                     CommonModule,
@@ -49,6 +48,7 @@ describe('OcSignupCustomComponent', () => {
                         { path: 'activation', component: MockRoutingComponent },
                     ]),
                 ],
+                providers: [NgModel],
             }).compileComponents();
             router = TestBed.inject(Router);
             location = TestBed.inject(Location);
@@ -79,7 +79,7 @@ describe('OcSignupCustomComponent', () => {
 
     it('button should not emmit submit when process is on', () => {
         component.process = true;
-        spyOn(component.resultUserData, 'emit');
+        jest.spyOn(component.resultUserData, 'emit');
 
         component.formConfigsLoading = false;
         fixture.detectChanges();

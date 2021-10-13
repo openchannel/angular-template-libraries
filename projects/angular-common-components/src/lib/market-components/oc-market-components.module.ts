@@ -19,6 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OcCommonLibModule } from '@openchannel/angular-common-components/src/lib/common-components';
 import { OcReviewComponent } from './oc-review/oc-review.component';
 import { OcFormComponentsModule } from '@openchannel/angular-common-components/src/lib/form-components';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @NgModule({
     declarations: [
@@ -37,7 +39,17 @@ import { OcFormComponentsModule } from '@openchannel/angular-common-components/s
         OcTextSearchComponent,
         OcReviewComponent,
     ],
-    imports: [CommonModule, NgbModule, OcCommonLibModule, RouterModule, FormsModule, ReactiveFormsModule, OcFormComponentsModule],
+    imports: [
+        CommonModule,
+        NgbModule,
+        OcCommonLibModule,
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        OcFormComponentsModule,
+        CarouselModule,
+        AngularSvgIconModule.forRoot(),
+    ],
     exports: [
         OcAppCardComponent,
         OcAppDescriptionComponent,

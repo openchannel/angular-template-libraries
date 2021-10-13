@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { base64ToFile, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
-import { HttpEventType, HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -42,7 +42,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * File input template reference
      */
-    @ViewChild('fileDropRef', { static: false }) fileInputVar: ElementRef<any>;
+    @ViewChild('fileDropRef', { static: false }) fileInputVar: ElementRef;
 
     /**
      * Set model value
@@ -176,12 +176,12 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     containsInvalidFile = false;
 
     /**
-     * Flag that allow maintain aspect ration logic or not
+     * Flag that allow maintain aspect ratio logic or not
      */
     maintainAspectRatio = false;
 
     /**
-     * Aspect ration value
+     * Aspect ratio value
      */
     aspectRatio: number;
 
@@ -248,9 +248,11 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * On file drop handler
      */
-    onFileDropped($event: any, content?: any): void {
-        this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
-        this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
+    onFileDropped($event: any): void {
+        if (this.isMultiFileSupport() || this.fileDetailArr.length === 0) {
+            this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
+            this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
+        }
     }
 
     /**
@@ -599,12 +601,12 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
             .pipe(takeUntil(this.destroy$))
             .subscribe(
                 res => {
-                    this.fileDetailArr = res ? [{ ...res, fileUploadProgress: 100 }] : [];
+                    this.fileDetailArr.push({ ...res, fileUploadProgress: 100 });
                     this.emitChanges();
                 },
                 error => {
                     if (error.error.code === 404) {
-                        this.fileDetailArr = [this.externallyHostedImageHandler(urlData)];
+                        this.fileDetailArr.push(this.externallyHostedImageHandler(urlData));
                         this.emitChanges();
                     }
                 },

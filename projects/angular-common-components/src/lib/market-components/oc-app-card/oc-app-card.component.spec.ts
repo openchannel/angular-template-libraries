@@ -92,7 +92,7 @@ describe('OcAppCardComponent', () => {
     });
 
     it('should redirect on router link', async () => {
-        spyOn(component.clickByAppCard, 'emit');
+        jest.spyOn(component.clickByAppCard, 'emit');
 
         const dropbox = fixture.debugElement.query(By.css('.oc-card__content-name')).nativeElement;
         dropbox.click();

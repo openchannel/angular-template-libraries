@@ -49,7 +49,7 @@ describe('OcTagElementComponent', () => {
 
         const closeMarker: HTMLImageElement = fixture.debugElement.query(By.css('svg-icon')).nativeElement;
 
-        spyOn(component.clickEmitter, 'emit');
+        jest.spyOn(component.clickEmitter, 'emit');
 
         closeMarker.click();
 

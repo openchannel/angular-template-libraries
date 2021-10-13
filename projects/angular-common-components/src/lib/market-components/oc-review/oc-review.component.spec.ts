@@ -64,7 +64,7 @@ describe('OcReviewComponent', () => {
 
     it('should submit the review', () => {
         fixture.detectChanges();
-        spyOn(component.reviewFormData, 'emit');
+        jest.spyOn(component.reviewFormData, 'emit');
         component.reviewForm.get('rating').setValue(300);
         component.reviewForm.get('headline').setValue('Test Review');
         component.reviewForm.get('description').setValue('Test');
@@ -80,7 +80,7 @@ describe('OcReviewComponent', () => {
     it('should submit the review with disabled buttons', () => {
         component.enableButtons = false;
         fixture.detectChanges();
-        spyOn(component.reviewFormData, 'emit');
+        jest.spyOn(component.reviewFormData, 'emit');
         component.reviewForm.get('rating').setValue(500);
         component.reviewForm.get('headline').setValue('Test Review2');
         component.reviewForm.get('description').setValue('Test2');

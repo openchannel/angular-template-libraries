@@ -47,8 +47,11 @@ export class OcVideoComponent {
     loadVideo(): void {
         this.spinner.show();
         this.showVideoLoader = true;
+        const options = {
+            attr: { width: '100%', height: '100%' },
+        };
 
-        this.previewData = this.embedService.embed(this.url);
+        this.previewData = this.embedService.embed(this.url, options);
 
         if (this.previewData) {
             this.loadInIframe = true;
