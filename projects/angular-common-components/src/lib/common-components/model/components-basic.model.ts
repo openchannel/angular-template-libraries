@@ -98,15 +98,18 @@ export interface Filter {
  *
  * @example
  * {
- *     parentFilterId: "bgf34jh3498524gjf",
+ *     parentFilterId: "collections",
  *     selectedFilterValue: {
- *             id: "fjh345klf351gb09",
- *             name: "Analytics",
- *             description: "",
- *             values: null,
- *             expanded: false,
- *             checked: false,
- *         },
+ *           query: '{"status.value":"approved","attributes.featured":"yes"}',
+ *           sort: '{"randomize":1}',
+ *           id: 'featured',
+ *           label: 'Featured',
+ *           description: '',
+ *           values: null,
+ *           expanded: false,
+ *           checked: false,
+ *           icon: './assets/icons/analytics-category-icon.png',
+ *     },
  * }
  */
 export interface SelectedFilter {
