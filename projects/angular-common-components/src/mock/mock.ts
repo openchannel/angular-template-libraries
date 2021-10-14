@@ -160,6 +160,9 @@ export class MockFormComponent {
     @Input() showButton: boolean = true;
     @Input() displayType: FormType = 'page';
     @Input() formId: ErrorMessageFormId;
+    @Input() maxStepsToShow: number = 0;
+    @Input() queryParams: string = '';
+    @Input() enableTextTruncation: boolean = true;
     @Output() readonly formSubmitted = new EventEmitter<any>();
     @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
