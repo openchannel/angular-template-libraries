@@ -49,9 +49,13 @@
     </tr>
 </ng-template>
 
-<ng-template #sortIcon let-isAscending>
-    <svg-icon *ngIf="isAscending" [src]="ascendingSortIcon || 'assets/angular-common-components/select-up.svg'" class="app-grid-table__header__sort-icon"></svg-icon>
-    <svg-icon *ngIf="!isAscending" [src]="descendingSortIcon || 'assets/angular-common-components/select-down.svg'" class="app-grid-table__header__sort-icon"></svg-icon>
+<ng-template #sortIcon let-sortNumber>
+    <svg-icon *ngIf="sortNumber === 1"
+              [src]="ascendingSortIcon || 'assets/angular-common-components/select-up.svg'"
+              class="app-grid-table__header__sort-icon"></svg-icon>
+    <svg-icon *ngIf="!sortNumber || sortNumber === -1"
+              [src]="descendingSortIcon || 'assets/angular-common-components/select-down.svg'"
+              class="app-grid-table__header__sort-icon"></svg-icon>
 </ng-template>
 
 <!-- Table header cells  -->
@@ -60,9 +64,9 @@
 </ng-template>
 
 <ng-template name="name" type="headerCell">
-    <div class="app-grid-table__header__cell-name-content" (click)="sortAppsBy('name')">
+    <div class="app-grid-table__header__cell-name-content" (click)="sortAppsByKey('name')">
         <span class="app-grid-table__header__cell-name-content-text">Name</span>
-        <ng-container *ngTemplateOutlet="sortIcon; context: {$implicit: sortingObjects[0].ascending}"></ng-container>
+        <ng-container *ngTemplateOutlet="sortIcon; context: {$implicit: currentSortOptions.name}"></ng-container>
     </div>
 </ng-template>
 
@@ -71,16 +75,16 @@
 </ng-template>
 
 <ng-template name="create-date" type="headerCell">
-    <div class="app-grid-table__header__cell-create-date-content" (click)="sortAppsBy('created')">
+    <div class="app-grid-table__header__cell-create-date-content" (click)="sortAppsByKey('created')">
         <span class="app-grid-table__header__cell-create-date-content-text">Created</span>
-        <ng-container *ngTemplateOutlet="sortIcon; context: {$implicit: sortingObjects[1].ascending}"></ng-container>
+        <ng-container *ngTemplateOutlet="sortIcon; context: {$implicit: currentSortOptions.created}"></ng-container>
     </div>
 </ng-template>
 
 <ng-template name="status" type="headerCell">
-    <div class="app-grid-table__header__cell-status-content" (click)="sortAppsBy('status')">
+    <div class="app-grid-table__header__cell-status-content" (click)="sortAppsByKey('status')">
         <span class="app-grid-table__header__cell-status-content-text">Status</span>
-        <ng-container *ngTemplateOutlet="sortIcon; context: {$implicit: sortingObjects[2].ascending}"></ng-container>
+        <ng-container *ngTemplateOutlet="sortIcon; context: {$implicit: currentSortOptions.status}"></ng-container>
     </div>
 </ng-template>
 

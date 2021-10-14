@@ -11,6 +11,8 @@ import {
     ViewChildren,
 } from '@angular/core';
 import {
+    AppGridSortChosen, AppGridSortColumn,
+    AppGridSortOptions,
     AppListing,
     AppListingOptions,
     AppListMenuAction,
@@ -113,6 +115,14 @@ export class OcAppTableComponent implements AfterViewInit {
     /** Modify default table cells or add a new column. */
     @Input() modifyColumns: ModifyColumnConfig = {};
 
+    /** Setup sort icon direction for columns. */
+    @Input() set sortOptions(options: AppGridSortOptions) {
+        this.isOldSortImplementation = false;
+        if(options) {
+            this.currentSortOptions = options;
+        }
+    }
+
     /** This is table bottom area (after all apps), by default used for showing message 'You have no apps in your list' */
     @Input() tableBottomRowTemplate: TemplateRef<AppsNotFoundTemplateContext>;
 
@@ -135,6 +145,7 @@ export class OcAppTableComponent implements AfterViewInit {
      */
     @Output() readonly pageScrolled: EventEmitter<number> = new EventEmitter<number>();
     /**
+     * @deprecated Please use: @Input {@link #sortOptions} and @Output {@link #sortOptionsChosen}.
      * Returns clicked sorting type.
      * Contains fields:
      *
@@ -143,6 +154,12 @@ export class OcAppTableComponent implements AfterViewInit {
      * `ascending` - `true` for ascending sort or `false` for descending sort.
      */
     @Output() readonly sortChosen: EventEmitter<SortChosen> = new EventEmitter<SortChosen>();
+
+    /**
+     * Returns new sort options with changed column.<br>
+     * For updating current sort options, use @Input {@link #sortOptions}.
+     */
+    @Output() readonly sortOptionsChosen: EventEmitter<AppGridSortChosen> = new EventEmitter<AppGridSortChosen>();
 
     @ViewChildren(OcAppTableCellPattern) _cellPatterns: QueryList<OcAppTableCellPattern>;
 
@@ -180,6 +197,15 @@ export class OcAppTableComponent implements AfterViewInit {
             ascending: false,
         },
     ];
+
+    isOldSortImplementation: boolean = true;
+
+    /** Default sort options. All sort icons to down. */
+    currentSortOptions: AppGridSortOptions  = {
+        name: -1,
+        status: -1,
+        created: -1,
+    }
 
     constructor(private cdRef: ChangeDetectorRef) {}
 
@@ -274,24 +300,59 @@ export class OcAppTableComponent implements AfterViewInit {
     }
 
     /**
-     * Trigger {@link pageScrolled} when user use down scroll.
+     * Trigger {@link #pageScrolled} when user use down scroll.
      */
     onScrollDown(): void {
         this.pageScrolled.emit();
     }
 
+    sortAppsByKey(columnName: AppGridSortColumn): void {
+        if (this.isOldSortImplementation) {
+            this.oldSortAppsByKey(columnName);
+        } else {
+            this.newSortAppsByKey(columnName);
+        }
+    }
+
+    /** Only one column can be sorted, all other columns will be cleaned. */
+    private oldSortAppsByKey(columnName: AppGridSortColumn): void {
+        Object.keys(this.currentSortOptions).forEach(tempColumnName => {
+            if(columnName === tempColumnName) {
+                this.updateSortDirection(this.currentSortOptions, tempColumnName);
+                this.sortChosen.emit({
+                    by: tempColumnName,
+                    ascending: this.currentSortOptions[tempColumnName] === -1
+                });
+            } else {
+                this.currentSortOptions[tempColumnName] = -1;
+            }
+        });
+    }
+
     /**
-     * Sorts apps by chosen option
-     * @param {'name' | 'created' | 'status'} by option for sort
+     * Expand sort value for selected column (-1 => 1; null => -1; 1 => -1).<br>
+     * Not update current sort options.<br>
+     * Returns new sort options with selected column.<br>
+     *
+     * Note: For updating current sort options, use @Input {@link #sortOptions}.
      */
-    sortAppsBy(by: 'name' | 'created' | 'status'): void {
-        this.sortingObjects
-            .filter(sorting => sorting.by !== by)
-            .forEach(obj => {
-                obj.ascending = false;
-            });
-        const sort = this.sortingObjects.find(sorting => sorting.by === by);
-        sort.ascending = !sort.ascending;
-        this.sortChosen.emit(sort);
+    private newSortAppsByKey(columnName: AppGridSortColumn): void {
+        const newSortOptions = { ...this.currentSortOptions };
+        this.updateSortDirection(newSortOptions, columnName);
+        this.sortOptionsChosen.emit({
+            sortOptions: newSortOptions,
+            changedSortOption: columnName
+        });
+    }
+
+    /**
+     * Expand sort value for selected column (-1 => 1; null => -1; 1 => -1).
+     */
+    private updateSortDirection(sortOptions: AppGridSortOptions, columnName: AppGridSortColumn): void {
+        if(!sortOptions[columnName]) {
+            sortOptions[columnName] = -1;
+        } else {
+            sortOptions[columnName] *= -1;
+        }
     }
 }
