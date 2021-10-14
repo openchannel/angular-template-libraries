@@ -79,7 +79,7 @@ export class OcFormComponent implements OnInit, OnChanges {
     @Output() readonly formSubmitted: EventEmitter<any> = new EventEmitter();
 
     /**
-     * Sending true when user cancel form submitting.
+     * Sending true when user cancels form submitting.
      */
     @Output() readonly cancelSubmit: EventEmitter<void> = new EventEmitter();
 
@@ -103,13 +103,13 @@ export class OcFormComponent implements OnInit, OnChanges {
     // PROPERTIES AND BINDINGS FOR WIZARD FORM //
 
     /**
-     * The form type, can be rendered as 'wizard' or classic 'single' form.
+     * The form type, can be rendered as 'wizard' or classic 'page' form.
      * If 'wizard' - each step will be a formGroup.
      */
     @Input() displayType: FormType = 'page';
 
     /**
-     * Custom template for the save button to show.
+     * Custom template for the Save button to show.
      */
     @Input() additionalButton: TemplateRef<any>;
 
@@ -119,9 +119,17 @@ export class OcFormComponent implements OnInit, OnChanges {
     @Input() currentStep: number = 1;
 
     /**
-     * Current wizard step.
+     * You can set the number of steps to show.
+     * If set to 0, this option is turned off and all the steps will be visible.
+     * @default: 0
      */
     @Input() maxStepsToShow: number = 0;
+
+    /**
+     * You can enable/disable text truncation for step titles.
+     * @default: true
+     */
+    @Input() enableTextTruncation: boolean = true;
 
     /**
      * Current form ID. Used for modifying error messages.
@@ -173,8 +181,8 @@ export class OcFormComponent implements OnInit, OnChanges {
 
     ngOnInit(): void {
         this.checkFormType(this.displayType);
-        if (this.queryParams === 'invalid') {
-            this.validateFromAppTable();
+        if (this.queryParams === 'invalid' && this.hasFieldGroups) {
+            this.submitFromAppTable();
         }
     }
 
@@ -190,30 +198,11 @@ export class OcFormComponent implements OnInit, OnChanges {
         }
     }
 
-    validateFromAppTable(): void {
-        if (this.hasFieldGroups) {
-            this.customForm.markAllAsTouched();
-            let foundInvalidStep = false;
-            let firstInvalidStep = 1;
-            for (let i = 0; i < this.customForm.length; i++) {
-                this.validateStep(i);
-                if (this.customForm.controls[i].invalid && !foundInvalidStep) {
-                    firstInvalidStep = i + 1;
-                    foundInvalidStep = true;
-                }
-            }
-            this.setStep(firstInvalidStep);
-        }
-    }
-
-    mapFormFieldsData(fields: any): void {
-        this.resultData = {
-            ...this.resultData,
-            ...fields,
-        };
-    }
-
-    onSubmitButtonClicked(): void {
+    /**
+     * Checks validation of the custom form on submit button click.
+     * If it is invalid - returns to the first invalid step.
+     */
+    validateFormOnSubmit(): void {
         if (this.displayType === 'wizard' && this.hasFieldGroups) {
             this.validateStep(this.currentStep - 1);
             this.customForm.markAllAsTouched();
@@ -226,15 +215,24 @@ export class OcFormComponent implements OnInit, OnChanges {
                     }
                 }
             } else {
-                this.formSubmitted.emit(this.resultData);
+                this.submitForm();
             }
         } else {
-            if (this.customForm.valid) {
-                this.formSubmitted.emit(this.resultData); // TODO
-            }
+            this.submitForm();
         }
     }
 
+    /**
+     * Emits form result data to a parent component.
+     */
+    submitForm(): void {
+        this.formSubmitted.emit(this.resultData);
+    }
+
+    /**
+     * Executes navigation through steps by click on a specific step.
+     * Validates all the intermediate steps.
+     */
     navigateStepsByClick(step: number): void {
         const previousStep = this.currentStep;
         const nextStep = step;
@@ -251,6 +249,11 @@ export class OcFormComponent implements OnInit, OnChanges {
         this.currentStepChange.emit(this.currentStep);
     }
 
+    /**
+     * Executes navigation to the next or previous step by click on NEXT/PREVIOUS buttons.
+     * Validates current step when going forward.
+     * Validates current step when going backward only if it was touched.
+     */
     navigateStepsByButtons(direction: 'next' | 'previous'): void {
         if (direction === 'next') {
             this.validateStep(this.currentStep - 1);
@@ -265,7 +268,7 @@ export class OcFormComponent implements OnInit, OnChanges {
     }
 
     /**
-     * Updates and emits form on change
+     * Updates and emits form on change.
      */
     onFormDataUpdated(fields: any): void {
         this.mapFormFieldsData(fields);
@@ -295,11 +298,48 @@ export class OcFormComponent implements OnInit, OnChanges {
         return this.customForm.controls[this.currentStep - 1] as OcFormGroup;
     }
 
+    /**
+     * Sets and emits current step.
+     */
     private setStep(step: number): void {
         this.currentStep = step;
         this.currentStepChange.emit(step);
     }
 
+    /**
+     * If form is of wizard type, validates it from the app-table component.
+     * If form is invalid - renders progressbar and moves to a first invalid step.
+     */
+    private submitFromAppTable(): void {
+        this.customForm.markAllAsTouched();
+        let foundInvalidStep = false;
+        let firstInvalidStep = 1;
+        for (let i = 0; i < this.customForm.length; i++) {
+            this.validateStep(i);
+            if (this.customForm.controls[i].invalid && !foundInvalidStep) {
+                firstInvalidStep = i + 1;
+                foundInvalidStep = true;
+            }
+        }
+        if (foundInvalidStep) {
+            this.setStep(firstInvalidStep);
+        }
+    }
+
+    /**
+     * Maps form fields data, creates an object resultData.
+     */
+    private mapFormFieldsData(fields: any): void {
+        this.resultData = {
+            ...this.resultData,
+            ...fields,
+        };
+    }
+
+    /**
+     * Checks the form type.
+     * If 'wizard', and if it has more than 1 step - creates a progressbar with steps.
+     */
     private checkFormType(type: FormType): void {
         if (!this.generatedForm) {
             if (type === 'wizard') {
@@ -314,6 +354,9 @@ export class OcFormComponent implements OnInit, OnChanges {
         }
     }
 
+    /**
+     * Renders progressbar component with titles and pristine states.
+     */
     private generateProgressbar(): void {
         this.progressBarSteps = [];
         this.customForm.controls.forEach((step: any, index) => {
@@ -324,6 +367,9 @@ export class OcFormComponent implements OnInit, OnChanges {
         });
     }
 
+    /**
+     * Creates a custom array of forms as steps from json data.
+     */
     private createStepsFormArray(data: AppFormModel): void {
         const formsArray: FieldStep[] = [];
         const currentFreeFieldsStep: FieldStep = {
@@ -360,12 +406,20 @@ export class OcFormComponent implements OnInit, OnChanges {
         this.createdForm.emit(this.customForm);
     }
 
+    /**
+     * Validates current step.
+     * Changes current progressbar item state.
+     */
     private validateStep(index: number): void {
         const currentForm = this.customForm.controls[index] as OcFormGroup;
         this.validateCurrentControl(currentForm);
         this.progressBarSteps[index].state = currentForm.valid ? 'finished' : 'invalid';
     }
 
+    /**
+     * Checks current step instanceOf.
+     * Validates current control's children recursively.
+     */
     private validateCurrentControl(currentControl: AbstractControl): void {
         if (currentControl instanceof FormGroup) {
             for (const control of Object.keys(currentControl.controls)) {

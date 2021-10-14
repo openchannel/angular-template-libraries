@@ -56,9 +56,10 @@ export class OcProgressBarComponent implements OnInit, AfterViewInit, OnChanges 
 
     /**
      * You can enable/disable text truncation for step titles.
+     * Default value is passed from parent form component.
      * @default: true
      */
-    @Input() enableTextTruncate: boolean = true;
+    @Input() enableTextTruncation: boolean;
 
     /**
      * When a user clicks on a specific step, it emits step value to a form component.
@@ -85,12 +86,12 @@ export class OcProgressBarComponent implements OnInit, AfterViewInit, OnChanges 
         }
     }
 
-    ngAfterViewInit(): void {
-        this.getStaticOffsetValue();
-    }
-
     ngOnChanges(changes: SimpleChanges): void {
         this.getCurrentOffsetValue(changes);
+    }
+
+    ngAfterViewInit(): void {
+        this.getStaticOffsetValue();
     }
 
     /**

@@ -136,6 +136,7 @@
                 max-width: 10rem;
                 word-break: break-word;
                 @include font-size-md();
+                text-align: center;
 
                 &_truncate {
                     white-space: nowrap;
