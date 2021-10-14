@@ -1,4 +1,4 @@
-<div class="text-search">
+<div class="text-search {{customWrapperClass}}">
     <div class="text-search__container">
         <input class="text-search__input" [placeholder]="placeHolder" type="text"
                [(ngModel)]="searchText"
@@ -7,6 +7,24 @@
                   class="text-search__icon" src="assets/angular-common-components/text-search-icon.svg"
                   svgClass="text-search__icon-svg"
                   (click)="enterAction()"></svg-icon>
+    </div>
+    <div *ngIf='(selectedFilters.length || searchTermTag) as tagExist' class='text-search__tags'>
+        <oc-tag-element *ngFor='let selectedFilter of selectedFilters'
+                        class='tag'
+                        [title]='selectedFilter.selectedFilterValue.label'
+                        [closeMarker]='true'
+                        (clickEmitter)='deleteSelectedFilter(selectedFilter)'></oc-tag-element>
+        <oc-tag-element *ngIf='searchTermTag'
+                        class='tag'
+                        [title]='searchTermTag'
+                        [closeMarker]='true'
+                        (clickEmitter)='deleteSearchTermTag()'></oc-tag-element>
+        <oc-button *ngIf='tagExist && isShowClearAllTagsButton'
+                   class='tag clear-all-tags-buttons'
+                   customClass='{{ clearAllButtonType !== "link" ? "text-search__clear-all-tags-button" : "" }}'
+                   [type]='clearAllButtonType'
+                   text='Clear all'
+                   (click)='clearAllTags()'></oc-button>
     </div>
     <div class="text-search__controls">
         <oc-button *ngIf="hasClearTextControl"

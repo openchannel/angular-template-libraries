@@ -6,6 +6,29 @@ const modules = {
     imports: [OcCommonLibModule, FormsModule],
 };
 
+const selectedFiltersMock = [
+    {
+        parentFilterId: 'collections',
+        selectedFilterValue: {
+            checked: false,
+            id: 'featured',
+            label: 'Featured',
+            query: '{"status.value":"approved","attributes.featured":"yes"}',
+            sort: '{"randomize":1}',
+        },
+    },
+    {
+        parentFilterId: 'categories',
+        selectedFilterValue: {
+            checked: false,
+            description: 'Analytics Description',
+            id: 'analytics',
+            label: 'Analytics',
+            query: '{"status.value":"approved","customData.categories":"Analytics"}',
+        },
+    },
+];
+
 export default {
     title: 'Search input [BEM]',
     component: OcTextSearchComponent,
@@ -21,10 +44,28 @@ const TextSearchComponent = (args: OcTextSearchComponent) => ({
 
 export const SimpleSearch = TextSearchComponent.bind({});
 
+export const SearchWithTags = TextSearchComponent.bind({});
+
+SearchWithTags.args = {
+    selectedFilters: selectedFiltersMock,
+    searchTermTag: 'Searched text example',
+    clearAllButtonType: 'primary',
+    isShowClearAllTagsButton: true,
+};
+
 export const SearchWithButtons = TextSearchComponent.bind({});
 
 SearchWithButtons.args = {
     clearButtonText: 'Cancel',
     hasClearTextControl: true,
     hasMagnifier: false,
+};
+
+export const SearchWithTagsAndButtons = TextSearchComponent.bind({});
+
+SearchWithTagsAndButtons.args = {
+    clearButtonText: 'Cancel',
+    hasClearTextControl: true,
+    hasMagnifier: false,
+    selectedFilters: selectedFiltersMock,
 };

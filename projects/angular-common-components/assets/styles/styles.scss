@@ -702,3 +702,11 @@ oc-button.tags__button-add {
         margin: 5rem auto;
     }
 }
+
+.text-search {
+    &__clear-all-tags-button {
+        padding: 0 16px !important;
+        min-width: auto !important;
+        min-height: auto !important;
+    }
+}
