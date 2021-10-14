@@ -20,7 +20,7 @@
                         [closeMarker]='true'
                         (clickEmitter)='deleteSearchTermTag()'></oc-tag-element>
         <oc-button *ngIf='tagExist && isShowClearAllTagsButton'
-                   class='tag clear-all-tags-buttons'
+                   class='tag clear-all-tags-button'
                    customClass='{{ clearAllButtonType !== "link" ? "text-search__clear-all-tags-button" : "" }}'
                    [type]='clearAllButtonType'
                    text='Clear all'
