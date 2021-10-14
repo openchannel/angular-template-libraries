@@ -86,16 +86,16 @@
                     <oc-tags *ngSwitchCase="'tags'"
                              formControlName="{{formElement?.id}}"
                              [placeholder]="formElement.placeholder"
-                             [availableTags]="formElement?.options ? formElement?.options : ['']"></oc-tags>
+                             [availableTags]="formElement?.options || []"></oc-tags>
                     <oc-tags *ngSwitchCase="'booleanTags'"
                              formControlName="{{formElement?.id}}"
                              [placeholder]="formElement.placeholder"
-                             [availableTags]="formElement?.options ? formElement?.options : ['']"
+                             [availableTags]="formElement?.options || []"
                              tagsType="boolean"></oc-tags>
                     <oc-tags *ngSwitchCase="'numberTags'"
                              formControlName="{{formElement?.id}}"
                              [placeholder]="formElement.placeholder"
-                             [availableTags]="formElement?.options ? formElement?.options : ['']"
+                             [availableTags]="formElement?.options || []"
                              tagsType="number"></oc-tags>
                     <oc-video-url *ngSwitchCase="'videoUrl'"
                                   [formControlName]="formElement?.id"
@@ -121,7 +121,7 @@
 
                             <oc-multi-select-list *ngSwitchDefault
                                                   formControlName="{{formElement?.id}}"
-                                                  [availableItemsList]="formElement?.options ? formElement?.options : ['']"
+                                                  [availableItemsList]="formElement?.options || []"
                                                   [label]="formElement?.label"></oc-multi-select-list>
 
                         </ng-container>
