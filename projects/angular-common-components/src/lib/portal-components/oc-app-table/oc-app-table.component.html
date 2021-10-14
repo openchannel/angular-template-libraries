@@ -1,176 +1,139 @@
-<div class="oc-table-container">
-    <div class="oc-table-container__overlay"></div>
-    <div class="oc-table-wrapper">
-        <table class="oc-table"
+<div class="app-grid">
+    <div class="app-grid-scroller">
+        <table class="app-grid-table"
                [infiniteScrollThrottle]="50"
                (scrolled)="onScrollDown()"
                infiniteScroll
                aria-describedby="App listing table">
             <thead>
-                <tr class="oc-table__head">
-                    <th class="oc-table__th oc-table__placeholder" scope="col"></th>
-                    <th class="oc-table__th oc-table__name" scope="col" (click)="sortAppsBy('name')">Name
-                        <img [src]="sortingObjects[0].ascending ? ascendingSortIcon ? ascendingSortIcon:
-                             descendingSortIcon : descendingSortIcon"
-                             *ngIf="ascendingSortIcon || descendingSortIcon"
-                             [class.oc-table__icon-up]="!ascendingSortIcon && sortingObjects[0].ascending"
-                             alt="icon" class="oc-table__icon-down">
-                        <svg-icon src="assets/angular-common-components/select-down.svg"
-                                  *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[0].ascending"></svg-icon>
-                        <svg-icon src="assets/angular-common-components/select-up.svg"
-                                  *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[0].ascending"></svg-icon>
-                    </th>
-                    <th class="oc-table__th oc-table__summary" scope="col">Summary</th>
-                    <th class="oc-table__th oc-table__data" scope="col" (click)="sortAppsBy('created')">Created
-                        <img [src]="sortingObjects[1].ascending ? ascendingSortIcon ? ascendingSortIcon
-                             : descendingSortIcon : descendingSortIcon"
-                             *ngIf="ascendingSortIcon || descendingSortIcon"
-                             [class.oc-table__icon-up]="!ascendingSortIcon && sortingObjects[1].ascending"
-                             alt="icon" class="oc-table__icon-down">
-                        <svg-icon src="assets/angular-common-components/select-down.svg"
-                                  *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[1].ascending"></svg-icon>
-                        <svg-icon src="assets/angular-common-components/select-up.svg"
-                                  *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[1].ascending"></svg-icon>
-                    </th>
-                    <th class="oc-table__th oc-table__status" scope="col" (click)="sortAppsBy('status')">Status
-                        <img [src]="sortingObjects[2].ascending ? ascendingSortIcon ? ascendingSortIcon
-                             : descendingSortIcon : descendingSortIcon"
-                             *ngIf="ascendingSortIcon || descendingSortIcon"
-                             [class.oc-table__icon-up]="!ascendingSortIcon && sortingObjects[2].ascending"
-                             alt="icon" class="oc-table__icon-down">
-                        <svg-icon src="assets/angular-common-components/select-down.svg"
-                                  *ngIf="!ascendingSortIcon && !descendingSortIcon && !sortingObjects[2].ascending"></svg-icon>
-                        <svg-icon src="assets/angular-common-components/select-up.svg"
-                                  *ngIf="!ascendingSortIcon && !descendingSortIcon && sortingObjects[2].ascending"></svg-icon>
-                    </th>
-                    <th class="oc-table__th oc-table__action" scope="col"></th>
-                    <th class="oc-table__th oc-table__placeholder" scope="col"></th>
-                </tr>
+            <tr class="app-grid-table__header">
+                <!--  HEADER -->
+                <th *ngFor="let pattern of columnsPattern" [class]="'app-grid-table__header__cell app-grid-table__header__cell-' + pattern.columnId" scope="col">
+                    <ng-container [ngTemplateOutlet]="pattern.headerCellTemplate"></ng-container>
+                </th>
+            </tr>
             </thead>
             <tbody>
-                <ng-template [ngForOf]="properties.data.list" let-app ngFor let-i="index">
-                    <tr>
-                        <td class="oc-table__td_blank"></td>
-                        <td class="oc-table__td oc-table__td_flex">
-                            <img class="oc-table__app-icon"
-                                 [src]="app.customData.icon ? app.customData.icon : defaultAppIcon" alt="">
-                            <div class="oc-table__td-col">
-                                <h6 class="oc-table__app-name"
-                                    (click)="action('EDIT', app.appId, app.version, false)">{{app.name}}</h6>
-                                <small class="oc-table__app-version"> v {{app.version}}</small>
-                            </div>
-                        </td>
-                        <td class="oc-table__td">
-                            <span class="oc-table__text-wrapper oc-table__summary-text">{{app.customData.summary ? (app.customData.summary | replaceHtmlTags) : ''}}</span>
-                        </td>
-                        <td class="oc-table__td">
-                            <span class="oc-table__text-wrapper">{{app.created | date:'M/d/yyyy'}}</span>
-                        </td>
-                        <td class="oc-table__td">
-                            <small *ngIf="app.status.reason">
-                                <span class="oc-table__text-wrapper oc-table__indicator"
-                                      [ngClass]="app.status.value ? statusColor(app.status.value) : ''"></span>
-                                <span [ngbPopover]="popContent"
-                                      class="oc-table__text-wrapper oc-table__text-status" placement="bottom"
-                                      popoverClass="popover oc-shadow-sm oc-bg-white oc-rounded"
-                                      popoverTitle="Status Change Reason"
-                                      triggers="hover">
-                                      {{app.status.value === 'inDevelopment' ? 'Draft' : app.status.value | camelcase}}</span>
-                            </small>
-                            <ng-template #popContent>{{ app.status.reason }}</ng-template>
-                            <small *ngIf="!app.status.reason">
-                                <span class="oc-table__text-wrapper oc-table__indicator"
-                                      [ngClass]="app.status.value ? statusColor(app.status.value) : ''"></span>
-                                <span class="oc-table__text-wrapper oc-table__text-status">
-                                      {{app.status.value === 'inDevelopment' ? 'Draft'
-                                        : app.status.value | camelcase}}</span>
-                            </small>
-                        </td>
-                        <td class="oc-table__td">
-                            <ng-container [ngTemplateOutletContext]="{ $implicit: {data: app, child: false, index: i} }"
-                                          [ngTemplateOutlet]="appMenuTemplate">
-                            </ng-container>
-                        </td>
-                        <td class="oc-table__td_blank"></td>
-                    </tr>
-                    <ng-container *ngIf="app.children && app.children.length > 0">
-                        <tr *ngFor="let child of app?.children; let i = index">
-                            <td class="oc-table__td oc-table__td_blank"></td>
-                            <td class="oc-table__td oc-table__td_flex">
-                                <img class="oc-table__app-icon oc-table__app-icon_padded"
-                                     alt="icon"
-                                     src="assets/angular-common-components/line-arrow-down.svg"
-                                     *ngIf="i === 0">
-                                <span class="oc-table__text-wrapper oc-table__text-wrapper_blank" *ngIf="i > 0"></span>
-                                <img [src]="child.customData.icon ? child.customData.icon : defaultAppIcon" alt=""
-                                     class="oc-table__app-icon">
-                                <div class="oc-table__td-col">
-                                    <h6 class="oc-table__app-name"
-                                        (click)="action('EDIT', child.appId, child.version, true)">{{child.name}}</h6>
-                                    <small class="oc-table__app-version">v {{child.version}}</small>
-                                </div>
-                            </td>
-                            <td class="oc-table__td">
-                                <span class="oc-table__text-wrapper oc-table__summary-text">{{child.customData.summary ? (child.customData.summary | replaceHtmlTags) : ''}}</span>
-                            </td>
-                            <td class="oc-table__td">
-                                <span class="oc-table__text-wrapper">{{child.created | date:'M/d/yyyy'}}</span>
-                            </td>
-                            <td class="oc-table__td">
-                                <small *ngIf="child.status.reason">
-                                    <span class="oc-table__text-wrapper oc-table__indicator"
-                                          [ngClass]="child.status.value ? statusColor(app.status.value) : ''"></span>
-                                    <span [ngbPopover]="popContent"
-                                          class="oc-table__text-wrapper oc-table__text-status" placement="bottom"
-                                          popoverClass="popover oc-shadow-sm oc-bg-white oc-rounded"
-                                          popoverTitle="Status Change Reason"
-                                          triggers="hover">
-                                          {{child.status.value === 'inDevelopment' ? 'Draft'
-                                            : child.status.value | camelcase}}</span>
-                                </small>
-                                <ng-template #popContent>{{ child.status.reason }}</ng-template>
-                                <small *ngIf="!child.status.reason">
-                                    <span class="oc-table__text-wrapper oc-table__indicator"
-                                          [ngClass]="child.status.value ? statusColor(child.status.value) : ''"></span>
-                                    <span class="oc-table__text-wrapper oc-table__text-status">
-                                          {{child.status.value === 'inDevelopment' ? 'Draft'
-                                            : child.status.value | camelcase}}</span>
-                                </small>
-                            </td>
-                            <td class="oc-table__td">
-                                <ng-container [ngTemplateOutletContext]="{ $implicit: {data: child, child: true, index: i} }"
-                                              [ngTemplateOutlet]="appMenuTemplate"></ng-container>
-                            </td>
-                            <td class="oc-table__td_blank"></td>
-                        </tr>
-                    </ng-container>
-                </ng-template>
-                <tr *ngIf="!properties.data.list || properties.data.list.length == 0">
-                    <td class="oc-table__td oc-table__td_nodata oc-text-center" colspan="7">
-                        <span class="oc-table__text-wrapper">No Applications Found</span>
-                    </td>
+            <ng-container *ngFor="let app of properties.data.list">
+                <!--  APP row -->
+                <tr class="app-grid-table__row">
+                    <th *ngFor="let pattern of columnsPattern;let parentIndex = index" [class]="'app-grid-table__row__cell app-grid-table__row__cell-' + pattern.columnId" scope="col">
+                        <ng-container [ngTemplateOutlet]="pattern.rowCellTemplate"
+                                      [ngTemplateOutletContext]="{$implicit: {app: app, isChild: false, index: parentIndex}}"></ng-container>
+                    </th>
                 </tr>
-                <tr *ngIf="properties.data.list.length > 0">
-                    <td class="oc-table__td" colspan="7">
-                        <span class="oc-table__text-wrapper"></span>
-                    </td>
+                <!--  APP child rows -->
+                <tr *ngFor="let appChild of app.children; let childIndex = index" class="app-grid-table__row">
+                    <th *ngFor="let pattern of columnsPattern;" [class]="'app-grid-table__row__cell app-grid-table__row__cell-' + pattern.columnId" scope="col">
+                        <ng-container [ngTemplateOutlet]="pattern.rowCellTemplate"
+                                      [ngTemplateOutletContext]="{$implicit: {app: appChild, isChild: true, index: childIndex}}"></ng-container>
+                    </th>
                 </tr>
+            </ng-container>
+            <!--  Bottom table row (used only for apps not found)  -->
+            <ng-container [ngTemplateOutlet]="tableBottomRowTemplate || tableBottomRow"
+                          [ngTemplateOutletContext]="{$implicit: {columnCount: columnsPattern.length}}"></ng-container>
             </tbody>
         </table>
     </div>
 </div>
 
-<ng-template #appMenuTemplate let-app>
-    <div class="oc-table__dropdown">
-        <div ngbDropdown
-             [placement]="app?.index && properties.data.list.length > 5 &&
-             app?.index >= properties.data.list.length - 2 ?
-             'top-right': 'bottom-right top-right'">
-            <img class="oc-table__dropdown-dots" [src]="menuUrl" alt="more-icon" ngbDropdownToggle>
+<ng-template #tableBottomRow>
+    <tr *ngIf="!(properties.data.list?.length > 0)">
+        <td class="app-grid-table__bottom-empty-list" [attr.colspan]="columnsPattern.length">
+            {{noAppMessage}}
+        </td>
+    </tr>
+    <tr *ngIf="properties.data.list?.length > 0">
+        <td class="app-grid-table__bottom-not-empty-list" [attr.colspan]="columnsPattern.length"><div></div></td>
+    </tr>
+</ng-template>
+
+<ng-template #sortIcon let-isAscending>
+    <svg-icon *ngIf="isAscending" [src]="ascendingSortIcon || 'assets/angular-common-components/select-up.svg'" class="app-grid-table__header__sort-icon"></svg-icon>
+    <svg-icon *ngIf="!isAscending" [src]="descendingSortIcon || 'assets/angular-common-components/select-down.svg'" class="app-grid-table__header__sort-icon"></svg-icon>
+</ng-template>
+
+<!-- Table header cells  -->
+<!-- Empty right placeholder template -->
+<ng-template name="left-placeholder" type="headerCell">
+</ng-template>
+
+<ng-template name="name" type="headerCell">
+    <div class="app-grid-table__header__cell-name-content" (click)="sortAppsBy('name')">
+        <span class="app-grid-table__header__cell-name-content-text">Name</span>
+        <ng-container *ngTemplateOutlet="sortIcon; context: {$implicit: sortingObjects[0].ascending}"></ng-container>
+    </div>
+</ng-template>
+
+<ng-template name="summary" type="headerCell">
+    <span class="app-grid-table__header__cell-summary-text">Summary</span>
+</ng-template>
+
+<ng-template name="create-date" type="headerCell">
+    <div class="app-grid-table__header__cell-create-date-content" (click)="sortAppsBy('created')">
+        <span class="app-grid-table__header__cell-create-date-content-text">Created</span>
+        <ng-container *ngTemplateOutlet="sortIcon; context: {$implicit: sortingObjects[1].ascending}"></ng-container>
+    </div>
+</ng-template>
+
+<ng-template name="status" type="headerCell">
+    <div class="app-grid-table__header__cell-status-content" (click)="sortAppsBy('status')">
+        <span class="app-grid-table__header__cell-status-content-text">Status</span>
+        <ng-container *ngTemplateOutlet="sortIcon; context: {$implicit: sortingObjects[2].ascending}"></ng-container>
+    </div>
+</ng-template>
+
+<!-- Empty app options template -->
+<ng-template name="app-options" type="headerCell"></ng-template>
+
+<ng-template name="right-placeholder" type="headerCell">
+    <th class="app-grid-table__header__cell app-grid-table__header__cell-right-placeholder" scope="col"></th>
+</ng-template>
+
+
+<!-- | Table app row cells |  -->
+
+<!-- Empty right placeholder template -->
+<ng-template name="left-placeholder" type="rowCell" let-ctx></ng-template>
+
+<ng-template name="name" type="rowCell" let-ctx>
+    <div class="app-grid-table__row__cell-name-content">
+        <img class="app-grid-table__row__cell-name-content-app-child-icon" src="assets/angular-common-components/line-arrow-down.svg" alt="child-arrow"
+             *ngIf="ctx.isChild"
+             [style.visibility]="ctx.index !== 0 ? 'hidden' : ''">
+        <img class="app-grid-table__row__cell-name-content-icon"
+             [src]="ctx.app | getTextByPath: fieldsPathConfig.appIconPath : defaultAppIcon" alt="">
+        <div class="app-grid-table__row__cell-name-content-text">
+            <span class="app-grid-table__row__cell-name-content-text-title">{{ctx.app.name}}</span>
+            <span class="app-grid-table__row__cell-name-content-text-version">v. {{ctx.app.version}}</span>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template name="summary" type="rowCell" let-ctx>
+    <span class="app-grid-table__row__cell-summary-text">{{ctx.app | getTextByPath: fieldsPathConfig.appDescriptionPath}}</span>
+</ng-template>
+
+<ng-template name="create-date" type="rowCell" let-ctx>
+    <span class="app-grid-table__row__cell-create-date-text">{{ctx.app.created | date:'M/d/yyyy'}}</span>
+</ng-template>
+
+<ng-template name="status" type="rowCell" let-ctx>
+    <div class="app-grid-table__row__cell-status-content">
+        <div [class]="'app-grid-table__row__cell-status-content-marker-' + statusPattern[ctx.app?.status?.value].style"></div>
+        <span class="app-grid-table__row__cell-status-content-text">{{statusPattern[ctx.app?.status?.value].text}}</span>
+    </div>
+</ng-template>
+
+<ng-template name="app-options" type="rowCell" let-ctx>
+    <div class="app-grid-table__row__cell-app-options-dropdown">
+        <div ngbDropdown placement="bottom-right">
+            <img class="app-grid-table__row__cell-app-options-dropdown-dots" [src]="menuUrl" alt="more-icon" ngbDropdownToggle>
             <div ngbDropdownMenu>
                 <ng-container *ngFor="let menuAction of properties.options">
-                    <button *ngIf="needToShowItem(menuAction, app.data?.status.value, app.data?.status.modifiedBy)"
-                            (click)="action(menuAction, app.data?.appId, app.data?.version, app.child)"
+                    <button *ngIf="needToShowItem(menuAction, ctx.app?.status.value, ctx.app?.status.modifiedBy)"
+                            (click)="action(menuAction, ctx.app?.appId, ctx.app?.version, ctx.isChild)"
                             ngbDropdownItem
                             class="menu" [ngClass]="'menu-' + menuAction | lowercase">
                         {{menuAction | titlecase}}
@@ -180,3 +143,6 @@
         </div>
     </div>
 </ng-template>
+
+<!-- Empty right placeholder template -->
+<ng-template name="right-placeholder" type="rowCell"></ng-template>

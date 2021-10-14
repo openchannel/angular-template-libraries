@@ -3,24 +3,31 @@
 
 .dropdown-button {
     height: 100%;
-    position: relative;
     width: 100%;
     user-select: none;
 
     &__placeholder-container {
         @include font-size-md();
         @include font-medium();
-        align-items: center;
-        display: flex;
         height: 100%;
         width: 100%;
-
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &-title-text {
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
         &:after {
             display: none;
         }
     }
-
     &__menu {
         width: 100%;
+        &-item-text {
+            display: block;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
     }
 }
