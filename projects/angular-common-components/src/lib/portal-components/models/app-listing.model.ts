@@ -91,3 +91,28 @@ export interface AppListMenuAction {
     /** Marker for apps which has been subversion of the main app */
     isChild?: boolean;
 }
+
+
+// ---- Sorting for app table columns ----
+
+/** Column names for sorting {@link OcAppTableComponent}. */
+export type AppGridSortColumn = 'name' | 'created' | 'status';
+
+/**
+ * Config for setting current sort icon direction (up or down). Used in {@link OcAppTableComponent#sortOptions}.
+ *
+ * Values:<br>
+ *   -1 => sort icon to down.<br>
+ *   null => sort icon to down.<br>
+ *   1 => sort icon to up.<br>
+ */
+export type AppGridSortOptions = {
+    [name in AppGridSortColumn]: 1 | -1 | null;
+}
+
+export type AppGridSortChosen = {
+    /** New sort config. */
+    sortOptions: AppGridSortOptions,
+    /** Updated column ID. */
+    changedSortOption: AppGridSortColumn
+}
