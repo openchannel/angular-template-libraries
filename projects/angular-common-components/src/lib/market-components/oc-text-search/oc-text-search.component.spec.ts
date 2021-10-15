@@ -89,23 +89,29 @@ describe('OcTextSearchComponent', () => {
         component.selectedFilters = [mockedSelectedFilter];
         fixture.detectChanges();
 
-        const selectedFilterTag = fixture.debugElement.query(By.directive(MockTagComponent)).componentInstance;
+        const tags = fixture.debugElement.queryAll(By.directive(MockTagComponent));
+        const mockedSelectedFilterInstance = tags.find(
+            tag => tag.componentInstance.title === mockedSelectedFilter.selectedFilterValue.label,
+        ).componentInstance;
         const selectedFilterDeletedEmitFunction = jest.spyOn(component.selectedFilterDeleted, 'emit');
 
-        selectedFilterTag.clickEmitter.emit();
+        mockedSelectedFilterInstance.clickEmitter.emit();
         fixture.detectChanges();
 
         expect(selectedFilterDeletedEmitFunction).toHaveBeenCalledWith(mockedSelectedFilter);
     });
 
     it('should emit on close button search tag click', () => {
-        component.searchTermTag = 'Search example';
+        const searchExample = 'Search example';
+
+        component.searchTermTag = searchExample;
         fixture.detectChanges();
 
-        const searchTermTag = fixture.debugElement.query(By.directive(MockTagComponent)).componentInstance;
+        const tags = fixture.debugElement.queryAll(By.directive(MockTagComponent));
+        const searchTermTagInstance = tags.find(tag => tag.componentInstance.title === searchExample).componentInstance;
         const searchTermTagDeletedEmitFunction = jest.spyOn(component.searchTermTagDeleted, 'emit');
 
-        searchTermTag.clickEmitter.emit();
+        searchTermTagInstance.clickEmitter.emit();
         fixture.detectChanges();
 
         expect(searchTermTagDeletedEmitFunction).toHaveBeenCalled();
@@ -125,13 +131,15 @@ describe('OcTextSearchComponent', () => {
     });
 
     it('clear all button type should be same as clearAllButtonType passed value', () => {
+        const primaryType = 'primary';
+
         component.searchTermTag = 'Search example';
-        component.clearAllButtonType = 'primary';
+        component.clearAllButtonType = primaryType;
         fixture.detectChanges();
 
         const clearAllButton = fixture.debugElement.query(By.css('.clear-all-tags-button')).componentInstance;
 
-        expect(clearAllButton.type).toBe('primary');
+        expect(clearAllButton.type).toBe(primaryType);
     });
 
     it('clear all button should be absent when isShowClearAllTagsButton = false', () => {
