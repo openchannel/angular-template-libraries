@@ -3,7 +3,7 @@
         <div class="form-steps__content">
             <div class="form-steps__content-progressbar">
                 <oc-progress-bar *ngIf="showProgressBar"
-                                 (jumpToStep)="navigateStepsByClick($event)"
+                                 (jumpToStep)="navigateToStep($event)"
                                  [maxStepsToShow]="maxStepsToShow"
                                  [enableTextTruncation]="enableTextTruncation"
                                  [progressbarData]="progressBarSteps"
@@ -46,7 +46,7 @@
                    type="primary"
                    text="Next step"></oc-button>
         <oc-button *ngIf="showSubmitButton && isLastStep"
-                   (click)="validateFormOnSubmit()"
+                   (click)="onSubmitButtonClicked()"
                    [process]="process"
                    class="form__button"
                    type="primary"

@@ -100,7 +100,7 @@ export class OcFormComponent implements OnInit, OnChanges {
      */
     @Output() readonly createdForm: EventEmitter<AbstractControl> = new EventEmitter();
 
-    // PROPERTIES AND BINDINGS FOR WIZARD FORM //
+    /** PROPERTIES AND BINDINGS FOR WIZARD FORM */
 
     /**
      * The form type, can be rendered as 'wizard' or classic 'page' form.
@@ -202,8 +202,8 @@ export class OcFormComponent implements OnInit, OnChanges {
      * Checks validation of the custom form on submit button click.
      * If it is invalid - returns to the first invalid step.
      */
-    validateFormOnSubmit(): void {
-        if (this.displayType === 'wizard' && this.hasFieldGroups) {
+    onSubmitButtonClicked(): void {
+        if (this.hasFieldGroups) {
             this.validateStep(this.currentStep - 1);
             this.customForm.markAllAsTouched();
             if (this.customForm.invalid) {
@@ -216,10 +216,10 @@ export class OcFormComponent implements OnInit, OnChanges {
                 }
             } else {
                 this.submitForm();
+                return;
             }
-        } else {
-            this.submitForm();
         }
+        this.submitForm();
     }
 
     /**
@@ -233,7 +233,7 @@ export class OcFormComponent implements OnInit, OnChanges {
      * Executes navigation through steps by click on a specific step.
      * Validates all the intermediate steps.
      */
-    navigateStepsByClick(step: number): void {
+    navigateToStep(step: number): void {
         const previousStep = this.currentStep;
         const nextStep = step;
         if (previousStep === nextStep) {
