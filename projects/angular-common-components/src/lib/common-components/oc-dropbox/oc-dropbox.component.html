@@ -11,7 +11,7 @@
          (ngModelChange)="inputChange.emit($event)"
          [ngbTypeahead]="search"
          (selectItem)="selectItem($event)"
-         (keyup.enter)="!isPreventAddCustomItemsByEnter && selectItem()"
+         (keyup.enter)="!disableAddCustomItemsByEnter && selectItem()"
          [ngStyle]="customNgStyle"
          [disabled]="disabled"
          [resultTemplate]="dropElementTemplate"/>

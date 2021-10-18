@@ -136,7 +136,7 @@ describe('OcDropboxComponent', () => {
     it('should prevent add custom items by enter key up, when corresponding flag is set to true', async () => {
         const selectedItemEmitFunction = jest.spyOn(component.selectedItem, 'emit');
 
-        component.isPreventAddCustomItemsByEnter = true;
+        component.disableAddCustomItemsByEnter = true;
         fixture.detectChanges();
 
         const dropbox = fixture.nativeElement.querySelector('input');

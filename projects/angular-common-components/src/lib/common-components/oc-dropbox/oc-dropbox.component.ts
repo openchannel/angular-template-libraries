@@ -87,7 +87,7 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
      * Flag, that determines whether to add custom items by 'Enter' key up (from input).
      * @default false
      */
-    @Input() isPreventAddCustomItemsByEnter: boolean = false;
+    @Input() disableAddCustomItemsByEnter: boolean = false;
 
     /**
      * Emit currently selected item from dropdown to the parent component.
