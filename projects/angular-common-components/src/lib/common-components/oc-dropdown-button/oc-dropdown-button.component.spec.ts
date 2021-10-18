@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { OcDropdownButtonComponent } from './oc-dropdown-button.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MockSvgIconComponent } from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcDropdownButtonComponent', () => {
   let component: OcDropdownButtonComponent;
@@ -9,7 +9,7 @@ describe('OcDropdownButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcDropdownButtonComponent ],
+      declarations: [ OcDropdownButtonComponent, MockSvgIconComponent ],
       imports: [NgbModule]
     })
     .compileComponents();
