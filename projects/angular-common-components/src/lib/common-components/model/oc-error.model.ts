@@ -316,3 +316,16 @@ export class DefaultErrorMessageConfiguration extends AbstractErrorMessageConfig
         );
     }
 }
+
+export interface ServerErrorModel {
+    field?: string
+    type?: string;
+    code?: string;
+    message?: string
+}
+export interface ServerErrorEvent<T extends 'onNewErrors' | 'onRemovedError', V> {
+    type: T,
+    value: V;
+}
+export interface OnNewErrorsEvent extends ServerErrorEvent<'onNewErrors', ServerErrorModel[]> {}
+export interface OnRemoveErrorEvent extends ServerErrorEvent<'onRemovedError', ServerErrorModel> {}
