@@ -704,9 +704,11 @@ oc-button.tags__button-add {
 }
 
 .text-search {
-    &__clear-all-tags-button {
-        padding: 0 16px !important;
-        min-width: auto !important;
-        min-height: auto !important;
+    button.tags {
+        &__clear-all-tags-button-not-a-link {
+            padding: 0 16px;
+            min-width: auto;
+            min-height: auto;
+        }
     }
 }

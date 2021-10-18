@@ -129,7 +129,7 @@ describe('OcTextSearchComponent', () => {
 
         const clearAllButton = fixture.debugElement.query(By.css('.tags__clear-all-tags-button')).componentInstance;
 
-        expect(clearAllButton.customClass).toBe('text-search__clear-all-tags-button');
+        expect(clearAllButton.customClass).toBe('tags__clear-all-tags-button-not-a-link');
 
         component.clearAllButtonType = 'link';
         fixture.detectChanges();
