@@ -235,17 +235,16 @@ export class OcFormComponent implements OnInit, OnChanges {
      */
     navigateToStep(step: number): void {
         const previousStep = this.currentStep;
-        const nextStep = step;
-        if (previousStep === nextStep) {
+        this.currentStep = step;
+        if (previousStep === this.currentStep) {
             return;
-        } else if (previousStep < nextStep) {
-            for (let i = previousStep; i < nextStep; i++) {
+        } else if (previousStep < this.currentStep) {
+            for (let i = previousStep; i < this.currentStep; i++) {
                 this.validateStep(i - 1);
             }
-        } else if (previousStep > nextStep) {
-            this.validateStep(this.currentStep - 1);
+        } else if (previousStep > this.currentStep) {
+            this.validateStep(previousStep - 1);
         }
-        this.currentStep = step;
         this.currentStepChange.emit(this.currentStep);
     }
 
