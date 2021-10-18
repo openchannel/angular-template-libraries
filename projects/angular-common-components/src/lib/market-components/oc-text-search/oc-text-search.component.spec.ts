@@ -92,7 +92,7 @@ describe('OcTextSearchComponent', () => {
         fixture.detectChanges();
 
         const clearAllButton = fixture.debugElement.query(By.css('.tags__clear-all-tags-button')).nativeElement;
-        const clearAllTagsClickedEmitFunction = jest.spyOn(component.clearAllTagsClicked, 'emit');
+        const clearAllTagsClickedEmitFunction = jest.spyOn(component.allTagsDeleted, 'emit');
 
         clearAllButton.click();
         fixture.detectChanges();

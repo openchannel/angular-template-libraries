@@ -94,7 +94,7 @@ export class OcTextSearchComponent {
      * Output that emits a click on clear all tags button.
      * @type {boolean}.
      */
-    @Output() readonly clearAllTagsClicked: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() readonly allTagsDeleted: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /** Emits search text value on enter key down or search icon click */
     enterAction(): void {
@@ -103,7 +103,7 @@ export class OcTextSearchComponent {
 
     /** Emits clear all tags button clicked */
     clearAllTags(): void {
-        this.clearAllTagsClicked.emit();
+        this.allTagsDeleted.emit();
     }
 
     /** Emits delete of tag */
