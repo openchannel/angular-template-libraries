@@ -6,28 +6,7 @@ const modules = {
     imports: [OcCommonLibModule, FormsModule],
 };
 
-const selectedFiltersMock = [
-    {
-        parentFilterId: 'collections',
-        selectedFilterValue: {
-            checked: false,
-            id: 'featured',
-            label: 'Featured',
-            query: '{"status.value":"approved","attributes.featured":"yes"}',
-            sort: '{"randomize":1}',
-        },
-    },
-    {
-        parentFilterId: 'categories',
-        selectedFilterValue: {
-            checked: false,
-            description: 'Analytics Description',
-            id: 'analytics',
-            label: 'Analytics',
-            query: '{"status.value":"approved","customData.categories":"Analytics"}',
-        },
-    },
-];
+const tagsTitles = ['collections', 'categories', 'search criteria'];
 
 export default {
     title: 'Search input [BEM]',
@@ -47,8 +26,7 @@ export const SimpleSearch = TextSearchComponent.bind({});
 export const SearchWithTags = TextSearchComponent.bind({});
 
 SearchWithTags.args = {
-    selectedFilters: selectedFiltersMock,
-    searchTermTag: 'Searched text example',
+    tagsTitles,
     clearAllButtonType: 'primary',
     isShowClearAllTagsButton: true,
 };
@@ -67,5 +45,5 @@ SearchWithTagsAndButtons.args = {
     clearButtonText: 'Cancel',
     hasClearTextControl: true,
     hasMagnifier: false,
-    selectedFilters: selectedFiltersMock,
+    tagsTitles,
 };

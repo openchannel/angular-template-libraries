@@ -42,13 +42,15 @@
         flex-wrap: wrap;
 
         margin-top: 26px;
+    }
 
-        .tag {
+    .tags {
+        &__tag {
             margin-right: 8px;
             margin-bottom: 8px;
         }
 
-        .clear-all-tags-button {
+        &__clear-all-tags-button {
             margin-left: 8px;
         }
     }
@@ -67,4 +69,3 @@
         }
     }
 }
-

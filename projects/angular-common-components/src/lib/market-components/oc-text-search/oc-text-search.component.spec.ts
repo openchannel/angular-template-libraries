@@ -5,22 +5,8 @@ import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MockButtonComponent, MockSvgIconComponent, MockTagComponent } from '@openchannel/angular-common-components/src/mock/mock';
-import { SelectedFilter } from '@openchannel/angular-common-components/src/lib/common-components';
 
-const mockedSelectedFilter: SelectedFilter = {
-    parentFilterId: 'collections',
-    selectedFilterValue: {
-        query: '{"status.value":"approved","attributes.featured":"yes"}',
-        sort: '{"randomize":1}',
-        id: 'featured',
-        label: 'Featured',
-        description: '',
-        values: null,
-        expanded: false,
-        checked: false,
-        icon: './assets/icons/analytics-category-icon.png',
-    },
-};
+const tagsTitlesMocked = ['collections', 'categories', 'search criteria'];
 
 describe('OcTextSearchComponent', () => {
     let component: OcTextSearchComponent;
@@ -85,43 +71,27 @@ describe('OcTextSearchComponent', () => {
         expect(enterSearchEmitFunction).toHaveBeenCalledWith('Hello test!');
     });
 
-    it('should emit selected filter on close button filter tag click', () => {
-        component.selectedFilters = [mockedSelectedFilter];
+    it('should emit tag index on close button tag click', () => {
+        const tagIndexToDelete = 0;
+
+        component.tagsTitles = [...tagsTitlesMocked];
         fixture.detectChanges();
 
         const tags = fixture.debugElement.queryAll(By.directive(MockTagComponent));
-        const mockedSelectedFilterInstance = tags.find(
-            tag => tag.componentInstance.title === mockedSelectedFilter.selectedFilterValue.label,
-        ).componentInstance;
-        const selectedFilterDeletedEmitFunction = jest.spyOn(component.selectedFilterDeleted, 'emit');
+        const tagInstanceToDelete = tags.find(tag => tag.componentInstance.title === tagsTitlesMocked[tagIndexToDelete]).componentInstance;
+        const tagToDeleteEmitFunction = jest.spyOn(component.tagDeleted, 'emit');
 
-        mockedSelectedFilterInstance.clickEmitter.emit();
+        tagInstanceToDelete.clickEmitter.emit();
         fixture.detectChanges();
 
-        expect(selectedFilterDeletedEmitFunction).toHaveBeenCalledWith(mockedSelectedFilter);
-    });
-
-    it('should emit on close button search tag click', () => {
-        const searchExample = 'Search example';
-
-        component.searchTermTag = searchExample;
-        fixture.detectChanges();
-
-        const tags = fixture.debugElement.queryAll(By.directive(MockTagComponent));
-        const searchTermTagInstance = tags.find(tag => tag.componentInstance.title === searchExample).componentInstance;
-        const searchTermTagDeletedEmitFunction = jest.spyOn(component.searchTermTagDeleted, 'emit');
-
-        searchTermTagInstance.clickEmitter.emit();
-        fixture.detectChanges();
-
-        expect(searchTermTagDeletedEmitFunction).toHaveBeenCalled();
+        expect(tagToDeleteEmitFunction).toHaveBeenCalledWith(tagIndexToDelete);
     });
 
     it('should emit on clear all button click', () => {
-        component.searchTermTag = 'Search example';
+        component.tagsTitles = [...tagsTitlesMocked];
         fixture.detectChanges();
 
-        const clearAllButton = fixture.debugElement.query(By.css('.clear-all-tags-button')).nativeElement;
+        const clearAllButton = fixture.debugElement.query(By.css('.tags__clear-all-tags-button')).nativeElement;
         const clearAllTagsClickedEmitFunction = jest.spyOn(component.clearAllTagsClicked, 'emit');
 
         clearAllButton.click();
@@ -133,31 +103,31 @@ describe('OcTextSearchComponent', () => {
     it('clear all button type should be same as clearAllButtonType passed value', () => {
         const primaryType = 'primary';
 
-        component.searchTermTag = 'Search example';
+        component.tagsTitles = [...tagsTitlesMocked];
         component.clearAllButtonType = primaryType;
         fixture.detectChanges();
 
-        const clearAllButton = fixture.debugElement.query(By.css('.clear-all-tags-button')).componentInstance;
+        const clearAllButton = fixture.debugElement.query(By.css('.tags__clear-all-tags-button')).componentInstance;
 
         expect(clearAllButton.type).toBe(primaryType);
     });
 
     it('clear all button should be absent when isShowClearAllTagsButton = false', () => {
-        component.searchTermTag = 'Search example';
+        component.tagsTitles = [...tagsTitlesMocked];
         component.isShowClearAllTagsButton = false;
         fixture.detectChanges();
 
-        const clearAllButton = fixture.debugElement.query(By.css('.clear-all-tags-button'));
+        const clearAllButton = fixture.debugElement.query(By.css('.tags__clear-all-tags-button'));
 
         expect(clearAllButton).toBeNull();
     });
 
     it('clear all button customClass should depend on button type', () => {
-        component.searchTermTag = 'Search example';
+        component.tagsTitles = [...tagsTitlesMocked];
         component.clearAllButtonType = 'primary';
         fixture.detectChanges();
 
-        const clearAllButton = fixture.debugElement.query(By.css('.clear-all-tags-button')).componentInstance;
+        const clearAllButton = fixture.debugElement.query(By.css('.tags__clear-all-tags-button')).componentInstance;
 
         expect(clearAllButton.customClass).toBe('text-search__clear-all-tags-button');
 
