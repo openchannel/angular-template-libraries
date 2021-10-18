@@ -133,7 +133,7 @@ describe('OcDropboxComponent', () => {
         expect(onTouchedFunc).toHaveBeenCalled();
     });
 
-    it('should prevent add custom items, when corresponding flag is set to true', async () => {
+    it('should prevent add custom items by enter key up, when corresponding flag is set to true', async () => {
         const selectedItemEmitFunction = jest.spyOn(component.selectedItem, 'emit');
 
         component.isPreventAddCustomItemsByEnter = true;
@@ -152,7 +152,7 @@ describe('OcDropboxComponent', () => {
         });
     });
 
-    it('should add custom items, when corresponding flag is set to false (by default)', async () => {
+    it('should add custom items by enter key up, when corresponding flag is set to false (by default)', async () => {
         const selectedItemEmitFunction = jest.spyOn(component.selectedItem, 'emit');
 
         const dropbox = fixture.nativeElement.querySelector('input');
