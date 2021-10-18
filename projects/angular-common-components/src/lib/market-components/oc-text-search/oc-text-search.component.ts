@@ -102,7 +102,7 @@ export class OcTextSearchComponent {
     }
 
     /** Emits clear all tags button clicked */
-    clearAllTags(): void {
+    deleteAllTags(): void {
         this.allTagsDeleted.emit();
     }
 

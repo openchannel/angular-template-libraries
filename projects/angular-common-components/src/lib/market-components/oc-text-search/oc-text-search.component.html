@@ -19,7 +19,7 @@
                    [customClass]="clearAllButtonType !== 'link' ? 'tags__clear-all-tags-button-not-a-link' : ''"
                    [type]="clearAllButtonType"
                    text="Clear all"
-                   (click)="clearAllTags()"></oc-button>
+                   (click)="deleteAllTags()"></oc-button>
     </div>
     <div class="text-search__controls">
         <oc-button *ngIf="hasClearTextControl"
