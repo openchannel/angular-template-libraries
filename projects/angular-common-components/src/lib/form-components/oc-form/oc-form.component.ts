@@ -126,12 +126,6 @@ export class OcFormComponent implements OnInit, OnChanges {
     @Input() maxStepsToShow: number = 0;
 
     /**
-     * You can enable/disable text truncation for step titles.
-     * @default: true
-     */
-    @Input() enableTextTruncation: boolean = true;
-
-    /**
      * Current form ID. Used for modifying error messages.
      * Look: {@link ErrorMessageFormId}
      */
@@ -168,10 +162,10 @@ export class OcFormComponent implements OnInit, OnChanges {
     @Input() showProgressBar: boolean = true;
 
     /**
-     * Input for query params.
+     * Input for form errors after redirect.
      * @default ''.
      */
-    @Input() queryParams: string = '';
+    @Input() setFormErrors: boolean = false;
 
     customForm: FormArray;
     progressBarSteps: FormProgressbarStep[] = [];
@@ -181,7 +175,7 @@ export class OcFormComponent implements OnInit, OnChanges {
 
     ngOnInit(): void {
         this.checkFormType(this.displayType);
-        if (this.queryParams === 'invalid' && this.hasFieldGroups) {
+        if (this.setFormErrors && this.hasFieldGroups) {
             this.submitFromAppTable();
         }
     }

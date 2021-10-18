@@ -5,7 +5,8 @@ import {
     EventEmitter,
     HostListener,
     Input,
-    OnChanges, OnInit,
+    OnChanges,
+    OnInit,
     Output,
     QueryList,
     SimpleChanges,
@@ -53,13 +54,6 @@ export class OcProgressBarComponent implements OnInit, AfterViewInit, OnChanges 
      * @default: 0
      */
     @Input() maxStepsToShow: number;
-
-    /**
-     * You can enable/disable text truncation for step titles.
-     * Default value is passed from parent form component.
-     * @default: true
-     */
-    @Input() enableTextTruncation: boolean;
 
     /**
      * When a user clicks on a specific step, it emits step value to a form component.
