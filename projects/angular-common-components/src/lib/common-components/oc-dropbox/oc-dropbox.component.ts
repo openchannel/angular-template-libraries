@@ -84,6 +84,12 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
     @Input() customSearch: (text: Observable<string>) => Observable<readonly any[]>;
 
     /**
+     * Flag, that determines whether to add custom items by 'Enter' key up (from input).
+     * @default false
+     */
+    @Input() isPreventAddCustomItemsByEnter: boolean = false;
+
+    /**
      * Emit currently selected item from dropdown to the parent component.
      */
     @Output() readonly selectedItem: EventEmitter<string> = new EventEmitter<string>();
