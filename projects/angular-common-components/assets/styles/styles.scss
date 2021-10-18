@@ -313,10 +313,6 @@ a.link {
     overflow-y: auto;
     padding: 0;
 
-    &::-webkit-scrollbar {
-        display: none;
-    }
-
     .dropdown-item {
         @include font-size-md();
         padding: 14px 16px;

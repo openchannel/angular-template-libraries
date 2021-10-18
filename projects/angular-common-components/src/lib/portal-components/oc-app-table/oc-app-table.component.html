@@ -105,7 +105,8 @@
         <img class="app-grid-table__row__cell-name-content-icon"
              [src]="ctx.app | getTextByPath: fieldsPathConfig.appIconPath : defaultAppIcon" alt="">
         <div class="app-grid-table__row__cell-name-content-text">
-            <span class="app-grid-table__row__cell-name-content-text-title">{{ctx.app.name}}</span>
+            <span class="app-grid-table__row__cell-name-content-text-title"
+                  (click)="action('EDIT', ctx.app.appId, ctx.app.version, ctx.isChild)">{{ctx.app.name}}</span>
             <span class="app-grid-table__row__cell-name-content-text-version">v. {{ctx.app.version}}</span>
         </div>
     </div>
