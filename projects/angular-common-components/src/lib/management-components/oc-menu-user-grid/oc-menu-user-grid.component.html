@@ -109,9 +109,7 @@
         <ng-template #sortIconTemplate let-column>
             <th [ngClass]="column.width" scope="col" class="user-table__head-cell">
                 <div class="user-table__th-row" (click)="sortUsersBy(column.field)">{{column.name}}
-                    <div class="user-table__head-sort-icon">
-                        <svg-icon [src]="sortIcon"></svg-icon>
-                    </div>
+                    <svg-icon class="user-table__head-sort-icon" [src]="sortIcon" [attr.sorting]="sortOptions[column.field]"></svg-icon>
                 </div>
             </th>
         </ng-template>
