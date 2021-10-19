@@ -11,33 +11,85 @@ import { ErrorMessageFormId } from '@openchannel/angular-common-components/src/l
     styleUrls: ['./oc-edit-user-form.component.css'],
 })
 export class OcEditUserFormComponent implements OnInit {
-    private readonly ORG_PREFIX = 'org--';
-    private readonly PASSWORD_FILED_KEY = 'password';
-
+    /**
+     * Configuration for Edit User form.
+     */
     @Input() formConfigs: OcEditUserFormConfig[];
+    /**
+     * Show or not a form type dropdown. It is not shown by default.
+     * By this dropdown different form configurations can be switched.
+     * @default false
+     */
     @Input() enableTypesDropdown = false;
+    /**
+     * Add or not password field to the form. It is not shown by default.
+     * @default false
+     */
     @Input() enablePasswordField = false;
+    /**
+     * URLs to the terms and privacy policy.
+     * If they do not set - no checkbox with terms and policy agreement will be shown.
+     * @default null
+     */
     @Input() enableTermsCheckbox: OcCheckboxData;
+    /**
+     * Text of the form type label.
+     * @default 'Type'
+     */
     @Input() defaultTypeLabelText = 'Type';
+    /**
+     * Data for the Account form. If not set - the form will be without default values.
+     * @default null
+     */
     @Input() defaultAccountData: OCOrganization;
+    /**
+     * Data for the Organization form. If not set - the form will be without default values.
+     * @default null
+     */
     @Input() defaultOrganizationData: OCOrganization;
+    /**
+     * Custom error template what will be shown when no {@link #formConfigs} is provided or not provided correctly.
+     * @default null
+     */
     @Input() defaultEmptyConfigsErrorTemplate: TemplateRef<any>;
+    /**
+     * Error message what will be shown when no {@link #formConfigs} is provided or not provided correctly.
+     * This message will be shown only when the {@link #defaultEmptyConfigsErrorTemplate} not set.
+     * @default null
+     */
     @Input() defaultEmptyConfigsErrorMessage: string = 'There are no forms configured';
+    /**
+     * Template for the Terms and Privacy policy agreement checkbox.
+     * If not provided - the default template will be used.
+     * @default null
+     */
     @Input() customTermsDescription: TemplateRef<any>;
-    /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
+    /** Current form ID. Used for modifying error messages. Look:  {@link #ErrorMessageFormId} */
     @Input() formId: ErrorMessageFormId = 'editUser';
-    @Output() resultFormDataChange = new EventEmitter<OcEditUserResult>();
-    @Output() createdFormGroup = new EventEmitter<FormGroup>();
+    /**
+     * Emits the data form the form.
+     */
+    @Output() readonly resultFormDataChange = new EventEmitter<OcEditUserResult>();
+    /**
+     * Emits the link to the created and used in this component Form Group.
+     */
+    @Output() readonly createdFormGroup = new EventEmitter<FormGroup>();
 
     mainFormModel: TypeModel<TypeFieldModel>;
     formGroup: FormGroup;
     termsControl: FormControl;
     currentFormConfig: OcEditUserFormConfig;
+    private readonly ORG_PREFIX = 'org--';
+    private readonly PASSWORD_FILED_KEY = 'password';
 
     ngOnInit(): void {
         this.buildFormByConfig(this.getCurrentFormConfig());
     }
 
+    /**
+     * Creation of the Form group by provided config and mapping the default values.
+     * @param formConfig config for the form fields
+     */
     buildFormByConfig(formConfig: OcEditUserFormConfig): void {
         this.clearPreviousValues();
         const fieldsSorting = (field1, field2) => {
@@ -79,6 +131,10 @@ export class OcEditUserFormComponent implements OnInit {
         }
     }
 
+    /**
+     * Getting data from the form, mapping and emitting to the parent
+     * @param formData data from the form
+     */
     buildAndEmitResultData(formData: any): void {
         if (this.formGroup?.valid && this.currentFormConfig) {
             let account: OCOrganization;
@@ -107,6 +163,10 @@ export class OcEditUserFormComponent implements OnInit {
         }
     }
 
+    /**
+     * Getting created form from the Form component and setting to the variable.
+     * @param formGroup created form
+     */
     setFormGroup(formGroup: FormGroup): void {
         this.formGroup = formGroup;
         if (this.enableTermsCheckbox) {
