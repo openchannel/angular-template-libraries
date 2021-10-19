@@ -163,7 +163,7 @@ export class OcFormComponent implements OnInit, OnChanges {
 
     /**
      * Input for form errors after redirect.
-     * @default ''.
+     * @default false.
      */
     @Input() setFormErrors: boolean = false;
 
@@ -208,9 +208,6 @@ export class OcFormComponent implements OnInit, OnChanges {
                         return;
                     }
                 }
-            } else {
-                this.submitForm();
-                return;
             }
         }
         this.submitForm();
@@ -228,18 +225,16 @@ export class OcFormComponent implements OnInit, OnChanges {
      * Validates all the intermediate steps.
      */
     navigateToStep(step: number): void {
-        const previousStep = this.currentStep;
-        this.currentStep = step;
-        if (previousStep === this.currentStep) {
+        if (this.currentStep === step) {
             return;
-        } else if (previousStep < this.currentStep) {
-            for (let i = previousStep; i < this.currentStep; i++) {
+        } else if (this.currentStep < step) {
+            for (let i = this.currentStep; i < step; i++) {
                 this.validateStep(i - 1);
             }
-        } else if (previousStep > this.currentStep) {
-            this.validateStep(previousStep - 1);
+        } else if (this.currentStep > step) {
+            this.validateStep(this.currentStep - 1);
         }
-        this.currentStepChange.emit(this.currentStep);
+        this.setStep(step);
     }
 
     /**
