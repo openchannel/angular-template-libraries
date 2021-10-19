@@ -6,15 +6,13 @@
             type="text"
             [(ngModel)]="searchText"
             (ngModelChange)="searchTextChange.emit($event)"
-            (keydown.enter)="enterAction()"
-        />
+            (keydown.enter)="enterAction()" />
         <svg-icon
             *ngIf="hasMagnifier"
             class="text-search__icon"
             src="assets/angular-common-components/text-search-icon.svg"
             svgClass="text-search__icon-svg"
-            (click)="enterAction()"
-        ></svg-icon>
+            (click)="enterAction()"></svg-icon>
     </div>
     <div *ngIf="tagsTitles.length" class="text-search__tags">
         <oc-tag-element
@@ -22,16 +20,14 @@
             class="text-search__tag"
             [title]="tagTitle"
             [closeMarker]="true"
-            (clickEmitter)="deleteTag(i)"
-        ></oc-tag-element>
+            (clickEmitter)="deleteTag(i)"></oc-tag-element>
         <oc-button
             *ngIf="showClearAllTagsButton"
             class="text-search__tag text-search__clear-tags-button"
-            [customClass]="clearAllButtonType !== 'link' ? 'text-search__clear-tags-button--small' : ''"
+            [customClass]="clearAllButtonType !== 'link' ? 'text-search__clear-tags-button-small' : ''"
             [type]="clearAllButtonType"
-            text="Clear all"
-            (click)="deleteAllTags()"
-        ></oc-button>
+            [text]="clearTagsButtonText"
+            (click)="deleteAllTags()"></oc-button>
     </div>
     <div class="text-search__controls">
         <oc-button
@@ -40,15 +36,13 @@
             [text]="clearButtonText"
             [customClass]="'oc-button_small-size'"
             type="secondary"
-            class="clear-button"
-        ></oc-button>
+            class="clear-button"></oc-button>
         <oc-button
             *ngIf="!hasMagnifier"
             (click)="enterAction()"
             [text]="searchButtonText"
             [customClass]="'oc-button_small-size'"
             type="primary"
-            class="search-button"
-        ></oc-button>
+            class="search-button"></oc-button>
     </div>
 </div>

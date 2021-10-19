@@ -57,11 +57,18 @@ export class OcTextSearchComponent {
     @Input() clearButtonText: string = 'Clear';
 
     /**
-     * Describes the text int the `search` button.
+     * Describes the text in the `search` button.
      * @type {string}.
      * @default 'Search'.
      */
     @Input() searchButtonText: string = 'Search';
+
+    /**
+     * Describes the text in the `clearTags` button.
+     * @type {string}.
+     * @default 'Clear all'.
+     */
+    @Input() clearTagsButtonText: string = 'Clear all';
 
     /**
      * List of tags titles to show under search input.
