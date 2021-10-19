@@ -58,43 +58,45 @@ describe('OcSignupCustomComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(OcSignupCustomComponent);
         component = fixture.componentInstance;
-        fixture.detectChanges();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should redirect to sign up page', async () => {
+    it('should redirect to sign up page', () => {
         component.loginUrl = '/login';
         fixture.detectChanges();
 
         const login: HTMLLinkElement = fixture.debugElement.query(By.css('.sign-up__login-link')).nativeElement;
         login.click();
 
-        await fixture.whenStable().then(() => {
+        fixture.whenStable().then(() => {
             expect(location.path()).toEqual('/login');
         });
     });
 
     it('button should not emmit submit when process is on', () => {
         component.process = true;
-        jest.spyOn(component.resultUserData, 'emit');
+        const resultUserDataEmitFunction = jest.spyOn(component.resultUserData, 'emit');
 
         component.formConfigsLoading = false;
         fixture.detectChanges();
+
         const button = fixture.debugElement.query(By.css('.sign-up__button')).nativeElement;
         button.click();
 
-        expect(component.resultUserData.emit).toHaveBeenCalledTimes(0);
+        expect(resultUserDataEmitFunction).not.toHaveBeenCalled();
     });
 
     it('should redirect to activation', () => {
         component.showSignupFeedbackPage = true;
         component.activationUrl = '/activation';
         fixture.detectChanges();
+
         component.goToActivationPage();
         fixture.detectChanges();
+
         fixture.whenStable().then(() => {
             expect(router.url).toEqual('/activation');
         });
