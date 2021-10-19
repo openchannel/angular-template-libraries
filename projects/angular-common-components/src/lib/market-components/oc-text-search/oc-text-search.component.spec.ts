@@ -91,7 +91,7 @@ describe('OcTextSearchComponent', () => {
         component.tagsTitles = [...tagsTitlesMocked];
         fixture.detectChanges();
 
-        const clearAllButton = fixture.debugElement.query(By.css('.tags__clear-all-tags-button')).nativeElement;
+        const clearAllButton = fixture.debugElement.query(By.css('.text-search__clear-tags-button')).nativeElement;
         const clearAllTagsClickedEmitFunction = jest.spyOn(component.allTagsDeleted, 'emit');
 
         clearAllButton.click();
@@ -107,7 +107,7 @@ describe('OcTextSearchComponent', () => {
         component.clearAllButtonType = primaryType;
         fixture.detectChanges();
 
-        const clearAllButton = fixture.debugElement.query(By.css('.tags__clear-all-tags-button')).componentInstance;
+        const clearAllButton = fixture.debugElement.query(By.css('.text-search__clear-tags-button')).componentInstance;
 
         expect(clearAllButton.type).toBe(primaryType);
     });
@@ -117,7 +117,7 @@ describe('OcTextSearchComponent', () => {
         component.showClearAllTagsButton = false;
         fixture.detectChanges();
 
-        const clearAllButton = fixture.debugElement.query(By.css('.tags__clear-all-tags-button'));
+        const clearAllButton = fixture.debugElement.query(By.css('.text-search__clear-tags-button'));
 
         expect(clearAllButton).toBeNull();
     });
@@ -127,9 +127,9 @@ describe('OcTextSearchComponent', () => {
         component.clearAllButtonType = 'primary';
         fixture.detectChanges();
 
-        const clearAllButton = fixture.debugElement.query(By.css('.tags__clear-all-tags-button')).componentInstance;
+        const clearAllButton = fixture.debugElement.query(By.css('.text-search__clear-tags-button')).componentInstance;
 
-        expect(clearAllButton.customClass).toBe('tags__clear-all-tags-button-not-a-link');
+        expect(clearAllButton.customClass).toBe('text-search__clear-tags-button--small');
 
         component.clearAllButtonType = 'link';
         fixture.detectChanges();
