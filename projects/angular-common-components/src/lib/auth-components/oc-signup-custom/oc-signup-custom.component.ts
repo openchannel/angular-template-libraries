@@ -87,17 +87,6 @@ export class OcSignupCustomComponent {
     @Input() customTermsDescription: TemplateRef<any>;
 
     /**
-     *
-     * showSignupFeedbackPage change emitter
-     */
-    @Output() readonly showSignupFeedbackPageChange = new EventEmitter<boolean>();
-
-    /**
-     * Returns last data from the user form on sign up action.
-     */
-    @Output() readonly resultUserData = new EventEmitter<OcEditUserResult>();
-
-    /**
      * Heading tag of title
      * @type {HeadingTag}.
      * @example.
@@ -107,6 +96,17 @@ export class OcSignupCustomComponent {
 
     /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
     @Input() formId: ErrorMessageFormId = 'signupCustom';
+
+    /**
+     *
+     * showSignupFeedbackPage change emitter
+     */
+    @Output() readonly showSignupFeedbackPageChange = new EventEmitter<boolean>();
+
+    /**
+     * Returns last data from the user form on sign up action.
+     */
+    @Output() readonly resultUserData = new EventEmitter<OcEditUserResult>();
 
     resultFormValue: OcEditUserResult;
     formGroup: FormGroup;
