@@ -98,7 +98,6 @@ export class OcSignupCustomComponent {
     @Input() formId: ErrorMessageFormId = 'signupCustom';
 
     /**
-     *
      * showSignupFeedbackPage change emitter
      */
     @Output() readonly showSignupFeedbackPageChange = new EventEmitter<boolean>();
