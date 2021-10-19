@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, AbstractControlDirective, FormArray, FormGroup, NgModel, ValidationErrors } from '@angular/forms';
+import { AbstractControl, AbstractControlDirective, NgModel, ValidationErrors } from '@angular/forms';
 import { OcErrorService } from './oc-error-service';
 import { AbstractErrorMessageConfiguration } from '../model/oc-error.model';
 import { ControlUtils } from '../model/utils.model';

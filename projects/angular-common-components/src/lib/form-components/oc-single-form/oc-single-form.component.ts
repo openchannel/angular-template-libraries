@@ -1,13 +1,9 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormArray, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
-import { AppFormField, AppFormModel } from '../model/app-form-model';
-import {
-    ControlUtils,
-    ErrorMessageFormId,
-    OcErrorService
-} from '@openchannel/angular-common-components/src/lib/common-components';
+import { AppFormModel } from '../model/app-form-model';
+import { ControlUtils, ErrorMessageFormId, OcErrorService } from '@openchannel/angular-common-components/src/lib/common-components';
 import { forIn, set, toPath } from 'lodash';
 import { map, takeUntil } from 'rxjs/operators';
 
@@ -158,7 +154,7 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
         serverErrorEvent: new Subject<void>(),
     };
 
-    private serverErrorIntoDFA: {[dfaControlName: string]: { controlPath: string[] }} = {};
+    private serverErrorIntoDFA: { [dfaControlName: string]: { controlPath: string[] } } = {};
 
     constructor(private errorService: OcErrorService) {}
 
@@ -177,7 +173,7 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
         Object.values(this.destroy$).forEach(destroy => {
             destroy.next();
             destroy.complete();
-        })
+        });
     }
 
     /**
@@ -204,10 +200,8 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
      */
     sendData(): void {
         if (!this.anotherInvalidResult && !this.process) {
-
             let formData: any = {};
-            forIn(this.customForm.getRawValue() || {},
-                (value, key) => (formData = set(formData, key, value)));
+            forIn(this.customForm.getRawValue() || {}, (value, key) => (formData = set(formData, key, value)));
 
             if (this.customForm.valid && this.showButton) {
                 this.formSubmitted.emit(formData);
@@ -247,29 +241,6 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     /**
-     * Check if DFA control is invalid and if yes return an error
-     * @returns `string` or null
-     */
-    getDfaError(dfaFormElement: AppFormField): string | null {
-        const control = this.customForm.controls[dfaFormElement.id];
-        if ((control.touched && control.invalid) || this.serverErrorIntoDFA[dfaFormElement.id]) {
-            this.touchToControlTree(control as FormArray);
-            return `Please, check all fields inside ${dfaFormElement.label}`
-        }
-        return null;
-    }
-
-    private touchToControlTree(control: FormGroup | FormArray): void {
-        Object.values(control.controls).forEach((childControl: any) => {
-            if (childControl.controls) {
-                this.touchToControlTree(childControl);
-            } else {
-                control.updateValueAndValidity();
-            }
-        })
-    }
-
-    /**
      * Set all controls as touched and dirty
      */
     private setDirty(): void {
@@ -279,33 +250,31 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
         });
     }
 
-
     private listenServerErrors(): void {
         this.errorService.serverErrorEvent
-        .pipe(
-            map(() => this.errorService.serverErrorList || []),
-            takeUntil(this.destroy$.serverErrorEvent))
-        .subscribe(errors => {
-            this.updateDFAErrors(errors);
-        });
+            .pipe(
+                map(() => this.errorService.serverErrorList || []),
+                takeUntil(this.destroy$.serverErrorEvent),
+            )
+            .subscribe(errors => this.updateDFAErrors(errors));
     }
 
     private updateDFAErrors(errors: any[]): void {
         for (const controlName of Object.keys(this.serverErrorIntoDFA)) {
 
-            const hasDFAError = this.hasDFAError(errors, this.serverErrorIntoDFA[controlName].controlPath);
+            const hasDfaError = this.hasDfaError(errors, this.serverErrorIntoDFA[controlName].controlPath);
 
             const dfaControl = this.customForm.controls[controlName];
 
-            if (hasDFAError) {
+            if (hasDfaError) {
                 // set new DFA error
                 dfaControl.setErrors({
                     ...(dfaControl.errors || {}),
-                    ...OcFormGenerator.createChildDFAFieldError(this.formJsonData?.fields?.find(field => field.id === controlName))
+                    ...OcFormGenerator.createChildDfaFieldError(this.formJsonData?.fields?.find(field => field.id === controlName)),
                 });
             } else if (dfaControl.errors?.invalidDFAField && dfaControl.valid) {
                 // remove DFA error only when: DFA without server and field errors.
-                const newErrors = {...dfaControl.errors};
+                const newErrors = { ...dfaControl.errors };
                 delete newErrors.invalidDFAField;
                 dfaControl.setErrors(newErrors);
             }
@@ -314,18 +283,18 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
 
     private initDFAPathsByControl(): void {
         this.serverErrorIntoDFA = {};
-        if(this.formJsonData?.fields) {
+        if (this.formJsonData?.fields) {
             this.formJsonData.fields.forEach(field => {
                 if (field && field.id && field.type === 'dynamicFieldArray') {
                     this.serverErrorIntoDFA[field.id] = {
                         controlPath: toPath(ControlUtils.getFullControlPath(this.customForm.controls[field.id])),
                     };
                 }
-            })
+            });
         }
     }
 
-    private hasDFAError(errors: any[], dfaPath: string[]): boolean {
+    private hasDfaError(errors: any[], dfaPath: string[]): boolean {
         return !!errors.find(error => {
             const errorPath = toPath(error?.field || '');
             return dfaPath.filter((path, i) => path !== errorPath[i]).length === 0;

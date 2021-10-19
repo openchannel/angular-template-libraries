@@ -266,7 +266,7 @@ export class OcFormGenerator {
     static urlValidator(): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             // regex for url validation
-            const reg = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm);
+            const reg = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm); //NOSONAR
             const value = c.value;
             if (reg.test(value) || value === '') {
                 return null;
@@ -402,18 +402,18 @@ export class OcFormGenerator {
     static childDFAFieldValidator(fieldDefinition: AppTypeFieldModel): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             if (c.touched && Object.values((c as any).controls).find((v: any) => v.invalid)) {
-                return this.createChildDFAFieldError(fieldDefinition);
+                return this.createChildDfaFieldError(fieldDefinition);
             } else {
                 return null;
             }
         };
     }
 
-    static createChildDFAFieldError(fieldDefinition: AppTypeFieldModel): any {
+    static createChildDfaFieldError(fieldDefinition: AppTypeFieldModel): any {
         return {
             invalidDFAField: {
                 fieldDefinition,
-            }
-        }
+            },
+        };
     }
 }

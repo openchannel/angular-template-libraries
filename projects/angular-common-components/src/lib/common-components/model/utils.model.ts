@@ -1,10 +1,4 @@
-import {
-    AbstractControl,
-    AbstractControlDirective,
-    FormArray,
-    FormGroup,
-    NgModel
-} from '@angular/forms';
+import { AbstractControl, AbstractControlDirective, FormArray, FormGroup, NgModel } from '@angular/forms';
 
 export function replaceHTMLTags(text: string): string {
     if (text && text.match(/<[^>]*>/g)) {
@@ -16,8 +10,7 @@ export function replaceHTMLTags(text: string): string {
 }
 
 export class ControlUtils {
-
-    public static getFullControlPath(control: AbstractControlDirective | AbstractControl | NgModel): string {
+    static getFullControlPath(control: AbstractControlDirective | AbstractControl | NgModel): string {
         if (!control) {
             return '';
         } else if (control instanceof NgModel || control instanceof AbstractControlDirective) {
@@ -27,25 +20,27 @@ export class ControlUtils {
         }
     }
 
-    private static getFullControlPathByAbstractControl(control: AbstractControl, childPath: string): string {
-        const parent = control?.parent;
-        if (parent) {
-            if (parent instanceof FormArray) {
-                const { controls } = parent;
-                const controlName = Object.keys(controls).find(name => control === controls[name]) || null;
-                childPath = this.getFullControlPathByAbstractControl(parent, `[${controlName}].${childPath}`);
-            } else if (parent instanceof FormGroup) {
-                const { controls } = parent;
-                const controlName = Object.keys(controls).find(name => control === controls[name]) || null;
-                if(!childPath) {
-                    childPath = this.getFullControlPathByAbstractControl(parent, controlName);
+    private static getFullControlPathByAbstractControl(childControl: AbstractControl, childPath: string): string {
+        const parentControl = childControl?.parent;
+        if (parentControl) {
+            if (parentControl instanceof FormArray) {
+                const controlName = this.getControlName(parentControl, childControl);
+                return this.getFullControlPathByAbstractControl(parentControl, `[${controlName}].${childPath}`);
+            } else if (parentControl instanceof FormGroup) {
+                const controlName = this.getControlName(parentControl, childControl);
+                if (!childPath) {
+                    return this.getFullControlPathByAbstractControl(parentControl, controlName);
                 } else {
-                    childPath = this.getFullControlPathByAbstractControl(
-                        parent, `${controlName}${childPath[0] === '[' ? childPath : `.${childPath}`}`);
+                    const childPathWithSeparator = childPath[0] === '[' ? childPath : `.${childPath}`;
+                    return this.getFullControlPathByAbstractControl(parentControl, `${controlName}${childPathWithSeparator}`);
                 }
             }
         }
         return childPath;
     }
 
+    private static getControlName(parentControl: FormArray | FormGroup, childControl: AbstractControl): string {
+        const { controls } = parentControl;
+        return Object.keys(controls).find(name => childControl === controls[name]) || null;
+    }
 }
