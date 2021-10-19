@@ -112,7 +112,7 @@ describe('OcTextSearchComponent', () => {
         expect(clearAllButton.type).toBe(primaryType);
     });
 
-    it('clear all button should be absent when isShowClearAllTagsButton = false', () => {
+    it('clear all button should be absent when showClearAllTagsButton = false', () => {
         component.tagsTitles = [...tagsTitlesMocked];
         component.showClearAllTagsButton = false;
         fixture.detectChanges();

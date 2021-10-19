@@ -28,7 +28,7 @@ export const SearchWithTags = TextSearchComponent.bind({});
 SearchWithTags.args = {
     tagsTitles,
     clearAllButtonType: 'primary',
-    isShowClearAllTagsButton: true,
+    showClearAllTagsButton: true,
 };
 
 export const SearchWithButtons = TextSearchComponent.bind({});
