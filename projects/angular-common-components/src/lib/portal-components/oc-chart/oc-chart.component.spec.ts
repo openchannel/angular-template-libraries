@@ -22,7 +22,7 @@ describe('OcChartComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [OcChartComponent, MockDropdownButtonComponent, MockSvgIconComponent, ],
+            declarations: [OcChartComponent, MockDropdownButtonComponent, MockSvgIconComponent],
         }).compileComponents();
     });
 
