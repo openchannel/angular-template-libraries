@@ -114,7 +114,7 @@ describe('OcTextSearchComponent', () => {
 
     it('clear all button should be absent when isShowClearAllTagsButton = false', () => {
         component.tagsTitles = [...tagsTitlesMocked];
-        component.isShowClearAllTagsButton = false;
+        component.showClearAllTagsButton = false;
         fixture.detectChanges();
 
         const clearAllButton = fixture.debugElement.query(By.css('.tags__clear-all-tags-button'));

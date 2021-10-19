@@ -14,7 +14,7 @@
                         [title]="tagTitle"
                         [closeMarker]="true"
                         (clickEmitter)="deleteTag(i)"></oc-tag-element>
-        <oc-button *ngIf="isShowClearAllTagsButton"
+        <oc-button *ngIf="showClearAllTagsButton"
                    class="text-search__tag text-search__clear-tags-button"
                    [customClass]="clearAllButtonType !== 'link' ? 'text-search__clear-tags-button--small' : ''"
                    [type]="clearAllButtonType"

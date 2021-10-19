@@ -19,7 +19,7 @@ export class OcTextSearchComponent {
      * @type {boolean}.
      * @default true.
      */
-    @Input() isShowClearAllTagsButton: boolean = true;
+    @Input() showClearAllTagsButton: boolean = true;
 
     /**
      * A model for search text value which is entered by a user.
@@ -92,9 +92,9 @@ export class OcTextSearchComponent {
 
     /**
      * Output that emits a click on clear all tags button.
-     * @type {boolean}.
+     * @type {void}.
      */
-    @Output() readonly allTagsDeleted: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() readonly allTagsDeleted: EventEmitter<void> = new EventEmitter<void>();
 
     /** Emits search text value on enter key down or search icon click */
     enterAction(): void {
