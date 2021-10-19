@@ -44,15 +44,13 @@
         margin-top: 26px;
     }
 
-    .tags {
-        &__tag {
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
+    &__tag {
+        margin-right: 8px;
+        margin-bottom: 8px;
+    }
 
-        &__clear-all-tags-button {
-            margin-left: 8px;
-        }
+    &__clear-tags-button {
+        margin-left: 8px;
     }
 
     &__controls {

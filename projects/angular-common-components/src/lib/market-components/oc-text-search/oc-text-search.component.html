@@ -8,15 +8,15 @@
                   svgClass="text-search__icon-svg"
                   (click)="enterAction()"></svg-icon>
     </div>
-    <div *ngIf="tagsTitles.length" class="text-search__tags tags">
+    <div *ngIf="tagsTitles.length" class="text-search__tags">
         <oc-tag-element *ngFor="let tagTitle of tagsTitles; let i = index"
-                        class="tags__tag"
+                        class="text-search__tag"
                         [title]="tagTitle"
                         [closeMarker]="true"
                         (clickEmitter)="deleteTag(i)"></oc-tag-element>
         <oc-button *ngIf="isShowClearAllTagsButton"
-                   class="tags__tag tags__clear-all-tags-button"
-                   [customClass]="clearAllButtonType !== 'link' ? 'tags__clear-all-tags-button-not-a-link' : ''"
+                   class="text-search__tag text-search__clear-tags-button"
+                   [customClass]="clearAllButtonType !== 'link' ? 'text-search__clear-tags-button--small' : ''"
                    [type]="clearAllButtonType"
                    text="Clear all"
                    (click)="deleteAllTags()"></oc-button>
