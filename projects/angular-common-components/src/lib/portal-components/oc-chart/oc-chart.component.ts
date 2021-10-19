@@ -40,11 +40,13 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * @default  null
      */
     @Input() count: number;
+
     /**
      * Info title of the total count
      * @default empty
      */
     @Input() countText: string = '';
+
     /**
      * Path to the chart counter image. Can be local or url from server.
      * ## Data example for docs
@@ -56,24 +58,29 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * 'https://example.site.com/image.png'
      */
     @Input() downloadUrl: SafeUrl;
+
     /**
      * Enable/Disable background gradient under chart line.
      * It is enabled by default
      */
     @Input() isBackgroundColor: boolean = true;
+
     /**
      * Enable/Disable points on the Chart line.
      * It is disabled by default.
      */
     @Input() enablePoints: boolean = false;
+
     /** Min width for the dropdown menu */
     @Input() minDropdownWidth: string;
+
     /**
      * (Required)
      * Main config model for the component.
      * Including chart data, layout type, etc.
      */
     @Input() chartData: ChartStatisticModel;
+
     /**
      * Set active data view type from the start.
      *
@@ -83,6 +90,7 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * @default 'graph'
      */
     @Input() activeDataType: 'tabular' | 'graph' = 'graph';
+
     /**
      * Path to the custom icon for the sorting button.
      * Can be local or url from server.
@@ -95,10 +103,12 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * 'https://example.site.com/image.png'
      */
     @Input() sortIcon: string = 'assets/angular-common-components/dropdown.svg';
+
     /**
      * Setup SVG icon for navigation to tabular view.
      */
     @Input() tabularSvgIcon: string = '';
+
     /**
      *  Setup SVG icon for navigation to graph view.
      */
@@ -114,16 +124,22 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * Notification about changing chart data options, like dropdown menu item changing or period switching.
      */
     @Output() readonly changeChartOptions: EventEmitter<ChartOptionsChange> = new EventEmitter<ChartOptionsChange>();
+
     /** dropdown menu items array. Created from {@link chartData} fields */
     dropdownTypes: ChartStatisticFiledModel[];
+
     /** chosen item from the dropdown menu */
     dropdownSelectedType: ChartStatisticFiledModel;
+
     /** 2d context for the chart canvas */
     context: CanvasRenderingContext2D;
+
     /** header text for the tabular data labels column */
     tabularLabelsHeader: string;
+
     /** data array for the tabular format */
     tabularData: any[] = [];
+
     /**
      * helper for sorting tabular data.
      *
@@ -135,6 +151,7 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
         by: 'key',
         ascending: true,
     };
+
     /**
      * @ignore
      * @private
