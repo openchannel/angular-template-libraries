@@ -23,6 +23,7 @@ export type FieldError =
     | 'booleanTagsValidator'
     | 'numberTagsValidator'
     | 'passwordValidator'
+    | 'invalidDFAField'
     | string;
 
 /**
@@ -274,6 +275,7 @@ export class DefaultErrorMessageConfiguration extends AbstractErrorMessageConfig
                 numberTagsValidator: params => params.fieldTitle + ' can only contain numeric values',
                 passwordValidator: () =>
                     'Password must contain 1 uppercase, 1 lowercase, 1 digit, 1 special char (one of @#$%!^&) and at least 8 characters long',
+                invalidDFAField: (params) => `Please, check all fields inside ${params.fieldDefinition.label || ''}`,
                 ...(fieldValidators || {}),
             },
             {
@@ -328,4 +330,4 @@ export interface ServerErrorEvent<T extends 'onNewErrors' | 'onRemovedError', V>
     value: V;
 }
 export interface OnNewErrorsEvent extends ServerErrorEvent<'onNewErrors', ServerErrorModel[]> {}
-export interface OnRemoveErrorEvent extends ServerErrorEvent<'onRemovedError', ServerErrorModel> {}
+export interface OnRemoveErrorEvent extends ServerErrorEvent<'onRemovedError', ServerErrorModel[]> {}

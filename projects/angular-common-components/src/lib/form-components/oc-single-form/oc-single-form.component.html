@@ -130,9 +130,6 @@
                                             [fieldDefinitionData]="formElement"
                                             [formId]="formId"
                                             [dfaFormArray]="customForm.controls[formElement.id]"></oc-dynamic-field-array>
-                    <p *ngSwitchCase="'dynamicFieldArray'" class="form__field-custom-error">
-                        {{getDfaError(formElement)}}
-                    </p>
                     <oc-password *ngSwitchCase="'password'"
                                  formControlName="{{formElement?.id}}"
                                  [placeholder]="formElement?.placeholder"></oc-password>

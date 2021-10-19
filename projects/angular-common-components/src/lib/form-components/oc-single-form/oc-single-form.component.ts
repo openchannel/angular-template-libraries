@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormArray, FormGroup} from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
 import { AppFormField, AppFormModel } from '../model/app-form-model';
@@ -8,7 +8,7 @@ import {
     ErrorMessageFormId,
     OcErrorService
 } from '@openchannel/angular-common-components/src/lib/common-components';
-import { forIn, set } from 'lodash';
+import { forIn, set, toPath } from 'lodash';
 import { map, takeUntil } from 'rxjs/operators';
 
 /**
@@ -158,7 +158,7 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
         serverErrorEvent: new Subject<void>(),
     };
 
-    private serverErrorIntoDFA: {[controlName: string]: {hasError: boolean, controlPath: string}} = {};
+    private serverErrorIntoDFA: {[dfaControlName: string]: { controlPath: string[] }} = {};
 
     constructor(private errorService: OcErrorService) {}
 
@@ -252,7 +252,7 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
      */
     getDfaError(dfaFormElement: AppFormField): string | null {
         const control = this.customForm.controls[dfaFormElement.id];
-        if ((control.touched && control.invalid) || this.serverErrorIntoDFA[dfaFormElement.id].hasError) {
+        if ((control.touched && control.invalid) || this.serverErrorIntoDFA[dfaFormElement.id]) {
             this.touchToControlTree(control as FormArray);
             return `Please, check all fields inside ${dfaFormElement.label}`
         }
@@ -286,24 +286,49 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
             map(() => this.errorService.serverErrorList || []),
             takeUntil(this.destroy$.serverErrorEvent))
         .subscribe(errors => {
-            for(const controlName of Object.keys(this.serverErrorIntoDFA)) {
-                this.serverErrorIntoDFA[controlName].hasError = !!errors
-                .find(error => error?.field?.startsWith(this.serverErrorIntoDFA[controlName].controlPath));
-            }
+            this.updateDFAErrors(errors);
         });
+    }
+
+    private updateDFAErrors(errors: any[]): void {
+        for (const controlName of Object.keys(this.serverErrorIntoDFA)) {
+
+            const hasDFAError = this.hasDFAError(errors, this.serverErrorIntoDFA[controlName].controlPath);
+
+            const dfaControl = this.customForm.controls[controlName];
+
+            if (hasDFAError) {
+                // set new DFA error
+                dfaControl.setErrors({
+                    ...(dfaControl.errors || {}),
+                    ...OcFormGenerator.createChildDFAFieldError(this.formJsonData?.fields?.find(field => field.id === controlName))
+                });
+            } else if (dfaControl.errors?.invalidDFAField && dfaControl.valid) {
+                // remove DFA error only when: DFA without server and field errors.
+                const newErrors = {...dfaControl.errors};
+                delete newErrors.invalidDFAField;
+                dfaControl.setErrors(newErrors);
+            }
+        }
     }
 
     private initDFAPathsByControl(): void {
         this.serverErrorIntoDFA = {};
         if(this.formJsonData?.fields) {
-            this.formJsonData?.fields.forEach(field => {
+            this.formJsonData.fields.forEach(field => {
                 if (field && field.id && field.type === 'dynamicFieldArray') {
                     this.serverErrorIntoDFA[field.id] = {
-                        controlPath: ControlUtils.getFullControlPath(this.customForm.controls[field.id]),
-                        hasError: false,
+                        controlPath: toPath(ControlUtils.getFullControlPath(this.customForm.controls[field.id])),
                     };
                 }
             })
         }
+    }
+
+    private hasDFAError(errors: any[], dfaPath: string[]): boolean {
+        return !!errors.find(error => {
+            const errorPath = toPath(error?.field || '');
+            return dfaPath.filter((path, i) => path !== errorPath[i]).length === 0;
+        });
     }
 }

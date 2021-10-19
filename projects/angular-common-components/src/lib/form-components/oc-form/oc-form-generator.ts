@@ -101,7 +101,7 @@ export class OcFormGenerator {
                             group[inputTemplate.id].push(arrayFormGroup);
                         });
                     }
-                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isList: true });
+                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isList: true, isDFA: true });
                     break;
                 default:
                     break;
@@ -125,6 +125,7 @@ export class OcFormGenerator {
             isPassword?: boolean;
             isBooleanTags?: boolean;
             isNumberTags?: boolean;
+            isDFA?: boolean;
         },
     ): void {
         const validators: ValidatorFn[] = [];
@@ -206,6 +207,9 @@ export class OcFormGenerator {
         }
         if (additional && additional.isBooleanTags) {
             validators.push(this.booleanTagsValidator(inputTemplate.label));
+        }
+        if(additional && additional.isDFA) {
+            validators.push(this.childDFAFieldValidator(inputTemplate));
         }
         control.setValidators(validators);
     }
@@ -392,5 +396,24 @@ export class OcFormGenerator {
                 return { email: true };
             }
         };
+    }
+
+
+    static childDFAFieldValidator(fieldDefinition: AppTypeFieldModel): ValidatorFn {
+        return (c: AbstractControl): { [key: string]: any } => {
+            if (c.touched && Object.values((c as any).controls).find((v: any) => v.invalid)) {
+                return this.createChildDFAFieldError(fieldDefinition);
+            } else {
+                return null;
+            }
+        };
+    }
+
+    static createChildDFAFieldError(fieldDefinition: AppTypeFieldModel): any {
+        return {
+            invalidDFAField: {
+                fieldDefinition,
+            }
+        }
     }
 }

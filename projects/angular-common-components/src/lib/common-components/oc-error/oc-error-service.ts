@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { OnNewErrorsEvent, OnRemoveErrorEvent, ServerErrorModel } from '../model/oc-error.model';
+import { remove } from 'lodash';
 
 @Injectable({
     providedIn: 'root',
@@ -20,21 +21,11 @@ export class OcErrorService {
     }
 
     clearError(error: any): void {
-        let removedError: any = null;
-
-        this.serverErrorList = this.serverErrorList.filter((err, index) => {
-            if(error.field === err.field) {
-                removedError = err;
-                return false;
-            } else {
-                return true;
-            }
-        });
-
-        if (removedError) {
+        const removedItems = remove(this.serverErrorList, item => item.field === error.field);
+        if (removedItems.length > 0) {
             this.serverErrorEvent.next({
                 type: 'onRemovedError',
-                value: removedError
+                value: removedItems,
             });
         }
     }
