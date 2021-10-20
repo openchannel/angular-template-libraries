@@ -191,17 +191,15 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
         }
         if (this.myCanvas) {
             this.context = this.myCanvas.nativeElement.getContext('2d');
-            this.getChart();
+            this.setChart();
         }
     }
 
     /**
      * Creating main chart with configuration.
      */
-    getChart(): void {
-        const gradientFill = this.context.createLinearGradient(0, 0, 0, 170);
-        gradientFill.addColorStop(0, '#e7eef7');
-        gradientFill.addColorStop(1, 'rgba(240, 247, 255, 0.25)');
+    setChart(): void {
+        const gradientFill = this.getGradientFill();
 
         Chart.register(CategoryScale, LineController, PointElement, LineElement, LinearScale, Tooltip, Legend);
 
@@ -309,6 +307,26 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                 },
             },
         });
+    }
+
+    /**
+     * Getter for private chart field.
+     * @return {any} chart field
+     */
+    getChart(): any {
+        return this.chart;
+    }
+
+    /**
+     * Creates gradient for chart.
+     * @return {CanvasGradient}
+     */
+    getGradientFill(): CanvasGradient {
+        const gradientFill = this.context.createLinearGradient(0, 0, 0, 170);
+        gradientFill.addColorStop(0, '#e7eef7');
+        gradientFill.addColorStop(1, 'rgba(240, 247, 255, 0.25)');
+
+        return gradientFill;
     }
 
     /**

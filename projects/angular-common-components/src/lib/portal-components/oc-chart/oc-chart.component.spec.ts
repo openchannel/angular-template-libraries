@@ -12,6 +12,14 @@ declare global {
     }
 }
 
+window.ResizeObserver =
+    window.ResizeObserver ||
+    jest.fn().mockImplementation(() => ({
+        disconnect: jest.fn(),
+        observe: jest.fn(),
+        unobserve: jest.fn(),
+    }));
+
 const month = {
     labelsY: ['3', '10', '30', '50', '25', '40', '100', '70', '150', '200', '50', '85', '50'],
     labelsX: ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
@@ -106,14 +114,6 @@ const apps = {
 const tabularType = 'tabular';
 const graphType = 'graph';
 
-window.ResizeObserver =
-    window.ResizeObserver ||
-    jest.fn().mockImplementation(() => ({
-        disconnect: jest.fn(),
-        observe: jest.fn(),
-        unobserve: jest.fn(),
-    }));
-
 describe('OcChartComponent', () => {
     let component: OcChartComponent;
     let fixture: ComponentFixture<OcChartComponent>;
@@ -134,7 +134,7 @@ describe('OcChartComponent', () => {
             fields,
             apps,
         };
-        component.reloadChart = jest.fn();
+        component.getGradientFill = jest.fn(() => null);
         fixture.detectChanges();
     });
 
@@ -219,8 +219,10 @@ describe('OcChartComponent', () => {
         expect(reloadChartFunction).toHaveBeenCalled();
     }));
 
-    it('should reload chart, when chart data changed', () => {
+    it('should recreate chart, when chart data changed', () => {
         const reloadChartFunction = jest.spyOn(component, 'reloadChart');
+        const setChartFunction = jest.spyOn(component, 'setChart');
+        const chart = component.getChart();
 
         const changesObj: SimpleChanges = {
             chartData: new SimpleChange(component.chartData, { ...component.chartData }, false),
@@ -230,6 +232,8 @@ describe('OcChartComponent', () => {
         component.ngOnChanges(changesObj);
 
         expect(reloadChartFunction).toHaveBeenCalled();
+        expect(setChartFunction).toHaveBeenCalled();
+        expect(chart).not.toBe(component.getChart());
     });
 
     it('should update chart data, when active app changed with default app template', () => {
