@@ -11,8 +11,11 @@ import {
 } from '@angular/forms';
 import {
     AbstractErrorMessageConfiguration,
-    AppTypeFieldModel, DefaultErrorMessageConfiguration,
-    DropdownModel, ErrorMessage, ErrorMessageFormId,
+    AppTypeFieldModel,
+    DefaultErrorMessageConfiguration,
+    DropdownModel,
+    ErrorMessage,
+    ErrorMessageFormId,
     FullAppData,
     HeadingTag,
     RadioItemValue,
@@ -424,8 +427,7 @@ export class MockDropdownMultiApp implements ControlValueAccessor {
 })
 export class MockHeadingTagDirective {
     @Input() headingTag: HeadingTag;
-    @Input() set headingTagContent(content: string) {
-    }
+    @Input() set headingTagContent(content: string) {}
 }
 
 @Component({
@@ -660,4 +662,4 @@ export class MockMultiSelectComponent implements ControlValueAccessor {
 export const MOCK_PROVIDER_ERROR_MESSAGES: Provider = {
     provide: AbstractErrorMessageConfiguration,
     useValue: new DefaultErrorMessageConfiguration(),
-}
+};

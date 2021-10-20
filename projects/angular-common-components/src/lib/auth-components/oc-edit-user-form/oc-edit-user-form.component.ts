@@ -4,6 +4,7 @@ import { TypeFieldModel, TypeModel } from '../models/oc-type-definition.model';
 import { OcCheckboxData, OcEditUserFormConfig, OcEditUserResult, OCOrganization } from '../models/oc-edit-user-form.model';
 import { TypeMergeUtils } from '../utils/type-merge.util';
 import { ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
+import { AppFormModel } from '@openchannel/angular-common-components/src/lib/form-components';
 
 @Component({
     selector: 'oc-edit-user-form',
@@ -75,7 +76,7 @@ export class OcEditUserFormComponent implements OnInit {
      */
     @Output() readonly createdFormGroup = new EventEmitter<FormGroup>();
 
-    mainFormModel: TypeModel<TypeFieldModel>;
+    mainFormModel: AppFormModel;
     formGroup: FormGroup;
     termsControl: FormControl;
     currentFormConfig: OcEditUserFormConfig;
