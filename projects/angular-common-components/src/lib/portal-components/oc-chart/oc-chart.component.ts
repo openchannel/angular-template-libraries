@@ -352,9 +352,8 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                     return -1;
                 } else if (a[by] > b[by]) {
                     return 1;
-                } else {
-                    return 0;
                 }
+                return 0;
             });
         } else {
             this.tabularData.sort((a, b) => {
@@ -362,9 +361,8 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                     return -1;
                 } else if (a[by] < b[by]) {
                     return 1;
-                } else {
-                    return 0;
                 }
+                return 0;
             });
         }
     }

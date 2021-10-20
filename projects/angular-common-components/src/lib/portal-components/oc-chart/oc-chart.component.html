@@ -15,22 +15,19 @@
                 [src]="tabularSvgIcon || 'assets/angular-common-components/icon-tabular.svg'"
                 class="chart__swap-type-button chart__tabular-button"
                 [class.chart__swap-type-button_active]="activeDataType === 'tabular'"
-                (click)="swapActiveDataType('tabular')"
-            ></svg-icon>
+                (click)="swapActiveDataType('tabular')"></svg-icon>
             <svg-icon
                 [src]="graphSvgIcon || 'assets/angular-common-components/icon-graph.svg'"
                 class="chart__swap-type-button chart__graph-button"
                 [class.chart__swap-type-button_active]="activeDataType === 'graph'"
-                (click)="swapActiveDataType('graph')"
-            ></svg-icon>
+                (click)="swapActiveDataType('graph')"></svg-icon>
         </div>
         <oc-dropdown-button
             *ngIf="dropdownTypes?.length > 0"
             [options]="dropdownTypes"
             [selected]="dropdownSelectedType"
             (selectedChange)="updateChartOptions(chartData.fields, $event.id)"
-            class="chart__type-section"
-        ></oc-dropdown-button>
+            class="chart__type-section chart__type-types"></oc-dropdown-button>
     </div>
     <div class="chart__data-container">
         <div class="chart__data-container-canvas" *ngIf="activeDataType === 'graph'">
@@ -47,12 +44,9 @@
                                     <div class="chart__table-view-heading-sort-icon">
                                         <svg-icon
                                             [src]="sortIcon"
-                                            [svgClass]="
-                                                activeTabularSort.by === 'label' && !activeTabularSort.ascending
-                                                    ? 'chart__table-view-heading-sort-icon_rotated'
-                                                    : ''
-                                            "
-                                        ></svg-icon>
+                                            [svgClass]="activeTabularSort.by === 'label' && !activeTabularSort.ascending ?
+                                                'chart__table-view-heading-sort-icon_rotated':
+                                                ''"></svg-icon>
                                     </div>
                                 </div>
                             </th>
@@ -62,12 +56,9 @@
                                     <div class="chart__table-view-heading-sort-icon">
                                         <svg-icon
                                             [src]="sortIcon"
-                                            [svgClass]="
-                                                activeTabularSort.by === 'value' && !activeTabularSort.ascending
-                                                    ? 'chart__table-view-heading-sort-icon_rotated'
-                                                    : ''
-                                            "
-                                        ></svg-icon>
+                                            [svgClass]="activeTabularSort.by === 'value' && !activeTabularSort.ascending ?
+                                                'chart__table-view-heading-sort-icon_rotated':
+                                                ''"></svg-icon>
                                     </div>
                                 </div>
                             </th>
@@ -108,6 +99,5 @@
         [ascendingSvgIcon]="appDropdownAscendingSVGIcon"
         [descendingSvgIcon]="appDropdownDescendingSVGIcon"
         (selectedChange)="chartData.apps.activeItem = $event; updateChartData()"
-        class="chart__type-apps chart__type-section"
-    ></oc-dropdown-button>
+        class="chart__type-apps chart__type-section"></oc-dropdown-button>
 </ng-template>
