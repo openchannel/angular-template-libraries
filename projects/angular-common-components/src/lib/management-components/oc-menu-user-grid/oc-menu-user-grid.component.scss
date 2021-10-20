@@ -103,7 +103,7 @@
         &-sort-icon {
             cursor: pointer;
             margin-left: 1rem;
-            &[sorting="-1"], &[sorting="null"] {
+            &[sorting="1"] {
                 transform: rotate(180deg);
             }
         }
