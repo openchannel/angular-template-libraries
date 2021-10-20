@@ -1,9 +1,15 @@
 import { moduleMetadata } from '@storybook/angular';
-import { ChartLayoutTypeModel, OcChartComponent, OcCommonLibModule } from 'projects/angular-common-components/src/public-api';
+import {
+    ChartLayoutTypeModel,
+    ChartStatisticAppModel,
+    OcChartComponent,
+    OcCommonLibModule
+} from 'projects/angular-common-components/src/public-api';
 import { sum } from 'lodash';
+import { NgModule } from '@angular/core';
 
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
-const modules = {
+const modules: NgModule = {
     imports: [OcCommonLibModule],
 };
 
@@ -67,6 +73,77 @@ const day = {
     ],
 };
 
+const periods = [
+    {
+        id: 'month',
+        label: 'Monthly',
+        tabularLabel: 'Month',
+    },
+    {
+        id: 'day',
+        label: 'Daily',
+        active: true,
+        tabularLabel: 'Day',
+    },
+];
+
+const fields = [
+    {
+        id: 'downloads',
+        label: 'Downloads',
+        active: true,
+    },
+    {
+        id: 'reviews',
+        label: 'Reviews',
+    },
+    {
+        id: 'leads',
+        label: 'Leads',
+    },
+    {
+        id: 'views',
+        label: 'Views',
+    },
+];
+
+const selectedApp = {
+    id: 'all-app',
+    label: 'All apps',
+    active: true,
+};
+
+const apps = {
+    activeItem: selectedApp,
+    items: [
+        selectedApp,
+        {
+            id: 'app-1',
+            label: 'API Connections',
+        },
+        {
+            id: 'app-2',
+            label: 'Lead Accounting',
+        },
+        {
+            id: 'app-3',
+            label: 'Full CRM',
+        },
+        {
+            id: 'app-4',
+            label: 'Intersect AI Prediction',
+        },
+        {
+            id: 'app-5',
+            label: 'Fuel CRM Lite',
+        },
+        {
+            id: 'app-6',
+            label: 'Long app name 12345678901234567890123456789012345678901234567890',
+        },
+    ],
+};
+
 const ChartComponent = (args: OcChartComponent) => ({
     component: OcChartComponent,
     moduleMetadata: modules,
@@ -79,45 +156,15 @@ Monthly.args = {
     chartData: {
         layout: ChartLayoutTypeModel.standard,
         data: month,
-        periods: [
-            {
-                id: 'month',
-                label: 'Monthly',
-                active: true,
-                tabularLabel: 'Month',
-            },
-            {
-                id: 'day',
-                label: 'Daily',
-                tabularLabel: 'Day',
-            },
-        ],
-        fields: [
-            {
-                id: 'downloads',
-                label: 'Downloads',
-                active: true,
-            },
-            {
-                id: 'reviews',
-                label: 'Reviews',
-            },
-            {
-                id: 'leads',
-                label: 'Leads',
-            },
-            {
-                id: 'views',
-                label: 'Views',
-            },
-        ],
+        periods,
+        fields,
+        apps,
     },
     count: sum(month.labelsY),
     countText: 'Total',
     downloadUrl: './assets/img/upload_icon.svg',
     isBackgroundColor: true,
     enablePoints: true,
-    minDropdownWidth: '247px',
     random: true,
 };
 
@@ -127,45 +174,32 @@ Daily.args = {
     chartData: {
         layout: ChartLayoutTypeModel.standard,
         data: day,
-        periods: [
-            {
-                id: 'month',
-                label: 'Monthly',
-                tabularLabel: 'Month',
-            },
-            {
-                id: 'day',
-                label: 'Daily',
-                active: true,
-                tabularLabel: 'Day',
-            },
-        ],
-        fields: [
-            {
-                id: 'downloads',
-                label: 'Downloads',
-                active: true,
-            },
-            {
-                id: 'reviews',
-                label: 'Reviews',
-            },
-            {
-                id: 'leads',
-                label: 'Leads',
-            },
-            {
-                id: 'views',
-                label: 'Views',
-            },
-        ],
+        periods,
+        fields,
+        apps,
     },
     count: sum(day.labelsY),
     countText: 'Total',
     downloadUrl: './assets/img/upload_icon.svg',
     isBackgroundColor: true,
     enablePoints: true,
-    minDropdownWidth: '247px',
+    random: true,
+};
+
+export const WitoutAppsDropdown = ChartComponent.bind({});
+
+WitoutAppsDropdown.args = {
+    chartData: {
+        layout: ChartLayoutTypeModel.standard,
+        data: day,
+        periods,
+        fields,
+    },
+    count: sum(day.labelsY),
+    countText: 'Total',
+    downloadUrl: './assets/img/upload_icon.svg',
+    isBackgroundColor: true,
+    enablePoints: true,
     random: true,
 };
 
