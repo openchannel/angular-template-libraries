@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DropdownModel } from '../model/components-basic.model';
-
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { DropdownItemModel, DropdownModel, OcDropdownStatus } from '../model/components-basic.model';
 /**
  * Dropdown button component. Represents button and dropdown list that drops on click.
  *
@@ -31,26 +30,31 @@ export class OcDropdownButtonComponent {
     /**
      * Defined selected dropdown model item in dropdown list
      */
-    @Input() selected: DropdownModel<any>;
+    @Input() selected: DropdownModel<any> | DropdownItemModel;
 
     /**
      * List of dropdown model items
      */
-    @Input() options: DropdownModel<any>[];
+    @Input() options: (DropdownModel<any> | DropdownItemModel)[];
 
     /**
      * Min-width CSS value for the dropdown
+     * @Deprecated
      */
     @Input() set minDropdownWidth(minWidth: string) {
         this.minWidthModel = minWidth ? { 'min-width': minWidth } : {};
     }
 
     @Input() title: string = 'Sort by';
+    @Input() dropdownTitleTemplate: TemplateRef<OcDropdownStatus>;
+    @Input() dropdownItemTemplate: TemplateRef<DropdownItemModel>;
+    @Input() ascendingSvgIcon: string = null;
+    @Input() descendingSvgIcon: string = null;
 
     /**
      * Output event that emits when some item in the list was selected
      */
-    @Output() readonly selectedChange: EventEmitter<DropdownModel<any>> = new EventEmitter<DropdownModel<any>>();
+    @Output() readonly selectedChange: EventEmitter<DropdownModel<any> | DropdownItemModel> = new EventEmitter<DropdownModel<any> | DropdownItemModel>();
 
     minWidthModel = {};
 
@@ -58,7 +62,7 @@ export class OcDropdownButtonComponent {
      * Function that executes on click to item in dropdown list. Set selected item and emits it.
      * @param {DropdownModel<any>} selected
      */
-    onSelect(selected: DropdownModel<any>): void {
+    onSelect(selected: DropdownModel<any> | DropdownItemModel): void {
         this.selected = selected;
         this.selectedChange.emit(selected);
     }

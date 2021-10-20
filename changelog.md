@@ -1,3 +1,13 @@
+## Release notes - angular-template-libraries - Version 2.35.0 (10/20/2021)<br>
+### Task<br>
+AT-1192 - Improve datatable (list grid) component<br>
+### Bug<br>
+AT-1185 - [Market/Portal][UI][Tool tip] Tooltip text font size should be smaller then the Field label.<br>
+AT-1182 - [Market/Portal] Sorting caret icon does not reflect the current sorting column.<br>
+AT-1160 - Top section of pages "bump" when navigating<br>
+AT-1136 - [UI][Portal][Design System] Modal's button background color needs to changed as per the mock.<br>
+### Task<br>
+AT-929 - Improve 404 page<br>
 ## Release notes - angular-template-libraries - Version 2.34.0 (10/12/2021)<br>
 ### Bug<br>
 AT-1543 - Fix PROD log for CAP UnknownContentTypeException<br>
