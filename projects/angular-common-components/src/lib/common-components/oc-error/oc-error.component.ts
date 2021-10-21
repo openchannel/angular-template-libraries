@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, AbstractControlDirective, FormArray, FormGroup, NgModel, ValidationErrors } from '@angular/forms';
+import { AbstractControl, AbstractControlDirective, NgModel, ValidationErrors } from '@angular/forms';
 import { OcErrorService } from './oc-error-service';
 import { AbstractErrorMessageConfiguration } from '../model/oc-error.model';
+import { ControlUtils } from '../model/utils.model';
 
 /**
  * An oc-error component. It is used to show error or errors list after validation.<br>
@@ -47,33 +48,7 @@ export class OcErrorComponent implements OnInit {
     constructor(public errorService: OcErrorService, private config: AbstractErrorMessageConfiguration) {}
 
     ngOnInit(): void {
-        this.initFullControlPath(this.control);
-    }
-
-    /** Create a path from control to parent form. Put result to {@link fullControlPath} */
-    initFullControlPath(control: AbstractControlDirective | AbstractControl | NgModel): void {
-        if (!control) {
-            this.fullControlPath = '';
-        } else if (control instanceof NgModel || control instanceof AbstractControlDirective) {
-            this.fullControlPath = (control.path || []).join('.');
-        } else {
-            this.fullControlPath = this.initFullControlPathByAbstractControl(control, '');
-        }
-    }
-
-    /** Create a path from control to parent form with AbstractControl. */
-    initFullControlPathByAbstractControl(control: AbstractControl, fullPath: string): string {
-        const parent = control?.parent;
-        if (parent) {
-            if (parent instanceof FormArray) {
-                fullPath = this.initFullControlPathByAbstractControl(parent, `[*].${fullPath}`);
-            } else if (parent instanceof FormGroup) {
-                const { controls } = parent;
-                const controlName = Object.keys(controls).find(name => control === controls[name]) || null;
-                fullPath = this.initFullControlPathByAbstractControl(parent, `${controlName}${fullPath ? '.' + fullPath : ''}`);
-            }
-        }
-        return fullPath;
+        this.fullControlPath = ControlUtils.getFullControlPath(this.control);
     }
 
     /**
@@ -93,7 +68,7 @@ export class OcErrorComponent implements OnInit {
             this.errorService.serverErrorList.length &&
             typeof this.errorService.serverErrorList === 'object'
         ) {
-            const error = this.errorService.serverErrorList.find(message => message.field === this.field);
+            const error = this.errorService.serverErrorList.find(message => message.field === this.fullControlPath);
             if (error) {
                 setTimeout(() => {
                     // clear error from service as we have fetched it

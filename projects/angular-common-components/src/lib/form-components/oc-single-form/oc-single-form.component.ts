@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
-import { AbstractControl, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
 import { AppFormModel } from '../model/app-form-model';
-import { ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
+import { ControlUtils, ErrorMessageFormId, OcErrorService } from '@openchannel/angular-common-components/src/lib/common-components';
+import { forIn, set, toPath } from 'lodash';
+import { map, takeUntil } from 'rxjs/operators';
 
 /**
  * Form component. Represents form builder from given config with customization.
@@ -147,11 +149,18 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
     /** Result data from form for submission */
     formData: any;
 
-    /** @private Subscription for a main form */
-    private formSubscription: Subscription = new Subscription();
+    private destroy$ = {
+        updateFormEvent: new Subject<void>(),
+        serverErrorEvent: new Subject<void>(),
+    };
+
+    private serverErrorIntoDFA: { [dfaControlName: string]: { controlPath: string[] } } = {};
+
+    constructor(private errorService: OcErrorService) {}
 
     ngOnInit(): void {
         this.generateForm();
+        this.listenServerErrors();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -161,17 +170,9 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     ngOnDestroy(): void {
-        if (!this.showButton) {
-            this.formSubscription.unsubscribe();
-        }
-    }
-
-    /**
-     * Replace all dots in form json data
-     */
-    removeJSONDots(): void {
-        this.formJsonData.fields.forEach(field => {
-            field.id = field.id.replace('.', '/');
+        Object.values(this.destroy$).forEach(destroy => {
+            destroy.next();
+            destroy.complete();
         });
     }
 
@@ -182,12 +183,12 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
         if (this.generatedForm) {
             this.customForm = this.generatedForm;
         } else if (this.formJsonData.fields) {
-            this.removeJSONDots();
             this.customForm = new FormGroup(OcFormGenerator.getFormByConfig(this.formJsonData.fields));
         }
         if (this.setFormDirty) {
             this.setDirty();
         }
+        this.initDFAPathsByControl();
         this.createdForm.emit(this.customForm);
         if (!this.showButton) {
             this.subscribeToForm();
@@ -199,13 +200,9 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
      */
     sendData(): void {
         if (!this.anotherInvalidResult && !this.process) {
-            const formData = this.customForm.getRawValue();
-            Object.keys(formData).forEach(key => {
-                if (key.includes('/')) {
-                    formData[key.replace('/', '.')] = formData[key];
-                    delete formData[key];
-                }
-            });
+            let formData: any = {};
+            forIn(this.customForm.getRawValue() || {}, (value, key) => (formData = set(formData, key, value)));
+
             if (this.customForm.valid && this.showButton) {
                 this.formSubmitted.emit(formData);
             } else {
@@ -228,12 +225,12 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
         this.isFormInvalid.emit(this.customForm.invalid);
         this.sendData();
 
-        this.formSubscription.add(
-            this.customForm.valueChanges.subscribe(() => {
-                this.isFormInvalid.emit(this.customForm.invalid);
-                this.sendData();
-            }),
-        );
+        this.customForm.valueChanges
+        .pipe(takeUntil(this.destroy$.updateFormEvent))
+        .subscribe(() => {
+            this.isFormInvalid.emit(this.customForm.invalid);
+            this.sendData();
+        });
     }
 
     /**
@@ -244,22 +241,63 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     /**
-     * Check if DFA control is invalid and if yes return an error
-     * @param {AbstractControl} dfaControl - control to check
-     * @param {string} label - label for control
-     * @returns `string`
-     */
-    getDfaError(dfaControl: AbstractControl, label: string): string {
-        return dfaControl.touched && dfaControl.invalid ? 'Please, check all fields inside ' + label : '';
-    }
-
-    /**
      * Set all controls as touched and dirty
      */
     private setDirty(): void {
         (Object as any).values(this.customForm.controls).forEach(control => {
             control.markAsTouched();
             control.markAsDirty();
+        });
+    }
+
+    private listenServerErrors(): void {
+        this.errorService.serverErrorEvent
+            .pipe(
+                map(() => this.errorService.serverErrorList || []),
+                takeUntil(this.destroy$.serverErrorEvent),
+            )
+            .subscribe(errors => this.updateDFAErrors(errors));
+    }
+
+    private updateDFAErrors(errors: any[]): void {
+        for (const controlName of Object.keys(this.serverErrorIntoDFA)) {
+
+            const hasDfaError = this.hasDfaError(errors, this.serverErrorIntoDFA[controlName].controlPath);
+
+            const dfaControl = this.customForm.controls[controlName];
+
+            if (hasDfaError) {
+                // set new DFA error
+                dfaControl.setErrors({
+                    ...(dfaControl.errors || {}),
+                    ...OcFormGenerator.createChildDfaFieldError(this.formJsonData?.fields?.find(field => field.id === controlName)),
+                });
+            } else if (dfaControl.errors?.invalidDFAField && dfaControl.valid) {
+                // remove DFA error only when: DFA without server and field errors.
+                const newErrors = { ...dfaControl.errors };
+                delete newErrors.invalidDFAField;
+                dfaControl.setErrors(newErrors);
+            }
+        }
+    }
+
+    private initDFAPathsByControl(): void {
+        this.serverErrorIntoDFA = {};
+        if (this.formJsonData?.fields) {
+            this.formJsonData.fields.forEach(field => {
+                if (field && field.id && field.type === 'dynamicFieldArray') {
+                    this.serverErrorIntoDFA[field.id] = {
+                        controlPath: toPath(ControlUtils.getFullControlPath(this.customForm.controls[field.id])),
+                    };
+                }
+            });
+        }
+    }
+
+    private hasDfaError(errors: any[], dfaPath: string[]): boolean {
+        return !!errors.find(error => {
+            const errorPath = toPath(error?.field || '');
+            return dfaPath.filter((path, i) => path !== errorPath[i]).length === 0;
         });
     }
 }
