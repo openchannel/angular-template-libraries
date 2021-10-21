@@ -14,10 +14,14 @@
             (createdForm)="setCreatedForm($event)"
             (formDataUpdated)="setDataFromForm($event)"></oc-form>
         <div class="invite-modal__button-container">
-            <oc-button type="secondary" text="Cancel" (click)="dismiss()" class="invite-modal__button"></oc-button>
+            <oc-button
+                type="secondary"
+                text="Cancel"
+                (click)="dismiss()"
+                class="invite-modal__button invite-modal__dismiss-button"></oc-button>
             <oc-button
                 type="primary"
-                class="invite-modal__button"
+                class="invite-modal__button invite-modal__confirm-button"
                 [text]="this.modalData.successButtonText"
                 [process]="inProcess"
                 (click)="onClickConfirmButton()"></oc-button>
