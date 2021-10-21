@@ -263,7 +263,6 @@ describe('OcChartComponent', () => {
 
         // tslint:disable-next-line:no-lifecycle-call
         component.ngOnChanges(changesObj);
-        fixture.detectChanges();
 
         const chartTableHeadings = fixture.debugElement.queryAll(By.css('.chart__table-view-heading'));
         chartTableHeadings.forEach(chartTableHeading => {
@@ -293,10 +292,6 @@ describe('OcChartComponent', () => {
     it('should emit change chart data, set new active type and parameter, when chart options updated', () => {
         const changeChartOptionsEmitFunction = jest.spyOn(component.changeChartOptions, 'emit');
 
-        // tslint:disable-next-line:no-lifecycle-call
-        component.ngOnInit();
-        fixture.detectChanges();
-
         const disabledDropdownType = component.dropdownTypes.find(type => !type.active);
 
         const chartTypesDropdown = fixture.debugElement.query(By.css('.chart__type-types')).componentInstance;
@@ -320,7 +315,6 @@ describe('OcChartComponent', () => {
 
         // tslint:disable-next-line:no-lifecycle-call
         component.ngOnChanges(changesObj);
-        fixture.detectChanges();
 
         expect(component.tabularData.length).not.toBe(0);
     });
