@@ -1,9 +1,10 @@
 <div class="form-steps">
-    <ng-container *ngIf="hasFieldGroup; else singleForm">
-        <div class="form-steps__content"
-             [class.form-steps__content-responsive]="showProgressBar">
+    <ng-container *ngIf="hasFieldGroups; else singleForm">
+        <div class="form-steps__content">
             <div class="form-steps__content-progressbar">
                 <oc-progress-bar *ngIf="showProgressBar"
+                                 (jumpToStep)="navigateToStep($event)"
+                                 [maxStepsToShow]="maxStepsToShow"
                                  [progressbarData]="progressBarSteps"
                                  [currentStep]="currentStep"></oc-progress-bar>
             </div>
@@ -32,14 +33,14 @@
                    text="Cancel"
                    (click)="cancelSubmit.emit()"></oc-button>
         <oc-button *ngIf="currentStep > 1"
-                   (click)="navigateSteps('previous')"
+                   (click)="navigateStepsByButtons('previous')"
                    class="form__button"
                    type="secondary"
                    text="Previous step"></oc-button>
         <ng-container *ngIf="additionalButton"
                       [ngTemplateOutlet]="additionalButton"></ng-container>
         <oc-button *ngIf="currentStep < customForm?.length"
-                   (click)="navigateSteps('next')"
+                   (click)="navigateStepsByButtons('next')"
                    class="form__button"
                    type="primary"
                    text="Next step"></oc-button>
@@ -61,6 +62,6 @@
                     [showButton]="false"
                     [showGroupHeading]="showGroupHeading"
                     (isFormInvalid)="isFormInvalid.emit($event)"
-                    (formDataUpdated)="formDataUpdated.emit($event)"
+                    (formDataUpdated)="onFormDataUpdated($event)"
                     (createdForm)="createdForm.emit($event)"></oc-single-form>
 </ng-template>
