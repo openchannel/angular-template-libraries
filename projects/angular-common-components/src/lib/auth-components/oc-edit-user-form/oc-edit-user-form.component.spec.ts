@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { OcEditUserFormComponent } from './oc-edit-user-form.component';
 import {
@@ -175,20 +175,29 @@ describe('OcEditUserFormComponent', () => {
         expect(component.currentFormConfig).toEqual(secondForm);
     });
 
-    it('should show terms checkbox', () => {
+    it('should show terms checkbox', fakeAsync(() => {
+        fixture.detectChanges();
         component.enableTermsCheckbox = {
             termsUrl: 'http://terms',
             policyUrl: 'http://policy',
         };
-        component.setFormGroup(OcFormGenerator.getFormByConfig(firstForm.account.typeData.fields) as FormGroup);
-        console.log(component.termsControl);
+        component.setFormGroup(new FormGroup(OcFormGenerator.getFormByConfig(firstForm.account.typeData.fields)));
         fixture.detectChanges();
+        tick(1000);
 
-        console.log(fixture.debugElement.query(By.css('.edit-user-form__consent')));
         const checkbox = fixture.debugElement.query(By.css('.edit-user-form__consent-checkbox'));
         const termsText = fixture.debugElement.query(By.css('.edit-user-form__consent__label'));
 
         expect(checkbox).toBeTruthy();
         expect(termsText).toBeTruthy();
+    }));
+
+    it('should show error message when no config provided', () => {
+        component.formConfigs = [];
+        fixture.detectChanges();
+
+        const errorMessageBlock = fixture.debugElement.query(By.css('.edit-user-form__empty_form_configs'));
+        expect(errorMessageBlock).toBeTruthy();
+        expect(errorMessageBlock.nativeElement.textContent).toEqual('There are no forms configured');
     });
 });

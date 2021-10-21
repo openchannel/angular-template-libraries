@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TypeFieldModel, TypeModel } from '../models/oc-type-definition.model';
 import { OcCheckboxData, OcEditUserFormConfig, OcEditUserResult, OCOrganization } from '../models/oc-edit-user-form.model';
 import { TypeMergeUtils } from '../utils/type-merge.util';
 import { ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
-import { AppFormModel } from '@openchannel/angular-common-components/src/lib/form-components';
+import { AppFormField, AppFormModel } from '@openchannel/angular-common-components/src/lib/form-components';
 
 @Component({
     selector: 'oc-edit-user-form',
@@ -116,7 +115,7 @@ export class OcEditUserFormComponent implements OnInit {
                 tempForm = TypeMergeUtils.mergeTypes(tempForm, this.defaultAccountData, config.typeData, '', config.includeFields);
             }
             if (this.enablePasswordField) {
-                const passwordField: TypeFieldModel = {
+                const passwordField: AppFormField = {
                     id: this.PASSWORD_FILED_KEY,
                     type: 'password',
                     label: 'Password',

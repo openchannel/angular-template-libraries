@@ -140,7 +140,6 @@ export class MockPasswordComponent {
 export class MockCheckboxComponent implements ControlValueAccessor {
     @Input() labelText: string;
     @Input() requiredIndicator: boolean = false;
-    @Input() formControl: FormControl;
     @Input() value: boolean;
     @Input() disabled: boolean;
     @Output() readonly isCheckedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
