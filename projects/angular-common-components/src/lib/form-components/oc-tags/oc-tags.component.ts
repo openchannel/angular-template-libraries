@@ -158,6 +158,9 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
      * Returns mappedValues filtered with the tags which are currently not in the result tags list.
      */
     findAvailableDropBoxTags(): string[] | number[] | boolean[] {
+        if(!this.availableTags) {
+            return [];
+        }
         let mappedValues: any[] = this.availableTags;
         if (this.tagsType === 'number') {
             mappedValues = this.availableTags.map(Number);

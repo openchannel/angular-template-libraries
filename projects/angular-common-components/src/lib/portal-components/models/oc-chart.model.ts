@@ -1,3 +1,5 @@
+import { DropdownItemModel } from '@openchannel/angular-common-components/src/lib/common-components';
+
 /**
  * Interface for the [Chart]{@link OcChartComponent} component.
  * Contains of chart layout type, chart data, chart fields and periods.
@@ -14,6 +16,13 @@ export interface ChartStatisticModel {
     fields: ChartStatisticFiledModel[];
     /** periods array for data switching */
     periods: ChartStatisticPeriodModel[];
+    /**
+     * apps dropdown
+     */
+    apps?: {
+        activeItem: ChartStatisticAppModel;
+        items: ChartStatisticAppModel[];
+    };
 }
 /**
  * Interface for the [Chart]{@link OcChartComponent} component's data.
@@ -104,19 +113,25 @@ export interface ChartOptionsChange {
     field: ChartStatisticFiledModel;
     /** object of chosen period */
     period: ChartStatisticPeriodModel;
+
+    selectedApp?: ChartStatisticAppModel;
 }
 
 /**
  * Basic interface for the [Chart]{@link OcChartComponent} component's [Field model]{@link ChartStatisticFiledModel}
  * and [Period model]{@link ChartStatisticPeriodModel}
  */
-export interface ChartStatisticParameterModel {
+export interface ChartStatisticParameterModel extends DropdownItemModel {
     /** unique identificator of the parameter */
     id: string;
     /** label text of the parameter that will be shown */
     label: string;
     /** marks parameter as chosen */
     active?: boolean;
+}
+
+export interface ChartStatisticAppModel extends DropdownItemModel {
+    id: string;
 }
 
 export enum ChartLayoutTypeModel {

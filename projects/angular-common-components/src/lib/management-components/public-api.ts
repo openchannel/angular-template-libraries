@@ -5,3 +5,4 @@ export * from './oc-invite-modal/oc-invite-modal.component';
 /** Models */
 export * from './models/oc-modal.model';
 export * from './models/user-data.model';
+export * from './models/menu-user-grid.model';

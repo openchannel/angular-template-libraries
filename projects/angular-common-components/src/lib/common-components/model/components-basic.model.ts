@@ -150,6 +150,13 @@ export class DropdownModel<T> {
     }
 }
 
+export interface OcDropdownStatus {
+    isCollapsed: boolean;
+}
+
+export interface DropdownItemModel {
+    label: string;
+}
 /**
  * Interface for the [Sidebar component]{@link OcSidebarComponent}.
  * Extends the [Filter Value]{@link FilterValue} and [Select model]{@link SelectModel} interfaces.

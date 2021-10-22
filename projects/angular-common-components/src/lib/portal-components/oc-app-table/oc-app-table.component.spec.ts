@@ -6,7 +6,11 @@ import { OcAppTableComponent } from './oc-app-table.component';
 import { Component, Input } from '@angular/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CamelcasePipe, HtmlTagsReplacerPipe } from '@openchannel/angular-common-components/src/lib/common-components';
+import {
+    CamelcasePipe,
+    GetTextByPathPipe,
+    HtmlTagsReplacerPipe
+} from '@openchannel/angular-common-components/src/lib/common-components';
 import { AppListing } from '../models/app-listing.model';
 
 @Component({
@@ -52,7 +56,7 @@ describe('OcAppTableComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcAppTableComponent, MockSvgIconComponent, CamelcasePipe, HtmlTagsReplacerPipe],
+                declarations: [OcAppTableComponent, MockSvgIconComponent, CamelcasePipe, HtmlTagsReplacerPipe, GetTextByPathPipe],
                 providers: [NgModel],
                 imports: [FormsModule, CommonModule, BrowserModule, InfiniteScrollModule, NgbModule],
             }).compileComponents();
