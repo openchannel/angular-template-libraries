@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { OcSignupCustomComponent } from './oc-signup-custom.component';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NgModel } from '@angular/forms';
 import { CommonModule, Location } from '@angular/common';
 import { BrowserModule, By } from '@angular/platform-browser';
 import {
@@ -23,6 +23,8 @@ describe('OcSignupCustomComponent', () => {
     let fixture: ComponentFixture<OcSignupCustomComponent>;
     let location: Location;
     let router: Router;
+
+    const testUrl = 'https://some-site.com/test-img-123';
 
     beforeEach(
         waitForAsync(() => {
@@ -58,45 +60,129 @@ describe('OcSignupCustomComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(OcSignupCustomComponent);
         component = fixture.componentInstance;
-        fixture.detectChanges();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should redirect to sign up page', async () => {
+    it('should redirect to sign up page', () => {
         component.loginUrl = '/login';
         fixture.detectChanges();
 
         const login: HTMLLinkElement = fixture.debugElement.query(By.css('.sign-up__login-link')).nativeElement;
         login.click();
 
-        await fixture.whenStable().then(() => {
-            expect(location.path()).toEqual('/login');
-        });
+        expect(location.path()).toEqual('/login');
     });
 
-    it('button should not emmit submit when process is on', () => {
+    it('submit button should not emmit submit when process is on', () => {
         component.process = true;
-        jest.spyOn(component.resultUserData, 'emit');
+        const resultUserDataEmitFunction = jest.spyOn(component.resultUserData, 'emit');
 
         component.formConfigsLoading = false;
         fixture.detectChanges();
+
         const button = fixture.debugElement.query(By.css('.sign-up__button')).nativeElement;
         button.click();
 
-        expect(component.resultUserData.emit).toHaveBeenCalledTimes(0);
+        expect(resultUserDataEmitFunction).not.toHaveBeenCalled();
     });
 
     it('should redirect to activation', () => {
         component.showSignupFeedbackPage = true;
         component.activationUrl = '/activation';
         fixture.detectChanges();
+
         component.goToActivationPage();
-        fixture.detectChanges();
+
         fixture.whenStable().then(() => {
             expect(router.url).toEqual('/activation');
         });
+    });
+
+    it('should emit show sign up feedback page change, when sign up link clicked', () => {
+        const showSignupFeedbackPageChangeEmitFunction = jest.spyOn(component.showSignupFeedbackPageChange, 'emit');
+        component.showSignupFeedbackPage = true;
+        fixture.detectChanges();
+
+        const signUpLink: HTMLLinkElement = fixture.debugElement.query(By.css('.result__link')).nativeElement;
+        signUpLink.click();
+
+        expect(showSignupFeedbackPageChangeEmitFunction).toHaveBeenCalled();
+    });
+
+    it('should not show sign up button, when form configs loading', () => {
+        const resultFormValue = {
+            account: {
+                name: 'Name',
+                email: 'email@test.com',
+            },
+            password: 'qwerty',
+        };
+
+        const resultUserDataEmitFunction = jest.spyOn(component.resultUserData, 'emit');
+
+        component.formConfigsLoading = false;
+        component.resultFormValue = resultFormValue;
+        fixture.detectChanges();
+
+        const signUpButton = fixture.debugElement.query(By.css('.sign-up__button')).nativeElement;
+        signUpButton.click();
+
+        expect(resultUserDataEmitFunction).toHaveBeenCalledWith(resultFormValue);
+    });
+
+    it('should touch all form fields on submit', () => {
+        component.formConfigsLoading = false;
+        component.formGroup = new FormGroup({
+            email: new FormControl('email'),
+            password: new FormControl('password'),
+        });
+        fixture.detectChanges();
+
+        const signUpButton = fixture.debugElement.query(By.css('.sign-up__button')).nativeElement;
+        signUpButton.click();
+
+        expect(component.formGroup.touched).toBeTruthy();
+    });
+
+    it('should pass correct src to company logo', () => {
+        const companyLogoImages: HTMLImageElement[] = [];
+
+        component.companyLogoUrl = testUrl;
+        component.showSignupFeedbackPage = false;
+        fixture.detectChanges();
+
+        companyLogoImages.push(fixture.debugElement.query(By.css('.company-logo')).nativeElement);
+
+        component.showSignupFeedbackPage = true;
+        fixture.detectChanges();
+
+        companyLogoImages.push(fixture.debugElement.query(By.css('.company-logo')).nativeElement);
+
+        companyLogoImages.forEach(companyLogoImage => expect(companyLogoImage.src).toBe(testUrl));
+    });
+
+    it('should pass correct src to forgot password image', () => {
+        component.forgotPasswordDoneUrl = testUrl;
+        component.showSignupFeedbackPage = true;
+        fixture.detectChanges();
+
+        const forgotPasswordImage: HTMLImageElement = fixture.debugElement.query(By.css('.result__message-img')).nativeElement;
+
+        expect(forgotPasswordImage.src).toBe(testUrl);
+    });
+
+    it('should set correct heading tag', () => {
+        const testHeadingTag = 'h6';
+
+        component.headingTag = testHeadingTag;
+        component.showSignupFeedbackPage = false;
+        fixture.detectChanges();
+
+        const heading = fixture.debugElement.query(By.css('.sign-up__header-heading')).componentInstance;
+
+        expect(heading.headingTag).toBe(testHeadingTag);
     });
 });
