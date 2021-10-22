@@ -21,11 +21,11 @@ export declare type SortField = 'name' | 'email' | 'date' | 'role';
  *                     list: [{
  *                         inviteStatus?: 'ACTIVE';
  *                         inviteId?: 'a8gs9d87agsd78';
- *                         inviteToken?: 'a8shd7has8d7h';}]
- *                     }],
- *                     options: ['EDIT'],
- *                     previewTemplate?: '<p>template</p>'
- *                  }
+ *                         inviteToken?: 'a8shd7has8d7h';
+ *                     }]
+ *                     },
+ *                  options: ['EDIT'],
+ *                  previewTemplate?: '<p>template</p>'
  *              }"
  *              [menuUrl]="/image.svg"
  *              [sortIcon]="/image.svg"
