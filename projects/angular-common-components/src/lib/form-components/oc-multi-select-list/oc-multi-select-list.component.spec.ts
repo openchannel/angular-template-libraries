@@ -1,29 +1,6 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { OcMultiSelectListComponent } from './oc-multi-select-list.component';
-import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
-
-@Component({
-    template: '',
-    selector: 'oc-tag-element',
-})
-export class TagElementMockComponent {
-    @Input() title: string;
-    @Input() closeMarker: boolean = false;
-
-    @Output() readonly clickEmitter = new EventEmitter<string>();
-}
-
-@Component({
-    template: '',
-    selector: 'oc-dropbox',
-})
-export class DropboxMockComponent {
-    @Input() placeHolder: string;
-    @Input() items: string[];
-    @Input() clearFormAfterSelect: boolean = false;
-    @Input() dropElementTemplate: TemplateRef<any>;
-}
+import { DropboxMockComponent, TagElementMockComponent } from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcMultiSelectListComponent', () => {
     let component: OcMultiSelectListComponent;

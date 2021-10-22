@@ -368,6 +368,28 @@ export class MockRadioButtonComponent implements ControlValueAccessor {
 
 @Component({
     template: '',
+    selector: 'oc-tag-element',
+})
+export class TagElementMockComponent {
+    @Input() title: string;
+    @Input() closeMarker: boolean = false;
+
+    @Output() readonly clickEmitter = new EventEmitter<string>();
+}
+
+@Component({
+    template: '',
+    selector: 'oc-dropbox',
+})
+export class DropboxMockComponent {
+    @Input() placeHolder: string;
+    @Input() items: string[];
+    @Input() clearFormAfterSelect: boolean = false;
+    @Input() dropElementTemplate: TemplateRef<any>;
+}
+
+@Component({
+    template: '',
     selector: 'oc-dropbox',
 })
 export class MockDropboxComponent {
