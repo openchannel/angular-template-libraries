@@ -44,7 +44,7 @@ describe('OcMenuUserGridComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should emit pageScrolled. when page was scrolled', () => {
+    it('should emit pageScrolled, when page was scrolled', () => {
         jest.spyOn(component.pageScrolled, 'emit');
 
         const tableDE = fixture.debugElement.query(By.css('.user-table'));
@@ -119,7 +119,7 @@ describe('OcMenuUserGridComponent', () => {
 
         const userInitialsElement = fixture.debugElement.query(By.css('.user-table__profile')).nativeElement;
 
-        expect(userInitialsElement.textContent.trim()).toBe(userInitials.trim());
+        expect(userInitialsElement.textContent.trim()).toBe(userInitials);
     });
 
     it('initials function should return empty string, if user name is absent', () => {
