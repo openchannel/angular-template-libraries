@@ -52,6 +52,7 @@ export * from './model/oc-error.model';
 export * from './interfaces/social-link.model';
 export * from './interfaces/heading-tag.interface';
 export * from './model/image-gallery.model';
+export * from './model/utils.model';
 
 /** Services */
 export * from './oc-error/oc-error-service';
