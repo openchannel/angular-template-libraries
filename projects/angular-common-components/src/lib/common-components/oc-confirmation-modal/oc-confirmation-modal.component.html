@@ -9,7 +9,7 @@
             <oc-button class="confirmation-modal__button" *ngIf="!rejectButtonHide"
                        [type]="rejectButtonType" [text]="rejectButtonText"
                        (click)="dismiss()"></oc-button>
-            <oc-button class="confirmation-modal__button" *ngIf="!confirmButtonHide"
+            <oc-button class="confirmation-modal__button {{confirmButtonClass}}" *ngIf="!confirmButtonHide"
                        [type]="confirmButtonType" [text]="confirmButtonText"
                        (click)="confirm(true)"></oc-button>
         </div>

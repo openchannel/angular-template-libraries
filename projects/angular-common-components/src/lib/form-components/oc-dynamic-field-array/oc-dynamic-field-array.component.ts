@@ -147,6 +147,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy, OnChange
             ...this.formsArrayConfig[index],
             isEdit: true,
         };
+        this.dfaFormArray.controls[index].markAllAsTouched();
         this.subscribeToAllPreviewFieldChanges();
     }
 
