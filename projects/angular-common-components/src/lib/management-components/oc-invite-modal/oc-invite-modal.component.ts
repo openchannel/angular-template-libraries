@@ -26,6 +26,7 @@ export class OcInviteModalComponent implements OnInit {
 
     /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
     @Input() formId: ErrorMessageFormId = null;
+
     /**
      * Config for custom form generation
      */
@@ -193,7 +194,7 @@ export class OcInviteModalComponent implements OnInit {
     }
 
     /**
-     * Fuction that call Update User method
+     * Function that call Update User method
      * @param {ModalUpdateUserModel} updateModalData
      */
     private updateUser(updateModalData: ModalUpdateUserModel): void {
@@ -211,7 +212,7 @@ export class OcInviteModalComponent implements OnInit {
     }
 
     /**
-     * Fuction that call Invite user method
+     * Function that call Invite user method
      * @param {ModalInviteUserModel} inviteModalData
      */
     private inviteUser(inviteModalData: ModalInviteUserModel): void {

@@ -32,6 +32,7 @@ export * from './pipe/ellipsis.pipe';
 export * from './pipe/price.pipe';
 export * from './pipe/html-tags-replacer.pipe';
 export * from './pipe/safe.pipe';
+export * from './pipe/get-text-by-path.pipe';
 
 /** Directives */
 export * from './directive/ellipsis.directive';
@@ -46,10 +47,12 @@ export * from './validators/password-validator.directive';
 export * from './model/app-data.model';
 export * from './model/components-basic.model';
 export * from './model/oc-sidebar-model';
+export * from './model/utils.model';
 export * from './model/oc-error.model';
 export * from './interfaces/social-link.model';
 export * from './interfaces/heading-tag.interface';
 export * from './model/image-gallery.model';
+export * from './model/utils.model';
 
 /** Services */
 export * from './oc-error/oc-error-service';

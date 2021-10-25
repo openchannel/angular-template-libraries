@@ -76,6 +76,10 @@ export class OcConfirmationModalComponent {
      */
     @Input() rejectButtonHide: boolean = false;
     /**
+     * Custom class for the confirmation button.
+     */
+    @Input() confirmButtonClass: string = '';
+    /**
      * Control of the current modal actions.
      * @private
      */

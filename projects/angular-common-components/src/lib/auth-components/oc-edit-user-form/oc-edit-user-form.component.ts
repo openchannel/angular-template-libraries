@@ -119,7 +119,9 @@ export class OcEditUserFormComponent implements OnInit {
                     id: this.PASSWORD_FILED_KEY,
                     type: 'password',
                     label: 'Password',
-                    attributes: {},
+                    attributes: {
+                        required: true,
+                    },
                 };
                 tempForm = TypeMergeUtils.mergeTypes(tempForm, this.defaultOrganizationData, { fields: [passwordField] }, '', ['password']);
             }
