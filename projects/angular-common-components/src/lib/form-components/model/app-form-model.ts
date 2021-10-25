@@ -1,14 +1,15 @@
 import { ErrorMessage } from '@openchannel/angular-common-components/src/lib/common-components';
+import { OptionValue } from '@openchannel/angular-common-components/src/lib/auth-components';
 
 export interface AppFormField {
     id: string;
-    label: string;
+    label?: string;
     description?: string;
     defaultValue?: any;
     type: string;
     required?: any;
     attributes?: AppFormFieldAttributes;
-    options?: any;
+    options?: OptionValue[] | string[] | any[];
     fields?: AppFormField[];
     placeholder?: string;
     category?: string;

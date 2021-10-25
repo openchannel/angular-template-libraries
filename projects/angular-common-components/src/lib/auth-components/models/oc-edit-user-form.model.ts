@@ -1,4 +1,3 @@
-import { TypeFieldModel, TypeModel } from './oc-type-definition.model';
 import { AppFormModel } from '@openchannel/angular-common-components/src/lib/form-components';
 
 export interface OcCheckboxData {
@@ -66,7 +65,7 @@ export interface OcEditUserFormConfig {
 export interface OcEditUserTypeConfig {
     type: string;
     includeFields: string[];
-    typeData: AppFormModel;
+    typeData: AppFormModel; //NOSONAR
 }
 
 export interface OcEditUserResult {
