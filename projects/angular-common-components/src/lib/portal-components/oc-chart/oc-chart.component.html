@@ -4,7 +4,7 @@
         <div class="chart__period-container">
             <div *ngFor="let period of chartData?.periods" [class.chart__period-item-active]="period.active" class="chart__period-item">
                 <span (click)="updateChartPeriod(period)" class="chart__period-item-label">
-                    <input type="radio" [checked]="period.active" class="chart__period-item-radio" />
+                    <input type="radio" [checked]="period.active" class="chart__period-item-radio">
                     <span class="chart__period-item-checkmark"></span>
                     <span class="chart__period-item-text">{{ period.label }}</span>
                 </span>
@@ -83,7 +83,7 @@
         </div>
         <div *ngIf="count >= 0" class="chart__data-container-total">
             <div class="chart__data-container-total-header">
-                <img class="chart__data-container-total-image" *ngIf="downloadUrl" alt="cloud" src="{{ downloadUrl }}" />
+                <img class="chart__data-container-total-image" *ngIf="downloadUrl" alt="cloud" src="{{ downloadUrl }}">
                 <h5 class="chart__data-container-total-count">{{ count }}</h5>
             </div>
             <span class="chart__data-container-total-text">{{ countText }}</span>
