@@ -18,10 +18,15 @@ export interface TypeFieldModel {
     label?: string;
     defaultValue?: any;
     attributes?: any;
-    options?: OptionValue[] | string[] | any[];
+    options?: OptionValue[] | string[] | any[]; //NOSONAR
     fields?: TypeFieldModel[]; //NOSONAR
 }
 
+/**
+ * @deprecated
+ * This field is deprecated and will be removed in the next releases.
+ * Use the {@link FieldOptionValue} instead.
+ */
 export interface OptionValue {
     value: any;
 }

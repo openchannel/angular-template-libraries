@@ -1,5 +1,4 @@
 import { ErrorMessage } from '@openchannel/angular-common-components/src/lib/common-components';
-import { OptionValue } from '@openchannel/angular-common-components/src/lib/auth-components';
 
 export interface AppFormField {
     id: string;
@@ -9,7 +8,7 @@ export interface AppFormField {
     type: string;
     required?: any;
     attributes?: AppFormFieldAttributes;
-    options?: OptionValue[] | string[] | any[];
+    options?: FieldOptionValue[] | string[] | any[];
     fields?: AppFormField[];
     placeholder?: string;
     category?: string;
@@ -39,4 +38,8 @@ export interface AppFormFieldAttributes {
     hash?: string;
     accept?: any;
     overrideErrorMessage?: ErrorMessage;
+}
+
+export interface FieldOptionValue {
+    value: any;
 }
