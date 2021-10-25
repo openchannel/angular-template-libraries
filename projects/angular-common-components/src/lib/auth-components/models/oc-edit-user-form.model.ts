@@ -65,7 +65,7 @@ export interface OcEditUserFormConfig {
 export interface OcEditUserTypeConfig {
     type: string;
     includeFields: string[];
-    typeData: AppFormModel; //NOSONAR
+    typeData: AppFormModel;
 }
 
 export interface OcEditUserResult {
