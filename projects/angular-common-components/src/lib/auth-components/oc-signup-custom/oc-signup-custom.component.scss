@@ -62,6 +62,7 @@
 
         &-link {
             @include font-medium();
+            font-size: inherit;
         }
     }
 }
