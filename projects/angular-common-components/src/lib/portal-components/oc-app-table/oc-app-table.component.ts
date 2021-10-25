@@ -27,42 +27,50 @@ export class OcAppTableComponent {
      * By this configuration view and content of the component will be built.
      */
     @Input() properties: AppListing;
+
     /**
      * Message that will be shown if no apps in the data array..
      * @default empty
      */
     @Input() noAppMessage: string = '';
+
     /**
      * Path to the custom icon for the hidden menu toggle button.
      * @default icon with three horizontal dots
      */
     @Input() menuUrl: string = 'assets/angular-common-components/dots-menu.svg';
+
     /**
      * Path to the custom icon for the `sort` button when ascending sorting chosen.
      * @default empty
      */
     @Input() ascendingSortIcon: string = '';
+
     /**
      * Path to the custom icon for the `sort` button when descending sorting chosen.
      * @default empty
      */
     @Input() descendingSortIcon: string = '';
+
     /**
      * Set default app icon that will be
      * shown when icon of the app is not present
      * @default no icon
      */
     @Input() defaultAppIcon: string = '';
+
     /**
      * Output of menu list item clicked action.
      * Contains an action name, app ID, app version
      */
     @Output() readonly menuClicked: EventEmitter<AppListMenuAction> = new EventEmitter<AppListMenuAction>();
+
     /**
      * Output with page number for new apps request
      * Start number = 1
      */
     @Output() readonly pageScrolled: EventEmitter<number> = new EventEmitter<number>();
+
     /**
      * Returns clicked sorting type.
      * Contains fields:
@@ -131,6 +139,7 @@ export class OcAppTableComponent {
             }
         }
     }
+
     /**
      * Function for scroll event
      */
