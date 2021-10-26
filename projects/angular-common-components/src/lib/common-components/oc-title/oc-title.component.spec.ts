@@ -27,4 +27,10 @@ describe('OcTitleComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
+
+    it('should set title', () => {
+        component.title = 'test title';
+        fixture.detectChanges();
+        expect(component.titleText).toContain('test title');
+    });
 });

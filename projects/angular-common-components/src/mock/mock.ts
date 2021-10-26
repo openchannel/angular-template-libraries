@@ -100,6 +100,7 @@ export class MockRoutingComponent {}
 })
 export class MockSvgIconComponent {
     @Input() src: string;
+    @Input() svgClass: string;
 }
 
 @Component({
@@ -364,6 +365,28 @@ export class MockRadioButtonComponent implements ControlValueAccessor {
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
+}
+
+@Component({
+    template: '',
+    selector: 'oc-tag-element',
+})
+export class TagElementMockComponent {
+    @Input() title: string;
+    @Input() closeMarker: boolean = false;
+
+    @Output() readonly clickEmitter = new EventEmitter<string>();
+}
+
+@Component({
+    template: '',
+    selector: 'oc-dropbox',
+})
+export class DropboxMockComponent {
+    @Input() placeHolder: string;
+    @Input() items: string[];
+    @Input() clearFormAfterSelect: boolean = false;
+    @Input() dropElementTemplate: TemplateRef<any>;
 }
 
 @Component({
@@ -654,6 +677,19 @@ export class MockMultiSelectComponent implements ControlValueAccessor {
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
+}
+
+@Component({
+    selector: 'oc-dropdown-button',
+    template: '',
+})
+export class MockDropdownButtonComponent {
+    @Output() readonly selectedChange: EventEmitter<DropdownModel<any>> = new EventEmitter<DropdownModel<any>>();
+    @Input() minDropdownWidth: string = 'Sort by';
+    @Input() options: DropdownModel<any>[];
+    @Input() selected: DropdownModel<any>[];
+    @Input() ascendingSvgIcon: string;
+    @Input() descendingSvgIcon: string;
 }
 
 // support providers

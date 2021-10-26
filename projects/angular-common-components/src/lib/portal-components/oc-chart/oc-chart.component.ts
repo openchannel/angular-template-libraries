@@ -1,4 +1,16 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+    TemplateRef,
+    ViewChild,
+} from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { CategoryScale, Chart, Legend, LinearScale, LineController, LineElement, PointElement, Tooltip } from 'chart.js';
 import {
@@ -8,7 +20,6 @@ import {
     ChartStatisticParameterModel,
     ChartStatisticPeriodModel,
 } from '../models/oc-chart.model';
-import { DropdownModel } from '@openchannel/angular-common-components/src/lib/common-components';
 
 const chartPoint = new Image();
 chartPoint.src = 'assets/angular-common-components/chart_point.svg';
@@ -29,11 +40,13 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * @default  null
      */
     @Input() count: number;
+
     /**
      * Info title of the total count
      * @default empty
      */
     @Input() countText: string = '';
+
     /**
      * Path to the chart counter image. Can be local or url from server.
      * ## Data example for docs
@@ -45,24 +58,29 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * 'https://example.site.com/image.png'
      */
     @Input() downloadUrl: SafeUrl;
+
     /**
      * Enable/Disable background gradient under chart line.
      * It is enabled by default
      */
     @Input() isBackgroundColor: boolean = true;
+
     /**
      * Enable/Disable points on the Chart line.
      * It is disabled by default.
      */
     @Input() enablePoints: boolean = false;
+
     /** Min width for the dropdown menu */
     @Input() minDropdownWidth: string;
+
     /**
      * (Required)
      * Main config model for the component.
      * Including chart data, layout type, etc.
      */
     @Input() chartData: ChartStatisticModel;
+
     /**
      * Set active data view type from the start.
      *
@@ -72,6 +90,7 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * @default 'graph'
      */
     @Input() activeDataType: 'tabular' | 'graph' = 'graph';
+
     /**
      * Path to the custom icon for the sorting button.
      * Can be local or url from server.
@@ -84,20 +103,43 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * 'https://example.site.com/image.png'
      */
     @Input() sortIcon: string = 'assets/angular-common-components/dropdown.svg';
+
+    /**
+     * Setup SVG icon for navigation to tabular view.
+     */
+    @Input() tabularSvgIcon: string = '';
+
+    /**
+     *  Setup SVG icon for navigation to graph view.
+     */
+    @Input() graphSvgIcon: string = '';
+
+    @Input() appDropdownTemplate: TemplateRef<any> = null;
+
+    @Input() appDropdownAscendingSVGIcon: string = null;
+
+    @Input() appDropdownDescendingSVGIcon: string = null;
+
     /**
      * Notification about changing chart data options, like dropdown menu item changing or period switching.
      */
     @Output() readonly changeChartOptions: EventEmitter<ChartOptionsChange> = new EventEmitter<ChartOptionsChange>();
+
     /** dropdown menu items array. Created from {@link chartData} fields */
-    dropdownTypes: DropdownModel<ChartStatisticFiledModel>[];
+    dropdownTypes: ChartStatisticFiledModel[];
+
     /** chosen item from the dropdown menu */
-    dropdownSelectedType: DropdownModel<ChartStatisticFiledModel>;
+    dropdownSelectedType: ChartStatisticFiledModel;
+
     /** 2d context for the chart canvas */
     context: CanvasRenderingContext2D;
+
     /** header text for the tabular data labels column */
     tabularLabelsHeader: string;
+
     /** data array for the tabular format */
     tabularData: any[] = [];
+
     /**
      * helper for sorting tabular data.
      *
@@ -109,6 +151,7 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
         by: 'key',
         ascending: true,
     };
+
     /**
      * @ignore
      * @private
@@ -120,7 +163,7 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * Setting the {@link tabularLabelsHeader}. Connecting chart lib, loading chart and dropdown menu items.
      */
     ngOnInit(): void {
-        this.tabularLabelsHeader = this.chartData?.periods?.find(period => period.active).tabularLabel;
+        this.tabularLabelsHeader = this.chartData?.periods?.find(period => period.active)?.tabularLabel;
         this.updateDropdownValues();
     }
 
@@ -148,17 +191,15 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
         }
         if (this.myCanvas) {
             this.context = this.myCanvas.nativeElement.getContext('2d');
-            this.getChart();
+            this.setChart();
         }
     }
 
     /**
      * Creating main chart with configuration.
      */
-    getChart(): void {
-        const gradientFill = this.context.createLinearGradient(0, 0, 0, 170);
-        gradientFill.addColorStop(0, '#e7eef7');
-        gradientFill.addColorStop(1, 'rgba(240, 247, 255, 0.25)');
+    setChart(): void {
+        const gradientFill = this.getGradientFill();
 
         Chart.register(CategoryScale, LineController, PointElement, LineElement, LinearScale, Tooltip, Legend);
 
@@ -269,23 +310,37 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
     }
 
     /**
+     * Getter for private chart field.
+     * @return {any} chart field
+     */
+    getChart(): any {
+        return this.chart;
+    }
+
+    /**
+     * Creates gradient for chart.
+     * @return {CanvasGradient}
+     */
+    getGradientFill(): CanvasGradient {
+        const gradientFill = this.context.createLinearGradient(0, 0, 0, 170);
+        gradientFill.addColorStop(0, '#e7eef7');
+        gradientFill.addColorStop(1, 'rgba(240, 247, 255, 0.25)');
+
+        return gradientFill;
+    }
+
+    /**
      * Function that triggering on Period changes.
      * Swiping active parameters and updating chart data.
      * @param {ChartStatisticPeriodModel} activePeriod chosen period object
      */
     updateChartPeriod(activePeriod: ChartStatisticPeriodModel): void {
         this.tabularLabelsHeader = activePeriod.tabularLabel;
-        this.setNewActiveParameter(this.chartData?.periods, activePeriod.id);
-        this.updateChartData();
+        this.updateChartOptions(this.chartData?.periods, activePeriod.id);
     }
 
-    /**
-     * Function that catches dropdown fields changes.
-     * Swiping active parameters and updating chart data.
-     * @param activeFiled chosen item
-     */
-    updateChartFiled(activeFiled: DropdownModel<ChartStatisticFiledModel>): void {
-        this.setNewActiveParameter(this.chartData?.fields, activeFiled.value.id);
+    updateChartOptions(dropdownModels: ChartStatisticParameterModel[], activeModelId: string): void {
+        this.setNewActiveParameter(dropdownModels, activeModelId);
         this.updateChartData();
         this.updateDropdownValues();
     }
@@ -315,9 +370,8 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                     return -1;
                 } else if (a[by] > b[by]) {
                     return 1;
-                } else {
-                    return 0;
                 }
+                return 0;
             });
         } else {
             this.tabularData.sort((a, b) => {
@@ -325,23 +379,18 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                     return -1;
                 } else if (a[by] < b[by]) {
                     return 1;
-                } else {
-                    return 0;
                 }
+                return 0;
             });
         }
     }
 
-    private updateChartData(): void {
-        let period = null;
-        let field = null;
-        if (this.chartData?.periods) {
-            period = this.chartData.periods.filter(periodItem => periodItem && periodItem.active)[0];
-        }
-        if (this.chartData?.fields) {
-            field = this.chartData.fields.filter(fieldItem => fieldItem && fieldItem.active)[0];
-        }
-        this.changeChartOptions.emit({ field, period });
+    updateChartData(): void {
+        this.changeChartOptions.emit({
+            field: this.chartData?.fields?.find(item => item?.active),
+            period: this.chartData?.periods?.find(item => item?.active),
+            selectedApp: this.chartData?.apps?.activeItem,
+        });
     }
 
     /**
@@ -365,8 +414,8 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * @private
      */
     private updateDropdownValues(): void {
-        this.dropdownTypes = this.chartData?.fields ? this.chartData.fields.map(field => new DropdownModel(field.label, field)) : [];
-        this.dropdownSelectedType = this.dropdownTypes.filter(field => field.value.active)[0];
+        this.dropdownTypes = this.chartData?.fields || [];
+        this.dropdownSelectedType = this.dropdownTypes.find(v => v.active);
     }
 
     /**

@@ -101,7 +101,7 @@ export class OcFormGenerator {
                             group[inputTemplate.id].push(arrayFormGroup);
                         });
                     }
-                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isList: true });
+                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isList: true, isDFA: true });
                     break;
                 default:
                     break;
@@ -125,6 +125,7 @@ export class OcFormGenerator {
             isPassword?: boolean;
             isBooleanTags?: boolean;
             isNumberTags?: boolean;
+            isDFA?: boolean;
         },
     ): void {
         const validators: ValidatorFn[] = [];
@@ -207,6 +208,9 @@ export class OcFormGenerator {
         if (additional && additional.isBooleanTags) {
             validators.push(this.booleanTagsValidator(inputTemplate.label));
         }
+        if(additional && additional.isDFA) {
+            validators.push(this.childDFAFieldValidator(inputTemplate));
+        }
         control.setValidators(validators);
     }
     /**
@@ -262,7 +266,7 @@ export class OcFormGenerator {
     static urlValidator(): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             // regex for url validation
-            const reg = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm);
+            const reg = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm); //NOSONAR
             const value = c.value;
             if (reg.test(value) || value === '') {
                 return null;
@@ -330,8 +334,8 @@ export class OcFormGenerator {
     static passwordValidator(): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%!^&]).{8,}$/;
-            const password = c.value ? c.value : '';
-            if (password.match(regex)) {
+            const password = c.value;
+            if (!password || password.match(regex)) {
                 return null;
             } else {
                 return { passwordValidator: {} };
@@ -391,6 +395,25 @@ export class OcFormGenerator {
             } else {
                 return { email: true };
             }
+        };
+    }
+
+
+    static childDFAFieldValidator(fieldDefinition: AppTypeFieldModel): ValidatorFn {
+        return (c: AbstractControl): { [key: string]: any } => {
+            if (c.touched && Object.values((c as any).controls).find((v: any) => v.invalid)) {
+                return this.createChildDfaFieldError(fieldDefinition);
+            } else {
+                return null;
+            }
+        };
+    }
+
+    static createChildDfaFieldError(fieldDefinition: AppTypeFieldModel): any {
+        return {
+            invalidDFAField: {
+                fieldDefinition,
+            },
         };
     }
 }

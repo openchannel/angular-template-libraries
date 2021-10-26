@@ -103,6 +103,9 @@
         &-sort-icon {
             cursor: pointer;
             margin-left: 1rem;
+            &[sorting='1'] {
+                transform: rotate(180deg);
+            }
         }
     }
 
@@ -122,7 +125,7 @@
         }
 
         &_highlight-user {
-            background-color: rgba($light, .5);
+            background-color: rgba($light, 0.5);
         }
     }
 

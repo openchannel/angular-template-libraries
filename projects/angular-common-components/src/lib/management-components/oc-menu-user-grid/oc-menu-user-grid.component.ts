@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { UserGridSortOrder, UserSortChosen } from '../models/menu-user-grid.model';
 import {
     ComponentsUserAccountGridModel,
     ComponentsUserGridActionModel,
@@ -20,11 +21,11 @@ export declare type SortField = 'name' | 'email' | 'date' | 'role';
  *                     list: [{
  *                         inviteStatus?: 'ACTIVE';
  *                         inviteId?: 'a8gs9d87agsd78';
- *                         inviteToken?: 'a8shd7has8d7h';}]
- *                     }],
- *                     options: ['EDIT'],
- *                     previewTemplate?: '<p>template</p>'
- *                  }
+ *                         inviteToken?: 'a8shd7has8d7h';
+ *                     }]
+ *                     },
+ *                  options: ['EDIT'],
+ *                  previewTemplate?: '<p>template</p>'
  *              }"
  *              [menuUrl]="/image.svg"
  *              [sortIcon]="/image.svg"
@@ -58,6 +59,14 @@ export class OcMenuUserGridComponent {
      */
     @Input() sortIcon: string = 'assets/angular-common-components/dropdown.svg';
 
+    /** Sort icon direction config. */
+    @Input() sortOptions: UserGridSortOrder = {
+        name: -1,
+        date: -1,
+        email: -1,
+        role: -1,
+    };
+
     /**
      * Output of menu list item clicked action.
      * Contains an action name, userId, userAccountId
@@ -76,15 +85,8 @@ export class OcMenuUserGridComponent {
      */
     @Output() readonly sortChosen: EventEmitter<SortField> = new EventEmitter<SortField>();
 
-    /**
-     * Selected field to sort by
-     */
-    currentSortField: SortField;
-
-    /**
-     * @private Page number for pagination
-     */
-    private pageNumber: number = 1;
+    /** Emit event when user click by sort icon. */
+    @Output() readonly sortOptionsChosen: EventEmitter<UserSortChosen> = new EventEmitter<UserSortChosen>();
 
     /**
      * Collects data into object and emit it to the Output `menuClicked`
@@ -102,22 +104,33 @@ export class OcMenuUserGridComponent {
         };
         this.menuClicked.emit(action);
     }
+
     /**
      * Function that executes on scroll down
      */
     onScrollDown(): void {
-        this.pageNumber++;
-        this.pageScrolled.emit(this.pageNumber);
+        this.pageScrolled.emit();
     }
 
     /**
-     * Function that set sort field and page number to default(1). Also emit output event `sortChosen`
+     * Function that set sort field and page number to default(1). Also emit output event `sortChosen` and 'sortOptionsChosen'
      * @param sortField
      */
     sortUsersBy(sortField: SortField): void {
+        const newSortOptions = { ...this.sortOptions };
+
+        if (!newSortOptions[sortField]) {
+            newSortOptions[sortField] = -1;
+        } else {
+            newSortOptions[sortField] *= -1;
+        }
+        // old implementation
         this.sortChosen.emit(sortField);
-        this.currentSortField = sortField;
-        this.pageNumber = 1;
+        // new implementation
+        this.sortOptionsChosen.emit({
+            sortOptions: newSortOptions,
+            changedSortOption: sortField,
+        });
     }
 
     /**

@@ -26,8 +26,8 @@ export class OcEditUserFormComponent implements OnInit {
     @Input() customTermsDescription: TemplateRef<any>;
     /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
     @Input() formId: ErrorMessageFormId = 'editUser';
-    @Output() resultFormDataChange = new EventEmitter<OcEditUserResult>();
-    @Output() createdFormGroup = new EventEmitter<FormGroup>();
+    @Output() readonly resultFormDataChange = new EventEmitter<OcEditUserResult>();
+    @Output() readonly createdFormGroup = new EventEmitter<FormGroup>();
 
     mainFormModel: TypeModel<TypeFieldModel>;
     formGroup: FormGroup;
@@ -67,7 +67,9 @@ export class OcEditUserFormComponent implements OnInit {
                     id: this.PASSWORD_FILED_KEY,
                     type: 'password',
                     label: 'Password',
-                    attributes: {},
+                    attributes: {
+                        required: true,
+                    },
                 };
                 tempForm = TypeMergeUtils.mergeTypes(tempForm, this.defaultOrganizationData, { fields: [passwordField] }, '', ['password']);
             }
