@@ -13,7 +13,7 @@ export interface SortChosen {
 
 /**
  * Component represents table with apps, demonstrates subversion of app.
- * Shows title, summary, date of creation ans status of the app.
+ * Shows title, summary, date of creation and status of the app.
  * Also has a dropdown menu with actions for each app in the table.
  */
 @Component({
@@ -115,25 +115,25 @@ export class OcAppTableComponent {
     }
 
     /**
-     * Parser for the dropdown menu options. Shows only items which has been appropriate for current app.
-     * @param item menu item for check
-     * @param status status of the app
+     * Parser for the dropdown menu actions. Shows only actions which has been appropriate for current app.
+     * @param action action for check
+     * @param appStatus status of the app
      * @param modifiedBy what type of user was last who modified the app
      */
-    needToShowItem(item: AppListingOptions, status: string, modifiedBy: string): boolean {
-        if (status.includes(item.toLowerCase())) {
+    needToShowItem(action: AppListingOptions, appStatus: string, modifiedBy: string): boolean {
+        if (appStatus.includes(action.toLowerCase())) {
             return false;
         } else {
-            switch (item) {
+            switch (action) {
                 case 'PREVIEW':
                     return !!this.properties.previewTemplate;
                 case 'PUBLISH':
                 case 'SUBMIT':
-                    return status === 'inDevelopment';
+                    return appStatus === 'inDevelopment';
                 case 'UNSUSPEND':
-                    return status === 'suspended' && modifiedBy === 'developer';
+                    return appStatus === 'suspended' && modifiedBy === 'developer';
                 case 'SUSPEND':
-                    return status === 'approved';
+                    return appStatus === 'approved';
                 default:
                     return true;
             }
