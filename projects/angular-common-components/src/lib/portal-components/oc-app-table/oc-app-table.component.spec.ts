@@ -3,14 +3,13 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule, NgModel } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserModule, By } from '@angular/platform-browser';
-import { OcAppTableComponent, SortChosen } from './oc-app-table.component';
+import { OcAppTableCellPattern, OcAppTableComponent } from './oc-app-table.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CamelcasePipe, GetTextByPathPipe, HtmlTagsReplacerPipe } from '@openchannel/angular-common-components/src/lib/common-components';
-import { AppListing } from '../models/app-listing.model';
+import { AppGridSortOptions, AppListing } from '../models/app-listing.model';
 import { MockSvgIconComponent } from '@openchannel/angular-common-components/src/mock/mock';
 import { cloneDeep } from 'lodash';
-import { deepCopy } from '@angular-devkit/core';
 
 const propertiesMock: AppListing = {
     layout: 'table',
@@ -48,7 +47,14 @@ describe('OcAppTableComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcAppTableComponent, MockSvgIconComponent, CamelcasePipe, HtmlTagsReplacerPipe, GetTextByPathPipe],
+                declarations: [
+                    OcAppTableComponent,
+                    MockSvgIconComponent,
+                    CamelcasePipe,
+                    HtmlTagsReplacerPipe,
+                    GetTextByPathPipe,
+                    OcAppTableCellPattern,
+                ],
                 providers: [NgModel],
                 imports: [FormsModule, CommonModule, BrowserModule, InfiniteScrollModule, NgbModule],
             }).compileComponents();
@@ -59,6 +65,11 @@ describe('OcAppTableComponent', () => {
         fixture = TestBed.createComponent(OcAppTableComponent);
         component = fixture.componentInstance;
         component.properties = cloneDeep(propertiesMock);
+        component.sortOptions = {
+            name: -1,
+            status: -1,
+            created: -1,
+        };
         fixture.detectChanges();
     });
 
@@ -66,10 +77,10 @@ describe('OcAppTableComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should emit pageScrolled event, when page was scrolled', () => {
+    it('should emit pageScrolled event, when table was scrolled', () => {
         jest.spyOn(component.pageScrolled, 'emit');
 
-        const tableDE = fixture.debugElement.query(By.css('.oc-table'));
+        const tableDE = fixture.debugElement.query(By.css('.app-grid-table'));
         tableDE.triggerEventHandler('scrolled', {});
 
         expect(component.pageScrolled.emit).toHaveBeenCalled();
@@ -97,30 +108,24 @@ describe('OcAppTableComponent', () => {
     });
 
     it('should emit correct sort option, when table header was clicked', () => {
-        const newSortObject = [
-            {
-                by: 'name',
-                ascending: true,
-            },
-            {
-                by: 'created',
-                ascending: false,
-            },
-            {
-                by: 'status',
-                ascending: false,
-            },
-        ];
+        const sortField = 'name';
+        const newSortOptions = {
+            name: 1,
+            status: -1,
+            created: -1,
+        };
 
-        jest.spyOn(component, 'sortAppsBy');
-        jest.spyOn(component.sortChosen, 'emit');
+        jest.spyOn(component, 'sortAppsByKey');
+        jest.spyOn(component.sortOptionsChosen, 'emit');
 
-        const nameHeaderDE = fixture.debugElement.query(By.css(`.oc-table__name`));
+        const nameHeaderDE = fixture.debugElement.query(By.css(`.app-grid-table__header__cell-name-content`));
         nameHeaderDE.triggerEventHandler('click', {});
 
-        expect(component.sortAppsBy).toHaveBeenCalledWith('name');
-        expect(component.sortChosen.emit).toHaveBeenCalledWith(newSortObject[0]);
-        expect(component.sortingObjects).toEqual(newSortObject);
+        expect(component.sortAppsByKey).toHaveBeenCalledWith(sortField);
+        expect(component.sortOptionsChosen.emit).toHaveBeenCalledWith({
+            sortOptions: newSortOptions,
+            changedSortOption: sortField,
+        });
     });
 
     it('should render correct actions', () => {
@@ -143,22 +148,20 @@ describe('OcAppTableComponent', () => {
         expect(component.needToShowItem('SUSPEND', 'approved', 'developer')).toBeTruthy();
     });
 
-    it('statusColor should return correct class by app status', () => {
-        expect(component.statusColor('inDevelopment')).toBe('in-development');
-        expect(component.statusColor('inReview')).toBe('in-review');
-        expect(component.statusColor('unknownStatus')).toBe('unknownStatus');
-    });
-
     it('table headers should invoke sortAppsBy function with correct value', () => {
-        const selectorSortCriteriaMap = { '.oc-table__name': 'name', '.oc-table__data': 'created', '.oc-table__status': 'status' };
+        const selectorSortCriteriaMap = {
+            '.app-grid-table__header__cell-name-content': 'name',
+            '.app-grid-table__header__cell-create-date-content': 'created',
+            '.app-grid-table__header__cell-status-content': 'status',
+        };
 
-        jest.spyOn(component, 'sortAppsBy');
+        jest.spyOn(component, 'sortAppsByKey');
 
         Object.entries(selectorSortCriteriaMap).forEach(([selector, sortCriteria]) => {
             const headerDE = fixture.debugElement.query(By.css(selector));
             headerDE.triggerEventHandler('click', {});
 
-            expect(component.sortAppsBy).toHaveBeenCalledWith(sortCriteria);
+            expect(component.sortAppsByKey).toHaveBeenCalledWith(sortCriteria);
         });
     });
 
@@ -169,103 +172,90 @@ describe('OcAppTableComponent', () => {
         component.properties.data.list = [];
         fixture.detectChanges();
 
-        const noDataSpan = fixture.debugElement.query(By.css('.oc-table__td_nodata .oc-table__text-wrapper')).nativeElement;
-        expect(noDataSpan.textContent).toBe(textToRender);
+        const noDataTd = fixture.debugElement.query(By.css('.app-grid-table__bottom-empty-list')).nativeElement;
+        expect(noDataTd.textContent.trim()).toBe(textToRender);
     });
 
-    it('should render correct custom sorting icon with correct class', () => {
-        const sortObject: SortChosen[] = [
-            {
-                by: 'name',
-                ascending: false,
-            },
-            {
-                by: 'created',
-                ascending: false,
-            },
-            {
-                by: 'status',
-                ascending: false,
-            },
-        ];
+    it('should render correct sorting icon', () => {
+        const sortOptions: AppGridSortOptions = {
+            name: -1,
+            status: -1,
+            created: -1,
+        };
         const ascendingSortIconPath = 'https://some-site.com/ascending-sort-icon-path';
         const descendingSortIconPath = 'https://some-site.com/descending-sort-icon-path';
 
         component.ascendingSortIcon = ascendingSortIconPath;
         component.descendingSortIcon = descendingSortIconPath;
-        component.sortingObjects = sortObject;
+        component.sortOptions = sortOptions;
         fixture.detectChanges();
 
-        const customIcon = fixture.debugElement.query(By.css(`.oc-table__name img`)).nativeElement;
-
-        component.sortingObjects[0].ascending = false;
+        component.sortOptions = { ...sortOptions, name: -1 };
         fixture.detectChanges();
-        expect(customIcon.src).toBe(descendingSortIconPath);
 
-        component.sortingObjects[0].ascending = true;
+        let sortIcon = fixture.debugElement.query(By.css(`.app-grid-table__header__sort-icon`)).componentInstance;
+        expect(sortIcon.src).toBe(descendingSortIconPath);
+
+        component.sortOptions = { ...sortOptions, name: 1 };
         fixture.detectChanges();
-        expect(customIcon.src).toBe(ascendingSortIconPath);
-        expect(customIcon.classList).toContain('oc-table__icon-down');
+
+        sortIcon = fixture.debugElement.query(By.css(`.app-grid-table__header__sort-icon`)).componentInstance;
+        expect(sortIcon.src).toBe(ascendingSortIconPath);
     });
 
     it('should render correct app icon', () => {
-        const defaultAppIconPath = 'https://some-site.com/default-app-icon-path';
-        const appIconPath = 'https://some-site.com/app-icon-path';
+        const defaultAppIconUrl = 'https://some-site.com/default-app-icon-path';
+        const appIconUrl = 'https://some-site.com/app-icon-path';
 
-        component.defaultAppIcon = defaultAppIconPath;
+        component.defaultAppIcon = defaultAppIconUrl;
         component.properties.data.list[0].customData.icon = '';
         fixture.detectChanges();
 
-        const appIcon = fixture.debugElement.query(By.css(`.oc-table__app-icon`)).nativeElement;
-        expect(appIcon.src).toBe(defaultAppIconPath);
+        let appIcon = fixture.debugElement.query(By.css(`.app-grid-table__row__cell-name-content-icon`)).nativeElement;
+        expect(appIcon.src).toBe(defaultAppIconUrl);
 
-        component.properties.data.list[0].customData.icon = appIconPath;
+        component.properties.data.list[0].customData.icon = appIconUrl;
+        component.properties.data.list[0] = { ...component.properties.data.list[0] };
         fixture.detectChanges();
-        expect(appIcon.src).toBe(appIconPath);
+
+        appIcon = fixture.debugElement.query(By.css(`.app-grid-table__row__cell-name-content-icon`)).nativeElement;
+        expect(appIcon.src).toBe(appIconUrl);
     });
 
     it('should set correct src to dropdown dots', () => {
-        const dropdownDotsPath = 'https://some-site.com/dropdown-dots-path';
+        const dropdownDotsUrl = 'https://some-site.com/dropdown-dots-path';
 
-        component.menuUrl = dropdownDotsPath;
+        component.menuUrl = dropdownDotsUrl ;
         fixture.detectChanges();
 
-        const dropdownDotsImg = fixture.debugElement.query(By.css(`.oc-table__dropdown-dots`)).nativeElement;
-        expect(dropdownDotsImg.src).toBe(dropdownDotsPath);
+        const dropdownDotsImg = fixture.debugElement.query(By.css(`.app-grid-table__row__cell-app-options-dropdown-dots`)).nativeElement;
+        expect(dropdownDotsImg.src).toBe(dropdownDotsUrl );
     });
 
     it('should render child elements for app, if they exist', () => {
-        let childTrDE = fixture.debugElement.query(By.css(`.oc-table__tr-child`));
+        let childTrDE = fixture.debugElement.query(By.css(`.app-grid-table__row_child`));
         expect(childTrDE).toBeFalsy();
 
-        component.properties.data.list[0].children = [deepCopy(propertiesMock.data.list[0])];
+        component.properties.data.list[0].children = [cloneDeep(component.properties.data.list[0])];
         fixture.detectChanges();
 
-        childTrDE = fixture.debugElement.query(By.css(`.oc-table__tr-child`));
+        childTrDE = fixture.debugElement.query(By.css(`.app-grid-table__row_child`));
         expect(childTrDE).toBeTruthy();
     });
 
     it('should render correct app name, version, summary, created date and status', () => {
         const { name, version } = component.properties.data.list[0];
         const selectorExpectedValueMap = {
-            '.oc-table__app-name': name,
-            '.oc-table__app-version': `v ${version}`,
-            '.oc-table__summary-text': `Summary text`,
-            '.oc-table__created-date': `1/19/1970`,
-            '.oc-table__text-status': 'Pending',
+            '.app-grid-table__row__cell-name-content-text-title': name,
+            '.app-grid-table__row__cell-name-content-text-version': `v. ${version}`,
+            '.app-grid-table__row__cell-summary-text': `Summary text`,
+            '.app-grid-table__row__cell-create-date-text': `1/19/1970`,
+            '.app-grid-table__row__cell-status-content-text': 'Pending',
         };
 
         Object.entries(selectorExpectedValueMap).forEach(([selector, expectedValue]) => {
             const element = fixture.debugElement.query(By.css(selector)).nativeElement;
             expect(element.textContent.trim()).toBe(expectedValue);
         });
-    });
-
-    it('should render correct app status, if app is inDevelopment', () => {
-        component.properties.data.list[0].status.value = 'inDevelopment';
-        fixture.detectChanges();
-
-        const appStatus = fixture.debugElement.query(By.css('.oc-table__text-status')).nativeElement;
-        expect(appStatus.textContent.trim()).toBe('Draft');
     });
 });

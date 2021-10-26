@@ -31,7 +31,7 @@
                         </th>
                     </tr>
                     <!--  APP child rows -->
-                    <tr *ngFor="let appChild of app.children; let childIndex = index" class="app-grid-table__row">
+                    <tr *ngFor="let appChild of app.children; let childIndex = index" class="app-grid-table__row app-grid-table__row_child">
                         <th
                             *ngFor="let pattern of columnsPattern"
                             [class]="'app-grid-table__row__cell app-grid-table__row__cell-' + pattern.columnId"
