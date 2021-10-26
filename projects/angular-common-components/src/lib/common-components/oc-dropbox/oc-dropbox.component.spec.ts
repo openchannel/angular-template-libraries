@@ -8,6 +8,12 @@ describe('OcDropboxComponent', () => {
     let component: OcDropboxComponent;
     let fixture: ComponentFixture<OcDropboxComponent>;
 
+    const enterKeyUpEvent = new KeyboardEvent('keyup', {
+        code: 'Enter',
+        key: 'Enter',
+    });
+    const notExistingValue = 'Not Existing value';
+
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
@@ -125,5 +131,40 @@ describe('OcDropboxComponent', () => {
         dropbox.dispatchEvent(new Event('focus'));
 
         expect(onTouchedFunc).toHaveBeenCalled();
+    });
+
+    it('should prevent add custom items by enter key up, when corresponding flag is set to true', async () => {
+        const selectedItemEmitFunction = jest.spyOn(component.selectedItem, 'emit');
+
+        component.disableAddCustomItemsByEnter = true;
+        fixture.detectChanges();
+
+        const dropbox = fixture.nativeElement.querySelector('input');
+        dropbox.focus();
+        dropbox.value = notExistingValue;
+        fixture.detectChanges();
+
+        dropbox.dispatchEvent(enterKeyUpEvent);
+        fixture.detectChanges();
+
+        fixture.whenStable().then(() => {
+            expect(selectedItemEmitFunction).not.toHaveBeenCalled();
+        });
+    });
+
+    it('should add custom items by enter key up, when corresponding flag is set to false (by default)', async () => {
+        const selectedItemEmitFunction = jest.spyOn(component.selectedItem, 'emit');
+
+        const dropbox = fixture.nativeElement.querySelector('input');
+        dropbox.focus();
+        dropbox.value = notExistingValue;
+        fixture.detectChanges();
+
+        dropbox.dispatchEvent(enterKeyUpEvent);
+        fixture.detectChanges();
+
+        fixture.whenStable().then(() => {
+            expect(selectedItemEmitFunction).toHaveBeenCalledWith(notExistingValue);
+        });
     });
 });
