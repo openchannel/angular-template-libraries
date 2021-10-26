@@ -6,11 +6,7 @@ import { BrowserModule, By } from '@angular/platform-browser';
 import { OcAppTableComponent, SortChosen } from './oc-app-table.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {
-    CamelcasePipe,
-    GetTextByPathPipe,
-    HtmlTagsReplacerPipe
-} from '@openchannel/angular-common-components/src/lib/common-components';
+import { CamelcasePipe, GetTextByPathPipe, HtmlTagsReplacerPipe } from '@openchannel/angular-common-components/src/lib/common-components';
 import { AppListing } from '../models/app-listing.model';
 import { MockSvgIconComponent } from '@openchannel/angular-common-components/src/mock/mock';
 import { cloneDeep } from 'lodash';

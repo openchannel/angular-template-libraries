@@ -11,7 +11,8 @@ import {
     ViewChildren,
 } from '@angular/core';
 import {
-    AppGridSortChosen, AppGridSortColumn,
+    AppGridSortChosen,
+    AppGridSortColumn,
     AppGridSortOptions,
     AppListing,
     AppListingOptions,
@@ -48,6 +49,7 @@ export class OcAppTableCellPattern {
 
     constructor(public template: TemplateRef<any>) {}
 }
+
 /**
  * Component represents table with apps, demonstrates subversion of app.
  * Shows title, summary, date of creation and status of the app.
@@ -74,26 +76,31 @@ export class OcAppTableComponent implements AfterViewInit {
      * By this configuration view and content of the component will be built.
      */
     @Input() properties: AppListing;
+
     /**
      * Message that will be shown if no apps in the data array..
      * @default empty
      */
     @Input() noAppMessage: string = 'You have no apps in your list';
+
     /**
      * Path to the custom icon for the hidden menu toggle button.
      * @default icon with three horizontal dots
      */
     @Input() menuUrl: string = 'assets/angular-common-components/dots-menu.svg';
+
     /**
      * Path to the custom icon for the `sort` button when ascending sorting chosen.
      * @default empty
      */
     @Input() ascendingSortIcon: string = '';
+
     /**
      * Path to the custom icon for the `sort` button when descending sorting chosen.
      * @default empty
      */
     @Input() descendingSortIcon: string = '';
+
     /**
      * Set default app icon that will be
      * shown when icon of the app is not present
@@ -118,7 +125,7 @@ export class OcAppTableComponent implements AfterViewInit {
     /** Setup sort icon direction for columns. */
     @Input() set sortOptions(options: AppGridSortOptions) {
         this.isOldSortImplementation = false;
-        if(options) {
+        if (options) {
             this.currentSortOptions = options;
         }
     }
@@ -139,11 +146,13 @@ export class OcAppTableComponent implements AfterViewInit {
      * Contains an action name, app ID, app version
      */
     @Output() readonly menuClicked: EventEmitter<AppListMenuAction> = new EventEmitter<AppListMenuAction>();
+
     /**
      * Output with page number for new apps request
      * Start number = 1
      */
     @Output() readonly pageScrolled: EventEmitter<number> = new EventEmitter<number>();
+
     /**
      * @deprecated Please use: @Input {@link #sortOptions} and @Output {@link #sortOptionsChosen}.
      * Returns clicked sorting type.
@@ -201,11 +210,11 @@ export class OcAppTableComponent implements AfterViewInit {
     isOldSortImplementation: boolean = true;
 
     /** Default sort options. All sort icons to down. */
-    currentSortOptions: AppGridSortOptions  = {
+    currentSortOptions: AppGridSortOptions = {
         name: -1,
         status: -1,
         created: -1,
-    }
+    };
 
     constructor(private cdRef: ChangeDetectorRef) {}
 
@@ -317,11 +326,11 @@ export class OcAppTableComponent implements AfterViewInit {
     /** Only one column can be sorted, all other columns will be cleaned. */
     private oldSortAppsByKey(columnName: AppGridSortColumn): void {
         Object.keys(this.currentSortOptions).forEach(tempColumnName => {
-            if(columnName === tempColumnName) {
+            if (columnName === tempColumnName) {
                 this.updateSortDirection(this.currentSortOptions, tempColumnName);
                 this.sortChosen.emit({
                     by: tempColumnName,
-                    ascending: this.currentSortOptions[tempColumnName] === -1
+                    ascending: this.currentSortOptions[tempColumnName] === -1,
                 });
             } else {
                 this.currentSortOptions[tempColumnName] = -1;
@@ -341,7 +350,7 @@ export class OcAppTableComponent implements AfterViewInit {
         this.updateSortDirection(newSortOptions, columnName);
         this.sortOptionsChosen.emit({
             sortOptions: newSortOptions,
-            changedSortOption: columnName
+            changedSortOption: columnName,
         });
     }
 
@@ -349,7 +358,7 @@ export class OcAppTableComponent implements AfterViewInit {
      * Expand sort value for selected column (-1 => 1; null => -1; 1 => -1).
      */
     private updateSortDirection(sortOptions: AppGridSortOptions, columnName: AppGridSortColumn): void {
-        if(!sortOptions[columnName]) {
+        if (!sortOptions[columnName]) {
             sortOptions[columnName] = -1;
         } else {
             sortOptions[columnName] *= -1;
