@@ -1,5 +1,9 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef } from '@angular/core';
-import { AppFormField, AppFormModel } from '../model/app-form-model';
+import {
+    AppFormField,
+    AppFormModel,
+    defaultFieldsForTrim,
+} from '../model/app-form-model';
 import { FormProgressbarStep } from '../model/progress-bar-item.model';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
@@ -284,7 +288,7 @@ export class OcFormComponent implements OnInit, OnChanges {
             }
         });
         this.customForm = new FormArray(
-            formsArray.map(item => new OcFormGroup(item.label, item.items, OcFormGenerator.getFormByConfig(item.items))),
+            formsArray.map(item => new OcFormGroup(item.label, item.items, OcFormGenerator.getFormByConfig(item.items, defaultFieldsForTrim))),
         );
         this.customForm.controls.forEach(form => {
             this.mapFormFieldsData(form.value);
