@@ -11,8 +11,11 @@ import {
 } from '@angular/forms';
 import {
     AbstractErrorMessageConfiguration,
-    AppTypeFieldModel, DefaultErrorMessageConfiguration,
-    DropdownModel, ErrorMessage, ErrorMessageFormId,
+    AppTypeFieldModel,
+    DefaultErrorMessageConfiguration,
+    DropdownModel,
+    ErrorMessage,
+    ErrorMessageFormId,
     FullAppData,
     HeadingTag,
     RadioItemValue,
@@ -138,7 +141,6 @@ export class MockPasswordComponent {
 export class MockCheckboxComponent implements ControlValueAccessor {
     @Input() labelText: string;
     @Input() requiredIndicator: boolean = false;
-    @Input() formControl: FormControl;
     @Input() value: boolean;
     @Input() disabled: boolean;
     @Output() readonly isCheckedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -369,6 +371,28 @@ export class MockRadioButtonComponent implements ControlValueAccessor {
 
 @Component({
     template: '',
+    selector: 'oc-tag-element',
+})
+export class TagElementMockComponent {
+    @Input() title: string;
+    @Input() closeMarker: boolean = false;
+
+    @Output() readonly clickEmitter = new EventEmitter<string>();
+}
+
+@Component({
+    template: '',
+    selector: 'oc-dropbox',
+})
+export class DropboxMockComponent {
+    @Input() placeHolder: string;
+    @Input() items: string[];
+    @Input() clearFormAfterSelect: boolean = false;
+    @Input() dropElementTemplate: TemplateRef<any>;
+}
+
+@Component({
+    template: '',
     selector: 'oc-dropbox',
 })
 export class MockDropboxComponent {
@@ -425,8 +449,7 @@ export class MockDropdownMultiApp implements ControlValueAccessor {
 })
 export class MockHeadingTagDirective {
     @Input() headingTag: HeadingTag;
-    @Input() set headingTagContent(content: string) {
-    }
+    @Input() headingTagContent: string;
 }
 
 @Component({
@@ -674,4 +697,4 @@ export class MockDropdownButtonComponent {
 export const MOCK_PROVIDER_ERROR_MESSAGES: Provider = {
     provide: AbstractErrorMessageConfiguration,
     useValue: new DefaultErrorMessageConfiguration(),
-}
+};

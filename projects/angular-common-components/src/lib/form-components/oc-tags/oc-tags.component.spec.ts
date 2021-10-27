@@ -8,13 +8,13 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { OcTagsComponent } from '@openchannel/angular-common-components/src/lib/form-components';
 import {
     OcButtonComponent,
-    OcDropboxComponent,
     OcErrorComponent,
     OcInputComponent,
     OcSelectComponent,
     OcTagElementComponent,
     OcTitleComponent,
 } from '@openchannel/angular-common-components/src/lib/common-components';
+import { MockDropboxComponent } from '../../../mock/mock';
 
 describe('OcTagsComponent', () => {
     let component: OcTagsComponent;
@@ -30,8 +30,8 @@ describe('OcTagsComponent', () => {
                     OcSelectComponent,
                     OcButtonComponent,
                     OcTagElementComponent,
-                    OcDropboxComponent,
                     OcErrorComponent,
+                    MockDropboxComponent,
                 ],
                 imports: [FormsModule, NgbModule, NgxSpinnerModule, AngularSvgIconModule.forRoot(), HttpClientTestingModule],
             }).compileComponents();
@@ -42,6 +42,7 @@ describe('OcTagsComponent', () => {
         fixture = TestBed.createComponent(OcTagsComponent);
         component = fixture.componentInstance;
         component.placeholder = 'Tags Title';
+        component.dropbox = [] as any;
     });
 
     it('should create', () => {
@@ -67,6 +68,21 @@ describe('OcTagsComponent', () => {
         component.writeValue(['321', '293', '324']);
         await fixture.whenStable().then(() => {
             expect(component?.resultTags?.length).toEqual(3);
+        });
+    });
+
+    it('should add tag to result list', async () => {
+        component.addTagToResultList('500');
+        await fixture.whenStable().then(() => {
+            expect(component?.resultTags).toContain('500');
+        });
+    });
+
+    it('should remove tag from result list', async () => {
+        component.addTagToResultList('500');
+        component.removeTag(0);
+        await fixture.whenStable().then(() => {
+            expect(component?.resultTags.includes('500')).toBeFalsy();
         });
     });
 });
