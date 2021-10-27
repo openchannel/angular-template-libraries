@@ -7,9 +7,10 @@ import { OcAppTableCellPattern, OcAppTableComponent } from './oc-app-table.compo
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CamelcasePipe, GetTextByPathPipe, HtmlTagsReplacerPipe } from '@openchannel/angular-common-components/src/lib/common-components';
-import { AppGridSortOptions, AppListing } from '../models/app-listing.model';
+import { AppGridSortOptions, AppListing, FieldPathConfig } from '../models/app-listing.model';
 import { MockSvgIconComponent } from '@openchannel/angular-common-components/src/mock/mock';
 import { cloneDeep } from 'lodash';
+import { TemplateRef } from '@angular/core';
 
 const propertiesMock: AppListing = {
     layout: 'table',
@@ -225,11 +226,11 @@ describe('OcAppTableComponent', () => {
     it('should set correct src to dropdown dots', () => {
         const dropdownDotsUrl = 'https://some-site.com/dropdown-dots-path';
 
-        component.menuUrl = dropdownDotsUrl ;
+        component.menuUrl = dropdownDotsUrl;
         fixture.detectChanges();
 
         const dropdownDotsImg = fixture.debugElement.query(By.css(`.app-grid-table__row__cell-app-options-dropdown-dots`)).nativeElement;
-        expect(dropdownDotsImg.src).toBe(dropdownDotsUrl );
+        expect(dropdownDotsImg.src).toBe(dropdownDotsUrl);
     });
 
     it('should render child elements for app, if they exist', () => {
@@ -257,5 +258,138 @@ describe('OcAppTableComponent', () => {
             const element = fixture.debugElement.query(By.css(selector)).nativeElement;
             expect(element.textContent.trim()).toBe(expectedValue);
         });
+    });
+
+    it('should set fieldsPathConfig in selectAppFieldByPathConfig', () => {
+        const newFieldsPathConfig: FieldPathConfig = {
+            appIconPath: 'customPathToIcon.icon',
+            appDescriptionPath: 'customData.summary',
+        };
+
+        component.selectAppFieldByPathConfig = { appIconPath: newFieldsPathConfig.appIconPath };
+        expect(component.fieldsPathConfig).toEqual(newFieldsPathConfig);
+    });
+
+    it('updateSortDirection function should set sort criteria to -1, if it was not defined', () => {
+        const sortOptions: AppGridSortOptions = {
+            name: null,
+            status: -1,
+            created: -1,
+        };
+
+        (component as any).updateSortDirection(sortOptions, 'name');
+        expect(sortOptions.name).toBe(-1);
+    });
+
+    it('should fill _defaultColumnsPattern in fillDefaultColumnsPattern function', () => {
+        (component as any)._defaultColumnsPattern = {};
+
+        component.fillDefaultColumnsPattern();
+        Object.entries((component as any)._defaultColumnsPattern).forEach(([_, template]) => {
+            const { headerCellTemplate, rowCellTemplate } = template as any;
+            expect(headerCellTemplate instanceof TemplateRef).toBeTruthy();
+            expect(rowCellTemplate instanceof TemplateRef).toBeTruthy();
+        });
+    });
+
+    it('modifyColumnsConfigByUserConfig should return correct config', () => {
+        const defaultConfig = (component as any)._defaultColumnsPattern;
+        const newConfig = {
+            name: {
+                headerCellTemplate: { customTemplate: 1 } as unknown as TemplateRef<any>,
+                rowCellTemplate: { customTemplate: 2 } as unknown as TemplateRef<any>,
+            },
+        };
+        const resultConfig = {
+            ...defaultConfig,
+            ...newConfig,
+        };
+
+        expect(component.modifyColumnsConfigByUserConfig(newConfig, defaultConfig)).toEqual(resultConfig);
+    });
+
+    it('modifyColumnsConfigByUserConfig should modify cellTemplate only if it is present in newConfig ', () => {
+        const defaultConfig = (component as any)._defaultColumnsPattern;
+        const newConfig = {
+            name: {
+                headerCellTemplate: { customTemplate: 1 } as unknown as TemplateRef<any>,
+            },
+        };
+        const resultConfig = {
+            ...defaultConfig,
+            name: {
+                headerCellTemplate: newConfig.name.headerCellTemplate,
+                rowCellTemplate: defaultConfig.name.rowCellTemplate,
+            },
+        };
+
+        expect(component.modifyColumnsConfigByUserConfig(newConfig, defaultConfig)).toEqual(resultConfig);
+    });
+
+    it('mapColumnsConfigToColumnsArray should return correct columns', () => {
+        const defaultColumnsPattern = (component as any)._defaultColumnsPattern;
+        const activeColumns = ['name', 'summary'];
+        const resultColumns = activeColumns.map(column => {
+            return {
+                columnId: column,
+                headerCellTemplate: defaultColumnsPattern[column].headerCellTemplate,
+                rowCellTemplate: defaultColumnsPattern[column].rowCellTemplate,
+            };
+        });
+
+        expect(component.mapColumnsConfigToColumnsArray(activeColumns, defaultColumnsPattern)).toEqual(resultColumns);
+    });
+
+    it('mapColumnsConfigToColumnsArray should add column to return array only if headerCellTemplate and rowCellTemplate are present', () => {
+        const defaultColumnsPattern = (component as any)._defaultColumnsPattern;
+        const modifiedDefaultColumnsPattern = {
+            ...defaultColumnsPattern,
+            summary: {
+                headerCellTemplate: null,
+                rowCellTemplate: defaultColumnsPattern.summary.rowCellTemplate,
+            },
+            status: {
+                headerCellTemplate: defaultColumnsPattern.status.headerCellTemplate,
+                rowCellTemplate: null,
+            },
+        };
+        const activeColumns = ['name', 'summary', 'status'];
+        const resultColumns = [
+            {
+                columnId: 'name',
+                headerCellTemplate: defaultColumnsPattern.name.headerCellTemplate,
+                rowCellTemplate: defaultColumnsPattern.name.rowCellTemplate,
+            },
+        ];
+
+        expect(component.mapColumnsConfigToColumnsArray(activeColumns, modifiedDefaultColumnsPattern)).toEqual(resultColumns);
+    });
+
+    it('columnsPattern should be filled in ngAfterViewInit hook', () => {
+        jest.spyOn(component, 'ngAfterViewInit');
+
+        component.columnsPattern = [];
+        fixture.detectChanges();
+
+        // tslint:disable-next-line:no-lifecycle-call
+        component.ngAfterViewInit();
+
+        const columnsIds = component.columnsPattern.map(columnPattern => {
+            expect(columnPattern.rowCellTemplate instanceof TemplateRef).toBeTruthy();
+            expect(columnPattern.headerCellTemplate instanceof TemplateRef).toBeTruthy();
+
+            return columnPattern.columnId;
+        });
+
+        expect(columnsIds.sort()).toEqual(component.activeColumns.sort());
+    });
+
+    it('should call cdRef.detectChanges in ngAfterViewInit hook', () => {
+        jest.spyOn((component as any).cdRef, 'detectChanges');
+
+        // tslint:disable-next-line:no-lifecycle-call
+        component.ngAfterViewInit();
+
+        expect((component as any).cdRef.detectChanges).toHaveBeenCalled();
     });
 });
