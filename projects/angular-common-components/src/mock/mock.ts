@@ -11,8 +11,11 @@ import {
 } from '@angular/forms';
 import {
     AbstractErrorMessageConfiguration,
-    AppTypeFieldModel, DefaultErrorMessageConfiguration,
-    DropdownModel, ErrorMessage, ErrorMessageFormId,
+    AppTypeFieldModel,
+    DefaultErrorMessageConfiguration,
+    DropdownModel,
+    ErrorMessage,
+    ErrorMessageFormId,
     FullAppData,
     HeadingTag,
     RadioItemValue,
@@ -138,7 +141,6 @@ export class MockPasswordComponent {
 export class MockCheckboxComponent implements ControlValueAccessor {
     @Input() labelText: string;
     @Input() requiredIndicator: boolean = false;
-    @Input() formControl: FormControl;
     @Input() value: boolean;
     @Input() disabled: boolean;
     @Output() readonly isCheckedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -447,8 +449,7 @@ export class MockDropdownMultiApp implements ControlValueAccessor {
 })
 export class MockHeadingTagDirective {
     @Input() headingTag: HeadingTag;
-    @Input() set headingTagContent(content: string) {
-    }
+    @Input() headingTagContent: string;
 }
 
 @Component({
@@ -696,4 +697,4 @@ export class MockDropdownButtonComponent {
 export const MOCK_PROVIDER_ERROR_MESSAGES: Provider = {
     provide: AbstractErrorMessageConfiguration,
     useValue: new DefaultErrorMessageConfiguration(),
-}
+};

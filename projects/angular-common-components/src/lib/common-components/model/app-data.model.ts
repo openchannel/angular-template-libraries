@@ -106,7 +106,7 @@ export interface AppTypeOptionModel {
 
 export interface AppTypeFieldModel {
     id: string;
-    label: string;
+    label?: string;
     type: string;
     attributes?: any;
     description?: string;
