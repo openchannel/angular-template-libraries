@@ -15,7 +15,7 @@
         content: "";
         position: absolute;
         right: 0;
-        width: 46px;
+        width: 32px;
         height: 100%;
         border-radius: 4px;
         background-image: linear-gradient(to right, rgba($white, 0), $white);
@@ -125,6 +125,7 @@
                     @include font-regular();
                     overflow: hidden;
                     max-height: 40px;
+                    word-break: break-word;
                     display: -webkit-box;
                 }
 
