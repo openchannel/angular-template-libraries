@@ -225,9 +225,7 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
         this.isFormInvalid.emit(this.customForm.invalid);
         this.sendData();
 
-        this.customForm.valueChanges
-        .pipe(takeUntil(this.destroy$.updateFormEvent))
-        .subscribe(() => {
+        this.customForm.valueChanges.pipe(takeUntil(this.destroy$.updateFormEvent)).subscribe(() => {
             this.isFormInvalid.emit(this.customForm.invalid);
             this.sendData();
         });
@@ -261,7 +259,6 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
 
     private updateDFAErrors(errors: any[]): void {
         for (const controlName of Object.keys(this.serverErrorIntoDFA)) {
-
             const hasDfaError = this.hasDfaError(errors, this.serverErrorIntoDFA[controlName].controlPath);
 
             const dfaControl = this.customForm.controls[controlName];
