@@ -21,6 +21,10 @@
 
             &-text {
                 @include font-regular();
+
+                &_placeholder {
+                    color: $input-placeholder-color-dark;
+                }
             }
         }
 
