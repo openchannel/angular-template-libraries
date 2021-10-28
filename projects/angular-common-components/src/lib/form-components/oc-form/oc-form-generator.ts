@@ -334,8 +334,8 @@ export class OcFormGenerator {
     static passwordValidator(): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%!^&]).{8,}$/;
-            const password = c.value ? c.value : '';
-            if (password.match(regex)) {
+            const password = c.value;
+            if (!password || password.match(regex)) {
                 return null;
             } else {
                 return { passwordValidator: {} };

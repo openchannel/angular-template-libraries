@@ -89,6 +89,37 @@ export interface Filter {
 }
 
 /**
+ * Interface for the selected filter.
+ * Has fields:
+ *
+ * `parentFilterId: string` - unique id of the parent filter.
+ *
+ * `selectedFilterValue: {@link SidebarValue}` - description text of the selected filter.
+ *
+ * @example
+ * {
+ *     parentFilterId: "collections",
+ *     selectedFilterValue: {
+ *           query: '{"status.value":"approved","attributes.featured":"yes"}',
+ *           sort: '{"randomize":1}',
+ *           id: 'featured',
+ *           label: 'Featured',
+ *           description: '',
+ *           values: null,
+ *           expanded: false,
+ *           checked: false,
+ *           icon: './assets/icons/analytics-category-icon.png',
+ *     },
+ * }
+ */
+export interface SelectedFilter {
+    /** unique id of the parent filter */
+    parentFilterId: string;
+    /** description of the selected filter */
+    selectedFilterValue: SidebarValue;
+}
+
+/**
  * Interface for the default select.
  * Has fields:
  *
@@ -188,3 +219,13 @@ export interface ComponentsPage<T> {
 }
 
 export type RadioItemValue = string | number | boolean;
+
+/**
+ * Type for the {@link OcButtonType}.
+ * Support types:
+ * - `primary` - main button
+ * - `link` - turns button to the link view
+ * - `danger` - applies danger style
+ * - `none` - default button
+ */
+export type OcButtonType = 'primary' | 'secondary' | 'link' | 'danger' | 'none';

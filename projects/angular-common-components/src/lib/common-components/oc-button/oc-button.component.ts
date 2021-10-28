@@ -1,9 +1,10 @@
 import { Component, Input, OnChanges, SimpleChanges, TemplateRef } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { OcButtonType } from '../model/components-basic.model';
 
 /**
  * Special button component. Contains text and spinner.
- * Can be different type (`primary`, `secondary`, `link`, `danger` or `none`).
+ * Can be different type {@link OcButtonType}.
  */
 @Component({
     selector: 'oc-button',
@@ -58,16 +59,15 @@ export class OcButtonComponent implements OnChanges {
     @Input() process: boolean = false;
     /**
      * Sets the button type which changing button style.
-     * @param type type of the button. `primary` - main button, `link` - turns button to the link view,
-     * `danger` - applies danger style, `none` - default button.
+     * @param type type of the button {@link OcButtonType}.
      */
-    @Input() set type(type: 'primary' | 'secondary' | 'link' | 'danger' | 'none') {
+    @Input() set type(type: OcButtonType) {
         this.buttonType = type;
         this.buttonTypeClass = type !== 'none' ? `oc-button_${this.buttonType}` : null;
     }
 
     /** variable which includes a button type */
-    buttonType: string = 'primary';
+    buttonType: OcButtonType = 'primary';
     /** switching button style according to the button `type` */
     buttonTypeClass: string;
     /** unique pointer for the spinner of current button */
