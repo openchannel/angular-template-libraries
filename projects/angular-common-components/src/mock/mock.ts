@@ -1,4 +1,4 @@
-import { Component, Directive, EventEmitter, forwardRef, Input, Output, TemplateRef, Provider } from '@angular/core';
+import { Component, Directive, EventEmitter, forwardRef, Input, Output, TemplateRef, Provider, NgModule } from '@angular/core';
 import {
     AbstractControl,
     AbstractControlDirective,
@@ -698,3 +698,26 @@ export const MOCK_PROVIDER_ERROR_MESSAGES: Provider = {
     provide: AbstractErrorMessageConfiguration,
     useValue: new DefaultErrorMessageConfiguration(),
 };
+
+@Component({
+    template: '',
+    selector: 'image-cropper',
+})
+export class ImageCropperComponentMock {
+    @Output() readonly imageCropped = new EventEmitter();
+    @Output() readonly loadImageFailed = new EventEmitter();
+    @Input() containWithinAspectRatio: any;
+    @Input() maintainAspectRatio: any;
+    @Input() aspectRatio: any;
+    @Input() imageChangedEvent: any;
+    @Input() resizeToWidth: any;
+    @Input() resizeToHeight: any;
+    @Input() transform: any;
+}
+
+@NgModule({
+    imports: [],
+    declarations: [ImageCropperComponentMock],
+    exports: [ImageCropperComponentMock],
+})
+export class ImageCropperModuleMock {}
