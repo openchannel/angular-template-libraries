@@ -295,17 +295,14 @@ describe('OcChartComponent', () => {
         const disabledDropdownType = component.dropdownTypes.find(type => !type.active);
 
         const chartTypesDropdown = fixture.debugElement.query(By.css('.chart__type-types')).componentInstance;
-        chartTypesDropdown.selectedChange.emit(component.chartData.fields, disabledDropdownType.id);
-        fixture.detectChanges();
+        chartTypesDropdown.selectedChange.emit(disabledDropdownType);
 
-        fixture.whenStable().then(() => {
-            const newActiveField = component.chartData.fields.find(field => field.active);
-            const enabledDropdownType = { ...disabledDropdownType, active: true };
+        const newActiveField = component.chartData.fields.find(field => field.active);
+        const enabledDropdownType = { ...disabledDropdownType, active: true };
 
-            expect(changeChartOptionsEmitFunction).toHaveBeenCalled();
-            expect(enabledDropdownType).toBe(newActiveField);
-            expect(enabledDropdownType).toEqual(component.dropdownSelectedType);
-        });
+        expect(changeChartOptionsEmitFunction).toHaveBeenCalled();
+        expect(enabledDropdownType).toEqual(newActiveField);
+        expect(enabledDropdownType).toEqual(component.dropdownSelectedType);
     });
 
     it('should fill tabular data in ngOnChanges hook', () => {
