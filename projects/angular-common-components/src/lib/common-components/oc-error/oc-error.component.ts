@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, AbstractControlDirective, NgModel, ValidationErrors } from '@angular/forms';
+import { AbstractControl, AbstractControlDirective, FormArray, NgModel, ValidationErrors } from '@angular/forms';
 import { OcErrorService } from './oc-error-service';
 import { AbstractErrorMessageConfiguration } from '../model/oc-error.model';
 import { ControlUtils } from '../model/utils.model';
+import { toPath } from 'lodash';
 
 /**
  * An oc-error component. It is used to show error or errors list after validation.<br>
@@ -49,6 +50,13 @@ export class OcErrorComponent implements OnInit {
 
     ngOnInit(): void {
         this.fullControlPath = ControlUtils.getFullControlPath(this.control);
+        if (this.control && this.control instanceof AbstractControl) {
+            const parent = ControlUtils.getParentControl(this.control);
+            if (parent instanceof FormArray) {
+                // removing first part of the path, it is part of form array.
+                this.fullControlPath = toPath(this.fullControlPath).slice(1).join('.');
+            }
+        }
     }
 
     /**

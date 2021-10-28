@@ -3,7 +3,10 @@ import { AppFormField, AppFormModel } from '../model/app-form-model';
 import { FormProgressbarStep } from '../model/progress-bar-item.model';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
-import { ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
+import { ErrorMessageFormId, OcErrorService } from '@openchannel/angular-common-components/src/lib/common-components';
+import { forIn, set, merge, toPath } from 'lodash';
+import { filter, map, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 export interface FieldStep {
     label?: AppFormField;
@@ -172,12 +175,16 @@ export class OcFormComponent implements OnInit, OnChanges {
     hasFieldGroups: boolean = false;
     resultData: any = {};
     formStatus: string;
+    destroy$: Subject<boolean> = new Subject<boolean>();
+
+    constructor(private errorService: OcErrorService) {}
 
     ngOnInit(): void {
         this.checkFormType(this.displayType);
         if (this.setFormErrors && this.hasFieldGroups) {
             this.submitFromAppTable();
         }
+        this.listenServerErrors();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -318,10 +325,7 @@ export class OcFormComponent implements OnInit, OnChanges {
      * Maps form fields data, creates an object resultData.
      */
     private mapFormFieldsData(fields: any): void {
-        this.resultData = {
-            ...this.resultData,
-            ...fields,
-        };
+        merge(this.resultData, fields);
     }
 
     /**
@@ -389,7 +393,7 @@ export class OcFormComponent implements OnInit, OnChanges {
             formsArray.map(item => new OcFormGroup(item.label, item.items, OcFormGenerator.getFormByConfig(item.items))),
         );
         this.customForm.controls.forEach(form => {
-            this.mapFormFieldsData(form.value);
+            forIn(form.value || {}, (value, key) => set(this.resultData, key, value));
         });
         this.createdForm.emit(this.customForm);
     }
@@ -421,5 +425,37 @@ export class OcFormComponent implements OnInit, OnChanges {
         } else {
             currentControl.updateValueAndValidity();
         }
+    }
+
+    private listenServerErrors(): void {
+        this.errorService.serverErrorEvent
+            .pipe(
+                filter(event => event.type === 'onNewErrors'),
+                map(() => this.errorService.serverErrorList || []),
+                takeUntil(this.destroy$),
+            )
+            .subscribe(errors => {
+                if (errors) {
+                    const index = this.customForm.controls.findIndex(group => {
+                        return !!errors
+                            .filter(error => error?.field)
+                            .find(error => {
+                                return !!group.get(this.toFormPath(error.field));
+                            });
+                    });
+                    if (index !== -1) {
+                        this.setStep(index + 1);
+                        this.progressBarSteps[index].state = 'invalid';
+                    }
+                }
+            });
+    }
+
+    private toFormPath(fieldPath: string): string[] {
+        if (!fieldPath) {
+            return [];
+        }
+        const path = toPath(fieldPath);
+        return fieldPath.startsWith('customData') ? [path.slice(0, 2).join('.'), ...path.slice(2)] : path;
     }
 }
