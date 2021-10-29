@@ -2,6 +2,7 @@
      class="date-picker"
      placement="bottom-left top-left"
      #myDrop="ngbDropdown"
+     autoClose="outside"
      (openChange)="done($event)">
     <oc-button class="date-picker__input"
                id="datePickerDD"
@@ -23,7 +24,7 @@
                 </div>
                 <svg-icon id="nextMonth"
                           src="assets/angular-common-components/arrow-right-analog.svg"
-                          class="calendar-icon-size"
+                          class="date-picker__dropdown-icon calendar-icon-size"
                           (click)="nextMonth($event)">
                 </svg-icon>
             </div>
