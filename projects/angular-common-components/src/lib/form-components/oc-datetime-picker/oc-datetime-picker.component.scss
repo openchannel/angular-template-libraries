@@ -18,6 +18,7 @@
         }
 
         .date-picker__format {
+            overflow: hidden;
 
             &-text {
                 @include font-regular();
