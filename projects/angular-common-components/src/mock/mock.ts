@@ -160,6 +160,9 @@ export class MockFormComponent {
     @Input() showButton: boolean = true;
     @Input() displayType: FormType = 'page';
     @Input() formId: ErrorMessageFormId;
+    @Input() maxStepsToShow: number = 0;
+    @Input() queryParams: string = '';
+    @Input() enableTextTruncation: boolean = true;
     @Output() readonly formSubmitted = new EventEmitter<any>();
     @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -587,6 +590,9 @@ export class MockNumberComponent implements ControlValueAccessor {
 export class MockProgressbarComponent {
     @Input() progressbarData: FormProgressbarStep[] = [];
     @Input() currentStep: number = 1;
+    @Input() maxStepsToShow: number;
+    @Input() enableTextTruncation: boolean = true;
+    @Output() readonly jumpToStep = new EventEmitter<number>();
 }
 
 @Component({
@@ -645,10 +651,8 @@ export class MockVideoUrlComponent implements ControlValueAccessor {
     ],
 })
 export class MockDateTimeComponent implements ControlValueAccessor {
-    @Input()
-    type: 'datetime' | 'date';
-    @Input()
-    settings: any;
+    @Input() type: 'datetime' | 'date';
+    @Input() settings: any;
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
