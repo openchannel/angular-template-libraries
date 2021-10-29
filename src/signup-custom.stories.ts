@@ -11,6 +11,7 @@ import {
     TypeModel,
 } from '@openchannel/angular-common-components/src/lib/auth-components';
 import { ERROR_MESSAGES_STORY_PROVIDER } from './utils.model';
+import { AppFormModel } from '@openchannel/angular-common-components/src/lib/form-components';
 
 @Component({
     selector: 'custom-signup-story',
@@ -128,7 +129,7 @@ const Template: Story<CustomSignUpStoryComponent> = args => ({
     },
 });
 
-const accountTypeData: TypeModel<TypeFieldModel> = {
+const accountTypeData: AppFormModel = {
     fields: [
         {
             id: 'name',
@@ -157,7 +158,7 @@ const accountTypeData: TypeModel<TypeFieldModel> = {
     ],
 };
 
-const organizationTypeData: TypeModel<TypeFieldModel> = {
+const organizationTypeData: AppFormModel = {
     fields: [
         {
             id: 'customData.company',

@@ -7,7 +7,7 @@ import {
     OCOrganization,
     TypeFieldModel,
     TypeModel,
-    OcFormComponentsModule,
+    OcFormComponentsModule, AppFormModel,
 } from '@openchannel/angular-common-components';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { action } from '@storybook/addon-actions';
@@ -19,7 +19,7 @@ const modules: NgModule = {
     providers: [ERROR_MESSAGES_STORY_PROVIDER],
 };
 
-const accountTypeData: TypeModel<TypeFieldModel> = {
+const accountTypeData: AppFormModel = {
     fields: [
         {
             id: 'name',
@@ -48,7 +48,7 @@ const accountTypeData: TypeModel<TypeFieldModel> = {
     ],
 };
 
-const organizationTypeData: TypeModel<TypeFieldModel> = {
+const organizationTypeData: AppFormModel = {
     fields: [
         {
             id: 'customData.company',
@@ -153,7 +153,10 @@ export const PasswordAndCheckboxFields = EditUserFormComponent.bind({});
 PasswordAndCheckboxFields.args = {
     formConfigs: multiConfigs,
     enableTypesDropdown: false,
-    enableTermsCheckbox: true,
+    enableTermsCheckbox: {
+        termsUrl: 'http://terms',
+        policyUrl: 'http://policy',
+    },
     enablePasswordField: true,
     defaultAccountData: accountData,
     defaultOrganizationData: organizationData,

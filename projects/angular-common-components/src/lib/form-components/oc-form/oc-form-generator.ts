@@ -208,7 +208,7 @@ export class OcFormGenerator {
         if (additional && additional.isBooleanTags) {
             validators.push(this.booleanTagsValidator(inputTemplate.label));
         }
-        if(additional && additional.isDFA) {
+        if (additional && additional.isDFA) {
             validators.push(this.childDFAFieldValidator(inputTemplate));
         }
         control.setValidators(validators);
@@ -334,8 +334,8 @@ export class OcFormGenerator {
     static passwordValidator(): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%!^&]).{8,}$/;
-            const password = c.value ? c.value : '';
-            if (password.match(regex)) {
+            const password = c.value;
+            if (!password || password.match(regex)) {
                 return null;
             } else {
                 return { passwordValidator: {} };
@@ -397,7 +397,6 @@ export class OcFormGenerator {
             }
         };
     }
-
 
     static childDFAFieldValidator(fieldDefinition: AppTypeFieldModel): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
