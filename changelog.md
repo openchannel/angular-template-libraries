@@ -1,3 +1,13 @@
+## Release notes - angular-template-libraries - Version 2.37.0 (10/29/2021)<br>
+### Bug<br>
+AT-1567 - [services] Update NativeLoginService<br>
+AT-1542 - [Field Group][App Create] Portal User should be taken to App name Field Group if App Name is already exist.<br>
+### Task<br>
+AT-1540 - Improve field group<br>
+AT-1538 - For CAP, Implement endpoint to update form submissions<br>
+AT-1206 - Improve pages URLs<br>
+### Bug<br>
+AT-1164 - On Sign up, the word "Log In" is 16px instead of 14px<br>
 ## Release notes - angular-template-libraries - Version 2.36.0 (10/20/2021)<br>
 ### Bug<br>
 AT-1548 - [Apps] [Multiselect list] Multiselect list should restrict additional entry except the predefined from core.<br>
