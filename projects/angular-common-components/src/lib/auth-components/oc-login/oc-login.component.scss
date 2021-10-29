@@ -88,8 +88,12 @@
 }
 
 .remember {
-    display: flex;
     height: 16px;
+    
+    &__label {
+        display: flex;
+        cursor: pointer;
+    }
 
     &__checkbox {
         flex-basis: 0;
@@ -97,9 +101,10 @@
         height: 16px;
         max-width: 100%;
         width: 16px;
+        cursor: pointer;
     }
 
-    &__label {
+    &__text {
         @include font-size-sm();
         margin-left: 8px;
     }
