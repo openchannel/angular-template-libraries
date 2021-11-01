@@ -173,4 +173,24 @@ describe('OcDatetimePickerComponent', () => {
             expect(component.date).toEqual(prevYearString);
         });
     });
+
+    it('should show placeholder, if date is not exist', () => {
+        const placeholder = 'Placeholder';
+
+        component.placeholder = placeholder;
+        component.date = null;
+        fixture.detectChanges();
+
+        const placeholderElement = fixture.nativeElement.querySelector('.date-picker__format-text_placeholder');
+        expect(placeholderElement.textContent.trim()).toBe(placeholder);
+    });
+
+    it('should show default value, if placeholder is not exist', () => {
+        component.placeholder = null;
+        component.date = null;
+        fixture.detectChanges();
+
+        const placeholderElement = fixture.nativeElement.querySelector('.date-picker__format-text_placeholder');
+        expect(placeholderElement.textContent.trim()).toBe(component.settings.format.toUpperCase());
+    });
 });

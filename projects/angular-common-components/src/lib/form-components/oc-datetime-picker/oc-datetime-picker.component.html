@@ -99,7 +99,9 @@
         <input type="hidden" value="{{ date }}"/>
         <div class="date-picker__format">
             <span class="date-picker__format-text" *ngIf="date">{{ date | date: settings.format }}</span>
-            <span class="date-picker__format-text" *ngIf="!date">{{settings.format | uppercase}}</span>
+            <span class="date-picker__format-text date-picker__format-text_placeholder" *ngIf="!date">
+                {{ placeholder || (settings.format | uppercase) }}
+            </span>
         </div>
         <svg-icon class="date-picker__icon"
                   src="assets/angular-common-components/calendar-icon.svg"></svg-icon>

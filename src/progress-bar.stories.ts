@@ -41,6 +41,20 @@ ProgressBarSteps.args = {
             title: 'Step 5',
             state: 'pristine',
         },
+        {
+            title: 'Step 6',
+            state: 'pristine',
+        },
+        {
+            title: 'Step 7',
+            state: 'pristine',
+        },
+        {
+            title: 'Final data',
+            state: 'pristine',
+        },
     ],
     currentStep: 3,
+    maxStepsToShow: 5,
+    enableTextTruncation: true,
 };
