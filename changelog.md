@@ -1,3 +1,14 @@
+## Release notes - angular-template-libraries - Version 2.39.0 (11/1/2021)<br>
+### Bug<br>
+AT-1584 - [Dev1][Apps list] Horizontal scrollbar on the App list page<br>
+AT-1102 - [UI][Reset Password] After reset password Toaster notification message is not showing.<br>
+AT-1088 - [Portal] [Market] [Signup-Login] [UI] Inconsistence font-size. <br>
+AT-1086 - [Market] [My Apps] [UI] "Hand Pointer" cursor should displayed when mouse over on 'Show Alpha' dropdown.<br>
+AT-1081 - [Marketsite] if user is not logged in and click on 'Browse' menu from any other page, it fluctuate the header components.<br>
+AT-1058 - [Portal] [Create App] [Filed Placeholder] For Color and Tags fields, Placeholder texts is not showing.<br>
+AT-1042 - A user logged into the partner portal should be able to navigate to other pages such as the home page<br>
+AT-1021 - [My Company] Required field validation are not displayed for Newly created Portal company.<br>
+AT-1020 - [Forgot Password] Typo error on Password recovery mail sent message.<br>
 ## Release notes - angular-template-libraries - Version 2.38.0 (11/1/2021)<br>
 ### Task<br>
 AT-1380 - Clear all on search component<br>
