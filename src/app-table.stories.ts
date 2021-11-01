@@ -32,6 +32,23 @@ const statElement = {
     total: 30,
 };
 
+const appWithoutSpacesChildApp: Partial<FullAppData> = {
+    name: '(child)Largeappwordwordwordwordwordwordwordwordwordwordwordwordwordwordword',
+    version: 1.2,
+    created: 1432696823474,
+    customData: {
+        icon: '//d3grfap2l5ikgv.cloudfront.net/5f20f7ff579d1a20c527d847/public/5f255adfb5ad376fff84b6cf.png',
+        summary:
+            '(child)Largeappsummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummary',
+    },
+    status: {
+        value: 'inDevelopment',
+        modifiedBy: 'developer',
+        reason: null,
+        lastUpdated: null,
+    },
+};
+
 const appWithLargeFieldsChildApp: Partial<FullAppData> = {
     name: '(child) Large app word word word word word word word word word word word word word word word',
     version: 1.2,
@@ -67,7 +84,7 @@ const appWithLargeFields: Partial<FullAppData> = {
         lastUpdated: null,
     },
     reviewCount: 25,
-    children: [appWithLargeFieldsChildApp as FullAppData],
+    children: [appWithLargeFieldsChildApp as FullAppData, appWithoutSpacesChildApp as FullAppData],
 };
 
 const app1: FullAppData = {

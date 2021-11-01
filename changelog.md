@@ -1,3 +1,9 @@
+## Release notes - angular-template-libraries - Version 2.38.0 (11/1/2021)<br>
+### Task<br>
+AT-1380 - Clear all on search component<br>
+AT-1314 - Perform trim function on all text boxes before validating or saving the data<br>
+### Bug<br>
+AT-988 - [Market] [Portal] [My Profile - Password] Validation is not showing correctly.<br>
 ## Release notes - angular-template-libraries - Version 2.37.0 (10/29/2021)<br>
 ### Bug<br>
 AT-1567 - [services] Update NativeLoginService<br>
