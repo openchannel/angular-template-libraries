@@ -1,5 +1,4 @@
 import {
-    AppFormModel,
     FileDetails,
     FileUploaderService,
     OcFormComponent,
@@ -1132,4 +1131,6 @@ WizardForm.args = {
     },
     displayType: 'wizard',
     buttonPosition: 'justify',
+    maxStepsToShow: 3,
+    enableTextTruncation: true,
 };

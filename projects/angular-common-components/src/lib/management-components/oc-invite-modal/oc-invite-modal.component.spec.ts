@@ -8,10 +8,28 @@ import { ComponentsPage } from '@openchannel/angular-common-components/src/lib/c
 import { ComponentsUserAccount, DeveloperRole, UserRole } from '../models/user-data.model';
 import { ComponentsDeveloperAccountModel, ModalInviteUserModel, ModalUpdateUserModel } from '../models/oc-modal.model';
 import { By } from '@angular/platform-browser';
+import { cloneDeep } from 'lodash';
 
 describe('OcInviteModalComponent', () => {
     let component: OcInviteModalComponent;
     let fixture: ComponentFixture<OcInviteModalComponent>;
+
+    const mockFormGroupValid = {
+        valid: true,
+        markAllAsTouched: () => {},
+    };
+
+    const mockFormGroupInvalid = {
+        valid: false,
+        markAllAsTouched: () => {},
+    };
+
+    const mockFormData = {
+        name: 'Test name',
+        roles: 'admin',
+        aboutme: '',
+        skills: ['angular'],
+    };
 
     const mockRoleFields = {
         created: 0,
@@ -90,7 +108,7 @@ describe('OcInviteModalComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(OcInviteModalComponent);
         component = fixture.componentInstance;
-        component.modalData = updateUserModel;
+        component.modalData = cloneDeep(updateUserModel);
         fixture.detectChanges();
     });
 
@@ -189,7 +207,7 @@ describe('OcInviteModalComponent', () => {
     });
 
     it('should set formGroup when oc-form emits createdForm event', () => {
-        expect(component.formGroup).toBeUndefined();
+        component.formGroup = null;
 
         const formDE = fixture.debugElement.query(By.directive(MockFormComponent));
         formDE.triggerEventHandler('createdForm', {});
@@ -198,7 +216,7 @@ describe('OcInviteModalComponent', () => {
     });
 
     it('should set formData when oc-form emits formDataUpdated event', () => {
-        expect(component.formData).toBeUndefined();
+        component.formData = null;
 
         const formDE = fixture.debugElement.query(By.directive(MockFormComponent));
         formDE.triggerEventHandler('formDataUpdated', {});
@@ -210,11 +228,9 @@ describe('OcInviteModalComponent', () => {
         expect(component.inProcess).toBeFalsy();
 
         component.modalData = updateUserModel;
-        (component.formGroup as any) = {
-            valid: true,
-            markAllAsTouched: () => {},
-        };
-        component.formData = {};
+        (component as any).updateUser = jest.fn();
+        (component.formGroup as any) = cloneDeep(mockFormGroupValid);
+        component.formData = cloneDeep(mockFormData);
 
         const confirmButtonDE = fixture.debugElement.query(By.css('.invite-modal__confirm-button'));
         confirmButtonDE.triggerEventHandler('click', {});
@@ -224,13 +240,8 @@ describe('OcInviteModalComponent', () => {
 
     it('should invoke requestUpdateAccount or requestSendInvite, when confirm method invoked', () => {
         component.modalData = updateUserModel;
-        (component.formGroup as any) = {
-            valid: true,
-            markAllAsTouched: () => {},
-        };
-        component.formData = {
-            roles: [],
-        };
+        (component.formGroup as any) = cloneDeep(mockFormGroupValid);
+        component.formData = cloneDeep(mockFormData);
 
         jest.spyOn(component.modalData, 'requestUpdateAccount');
         component.onClickConfirmButton();
@@ -246,11 +257,8 @@ describe('OcInviteModalComponent', () => {
     it('should not send user model, if formGroup is not valid', () => {
         component.modalData = updateUserModel;
         component.inProcess = false;
-        (component.formGroup as any) = {
-            valid: false,
-            markAllAsTouched: () => {},
-        };
-        component.formData = {};
+        (component.formGroup as any) = cloneDeep(mockFormGroupInvalid);
+        component.formData = cloneDeep(mockFormData);
 
         const updateUserFunction = jest.spyOn(component as any, 'updateUser');
 
@@ -259,13 +267,10 @@ describe('OcInviteModalComponent', () => {
         expect(updateUserFunction).not.toHaveBeenCalled();
     });
 
-    it('should not send user model, if formData absent', () => {
+    it('should not send user model, if formData is absent', () => {
         component.modalData = updateUserModel;
         component.inProcess = false;
-        (component.formGroup as any) = {
-            valid: true,
-            markAllAsTouched: () => {},
-        };
+        (component.formGroup as any) = cloneDeep(mockFormGroupValid);
         component.formData = null;
         const updateUserFunction = jest.spyOn(component as any, 'updateUser');
 
@@ -277,11 +282,8 @@ describe('OcInviteModalComponent', () => {
     it('should not send user model, if inProcess is true', () => {
         component.modalData = updateUserModel;
         component.inProcess = true;
-        (component.formGroup as any) = {
-            valid: true,
-            markAllAsTouched: () => {},
-        };
-        component.formData = {};
+        (component.formGroup as any) = cloneDeep(mockFormGroupValid);
+        component.formData = cloneDeep(mockFormData);
         const updateUserFunction = jest.spyOn(component as any, 'updateUser');
 
         component.onClickConfirmButton();
@@ -291,7 +293,6 @@ describe('OcInviteModalComponent', () => {
 
     it('should close modal, when requestUpdateAccount or requestSendInvite completed successfully', fakeAsync(() => {
         const modalClose = jest.spyOn((component as any).modal, 'close');
-        component.formData = {};
 
         (component as any).updateUser(updateUserModel);
         tick();
@@ -306,8 +307,6 @@ describe('OcInviteModalComponent', () => {
     }));
 
     it('should set inProcess to false, when requestUpdateAccount or requestSendInvite completed', fakeAsync(() => {
-        component.formData = {};
-
         const testAsyncFunc = asyncFunction => {
             component.inProcess = true;
             asyncFunction();

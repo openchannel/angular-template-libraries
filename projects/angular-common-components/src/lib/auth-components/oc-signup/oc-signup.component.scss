@@ -55,6 +55,7 @@
 
         &-link {
             @include font-medium();
+            @include font-size-md();
         }
     }
 }

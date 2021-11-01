@@ -158,13 +158,12 @@ describe('OcDropboxComponent', () => {
         const dropbox = fixture.nativeElement.querySelector('input');
         dropbox.focus();
         dropbox.value = notExistingValue;
+        dropbox.dispatchEvent(new InputEvent('input'));
         fixture.detectChanges();
 
         dropbox.dispatchEvent(enterKeyUpEvent);
         fixture.detectChanges();
 
-        fixture.whenStable().then(() => {
-            expect(selectedItemEmitFunction).toHaveBeenCalledWith(notExistingValue);
-        });
+        expect(selectedItemEmitFunction).toHaveBeenCalledWith(notExistingValue);
     });
 });

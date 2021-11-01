@@ -54,13 +54,13 @@ export type OcFieldType =
 
 export interface AppFormField {
     id: string;
-    label: string;
+    label?: string;
     description?: string;
     defaultValue?: any;
     type: OcFieldType;
     required?: any;
     attributes?: AppFormFieldAttributes;
-    options?: any;
+    options?: FieldOptionValue[] | string[] | any[];
     fields?: AppFormField[];
     placeholder?: string;
     category?: string;
@@ -90,6 +90,10 @@ export interface AppFormFieldAttributes {
     hash?: string;
     accept?: any;
     overrideErrorMessage?: ErrorMessage;
+}
+
+export interface FieldOptionValue {
+    value: any;
 }
 
 export type TrimFormFieldType = OcTextFieldType & OcUrlFieldType;

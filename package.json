@@ -15,6 +15,7 @@
     "test": "npm run test:lib",
     "test:lib": "jest --config projects/angular-common-components/jest.config.js --collectCoverage --runInBand",
     "test:watch": "jest --config projects/angular-common-components/jest.config.js --watch --coverage --collectCoverageFrom=\"src/**/*${npm_config_folderName}*/**/*.{ts,html}\" -- \"${npm_config_folderName}\"",
+    "test:one-file": "jest --config projects/angular-common-components/jest.config.js --coverage --collectCoverageFrom=\"src/**/*${npm_config_folderName}*/**/*.{ts,html}\" -- \"${npm_config_folderName}\"",
     "sass-lint": "node_modules/.bin/sass-lint -c .scss-lint.yml",
     "lint": "./node_modules/.bin/ng lint",
     "e2e": "./node_modules/.bin/ng e2e",
