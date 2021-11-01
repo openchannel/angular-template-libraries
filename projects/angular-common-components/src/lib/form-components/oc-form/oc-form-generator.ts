@@ -1,34 +1,35 @@
 import { AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AppTypeFieldModel } from '@openchannel/angular-common-components/src/lib/common-components';
 import { cloneDeep } from 'lodash';
-import { AppFormField } from '../model/app-form-model';
+import { AppFormField, TrimFormFieldType } from '../model/app-form-model';
+import { OcFormValidator } from './oc-form-validator';
 
 export class OcFormGenerator {
-    private static readonly emailRegex =
-        /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])*$/;
 
     // tslint:disable-next-line:typedef
-    static getFormByConfig(fieldsDefinitions: AppFormField[]) {
+    static getFormByConfig(fieldsDefinitions: AppFormField[], trimTextFields?: TrimFormFieldType[]) {
         const group = {};
         fieldsDefinitions.forEach(inputTemplate => {
+            const isTrimText = trimTextFields?.includes(inputTemplate?.type);
+
             switch (inputTemplate?.type) {
                 case 'richText':
-                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ? inputTemplate?.defaultValue : '');
-                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isRichText: true });
+                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue || '');
+                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isRichText: true, isTrimText });
                     break;
                 case 'text':
                 case 'longText':
                 case 'dropdownList':
-                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ? inputTemplate?.defaultValue : '');
-                    this.setValidators(group[inputTemplate?.id], inputTemplate);
+                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue || '');
+                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isTrimText });
                     break;
                 case 'password':
-                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ? inputTemplate?.defaultValue : '');
+                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue || '');
                     this.setValidators(group[inputTemplate?.id], inputTemplate, { isPassword: true });
                     break;
                 case 'tags':
                     group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue?.length > 0 ? inputTemplate?.defaultValue : []);
-                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isList: true });
+                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isList: true, isTrimText });
                     break;
                 case 'multiFile':
                 case 'singleFile':
@@ -40,24 +41,24 @@ export class OcFormGenerator {
                     this.setValidators(group[inputTemplate.id], inputTemplate, { isList: true });
                     break;
                 case 'checkbox':
-                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ? inputTemplate?.defaultValue : false);
+                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue || false);
                     this.setValidators(group[inputTemplate?.id], inputTemplate, { isCheckbox: true });
                     break;
                 case 'number':
-                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ? inputTemplate?.defaultValue : null);
+                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue || null);
                     this.setValidators(group[inputTemplate?.id], inputTemplate);
                     break;
                 case 'emailAddress':
-                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ? inputTemplate?.defaultValue : '');
-                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isEmail: true });
+                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue || '');
+                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isEmail: true, isTrimText});
                     break;
                 case 'websiteUrl':
                 case 'videoUrl':
-                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ? inputTemplate?.defaultValue : '');
-                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isUrl: true });
+                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue || '');
+                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isUrl: true, isTrimText});
                     break;
                 case 'color':
-                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue ? inputTemplate?.defaultValue : '#00cf9f');
+                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue || '#00cf9f');
                     this.setValidators(group[inputTemplate?.id], inputTemplate, { isColor: true });
                     break;
                 case 'booleanTags':
@@ -97,7 +98,7 @@ export class OcFormGenerator {
                             form.forEach(field => {
                                 field.defaultValue = dValue[field.id];
                             });
-                            const arrayFormGroup = new FormGroup(this.getFormByConfig(form));
+                            const arrayFormGroup = new FormGroup(this.getFormByConfig(form, trimTextFields));
                             group[inputTemplate.id].push(arrayFormGroup);
                         });
                     }
@@ -126,294 +127,82 @@ export class OcFormGenerator {
             isBooleanTags?: boolean;
             isNumberTags?: boolean;
             isDFA?: boolean;
-        },
+            isTrimText?: boolean;
+        }
     ): void {
         const validators: ValidatorFn[] = [];
-        const { attributes } = inputTemplate;
-        if (!attributes) {
-            return;
-        }
+        const { attributes = {} } = inputTemplate;
+        const isTrimText = additional?.isTrimText;
+
         Object.keys(attributes).forEach(key => {
+            if (!attributes[key]) {
+                return;
+            }
             switch (key) {
                 case 'required':
-                    if (attributes.required) {
-                        if (additional && additional.isCheckbox) {
-                            validators.push(Validators.requiredTrue);
-                        } else {
-                            validators.push(Validators.required);
-                        }
+                    if (additional?.isCheckbox) {
+                        validators.push(Validators.requiredTrue);
+                    } else {
+                        validators.push(OcFormValidator.required(inputTemplate.type, isTrimText));
                     }
                     break;
                 case 'maxChars':
-                    if (attributes.maxChars) {
-                        if (additional && additional.isRichText) {
-                            validators.push(this.richTextMaxCharactersValidator(attributes.maxChars));
-                        } else {
-                            validators.push(Validators.maxLength(attributes.maxChars));
-                        }
+                    if (additional?.isRichText) {
+                        validators.push(OcFormValidator.richTextMaxCharactersValidator(attributes.maxChars, isTrimText));
+                    } else {
+                        validators.push(OcFormValidator.maxLength(attributes.maxChars, isTrimText));
                     }
                     break;
                 case 'minChars':
-                    if (attributes.minChars) {
-                        if (additional && additional.isRichText) {
-                            validators.push(this.richTextMinCharactersValidator(attributes.minChars));
-                        } else {
-                            validators.push(Validators.minLength(attributes.minChars));
-                        }
+                    if (additional?.isRichText) {
+                        validators.push(OcFormValidator.richTextMinCharactersValidator(attributes.minChars, isTrimText));
+                    } else {
+                        validators.push(OcFormValidator.minLength(attributes.minChars, isTrimText));
                     }
                     break;
                 case 'minCount':
-                    if (attributes.minCount) {
-                        validators.push(
-                            this.validatorMinLengthArray(attributes.minCount, inputTemplate.label, additional ? additional.isList : false),
-                        );
-                    }
+                    validators.push(
+                        OcFormValidator.validatorMinLengthArray(attributes.minCount, inputTemplate.label, additional?.isList || false),
+                    );
                     break;
                 case 'maxCount':
-                    if (attributes.maxCount) {
-                        validators.push(
-                            this.validatorMaxLengthArray(attributes.maxCount, inputTemplate.label, additional ? additional.isList : false),
-                        );
-                    }
+                    validators.push(
+                        OcFormValidator.validatorMaxLengthArray(attributes.maxCount, inputTemplate.label, additional?.isList || false),
+                    );
                     break;
                 case 'min':
-                    if (attributes.min) {
-                        validators.push(Validators.min(Number(attributes.min)));
-                    }
+                    validators.push(Validators.min(Number(attributes.min)));
                     break;
                 case 'max':
-                    if (attributes.max) {
-                        validators.push(Validators.max(Number(attributes.max)));
-                    }
+                    validators.push(Validators.max(Number(attributes.max)));
                     break;
                 default:
                     break;
             }
         });
-        if (additional && additional.isEmail) {
-            validators.push(this.emailValidator());
-        }
-        if (additional && additional.isUrl) {
-            validators.push(this.urlValidator());
-        }
-        if (additional && additional.isColor) {
-            validators.push(this.colorValidator());
-        }
-        if (additional && additional.isPassword) {
-            validators.push(this.passwordValidator());
-        }
-        if (additional && additional.isNumberTags) {
-            validators.push(this.numberTagsValidator(inputTemplate.label));
-        }
-        if (additional && additional.isBooleanTags) {
-            validators.push(this.booleanTagsValidator(inputTemplate.label));
-        }
-        if(additional && additional.isDFA) {
-            validators.push(this.childDFAFieldValidator(inputTemplate));
+        if (additional) {
+            if (additional.isEmail) {
+                validators.push(OcFormValidator.emailValidator(isTrimText));
+            }
+            if (additional.isUrl) {
+                validators.push(OcFormValidator.urlValidator(isTrimText));
+            }
+            if (additional.isColor) {
+                validators.push(OcFormValidator.colorValidator());
+            }
+            if (additional.isPassword) {
+                validators.push(OcFormValidator.passwordValidator());
+            }
+            if (additional.isNumberTags) {
+                validators.push(OcFormValidator.numberTagsValidator(inputTemplate.label));
+            }
+            if (additional.isBooleanTags) {
+                validators.push(OcFormValidator.booleanTagsValidator(inputTemplate.label));
+            }
+            if (additional.isDFA) {
+                validators.push(OcFormValidator.childDFAFieldValidator(inputTemplate));
+            }
         }
         control.setValidators(validators);
-    }
-    /**
-     * Return 'minLength' validation error, when array length < min.
-     */
-    static validatorMinLengthArray(min: number, label: string, showLengthErrorText?: boolean): ValidatorFn {
-        return (c: AbstractControl): { [key: string]: any } => {
-            if (!c.value || c.value.length === 0 || c.value.length >= min) {
-                return null;
-            } else {
-                if (showLengthErrorText) {
-                    return {
-                        minElementsCount: {
-                            requiredCount: min,
-                            fieldLabel: label,
-                        },
-                    };
-                } else {
-                    return {
-                        minCount: true,
-                    };
-                }
-            }
-        };
-    }
-    /**
-     * Return 'maxLength' validation error, when array length > max.
-     */
-    static validatorMaxLengthArray(max: number, label: string, showLengthErrorText?: boolean): ValidatorFn {
-        return (c: AbstractControl): { [key: string]: any } => {
-            if (!c.value || c.value.length === 0 || c.value.length <= max) {
-                return null;
-            } else {
-                if (showLengthErrorText) {
-                    return {
-                        maxElementsCount: {
-                            requiredCount: max,
-                            fieldLabel: label,
-                        },
-                    };
-                } else {
-                    return {
-                        maxCount: true,
-                    };
-                }
-            }
-        };
-    }
-    /**
-     * Custom validator
-     * for the url type control
-     */
-    static urlValidator(): ValidatorFn {
-        return (c: AbstractControl): { [key: string]: any } => {
-            // regex for url validation
-            const reg = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm); //NOSONAR
-            const value = c.value;
-            if (reg.test(value) || value === '') {
-                return null;
-            } else {
-                return {
-                    websiteValidator: true,
-                };
-            }
-        };
-    }
-    /**
-     * Custom validator for color control
-     */
-    static colorValidator(): ValidatorFn {
-        return (c: AbstractControl): { [key: string]: any } => {
-            const value = c.value;
-            if ((value.charAt(0) === '#' && value.length === 7) || value === '') {
-                return null;
-            } else {
-                return {
-                    colorValidator: true,
-                };
-            }
-        };
-    }
-    /**
-     * Custom validator of min characters for rich text.
-     * Check only characters, not tags
-     */
-    static richTextMinCharactersValidator(min: number): ValidatorFn {
-        return (c: AbstractControl): { [key: string]: any } => {
-            const characters = c.value.replace(/<[^>]*>/g, '');
-            if (!characters || characters.length >= min) {
-                return null;
-            } else {
-                return {
-                    minlength: {
-                        requiredLength: min,
-                    },
-                };
-            }
-        };
-    }
-    /**
-     * Custom validator of max characters for rich text.
-     * Check only characters, not tags
-     */
-    static richTextMaxCharactersValidator(max: number): ValidatorFn {
-        return (c: AbstractControl): { [key: string]: any } => {
-            const characters = c.value.replace(/<[^>]*>/g, '');
-            if (characters.length <= max) {
-                return null;
-            } else {
-                return {
-                    maxlength: {
-                        requiredLength: max,
-                    },
-                };
-            }
-        };
-    }
-    /**
-     * Custom validator of password
-     */
-    static passwordValidator(): ValidatorFn {
-        return (c: AbstractControl): { [key: string]: any } => {
-            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%!^&]).{8,}$/;
-            const password = c.value ? c.value : '';
-            if (password.match(regex)) {
-                return null;
-            } else {
-                return { passwordValidator: {} };
-            }
-        };
-    }
-    /**
-     * Custom validator for numbers
-     */
-    static numberTagsValidator(label: string): ValidatorFn {
-        return (c: AbstractControl): { [key: string]: any } => {
-            const numberArray = c.value as any[];
-            if (numberArray) {
-                for (const numberItem of numberArray) {
-                    if (isNaN(Number(numberItem))) {
-                        return {
-                            numberTagsValidator: {
-                                fieldTitle: label,
-                            },
-                        };
-                    }
-                }
-                return null;
-            }
-            return null;
-        };
-    }
-    /**
-     * Custom validator for boolean
-     */
-    static booleanTagsValidator(label: string): ValidatorFn {
-        const booleanAcceptedValues: boolean[] = [true, false];
-
-        return (c: AbstractControl): { [key: string]: any } => {
-            const booleanArray = c.value as any[];
-            if (booleanArray) {
-                for (const booleanItem of booleanArray) {
-                    if (!booleanAcceptedValues.includes(booleanItem)) {
-                        return {
-                            booleanTagsValidator: {
-                                fieldTitle: label,
-                            },
-                        };
-                    }
-                }
-                return null;
-            }
-            return null;
-        };
-    }
-
-    static emailValidator(): ValidatorFn {
-        return (c: AbstractControl): { [key: string]: any } => {
-            const email = c.value;
-            if (!email || email.match(this.emailRegex)) {
-                return null;
-            } else {
-                return { email: true };
-            }
-        };
-    }
-
-
-    static childDFAFieldValidator(fieldDefinition: AppTypeFieldModel): ValidatorFn {
-        return (c: AbstractControl): { [key: string]: any } => {
-            if (c.touched && Object.values((c as any).controls).find((v: any) => v.invalid)) {
-                return this.createChildDfaFieldError(fieldDefinition);
-            } else {
-                return null;
-            }
-        };
-    }
-
-    static createChildDfaFieldError(fieldDefinition: AppTypeFieldModel): any {
-        return {
-            invalidDFAField: {
-                fieldDefinition,
-            },
-        };
     }
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { OcButtonType } from '@openchannel/angular-common-components/src/lib/common-components';
 
 @Component({
     selector: 'oc-text-search',
@@ -6,6 +7,20 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
     styleUrls: ['./oc-text-search.component.css'],
 })
 export class OcTextSearchComponent {
+    /**
+     * Type of clear all tags button.
+     * @type OcButtonType.
+     * @default 'link'.
+     */
+    @Input() clearAllButtonType: OcButtonType = 'link';
+
+    /**
+     * An input, that defines whether to show clear all tags button.
+     * @type {boolean}.
+     * @default true.
+     */
+    @Input() showClearAllTagsButton: boolean = true;
+
     /**
      * A model for search text value which is entered by a user.
      * @type {string}.
@@ -42,11 +57,25 @@ export class OcTextSearchComponent {
     @Input() clearButtonText: string = 'Clear';
 
     /**
-     * Describes the text int the `search` button.
+     * Describes the text in the `search` button.
      * @type {string}.
      * @default 'Search'.
      */
     @Input() searchButtonText: string = 'Search';
+
+    /**
+     * Describes the text in the `clearTags` button.
+     * @type {string}.
+     * @default 'Clear all'.
+     */
+    @Input() clearTagsButtonText: string = 'Clear all';
+
+    /**
+     * List of tags titles to show under search input.
+     * @type {string[]}.
+     * @default [].
+     */
+    @Input() tagsTitles: string[] = [];
 
     /**
      * Output that emits search input value on `ngModel` changes.
@@ -62,9 +91,31 @@ export class OcTextSearchComponent {
      */
     @Output() readonly enterSearch: EventEmitter<string> = new EventEmitter<string>();
 
+    /**
+     * Output that emits a click on tag close button.
+     * @type {number}
+     */
+    @Output() readonly tagDeleted: EventEmitter<number> = new EventEmitter<number>();
+
+    /**
+     * Output that emits a click on clear all tags button.
+     * @type {void}.
+     */
+    @Output() readonly allTagsDeleted: EventEmitter<void> = new EventEmitter<void>();
+
     /** Emits search text value on enter key down or search icon click */
     enterAction(): void {
         this.enterSearch.emit(this.searchText);
+    }
+
+    /** Emits clear all tags button clicked */
+    deleteAllTags(): void {
+        this.allTagsDeleted.emit();
+    }
+
+    /** Emits delete of tag */
+    deleteTag(tagIndex: number): void {
+        this.tagDeleted.emit(tagIndex);
     }
 
     /** Clears search text value on button click */

@@ -71,7 +71,6 @@ definitions:
 
     - step: &build_compodoc_documentation_for_services
         name: "Build compodoc documentation for services"
-        image: node
         script:
           - npm i
           - npm run build-compodoc-services

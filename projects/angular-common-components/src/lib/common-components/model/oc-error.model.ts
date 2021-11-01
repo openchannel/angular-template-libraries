@@ -320,13 +320,13 @@ export class DefaultErrorMessageConfiguration extends AbstractErrorMessageConfig
 }
 
 export interface ServerErrorModel {
-    field?: string
+    field?: string;
     type?: string;
     code?: string;
-    message?: string
+    message?: string;
 }
 export interface ServerErrorEvent<T extends 'onNewErrors' | 'onRemovedError', V> {
-    type: T,
+    type: T;
     value: V;
 }
 export interface OnNewErrorsEvent extends ServerErrorEvent<'onNewErrors', ServerErrorModel[]> {}

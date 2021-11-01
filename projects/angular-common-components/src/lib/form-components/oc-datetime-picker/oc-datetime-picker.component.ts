@@ -30,6 +30,12 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.emitChanges(this.date);
     }
 
+    /**
+     * Placeholder text for datetime picker.
+     * @type {string}.
+     */
+    @Input() placeholder: string = '';
+
     /** Set `disable` state for input. User can not interact with component and choose date */
     @Input() disabled: boolean = false;
     /**

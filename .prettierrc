@@ -2,6 +2,7 @@
     "tabWidth": 4,
     "arrowParens": "avoid",
     "bracketSpacing": true,
+    "bracketSameLine": true,
     "htmlWhitespaceSensitivity": "ignore",
     "printWidth": 140,
     "trailingComma": "all",
