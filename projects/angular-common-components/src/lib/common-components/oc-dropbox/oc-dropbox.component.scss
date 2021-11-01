@@ -5,7 +5,7 @@
     position: relative;
 
     &__input {
-        @include form-control($info, $primary, $body-color);
+        @include form-control($info, $primary, $input-placeholder-color);
 
         & ~ span::after {
             position: absolute;

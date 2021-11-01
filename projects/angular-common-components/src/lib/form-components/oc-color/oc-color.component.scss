@@ -22,6 +22,10 @@
         border-left: none;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
+
+        &::placeholder {
+            color: $input-placeholder-color-dark;
+        }
     }
 
     &__picker {

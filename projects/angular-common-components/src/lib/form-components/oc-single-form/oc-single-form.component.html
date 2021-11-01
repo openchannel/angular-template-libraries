@@ -103,8 +103,10 @@
                     <oc-datetime-picker *ngSwitchCase="'date'"
                                         formControlName="{{formElement?.id}}"
                                         [type]="formElement?.type"
+                                        [placeholder]="formElement.placeholder"
                                         [settings]="{format: 'dd/MM/yyyy'}"></oc-datetime-picker>
                     <oc-datetime-picker *ngSwitchCase="'datetime'"
+                                        [placeholder]="formElement.placeholder"
                                         formControlName="{{formElement?.id}}"
                                         [type]="formElement?.type"></oc-datetime-picker>
                     <oc-dropdown-multi-app *ngSwitchCase="'multiApp'"

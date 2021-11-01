@@ -652,6 +652,7 @@ export class MockVideoUrlComponent implements ControlValueAccessor {
 })
 export class MockDateTimeComponent implements ControlValueAccessor {
     @Input() type: 'datetime' | 'date';
+    @Input() placeholder: string;
     @Input() settings: any;
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
