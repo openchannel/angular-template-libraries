@@ -12,10 +12,10 @@
 
     // white table overlay on the right side
     &::before {
-        content: "";
+        content: '';
         position: absolute;
         right: 0;
-        width: 46px;
+        width: 32px;
         height: 100%;
         border-radius: 4px;
         background-image: linear-gradient(to right, rgba($white, 0), $white);
@@ -56,7 +56,9 @@
                     padding: 0;
                     width: 40px;
                 }
-                &-name-content, &-create-date-content, &-status-content {
+                &-name-content,
+                &-create-date-content,
+                &-status-content {
                     display: flex;
                     flex-wrap: nowrap;
                     align-items: center;
@@ -64,7 +66,10 @@
                     width: 100%;
                     height: 100%;
                 }
-                &-name-content-text, &-create-date-content-text, &-status-content-text, &-summary-text {
+                &-name-content-text,
+                &-create-date-content-text,
+                &-status-content-text,
+                &-summary-text {
                     @include font-size-md();
                     color: $heading-color;
                     cursor: pointer;
@@ -125,6 +130,7 @@
                     @include font-regular();
                     overflow: hidden;
                     max-height: 40px;
+                    word-break: break-word;
                     display: -webkit-box;
                 }
 

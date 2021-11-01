@@ -21,11 +21,11 @@ export declare type SortField = 'name' | 'email' | 'date' | 'role';
  *                     list: [{
  *                         inviteStatus?: 'ACTIVE';
  *                         inviteId?: 'a8gs9d87agsd78';
- *                         inviteToken?: 'a8shd7has8d7h';}]
- *                     }],
- *                     options: ['EDIT'],
- *                     previewTemplate?: '<p>template</p>'
- *                  }
+ *                         inviteToken?: 'a8shd7has8d7h';
+ *                     }]
+ *                     },
+ *                  options: ['EDIT'],
+ *                  previewTemplate?: '<p>template</p>'
  *              }"
  *              [menuUrl]="/image.svg"
  *              [sortIcon]="/image.svg"
@@ -65,7 +65,7 @@ export class OcMenuUserGridComponent {
         date: -1,
         email: -1,
         role: -1,
-    }
+    };
 
     /**
      * Output of menu list item clicked action.
@@ -104,6 +104,7 @@ export class OcMenuUserGridComponent {
         };
         this.menuClicked.emit(action);
     }
+
     /**
      * Function that executes on scroll down
      */
@@ -118,7 +119,7 @@ export class OcMenuUserGridComponent {
     sortUsersBy(sortField: SortField): void {
         const newSortOptions = { ...this.sortOptions };
 
-        if(!newSortOptions[sortField]) {
+        if (!newSortOptions[sortField]) {
             newSortOptions[sortField] = -1;
         } else {
             newSortOptions[sortField] *= -1;
@@ -128,7 +129,7 @@ export class OcMenuUserGridComponent {
         // new implementation
         this.sortOptionsChosen.emit({
             sortOptions: newSortOptions,
-            changedSortOption: sortField
+            changedSortOption: sortField,
         });
     }
 

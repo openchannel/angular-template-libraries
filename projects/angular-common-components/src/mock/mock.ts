@@ -1,4 +1,4 @@
-import { Component, Directive, EventEmitter, forwardRef, Input, Output, TemplateRef, Provider } from '@angular/core';
+import { Component, Directive, EventEmitter, forwardRef, Input, Output, TemplateRef, Provider, NgModule } from '@angular/core';
 import {
     AbstractControl,
     AbstractControlDirective,
@@ -141,7 +141,6 @@ export class MockPasswordComponent {
 export class MockCheckboxComponent implements ControlValueAccessor {
     @Input() labelText: string;
     @Input() requiredIndicator: boolean = false;
-    @Input() formControl: FormControl;
     @Input() value: boolean;
     @Input() disabled: boolean;
     @Output() readonly isCheckedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -371,6 +370,28 @@ export class MockRadioButtonComponent implements ControlValueAccessor {
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
+}
+
+@Component({
+    template: '',
+    selector: 'oc-tag-element',
+})
+export class TagElementMockComponent {
+    @Input() title: string;
+    @Input() closeMarker: boolean = false;
+
+    @Output() readonly clickEmitter = new EventEmitter<string>();
+}
+
+@Component({
+    template: '',
+    selector: 'oc-dropbox',
+})
+export class DropboxMockComponent {
+    @Input() placeHolder: string;
+    @Input() items: string[];
+    @Input() clearFormAfterSelect: boolean = false;
+    @Input() dropElementTemplate: TemplateRef<any>;
 }
 
 @Component({
@@ -682,3 +703,26 @@ export const MOCK_PROVIDER_ERROR_MESSAGES: Provider = {
     provide: AbstractErrorMessageConfiguration,
     useValue: new DefaultErrorMessageConfiguration(),
 };
+
+@Component({
+    template: '',
+    selector: 'image-cropper',
+})
+export class ImageCropperComponentMock {
+    @Output() readonly imageCropped = new EventEmitter();
+    @Output() readonly loadImageFailed = new EventEmitter();
+    @Input() containWithinAspectRatio: any;
+    @Input() maintainAspectRatio: any;
+    @Input() aspectRatio: any;
+    @Input() imageChangedEvent: any;
+    @Input() resizeToWidth: any;
+    @Input() resizeToHeight: any;
+    @Input() transform: any;
+}
+
+@NgModule({
+    imports: [],
+    declarations: [ImageCropperComponentMock],
+    exports: [ImageCropperComponentMock],
+})
+export class ImageCropperModuleMock {}

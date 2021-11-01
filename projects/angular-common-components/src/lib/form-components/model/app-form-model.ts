@@ -1,14 +1,66 @@
 import { ErrorMessage } from '@openchannel/angular-common-components/src/lib/common-components';
 
+export type OcTextFieldType =
+    | 'richText'
+    | 'text'
+    | 'longText'
+    | 'password'
+    | 'emailAddress'
+    | string;
+
+export type OcDateFieldType =
+    | 'date'
+    | 'datetime'
+    | string;
+
+export type OcFileFieldType =
+    | 'multiFile'
+    | 'singleFile'
+    | 'privateSingleFile'
+    | 'multiPrivateFile'
+    | 'multiImage'
+    | 'singleImage'
+    | string;
+
+export type OcTagsFieldType =
+    | 'tags'
+    | 'numberTags'
+    | 'booleanTags'
+    | string;
+
+export type OcListFieldType =
+    | 'dropdownList'
+    | 'multiselectList'
+    | 'multiApp'
+    | string;
+
+export type OcUrlFieldType =
+    | 'websiteUrl'
+    | 'videoUrl'
+    | string;
+
+export type OcFieldType =
+    | 'checkbox'
+    | 'number'
+    | 'color'
+    | 'dynamicFieldArray'
+    | OcTextFieldType
+    | OcDateFieldType
+    | OcFileFieldType
+    | OcTagsFieldType
+    | OcListFieldType
+    | OcUrlFieldType
+    | string;
+
 export interface AppFormField {
     id: string;
-    label: string;
+    label?: string;
     description?: string;
     defaultValue?: any;
-    type: string;
+    type: OcFieldType;
     required?: any;
     attributes?: AppFormFieldAttributes;
-    options?: any;
+    options?: FieldOptionValue[] | string[] | any[];
     fields?: AppFormField[];
     placeholder?: string;
     category?: string;
@@ -39,3 +91,11 @@ export interface AppFormFieldAttributes {
     accept?: any;
     overrideErrorMessage?: ErrorMessage;
 }
+
+export interface FieldOptionValue {
+    value: any;
+}
+
+export type TrimFormFieldType = OcTextFieldType & OcUrlFieldType;
+
+export const defaultFieldsForTrim: TrimFormFieldType[] = ['text', 'longText', 'richText', 'emailAddress', 'websiteUrl', 'videoUrl'];

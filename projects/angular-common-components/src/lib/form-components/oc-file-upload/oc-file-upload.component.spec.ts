@@ -5,10 +5,9 @@ import { NgModel } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ImageCropperModule } from 'ngx-image-cropper';
 import { Observable, of } from 'rxjs';
 import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
-import { MockButtonComponent } from '@openchannel/angular-common-components/src/mock/mock';
+import { ImageCropperModuleMock, MockButtonComponent } from '@openchannel/angular-common-components/src/mock/mock';
 import { FileDetails, FileUploaderService } from '../model/file.model';
 
 const mockResponse: FileDetails = {
@@ -41,7 +40,11 @@ class FileUploadDownloadServiceStub extends FileUploaderService {
         super();
     }
 
-    fileUploadRequest(file: FormData, isPrivate: boolean, hash?: string[]): Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent> {
+    fileUploadRequest(
+        file: FormData,
+        isPrivate: boolean,
+        hash?: string[],
+    ): Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent> {
         return of(new HttpResponse({ body: mockResponse }));
     }
 
@@ -54,13 +57,12 @@ describe('OcFileUploadComponent', () => {
     let component: OcFileUploadComponent;
     let fixture: ComponentFixture<OcFileUploadComponent>;
 
-
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 declarations: [OcFileUploadComponent, MockButtonComponent],
                 providers: [NgModel, { provide: FileUploaderService, useClass: FileUploadDownloadServiceStub }],
-                imports: [NgbModule, CommonModule, BrowserModule, ImageCropperModule],
+                imports: [NgbModule, CommonModule, BrowserModule, ImageCropperModuleMock],
             }).compileComponents();
         }),
     );
@@ -97,6 +99,7 @@ describe('OcFileUploadComponent', () => {
 
     it('should upload image', async () => {
         component.fileType = 'singleImage';
+        fixture.detectChanges();
 
         const onChangeFunc = jest.fn();
         component.registerOnChange(onChangeFunc);
@@ -113,7 +116,7 @@ describe('OcFileUploadComponent', () => {
         component.uploadFile(mockedFile);
         fixture.detectChanges();
 
-        await fixture.whenStable().then(() => {
+        fixture.whenStable().then(() => {
             const fileNameSpan = fixture.debugElement.query(By.css('#fileName')).nativeElement;
             expect(fileNameSpan.textContent).toContain('test1.jpg');
             expect(onChangeFunc).toHaveBeenCalled();

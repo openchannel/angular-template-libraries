@@ -2,7 +2,6 @@
 @import '../../../../assets/styles/theme';
 
 .text-search {
-
     &__container {
         align-items: stretch;
         display: flex;
@@ -35,6 +34,24 @@
         }
     }
 
+    &__tags {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+
+        margin-top: 24px;
+    }
+
+    &__tag {
+        margin-right: 8px;
+        margin-bottom: 8px;
+    }
+
+    &__clear-tags-button {
+        margin-left: 8px;
+    }
+
     &__controls {
         display: flex;
         flex-wrap: wrap;
@@ -49,4 +66,3 @@
         }
     }
 }
-

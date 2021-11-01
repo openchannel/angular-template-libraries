@@ -1,38 +1,53 @@
 <div class="app-grid">
     <div class="app-grid-scroller">
-        <table class="app-grid-table"
-               [infiniteScrollThrottle]="50"
-               (scrolled)="onScrollDown()"
-               infiniteScroll
-               aria-describedby="App listing table">
+        <table
+            class="app-grid-table"
+            [infiniteScrollThrottle]="50"
+            (scrolled)="onScrollDown()"
+            infiniteScroll
+            aria-describedby="App listing table">
             <thead>
-            <tr class="app-grid-table__header">
-                <!--  HEADER -->
-                <th *ngFor="let pattern of columnsPattern" [class]="'app-grid-table__header__cell app-grid-table__header__cell-' + pattern.columnId" scope="col">
-                    <ng-container [ngTemplateOutlet]="pattern.headerCellTemplate"></ng-container>
-                </th>
-            </tr>
+                <tr class="app-grid-table__header">
+                    <!--  HEADER -->
+                    <th
+                        *ngFor="let pattern of columnsPattern"
+                        [class]="'app-grid-table__header__cell app-grid-table__header__cell-' + pattern.columnId"
+                        scope="col">
+                        <ng-container [ngTemplateOutlet]="pattern.headerCellTemplate"></ng-container>
+                    </th>
+                </tr>
             </thead>
             <tbody>
-            <ng-container *ngFor="let app of properties.data.list">
-                <!--  APP row -->
-                <tr class="app-grid-table__row">
-                    <th *ngFor="let pattern of columnsPattern;let parentIndex = index" [class]="'app-grid-table__row__cell app-grid-table__row__cell-' + pattern.columnId" scope="col">
-                        <ng-container [ngTemplateOutlet]="pattern.rowCellTemplate"
-                                      [ngTemplateOutletContext]="{$implicit: {app: app, isChild: false, index: parentIndex}}"></ng-container>
-                    </th>
-                </tr>
-                <!--  APP child rows -->
-                <tr *ngFor="let appChild of app.children; let childIndex = index" class="app-grid-table__row">
-                    <th *ngFor="let pattern of columnsPattern;" [class]="'app-grid-table__row__cell app-grid-table__row__cell-' + pattern.columnId" scope="col">
-                        <ng-container [ngTemplateOutlet]="pattern.rowCellTemplate"
-                                      [ngTemplateOutletContext]="{$implicit: {app: appChild, isChild: true, index: childIndex}}"></ng-container>
-                    </th>
-                </tr>
-            </ng-container>
-            <!--  Bottom table row (used only for apps not found)  -->
-            <ng-container [ngTemplateOutlet]="tableBottomRowTemplate || tableBottomRow"
-                          [ngTemplateOutletContext]="{$implicit: {columnCount: columnsPattern.length}}"></ng-container>
+                <ng-container *ngFor="let app of properties.data.list">
+                    <!--  APP row -->
+                    <tr class="app-grid-table__row">
+                        <th
+                            *ngFor="let pattern of columnsPattern; let parentIndex = index"
+                            [class]="'app-grid-table__row__cell app-grid-table__row__cell-' + pattern.columnId"
+                            scope="col">
+                            <ng-container
+                                [ngTemplateOutlet]="pattern.rowCellTemplate"
+                                [ngTemplateOutletContext]="{ $implicit: { app: app, isChild: false, index: parentIndex } }"></ng-container>
+                        </th>
+                    </tr>
+                    <!--  APP child rows -->
+                    <tr *ngFor="let appChild of app.children; let childIndex = index" class="app-grid-table__row app-grid-table__row_child">
+                        <th
+                            *ngFor="let pattern of columnsPattern"
+                            [class]="'app-grid-table__row__cell app-grid-table__row__cell-' + pattern.columnId"
+                            scope="col">
+                            <ng-container
+                                [ngTemplateOutlet]="pattern.rowCellTemplate"
+                                [ngTemplateOutletContext]="{
+                                    $implicit: { app: appChild, isChild: true, index: childIndex }
+                                }"></ng-container>
+                        </th>
+                    </tr>
+                </ng-container>
+                <!--  Bottom table row (used only for apps not found)  -->
+                <ng-container
+                    [ngTemplateOutlet]="tableBottomRowTemplate || tableBottomRow"
+                    [ngTemplateOutletContext]="{ $implicit: { columnCount: columnsPattern.length } }"></ng-container>
             </tbody>
         </table>
     </div>
@@ -41,7 +56,7 @@
 <ng-template #tableBottomRow>
     <tr *ngIf="!(properties.data.list?.length > 0)">
         <td class="app-grid-table__bottom-empty-list" [attr.colspan]="columnsPattern.length">
-            {{noAppMessage}}
+            {{ noAppMessage }}
         </td>
     </tr>
     <tr *ngIf="properties.data.list?.length > 0">
@@ -50,23 +65,24 @@
 </ng-template>
 
 <ng-template #sortIcon let-sortNumber>
-    <svg-icon *ngIf="sortNumber === 1"
-              [src]="ascendingSortIcon || 'assets/angular-common-components/select-up.svg'"
-              class="app-grid-table__header__sort-icon"></svg-icon>
-    <svg-icon *ngIf="!sortNumber || sortNumber === -1"
-              [src]="descendingSortIcon || 'assets/angular-common-components/select-down.svg'"
-              class="app-grid-table__header__sort-icon"></svg-icon>
+    <svg-icon
+        *ngIf="sortNumber === 1"
+        [src]="ascendingSortIcon || 'assets/angular-common-components/select-up.svg'"
+        class="app-grid-table__header__sort-icon"></svg-icon>
+    <svg-icon
+        *ngIf="!sortNumber || sortNumber === -1"
+        [src]="descendingSortIcon || 'assets/angular-common-components/select-down.svg'"
+        class="app-grid-table__header__sort-icon"></svg-icon>
 </ng-template>
 
 <!-- Table header cells  -->
 <!-- Empty right placeholder template -->
-<ng-template name="left-placeholder" type="headerCell">
-</ng-template>
+<ng-template name="left-placeholder" type="headerCell"></ng-template>
 
 <ng-template name="name" type="headerCell">
     <div class="app-grid-table__header__cell-name-content" (click)="sortAppsByKey('name')">
         <span class="app-grid-table__header__cell-name-content-text">Name</span>
-        <ng-container *ngTemplateOutlet="sortIcon; context: {$implicit: currentSortOptions.name}"></ng-container>
+        <ng-container *ngTemplateOutlet="sortIcon; context: { $implicit: currentSortOptions.name }"></ng-container>
     </div>
 </ng-template>
 
@@ -77,14 +93,14 @@
 <ng-template name="create-date" type="headerCell">
     <div class="app-grid-table__header__cell-create-date-content" (click)="sortAppsByKey('created')">
         <span class="app-grid-table__header__cell-create-date-content-text">Created</span>
-        <ng-container *ngTemplateOutlet="sortIcon; context: {$implicit: currentSortOptions.created}"></ng-container>
+        <ng-container *ngTemplateOutlet="sortIcon; context: { $implicit: currentSortOptions.created }"></ng-container>
     </div>
 </ng-template>
 
 <ng-template name="status" type="headerCell">
     <div class="app-grid-table__header__cell-status-content" (click)="sortAppsByKey('status')">
         <span class="app-grid-table__header__cell-status-content-text">Status</span>
-        <ng-container *ngTemplateOutlet="sortIcon; context: {$implicit: currentSortOptions.status}"></ng-container>
+        <ng-container *ngTemplateOutlet="sortIcon; context: { $implicit: currentSortOptions.status }"></ng-container>
     </div>
 </ng-template>
 
@@ -95,7 +111,6 @@
     <th class="app-grid-table__header__cell app-grid-table__header__cell-right-placeholder" scope="col"></th>
 </ng-template>
 
-
 <!-- | Table app row cells |  -->
 
 <!-- Empty right placeholder template -->
@@ -103,31 +118,39 @@
 
 <ng-template name="name" type="rowCell" let-ctx>
     <div class="app-grid-table__row__cell-name-content">
-        <img class="app-grid-table__row__cell-name-content-app-child-icon" src="assets/angular-common-components/line-arrow-down.svg" alt="child-arrow"
-             *ngIf="ctx.isChild"
-             [style.visibility]="ctx.index !== 0 ? 'hidden' : ''">
-        <img class="app-grid-table__row__cell-name-content-icon"
-             [src]="ctx.app | getTextByPath: fieldsPathConfig.appIconPath : defaultAppIcon" alt="">
+        <img
+            class="app-grid-table__row__cell-name-content-app-child-icon"
+            src="assets/angular-common-components/line-arrow-down.svg"
+            alt="child-arrow"
+            *ngIf="ctx.isChild"
+            [style.visibility]="ctx.index !== 0 ? 'hidden' : ''">
+        <img
+            class="app-grid-table__row__cell-name-content-icon"
+            [src]="ctx.app | getTextByPath: fieldsPathConfig.appIconPath:defaultAppIcon"
+            alt="">
         <div class="app-grid-table__row__cell-name-content-text">
-            <span class="app-grid-table__row__cell-name-content-text-title"
-                  (click)="action('EDIT', ctx.app.appId, ctx.app.version, ctx.isChild)">{{ctx.app.name}}</span>
-            <span class="app-grid-table__row__cell-name-content-text-version">v. {{ctx.app.version}}</span>
+            <span
+                class="app-grid-table__row__cell-name-content-text-title"
+                (click)="action('EDIT', ctx.app.appId, ctx.app.version, ctx.isChild)">
+                {{ ctx.app.name }}
+            </span>
+            <span class="app-grid-table__row__cell-name-content-text-version">v. {{ ctx.app.version }}</span>
         </div>
     </div>
 </ng-template>
 
 <ng-template name="summary" type="rowCell" let-ctx>
-    <span class="app-grid-table__row__cell-summary-text">{{ctx.app | getTextByPath: fieldsPathConfig.appDescriptionPath}}</span>
+    <span class="app-grid-table__row__cell-summary-text">{{ ctx.app | getTextByPath: fieldsPathConfig.appDescriptionPath }}</span>
 </ng-template>
 
 <ng-template name="create-date" type="rowCell" let-ctx>
-    <span class="app-grid-table__row__cell-create-date-text">{{ctx.app.created | date:'M/d/yyyy'}}</span>
+    <span class="app-grid-table__row__cell-create-date-text">{{ ctx.app.created | date: 'M/d/yyyy' }}</span>
 </ng-template>
 
 <ng-template name="status" type="rowCell" let-ctx>
     <div class="app-grid-table__row__cell-status-content">
         <div [class]="'app-grid-table__row__cell-status-content-marker-' + statusPattern[ctx.app?.status?.value].style"></div>
-        <span class="app-grid-table__row__cell-status-content-text">{{statusPattern[ctx.app?.status?.value].text}}</span>
+        <span class="app-grid-table__row__cell-status-content-text">{{ statusPattern[ctx.app?.status?.value].text }}</span>
     </div>
 </ng-template>
 
@@ -137,11 +160,13 @@
             <img class="app-grid-table__row__cell-app-options-dropdown-dots" [src]="menuUrl" alt="more-icon" ngbDropdownToggle>
             <div ngbDropdownMenu>
                 <ng-container *ngFor="let menuAction of properties.options">
-                    <button *ngIf="needToShowItem(menuAction, ctx.app?.status.value, ctx.app?.status.modifiedBy)"
-                            (click)="action(menuAction, ctx.app?.appId, ctx.app?.version, ctx.isChild)"
-                            ngbDropdownItem
-                            class="menu" [ngClass]="'menu-' + menuAction | lowercase">
-                        {{menuAction | titlecase}}
+                    <button
+                        *ngIf="needToShowItem(menuAction, ctx.app?.status.value, ctx.app?.status.modifiedBy)"
+                        (click)="action(menuAction, ctx.app?.appId, ctx.app?.version, ctx.isChild)"
+                        ngbDropdownItem
+                        class="menu"
+                        [ngClass]="'menu-' + menuAction | lowercase">
+                        {{ menuAction | titlecase }}
                     </button>
                 </ng-container>
             </div>
