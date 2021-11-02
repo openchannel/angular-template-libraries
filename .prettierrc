@@ -10,7 +10,7 @@
     "singleQuote": true,
     "overrides": [
         {
-            "files": ["*.css", "*.scss", "*.html"],
+            "files": ["*.html"],
             "options": {
                 "singleQuote": false
             }
