@@ -61,5 +61,4 @@ describe('OcRadioButtonListComponent', () => {
         fixture.detectChanges();
         expect(component.disabled).toEqual(true);
     });
-
 });
