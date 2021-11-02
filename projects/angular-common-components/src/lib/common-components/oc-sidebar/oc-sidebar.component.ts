@@ -1,13 +1,4 @@
-import {
-    AfterViewInit,
-    Component,
-    EventEmitter,
-    Input,
-    OnChanges,
-    Output,
-    SimpleChanges,
-    ViewChild
-} from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { OcSidebarSelectModel } from '../model/oc-sidebar-model';
 import { SidebarValue } from '../model/components-basic.model';
 import { HeadingTag } from '../model/heading-tag.interface';
