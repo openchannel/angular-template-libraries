@@ -5,7 +5,6 @@ import { HeadingTag } from '../interfaces/heading-tag.interface';
     selector: '[headingTag]',
 })
 export class HeadingTagDirective implements OnChanges {
-
     @Input() headingTag: HeadingTag;
 
     @Input() set headingTagContent(content: string) {
