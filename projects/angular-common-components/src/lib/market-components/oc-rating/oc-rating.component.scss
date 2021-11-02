@@ -39,12 +39,15 @@
                 color: $yellow;
             }
 
-            &_half-color {
-                bottom: -3px;
+            &-container {
                 color: $yellow;
                 left: 0;
                 overflow: hidden;
                 position: absolute;
+
+                &_half {
+                    bottom: -3px;
+                }
             }
         }
     }
