@@ -18,9 +18,14 @@
         }
 
         .date-picker__format {
+            overflow: hidden;
 
             &-text {
                 @include font-regular();
+
+                &_placeholder {
+                    color: $input-placeholder-color-dark;
+                }
             }
         }
 

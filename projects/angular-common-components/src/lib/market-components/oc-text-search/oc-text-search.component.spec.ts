@@ -4,7 +4,9 @@ import { OcTextSearchComponent } from './oc-text-search.component';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MockButtonComponent, MockSvgIconComponent } from '@openchannel/angular-common-components/src/mock/mock';
+import { MockButtonComponent, MockSvgIconComponent, MockTagComponent } from '@openchannel/angular-common-components/src/mock/mock';
+
+const tagsTitlesMocked = ['collections', 'categories', 'search criteria'];
 
 describe('OcTextSearchComponent', () => {
     let component: OcTextSearchComponent;
@@ -13,7 +15,7 @@ describe('OcTextSearchComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcTextSearchComponent, MockButtonComponent, MockSvgIconComponent],
+                declarations: [OcTextSearchComponent, MockButtonComponent, MockSvgIconComponent, MockTagComponent],
                 imports: [FormsModule, HttpClientTestingModule],
             }).compileComponents();
         }),
@@ -43,14 +45,14 @@ describe('OcTextSearchComponent', () => {
         const input = fixture.debugElement.query(By.css('input'));
         input.nativeElement.value = 'Hello test!';
 
-        jest.spyOn(component.enterSearch, 'emit');
+        const enterSearchEmitFunction = jest.spyOn(component.enterSearch, 'emit');
         fixture.detectChanges();
         input.nativeElement.dispatchEvent(new Event('input'));
 
         input.triggerEventHandler('keydown.enter', {});
         fixture.detectChanges();
 
-        expect(component.enterSearch.emit).toHaveBeenCalledWith('Hello test!');
+        expect(enterSearchEmitFunction).toHaveBeenCalledWith('Hello test!');
     });
 
     it('should emit text value on click', () => {
@@ -58,7 +60,7 @@ describe('OcTextSearchComponent', () => {
         const img: HTMLImageElement = fixture.debugElement.query(By.css('svg-icon')).nativeElement;
         input.value = 'Hello test!';
 
-        jest.spyOn(component.enterSearch, 'emit');
+        const enterSearchEmitFunction = jest.spyOn(component.enterSearch, 'emit');
         fixture.detectChanges();
 
         input.dispatchEvent(new Event('input'));
@@ -66,6 +68,72 @@ describe('OcTextSearchComponent', () => {
         img.click();
         fixture.detectChanges();
 
-        expect(component.enterSearch.emit).toHaveBeenCalledWith('Hello test!');
+        expect(enterSearchEmitFunction).toHaveBeenCalledWith('Hello test!');
+    });
+
+    it('should emit tag index on close button tag click', () => {
+        const tagIndexToDelete = 0;
+
+        component.tagsTitles = [...tagsTitlesMocked];
+        fixture.detectChanges();
+
+        const tags = fixture.debugElement.queryAll(By.directive(MockTagComponent));
+        const tagInstanceToDelete = tags.find(tag => tag.componentInstance.title === tagsTitlesMocked[tagIndexToDelete]).componentInstance;
+        const tagToDeleteEmitFunction = jest.spyOn(component.tagDeleted, 'emit');
+
+        tagInstanceToDelete.clickEmitter.emit();
+        fixture.detectChanges();
+
+        expect(tagToDeleteEmitFunction).toHaveBeenCalledWith(tagIndexToDelete);
+    });
+
+    it('should emit on clear all button click', () => {
+        component.tagsTitles = [...tagsTitlesMocked];
+        fixture.detectChanges();
+
+        const clearAllButton = fixture.debugElement.query(By.css('.text-search__clear-tags-button')).nativeElement;
+        const clearAllTagsClickedEmitFunction = jest.spyOn(component.allTagsDeleted, 'emit');
+
+        clearAllButton.click();
+        fixture.detectChanges();
+
+        expect(clearAllTagsClickedEmitFunction).toHaveBeenCalled();
+    });
+
+    it('clear all button type should be same as clearAllButtonType passed value', () => {
+        const primaryType = 'primary';
+
+        component.tagsTitles = [...tagsTitlesMocked];
+        component.clearAllButtonType = primaryType;
+        fixture.detectChanges();
+
+        const clearAllButton = fixture.debugElement.query(By.css('.text-search__clear-tags-button')).componentInstance;
+
+        expect(clearAllButton.type).toBe(primaryType);
+    });
+
+    it('clear all button should be absent when showClearAllTagsButton = false', () => {
+        component.tagsTitles = [...tagsTitlesMocked];
+        component.showClearAllTagsButton = false;
+        fixture.detectChanges();
+
+        const clearAllButton = fixture.debugElement.query(By.css('.text-search__clear-tags-button'));
+
+        expect(clearAllButton).toBeNull();
+    });
+
+    it('clear all button customClass should depend on button type', () => {
+        component.tagsTitles = [...tagsTitlesMocked];
+        component.clearAllButtonType = 'primary';
+        fixture.detectChanges();
+
+        const clearAllButton = fixture.debugElement.query(By.css('.text-search__clear-tags-button')).componentInstance;
+
+        expect(clearAllButton.customClass).toBe('text-search__clear-tags-button-small');
+
+        component.clearAllButtonType = 'link';
+        fixture.detectChanges();
+
+        expect(clearAllButton.customClass).toBe('');
     });
 });

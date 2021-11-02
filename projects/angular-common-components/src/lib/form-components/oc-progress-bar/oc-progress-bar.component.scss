@@ -2,35 +2,27 @@
 @import '../../../../assets/styles/theme';
 
 .form-progressbar {
-    display: flex;
-    justify-content: space-between;
     margin-top: 6rem;
     margin-bottom: 6rem;
+    overflow: hidden;
     @include media-breakpoint-md {
-        flex-direction: column;
-        margin: 0;
+        margin-top: 0;
+        margin-bottom: 4rem;
+    }
+
+    &__slidebox {
+        display: flex;
+        justify-content: space-between;
+        transition: transform 0.4s ease;
     }
 
     &__item {
         display: flex;
         align-items: flex-start;
-        flex-grow: 1;
-        @include media-breakpoint-md {
-            flex-direction: column;
-            align-items: center;
-        }
+        flex-shrink: 0;
 
         &:last-child {
             max-width: 10rem;
-            @include media-breakpoint-md {
-                max-width: unset;
-            }
-        }
-
-        & + .form-progressbar__item {
-            @include media-breakpoint-md() {
-                margin-top: 6rem;
-            }
         }
 
         &_current {
@@ -43,9 +35,6 @@
 
             .form-progressbar__item-content-animation {
                 animation: step-blast .7s ease-out 3 forwards;
-                @include media-breakpoint-md() {
-                    animation: step-blast-responsive .6s ease-out 3 forwards;
-                }
             }
 
             @keyframes step-blast {
@@ -57,19 +46,6 @@
                 to {
                     width: 9rem;
                     height: 9rem;
-                    opacity: 0;
-                }
-            }
-
-            @keyframes step-blast-responsive {
-                from {
-                    width: 4rem;
-                    height: 4rem;
-                    opacity: 1;
-                }
-                to {
-                    width: 19rem;
-                    height: 19rem;
                     opacity: 0;
                 }
             }
@@ -116,6 +92,7 @@
             flex-direction: column;
             align-items: center;
             position: relative;
+            cursor: pointer;
 
             &-shape {
                 display: flex;
@@ -123,11 +100,6 @@
                 align-items: center;
                 width: 10rem;
                 height: 8.75rem;
-                @include media-breakpoint-md {
-                    width: 4.5rem;
-                    height: 4.5rem;
-                    margin-bottom: .5rem;
-                }
             }
 
             &-animation {
@@ -137,11 +109,6 @@
                 width: 5.75rem;
                 height: 5.75rem;
                 border-radius: 50%;
-                @include media-breakpoint-md {
-                    border: 1px solid $focus-border;
-                    width: calc(4.5rem - 2px);
-                    height: calc(4.25rem - 2px);
-                }
             }
 
             &-status {
@@ -156,37 +123,22 @@
                 z-index: 2;
                 @include font-medium();
                 @include font-size-md();
-                @include media-breakpoint-md {
-                    @include font-size-sm();
-                    width: 4.5rem;
-                    height: 4.5rem;
-                }
 
                 &-icon {
 
                     svg {
                         display: block;
                     }
-
-                    .recolor-icon {
-                        fill: $white;
-                    }
                 }
             }
 
             &-title {
                 max-width: 10rem;
-                text-align: center;
-                margin: 0 -5rem;
-                display: table;
                 @include font-size-md();
-                @include media-breakpoint-md {
-                    @include font-size-sm();
-                    line-height: 1.75rem;
-                    max-width: unset;
-                    margin: 0;
-                    word-break: break-word;
-                }
+                text-align: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
 
@@ -194,19 +146,9 @@
             margin-top: 4.5rem;
             border-top: 1px dashed $info;
             flex-grow: 1;
-            @include media-breakpoint-md {
-                border-top: 2px dashed $info;
-                margin-top: 0;
-                width: 4.5rem;
-                transform: rotate(90deg);
-                transform-origin: 6px 12px;
-            }
 
             &_straight {
                 border-top: 1px solid $info;
-                @include media-breakpoint-md {
-                    border-top: 2px solid $info;
-                }
             }
         }
     }

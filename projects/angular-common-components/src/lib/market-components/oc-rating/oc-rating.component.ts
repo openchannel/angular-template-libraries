@@ -21,7 +21,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class OcRatingComponent implements ControlValueAccessor {
     /**
-     * Type of Rating to show. Can be `multi-star` or `multi-star`.
+     * Type of Rating to show. Can be `multi-star` or `single-star`.
      * @type {string}.
      * @default 'single-star'.
      */
@@ -54,6 +54,7 @@ export class OcRatingComponent implements ControlValueAccessor {
      * @default 'medium md'.
      */
     @Input() labelClass: string = 'medium md';
+
     /**
      * Disabling the rating component. That the user can not interact with it.
      * Component will be used only for displaying
@@ -68,6 +69,7 @@ export class OcRatingComponent implements ControlValueAccessor {
     onLeave(): void {
         this.onTouched();
     }
+
     /**
      * Calls this function with new value. When user wrote something in the component
      * It needs to know that new data has been entered in the control.
@@ -75,6 +77,7 @@ export class OcRatingComponent implements ControlValueAccessor {
     registerOnChange(onChange: (value: any) => void): void {
         this.onChange = onChange;
     }
+
     /**
      * Calls this function when user left chosen component.
      * It needs for validation
@@ -82,6 +85,7 @@ export class OcRatingComponent implements ControlValueAccessor {
     registerOnTouched(onTouched: () => void): void {
         this.onTouched = onTouched;
     }
+
     /**
      * (Optional)
      * the method will be called by the control when the [disabled] state changes.
@@ -89,6 +93,7 @@ export class OcRatingComponent implements ControlValueAccessor {
     setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
     }
+
     /**
      * this method will be called by the control to pass the value to our component.
      * It is used if the value is changed through the code outside
@@ -110,5 +115,6 @@ export class OcRatingComponent implements ControlValueAccessor {
     }
 
     private onTouched = () => {};
+
     private onChange: (value: any) => void = () => {};
 }

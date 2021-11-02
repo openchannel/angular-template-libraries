@@ -10,6 +10,13 @@ export function replaceHTMLTags(text: string): string {
 }
 
 export class ControlUtils {
+    static getParentControl(control: AbstractControl): AbstractControl {
+        if (control?.parent) {
+            return this.getParentControl(control?.parent);
+        }
+        return control;
+    }
+
     static getFullControlPath(control: AbstractControlDirective | AbstractControl | NgModel): string {
         if (!control) {
             return '';

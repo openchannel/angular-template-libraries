@@ -30,6 +30,8 @@ export * from './model/progress-bar-item.model';
 
 /** Utils */
 export * from './model/utils.model';
+export * from './service/rich-text-utils/rich-text.service';
+export * from './service/trim-text-utils/trim-text.service';
 
 /** Form Generator */
 export * from './oc-form/oc-form-generator';
