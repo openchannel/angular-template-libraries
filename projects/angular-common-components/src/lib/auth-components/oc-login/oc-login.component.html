@@ -36,12 +36,12 @@
             </div>
             <div class="login__forgot-block">
                 <div class="remember">
-                    <label>
+                    <label class="remember__label">
                         <input class="remember__checkbox" type="checkbox"
                                [(ngModel)]="loginModel.isChecked"
                                [ngModelOptions]="{standalone: true}"/>
+                        <span class="remember__text">Remember me</span>
                     </label>
-                    <span class="remember__label">Remember me</span>
                 </div>
                 <div class="forgot" [hidden]="!forgotPwdUrl">
                     <a class="forgot__link" [routerLink]="forgotPwdUrl"> Forgot password? </a>
