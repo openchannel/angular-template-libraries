@@ -1,3 +1,12 @@
+## Release notes - angular-template-libraries - Version 2.41.0 (11/2/2021)<br>
+### Story<br>
+AT-1405 - A developer is able to query order for their apps from CAP<br>
+### Task<br>
+AT-1344 - [Component][Rich Text Editor] Need to increase the Expand size by dragging the right bottom corner.<br>
+### Story<br>
+AT-932 - User should see "no apps" message on manage apps page<br>
+AT-931 - User should see "no apps" message on my apps page<br>
+AT-930 - User should see "no results" message on search page<br>
 ## Release notes - angular-template-libraries - Version 2.40.0 (11/2/2021)<br>
 ### Bug<br>
 AT-1048 - Don't show error if developerAccountType or userAccountType doesnt exist<br>
