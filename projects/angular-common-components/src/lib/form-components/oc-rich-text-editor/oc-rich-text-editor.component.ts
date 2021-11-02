@@ -51,6 +51,7 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
         plugins: 'lists link wordcount',
         placeholder: this.placeholderText,
         max_height: 1500,
+        min_height: 100,
         content_style: 'body { font-family: Arial; }',
         mobile: {
             toolbar_mode: 'sliding',
