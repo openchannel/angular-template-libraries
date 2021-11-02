@@ -1,41 +1,43 @@
 <div class="full-image-gallery-modal" [class.full-image-gallery-modal_full-screen]="galleryItems[activeItemIdx].video">
     <!-- Modal Close icon --->
-    <div class="full-image-gallery-modal__close"
-         id="iconClose"
-         (click)="closeModal()">
+    <div class="full-image-gallery-modal__close" id="iconClose" (click)="closeModal()">
         <svg-icon [src]="componentIconsPath.closeIcon" svgClass="full-image-gallery-modal__close-icon"></svg-icon>
     </div>
     <!-- Left arrow navigation --->
-    <div class="full-image-gallery-modal__carousel-nav full-image-gallery-modal__carousel-nav-left"
-         id="iconLeft"
+    <div class="full-image-gallery-modal__carousel-nav full-image-gallery-modal__carousel-nav-left" id="iconLeft"
          (click)="prevSlide()">
-        <svg-icon [src]="componentIconsPath.arrowLeft" svgClass="full-image-gallery-modal__carousel-nav-icon"></svg-icon>
+        <svg-icon [src]="componentIconsPath.arrowLeft"
+                  svgClass="full-image-gallery-modal__carousel-nav-icon"></svg-icon>
     </div>
     <!-- Carousel --->
-    <div class="full-image-gallery-modal__item"
-         [style.max-width]="galleryItems[activeItemIdx].mediaWidth ? galleryItems[activeItemIdx].mediaWidth + 'px' : ''">
+    <div
+            class="full-image-gallery-modal__item"
+            [style.max-width]="galleryItems[activeItemIdx].mediaWidth ? galleryItems[activeItemIdx].mediaWidth + 'px' : ''">
         <div class="full-image-gallery-modal__item-media">
-            <img [src]="galleryItems[activeItemIdx].image"
-                 *ngIf="galleryItems[activeItemIdx].image" [alt]="galleryItems[activeItemIdx].title"
-                 class="full-image-gallery-modal__item-image">
-            <oc-video [videoUrl]="galleryItems[activeItemIdx].video"
-                      *ngIf="galleryItems[activeItemIdx].video && !galleryItems[activeItemIdx].image"
-                      [style.width]="galleryItems[activeItemIdx].mediaWidth ? galleryItems[activeItemIdx].mediaWidth + 'px' : ''"
-                      class="full-image-gallery-modal__item-video"></oc-video>
+            <img
+                    [src]="galleryItems[activeItemIdx].image"
+                    *ngIf="galleryItems[activeItemIdx].image"
+                    [alt]="galleryItems[activeItemIdx].title"
+                    class="full-image-gallery-modal__item-image">
+            <oc-video
+                    [videoUrl]="galleryItems[activeItemIdx].video"
+                    *ngIf="galleryItems[activeItemIdx].video && !galleryItems[activeItemIdx].image"
+                    [style.width]="galleryItems[activeItemIdx].mediaWidth ? galleryItems[activeItemIdx].mediaWidth + 'px' : ''"
+                    class="full-image-gallery-modal__item-video"></oc-video>
         </div>
-        <div class="full-image-gallery-modal__details"
-             *ngIf="showDetails && galleryItems[activeItemIdx].title && galleryItems[activeItemIdx].description">
-            <p class="full-image-gallery-modal__details-title">{{galleryItems[activeItemIdx].title}}</p>
+        <div
+                class="full-image-gallery-modal__details"
+                *ngIf="showDetails && galleryItems[activeItemIdx].title && galleryItems[activeItemIdx].description">
+            <p class="full-image-gallery-modal__details-title">{{ galleryItems[activeItemIdx].title }}</p>
             <p class="full-image-gallery-modal__details-description">
-                {{galleryItems[activeItemIdx].description}}
+                {{ galleryItems[activeItemIdx].description }}
             </p>
         </div>
     </div>
     <!-- Right arrow navigation --->
-    <div class="full-image-gallery-modal__carousel-nav full-image-gallery-modal__carousel-nav-right"
-         id="iconRight"
+    <div class="full-image-gallery-modal__carousel-nav full-image-gallery-modal__carousel-nav-right" id="iconRight"
          (click)="nextSlide()">
-        <svg-icon [src]="componentIconsPath.arrowRight" svgClass="full-image-gallery-modal__carousel-nav-icon"></svg-icon>
+        <svg-icon [src]="componentIconsPath.arrowRight"
+                  svgClass="full-image-gallery-modal__carousel-nav-icon"></svg-icon>
     </div>
 </div>
-
