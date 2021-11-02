@@ -90,7 +90,8 @@ export class OcFormValidator {
     static richTextMinCharactersValidator(min: number, isTrimText: boolean): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             const characters = this.removeHtmlTagsFromRichText(
-                (isTrimText ? TrimTextUtils.trimByType(c.value, 'richText') : c.value) || '');
+                (isTrimText ? TrimTextUtils.trimByType(c.value, 'richText') : c.value) || '',
+            );
             if (!characters || characters.length >= min) {
                 return null;
             } else {
@@ -109,7 +110,8 @@ export class OcFormValidator {
     static richTextMaxCharactersValidator(max: number, isTrimText: boolean): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             const characters = this.removeHtmlTagsFromRichText(
-                (isTrimText ? TrimTextUtils.trimByType(c.value, 'richText') : c.value) || '');
+                (isTrimText ? TrimTextUtils.trimByType(c.value, 'richText') : c.value) || '',
+            );
             if (characters.length <= max) {
                 return null;
             } else {
@@ -252,7 +254,7 @@ export class OcFormValidator {
 
     static required(type: OcFieldType, isTrimText: boolean): ValidatorFn {
         return (control: AbstractControl) => {
-            let value = (isTrimText ? TrimTextUtils.trimByType(control.value, type) : control.value);
+            let value = isTrimText ? TrimTextUtils.trimByType(control.value, type) : control.value;
             if (type === 'richText') {
                 value = this.removeHtmlTagsFromRichText(value || '');
             }
