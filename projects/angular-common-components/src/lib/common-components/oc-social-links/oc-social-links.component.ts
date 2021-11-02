@@ -9,5 +9,4 @@ import { SocialLink } from '../model/social-link.model';
 export class OcSocialLinksComponent {
     /** data passed to a social link component */
     @Input() socialLinks: SocialLink[];
-
 }
