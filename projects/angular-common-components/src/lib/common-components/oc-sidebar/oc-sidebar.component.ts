@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { OcSidebarSelectModel } from '../model/oc-sidebar-model';
 import { SidebarValue } from '../model/components-basic.model';
-import { HeadingTag } from '../interfaces/heading-tag.interface';
+import { HeadingTag } from '../model/heading-tag.interface';
 
 /**
  * Sidebar component. It is used as a tool for quick search of applications.
