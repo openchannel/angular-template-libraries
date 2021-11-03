@@ -1,4 +1,14 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+    SimpleChanges,
+    ViewChild
+} from '@angular/core';
 import { OcSidebarSelectModel } from '../model/oc-sidebar-model';
 import { SidebarValue } from '../model/components-basic.model';
 import { HeadingTag } from '../model/heading-tag.interface';
@@ -118,6 +128,8 @@ export class OcSidebarComponent implements AfterViewInit, OnChanges {
      */
     listHeight: number;
 
+    constructor(private cdRef: ChangeDetectorRef) {}
+
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.threshold && changes.threshold.previousValue !== changes.threshold.currentValue) {
             this.updateThreshold();
@@ -128,6 +140,7 @@ export class OcSidebarComponent implements AfterViewInit, OnChanges {
         if (this.hiddenSidebarModel.length > 0) {
             this.listHeight = this.collapsingList.nativeElement.offsetHeight;
             this.collapseList = true;
+            this.cdRef.detectChanges();
         }
     }
     /**
