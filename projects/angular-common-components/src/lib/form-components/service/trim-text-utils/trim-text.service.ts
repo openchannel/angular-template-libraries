@@ -1,26 +1,33 @@
-import { AppTypeFieldModel } from '@openchannel/angular-common-components/src/lib/common-components';
 import { cloneDeep, get, set } from 'lodash';
-import { TrimFormFieldType } from '../../model/app-form-model';
+import { AppFormField, TrimFormFieldType } from '../../model/app-form-model';
 import { RichTextUtils } from '../rich-text-utils/rich-text.service';
 
 export class TrimTextUtils {
-    static trimByType(value: any, fieldType?: TrimFormFieldType): any {
-        if (fieldType === 'richText' && typeof value === 'string') {
-            return RichTextUtils.trimRichText(value);
-        } else if (fieldType === 'password') {
-            return value;
-        } else {
-            return this.trimAll(value);
+    static updateByType(value: any, fieldType?: TrimFormFieldType): any {
+        switch (fieldType) {
+            case 'richText':
+                return RichTextUtils.trimRichText(value);
+            case 'password':
+                return value;
+            case 'websiteUrl':
+                const trimmedLink = this.trimAll(value);
+                if (!trimmedLink || trimmedLink.startsWith('http')) {
+                    return trimmedLink;
+                } else {
+                    return 'https://' + trimmedLink;
+                }
+            default:
+                return this.trimAll(value);
         }
     }
 
-    static trimTextFields<T extends {} | []>(value: T, fields: AppTypeFieldModel[], trimFields: TrimFormFieldType[]): T {
+    static trimTextFields<T extends {} | []>(value: T, fields: AppFormField[], trimFields: TrimFormFieldType[]): T {
         return this.trimTextFieldsInternal(cloneDeep(value), fields, fieldType => trimFields?.includes(fieldType));
     }
 
     private static trimTextFieldsInternal<T>(
         value: T,
-        fields: AppTypeFieldModel[],
+        fields: AppFormField[],
         needToTrim: (type: TrimFormFieldType, value?: string) => boolean,
     ): T {
         if (!value || !fields || typeof value !== 'object') {
@@ -35,7 +42,7 @@ export class TrimTextUtils {
                 valueByPath.forEach(dfaItem => this.trimTextFieldsInternal(dfaItem, field.fields, needToTrim));
             }
             if (needToTrim(field.type, valueByPath)) {
-                set(value as any, field.id, this.trimByType(valueByPath, field.type));
+                set(value as any, field.id, this.updateByType(valueByPath, field.type));
             }
         });
         return value;

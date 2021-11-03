@@ -50,7 +50,8 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
             'alignleft aligncenter alignright alignjustify | numlist bullist | outdent indent | link unlink | undo redo',
         plugins: 'lists link wordcount',
         placeholder: this.placeholderText,
-        max_height: 150,
+        max_height: 1500,
+        min_height: 100,
         content_style: 'body { font-family: Arial; }',
         mobile: {
             toolbar_mode: 'sliding',

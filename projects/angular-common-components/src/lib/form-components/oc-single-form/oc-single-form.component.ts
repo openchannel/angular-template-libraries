@@ -148,9 +148,6 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
     /** Main form group */
     customForm: FormGroup;
 
-    /** Result data from form for submission */
-    formData: any;
-
     private destroy$ = {
         updateFormEvent: new Subject<void>(),
         serverErrorEvent: new Subject<void>(),
@@ -202,7 +199,6 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
      */
     sendData(): void {
         if (!this.anotherInvalidResult && !this.process) {
-
             // normalize object hierarchy by dots.
             // Like : { customData.text: value } => {customData: {text: value}}
             let formData: any = {};
