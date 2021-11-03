@@ -37,6 +37,7 @@ export * from './pipe/get-text-by-path.pipe';
 /** Directives */
 export * from './directive/ellipsis.directive';
 export * from './directive/heading-tag.directive';
+export * from './directive/only-number.directive';
 export * from './validators/email-validator.directive';
 export * from './validators/drag-drop.directive';
 export * from './validators/checkbox-required.directive';
