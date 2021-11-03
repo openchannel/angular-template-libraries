@@ -68,7 +68,7 @@
                                 [value]="hourValue < 10 ? '0' + hourStr : hourStr"
                                 (input)="onHourChange($event)"
                                 ocOnlyNumber
-                                (click)="hourInput.select()" />
+                                (click)="hourInput.select()" >
                             <svg-icon
                                 src="assets/angular-common-components/arrow-right-analog.svg"
                                 class="date-picker__time-calendar-icon"
@@ -90,7 +90,7 @@
                                 [value]="minuteValue < 10 ? '0' + minuteStr : minuteStr"
                                 (input)="onMinChange($event)"
                                 ocOnlyNumber
-                                (click)="minInput.select()" />
+                                (click)="minInput.select()" >
                             <svg-icon
                                 src="assets/angular-common-components/arrow-right-analog.svg"
                                 class="date-picker__time-calendar-icon"
@@ -106,7 +106,7 @@
 
 <ng-template #datePickerButton>
     <div class="date-picker__input-content">
-        <input type="hidden" value="{{ date }}" />
+        <input type="hidden" value="{{ date }}" >
         <div class="date-picker__format">
             <span class="date-picker__format-text" *ngIf="date">{{ date | date: settings.format }}</span>
             <span class="date-picker__format-text date-picker__format-text_placeholder" *ngIf="!date">

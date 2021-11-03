@@ -2,7 +2,7 @@
     <form #loginForm="ngForm" novalidate>
         <div class="login__card-body">
             <div class="login__logo">
-                <img alt="logo" class="img-fluid company-logo" [src]="companyLogoUrl" />
+                <img alt="logo" class="img-fluid company-logo" [src]="companyLogoUrl" >
             </div>
             <div class="login__header">
                 <h1 [headingTag]="headingTag" class="login__header-heading">Log in</h1>
@@ -54,7 +54,7 @@
                             class="remember__checkbox"
                             type="checkbox"
                             [(ngModel)]="loginModel.isChecked"
-                            [ngModelOptions]="{ standalone: true }" />
+                            [ngModelOptions]="{ standalone: true }" >
                     </label>
                     <span class="remember__label">Remember me</span>
                 </div>
@@ -90,7 +90,7 @@
 <ng-template #defaultNotVerifiedEmailErrorCodeRef let-ctx>
     <div class="login__error">
         This account has not been activated yet.
-        <br />
+        <br >
         Please check your inbox for an activation email or
         <a (click)="onActivationLinkClick(ctx.parentForm.controls.email)" class="font-s font-med resend-link">
             resend the activation email

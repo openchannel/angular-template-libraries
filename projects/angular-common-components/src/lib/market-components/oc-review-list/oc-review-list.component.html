@@ -26,7 +26,7 @@
                 class="review-list__one-review-rating"
                 [disabled]="true"></oc-rating>
             <div id="reviewText" class="review-list__one-review-text">{{ review.review }}</div>
-            <hr />
+            <hr >
         </div>
         <span class="review-list__drop-down" (click)="toggleDisplay()" *ngIf="totalReview > maxReviewDisplay">
             {{ displayedReviews?.length === maxReviewDisplay ? "View all reviews (" + totalReview + ")" : "Collapse" }}
@@ -40,7 +40,7 @@
 <ng-template #reviewMenuTemplate>
     <div class="review-list__menu">
         <div ngbDropdown placement="bottom-right top-right">
-            <img [src]="menuUrl" alt="more-icon" class="review-list__menu-icon-dots" ngbDropdownToggle />
+            <img [src]="menuUrl" alt="more-icon" class="review-list__menu-icon-dots" ngbDropdownToggle >
             <div ngbDropdownMenu>
                 <ng-container *ngFor="let menuAction of reviewMenuOptions">
                     <button (click)="chosenAction.emit(menuAction)" ngbDropdownItem [ngClass]="'menu-' + menuAction | lowercase">

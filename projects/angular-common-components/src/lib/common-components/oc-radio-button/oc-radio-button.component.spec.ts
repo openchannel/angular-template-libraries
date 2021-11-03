@@ -28,7 +28,7 @@ describe('OcRadioButtonComponent', () => {
         fixture.detectChanges();
 
         const label = fixture.debugElement.query(By.css('.form-radio-button__label')).nativeElement;
-        expect(label.textContent).toEqual('Test label');
+        expect(label.textContent.trim()).toEqual('Test label');
     });
 
     it('should contain value', () => {

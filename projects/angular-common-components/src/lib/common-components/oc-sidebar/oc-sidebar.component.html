@@ -29,7 +29,7 @@
 <ng-template #listItem let-select>
     <li class="oc-sidebar__list-item">
         <div class="oc-sidebar__list-item-expand-line">
-            <img [src]="select.icon" alt="" class="oc-sidebar__list-item-image" *ngIf="select.icon" />
+            <img [src]="select.icon" alt="" class="oc-sidebar__list-item-image" *ngIf="select.icon" >
             <a *ngIf="baseNavigation" [routerLink]="[baseNavigation, select.id]" class="oc-sidebar__list-item-text">
                 {{ select.label }}
             </a>
@@ -46,7 +46,7 @@
         </div>
         <ul class="oc-sidebar__sublist" *ngIf="select.values?.length > 0" [ngbCollapse]="!select.expanded">
             <li *ngFor="let subValue of select.values" class="oc-sidebar__sublist-item">
-                <img [src]="subValue.icon" alt="" class="oc-sidebar__list-item-image" *ngIf="subValue.icon" />
+                <img [src]="subValue.icon" alt="" class="oc-sidebar__list-item-image" *ngIf="subValue.icon" >
                 <span
                     *ngIf="!baseNavigation"
                     class="oc-sidebar__list-item-text"
