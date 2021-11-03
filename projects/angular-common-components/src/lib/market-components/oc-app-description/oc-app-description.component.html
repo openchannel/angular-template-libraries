@@ -1,8 +1,16 @@
 <div class="description">
-    <h4 [headingTag]="headerTag" [headingTagContent]="header"  class="description__heading" [ngClass]="headerClass" id="ocAppDescriptionHeaderTextId"></h4>
+    <h4
+        [headingTag]="headerTag"
+        [headingTagContent]="header"
+        class="description__heading"
+        [ngClass]="headerClass"
+        id="ocAppDescriptionHeaderTextId"></h4>
     <p class="description__text" id="ocAppDescriptionTruncatedTextId" [innerHTML]="this.currentDescriptionText"></p>
-    <span *ngIf="currentShowDescriptionText"
-          class="description__show-more"
-          id="ocAppDescriptionShowMoreId"
-          (click)="this.initDescriptionWithShowOption(this.isTruncatedText)">{{currentShowDescriptionText}}</span>
+    <span
+        *ngIf="currentShowDescriptionText"
+        class="description__show-more"
+        id="ocAppDescriptionShowMoreId"
+        (click)="this.initDescriptionWithShowOption(this.isTruncatedText)">
+        {{ currentShowDescriptionText }}
+    </span>
 </div>
