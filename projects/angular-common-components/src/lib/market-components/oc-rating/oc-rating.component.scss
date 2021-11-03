@@ -2,7 +2,6 @@
 @import '../../../../assets/styles/theme';
 
 .oc-rating {
-
     &-single {
         align-items: center;
         display: flex;
@@ -29,7 +28,6 @@
     }
 
     &-multi {
-
         &__star {
             color: $text-color;
             position: relative;
