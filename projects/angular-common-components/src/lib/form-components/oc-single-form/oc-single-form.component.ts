@@ -202,7 +202,6 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
      */
     sendData(): void {
         if (!this.anotherInvalidResult && !this.process) {
-
             // normalize object hierarchy by dots.
             // Like : { customData.text: value } => {customData: {text: value}}
             let formData: any = {};
