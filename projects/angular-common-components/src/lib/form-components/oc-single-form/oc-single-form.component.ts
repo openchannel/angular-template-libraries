@@ -148,9 +148,6 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
     /** Main form group */
     customForm: FormGroup;
 
-    /** Result data from form for submission */
-    formData: any;
-
     private destroy$ = {
         updateFormEvent: new Subject<void>(),
         serverErrorEvent: new Subject<void>(),

@@ -58,7 +58,7 @@ export class OcFormValidator {
         return (c: AbstractControl): { [key: string]: any } => {
             // regex for url validation
             const reg = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm); // NOSONAR
-            const value = isTrimText ? TrimTextUtils.trimByType(c.value) : c.value;
+            const value = isTrimText ? TrimTextUtils.updateByType(c.value) : c.value;
             if (reg.test(value) || !value) {
                 return null;
             } else {
@@ -90,7 +90,7 @@ export class OcFormValidator {
     static richTextMinCharactersValidator(min: number, isTrimText: boolean): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             const characters = this.removeHtmlTagsFromRichText(
-                (isTrimText ? TrimTextUtils.trimByType(c.value, 'richText') : c.value) || '',
+                (isTrimText ? TrimTextUtils.updateByType(c.value, 'richText') : c.value) || '',
             );
             if (!characters || characters.length >= min) {
                 return null;
@@ -110,7 +110,7 @@ export class OcFormValidator {
     static richTextMaxCharactersValidator(max: number, isTrimText: boolean): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
             const characters = this.removeHtmlTagsFromRichText(
-                (isTrimText ? TrimTextUtils.trimByType(c.value, 'richText') : c.value) || '',
+                (isTrimText ? TrimTextUtils.updateByType(c.value, 'richText') : c.value) || '',
             );
             if (characters.length <= max) {
                 return null;
@@ -184,7 +184,7 @@ export class OcFormValidator {
 
     static emailValidator(isTrimText: boolean): ValidatorFn {
         return (c: AbstractControl): { [key: string]: any } => {
-            const email = isTrimText ? TrimTextUtils.trimByType(c.value) : c.value;
+            const email = isTrimText ? TrimTextUtils.updateByType(c.value) : c.value;
             if (
                 !email ||
                 email.match(
@@ -218,7 +218,7 @@ export class OcFormValidator {
 
     static maxLength(maxLength: number, isTrimText: boolean): ValidatorFn {
         return (control: AbstractControl) => {
-            const value = isTrimText ? TrimTextUtils.trimByType(control.value) : control.value;
+            const value = isTrimText ? TrimTextUtils.updateByType(control.value) : control.value;
             if (this.hasValidLength(value) && value.length > maxLength) {
                 return {
                     maxlength: {
@@ -234,7 +234,7 @@ export class OcFormValidator {
 
     static minLength(minLength: number, isTrimText: boolean): ValidatorFn {
         return (control: AbstractControl) => {
-            const value = isTrimText ? TrimTextUtils.trimByType(control.value) : control.value;
+            const value = isTrimText ? TrimTextUtils.updateByType(control.value) : control.value;
 
             if (this.isEmptyInputValue(value) || !this.hasValidLength(value)) {
                 return null;
@@ -254,7 +254,7 @@ export class OcFormValidator {
 
     static required(type: OcFieldType, isTrimText: boolean): ValidatorFn {
         return (control: AbstractControl) => {
-            let value = isTrimText ? TrimTextUtils.trimByType(control.value, type) : control.value;
+            let value = isTrimText ? TrimTextUtils.updateByType(control.value, type) : control.value;
             if (type === 'richText') {
                 value = this.removeHtmlTagsFromRichText(value || '');
             }
