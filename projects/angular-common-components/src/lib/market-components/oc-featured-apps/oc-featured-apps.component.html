@@ -3,7 +3,8 @@
         <h2 [headingTag]="headingTag" class="featured-apps__heading-text">{{label}}</h2>
     </div>
     <div class="featured-apps__container"
-         *ngIf="data && data.length > 0; else emptyData">
+         *ngIf="data && data.length > 0; else emptyData"
+         [class.featured-apps__container_justify-start]="data.length < 4">
         <div class="featured-apps__card-wrapper" *ngFor="let app of data;" (click)="this.clickByAppCard.emit(app)">
             <ng-container
                     [ngTemplateOutlet]="customFeaturedAppCardTemplate ? customFeaturedAppCardTemplate : defaultFeatureAppCard"
