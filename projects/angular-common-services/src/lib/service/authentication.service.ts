@@ -38,10 +38,8 @@ export class AuthenticationService {
         return this.httpService.post(`${this.apiPaths.authorization}/external/verify`, {}, { params });
     }
 
-    refreshToken(request: RefreshTokenRequest): Observable<LoginResponse> {
-        return this.httpService.post(`${this.apiPaths.authorization}/refresh`, request, {
-            headers: new HttpHeaders({ 'x-handle-error': '401' }),
-        });
+    refreshToken(request: RefreshTokenRequest, headers: HttpHeaders = new HttpHeaders()): Observable<LoginResponse> {
+        return this.httpService.post(`${this.apiPaths.authorization}/refresh`, request, { headers });
     }
 
     logOut(): Observable<void> {
@@ -53,7 +51,7 @@ export class AuthenticationService {
     }
 
     refreshTokenSilent(): Observable<any> {
-        return this.refreshToken({ refreshToken: this.authHolderService.refreshToken }).pipe(
+        return this.refreshToken({ refreshToken: this.authHolderService.refreshToken }, new HttpHeaders({ 'x-handle-error': '401' })).pipe(
             tap((response: LoginResponse) => this.authHolderService.persist(response.accessToken, response.refreshToken)),
             catchError(err => {
                 this.authHolderService.clearTokensInStorage();
