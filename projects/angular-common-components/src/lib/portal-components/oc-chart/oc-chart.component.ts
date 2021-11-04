@@ -261,11 +261,14 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                             const paddingLeft = axis.paddingLeft;
                             const paddingRight = axis.paddingRight;
 
-                            const labelRotationRadians = (axis.labelRotation * Math.PI) / 180;
-                            const cosRotation = Math.cos(labelRotationRadians);
                             // @ts-ignore
-                            const longestLabelWidth = axis._labelSizes?.widest?.width;
-                            const longestRotatedLabel = longestLabelWidth * cosRotation;
+                            let longestRotatedLabel = axis._labelSizes?.widest?.width;
+
+                            if (axis.labelRotation !== 0) {
+                                const labelRotationRadians = (axis.labelRotation * Math.PI) / 180;
+                                const cosRotation = Math.cos(labelRotationRadians);
+                                longestRotatedLabel *= cosRotation;
+                            }
 
                             const maxPossibleWidth = (longestRotatedLabel + skipPadding) * tickCount;
                             const actualWidth = width - (paddingLeft + paddingRight);
