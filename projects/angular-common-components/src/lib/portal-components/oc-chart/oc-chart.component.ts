@@ -12,7 +12,7 @@ import {
     ViewChild,
 } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
-import { CategoryScale, Chart, Legend, LinearScale, LineController, LineElement, PointElement, Tooltip } from 'chart.js';
+import { CategoryScale, Chart, Legend, LinearScale, LineController, LineElement, PointElement, Scale, Tooltip } from 'chart.js';
 import {
     ChartOptionsChange,
     ChartStatisticFiledModel,
@@ -240,11 +240,10 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                             display: false,
                         },
                         ticks: {
-                            autoSkip: true,
+                            autoSkip: false,
                             padding: 8,
                             color: '#727272',
                             maxRotation: 0,
-                            autoSkipPadding: 20,
                             callback(rawValue: any): any {
                                 const value = this.getLabelForValue(rawValue);
                                 if (value.length >= 8) {
@@ -252,6 +251,33 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                                 }
                                 return value;
                             },
+                        },
+                        // Custom autoSkip function to always show last tick
+                        afterFit(axis: Scale): void {
+                            const tickCount = axis.ticks.length;
+
+                            const skipPadding = 20;
+                            const width = axis.width;
+                            const paddingLeft = axis.paddingLeft;
+                            const paddingRight = axis.paddingRight;
+
+                            const labelRotationRadians = (axis.labelRotation * Math.PI) / 180;
+                            const cosRotation = Math.cos(labelRotationRadians);
+                            // @ts-ignore
+                            const longestLabelWidth = axis._labelSizes?.widest?.width;
+                            const longestRotatedLabel = longestLabelWidth * cosRotation;
+
+                            const maxPossibleWidth = (longestRotatedLabel + skipPadding) * tickCount;
+                            const actualWidth = width - (paddingLeft + paddingRight);
+
+                            const skipRatio = Math.floor(maxPossibleWidth / actualWidth) + 1;
+
+                            axis.ticks = axis.ticks.filter((_, i) => {
+                                const isLast = tickCount - 1 === i;
+                                const shouldSkipOneBeforeLast = i % skipRatio === 0 && i + skipRatio >= tickCount;
+                                const shouldSkip = (skipRatio > 1 && i % skipRatio > 0) || shouldSkipOneBeforeLast;
+                                return !(shouldSkip && !isLast);
+                            });
                         },
                     },
                     y: {
