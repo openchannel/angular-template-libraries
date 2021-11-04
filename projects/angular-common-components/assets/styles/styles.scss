@@ -58,7 +58,12 @@ h6 {
     font-size: 16px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: $heading-color;
     @include default-heading();
 }
@@ -74,19 +79,19 @@ h1, h2, h3, h4, h5, h6 {
 .form-control {
     border: 1px solid $info;
     border-radius: 4px;
-    font-size: 14px;
     height: 46px;
     padding: 12px 16px;
-}
-
-.form-control:focus {
-    border: 1px solid $primary;
-    box-shadow: none;
-}
-
-.form-control::placeholder {
+    font-size: 14px;
     color: $body-color;
-    opacity: 0.5;
+
+    &:focus {
+        border: 1px solid $primary;
+        box-shadow: none;
+    }
+
+    &::placeholder {
+        color: $input-placeholder-color;
+    }
 }
 
 .invalid-feedback {
@@ -110,7 +115,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sidebar {
-
     span {
         font-size: 14px;
         line-height: 18px;
@@ -127,14 +131,12 @@ h1, h2, h3, h4, h5, h6 {
 /* oc-file-upload */
 
 .file-container__upload-item-progress {
-
     .progress {
         background-color: $info;
         height: 4px;
     }
 
     &[type='primary'] {
-
         .progress {
             background-color: darken($light, 4);
             height: 4px;
@@ -174,7 +176,10 @@ oc-textarea {
         }
 
         &.ng-touched {
-            input, select, button.ng-invalid, textarea {
+            input,
+            select,
+            button.ng-invalid,
+            textarea {
                 border-color: $danger;
             }
         }
@@ -298,7 +303,7 @@ a.link {
     }
 
     &:focus {
-        outline: none
+        outline: none;
     }
 }
 
@@ -327,12 +332,12 @@ a.link {
         &.active,
         &:active {
             outline: none;
-            background-color: rgba($dropdown-border, .2);
+            background-color: rgba($dropdown-border, 0.2);
             color: $dropdown-item-text-hover;
         }
 
         &:hover {
-            background-color: rgba($dropdown-border, .1);
+            background-color: rgba($dropdown-border, 0.1);
         }
     }
 }
@@ -340,7 +345,6 @@ a.link {
 // Special dropdown menu for the Text search component
 
 .oc-dropbox {
-
     .dropdown-menu {
         max-height: 229px;
         width: 100%;
@@ -370,7 +374,6 @@ a.link {
 // Special field label for the oc-dynamic-array-preview component
 
 .array-preview__field-title {
-
     .oc-form-label {
         font-weight: bold;
     }
@@ -424,7 +427,6 @@ a.link {
 //Tiny Editor style customization
 
 .rich-editor__custom {
-
     .tox-tinymce {
         border-radius: 4px;
         border-color: $info;
@@ -434,20 +436,15 @@ a.link {
         }
 
         .tox-editor-container {
-
             .tox-editor-header {
-
                 .tox-toolbar-overlord {
-
                     .tox-toolbar__primary {
-
                         .tox-toolbar__group {
-
                             .tox-tbtn--enabled {
                                 background: none;
 
                                 svg {
-                                    fill: $primary
+                                    fill: $primary;
                                 }
 
                                 &:hover {
@@ -456,7 +453,6 @@ a.link {
                             }
 
                             .tox-tbtn {
-
                                 &:hover {
                                     background: $editor-btn-hover;
                                 }
@@ -473,9 +469,7 @@ a.link {
                     }
 
                     .tox-toolbar__overflow {
-
                         .tox-toolbar__group {
-
                             .tox-tbtn--enabled {
                                 background: none;
 
@@ -489,7 +483,6 @@ a.link {
                             }
 
                             .tox-tbtn {
-
                                 &:hover {
                                     background: $editor-btn-hover;
                                 }
@@ -518,7 +511,6 @@ a.link {
     }
 
     &_focus {
-
         .tox-tinymce {
             border-color: $primary;
         }
@@ -527,17 +519,14 @@ a.link {
 
 // end of the Tiny Editor style customization
 
-
 // oc-select
 
 oc-select {
-
     & .btn:focus {
         border-color: $dropdown-item-text-hover !important;
     }
 
     .dropdown-menu {
-
         .dropdown-item {
             padding: 16px;
             border-bottom: 1px;
@@ -587,9 +576,7 @@ oc-select {
     }
 }
 
-
 .svg-primary {
-
     path {
         fill: $primary;
     }
@@ -609,7 +596,6 @@ oc-select {
     top: -12px !important;
 
     .arrow {
-
         &:before {
             width: 0;
             height: 0;
@@ -621,7 +607,7 @@ oc-select {
         }
 
         &:after {
-            content: "";
+            content: '';
             width: 0;
             height: 0;
             border-left: 3px solid transparent;
@@ -645,11 +631,8 @@ oc-select {
 }
 
 .oc-button {
-
     &_primary {
-
         .oc-button__spinner {
-
             .la-ball-spin {
                 color: $white;
             }
@@ -657,9 +640,7 @@ oc-select {
     }
 
     &_secondary {
-
         .oc-button__spinner {
-
             .la-ball-spin {
                 color: $body-color;
             }
@@ -667,9 +648,7 @@ oc-select {
     }
 
     &_danger {
-
         .oc-button__spinner {
-
             .la-ball-spin {
                 color: $white;
             }
@@ -678,7 +657,6 @@ oc-select {
 }
 
 oc-button.tags__button-add {
-
     & .oc-button {
         min-height: 46px;
         line-height: 19px;
@@ -707,22 +685,26 @@ oc-button.tags__button-add {
         @include font-size-sm;
     }
 }
-.oc-tooltip.bs-tooltip-right, .bs-tooltip-auto[x-placement^="right"] {
+.oc-tooltip.bs-tooltip-right,
+.bs-tooltip-auto[x-placement^='right'] {
     .arrow:before {
         border-right-color: $info;
     }
 }
-.oc-tooltip.bs-tooltip-left, .bs-tooltip-auto[x-placement^="left"] {
+.oc-tooltip.bs-tooltip-left,
+.bs-tooltip-auto[x-placement^='left'] {
     .arrow:before {
         border-left-color: $info;
     }
 }
-.oc-tooltip.bs-tooltip-top, .bs-tooltip-auto[x-placement^="top"] {
+.oc-tooltip.bs-tooltip-top,
+.bs-tooltip-auto[x-placement^='top'] {
     .arrow:before {
         border-top-color: $info;
     }
 }
-.oc-tooltip.bs-tooltip-bottom, .bs-tooltip-auto[x-placement^="bottom"] {
+.oc-tooltip.bs-tooltip-bottom,
+.bs-tooltip-auto[x-placement^='bottom'] {
     .arrow:before {
         border-bottom-color: $info;
     }

@@ -55,6 +55,7 @@
 
         &-link {
             @include font-medium();
+            @include font-size-md();
         }
     }
 }
@@ -105,6 +106,7 @@
         @include font-medium();
         color: $primary;
         cursor: pointer;
+        margin-left: 5px;
 
         &:hover {
             color: $primary;

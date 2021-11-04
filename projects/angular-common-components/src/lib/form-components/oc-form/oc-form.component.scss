@@ -9,39 +9,8 @@
     }
 
     &__content {
-
-        &-responsive {
-            @include media-breakpoint-md() {
-                display: flex;
-            }
-
-            .form-steps__content-progressbar {
-                @include media-breakpoint-md {
-                    flex-basis: 95px;
-                    flex-shrink: 0;
-                    margin-right: 2rem;
-                }
-                @media screen and (max-width: 400px) {
-                    flex-basis: 70px;
-                    margin-right: 1rem;
-                }
-            }
-
-            .form-steps__content-body {
-                @include media-breakpoint-md {
-                    max-width: calc(100% - 127px);
-                    width: 100%;
-                }
-                @media screen and (max-width: 400px) {
-                    max-width: calc(100% - 78px);
-                }
-            }
-        }
-
         &-body {
-
             &-label {
-
                 .tooltip-label__text {
                     @include font-size-lg();
                     @include font-medium();
@@ -85,7 +54,6 @@
         }
 
         .form__button {
-
             & + .form__button {
                 margin-left: 1.5rem;
                 margin-right: 0;

@@ -39,11 +39,11 @@ const app1: FullAppData = {
     developerId: '3dcfdd48ed6b4f9d8b6a3e23deb36249',
     model: [
         {
-        license: 'single',
-        modelId: '5f22dd91b5ad376fff8431a6',
-        price: 0,
-        currency: 'USD',
-        type: 'free',
+            license: 'single',
+            modelId: '5f22dd91b5ad376fff8431a6',
+            price: 0,
+            currency: 'USD',
+            type: 'free',
             trial: 0,
         },
         {
@@ -93,11 +93,11 @@ const app1: FullAppData = {
             developerId: '3dcfdd48ed6b4f9d8b6a3e23deb36249',
             model: [
                 {
-                license: 'single',
-                modelId: '5f22dd91b5ad376fff8431a6',
-                price: 0,
-                currency: 'USD',
-                type: 'free',
+                    license: 'single',
+                    modelId: '5f22dd91b5ad376fff8431a6',
+                    price: 0,
+                    currency: 'USD',
+                    type: 'free',
                     trial: 0,
                 },
             ],
@@ -138,11 +138,11 @@ const app1: FullAppData = {
             developerId: '3dcfdd48ed6b4f9d8b6a3e23deb36249',
             model: [
                 {
-                license: 'single',
-                modelId: '5f22dd91b5ad376fff8431a6',
-                price: 0,
-                currency: 'USD',
-                type: 'free',
+                    license: 'single',
+                    modelId: '5f22dd91b5ad376fff8431a6',
+                    price: 0,
+                    currency: 'USD',
+                    type: 'free',
                     trial: 0,
                 },
             ],
@@ -194,11 +194,11 @@ const app2: FullAppData = {
             trial: 0,
         },
         {
-        license: 'single',
-        modelId: '5f22dd91b5ad376fff8431a6',
+            license: 'single',
+            modelId: '5f22dd91b5ad376fff8431a6',
             price: 15,
             currency: 'EUR',
-        type: 'single',
+            type: 'single',
             trial: 0,
         },
         {

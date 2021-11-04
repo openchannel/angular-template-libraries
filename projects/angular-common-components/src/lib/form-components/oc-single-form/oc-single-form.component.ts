@@ -2,10 +2,12 @@ import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, S
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
-import { AppFormModel } from '../model/app-form-model';
+import { OcFormValidator } from '../oc-form/oc-form-validator';
+import { AppFormModel, defaultFieldsForTrim } from '../model/app-form-model';
 import { ControlUtils, ErrorMessageFormId, OcErrorService } from '@openchannel/angular-common-components/src/lib/common-components';
 import { forIn, set, toPath } from 'lodash';
 import { map, takeUntil } from 'rxjs/operators';
+import { TrimTextUtils } from '../service/trim-text-utils/trim-text.service';
 
 /**
  * Form component. Represents form builder from given config with customization.
@@ -146,9 +148,6 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
     /** Main form group */
     customForm: FormGroup;
 
-    /** Result data from form for submission */
-    formData: any;
-
     private destroy$ = {
         updateFormEvent: new Subject<void>(),
         serverErrorEvent: new Subject<void>(),
@@ -183,7 +182,7 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
         if (this.generatedForm) {
             this.customForm = this.generatedForm;
         } else if (this.formJsonData.fields) {
-            this.customForm = new FormGroup(OcFormGenerator.getFormByConfig(this.formJsonData.fields));
+            this.customForm = new FormGroup(OcFormGenerator.getFormByConfig(this.formJsonData.fields, defaultFieldsForTrim));
         }
         if (this.setFormDirty) {
             this.setDirty();
@@ -200,8 +199,13 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
      */
     sendData(): void {
         if (!this.anotherInvalidResult && !this.process) {
+            // normalize object hierarchy by dots.
+            // Like : { customData.text: value } => {customData: {text: value}}
             let formData: any = {};
             forIn(this.customForm.getRawValue() || {}, (value, key) => (formData = set(formData, key, value)));
+
+            // trim required text fields
+            formData = TrimTextUtils.trimTextFields(formData, this.formJsonData?.fields, defaultFieldsForTrim);
 
             if (this.customForm.valid && this.showButton) {
                 this.formSubmitted.emit(formData);
@@ -267,7 +271,7 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
                 // set new DFA error
                 dfaControl.setErrors({
                     ...(dfaControl.errors || {}),
-                    ...OcFormGenerator.createChildDfaFieldError(this.formJsonData?.fields?.find(field => field.id === controlName)),
+                    ...OcFormValidator.createChildDfaFieldError(this.formJsonData?.fields?.find(field => field.id === controlName)),
                 });
             } else if (dfaControl.errors?.invalidDFAField && dfaControl.valid) {
                 // remove DFA error only when: DFA without server and field errors.

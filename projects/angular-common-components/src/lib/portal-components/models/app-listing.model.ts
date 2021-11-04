@@ -92,7 +92,6 @@ export interface AppListMenuAction {
     isChild?: boolean;
 }
 
-
 // ---- Sorting for app table columns ----
 
 /** Column names for sorting {@link OcAppTableComponent}. */
@@ -108,11 +107,11 @@ export type AppGridSortColumn = 'name' | 'created' | 'status';
  */
 export type AppGridSortOptions = {
     [name in AppGridSortColumn]: 1 | -1 | null;
-}
+};
 
 export type AppGridSortChosen = {
     /** New sort config. */
-    sortOptions: AppGridSortOptions,
+    sortOptions: AppGridSortOptions;
     /** Updated column ID. */
-    changedSortOption: AppGridSortColumn
-}
+    changedSortOption: AppGridSortColumn;
+};

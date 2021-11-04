@@ -9,7 +9,7 @@ import {
     MockSelectComponent,
     MockTooltipComponent,
 } from '@openchannel/angular-common-components/src/mock/mock';
-import { FormControlDirective, FormGroup, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { OcFormGenerator } from '@openchannel/angular-common-components/src/lib/form-components';

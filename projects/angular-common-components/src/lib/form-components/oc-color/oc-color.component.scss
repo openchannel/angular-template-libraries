@@ -22,6 +22,10 @@
         border-left: none;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
+
+        &::placeholder {
+            color: $input-placeholder-color-dark;
+        }
     }
 
     &__picker {
@@ -36,7 +40,7 @@
         color: $body-color;
 
         &:hover {
-            background-color: rgba(201, 213, 234, .11);
+            background-color: rgba(201, 213, 234, 0.11);
         }
 
         &:focus {

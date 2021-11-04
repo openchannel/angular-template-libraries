@@ -1,4 +1,4 @@
-import { Component, Directive, EventEmitter, forwardRef, Input, Output, TemplateRef, Provider } from '@angular/core';
+import { Component, Directive, EventEmitter, forwardRef, Input, Output, TemplateRef, Provider, NgModule } from '@angular/core';
 import {
     AbstractControl,
     AbstractControlDirective,
@@ -160,6 +160,9 @@ export class MockFormComponent {
     @Input() showButton: boolean = true;
     @Input() displayType: FormType = 'page';
     @Input() formId: ErrorMessageFormId;
+    @Input() maxStepsToShow: number = 0;
+    @Input() queryParams: string = '';
+    @Input() enableTextTruncation: boolean = true;
     @Output() readonly formSubmitted = new EventEmitter<any>();
     @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -587,6 +590,9 @@ export class MockNumberComponent implements ControlValueAccessor {
 export class MockProgressbarComponent {
     @Input() progressbarData: FormProgressbarStep[] = [];
     @Input() currentStep: number = 1;
+    @Input() maxStepsToShow: number;
+    @Input() enableTextTruncation: boolean = true;
+    @Output() readonly jumpToStep = new EventEmitter<number>();
 }
 
 @Component({
@@ -645,10 +651,9 @@ export class MockVideoUrlComponent implements ControlValueAccessor {
     ],
 })
 export class MockDateTimeComponent implements ControlValueAccessor {
-    @Input()
-    type: 'datetime' | 'date';
-    @Input()
-    settings: any;
+    @Input() type: 'datetime' | 'date';
+    @Input() placeholder: string;
+    @Input() settings: any;
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
@@ -698,3 +703,26 @@ export const MOCK_PROVIDER_ERROR_MESSAGES: Provider = {
     provide: AbstractErrorMessageConfiguration,
     useValue: new DefaultErrorMessageConfiguration(),
 };
+
+@Component({
+    template: '',
+    selector: 'image-cropper',
+})
+export class ImageCropperComponentMock {
+    @Output() readonly imageCropped = new EventEmitter();
+    @Output() readonly loadImageFailed = new EventEmitter();
+    @Input() containWithinAspectRatio: any;
+    @Input() maintainAspectRatio: any;
+    @Input() aspectRatio: any;
+    @Input() imageChangedEvent: any;
+    @Input() resizeToWidth: any;
+    @Input() resizeToHeight: any;
+    @Input() transform: any;
+}
+
+@NgModule({
+    imports: [],
+    declarations: [ImageCropperComponentMock],
+    exports: [ImageCropperComponentMock],
+})
+export class ImageCropperModuleMock {}

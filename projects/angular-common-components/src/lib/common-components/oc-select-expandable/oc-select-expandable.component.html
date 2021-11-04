@@ -1,20 +1,21 @@
 <div class="select-expandable">
     <nav class="select-expandable__sidebar">
-        <h6 class="select-expandable__heading"
-            (click)="isCollapsed = !isCollapsed">{{title}}
+        <h6 class="select-expandable__heading" (click)="isCollapsed = !isCollapsed">
+            {{ title }}
             <a class="select-expandable__icon">
                 <svg-icon [src]="isCollapsed ? collapsedIcon : expandedIcon" svgClass="svg-primary"></svg-icon>
             </a>
         </h6>
         <ul class="select-expandable__options" [ngbCollapse]="isCollapsed">
             <li class="select-expandable__option" *ngFor="let select of selectModels; index as i">
-                <label for="option{{i + 1}}">
-                    <input class="select-expandable__option-input"
-                           id="option{{i + 1}}"
-                           type="checkbox"
-                           [(ngModel)]="select.checked"
-                           (ngModelChange)="onChange()">
-                    <span class="select-expandable__option-label">{{select.label}}</span>
+                <label for="option{{ i + 1 }}">
+                    <input
+                        class="select-expandable__option-input"
+                        id="option{{ i + 1 }}"
+                        type="checkbox"
+                        [(ngModel)]="select.checked"
+                        (ngModelChange)="onChange()">
+                    <span class="select-expandable__option-label">{{ select.label }}</span>
                 </label>
             </li>
         </ul>

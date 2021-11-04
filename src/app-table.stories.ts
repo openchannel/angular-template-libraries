@@ -2,7 +2,7 @@ import { componentWrapperDecorator, moduleMetadata, Story } from '@storybook/ang
 import {
     AppListing,
     OcPortalComponentsModule,
-    OcAppTableComponent
+    OcAppTableComponent,
 } from '@openchannel/angular-common-components/src/lib/portal-components';
 import { FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 
@@ -13,10 +13,7 @@ const modules = {
 export default {
     title: 'App List [BEM]',
     component: OcAppTableComponent,
-    decorators: [
-        moduleMetadata(modules),
-        componentWrapperDecorator(story => `<div style="max-width: 1110px;">${story}</div>`)
-    ],
+    decorators: [moduleMetadata(modules), componentWrapperDecorator(story => `<div style="max-width: 1110px;">${story}</div>`)],
 };
 
 const ListGridComponent = (args: OcAppTableComponent) => ({
@@ -30,6 +27,23 @@ const statElement = {
     '90day': 10,
     '30day': 20,
     total: 30,
+};
+
+const appWithoutSpacesChildApp: Partial<FullAppData> = {
+    name: '(child)Largeappwordwordwordwordwordwordwordwordwordwordwordwordwordwordword',
+    version: 1.2,
+    created: 1432696823474,
+    customData: {
+        icon: '//d3grfap2l5ikgv.cloudfront.net/5f20f7ff579d1a20c527d847/public/5f255adfb5ad376fff84b6cf.png',
+        summary:
+            '(child)Largeappsummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummary',
+    },
+    status: {
+        value: 'inDevelopment',
+        modifiedBy: 'developer',
+        reason: null,
+        lastUpdated: null,
+    },
 };
 
 const appWithLargeFieldsChildApp: Partial<FullAppData> = {
@@ -67,7 +81,7 @@ const appWithLargeFields: Partial<FullAppData> = {
         lastUpdated: null,
     },
     reviewCount: 25,
-    children: [appWithLargeFieldsChildApp as FullAppData],
+    children: [appWithLargeFieldsChildApp as FullAppData, appWithoutSpacesChildApp as FullAppData],
 };
 
 const app1: FullAppData = {
@@ -411,7 +425,7 @@ AppGrid.args = {
     noAppMessage: 'No Apps Has Been Added Yet',
 };
 
-const CustomAppTableTemplate: Story<OcAppTableComponent> = (args) => ({
+const CustomAppTableTemplate: Story<OcAppTableComponent> = args => ({
     template: `
          <oc-app-table 
          [properties]="properties" 
@@ -443,7 +457,7 @@ const CustomAppTableTemplate: Story<OcAppTableComponent> = (args) => ({
          <ng-template #createdDateRowCell let-ctx >
              <span style="max-height: 48px; display: block; overflow-y: hidden">{{ctx.app.created | date:'M:d:yyyy'}}</span>
          </ng-template>`,
-    props: { ...args }
+    props: { ...args },
 });
 
 export const CustomAppTable = CustomAppTableTemplate.bind({});
@@ -451,9 +465,17 @@ export const CustomAppTable = CustomAppTableTemplate.bind({});
 CustomAppTable.args = {
     properties: propsConfig,
     noAppMessage: 'No Apps Has Been Added Yet',
-    activeColumns: ['left-placeholder', 'create-date', 'name', 'you-custom-review-column', 'you-custom-description-column', 'status', 'app-options', 'right-placeholder']
+    activeColumns: [
+        'left-placeholder',
+        'create-date',
+        'name',
+        'you-custom-review-column',
+        'you-custom-description-column',
+        'status',
+        'app-options',
+        'right-placeholder',
+    ],
 };
-
 
 export const AppGridEmpty = ListGridComponent.bind({});
 

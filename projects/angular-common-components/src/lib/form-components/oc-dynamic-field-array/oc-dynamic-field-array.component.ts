@@ -5,6 +5,7 @@ import { AppTypeFieldModel, ErrorMessageFormId } from '@openchannel/angular-comm
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { FieldValueModel, FormArrayItem, PreviewLabel } from '../model/dynamic-array.model';
+import { defaultFieldsForTrim } from '../model/app-form-model';
 
 /**
  * Dynamic field array component.
@@ -98,7 +99,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy, OnChange
      * Subscribes to all preview field changes.
      */
     addNewArrayItem(): void {
-        const newGroup = new FormGroup(OcFormGenerator.getFormByConfig(this.fieldDefinition.fields));
+        const newGroup = new FormGroup(OcFormGenerator.getFormByConfig(this.fieldDefinition.fields, defaultFieldsForTrim));
         if (this.fieldDefinition.attributes.ordering === 'append') {
             this.formsArrayConfig.push({
                 new: true,

@@ -122,6 +122,6 @@ export class OcSignupCustomComponent {
     }
 
     goToActivationPage(): void {
-        this.router.navigate([this.activationUrl]);
+        this.router.navigate([this.activationUrl]).then();
     }
 }

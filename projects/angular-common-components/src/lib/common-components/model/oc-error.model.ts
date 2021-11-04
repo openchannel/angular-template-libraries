@@ -56,31 +56,31 @@ export type ServerErrorMessagePattern = {
 
 /** Interface for friendly showing a form ID and her fields. */
 export type FormErrorMessagePatterns = {
-    /** Config for component : {@link OcActivationComponent}*/
+    /** Config for component : {@link OcActivationComponent} */
     activation: 'code';
 
-    /** Config for component : {@link OcEditUserFormComponent}*/
+    /** Config for component : {@link OcEditUserFormComponent} */
     editUser: 'terms' | string;
 
-    /** Config for component : {@link OcForgotPasswordComponent}*/
+    /** Config for component : {@link OcForgotPasswordComponent} */
     forgotPassword: 'email';
 
-    /** Config for component : {@link OcLoginComponent}*/
+    /** Config for component : {@link OcLoginComponent} */
     login: 'email' | 'password';
 
-    /** Config for component : {@link OcResendActivationComponent}*/
+    /** Config for component : {@link OcResendActivationComponent} */
     resendActivation: 'email' | 'code';
 
-    /** Config for component : {@link OcResetPasswordComponent}*/
+    /** Config for component : {@link OcResetPasswordComponent} */
     resetPassword: 'newPassword';
 
-    /** Config for component : {@link OcSignupComponent}*/
+    /** Config for component : {@link OcSignupComponent} */
     signup: 'uname' | 'email' | 'company' | 'password' | 'isChecked';
 
-    /** Config for component : {@link OcSignupCustomComponent}*/
+    /** Config for component : {@link OcSignupCustomComponent} */
     signupCustom: 'terms' | string;
 
-    /** Config for component : {@link OcReviewComponent}*/
+    /** Config for component : {@link OcReviewComponent} */
     review: 'rating' | 'headline' | 'description';
 
     /** Your custom form configurations. */
@@ -95,7 +95,7 @@ export interface ErrorMessage {
 
 /** Specific config for updating error message by field path. */
 export interface ErrorMessageByFieldPath<T = string> extends ErrorMessage {
-    /** Path to form field.*/
+    /** Path to form field. */
     fieldPath: T;
 }
 
@@ -275,7 +275,7 @@ export class DefaultErrorMessageConfiguration extends AbstractErrorMessageConfig
                 numberTagsValidator: params => params.fieldTitle + ' can only contain numeric values',
                 passwordValidator: () =>
                     'Password must contain 1 uppercase, 1 lowercase, 1 digit, 1 special char (one of @#$%!^&) and at least 8 characters long',
-                invalidDFAField: (params) => `Please, check all fields inside ${params.fieldDefinition.label || ''}`,
+                invalidDFAField: params => `Please, check all fields inside ${params.fieldDefinition.label || ''}`,
                 ...(fieldValidators || {}),
             },
             {
@@ -320,13 +320,13 @@ export class DefaultErrorMessageConfiguration extends AbstractErrorMessageConfig
 }
 
 export interface ServerErrorModel {
-    field?: string
+    field?: string;
     type?: string;
     code?: string;
-    message?: string
+    message?: string;
 }
 export interface ServerErrorEvent<T extends 'onNewErrors' | 'onRemovedError', V> {
-    type: T,
+    type: T;
     value: V;
 }
 export interface OnNewErrorsEvent extends ServerErrorEvent<'onNewErrors', ServerErrorModel[]> {}

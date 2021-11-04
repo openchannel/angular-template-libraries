@@ -1,7 +1,7 @@
 <div *ngIf="type === 'single-star'" class="oc-rating-single">
     <svg-icon svgClass="oc-rating-single__rating-star" src="assets/angular-common-components/star.svg"></svg-icon>
     <span class="oc-rating-single__label {{ labelClass }}">
-        {{ rating | number: '.1-1' }} ({{ reviewCount }}{{ label ? ' ' + label : '' }})
+        {{ rating | number: ".1-1" }} ({{ reviewCount }}{{ label ? " " + label : "" }})
     </span>
 </div>
 

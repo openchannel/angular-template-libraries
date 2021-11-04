@@ -125,7 +125,7 @@
     }
 }
 
-@mixin form-control($default-border-color: #c9d5ea, $focus-border-color: #537cfd, $placeholder-color: #333) {
+@mixin form-control($default-border-color: #c9d5ea, $focus-border-color: #537cfd, $placeholder-color: #999) {
     border: 1px solid $default-border-color;
     border-radius: 4px;
     font-size: 14px;
@@ -139,7 +139,6 @@
     }
     &::placeholder {
         color: $placeholder-color;
-        opacity: .5;
     }
 }
 
@@ -155,7 +154,8 @@
         border-bottom: 1px solid $info;
         padding: 14px 42px;
     }
-    .dropdown-item:hover, .dropdown-item:focus {
+    .dropdown-item:hover,
+    .dropdown-item:focus {
         background-color: $dropdown-background;
         box-shadow: 0 1px 0 $info;
         color: $primary;
