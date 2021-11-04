@@ -1,20 +1,21 @@
 <div class="dropdown-multi-checkbox">
     <div *ngFor="let item of checkboxItemsArray">
-        <ng-container [ngTemplateOutlet]="dropdownItemNgt"
-                      [ngTemplateOutletContext]="{$implicit: item}"></ng-container>
+        <ng-container [ngTemplateOutlet]="dropdownItemNgt" [ngTemplateOutletContext]="{ $implicit: item }"></ng-container>
     </div>
 </div>
 
 <ng-template #dropdownItemNgt let-item>
     <div [id]="'multi-checkbox-item-' + item.label" class="dropdown-multi-checkbox__group">
         <oc-checkbox
-                [disabled]="disabled"
-                [value]="item.selected"
-                (isCheckedChange)="switchItemStatus(item)"
-                class="dropdown-multi-checkbox__group-checkbox"></oc-checkbox>
+            [disabled]="disabled"
+            [value]="item.selected"
+            (isCheckedChange)="switchItemStatus(item)"
+            class="dropdown-multi-checkbox__group-checkbox"></oc-checkbox>
         <span
-                [id]="'multi-checkbox-item-' + item.label + '-text'"
-                (click)="switchItemStatus(item)"
-                class="dropdown-multi-checkbox__group-text">{{item.label}}</span>
+            [id]="'multi-checkbox-item-' + item.label + '-text'"
+            (click)="switchItemStatus(item)"
+            class="dropdown-multi-checkbox__group-text">
+            {{ item.label }}
+        </span>
     </div>
 </ng-template>

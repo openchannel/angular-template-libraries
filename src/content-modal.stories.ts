@@ -1,6 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
 import { OcCommonLibModule, OcContentModalComponent } from '@openchannel/angular-common-components/src/lib/common-components';
-import { Component } from '@angular/core';
 
 const modules = {
     imports: [OcCommonLibModule],

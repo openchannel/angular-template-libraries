@@ -6,6 +6,3 @@ export interface SiteContentResponse {
     lastUpdated: number;
     customData: any;
 }
-
-
-

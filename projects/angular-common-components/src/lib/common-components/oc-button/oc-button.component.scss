@@ -7,7 +7,7 @@
     min-width: 160px;
     padding: 10px 20px;
     position: relative;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
     width: 100%;
 
     &:focus {
@@ -17,7 +17,7 @@
     }
 
     &:disabled {
-        opacity: .35;
+        opacity: 0.35;
     }
 
     &__text {
@@ -47,7 +47,6 @@
         }
 
         .oc-button__spinner {
-
             .la-ball-spin {
                 color: $white;
             }
@@ -75,7 +74,6 @@
         }
 
         .oc-button__spinner {
-
             .la-ball-spin {
                 color: $button-secondary-color;
             }
@@ -104,7 +102,6 @@
         }
 
         .oc-button__spinner {
-
             .la-ball-spin {
                 color: $white;
             }

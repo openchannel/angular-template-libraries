@@ -1,9 +1,7 @@
 <div class="oc-video">
     <div class="oc-video__content">
         <div *ngIf="showVideoLoader" class="oc-video__loader">
-            <ngx-spinner type="ball-spin" bdColor="" color="black"
-                         [fullScreen]="false" size="small">
-            </ngx-spinner>
+            <ngx-spinner type="ball-spin" bdColor="" color="black" [fullScreen]="false" size="small"></ngx-spinner>
         </div>
         <div *ngIf="!showVideoLoader" class="oc-video__container">
             <div class="oc-video__preview" [innerHTML]="previewData"></div>

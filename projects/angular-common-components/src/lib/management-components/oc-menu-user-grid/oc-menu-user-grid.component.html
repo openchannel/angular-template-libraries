@@ -48,14 +48,14 @@
                         <!-- Date Added -->
                         <td class="user-table__row-td">
                             <div class="user-table__td-row">
-                                <span class="user-table__text">{{ user.created | date: 'M/d/yyyy' }}</span>
+                                <span class="user-table__text">{{ user.created | date: "M/d/yyyy" }}</span>
                             </div>
                         </td>
                         <!-- Role -->
                         <td class="user-table__row-td">
                             <div class="user-table__td-row">
                                 <span class="user-table__text user-table__text_role">
-                                    {{ (user?.roles?.length > 0 ? user.roles[0] : '') | lowercase }}
+                                    {{ (user?.roles?.length > 0 ? user.roles[0] : "") | lowercase }}
                                 </span>
                             </div>
                         </td>
@@ -93,7 +93,7 @@
         <ng-template #appMenuTemplate let-user>
             <div class="user-table__menu">
                 <div ngbDropdown placement="bottom-right top-right">
-                    <img [src]="menuUrl" alt="more-icon" class="user-table__menu-icon-dots" ngbDropdownToggle />
+                    <img [src]="menuUrl" alt="more-icon" class="user-table__menu-icon-dots" ngbDropdownToggle>
                     <div ngbDropdownMenu>
                         <ng-container *ngFor="let menuAction of properties.options">
                             <button (click)="action(menuAction, user.data)" ngbDropdownItem [ngClass]="'menu-' + menuAction | lowercase">

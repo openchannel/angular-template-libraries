@@ -1,11 +1,10 @@
 import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
-import { HeadingTag } from '../interfaces/heading-tag.interface';
+import { HeadingTag } from '../model/heading-tag.interface';
 
 @Directive({
     selector: '[headingTag]',
 })
 export class HeadingTagDirective implements OnChanges {
-
     @Input() headingTag: HeadingTag;
 
     @Input() set headingTagContent(content: string) {

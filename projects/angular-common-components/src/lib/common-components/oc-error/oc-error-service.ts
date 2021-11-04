@@ -10,13 +10,13 @@ import { remove } from 'lodash';
 export class OcErrorService {
     serverErrorList: ServerErrorModel[] = [];
 
-    public readonly serverErrorEvent = new Subject<OnNewErrorsEvent | OnRemoveErrorEvent>();
+    readonly serverErrorEvent = new Subject<OnNewErrorsEvent | OnRemoveErrorEvent>();
 
     setServerErrorList(messages: any): void {
         this.serverErrorList = messages;
         this.serverErrorEvent.next({
             type: 'onNewErrors',
-            value: this.serverErrorList
+            value: this.serverErrorList,
         });
     }
 
