@@ -3,7 +3,7 @@ import {
     ChartLayoutTypeModel,
     ChartStatisticAppModel,
     OcChartComponent,
-    OcCommonLibModule
+    OcCommonLibModule,
 } from 'projects/angular-common-components/src/public-api';
 import { sum } from 'lodash';
 import { NgModule } from '@angular/core';

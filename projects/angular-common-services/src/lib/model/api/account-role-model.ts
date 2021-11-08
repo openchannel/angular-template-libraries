@@ -1,15 +1,15 @@
 export interface RoleResponse {
-  created: number;
-  lastUpdated: number;
-  name: string;
-  permissions?: string[];
-  systemDefined: boolean;
+    created: number;
+    lastUpdated: number;
+    name: string;
+    permissions?: string[];
+    systemDefined: boolean;
 }
 
 export interface DeveloperRoleResponse extends RoleResponse {
-  developerRoleId: string;
+    developerRoleId: string;
 }
 
 export interface UserRoleResponse extends RoleResponse {
-  userRoleId: string;
+    userRoleId: string;
 }

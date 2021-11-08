@@ -16,7 +16,6 @@
     }
 
     .info-card__dropdown {
-
         &_desktop {
             display: block;
             @include media-breakpoint-sm {

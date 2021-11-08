@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { OcInitialsComponent } from './oc-initials.component';
 import { By } from '@angular/platform-browser';
 
-
 describe('OcInitialsComponent', () => {
     let component: OcInitialsComponent;
     let fixture: ComponentFixture<OcInitialsComponent>;
@@ -61,7 +60,6 @@ describe('OcInitialsComponent', () => {
         expect(initialComponent !== null).toBeTruthy();
         expect(initialComponent.nativeElement.textContent).toBe('FC');
     });
-
 
     it('set image when text is empty', () => {
         component.primaryInitialType = 'name';

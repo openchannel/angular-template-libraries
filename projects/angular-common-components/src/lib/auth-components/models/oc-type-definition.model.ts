@@ -3,7 +3,7 @@
  * This model is deprecated and will be removed in the next releases.
  * Use the {@link #AppFormModel} instead.
  */
-export interface TypeModel<T extends TypeFieldModel> { //NOSONAR
+export interface TypeModel<T extends TypeFieldModel> {
     fields?: T[];
 }
 

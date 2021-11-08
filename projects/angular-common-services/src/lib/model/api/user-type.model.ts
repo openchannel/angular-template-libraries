@@ -19,11 +19,11 @@ export interface UserTypeFieldModel {
     type: string;
     attributes?: any;
     description?: string;
-    fields?: UserTypeFieldModel [];
-    subFieldDefinitions?: UserTypeFieldModel [];
+    fields?: UserTypeFieldModel[];
+    subFieldDefinitions?: UserTypeFieldModel[];
     defaultValue?: any;
     placeholder?: string;
-    options?: UserTypeOptionModal [] | string [];
+    options?: UserTypeOptionModal[] | string[];
     specialType?: string;
 }
 

@@ -1,3 +1,13 @@
+## Release notes - angular-template-libraries - Version 2.42.0 (11/8/2021)<br>
+### Bug<br>
+AT-1586 - Need to update files of the projects with a prettier<br>
+AT-1577 - [UI] The Datepicker changing position each time when clicking on any component's elenemt<br>
+### Story<br>
+AT-1328 - A developer can edit an app even if the app type is not found<br>
+### Bug<br>
+AT-1116 - [Portal][Homepage] Become a partner  button should redirect user to Portal Sign up page.<br>
+AT-1111 - [Portal / Market][User Management][Invite a member] Need to click two times to close the Model.<br>
+AT-752 - [Edit App Type] When there are no App Type available then proper message is not showing.<br>
 ## Release notes - angular-template-libraries - Version 2.41.0 (11/2/2021)<br>
 ### Story<br>
 AT-1405 - A developer is able to query order for their apps from CAP<br>

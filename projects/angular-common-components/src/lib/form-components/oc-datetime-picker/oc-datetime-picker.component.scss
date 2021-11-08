@@ -6,11 +6,18 @@
 
     &__input {
         outline: none;
+        display: block;
 
         &-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        &.dropdown-toggle[aria-expanded='true'],
+        &.dropdown-toggle[aria-expanded='false'] {
+            &:after {
+                display: none;
+            }
         }
 
         &::after {
@@ -37,7 +44,7 @@
 
     &__dropdown {
         padding: 0;
-        margin-top: 2.5rem;
+        margin: 1rem 0;
         user-select: none;
 
         &-popover {

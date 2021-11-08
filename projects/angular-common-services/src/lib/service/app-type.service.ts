@@ -5,6 +5,7 @@ import { AppTypeModelResponse } from '../model/api/app-type-model';
 import { QueryUtil } from '../util/query.util';
 import { Page } from '../model/api/page.model';
 import { OcApiPaths } from '../oc-ng-common-service.module';
+import { HttpHeaders } from '@angular/common/http';
 
 /**
  * Description: API service for getting App Type model.<br>
@@ -25,16 +26,16 @@ export class AppTypeService {
      * Description: Get app type by id
      *
      * @param {string} appTypeId - (required)
+     * @param {HttpHeaders} headers (optional) (default: empty HttpHeaders object)
      * @returns {Observable<AppTypeModelResponse>} Observable<AppTypeModelResponse>
-     *
      * ### Example
-     *``
+     * ``
      * getOneAppType('3v874hy98374vr93');
-     *``
+     * ``
      */
-    getOneAppType(appTypeId: string): Observable<AppTypeModelResponse> {
+    getOneAppType(appTypeId: string, headers: HttpHeaders = new HttpHeaders()): Observable<AppTypeModelResponse> {
         const mainUrl = `${this.apiPaths.appTypes}/${appTypeId}`;
-        return this.httpRequest.get(encodeURI(mainUrl));
+        return this.httpRequest.get(encodeURI(mainUrl), { headers });
     }
     /**
      *
@@ -45,9 +46,9 @@ export class AppTypeService {
      * @returns {Observable<Page<AppTypeModelResponse>>} Observable<Page<AppTypeModelResponse>>
      *
      * ### Example
-     *``
+     * ``
      * getAppTypes(1,10);
-     *``
+     * ``
      */
     getAppTypes(pageNumber: number, pageLimit: number): Observable<Page<AppTypeModelResponse>> {
         const mainUrl = `${this.apiPaths.appTypes}?${QueryUtil.getPaginationQuery(pageNumber, pageLimit)}`;

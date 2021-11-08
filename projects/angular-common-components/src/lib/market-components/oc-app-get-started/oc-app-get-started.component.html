@@ -1,25 +1,20 @@
 <div class="get-started" *ngIf="getStartedType == 'home'">
     <div class="get-started__logo">
-        <img [src]="getStartedImage" alt="featured-logo" class="get-started__logo-image">
+        <img [src]="getStartedImage" alt="featured-logo" class="get-started__logo-image" />
     </div>
     <div class="get-started__info">
         <h3 [headingTag]="getStartedHeadingTag" [headingTagContent]="getStartedHeader" class="get-started__info-heading"></h3>
-        <p class="get-started__info-desc">{{getStartedDescription}}</p>
-        <oc-button class="get-started__button"
-                   (click)="listAppGetStarted()"
-                   [text]="getStartedButtonText"
-                   type="primary">
-        </oc-button>
+        <p class="get-started__info-desc">{{ getStartedDescription }}</p>
+        <oc-button class="get-started__button" (click)="listAppGetStarted()" [text]="getStartedButtonText" type="primary"></oc-button>
     </div>
 </div>
-<div class="get-started get-started_search"
-     *ngIf="getStartedType == 'search'">
-    <h1>{{getStartedHeader}}</h1>
+<div class="get-started get-started_search" *ngIf="getStartedType == 'search'">
+    <h1>{{ getStartedHeader }}</h1>
     <div class="get-started_search__button">
-        <oc-button class="get-started__button-wrapper"
-                   type="primary"
-                   (click)="listAppGetStarted()"
-                   [text]="getStartedButtonText">
-        </oc-button>
+        <oc-button
+            class="get-started__button-wrapper"
+            type="primary"
+            (click)="listAppGetStarted()"
+            [text]="getStartedButtonText"></oc-button>
     </div>
 </div>

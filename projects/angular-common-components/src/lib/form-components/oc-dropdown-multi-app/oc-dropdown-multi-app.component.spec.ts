@@ -5,7 +5,6 @@ import { MockDropboxComponent, MockInitialsComponent, MockTagComponent } from '@
 import { AppsSearchService } from '@openchannel/angular-common-components/src/lib/form-components';
 import { FullAppData } from '../../common-components/model/app-data.model';
 import { Observable, of } from 'rxjs';
-import { Input, TemplateRef } from '@angular/core';
 
 const mockApps: Partial<FullAppData>[] = [
     {
