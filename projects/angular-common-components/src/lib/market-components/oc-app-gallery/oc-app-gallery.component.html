@@ -1,24 +1,19 @@
 <div class="gallery">
     <div class="gallery__header">
-        <h2 [headingTag]="headingTag" class="gallery__header-top">{{appGalleryTitle}}</h2>
-        <p class="gallery__header-description" id="description">{{appGalleryDescription}}</p>
+        <h2 [headingTag]="headingTag" class="gallery__header-top">{{ appGalleryTitle }}</h2>
+        <p class="gallery__header-description" id="description">{{ appGalleryDescription }}</p>
     </div>
-    <div class="gallery__content"
-         *ngIf="appsArr && appsArr.length > 0; else emptyData">
-        <div class="gallery__content-card"
-             *ngFor="let app of appsArr;" (click)="clickAppCard.emit(app)">
-                <ng-container [ngTemplateOutlet]="customAppCardTemplate? customAppCardTemplate : defaultCard"
-                              [ngTemplateOutletContext]="{$implicit: app}"></ng-container>
+    <div class="gallery__content" *ngIf="appsArr && appsArr.length > 0; else emptyData">
+        <div class="gallery__content-card" *ngFor="let app of appsArr" (click)="clickAppCard.emit(app)">
+            <ng-container
+                [ngTemplateOutlet]="customAppCardTemplate ? customAppCardTemplate : defaultCard"
+                [ngTemplateOutletContext]="{ $implicit: app }"></ng-container>
         </div>
         <div class="gallery__content-more">
-            <a class="gallery__content-link" id="seeAllLink"
-               *ngIf="moreAppsTitle && !seeAllUrl"
-               (click)="clickMoreApps.emit()">
+            <a class="gallery__content-link" id="seeAllLink" *ngIf="moreAppsTitle && !seeAllUrl" (click)="clickMoreApps.emit()">
                 <ng-container *ngTemplateOutlet="seeAllLink"></ng-container>
             </a>
-            <a class="gallery__content-link" id="seeAllLinkRouter"
-               *ngIf="moreAppsTitle && seeAllUrl"
-               [routerLink]="seeAllUrl">
+            <a class="gallery__content-link" id="seeAllLinkRouter" *ngIf="moreAppsTitle && seeAllUrl" [routerLink]="seeAllUrl">
                 <ng-container *ngTemplateOutlet="seeAllLink"></ng-container>
             </a>
         </div>
@@ -27,7 +22,7 @@
 
 <ng-template #emptyData>
     <div class="gallery__no-content">
-        <h5 class="gallery__no-content-text">{{noAppMessage}}</h5>
+        <h5 class="gallery__no-content-text">{{ noAppMessage }}</h5>
     </div>
 </ng-template>
 
@@ -38,6 +33,6 @@
 </ng-template>
 
 <ng-template #seeAllLink>
-    <span class="gallery__content-link-text">{{moreAppsTitle}}</span>
+    <span class="gallery__content-link-text">{{ moreAppsTitle }}</span>
     <svg-icon svgClass="gallery__content-link-icon" [src]="routerIcon"></svg-icon>
 </ng-template>

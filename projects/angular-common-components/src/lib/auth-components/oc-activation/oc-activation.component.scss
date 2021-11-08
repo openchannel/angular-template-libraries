@@ -59,5 +59,6 @@
     &__link {
         @include font-size-md();
         @include font-medium();
+        margin-left: 1rem;
     }
 }

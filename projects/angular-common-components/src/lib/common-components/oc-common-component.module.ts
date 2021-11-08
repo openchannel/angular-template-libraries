@@ -137,6 +137,7 @@ import { GetTextByPathPipe } from './pipe/get-text-by-path.pipe';
         OcRadioButtonComponent,
         OcInitialsComponent,
         OcFullImageGalleryViewModalComponent,
+        OnlyNumberDirective,
     ],
     providers: [NgbActiveModal],
 })

@@ -1,4 +1,3 @@
-
 export class FileDetailsResponse {
     fileId: string;
     fileUrl: string;

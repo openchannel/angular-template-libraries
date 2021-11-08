@@ -154,7 +154,8 @@
         border-bottom: 1px solid $info;
         padding: 14px 42px;
     }
-    .dropdown-item:hover, .dropdown-item:focus {
+    .dropdown-item:hover,
+    .dropdown-item:focus {
         background-color: $dropdown-background;
         box-shadow: 0 1px 0 $info;
         color: $primary;

@@ -2,7 +2,6 @@ import { OcFormValidator } from './oc-form-validator';
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 
 describe('OcFormValidator', () => {
-
     it('[Required] validator with empty objects.', () => {
         expect(setValidatorAndValidate(new FormControl(null), OcFormValidator.required(null, false))).toBe(false);
         expect(setValidatorAndValidate(new FormControl(''), OcFormValidator.required(null, false))).toBe(false);
@@ -60,7 +59,9 @@ describe('OcFormValidator', () => {
 
     it('[Rich text min characters] validator with trimming.', () => {
         expect(setValidatorAndValidate(new FormControl('<a> 123 <a>'), OcFormValidator.richTextMinCharactersValidator(3, true))).toBe(true);
-        expect(setValidatorAndValidate(new FormControl('<a> 1234 <a>'), OcFormValidator.richTextMinCharactersValidator(3, true))).toBe(true);
+        expect(setValidatorAndValidate(new FormControl('<a> 1234 <a>'), OcFormValidator.richTextMinCharactersValidator(3, true))).toBe(
+            true,
+        );
         // Note: Removed all tags and spaces. Valid, because used with 'required' validator
         expect(setValidatorAndValidate(new FormControl(null), OcFormValidator.richTextMinCharactersValidator(3, true))).toBe(true);
         expect(setValidatorAndValidate(new FormControl('<a>    <a>'), OcFormValidator.richTextMinCharactersValidator(3, true))).toBe(true);
@@ -69,8 +70,12 @@ describe('OcFormValidator', () => {
     it('[Rich text max characters] validator without trimming.', () => {
         expect(setValidatorAndValidate(new FormControl('<a>123<a>'), OcFormValidator.richTextMaxCharactersValidator(3, false))).toBe(true);
         expect(setValidatorAndValidate(new FormControl('<a>   <a>'), OcFormValidator.richTextMaxCharactersValidator(3, false))).toBe(true);
-        expect(setValidatorAndValidate(new FormControl('<a>1234<a>'), OcFormValidator.richTextMaxCharactersValidator(3, false))).toBe(false);
-        expect(setValidatorAndValidate(new FormControl('<a>    <a>'), OcFormValidator.richTextMaxCharactersValidator(3, false))).toBe(false);
+        expect(setValidatorAndValidate(new FormControl('<a>1234<a>'), OcFormValidator.richTextMaxCharactersValidator(3, false))).toBe(
+            false,
+        );
+        expect(setValidatorAndValidate(new FormControl('<a>    <a>'), OcFormValidator.richTextMaxCharactersValidator(3, false))).toBe(
+            false,
+        );
 
         // Note: Removed all tags and spaces. Valid, because used with 'required' validator
         expect(setValidatorAndValidate(new FormControl(null), OcFormValidator.richTextMaxCharactersValidator(3, false))).toBe(true);
@@ -79,7 +84,9 @@ describe('OcFormValidator', () => {
     it('[Rich text max characters] validator with trimming.', () => {
         expect(setValidatorAndValidate(new FormControl('<a>123<a>'), OcFormValidator.richTextMaxCharactersValidator(3, true))).toBe(true);
         expect(setValidatorAndValidate(new FormControl('<a>1234<a>'), OcFormValidator.richTextMaxCharactersValidator(3, true))).toBe(false);
-        expect(setValidatorAndValidate(new FormControl('<a>  123  <a>'), OcFormValidator.richTextMaxCharactersValidator(3, true))).toBe(true);
+        expect(setValidatorAndValidate(new FormControl('<a>  123  <a>'), OcFormValidator.richTextMaxCharactersValidator(3, true))).toBe(
+            true,
+        );
 
         // Note: Removed all tags and spaces. Valid, because used with 'required' validator
         expect(setValidatorAndValidate(new FormControl(null), OcFormValidator.richTextMaxCharactersValidator(3, true))).toBe(true);

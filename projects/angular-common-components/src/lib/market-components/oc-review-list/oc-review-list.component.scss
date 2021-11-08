@@ -29,7 +29,6 @@
     }
 
     &__options {
-
         .dropdown-menu {
             @include oc-dropdown-menu($primary, $info);
             width: auto;
