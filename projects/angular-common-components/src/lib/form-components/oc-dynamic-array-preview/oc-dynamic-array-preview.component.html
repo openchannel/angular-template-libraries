@@ -120,7 +120,7 @@
 <ng-template #ngtImages let-field>
     <div *ngIf="field?.fieldValue?.length > 0" class="array-preview__field-content__image-multi">
         <div class="array-preview__field-content__image-multi-container" *ngFor="let image of field.fieldValue">
-            <img class="array-preview__field-content__image-multi-item" [src]="image" alt="image">
+            <img class="array-preview__field-content__image-multi-item" [src]="image" alt="image" />
         </div>
     </div>
 </ng-template>
@@ -128,12 +128,12 @@
 <!-- Single image template-->
 <ng-template #ngtSingleImage let-field>
     <div class="array-preview__field-content__image-mono">
-        <img *ngIf="field.fieldValue" [src]="field.fieldValue" class="array-preview__field-content__image-mono-item" alt="image">
+        <img *ngIf="field.fieldValue" [src]="field.fieldValue" class="array-preview__field-content__image-mono-item" alt="image" />
     </div>
 </ng-template>
 
 <ng-template #ngtCheckbox let-field>
-    <span class="array-preview__field-content__text">{{ field.fieldValue ? "Yes" : "No" }}</span>
+    <span class="array-preview__field-content__text">{{ field.fieldValue ? 'Yes' : 'No' }}</span>
 </ng-template>
 
 <ng-template #ngtColor let-field>
@@ -147,11 +147,11 @@
 </ng-template>
 
 <ng-template #ngtDate let-field>
-    <span class="array-preview__field-content__text">{{ field.fieldValue | date: "mediumDate" }}</span>
+    <span class="array-preview__field-content__text">{{ field.fieldValue | date: 'mediumDate' }}</span>
 </ng-template>
 
 <ng-template #ngtDateTime let-field>
-    <span class="array-preview__field-content__text">{{ field.fieldValue | date: "MMM d, y HH:MM" }}</span>
+    <span class="array-preview__field-content__text">{{ field.fieldValue | date: 'MMM d, y HH:MM' }}</span>
 </ng-template>
 
 <ng-template #ngtSingleFile let-field>
@@ -172,7 +172,7 @@
 
 <ng-template #singleFileTemplate let-fileName>
     <div class="array-preview__field-content__file-single">
-        <img class="array-preview__field-content__file-single-icon" src="assets/angular-common-components/file_icon.svg" alt="file image">
+        <img class="array-preview__field-content__file-single-icon" src="assets/angular-common-components/file_icon.svg" alt="file image" />
         <span class="array-preview__field-content__file-single-title">{{ fileName }}</span>
     </div>
 </ng-template>
