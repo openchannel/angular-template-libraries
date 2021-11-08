@@ -5,10 +5,7 @@ import { forkJoin, Observable, of, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { isArray } from 'rxjs/internal-compatibility';
 import { FileDetails, FileUploaderService } from '../model/file.model';
-import {
-    AppTypeFieldModel,
-    ErrorMessageFormId
-} from '@openchannel/angular-common-components/src/lib/common-components';
+import { AppTypeFieldModel, ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
 import { difference } from 'lodash';
 import { VIDEO_URL_REGEX } from '../model/utils.model';
 /**
@@ -77,7 +74,12 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
      * Checks component changes and dynamically updates fields data.
      */
     ngOnChanges(changes: SimpleChanges): void {
-        if (this.previewDFAMode && changes.fieldValues && difference(changes.fieldValues.currentValue, changes.fieldValues.previousValue)?.length > 0  && this.dfaForm) {
+        if (
+            this.previewDFAMode &&
+            changes.fieldValues &&
+            difference(changes.fieldValues.currentValue, changes.fieldValues.previousValue)?.length > 0 &&
+            this.dfaForm
+        ) {
             this.buildFieldsData();
         }
     }

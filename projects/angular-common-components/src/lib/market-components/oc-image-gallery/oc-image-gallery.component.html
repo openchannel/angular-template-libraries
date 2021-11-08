@@ -1,47 +1,47 @@
 <div class="image-gallery" [class.image-gallery_paddings]="allowArrowControllers">
     <!--    Carousel    -->
     <ng-container *ngIf="allowArrowControllers">
-        <div class="image-gallery__carousel-nav image-gallery__carousel-nav-left"
-             id="iconLeft"
-             [class.image-gallery__carousel-nav_image-only]="!displayDetails"
-             (click)="carousel.prev()">
-            <img [src]="componentIconsPath.arrowLeft" alt="previous slide">
+        <div
+            class="image-gallery__carousel-nav image-gallery__carousel-nav-left"
+            id="iconLeft"
+            [class.image-gallery__carousel-nav_image-only]="!displayDetails"
+            (click)="carousel.prev()">
+            <img [src]="componentIconsPath.arrowLeft" alt="previous slide" />
         </div>
         <owl-carousel-o [options]="carouselOptions" #carousel>
             <ng-template carouselSlide *ngFor="let item of displayGallery; index as i">
-                    <ng-container [ngTemplateOutlet]="itemMedia" [ngTemplateOutletContext]="{$implicit: {data: item, index: i}}"></ng-container>
+                <ng-container
+                    [ngTemplateOutlet]="itemMedia"
+                    [ngTemplateOutletContext]="{ $implicit: { data: item, index: i } }"></ng-container>
             </ng-template>
         </owl-carousel-o>
-        <div class="image-gallery__carousel-nav image-gallery__carousel-nav-right"
-             id="iconRight"
-             [class.image-gallery__carousel-nav_image-only]="!displayDetails"
-             (click)="carousel.next()">
-            <img [src]="componentIconsPath.arrowRight" alt="next slide">
+        <div
+            class="image-gallery__carousel-nav image-gallery__carousel-nav-right"
+            id="iconRight"
+            [class.image-gallery__carousel-nav_image-only]="!displayDetails"
+            (click)="carousel.next()">
+            <img [src]="componentIconsPath.arrowRight" alt="next slide" />
         </div>
     </ng-container>
     <!--    Grid Gallery    -->
     <ng-container *ngIf="!allowArrowControllers">
-        <ng-container *ngFor="let item of displayGallery; index as i"
-                      [ngTemplateOutlet]="itemMedia"
-                      [ngTemplateOutletContext]="{$implicit: {data: item, index: i}}"></ng-container>
+        <ng-container
+            *ngFor="let item of displayGallery; index as i"
+            [ngTemplateOutlet]="itemMedia"
+            [ngTemplateOutletContext]="{ $implicit: { data: item, index: i } }"></ng-container>
     </ng-container>
 </div>
 
 <!--    Template for the Gallery Item    -->
 <ng-template #itemMedia let-item>
-    <div class="image-gallery__item"
-         [class.image-gallery__item_clickable]="expandOnClick" (click)="openMediaModal(item.index)">
-        <div class="image-gallery__item-media"
-             [style.width]="mediaDimensions.width"
-             [style.height]="mediaDimensions.height">
-            <img [src]="item.data.image" *ngIf="item.data.image"
-                 alt="icon" class="image-gallery__item-image">
-            <oc-video [videoUrl]="item.data.video" *ngIf="item.data.video && !item.data.image"
-                      class="image-gallery__item-video"></oc-video>
+    <div class="image-gallery__item" [class.image-gallery__item_clickable]="expandOnClick" (click)="openMediaModal(item.index)">
+        <div class="image-gallery__item-media" [style.width]="mediaDimensions.width" [style.height]="mediaDimensions.height">
+            <img [src]="item.data.image" *ngIf="item.data.image" alt="icon" class="image-gallery__item-image">
+            <oc-video [videoUrl]="item.data.video" *ngIf="item.data.video && !item.data.image" class="image-gallery__item-video"></oc-video>
         </div>
         <div class="image-gallery__item-details" *ngIf="displayDetails">
-            <p class="image-gallery__item-title">{{item.data.title}}</p>
-            <span class="image-gallery__item-description">{{item.data.description}}</span>
+            <p class="image-gallery__item-title">{{ item.data.title }}</p>
+            <span class="image-gallery__item-description">{{ item.data.description }}</span>
         </div>
     </div>
 </ng-template>

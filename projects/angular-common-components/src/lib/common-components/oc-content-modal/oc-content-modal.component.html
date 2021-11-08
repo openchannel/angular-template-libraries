@@ -1,21 +1,16 @@
 <div class="content-modal" [class.content-modal_long-content]="hasLongContent" #contentModal>
     <div class="content-modal__header">
         <div class="content-modal__header-close">
-            <svg-icon class="content-modal__header-close-icon" src="{{closeIconSource}}"
-                      (click)="dismiss()"></svg-icon>
+            <svg-icon class="content-modal__header-close-icon" src="{{ closeIconSource }}" (click)="dismiss()"></svg-icon>
         </div>
-        <h3 class="content-modal__header-title" *ngIf="modalTitle">{{modalTitle}}</h3>
+        <h3 class="content-modal__header-title" *ngIf="modalTitle">{{ modalTitle }}</h3>
     </div>
     <div class="content-modal__body">
-        <ng-template *ngIf="customContentTemplate"
-                     [ngTemplateOutlet]="customContentTemplate"></ng-template>
+        <ng-template *ngIf="customContentTemplate" [ngTemplateOutlet]="customContentTemplate"></ng-template>
     </div>
     <div class="content-modal__buttons">
-        <div class="content-modal__buttons-close"
-             *ngIf="closeButton"
-             (click)="dismiss()">
-            <oc-button [text]="'Close'"
-                       type="primary"></oc-button>
+        <div class="content-modal__buttons-close" *ngIf="closeButton" (click)="dismiss()">
+            <oc-button [text]="'Close'" type="primary"></oc-button>
         </div>
     </div>
 </div>

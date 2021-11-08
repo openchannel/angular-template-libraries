@@ -158,7 +158,7 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
      * Returns mappedValues filtered with the tags which are currently not in the result tags list.
      */
     findAvailableDropBoxTags(): string[] | number[] | boolean[] {
-        if(!this.availableTags) {
+        if (!this.availableTags) {
             return [];
         }
         let mappedValues: any[] = this.availableTags;
@@ -209,6 +209,7 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
      */
     writeValue(obj: any): void {
         if (obj && obj.length > 0) {
+            // tslint:disable-next-line:prefer-conditional-expression
             if (this.tagsType === 'number' || this.tagsType === 'boolean') {
                 this.resultTags = obj;
             } else {

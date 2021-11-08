@@ -49,6 +49,7 @@
     }
 
     &__button {
+        display: block;
         @include media-breakpoint-sm {
             width: 100%;
             &:last-child {
