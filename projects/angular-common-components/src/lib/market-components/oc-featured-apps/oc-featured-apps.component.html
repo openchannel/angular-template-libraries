@@ -1,31 +1,31 @@
 <div class="featured-apps">
     <div class="featured-apps__heading">
-        <h2 [headingTag]="headingTag" class="featured-apps__heading-text">{{label}}</h2>
+        <h2 [headingTag]="headingTag" class="featured-apps__heading-text">{{ label }}</h2>
     </div>
-    <div class="featured-apps__container"
-         *ngIf="data && data.length > 0; else emptyData"
+    <div class="featured-apps__container" *ngIf="data && data.length > 0; else emptyData"
          [class.featured-apps__container_justify-start]="data.length < 4">
-        <div class="featured-apps__card-wrapper" *ngFor="let app of data;" (click)="this.clickByAppCard.emit(app)">
+        <div class="featured-apps__card-wrapper" *ngFor="let app of data" (click)="this.clickByAppCard.emit(app)">
             <ng-container
-                    [ngTemplateOutlet]="customFeaturedAppCardTemplate ? customFeaturedAppCardTemplate : defaultFeatureAppCard"
-                    [ngTemplateOutletContext]="{$implicit: app}">
-            </ng-container>
+                [ngTemplateOutlet]="customFeaturedAppCardTemplate ? customFeaturedAppCardTemplate : defaultFeatureAppCard"
+                [ngTemplateOutletContext]="{ $implicit: app }"></ng-container>
         </div>
     </div>
 </div>
 
 <ng-template #emptyData>
-    <h3>{{emptyDataMessage}}</h3>
+    <h3>{{ emptyDataMessage }}</h3>
 </ng-template>
 
 <ng-template #defaultFeatureAppCard let-app>
     <a class="featured-apps__card" [routerLink]="[mainRouterLink, getAppValueByParameter(app)]">
-        <div class="featured-apps__card-body {{customClasses}}">
+        <div class="featured-apps__card-body {{ customClasses }}">
             <div class="featured-apps__card-img">
-                <img *ngIf="app.icon" src="{{app.icon}}" [alt]="app.name || 'app-logo'">
+                <img *ngIf="app.icon" src="{{ app.icon }}" [alt]="app.name || 'app-logo'">
             </div>
-            <h3 [headingTag]="appHeadingTag" class="featured-apps__card-name" ellipsis>{{app.name}}</h3>
-            <span class="featured-apps__card-description" ellipsis>{{(app.summary ? app.summary : app.description) | replaceHtmlTags}}</span>
+            <h3 [headingTag]="appHeadingTag" class="featured-apps__card-name" ellipsis>{{ app.name }}</h3>
+            <span class="featured-apps__card-description" ellipsis>
+                {{ (app.summary ? app.summary : app.description) | replaceHtmlTags }}
+            </span>
         </div>
     </a>
 </ng-template>

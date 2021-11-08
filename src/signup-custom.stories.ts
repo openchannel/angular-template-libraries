@@ -30,8 +30,7 @@ import { AppFormModel } from '@openchannel/angular-common-components/src/lib/for
                 [formConfigsLoading]="formConfigsLoading"
                 [formConfigs]="formConfigs"
                 [defaultTypeLabelText]="defaultTypeLabelText"
-                [customTermsDescription]="enableCustomTerms ? customTerms : null"
-            ></oc-signup-custom>
+                [customTermsDescription]="enableCustomTerms ? customTerms : null"></oc-signup-custom>
             <ng-template #customTerms let-ctx>
                 <div class="edit-user-form__consent__label">
                     Custom

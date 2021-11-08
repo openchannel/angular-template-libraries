@@ -20,11 +20,7 @@ describe('TrimTextUtils', () => {
     });
 
     it('Trim simple fields [richText, text]', () => {
-        expect(TrimTextUtils.trimTextFields(
-            createSimpleData(),
-            createSimpleFields() as AppTypeFieldModel[],
-            trimFields))
-        .toEqual({
+        expect(TrimTextUtils.trimTextFields(createSimpleData(), createSimpleFields() as AppFormField[], trimFields)).toEqual({
             ...createSimpleData(),
             textKey: 'textValue',
             richTextKey: '<a>richTextValue</a>',
@@ -34,11 +30,7 @@ describe('TrimTextUtils', () => {
     it('Skip simple fields [richText]', () => {
         const newTrimFields = trimFields.filter(f => f !== 'richText');
 
-        expect(TrimTextUtils.trimTextFields(
-            createSimpleData(),
-            createSimpleFields() as AppTypeFieldModel[],
-            newTrimFields))
-        .toEqual({
+        expect(TrimTextUtils.trimTextFields(createSimpleData(), createSimpleFields() as AppFormField[], newTrimFields)).toEqual({
             ...createSimpleData(),
             textKey: 'textValue',
         });
@@ -74,6 +66,27 @@ describe('TrimTextUtils', () => {
                     ],
                 },
             ],
+        });
+    });
+
+    it('Trim and update the URL text', () => {
+        expect(
+            TrimTextUtils.trimTextFields(
+                {
+                    emptyUrl: '',
+                    urlKey: ' test-site.com ',
+                    spacedUrl: ' http://test-site.com ',
+                },
+                [
+                    { id: 'urlKey', type: 'websiteUrl' },
+                    { id: 'spacedUrl', type: 'websiteUrl' },
+                ] as AppFormField[],
+                ['websiteUrl'],
+            ),
+        ).toEqual({
+            emptyUrl: '',
+            urlKey: 'https://test-site.com',
+            spacedUrl: 'http://test-site.com',
         });
     });
 

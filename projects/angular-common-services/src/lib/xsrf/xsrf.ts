@@ -57,10 +57,9 @@ export class HttpXsrfInterceptor implements HttpInterceptor {
 }
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class MemoryStorageService implements OnDestroy {
-
     private xsrfToken: string;
 
     constructor() {

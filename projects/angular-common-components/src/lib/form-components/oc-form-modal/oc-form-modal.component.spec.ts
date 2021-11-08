@@ -2,34 +2,9 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { OcFormModalComponent } from './oc-form-modal.component';
 import { By } from '@angular/platform-browser';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { MockSvgIconComponent } from '@openchannel/angular-common-components/src/mock/mock';
-import { ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
+import { MockFormComponent, MockSvgIconComponent } from '@openchannel/angular-common-components/src/mock/mock';
 
-const formData = {
-    name: 'Test name',
-    role: 'admin',
-    aboutme: '',
-    skills: ['angular'],
-};
-
-@Component({
-    template: '',
-    selector: 'oc-form',
-})
-export class OcFormMockComponent {
-    @Input() formJsonData: any;
-    @Input() successButtonText: string = 'Submit';
-    @Output() formSubmitted = new EventEmitter<any>();
-    @Output() cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
-    @Input() showButton: boolean = true;
-    @Input() formId: ErrorMessageFormId;
-
-    submitForm() {
-        this.formSubmitted.emit(formData);
-    }
-}
 describe('OcFormModalComponent', () => {
     let component: OcFormModalComponent;
     let fixture: ComponentFixture<OcFormModalComponent>;
@@ -37,7 +12,7 @@ describe('OcFormModalComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcFormModalComponent, OcFormMockComponent, MockSvgIconComponent],
+                declarations: [OcFormModalComponent, MockFormComponent, MockSvgIconComponent],
                 providers: [NgbActiveModal],
             }).compileComponents();
         }),
@@ -124,7 +99,7 @@ describe('OcFormModalComponent', () => {
     it('should catch form data', () => {
         fixture.detectChanges();
 
-        const formComponent: OcFormMockComponent = fixture.debugElement.query(By.css('oc-form')).componentInstance;
+        const formComponent: MockFormComponent = fixture.debugElement.query(By.css('oc-form')).componentInstance;
 
         formComponent.submitForm();
 

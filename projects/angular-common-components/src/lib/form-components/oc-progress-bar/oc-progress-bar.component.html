@@ -1,34 +1,38 @@
 <div class="form-progressbar">
-    <div class="form-progressbar__slidebox"
-         [style.transform]="'translate(' + (currentStep > 1 ? currentOffsetValue : 0) + 'px, 0px)'">
-        <div class="form-progressbar__item"
-             *ngFor="let step of progressbarData; index as i"
-             [ngClass]="{'form-progressbar__item_current': currentStep === i + 1,
-                         'form-progressbar__item_finished': step.state === 'finished',
-                         'form-progressbar__item_invalid': step.state === 'invalid'}"
-             [style.width]="progressbarData.length > maxStepsToShow && maxStepsToShow > 0 ?
-                         'calc(100% / ' + maxStepsToShow + ')' :
-                         'calc((100% - 80px) / ' + (progressbarData.length - 1) + ')'"
-             #progressBarSteps>
-            <div class="form-progressbar__item-content"
-                 (click)="stepClicked(i + 1)">
+    <div class="form-progressbar__slidebox" [style.transform]="'translate(' + (currentStep > 1 ? currentOffsetValue : 0) + 'px, 0px)'">
+        <div
+            class="form-progressbar__item"
+            *ngFor="let step of progressbarData; index as i"
+            [ngClass]="{
+                'form-progressbar__item_current': currentStep === i + 1,
+                'form-progressbar__item_finished': step.state === 'finished',
+                'form-progressbar__item_invalid': step.state === 'invalid'
+            }"
+            [style.width]="
+                progressbarData.length > maxStepsToShow && maxStepsToShow > 0
+                    ? 'calc(100% / ' + maxStepsToShow + ')'
+                    : 'calc((100% - 80px) / ' + (progressbarData.length - 1) + ')'"
+            #progressBarSteps>
+            <div class="form-progressbar__item-content" (click)="stepClicked(i + 1)">
                 <div class="form-progressbar__item-content-shape">
-                <span class="form-progressbar__item-content-status"
-                      *ngIf="step.state !== 'finished'">{{step.state === 'pristine' ? i + 1 : '!'}}</span>
+                    <span class="form-progressbar__item-content-status" *ngIf="step.state !== 'finished'">
+                        {{ step.state === "pristine" ? i + 1 : "!" }}
+                    </span>
                     <div class="form-progressbar__item-content-animation"></div>
-                    <div class="form-progressbar__item-content-status"
-                         *ngIf="step.state === 'finished'">
-                        <svg-icon class="form-progressbar__item-content-status-icon"
-                                  src="assets/angular-common-components/icon-check.svg"></svg-icon>
+                    <div class="form-progressbar__item-content-status" *ngIf="step.state === 'finished'">
+                        <svg-icon
+                            class="form-progressbar__item-content-status-icon"
+                            src="assets/angular-common-components/icon-check.svg"></svg-icon>
                     </div>
                 </div>
-                <div class="form-progressbar__item-content-title"
-                     title="{{step.title}}">{{step.title}}</div>
+                <div class="form-progressbar__item-content-title" title="{{ step.title }}">{{ step.title }}</div>
             </div>
-            <div class="form-progressbar__item-divider"
-                 *ngIf="i + 1 < progressbarData.length"
-                 [class.form-progressbar__item-divider_straight]="getNextStep(i + 1).state !== 'pristine' ||
-                                                                 (getNextStep(i + 1).state === 'pristine' && currentStep === i + 2)"></div>
+            <div
+                class="form-progressbar__item-divider"
+                *ngIf="i + 1 < progressbarData.length"
+                [class.form-progressbar__item-divider_straight]="
+                    getNextStep(i + 1).state !== 'pristine' || (getNextStep(i + 1).state === 'pristine' && currentStep === i + 2)
+                "></div>
         </div>
     </div>
 </div>

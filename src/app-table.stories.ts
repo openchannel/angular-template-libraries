@@ -2,7 +2,7 @@ import { componentWrapperDecorator, moduleMetadata, Story } from '@storybook/ang
 import {
     AppListing,
     OcPortalComponentsModule,
-    OcAppTableComponent
+    OcAppTableComponent,
 } from '@openchannel/angular-common-components/src/lib/portal-components';
 import { FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 
@@ -13,10 +13,7 @@ const modules = {
 export default {
     title: 'App List [BEM]',
     component: OcAppTableComponent,
-    decorators: [
-        moduleMetadata(modules),
-        componentWrapperDecorator(story => `<div style="max-width: 1110px;">${story}</div>`)
-    ],
+    decorators: [moduleMetadata(modules), componentWrapperDecorator(story => `<div style="max-width: 1110px;">${story}</div>`)],
 };
 
 const ListGridComponent = (args: OcAppTableComponent) => ({
@@ -428,7 +425,7 @@ AppGrid.args = {
     noAppMessage: 'No Apps Has Been Added Yet',
 };
 
-const CustomAppTableTemplate: Story<OcAppTableComponent> = (args) => ({
+const CustomAppTableTemplate: Story<OcAppTableComponent> = args => ({
     template: `
          <oc-app-table 
          [properties]="properties" 
@@ -460,7 +457,7 @@ const CustomAppTableTemplate: Story<OcAppTableComponent> = (args) => ({
          <ng-template #createdDateRowCell let-ctx >
              <span style="max-height: 48px; display: block; overflow-y: hidden">{{ctx.app.created | date:'M:d:yyyy'}}</span>
          </ng-template>`,
-    props: { ...args }
+    props: { ...args },
 });
 
 export const CustomAppTable = CustomAppTableTemplate.bind({});
@@ -468,9 +465,17 @@ export const CustomAppTable = CustomAppTableTemplate.bind({});
 CustomAppTable.args = {
     properties: propsConfig,
     noAppMessage: 'No Apps Has Been Added Yet',
-    activeColumns: ['left-placeholder', 'create-date', 'name', 'you-custom-review-column', 'you-custom-description-column', 'status', 'app-options', 'right-placeholder']
+    activeColumns: [
+        'left-placeholder',
+        'create-date',
+        'name',
+        'you-custom-review-column',
+        'you-custom-description-column',
+        'status',
+        'app-options',
+        'right-placeholder',
+    ],
 };
-
 
 export const AppGridEmpty = ListGridComponent.bind({});
 

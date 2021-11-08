@@ -1,45 +1,43 @@
 <div class="dropdown-multi-app">
     <div class="dropdown-multi-app__search">
-        <oc-dropbox (focusout)="onTouched()"
-                    [placeHolder]="dropdownPlaceholder"
-                    [clearFormAfterSelect]="dropdownClearTextAfterSelect"
-                    [customSearch]="appsSearchFn"
-                    [dropElementTemplate]="dropdownCustomDropdownItemTemplateRef
-                          ? dropdownCustomDropdownItemTemplateRef
-                          : dropElementTemplateRef"
-                    (selectedItem)="addAppToResultArray($event)"
-                    class="dropdown-multi-app__search-input-field">
-        </oc-dropbox>
+        <oc-dropbox
+            (focusout)="onTouched()"
+            [placeHolder]="dropdownPlaceholder"
+            [clearFormAfterSelect]="dropdownClearTextAfterSelect"
+            [customSearch]="appsSearchFn"
+            [dropElementTemplate]="dropdownCustomDropdownItemTemplateRef ? dropdownCustomDropdownItemTemplateRef : dropElementTemplateRef"
+            (selectedItem)="addAppToResultArray($event)"
+            class="dropdown-multi-app__search-input-field"></oc-dropbox>
     </div>
     <div class="dropdown-multi-app__tags">
-        <ng-container *ngFor="let appData of resultApps; index as i"
-                [ngTemplateOutlet]="dropdownCustomTagTemplateRef
-                      ? dropdownCustomTagTemplateRef
-                      : tagItemTemplateRef"
-                [ngTemplateOutletContext]="{$implicit: appData}"></ng-container>
+        <ng-container
+            *ngFor="let appData of resultApps; index as i"
+            [ngTemplateOutlet]="dropdownCustomTagTemplateRef ? dropdownCustomTagTemplateRef : tagItemTemplateRef"
+            [ngTemplateOutletContext]="{ $implicit: appData }"></ng-container>
     </div>
 </div>
 
 <ng-template #dropElementTemplateRef let-appData="result">
     <div class="dropdown-multi-app__search-item">
-        <oc-initials class="dropdown-multi-app__search-item-initials"
-                [initialsImageURL]="appData.icon"
-                [initialsName]="appData.name"
-                [initialsNameCharactersLimit]="1"
-                primaryInitialType="image"></oc-initials>
+        <oc-initials
+            class="dropdown-multi-app__search-item-initials"
+            [initialsImageURL]="appData.icon"
+            [initialsName]="appData.name"
+            [initialsNameCharactersLimit]="1"
+            primaryInitialType="image"></oc-initials>
         <div class="dropdown-multi-app__search-item-app">
             <div class="dropdown-multi-app__search-item-app-name">
-                <span class="dropdown-multi-app__search-item-app-name-preview">{{itemPreviewName}}</span>
-                <span class="dropdown-multi-app__search-item-app-name-vale">{{appData.name}}</span>
+                <span class="dropdown-multi-app__search-item-app-name-preview">{{ itemPreviewName }}</span>
+                <span class="dropdown-multi-app__search-item-app-name-vale">{{ appData.name }}</span>
             </div>
             <div class="dropdown-multi-app__search-item-app-data">
                 <div class="dropdown-multi-app__search-item-app-data-id">
-                    <span class="dropdown-multi-app__search-item-app-data-id-preview">{{itemPreviewId}}</span>
-                    <span class="dropdown-multi-app__search-item-app-data-id-vale">{{appData.appId}}</span>
+                    <span class="dropdown-multi-app__search-item-app-data-id-preview">{{ itemPreviewId }}</span>
+                    <span class="dropdown-multi-app__search-item-app-data-id-vale">{{ appData.appId }}</span>
                 </div>
                 <div class="dropdown-multi-app__search-item-app-data-version">
-                    <span class="dropdown-multi-app__search-item-app-data-version-preview">{{itemPreviewVersion}}</span>
-                    <span class="dropdown-multi-app__search-item-app-data-version-vale">{{appData.version}}</span>
+                    <span class="dropdown-multi-app__search-item-app-data-version-preview">{{ itemPreviewVersion }}</span>
+                    <span class="dropdown-multi-app__search-item-app-data-version-vale">{{ appData.version }}</span>
                 </div>
             </div>
         </div>
@@ -47,10 +45,9 @@
 </ng-template>
 
 <ng-template #tagItemTemplateRef let-appData>
-    <oc-tag-element class="dropdown-multi-app__tags-item"
-                    [closeMarker]="true"
-                    [title]="appData.name"
-                    (clickEmitter)="removeAppFromResultArray(appData)">
-    </oc-tag-element>
+    <oc-tag-element
+        class="dropdown-multi-app__tags-item"
+        [closeMarker]="true"
+        [title]="appData.name"
+        (clickEmitter)="removeAppFromResultArray(appData)"></oc-tag-element>
 </ng-template>
-
