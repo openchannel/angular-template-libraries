@@ -5,6 +5,7 @@ import { Page } from '../model/api/page.model';
 import { QueryUtil } from '../util/query.util';
 import { AppFormModelResponse, CreateFormSubmissionModel, FormSubmissionModel } from '../model/api/app-form-model';
 import { OcApiPaths } from '../oc-ng-common-service.module';
+import { HttpHeaders } from '@angular/common/http';
 
 /**
  * Description: API service for getting and modifying forms.<br>
@@ -47,11 +48,12 @@ export class AppFormService {
      * Description: Returns list form by ID.
      * This is public API endpoint.
      * @param {string} formId - the id of the form.
+     * @param {HttpHeaders} headers - headers (optional) (default: empty HttpHeaders object)
      * @returns {Observable<AppFormModelResponse>} Observable<AppFormModelResponse>
      */
-    getForm(formId: string): Observable<AppFormModelResponse> {
+    getForm(formId: string, headers: HttpHeaders = new HttpHeaders()): Observable<AppFormModelResponse> {
         const mainUrl = `${this.apiPaths.forms}/${formId}`;
-        return this.httpRequest.get(mainUrl);
+        return this.httpRequest.get(mainUrl, { headers });
     }
 
     /**
