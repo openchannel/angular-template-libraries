@@ -1,3 +1,13 @@
+## Release notes - angular-template-libraries - Version 2.43.0 (11/9/2021)<br>
+### Bug<br>
+AT-1592 - Signup by invite doesn't work<br>
+AT-1273 - [Market/Portal] Copyright year at the footer of each site should get auto update based on the current year.<br>
+AT-1126 - [UI][Portal][Mac -> Safari] My Company and My Profile page issues<br>
+AT-1103 - [UI][Portal / Market site] Resend activation code screen does not show success toastr message on resending the code.<br>
+AT-1095 - [UI][Marketsite][Android] "See all >"  should be in sentence case <br>
+AT-1041 - Clicking the label text for Remember Me should toggle the checkbox<br>
+AT-1024 - [App Details][Forms] If the mapped Forms are not available in OC Dashboard, click event on 'Contact' & 'Buy now' buttons should throw a meaningful message.<br>
+AT-981 - [User Management] [Invite Member] [UI] 'Terms & Data processing' Checkbox is showing not properly aligned.<br>
 ## Release notes - angular-template-libraries - Version 2.42.0 (11/8/2021)<br>
 ### Bug<br>
 AT-1586 - Need to update files of the projects with a prettier<br>
