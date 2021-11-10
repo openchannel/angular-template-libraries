@@ -9,11 +9,11 @@ import { OcApiPaths } from '../oc-ng-common-service.module';
  *
  * Endpoints:<br>
  *
- * POST 'v2/stripe-gateway/developer/{developerId}/accounts'<br>
+ * GET 'v2/stripe-gateway/developer/this/accounts'<br>
  *
- * DELETE 'v2/stripe-gateway/developer/{developerId}/accounts/{stripeId}'<br>
+ * POST 'v2/stripe-gateway/developer/this/accounts'<br>
  *
- * GET 'v2/stripe-gateway/developer/{developerId}/accounts'<br>
+ * DELETE 'v2/stripe-gateway/developer/this/accounts/{stripeId}'<br>
  */
 @Injectable({
     providedIn: 'root',
@@ -23,50 +23,47 @@ export class StripeService {
 
     /**
      *
+     * Description: Get all developer accounts connected to Stripe
+     *
+     * @returns {Observable<GetStripeAccountsResponse>} `Observable<GetStripeAccountsResponse>`
+     *
+     * ### Example
+     *
+     * `getConnectedAccounts();`
+     */
+    getConnectedAccounts(): Observable<GetStripeAccountsResponse> {
+        return this.httpRequest.get(`${this.apiPaths.stripeGateway}/this/accounts`);
+    }
+
+    /**
+     *
      * Description: Returns a link to Stripe, where developer can connect Stripe account
      *
-     * @param {string} redirectURL - The URL to redirect this developer after they have connected their Stripe account
-     * @param {string} developerId - The id of the developer connecting their Stripe account
+     * @param {string} redirectUrl - The URL to redirect this developer after they have connected their Stripe account
      * @returns {Observable<ConnectStripeAccountResponse>} `Observable<ConnectStripeAccountResponse>`
      *
      * ### Example
      *
-     * `connectAccount('https://my-market.com/land-here', 'developer-id');`
+     * `connectAccount('https://my-market.com/land-here');`
      */
-    connectAccount(redirectURL: string, developerId: string): Observable<ConnectStripeAccountResponse> {
-        const body = { redirectURL };
+    connectAccount(redirectUrl: string): Observable<ConnectStripeAccountResponse> {
+        const body = { redirectUrl };
 
-        return this.httpRequest.post(`${this.apiPaths.stripeGateway}/${developerId}/${this.apiPaths.accounts}`, body);
+        return this.httpRequest.post(`${this.apiPaths.stripeGateway}/this/accounts`, body);
     }
 
     /**
      *
      * Description: Disconnects developer from Stripe
      *
-     * @param {string} developerId - The id of the developer disconnecting their Stripe account
      * @param {string} stripeId - The id of the Stripe account to disconnect
      * @returns {Observable<DisconnectStripeAccountResponse>} `Observable<DisconnectStripeAccountResponse>`
      *
      * ### Example
      *
-     * `disconnectAccount('developer-id', 'stripe-id');`
+     * `disconnectAccount('stripe-id');`
      */
-    disconnectAccount(developerId: string, stripeId: string): Observable<DisconnectStripeAccountResponse> {
-        return this.httpRequest.delete(`${this.apiPaths.stripeGateway}/${developerId}/${this.apiPaths.accounts}/${stripeId}`);
-    }
-
-    /**
-     *
-     * Description: Get all developer accounts connected to Stripe
-     *
-     * @param {string} developerId - The id of the developer retrieving their account details
-     * @returns {Observable<GetStripeAccountsResponse>} `Observable<GetStripeAccountsResponse>`
-     *
-     * ### Example
-     *
-     * `getConnectedAccounts('developer-id');`
-     */
-    getConnectedAccounts(developerId: string): Observable<GetStripeAccountsResponse> {
-        return this.httpRequest.get(`${this.apiPaths.stripeGateway}/${developerId}/${this.apiPaths.accounts}`);
+    disconnectAccount(stripeId: string): Observable<DisconnectStripeAccountResponse> {
+        return this.httpRequest.delete(`${this.apiPaths.stripeGateway}/this/accounts/${stripeId}`);
     }
 }
