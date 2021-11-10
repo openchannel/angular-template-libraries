@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
     ConnectStripeAccountResponse,
-    DisconnectStripeAccountResponse,
-    GetStripeAccountsResponse,
+    StripeAccountsResponse,
     GetMarketplaceStripeSettingsResponse,
-    GetUserCreditCardsResponse,
+    UserCreditCardsResponse,
     ChangeableCreditCardFields,
 } from '../model/api/stripe.model';
 import { HttpRequestService } from './http-request-services';
@@ -56,13 +55,13 @@ export class StripeService {
      *
      * Description: Returns a list of credit cards configured for this user
      *
-     * @returns {Observable<GetUserCreditCardsResponse>} `Observable<GetUserCreditCardsResponse>`
+     * @returns {Observable<UserCreditCardsResponse>} `Observable<UserCreditCardsResponse>`
      *
      * ### Example
      *
      * `getUserCreditCards();`
      */
-    getUserCreditCards(): Observable<GetUserCreditCardsResponse> {
+    getUserCreditCards(): Observable<UserCreditCardsResponse> {
         return this.httpRequest.get(`${this.apiPaths.stripeGateway}/user/this/cards`);
     }
 
@@ -72,13 +71,13 @@ export class StripeService {
      *
      * @param {string} token - The Stripe token returned by the Stripe.js Stripe.card.createToken call
      * @param {string} isDefault - Set to true if this should be set to be the default credit card
-     * @returns {Observable<GetUserCreditCardsResponse>} `Observable<GetUserCreditCardsResponse>`
+     * @returns {Observable<UserCreditCardsResponse>} `Observable<UserCreditCardsResponse>`
      *
      * ### Example
      *
      * `addUserCreditCard();`
      */
-    addUserCreditCard(token: string, isDefault: boolean = true): Observable<GetUserCreditCardsResponse> {
+    addUserCreditCard(token: string, isDefault: boolean = true): Observable<UserCreditCardsResponse> {
         const body = {
             token,
             isDefault,
@@ -93,13 +92,13 @@ export class StripeService {
      *
      * @param {string} cardId - Id of the card to update
      * @param {Partial<ChangeableCreditCardFields>} body - Fields to update in credit card
-     * @returns {Observable<GetUserCreditCardsResponse>} `Observable<GetUserCreditCardsResponse>`
+     * @returns {Observable<UserCreditCardsResponse>} `Observable<UserCreditCardsResponse>`
      *
      * ### Example
      *
      * `updateUserCreditCard();`
      */
-    updateUserCreditCard(cardId: string, body: Partial<ChangeableCreditCardFields>): Observable<GetUserCreditCardsResponse> {
+    updateUserCreditCard(cardId: string, body: Partial<ChangeableCreditCardFields>): Observable<UserCreditCardsResponse> {
         return this.httpRequest.post(`${this.apiPaths.stripeGateway}/user/this/cards/${cardId}`, body);
     }
 
@@ -108,13 +107,13 @@ export class StripeService {
      * Description: Deletes card from user account
      *
      * @param {string} cardId - Id of the card to delete
-     * @returns {Observable<GetUserCreditCardsResponse>} `Observable<GetUserCreditCardsResponse>`
+     * @returns {Observable<UserCreditCardsResponse>} `Observable<UserCreditCardsResponse>`
      *
      * ### Example
      *
      * `deleteUserCreditCard();`
      */
-    deleteUserCreditCard(cardId: string): Observable<GetUserCreditCardsResponse> {
+    deleteUserCreditCard(cardId: string): Observable<UserCreditCardsResponse> {
         return this.httpRequest.delete(`${this.apiPaths.stripeGateway}/user/this/cards/${cardId}`);
     }
 
@@ -122,13 +121,13 @@ export class StripeService {
      *
      * Description: Get all developer accounts connected to Stripe
      *
-     * @returns {Observable<GetStripeAccountsResponse>} `Observable<GetStripeAccountsResponse>`
+     * @returns {Observable<StripeAccountsResponse>} `Observable<StripeAccountsResponse>`
      *
      * ### Example
      *
      * `getConnectedAccounts();`
      */
-    getConnectedAccounts(): Observable<GetStripeAccountsResponse> {
+    getConnectedAccounts(): Observable<StripeAccountsResponse> {
         return this.httpRequest.get(`${this.apiPaths.stripeGateway}/developer/this/accounts`);
     }
 
@@ -154,13 +153,13 @@ export class StripeService {
      * Description: Disconnects developer from Stripe
      *
      * @param {string} stripeId - The id of the Stripe account to disconnect
-     * @returns {Observable<DisconnectStripeAccountResponse>} `Observable<DisconnectStripeAccountResponse>`
+     * @returns {Observable<StripeAccountsResponse>} `Observable<StripeAccountsResponse>`
      *
      * ### Example
      *
      * `disconnectAccount('stripe-id');`
      */
-    disconnectAccount(stripeId: string): Observable<DisconnectStripeAccountResponse> {
+    disconnectAccount(stripeId: string): Observable<StripeAccountsResponse> {
         return this.httpRequest.delete(`${this.apiPaths.stripeGateway}/developer/this/accounts/${stripeId}`);
     }
 }

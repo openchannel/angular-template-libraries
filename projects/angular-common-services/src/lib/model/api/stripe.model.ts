@@ -33,12 +33,7 @@ export interface ConnectStripeAccountResponse {
     targetUrl: string;
 }
 
-export interface DisconnectStripeAccountResponse {
-    developerId: string;
-    accounts: StripeAccount[];
-}
-
-export interface GetStripeAccountsResponse {
+export interface StripeAccountsResponse {
     developerId: string;
     accounts: StripeAccount[];
 }
@@ -51,7 +46,7 @@ export interface GetMarketplaceStripeSettingsResponse {
     publishableKey: string;
 }
 
-export interface GetUserCreditCardsResponse {
+export interface UserCreditCardsResponse {
     userId: string;
     cards: CreditCard[];
 }
