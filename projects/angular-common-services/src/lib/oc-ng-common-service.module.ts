@@ -107,7 +107,7 @@ const ocEndpointApiPathsDefault: OcEndpointApiPaths = {
     users: 'users',
     userTypes: 'userTypes',
     sites: 'sites',
-    stripeGateway: 'stripe-gateway/developer',
+    stripeGateway: 'stripe-gateway',
 };
 
 /**
