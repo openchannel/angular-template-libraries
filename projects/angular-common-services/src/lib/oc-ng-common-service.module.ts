@@ -39,7 +39,6 @@ interface OcEndpointApiPaths {
     userTypes: string;
     sites: string;
     stripeGateway: string;
-    accounts: string;
 }
 
 /**
@@ -76,7 +75,6 @@ export class OcApiPaths implements OcEndpointApiPaths {
     users: string;
     sites: string;
     stripeGateway: string;
-    accounts: string;
 }
 
 const ocEndpointApiPathsDefault: OcEndpointApiPaths = {
@@ -110,7 +108,6 @@ const ocEndpointApiPathsDefault: OcEndpointApiPaths = {
     userTypes: 'userTypes',
     sites: 'sites',
     stripeGateway: 'stripe-gateway/developer',
-    accounts: 'accounts',
 };
 
 /**
