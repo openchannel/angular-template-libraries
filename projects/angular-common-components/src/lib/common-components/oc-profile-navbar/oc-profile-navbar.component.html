@@ -1,11 +1,17 @@
 <div class="profile-navbar">
-    <div class="profile-navbar__initials" *ngIf="initials">{{initials}}</div>
+    <div class="profile-navbar__initials" *ngIf="initials">{{ initials }}</div>
     <div class="profile-navbar__dropdown-container" ngbDropdown placement="bottom-right">
-        <div class="profile-navbar__dropdown-toggle" id="navbarDropdown" role="button"
-             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+        <div
+            class="profile-navbar__dropdown-toggle"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            ngbDropdownToggle>
             <div class="profile-navbar__info-container">
-                <span class="profile-navbar__username" *ngIf="username">{{username}}</span>
-                <span class="profile-navbar__role" *ngIf="role">{{role}}</span>
+                <span class="profile-navbar__username" *ngIf="username">{{ username }}</span>
+                <span class="profile-navbar__role" *ngIf="role">{{ role }}</span>
             </div>
         </div>
         <div ngbDropdownMenu aria-labelledby="navbarDropdown" class="profile-navbar__dropdown">

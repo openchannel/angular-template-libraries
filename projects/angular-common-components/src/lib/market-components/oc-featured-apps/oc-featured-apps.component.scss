@@ -2,9 +2,7 @@
 @import '../../../../assets/styles/mixins';
 
 .featured-apps {
-
     &__heading {
-
         &-text {
             margin-bottom: 2rem;
             text-align: left;
@@ -21,6 +19,20 @@
         justify-content: space-between;
         @include media-breakpoint-md {
             margin-left: 2rem;
+        }
+        
+        &_justify-start {
+            justify-content: flex-start;
+            
+            .featured-apps__card-wrapper {
+                
+                & + .featured-apps__card-wrapper {
+                    margin-left: 4rem;
+                    @include media-breakpoint-sm {
+                        margin-left: 2rem;
+                    }
+                }
+            }
         }
 
         .featured-apps__card {

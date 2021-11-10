@@ -106,6 +106,7 @@
         @include font-medium();
         color: $primary;
         cursor: pointer;
+        margin-left: 5px;
 
         &:hover {
             color: $primary;

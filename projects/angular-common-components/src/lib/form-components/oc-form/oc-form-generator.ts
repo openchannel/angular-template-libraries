@@ -5,7 +5,6 @@ import { AppFormField, TrimFormFieldType } from '../model/app-form-model';
 import { OcFormValidator } from './oc-form-validator';
 
 export class OcFormGenerator {
-
     // tslint:disable-next-line:typedef
     static getFormByConfig(fieldsDefinitions: AppFormField[], trimTextFields?: TrimFormFieldType[]) {
         const group = {};
@@ -50,12 +49,12 @@ export class OcFormGenerator {
                     break;
                 case 'emailAddress':
                     group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue || '');
-                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isEmail: true, isTrimText});
+                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isEmail: true, isTrimText });
                     break;
                 case 'websiteUrl':
                 case 'videoUrl':
                     group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue || '');
-                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isUrl: true, isTrimText});
+                    this.setValidators(group[inputTemplate?.id], inputTemplate, { isUrl: true, isTrimText });
                     break;
                 case 'color':
                     group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue || '');
@@ -128,7 +127,7 @@ export class OcFormGenerator {
             isNumberTags?: boolean;
             isDFA?: boolean;
             isTrimText?: boolean;
-        }
+        },
     ): void {
         const validators: ValidatorFn[] = [];
         const { attributes = {} } = inputTemplate;

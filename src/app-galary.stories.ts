@@ -85,7 +85,7 @@ export default {
     title: 'App Gallery [BEM]',
     component: OcAppGalleryComponent,
     decorators: [moduleMetadata(modules)],
-    argTypes: { clickAppCard: { action: 'App Card was clicked' }, clickMoreApps: { action: 'More link was clicked' }}
+    argTypes: { clickAppCard: { action: 'App Card was clicked' }, clickMoreApps: { action: 'More link was clicked' } },
 };
 
 const AppGalleryComponent = (args: OcAppGalleryComponent) => ({

@@ -69,7 +69,7 @@ export class OcSignupComponent {
     /**
      * showSignupFeedbackPage change emitter
      */
-    @Output() showSignupFeedbackPageChange = new EventEmitter<boolean>();
+    @Output() readonly showSignupFeedbackPageChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /**
      * Shows or hides a signup company block of the form.

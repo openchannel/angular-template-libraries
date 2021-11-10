@@ -12,12 +12,6 @@ export default {
     decorators: [moduleMetadata(modules)],
 };
 
-// const ButtonComponent = (args: OcButtonComponent) => ({
-//     component: OcButtonComponent,
-//     moduleMetadata: modules,
-//     props: args,
-// });
-
 const ButtonComponent = (args: OcButtonComponent) => ({
     component: OcButtonComponent,
     template: `
