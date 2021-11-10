@@ -75,7 +75,7 @@ export class StripeService {
      *
      * ### Example
      *
-     * `addUserCreditCard();`
+     * `addUserCreditCard('some-token');`
      */
     addUserCreditCard(token: string, isDefault: boolean = true): Observable<UserCreditCardsResponse> {
         const body = {
@@ -96,7 +96,10 @@ export class StripeService {
      *
      * ### Example
      *
-     * `updateUserCreditCard();`
+     * `updateUserCreditCard('card-id-123', {
+     *     address_city: 'New city',
+     *     address_country: 'New country',
+     * });`
      */
     updateUserCreditCard(cardId: string, body: Partial<ChangeableCreditCardFields>): Observable<UserCreditCardsResponse> {
         return this.httpRequest.post(`${this.apiPaths.stripeGateway}/user/this/cards/${cardId}`, body);
@@ -111,7 +114,7 @@ export class StripeService {
      *
      * ### Example
      *
-     * `deleteUserCreditCard();`
+     * `deleteUserCreditCard('card-id-123');`
      */
     deleteUserCreditCard(cardId: string): Observable<UserCreditCardsResponse> {
         return this.httpRequest.delete(`${this.apiPaths.stripeGateway}/user/this/cards/${cardId}`);
