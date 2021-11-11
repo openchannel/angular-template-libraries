@@ -118,6 +118,22 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
     }
 
     /**
+     * Toggles dropdown results list. Used by arrow icon.
+     */
+    toggleResultsDropdown(): void {
+        if (this.disabled) {
+            return;
+        }
+
+        const isListOpened = this.dropBox.nativeElement.getAttribute('aria-expanded') === 'true';
+        if (isListOpened) {
+            this.clearFocus();
+        } else {
+            this.click$.next(this.outputSelectedItem);
+        }
+    }
+
+    /**
      * Launch of the search function
      * @param text$ observable text from the input field
      */
