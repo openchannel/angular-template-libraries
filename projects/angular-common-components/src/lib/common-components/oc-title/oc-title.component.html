@@ -1,15 +1,11 @@
 <div class="oc-title">
-    <h4 class="oc-title__text {{customClass}}" [ngStyle]="customStyle">
-        {{titleText}}
+    <h4 class="oc-title__text {{ customClass }}" [ngStyle]="customStyle">
+        {{ titleText }}
         <strong *ngIf="required" class="oc-title__required">*</strong>
     </h4>
     <div *ngIf="description?.length > 0" class="oc-title__description">
-        <div ngbTooltip="{{description}}"
-             tooltipClass="oc-tooltip"
-             placement="right"
-             container="body">
-            <svg-icon [src]="infoTitleIconCsv"
-                      class="oc-title__description-icon"></svg-icon>
+        <div ngbTooltip="{{ description }}" tooltipClass="oc-tooltip" placement="right" container="body">
+            <svg-icon [src]="infoTitleIconCsv" class="oc-title__description-icon"></svg-icon>
         </div>
     </div>
 </div>

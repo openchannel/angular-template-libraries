@@ -14,7 +14,7 @@ import { ERROR_MESSAGES_STORY_PROVIDER } from './utils.model';
 /** List of module dependencies and component declarations. Stored as separate var because they are shared among all stories */
 const modules: NgModule = {
     imports: [OcCommonLibModule, RouterTestingModule.withRoutes([]), BrowserAnimationsModule, FormsModule],
-    providers: [ERROR_MESSAGES_STORY_PROVIDER]
+    providers: [ERROR_MESSAGES_STORY_PROVIDER],
 };
 
 const activationEmpty = new ComponentsUserActivationModel();

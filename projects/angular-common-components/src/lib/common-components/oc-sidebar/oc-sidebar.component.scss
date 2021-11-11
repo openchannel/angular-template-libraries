@@ -8,7 +8,6 @@
 }
 
 .oc-sidebar {
-
     &__navigation {
         background-color: $white;
         max-width: 265px;
@@ -99,10 +98,10 @@
         display: block;
         width: max-content;
         .oc-button_link {
-            &:active, &:focus {
+            &:active,
+            &:focus {
                 border: 0;
             }
         }
     }
 }
-

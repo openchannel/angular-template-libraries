@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { ComponentsUserAccount, DeveloperRole, UserRole } from '../models/user-data.model';
+import { ComponentsUserAccount, DeveloperRole, UserRole } from './user-data.model';
 import { ComponentsPage } from '@openchannel/angular-common-components/src/lib/common-components';
 
 export abstract class UpdateOrInviteUserModel {

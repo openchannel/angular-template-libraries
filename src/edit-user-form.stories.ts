@@ -5,9 +5,8 @@ import {
     OcEditUserFormComponent,
     OcEditUserFormConfig,
     OCOrganization,
-    TypeFieldModel,
-    TypeModel,
-    OcFormComponentsModule, AppFormModel,
+    OcFormComponentsModule,
+    AppFormModel,
 } from '@openchannel/angular-common-components';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { action } from '@storybook/addon-actions';

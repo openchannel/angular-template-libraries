@@ -1,15 +1,18 @@
 <div class="radio-button-list">
     <div *ngFor="let item of itemsArray" class="radio-button-list__item">
-        <ng-container [ngTemplateOutlet]="customRadioItemRef ? customRadioItemRef : defaultRadioItemTemplate"
-                      [ngTemplateOutletContext]="{$implicit: item}"></ng-container>
+        <ng-container
+            [ngTemplateOutlet]="customRadioItemRef ? customRadioItemRef : defaultRadioItemTemplate"
+            [ngTemplateOutletContext]="{ $implicit: item }"></ng-container>
     </div>
 </div>
 
 <ng-template #defaultRadioItemTemplate let-item>
- <oc-radio-button [value]="item.value"
-                  [labelText]="item.label"
-                  [ngModelOptions]="{standalone: true}"
-                  [radioButtonGroupName]="radioButtonGroup"
-                  (ngModelChange)="onValueChanged($event)"
-                  [ngModel]="componentValue" ngDefaultControl></oc-radio-button>
+    <oc-radio-button
+        [value]="item.value"
+        [labelText]="item.label"
+        [ngModelOptions]="{ standalone: true }"
+        [radioButtonGroupName]="radioButtonGroup"
+        (ngModelChange)="onValueChanged($event)"
+        [ngModel]="componentValue"
+        ngDefaultControl></oc-radio-button>
 </ng-template>
