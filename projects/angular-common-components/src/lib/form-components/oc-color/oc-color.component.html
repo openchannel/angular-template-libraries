@@ -4,7 +4,7 @@
         <span class="color-adjust__display form-control" [style.background-color]="colorValue"></span>
         <input
             [disabled]="disabled"
-            [placeholder]="placeholder"
+            [placeholder]="placeholder || ''"
             [(ngModel)]="colorValue"
             (ngModelChange)="onValueChange()"
             [ngModelOptions]="{ standalone: true }"
@@ -40,3 +40,4 @@
             readonly>
     </div>
 </div>
+
