@@ -86,7 +86,7 @@ export class UserAccountService {
      *``
      */
     updateUserAccountFieldsForAnotherUser(userAccountId: string, skipTypeValidation: boolean, body: any): Observable<UserAccount> {
-        const mainUrl = `${this.apiPaths.userAccounts}/${userAccountId}`;
+        const mainUrl = `${this.apiPaths.userAccounts}/${encodeURIComponent(userAccountId)}`;
 
         return this.httpService.patch(mainUrl, body, {
             params: new OcHttpParams().append('skipTypeValidators', String(skipTypeValidation)),
@@ -119,7 +119,7 @@ export class UserAccountService {
      *``
      */
     deleteUserAccount(userAccountId: string): Observable<any> {
-        return this.httpService.delete(`${this.apiPaths.userAccounts}/${userAccountId}`);
+        return this.httpService.delete(`${this.apiPaths.userAccounts}/${encodeURIComponent(userAccountId)}`);
     }
     /**
      * Description: Deleting User Accaunt of none-developer
