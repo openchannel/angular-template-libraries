@@ -8,7 +8,12 @@
 <div *ngIf="type === 'multi-star'" class="oc-rating-multi">
     <ng-template #t let-fill="fill">
         <span [class.oc-rating-multi__star_filled]="fill === 100" class="oc-rating-multi__star">
-            <span [style.width.%]="fill" class="oc-rating-multi__star_half-color">&#9733;</span>
+            <span
+                [style.width.%]="fill"
+                [class.oc-rating-multi__star-container_half]="fill > 0 && fill < 100"
+                class="oc-rating-multi__star-container">
+                &#9733;
+            </span>
             &#9733;
         </span>
     </ng-template>

@@ -57,7 +57,7 @@ export class OcFormGenerator {
                     this.setValidators(group[inputTemplate?.id], inputTemplate, { isUrl: true, isTrimText });
                     break;
                 case 'color':
-                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue || '#00cf9f');
+                    group[inputTemplate?.id] = new FormControl(inputTemplate?.defaultValue || '');
                     this.setValidators(group[inputTemplate?.id], inputTemplate, { isColor: true });
                     break;
                 case 'booleanTags':
