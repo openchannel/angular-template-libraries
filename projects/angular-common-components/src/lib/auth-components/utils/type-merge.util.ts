@@ -24,8 +24,8 @@ export class TypeMergeUtils {
     static findFieldsWithCustomPrefixes(formResult: any, prefixes?: string[]): any {
         let result = {};
         if (formResult) {
-            forIn(prefixes, (prefix: string) => {
-                result = { ...this.removeCustomPrefixFromFieldId(formResult, prefix) };
+            prefixes.forEach(prefix => {
+                result = { result, ...this.removeCustomPrefixFromFieldId(formResult, prefix) };
             });
         }
         return TypeMapperUtils.buildDataForSaving(result);
@@ -80,7 +80,7 @@ export class TypeMergeUtils {
         const result = {};
         forIn(formResult, (value, key) => {
             let requireField = true;
-            forIn(prefixes, (prefix: string) => {
+            prefixes.forEach(prefix => {
                 requireField = requireField && !key.includes(prefix);
             });
             if (requireField) {
