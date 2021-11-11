@@ -8,13 +8,16 @@ import { SortField } from '../oc-menu-user-grid/oc-menu-user-grid.component';
  *   1 => sort icon to up.<br>
  */
 export type UserGridSortOrder = {
-  [name in SortField]: 1 | -1 | null;
-}
+    [name in SortField]: 1 | -1 | null;
+};
 
-/** New sort config, after click by sort icon. Used in {@link OcMenuUserGridComponent#sortOptionsChosen}*/
+/**
+ * New sort config, after click by sort icon.
+ * Used in {@link OcMenuUserGridComponent#sortOptionsChosen}
+ */
 export type UserSortChosen = {
-  /** New sort config. */
-  sortOptions: UserGridSortOrder,
-  /** Updated column ID. */
-  changedSortOption: SortField
-}
+    /** New sort config. */
+    sortOptions: UserGridSortOrder;
+    /** Updated column ID. */
+    changedSortOption: SortField;
+};

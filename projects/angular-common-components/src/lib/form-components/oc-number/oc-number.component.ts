@@ -23,7 +23,7 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
     /**
      * Main value provided through value accessor
      */
-    @Input() set value(val) {
+    @Input() set value(val: string | number) {
         this.inputNumber = this.parseNumber(val);
         this.onChange(this.inputNumber);
     }

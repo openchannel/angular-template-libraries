@@ -9,11 +9,8 @@
     }
 
     &__content {
-
         &-body {
-
             &-label {
-
                 .tooltip-label__text {
                     @include font-size-lg();
                     @include font-medium();
@@ -57,7 +54,6 @@
         }
 
         .form__button {
-
             & + .form__button {
                 margin-left: 1.5rem;
                 margin-right: 0;

@@ -52,7 +52,7 @@
 
     &__star {
         @include font-size-md();
-        color: rgba($body-color, .4);
+        color: rgba($body-color, 0.4);
         height: 14px;
         line-height: 14px;
         position: relative;

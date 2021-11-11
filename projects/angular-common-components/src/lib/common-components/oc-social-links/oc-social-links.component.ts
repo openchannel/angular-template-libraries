@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SocialLink } from '../interfaces/social-link.model';
+import { SocialLink } from '../model/social-link.model';
 
 @Component({
     selector: 'oc-social-links',
@@ -9,5 +9,4 @@ import { SocialLink } from '../interfaces/social-link.model';
 export class OcSocialLinksComponent {
     /** data passed to a social link component */
     @Input() socialLinks: SocialLink[];
-
 }

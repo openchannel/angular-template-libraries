@@ -13,7 +13,7 @@ import { MetaDefinition } from '@angular/platform-browser';
  * };
  */
 export interface CustomMetaDefinition extends MetaDefinition {
-    /** Path for getting content from {@link OCMetaTagService.tempPageData} object.*/
+    /** Path for getting content from {@link OCMetaTagService.tempPageData} object. */
     definitionPath: string;
 }
 
@@ -74,9 +74,9 @@ export interface PageMetaTags {
  * };
  */
 export interface MetaTagsPageConfig {
-    /** Default meta tags (all pages). Can be override configs from {@link MetaTagsPageConfig#pages}**/
+    /** Default meta tags (all pages). Can be override configs from {@link MetaTagsPageConfig#pages} */
     defaultMetaTags: OCMetaTagConfigType[];
-    /** Specific meta tags for pages **/
+    /** Specific meta tags for pages */
     pages: PageMetaTags[];
 }
 

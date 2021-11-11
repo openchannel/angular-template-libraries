@@ -13,13 +13,13 @@ export class EllipsisDirective implements AfterViewInit {
     /** The original innerText; */
     private innerText: string;
 
-    constructor(private readonly elementRef: ElementRef, @Inject(PLATFORM_ID) private readonly platformId) {}
+    constructor(private readonly elementRef: ElementRef, @Inject(PLATFORM_ID) private readonly platformId: any) {}
 
     ngAfterViewInit(): void {
         this.truncate();
     }
 
-    @HostListener('window:resize') onWindowResize() {
+    @HostListener('window:resize') onWindowResize(): void {
         this.truncate();
     }
 
