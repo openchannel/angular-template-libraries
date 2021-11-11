@@ -129,6 +129,7 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
         if (isListOpened) {
             this.clearFocus();
         } else {
+            // Simulate input click with latest input value to trigger ngbTypeahead search
             this.click$.next(this.outputSelectedItem);
         }
     }
