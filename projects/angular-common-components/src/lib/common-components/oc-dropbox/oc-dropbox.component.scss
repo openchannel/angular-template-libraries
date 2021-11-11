@@ -15,7 +15,7 @@
             display: inline-block;
             margin-left: 0.255em;
             vertical-align: 0.255em;
-            pointer-events: none;
+            cursor: pointer;
         }
 
         &[aria-expanded='true'] ~ span::after {
