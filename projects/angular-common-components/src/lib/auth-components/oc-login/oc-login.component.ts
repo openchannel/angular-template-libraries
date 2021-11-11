@@ -1,11 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-    TemplateRef,
-    ViewChild
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { ComponentsUserLoginModel } from '../models/auth-types.model';
 import {

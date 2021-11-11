@@ -26,15 +26,14 @@
         }
 
         &_current {
-
             .form-progressbar__item-content-status {
-                opacity: .5;
+                opacity: 0.5;
                 color: $white;
                 background: $primary;
             }
 
             .form-progressbar__item-content-animation {
-                animation: step-blast .7s ease-out 3 forwards;
+                animation: step-blast 0.7s ease-out 3 forwards;
             }
 
             @keyframes step-blast {
@@ -56,7 +55,6 @@
         }
 
         &_finished {
-
             .form-progressbar__item-content-status {
                 background: $primary;
 
@@ -68,7 +66,6 @@
         }
 
         &_invalid {
-
             .form-progressbar__item-content-status {
                 background: $danger;
                 color: $white;
@@ -125,7 +122,6 @@
                 @include font-size-md();
 
                 &-icon {
-
                     svg {
                         display: block;
                     }

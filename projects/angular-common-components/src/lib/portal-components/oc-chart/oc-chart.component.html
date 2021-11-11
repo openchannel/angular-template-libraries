@@ -44,9 +44,10 @@
                                     <div class="chart__table-view-heading-sort-icon">
                                         <svg-icon
                                             [src]="sortIcon"
-                                            [svgClass]="activeTabularSort.by === 'label' && !activeTabularSort.ascending ?
-                                                'chart__table-view-heading-sort-icon_rotated':
-                                                ''"></svg-icon>
+                                            [svgClass]="
+                                                activeTabularSort.by === 'label' && !activeTabularSort.ascending
+                                                    ? 'chart__table-view-heading-sort-icon_rotated'
+                                                    : ''"></svg-icon>
                                     </div>
                                 </div>
                             </th>
@@ -56,9 +57,10 @@
                                     <div class="chart__table-view-heading-sort-icon">
                                         <svg-icon
                                             [src]="sortIcon"
-                                            [svgClass]="activeTabularSort.by === 'value' && !activeTabularSort.ascending ?
-                                                'chart__table-view-heading-sort-icon_rotated':
-                                                ''"></svg-icon>
+                                            [svgClass]="
+                                                activeTabularSort.by === 'value' && !activeTabularSort.ascending
+                                                    ? 'chart__table-view-heading-sort-icon_rotated'
+                                                    : ''"></svg-icon>
                                     </div>
                                 </div>
                             </th>

@@ -1,11 +1,15 @@
 <div class="dropdown-label" ngbDropdown placement="bottom-right" #myDrop="ngbDropdown">
-    <span href="#" class="dropdown-label__text"
-       (click)="$event.preventDefault(); myDrop.isOpen() ? myDrop.close() :  myDrop.open()"
-       ngbDropdownAnchor id="dropdownManual">{{title}} {{selected?.label}}</span>
+    <span
+        href="#"
+        class="dropdown-label__text"
+        (click)="$event.preventDefault(); myDrop.isOpen() ? myDrop.close() : myDrop.open()"
+        ngbDropdownAnchor
+        id="dropdownManual">
+        {{ title }} {{ selected?.label }}
+    </span>
     <div ngbDropdownMenu aria-labelledby="dropdownManual" class="dropdown-label__dropdown">
-        <button ngbDropdownItem
-                (click)="onSelect(option)"
-                class="dropdown-label__dropdown-item"
-                *ngFor="let option of this.options">{{option.label}}</button>
+        <button ngbDropdownItem (click)="onSelect(option)" class="dropdown-label__dropdown-item" *ngFor="let option of this.options">
+            {{ option.label }}
+        </button>
     </div>
 </div>

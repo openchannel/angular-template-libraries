@@ -1,8 +1,5 @@
 import { moduleMetadata } from '@storybook/angular';
-import {
-  AppCategoryDetail,
-  OcAppCategoriesComponent
-} from '@openchannel/angular-common-components/src/lib/app-categories';
+import { AppCategoryDetail, OcAppCategoriesComponent } from '@openchannel/angular-common-components/src/lib/app-categories';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -28,54 +25,52 @@ appCategory3.categoryName = 'Communication';
 appCategory3.categoryTitleColor = 'green';
 
 const modules = {
-  imports: [
-    HttpClientTestingModule,
-    RouterTestingModule.withRoutes([]),
-    BrowserAnimationsModule,
-    AngularSvgIconModule.forRoot(),
-    CarouselModule,
-  ],
+    imports: [
+        HttpClientTestingModule,
+        RouterTestingModule.withRoutes([]),
+        BrowserAnimationsModule,
+        AngularSvgIconModule.forRoot(),
+        CarouselModule,
+    ],
 };
 
 export default {
-  title: 'App Categories [BEM]',
-  component: OcAppCategoriesComponent,
-  decorators: [
-    moduleMetadata(modules),
-  ],
+    title: 'App Categories [BEM]',
+    component: OcAppCategoriesComponent,
+    decorators: [moduleMetadata(modules)],
 };
 
 const AppCategoriesComponent = (args: OcAppCategoriesComponent) => ({
-  component: OcAppCategoriesComponent,
-  moduleMetadata: modules,
-  props: args,
+    component: OcAppCategoriesComponent,
+    moduleMetadata: modules,
+    props: args,
 });
 
 export const Empty = AppCategoriesComponent.bind({});
 Empty.args = {
-  categoryHeaderTitle: 'Categories to Explore',
-  data: [],
-  noDataMsg: 'No Category Found',
+    categoryHeaderTitle: 'Categories to Explore',
+    data: [],
+    noDataMsg: 'No Category Found',
 };
 
 export const Some = AppCategoriesComponent.bind({});
 Some.args = {
-  categoryHeaderTitle: 'Categories to Explore',
-  categoryRouterLink: 'test/category',
-  data: [appCategory1],
+    categoryHeaderTitle: 'Categories to Explore',
+    categoryRouterLink: 'test/category',
+    data: [appCategory1],
 };
 
 export const All = AppCategoriesComponent.bind({});
 All.args = {
-  categoryHeaderTitle: 'Categories to Explore',
-  categoryRouterLink: 'test/category',
-  data: duplicate(5, appCategory1, appCategory2, appCategory3),
+    categoryHeaderTitle: 'Categories to Explore',
+    categoryRouterLink: 'test/category',
+    data: duplicate(5, appCategory1, appCategory2, appCategory3),
 };
 
 function duplicate<T>(count: number, ...items: T[]): T[] {
-  const result: T[] = [];
-  while (count-- >= 0) {
-    result.push(...items);
-  }
-  return result;
+    const result: T[] = [];
+    while (count-- >= 0) {
+        result.push(...items);
+    }
+    return result;
 }

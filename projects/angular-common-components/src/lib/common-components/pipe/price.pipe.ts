@@ -27,7 +27,7 @@ export class PricePipe implements PipeTransform {
         return price;
     }
 
-    private getCurrency(currency): string {
+    private getCurrency(currency: string): string {
         if (Object.keys(this.isoCurrencyCode).includes(currency)) {
             return this.isoCurrencyCode[currency];
         } else {
