@@ -1,3 +1,13 @@
+## Release notes - angular-template-libraries - Version 2.44.0 (11/11/2021)<br>
+### Bug<br>
+AT-1582 - Cap should not be setting expires and pragma headers on cachable responses<br>
+AT-1578 - [Market] Video gets squeeze when the Summary is too long on the App details page.<br>
+AT-1490 - [Portal][Create Apps] Color field has no default value set, yet Portal user gets default value for Color.  <br>
+AT-1460 - UI [Market/Portal] On Invite Sign up screen, Font size of checkbox value should be same as we have for normal sign up.<br>
+AT-1425 - [UI] If Features Apps are only 2 or 3 then there should be decent view on dashboard.<br>
+AT-1298 - Rating with half star not rendering correctly<br>
+AT-1211 - [Market/Portal] Refresh token expired should not appear to the end User.<br>
+AT-1207 - [Market] "Search phrase does not found any results" message missing on the Search result page.<br>
 ## Release notes - angular-template-libraries - Version 2.43.0 (11/9/2021)<br>
 ### Bug<br>
 AT-1592 - Signup by invite doesn't work<br>
