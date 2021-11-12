@@ -302,7 +302,6 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
                 },
             );
         }
-        this.modalService.dismissAll();
     }
 
     /**
