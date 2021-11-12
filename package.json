@@ -10,6 +10,7 @@
     "build": "./node_modules/.bin/ng build",
     "build-prod": "npm run build --prod",
     "build-components": "npm run build angular-common-components ",
+    "build-services-watch": "npm run build angular-common-services --watch",
     "build-components-watch": "./scripts/build-components/build.sh --watch",
     "build-components-storybook-watch": "./scripts/build-components/build-storybook.sh --watch",
     "test": "npm run test:lib",
