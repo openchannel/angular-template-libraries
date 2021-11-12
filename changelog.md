@@ -1,3 +1,11 @@
+## Release notes - angular-template-libraries - Version 2.45.0 (11/12/2021)<br>
+### Bug<br>
+AT-1590 - [Component][Custom Signup Form] Remove "Org" prefix from Custom Data<br>
+AT-1566 - [stage1][market] [Forms - contact us - Buy now] File / Image upload is not working. uploadtoken gets canceled.<br>
+AT-1557 - [logs-prod] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler 500 Server Error for HTTP OPTIONS "/auth/csrf"<br>
+AT-1532 - [Prod][client-api-proxy] 500 Server Error for HTTP POST "/auth/external/token"<br>
+AT-1294 - [Portal][Create / Edit App] [Multi Select Dropdown / Tag] Dropdown list is not opening when clicking on 'arrow' icon.<br>
+AT-1060 - [User management][Invite a member] Password field validation displayed twice.<br>
 ## Release notes - angular-template-libraries - Version 2.44.0 (11/11/2021)<br>
 ### Bug<br>
 AT-1582 - Cap should not be setting expires and pragma headers on cachable responses<br>
