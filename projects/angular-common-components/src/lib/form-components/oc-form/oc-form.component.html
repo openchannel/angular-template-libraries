@@ -62,6 +62,6 @@
         [showButton]="false"
         [showGroupHeading]="showGroupHeading"
         (isFormInvalid)="isFormInvalid.emit($event)"
-        (formDataUpdated)="onFormDataUpdated($event)"
+        (formDataUpdated)="formDataUpdated.emit($event)"
         (createdForm)="createdForm.emit($event)"></oc-single-form>
 </ng-template>

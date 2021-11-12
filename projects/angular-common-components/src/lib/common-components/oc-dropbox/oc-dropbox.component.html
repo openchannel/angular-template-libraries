@@ -15,5 +15,5 @@
          [ngStyle]="customNgStyle"
          [disabled]="disabled"
          [resultTemplate]="dropElementTemplate">
-  <span *ngIf="this.items?.length > 0"></span>
+  <span *ngIf="this.items?.length > 0" (click)="toggleResultsDropdown()"></span>
 </div>
