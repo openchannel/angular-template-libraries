@@ -76,6 +76,7 @@ export * from './lib/service/cms-site-content.service';
 export * from './lib/service/meta-tag.service';
 export * from './lib/service/prerender-requests-watcher.service';
 export * from './lib/service/stripe.service';
+export * from './lib/service/country.service';
 
 /* Utils */
 export * from './lib/util/type-mapper.util';
