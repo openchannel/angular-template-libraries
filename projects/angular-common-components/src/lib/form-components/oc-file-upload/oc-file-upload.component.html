@@ -140,7 +140,7 @@
                         type="primary"
                         id="modalAgreeButton"
                         [disabled]="hasImageLoadError || uploadImageInProcess"
-                        (click)="uploadFile(croppedFileObj)"
+                        (click)="uploadFile(croppedFileObj); c()"
                         [process]="uploadImageInProcess"
                         text="Confirm"></oc-button>
                 </div>
