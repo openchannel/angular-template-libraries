@@ -282,6 +282,9 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                             let visibleTicksIndexes = ChartUtils.calculateVisibleIndexes(tickCount, skipRatio);
                             let increaseSkipRatio = ChartUtils.shouldIncreaseSkipRatio(skipRatio, visibleTicksIndexes);
 
+                            // Increase skip ratio, so for odd ticks count we can render ticks
+                            // as evenly as possible. For example, all gaps between ticks have
+                            // skip ratio = 2 and last gap has skip ratio = 3 (the best solution for odd ticks count)
                             while (increaseSkipRatio && skipRatio < tickCount - ChartUtils.PERSISTING_TICKS_NUMBER) {
                                 skipRatio++;
                                 visibleTicksIndexes = ChartUtils.calculateVisibleIndexes(tickCount, skipRatio);
