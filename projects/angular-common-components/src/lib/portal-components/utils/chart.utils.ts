@@ -25,7 +25,7 @@ export class ChartUtils {
      * Determines whether to increase skip ratio based on visible ticks and skip ratio.
      * @param {number} skipRatio interval according to which ticks should be skipped
      * @param {number[]} visibleTicksIndexes Array of ticks indexes that should be rendered
-     * @return {boolean} Array of ticks indexes that should be rendered
+     * @return {boolean} Whether to increase skip ratio
      */
     static shouldIncreaseSkipRatio = (skipRatio: number, visibleTicksIndexes: number[]): boolean => {
         const distanceBetweenLastTicks =
