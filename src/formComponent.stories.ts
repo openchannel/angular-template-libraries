@@ -1,4 +1,7 @@
 import {
+    AppFormField,
+    AppFormModel,
+    DropdownFormField,
     FileDetails,
     FileUploaderService,
     OcFormComponent,
@@ -1133,4 +1136,57 @@ WizardForm.args = {
     buttonPosition: 'justify',
     maxStepsToShow: 3,
     enableTextTruncation: true,
+};
+
+export const DropdownForm = FormGroupComponent.bind({});
+const addressField: AppFormField = {
+    id: 'text',
+    label: 'Address',
+    type: 'text',
+};
+
+const numberField: AppFormField = {
+    id: 'number',
+    label: 'Number',
+    type: 'number',
+};
+
+const dropdownField: AppFormField = {
+    id: 'country',
+    label: 'Country',
+    type: 'dropdownList',
+    options: ['CAN', 'CHN', 'COG'],
+};
+
+const dfaField: AppFormField = {
+    id: 'dfa',
+    label: 'DFA',
+    type: 'dynamicFieldArray',
+    fields: [dropdownField, numberField],
+};
+
+const dropdownFormField: DropdownFormField = {
+    id: 'model[0]',
+    type: 'dropdownForm',
+    attributes: {
+        dropdownSettings: {
+            dropdownField: {
+                id: 'type',
+                type: 'dropdownList',
+                options: ['First form', 'Second form'],
+            },
+            dropdownForms: {
+                'First form': [addressField, dropdownField],
+                'Second form': [addressField, dfaField],
+            },
+        },
+    },
+};
+
+const mainForm: AppFormModel = {
+    fields: [dropdownFormField],
+};
+
+DropdownForm.args = {
+    formJsonData: mainForm,
 };

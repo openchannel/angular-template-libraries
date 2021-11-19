@@ -1,7 +1,15 @@
 <form class="form" [formGroup]="customForm" *ngIf="customForm">
     <ng-container *ngFor="let formElement of formJsonData?.fields; trackBy: trackByFieldId">
+        <ng-container *ngIf="formElement.type === 'dropdownForm'">
+            <oc-dropdown-form
+                [formId]="formId"
+                [formGroup]="customForm.controls[formElement.id]"
+                [field]="formElement"
+                [labelPosition]="labelPosition">
+            </oc-dropdown-form>
+        </ng-container>
         <div
-            *ngIf="formElement.type !== 'fieldGroup' || showGroupHeading"
+            *ngIf="formElement.type !== 'fieldGroup' || showGroupHeading || formElement.type !== 'dropdownForm'"
             class="form__field"
             [ngClass]="
                 labelPosition === 'right'

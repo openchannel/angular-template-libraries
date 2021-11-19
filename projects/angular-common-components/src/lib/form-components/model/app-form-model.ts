@@ -12,6 +12,8 @@ export type OcListFieldType = 'dropdownList' | 'multiselectList' | 'multiApp' | 
 
 export type OcUrlFieldType = 'websiteUrl' | 'videoUrl' | string;
 
+export type OcCustomFieldType = 'dropdownForm';
+
 export type OcFieldType =
     | 'checkbox'
     | 'number'
@@ -23,9 +25,10 @@ export type OcFieldType =
     | OcTagsFieldType
     | OcListFieldType
     | OcUrlFieldType
+    | OcCustomFieldType
     | string;
 
-export interface AppFormField {
+export type DefaultAppFormField = {
     id: string;
     label?: string;
     description?: string;
@@ -38,6 +41,8 @@ export interface AppFormField {
     placeholder?: string;
     category?: string;
 }
+
+export type AppFormField = DefaultAppFormField | DropdownFormField;
 
 export interface AppFormModel {
     formId?: string;
@@ -68,6 +73,20 @@ export interface AppFormFieldAttributes {
 export interface FieldOptionValue {
     value: any;
 }
+
+export type DropdownFormFieldSettings = {
+    dropdownField: Omit<DefaultAppFormField, 'type' | 'options'> & { type: 'dropdownList'; options: string[] };
+    dropdownForms: { [dropdownValue: string]: AppFormField[] };
+}
+
+export type DropdownFormField = Omit<DefaultAppFormField, 'type'> & {
+    type: 'dropdownForm';
+    attributes: {
+        dropdownSettings: DropdownFormFieldSettings;
+    };
+};
+
+export type FormLabelPosition = 'top' | 'left' | 'right';
 
 export type TrimFormFieldType = OcTextFieldType & OcUrlFieldType;
 
