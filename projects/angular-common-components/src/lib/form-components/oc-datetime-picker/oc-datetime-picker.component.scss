@@ -7,14 +7,21 @@
     &__input {
         outline: none;
         display: block;
+        
+        .oc-button {
+            min-height: 46px;
+            padding: 8px 20px;
+        }
 
         &-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        
         &.dropdown-toggle[aria-expanded='true'],
         &.dropdown-toggle[aria-expanded='false'] {
+            
             &:after {
                 display: none;
             }
@@ -81,8 +88,8 @@
                 background: $white;
                 border-bottom: 1px solid $gray;
                 padding: 5px 0;
-                @include font-size-sm();
                 color: $text-color;
+                @include font-size-sm();
                 @include default-text();
             }
 
