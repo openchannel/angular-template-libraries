@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { CountryModel, StateModel } from '../model/api/country-state.model';
 
 /**
  * Description: API service for getting countries list.<br>
@@ -12,26 +13,31 @@ import { map } from 'rxjs/operators';
     providedIn: 'root',
 })
 export class CountryStateService {
-    countries: any;
-    states: any;
-    
     constructor(private http: HttpClient) {}
     /**
      * Description: Get countries data.
-     * @returns {Observable<any>} `Observable<any>`
+     * @returns {Observable<CountryModel[]>} `Observable<CountryModel[]>`
      * ### Example
-     * `getCountries();`
+     * `getCountries(): Observable<CountryModel[]>;`
      */
-    getCountries(): Observable<any> {
-        return this.http.get('https://countriesnow.space/api/v0.1/countries/iso').pipe(map(result => (this.countries = result)));
+    getCountries(): Observable<CountryModel[]> {
+        return this.http.get('https://countriesnow.space/api/v0.1/countries/iso').pipe(
+            map((response: any) => {
+                return response.data;
+            }),
+        );
     }
     /**
      * Description: Get states data.
-     * @returns {Observable<any>} `Observable<any>`
+     * @returns {Observable<StateModel[]>} `Observable<StateModel[]>`
      * ### Example
-     * `getStates(country);`
+     * `getStates(country: CountryModel): Observable<StateModel[]>;`
      */
-    getStates(country: any): Observable<any> {
-        return this.http.post('https://countriesnow.space/api/v0.1/countries/states', country).pipe(map(result => (this.states = result)));
+    getStates(country: CountryModel): Observable<StateModel[]> {
+        return this.http.post('https://countriesnow.space/api/v0.1/countries/states', country).pipe(
+            map((response: any) => {
+                return response.data.states;
+            }),
+        );
     }
 }
