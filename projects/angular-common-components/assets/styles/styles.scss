@@ -825,3 +825,15 @@ oc-button.tags__button-add {
         min-height: auto;
     }
 }
+
+.form__field-input__dropdown-inline {
+    oc-additional-select {
+        margin-right: 16px;
+    }
+    oc-number {
+        width: 100%;
+        input {
+            height: 100%;
+        }
+    }
+}

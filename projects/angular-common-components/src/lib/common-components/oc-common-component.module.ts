@@ -46,6 +46,7 @@ import { HeadingTagDirective } from './directive/heading-tag.directive';
 import { OcFullImageGalleryViewModalComponent } from './oc-full-image-gallery-view-modal/oc-full-image-gallery-view-modal.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { GetTextByPathPipe } from './pipe/get-text-by-path.pipe';
+import { ArraySearchPipe } from './pipe/array-search.pipe';
 
 @NgModule({
     declarations: [
@@ -86,6 +87,7 @@ import { GetTextByPathPipe } from './pipe/get-text-by-path.pipe';
         OcRadioButtonComponent,
         GetTextByPathPipe,
         OcFullImageGalleryViewModalComponent,
+        ArraySearchPipe,
     ],
     imports: [
         NgbModule,
@@ -138,6 +140,7 @@ import { GetTextByPathPipe } from './pipe/get-text-by-path.pipe';
         OcInitialsComponent,
         OcFullImageGalleryViewModalComponent,
         OnlyNumberDirective,
+        ArraySearchPipe,
     ],
     providers: [NgbActiveModal],
 })

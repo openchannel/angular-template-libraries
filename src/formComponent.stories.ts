@@ -1,6 +1,6 @@
 import {
     AppFormField,
-    AppFormModel,
+    AppFormModel, DropdownAdditionalField,
     DropdownFormField,
     FileDetails,
     FileUploaderService,
@@ -1138,31 +1138,95 @@ WizardForm.args = {
     enableTextTruncation: true,
 };
 
-export const DropdownForm = FormGroupComponent.bind({});
-const addressField: AppFormField = {
-    id: 'text',
-    label: 'Address',
-    type: 'text',
-};
+export const PricingForm = FormGroupComponent.bind({});
 
-const numberField: AppFormField = {
-    id: 'number',
-    label: 'Number',
-    type: 'number',
-};
-
-const dropdownField: AppFormField = {
-    id: 'country',
-    label: 'Country',
+const multiPricingField: DropdownAdditionalField = {
+    id: 'currency',
+    label: 'Pricing',
     type: 'dropdownList',
-    options: ['CAN', 'CHN', 'COG'],
+    defaultValue: 'EUR',
+    options: ['USD', 'EUR'],
+    attributes: {
+        subType: 'additionalField',
+        subTypeSettings: {
+            additionalFieldId: 'price',
+            additionalFieldAttributesByDropdownValue: {
+                USD: {
+                    min: 10,
+                    max: 20,
+                },
+                EUR: {
+                    min: 30,
+                    max: 40,
+                },
+            },
+        },
+    },
 };
 
-const dfaField: AppFormField = {
-    id: 'dfa',
-    label: 'DFA',
-    type: 'dynamicFieldArray',
-    fields: [dropdownField, numberField],
+const priceField: AppFormField = {
+    id: 'price',
+    type: 'number',
+    attributes: {
+        required: true,
+        formHideRow: true,
+    },
+};
+
+const trialField: AppFormField = {
+    id: 'trial',
+    label: 'Trial period (in days)',
+    type: 'number',
+    attributes: {
+        min: 1,
+    },
+};
+
+const billingPeriodField: AppFormField = {
+    id: 'billingPeriod',
+    label: 'Billing period',
+    type: 'dropdownList',
+    defaultValue: 'monthly',
+    options: ['daily', 'weekly', 'monthly', 'annually']
+};
+
+const billingPeriodUnitField: AppFormField = {
+    id: 'billingPeriodUnit',
+    label: 'Billing period unit',
+    type: 'number',
+    defaultValue: 1,
+};
+
+const licenseField: AppFormField = {
+    id: 'license',
+    type: 'dropdownList',
+    label: 'License',
+    defaultValue: 'single',
+    options: ['single', 'group'],
+};
+
+const multiCommissionField: DropdownAdditionalField = {
+    id: 'commissionType',
+    label: 'Commission',
+    type: 'dropdownList',
+    defaultValue: '%',
+    options: ['%'],
+    attributes: {
+        subType: 'additionalField',
+        subTypeSettings: {
+            additionalFieldId: 'commission',
+            additionalFieldAttributesByDropdownValue: {},
+        },
+    },
+};
+
+const commissionField: AppFormField = {
+    id: 'commission',
+    type: 'number',
+    attributes: {
+        formHideRow: true,
+        min: 1,
+    }
 };
 
 const dropdownFormField: DropdownFormField = {
@@ -1172,12 +1236,27 @@ const dropdownFormField: DropdownFormField = {
         dropdownSettings: {
             dropdownField: {
                 id: 'type',
+                label: 'Type',
                 type: 'dropdownList',
-                options: ['First form', 'Second form'],
+                attributes: {
+                    required: true,
+                },
+                defaultValue: 'free',
+                options: ['free', 'single', 'recurring'],
             },
             dropdownForms: {
-                'First form': [addressField, dropdownField],
-                'Second form': [addressField, dfaField],
+                free: [
+                    multiPricingField,
+                    priceField,
+                    trialField,
+                    billingPeriodField,
+                    billingPeriodUnitField,
+                    licenseField,
+                    multiCommissionField,
+                    commissionField,
+                ],
+                single: [],
+                recurring: [],
             },
         },
     },
@@ -1187,6 +1266,6 @@ const mainForm: AppFormModel = {
     fields: [dropdownFormField],
 };
 
-DropdownForm.args = {
+PricingForm.args = {
     formJsonData: mainForm,
 };

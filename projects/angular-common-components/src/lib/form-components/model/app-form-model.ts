@@ -67,6 +67,7 @@ export interface AppFormFieldAttributes {
     height?: number;
     hash?: string;
     accept?: any;
+    formHideRow?: boolean;
     overrideErrorMessage?: ErrorMessage;
 }
 
@@ -83,6 +84,20 @@ export type DropdownFormField = Omit<DefaultAppFormField, 'type'> & {
     type: 'dropdownForm';
     attributes: {
         dropdownSettings: DropdownFormFieldSettings;
+    };
+};
+
+export type DropdownAdditionalField = Omit<DefaultAppFormField, 'type' | 'options'> & {
+    type: 'dropdownList';
+    options: string[];
+    attributes: {
+        subType: 'additionalField';
+        subTypeSettings: {
+            additionalFieldId: string;
+            additionalFieldAttributesByDropdownValue: {
+                [dropdownValue: string]: AppFormFieldAttributes;
+            };
+        };
     };
 };
 
