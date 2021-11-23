@@ -47,6 +47,7 @@ import { OcFullImageGalleryViewModalComponent } from './oc-full-image-gallery-vi
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { GetTextByPathPipe } from './pipe/get-text-by-path.pipe';
 import { ArraySearchPipe } from './pipe/array-search.pipe';
+import { TransformTextPipe } from './pipe/text-transform.pipe';
 
 @NgModule({
     declarations: [
@@ -88,6 +89,7 @@ import { ArraySearchPipe } from './pipe/array-search.pipe';
         GetTextByPathPipe,
         OcFullImageGalleryViewModalComponent,
         ArraySearchPipe,
+        TransformTextPipe,
     ],
     imports: [
         NgbModule,

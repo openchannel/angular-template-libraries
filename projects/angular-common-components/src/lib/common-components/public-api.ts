@@ -55,6 +55,7 @@ export * from './model/social-link.model';
 export * from './model/heading-tag.interface';
 export * from './model/image-gallery.model';
 export * from './model/utils.model';
+export * from './model/text-transfrom-pipe.model';
 
 /** Services */
 export * from './oc-error/oc-error-service';

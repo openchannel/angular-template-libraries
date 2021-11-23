@@ -1,4 +1,7 @@
-import { ErrorMessage } from '@openchannel/angular-common-components/src/lib/common-components';
+import {
+    ErrorMessage,
+    TransformTextType
+} from '@openchannel/angular-common-components/src/lib/common-components';
 
 export type OcTextFieldType = 'richText' | 'text' | 'longText' | 'password' | 'emailAddress' | string;
 
@@ -42,7 +45,7 @@ export type DefaultAppFormField = {
     category?: string;
 }
 
-export type AppFormField = DefaultAppFormField | DropdownFormField;
+export type AppFormField = DefaultAppFormField | DropdownFormField | DropdownAdditionalField;
 
 export interface AppFormModel {
     formId?: string;
@@ -68,6 +71,7 @@ export interface AppFormFieldAttributes {
     hash?: string;
     accept?: any;
     formHideRow?: boolean;
+    transformText?: TransformTextType;
     overrideErrorMessage?: ErrorMessage;
 }
 

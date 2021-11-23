@@ -1,4 +1,5 @@
 <oc-select
     [formControl]="formGroup.controls[this.dropdownField.id]"
+    [transformText]="this.dropdownField?.attributes?.transformText"
     [selectValArr]="this.dropdownField?.options">
 </oc-select>

@@ -1187,7 +1187,10 @@ const billingPeriodField: AppFormField = {
     label: 'Billing period',
     type: 'dropdownList',
     defaultValue: 'monthly',
-    options: ['daily', 'weekly', 'monthly', 'annually']
+    options: ['daily', 'weekly', 'monthly', 'annually'],
+    attributes: {
+        transformText: 'titleCase',
+    },
 };
 
 const billingPeriodUnitField: AppFormField = {
@@ -1203,6 +1206,9 @@ const licenseField: AppFormField = {
     label: 'License',
     defaultValue: 'single',
     options: ['single', 'group'],
+    attributes: {
+        transformText: 'titleCase',
+    },
 };
 
 const multiCommissionField: DropdownAdditionalField = {
@@ -1238,11 +1244,12 @@ const dropdownFormField: DropdownFormField = {
                 id: 'type',
                 label: 'Type',
                 type: 'dropdownList',
-                attributes: {
-                    required: true,
-                },
                 defaultValue: 'free',
                 options: ['free', 'single', 'recurring'],
+                attributes: {
+                    required: true,
+                    transformText: 'titleCase',
+                },
             },
             dropdownForms: {
                 free: [

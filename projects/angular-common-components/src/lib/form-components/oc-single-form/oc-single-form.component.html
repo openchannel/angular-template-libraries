@@ -95,6 +95,7 @@
                 <oc-select
                     *ngSwitchDefault
                     [formControl]="customForm.controls[formElement?.id]"
+                    [transformText]="formElement?.attributes?.transformText"
                     [selectValArr]="formElement?.options"></oc-select>
             </ng-container>
         </ng-container>
