@@ -837,3 +837,25 @@ oc-button.tags__button-add {
         }
     }
 }
+
+.radio-button-list {
+    &.vertical {
+        &__item {
+            &:first-child {
+                margin-top: 0;
+            }
+            margin-top: 1rem;
+        }
+    }
+    &.horizontal {
+        display: flex;
+        flex-direction: row;
+        .radio-button-list__item {
+            margin-right: 10rem;
+            .form-radio-button__label {
+                margin-left: 16px;
+                margin-top: 1px;
+            }
+        }
+    }
+}

@@ -78,7 +78,10 @@
                     *ngSwitchCase="'radioButton'"
                     [formControl]="customForm.controls[formElement?.id]"
                     [itemsArray]="formElement?.options"
-                    [radioButtonGroup]="formElement?.id"></oc-radio-button-list>
+                    [transformText]="formElement?.attributes?.transformText"
+                    [radioButtonGroup]="formElement?.id"
+                    [radioButtonLayout]="formElement?.attributes?.componentLayout">
+                </oc-radio-button-list>
                 <ng-container *ngSwitchCase="'additionalField'">
                     <div class="form__field-input__dropdown-inline">
                         <oc-additional-select

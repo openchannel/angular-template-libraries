@@ -56,6 +56,7 @@ export * from './model/heading-tag.interface';
 export * from './model/image-gallery.model';
 export * from './model/utils.model';
 export * from './model/text-transfrom-pipe.model';
+export * from './model/radio-button.model';
 
 /** Services */
 export * from './oc-error/oc-error-service';

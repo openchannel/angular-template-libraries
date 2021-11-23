@@ -1,6 +1,6 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TransformTextType } from '@openchannel/angular-common-components/src/lib/common-components';
+import { TransformTextType } from '../model/text-transfrom-pipe.model';
 
 @Component({
     selector: 'oc-select',

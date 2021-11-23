@@ -1207,6 +1207,8 @@ const licenseField: AppFormField = {
     defaultValue: 'single',
     options: ['single', 'group'],
     attributes: {
+        subType: 'radioButton',
+        componentLayout: 'horizontal',
         transformText: 'titleCase',
     },
 };
@@ -1245,7 +1247,7 @@ const dropdownFormField: DropdownFormField = {
                 label: 'Type',
                 type: 'dropdownList',
                 defaultValue: 'free',
-                options: ['free', 'single', 'recurring'],
+                options: ['free', 'single', 'recurring', 'all fields'],
                 attributes: {
                     required: true,
                     transformText: 'titleCase',
@@ -1253,6 +1255,22 @@ const dropdownFormField: DropdownFormField = {
             },
             dropdownForms: {
                 free: [
+                    trialField,
+                    licenseField,
+                    multiCommissionField,
+                    commissionField,
+                ],
+                single: [
+                    multiPricingField,
+                    priceField,
+                ],
+                recurring: [
+                    multiPricingField,
+                    priceField,
+                    billingPeriodField,
+                    billingPeriodUnitField,
+                ],
+                'all fields': [
                     multiPricingField,
                     priceField,
                     trialField,
@@ -1260,10 +1278,8 @@ const dropdownFormField: DropdownFormField = {
                     billingPeriodUnitField,
                     licenseField,
                     multiCommissionField,
-                    commissionField,
-                ],
-                single: [],
-                recurring: [],
+                    commissionField
+                ]
             },
         },
     },

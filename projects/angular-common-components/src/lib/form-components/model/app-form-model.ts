@@ -1,5 +1,6 @@
 import {
     ErrorMessage,
+    RadioButtonLayout,
     TransformTextType
 } from '@openchannel/angular-common-components/src/lib/common-components';
 
@@ -72,6 +73,7 @@ export interface AppFormFieldAttributes {
     accept?: any;
     formHideRow?: boolean;
     transformText?: TransformTextType;
+    componentLayout?: RadioButtonLayout;
     overrideErrorMessage?: ErrorMessage;
 }
 
