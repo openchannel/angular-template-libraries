@@ -184,7 +184,9 @@ export class OcFormComponent implements OnInit, OnChanges {
         if (this.setFormErrors && this.hasFieldGroups) {
             this.submitFromAppTable();
         }
-        this.listenServerErrors();
+        if (this.hasFieldGroups) {
+            this.listenServerErrors();
+        }
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -437,7 +439,7 @@ export class OcFormComponent implements OnInit, OnChanges {
                 takeUntil(this.destroy$),
             )
             .subscribe(errors => {
-                if (errors) {
+                if (errors && this.customForm) {
                     const index = this.customForm.controls.findIndex(group => {
                         return !!errors
                             .filter(error => error?.field)

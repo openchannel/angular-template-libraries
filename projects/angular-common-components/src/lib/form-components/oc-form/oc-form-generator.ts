@@ -8,7 +8,7 @@ import { OcDropdownFormUtils } from '../oc-dropdown-form/oc-dropdown-form.servic
 export class OcFormGenerator {
     // tslint:disable-next-line:typedef
     static getFormByConfig(fieldsDefinitions: AppFormField[], trimTextFields?: TrimFormFieldType[]) {
-        const group = {};
+        let group = {};
         fieldsDefinitions.forEach(inputTemplate => {
             const isTrimText = trimTextFields?.includes(inputTemplate?.type);
 
@@ -105,10 +105,10 @@ export class OcFormGenerator {
                     this.setValidators(group[inputTemplate?.id], inputTemplate, { isList: true, isDFA: true });
                     break;
                 case 'dropdownForm':
-                    const formModel = OcDropdownFormUtils.getFormModel(inputTemplate as DropdownFormField);
-                    if (formModel) {
-                        group[inputTemplate.id] = formModel.formGroup;
-                    }
+                    const fields = OcDropdownFormUtils.getFormFields(inputTemplate as DropdownFormField);
+                    const formConfig = OcFormGenerator.getFormByConfig(fields, trimTextFields);
+                    const formGroup = new FormGroup(formConfig);
+                    group = { ...group, ...formGroup.controls };
                     break;
                 default:
                     break;

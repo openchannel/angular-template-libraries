@@ -74,6 +74,7 @@ export interface AppFormFieldAttributes {
     formHideRow?: boolean;
     transformText?: TransformTextType;
     componentLayout?: RadioButtonLayout;
+    onlyFirstDfaItem?: boolean;
     overrideErrorMessage?: ErrorMessage;
 }
 
@@ -81,10 +82,12 @@ export interface FieldOptionValue {
     value: any;
 }
 
+export type DropdownField = Omit<DefaultAppFormField, 'type' | 'options'> & { type: 'dropdownList'; options: string[] };
+
 export type DropdownFormFieldSettings = {
-    dropdownField: Omit<DefaultAppFormField, 'type' | 'options'> & { type: 'dropdownList'; options: string[] };
+    dropdownField: DropdownField;
     dropdownForms: { [dropdownValue: string]: AppFormField[] };
-}
+};
 
 export type DropdownFormField = Omit<DefaultAppFormField, 'type'> & {
     type: 'dropdownForm';

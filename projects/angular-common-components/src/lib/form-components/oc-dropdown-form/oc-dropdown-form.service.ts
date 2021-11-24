@@ -8,17 +8,7 @@ export interface DropdownFormModel {
 }
 
 export class OcDropdownFormUtils {
-    static getFormFields(field: DropdownFormField, dropdownValue: string): AppFormField[] {
-        if (field?.attributes?.dropdownSettings) {
-            const dropdownField = field.attributes.dropdownSettings.dropdownField;
-            const otherFields = field.attributes.dropdownSettings.dropdownForms?.[dropdownValue] || [];
-            return [dropdownField, ...otherFields];
-        } else {
-            return [];
-        }
-    }
-
-    static getFormModel(field: DropdownFormField, oldValue?: string): DropdownFormModel | null {
+    static getFormFields(field: DropdownFormField, oldValue?: string): AppFormField[] {
         const {
             attributes: {
                 dropdownSettings: { dropdownForms, dropdownField },
@@ -37,13 +27,7 @@ export class OcDropdownFormUtils {
             return null;
         }
 
-        const formFields = [dropdownField, ...(dropdownForms[dropdownOption] || [])];
-        const formGroup = new FormGroup(OcFormGenerator.getFormByConfig(formFields, []));
-
-        return {
-            formFields,
-            formGroup,
-        };
+        return [dropdownField, ...(dropdownForms[dropdownOption] || [])];
     }
 
     private static findDropdownValue(field: AppFormField, defaultValue: any): string {

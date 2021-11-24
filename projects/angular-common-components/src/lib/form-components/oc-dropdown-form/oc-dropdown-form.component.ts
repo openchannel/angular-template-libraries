@@ -1,9 +1,16 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { AppFormField, AppFormModel, DropdownFormField, FormLabelPosition } from '../model/app-form-model';
+import {
+    AppFormField,
+    AppFormModel,
+    defaultFieldsForTrim,
+    DropdownFormField,
+    FormLabelPosition
+} from '../model/app-form-model';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { OcDropdownFormUtils } from '../oc-dropdown-form/oc-dropdown-form.service';
+import { OcFormGenerator } from '../oc-form/oc-form-generator';
 import { forIn } from 'lodash';
 
 @Component({
@@ -47,7 +54,7 @@ export class OcDropdownFormComponent implements OnInit, OnDestroy {
     }
 
     initFieldsByDropdownControlValue(): void {
-        this.setFormFields(OcDropdownFormUtils.getFormFields(this.field, this.dropdownControl?.value));
+        this.setFormFields(OcDropdownFormUtils.getFormFields(this.field, this.formGroup?.value));
     }
 
     listenDropdownChanges(): void {
@@ -62,10 +69,11 @@ export class OcDropdownFormComponent implements OnInit, OnDestroy {
 
     updateFormByDropdownValue(dropdownValue: string): void {
         const oldValue = { ...this.formGroup.value, [this.dropdownControlId]: dropdownValue };
-        const dropdownFormModel = OcDropdownFormUtils.getFormModel(this.field, oldValue);
-        dropdownFormModel.formGroup.patchValue(oldValue);
-        this.setFormFields(dropdownFormModel.formFields);
-        this.setFormControls(dropdownFormModel.formGroup.controls);
+        const newFields = OcDropdownFormUtils.getFormFields(this.field, oldValue);
+        const newFormGroup = new FormGroup(OcFormGenerator.getFormByConfig(newFields, defaultFieldsForTrim));
+        newFormGroup.patchValue(oldValue);
+        this.setFormFields(newFields);
+        this.setFormControls(newFormGroup.controls);
     }
 
     setFormFields(fields: AppFormField[]): void {
