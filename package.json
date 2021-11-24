@@ -1,6 +1,6 @@
 {
   "name": "oc-angular-template-libraries",
-  "version": "2.43.0",
+  "version": "2.45.1",
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
     "prebuild": "npm run clean-css && npm run generate-mock-css",
@@ -118,7 +118,7 @@
     "lodash": "^4.17.21",
     "merge": "2.1.1",
     "minimist": "1.2.3",
-    "ng-packagr": "^11.2.3",
+    "ng-packagr": "11.1.4",
     "npm-watch": "^0.10.0",
     "prettier": "^2.2.1",
     "protractor": "~7.0.0",
