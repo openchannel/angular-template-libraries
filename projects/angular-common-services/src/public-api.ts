@@ -1,7 +1,12 @@
 /*
  * Public API Surface of angular-common-services
  */
-export { CustomHttpClientXsrfModule, OcCommonServiceModule, NetlifyPrerenderModule, OcEndpointApiPathsCustom } from './lib/oc-ng-common-service.module';
+export {
+    CustomHttpClientXsrfModule,
+    OcCommonServiceModule,
+    NetlifyPrerenderModule,
+    OcEndpointApiPathsCustom,
+} from './lib/oc-ng-common-service.module';
 export * from './lib/service/http-request-services';
 
 /* Api models*/
@@ -31,6 +36,7 @@ export * from './lib/model/api/request.model';
 export * from './lib/model/api/custom-content.model';
 export * from './lib/model/api/meta-tag.model';
 export * from './lib/model/api/prerender-endpoints-config.model';
+export * from './lib/model/api/stripe.model';
 
 /* Component models */
 export * from './lib/model/components/frontend.model';
@@ -69,6 +75,8 @@ export * from './lib/service/site-content.service';
 export * from './lib/service/cms-site-content.service';
 export * from './lib/service/meta-tag.service';
 export * from './lib/service/prerender-requests-watcher.service';
+export * from './lib/service/stripe.service';
+export * from './lib/service/country.service';
 
 /* Utils */
 export * from './lib/util/type-mapper.util';
