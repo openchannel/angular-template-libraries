@@ -2,11 +2,8 @@
 @import '../../../../assets/styles/theme';
 
 .chart {
+    
     &__options-container {
-        @include media-breakpoint-md {
-            flex-direction: column;
-            padding: 2rem;
-        }
         border: solid 1px $info;
         border-radius: 4px;
         display: flex;
@@ -14,14 +11,18 @@
         justify-content: space-between;
         margin-bottom: 3rem;
         padding: 1rem;
+        @include media-breakpoint-md {
+            flex-direction: column;
+            padding: 2rem;
+        }
     }
 
     &__period-container {
+        display: flex;
+        justify-content: flex-start;
         @include media-breakpoint-md {
             flex-direction: column;
         }
-        display: flex;
-        justify-content: flex-start;
     }
 
     &__period-item {
@@ -29,6 +30,7 @@
         display: flex;
 
         &-active {
+            
             .chart__period-item-checkmark {
                 border-color: $primary;
 
@@ -85,6 +87,7 @@
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
+        
         &-button {
             align-items: center;
             border-radius: 50%;
@@ -96,6 +99,7 @@
             }
 
             &_active {
+                
                 .recolor-svg {
                     fill: $body-color;
                 }
@@ -104,19 +108,21 @@
     }
 
     &__type-section {
-        @include media-breakpoint-md {
-            width: 100%;
-        }
         border: 1px solid $info;
         border-radius: 4px;
         cursor: pointer;
+        @include media-breakpoint-md {
+            width: 100%;
+        }
 
         &:focus,
         &:active {
             border-color: $primary;
 
             &-dropdown {
+                
                 &-icon {
+                    
                     .recolor-icon {
                         fill: $primary;
                     }
@@ -126,11 +132,6 @@
     }
 
     &__data-container {
-        @include media-breakpoint-md {
-            flex-direction: column;
-            max-height: unset;
-            padding: 2rem;
-        }
         background-color: $white;
         border: solid 1px $info;
         border-radius: 4px;
@@ -138,23 +139,25 @@
         flex-direction: row;
         max-height: 300px;
         padding: 5rem;
+        @include media-breakpoint-md {
+            flex-direction: column;
+            max-height: unset;
+            padding: 2rem;
+        }
 
         &-canvas {
+            flex-grow: 1;
+            height: 100%;
+            width: 80%;
             @include media-breakpoint-md {
                 border: 1px solid $gray;
                 border-radius: 4px;
                 padding: 2rem;
                 width: 100%;
             }
-            flex-grow: 1;
-            height: 100%;
-            width: 80%;
         }
 
         &-tabular {
-            @include media-breakpoint-md {
-                width: 100%;
-            }
             border: 1px solid $gray;
             border-radius: 4px;
             flex-grow: 1;
@@ -162,6 +165,9 @@
             max-height: 220px;
             overflow: hidden;
             width: 80%;
+            @include media-breakpoint-md {
+                width: 100%;
+            }
 
             &_scroll {
                 box-sizing: content-box;
@@ -173,26 +179,26 @@
         }
 
         &-total {
-            @include media-breakpoint-md {
-                margin-left: 0;
-                margin-top: 3rem;
-                padding: 0 1rem;
-                width: 100%;
-            }
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             margin-left: 2rem;
             padding: 1rem;
             width: 20%;
+            @include media-breakpoint-md {
+                margin-left: 0;
+                margin-top: 3rem;
+                padding: 0 1rem;
+                width: 100%;
+            }
 
             &-header {
-                @include media-breakpoint-md {
-                    margin-bottom: 1rem;
-                }
                 display: flex;
                 flex-direction: column;
                 margin-bottom: 3rem;
+                @include media-breakpoint-md {
+                    margin-bottom: 1rem;
+                }
             }
 
             &-image {
@@ -248,10 +254,12 @@
         }
 
         &-body {
+            
             &-row {
                 padding-left: 2rem;
 
                 &:last-child {
+                    
                     .chart__table-view-body-td {
                         box-shadow: none;
                     }
@@ -268,6 +276,7 @@
             }
 
             &-td {
+                
                 &:first-child {
                     padding-left: 2rem;
                 }
