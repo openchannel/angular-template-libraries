@@ -37,6 +37,7 @@ export * from './lib/model/api/custom-content.model';
 export * from './lib/model/api/meta-tag.model';
 export * from './lib/model/api/prerender-endpoints-config.model';
 export * from './lib/model/api/stripe.model';
+export * from './lib/model/api/country-state.model';
 
 /* Component models */
 export * from './lib/model/components/frontend.model';
