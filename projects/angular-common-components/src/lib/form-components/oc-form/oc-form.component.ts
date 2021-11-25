@@ -4,7 +4,7 @@ import { FormProgressbarStep } from '../model/progress-bar-item.model';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
 import { ErrorMessageFormId, OcErrorService } from '@openchannel/angular-common-components/src/lib/common-components';
-import { forIn, set, merge, toPath } from 'lodash';
+import { forIn, set, mergeWith, toPath } from 'lodash';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -285,8 +285,8 @@ export class OcFormComponent implements OnInit, OnChanges {
     }
 
     get stepDescription(): string {
-        if (this.currentForm.label) {
-            return this.currentForm.label.label;
+        if (this.currentForm.label?.description) {
+            return this.currentForm.label.description;
         }
         return 'Please fill the information below';
     }
@@ -327,7 +327,12 @@ export class OcFormComponent implements OnInit, OnChanges {
      * Maps form fields data, creates an object resultData.
      */
     private mapFormFieldsData(fields: any): void {
-        merge(this.resultData, fields);
+        mergeWith(this.resultData, fields, (oldValue, srcValue) => {
+            if (Array.isArray(srcValue)) {
+                return srcValue;
+            }
+            // apply default merge function for other types.
+        });
     }
 
     /**
