@@ -143,6 +143,7 @@ import { TransformTextPipe } from './pipe/text-transform.pipe';
         OcFullImageGalleryViewModalComponent,
         OnlyNumberDirective,
         ArraySearchPipe,
+        TransformTextPipe,
     ],
     providers: [NgbActiveModal],
 })

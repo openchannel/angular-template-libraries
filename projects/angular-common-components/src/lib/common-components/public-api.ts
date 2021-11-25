@@ -34,6 +34,7 @@ export * from './pipe/html-tags-replacer.pipe';
 export * from './pipe/safe.pipe';
 export * from './pipe/get-text-by-path.pipe';
 export * from './pipe/array-search.pipe';
+export * from './pipe/text-transform.pipe';
 
 /** Directives */
 export * from './directive/ellipsis.directive';

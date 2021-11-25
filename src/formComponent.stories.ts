@@ -1167,6 +1167,7 @@ const multiPricingField: DropdownAdditionalField = {
 const priceField: AppFormField = {
     id: 'price',
     type: 'number',
+    label: 'Price',
     attributes: {
         required: true,
         formHideRow: true,
@@ -1178,7 +1179,7 @@ const trialField: AppFormField = {
     label: 'Trial period (in days)',
     type: 'number',
     attributes: {
-        min: 1,
+        min: 0,
     },
 };
 
@@ -1231,6 +1232,7 @@ const multiCommissionField: DropdownAdditionalField = {
 const commissionField: AppFormField = {
     id: 'commission',
     type: 'number',
+    label: 'Commission',
     attributes: {
         formHideRow: true,
         min: 1,
@@ -1238,7 +1240,7 @@ const commissionField: AppFormField = {
 };
 
 const dropdownFormField: DropdownFormField = {
-    id: 'model[0]',
+    id: 'pricingForm',
     type: 'dropdownForm',
     attributes: {
         dropdownSettings: {
@@ -1254,19 +1256,16 @@ const dropdownFormField: DropdownFormField = {
                 },
             },
             dropdownForms: {
-                free: [
-                    trialField,
-                    licenseField,
-                    multiCommissionField,
-                    commissionField,
-                ],
+                free: [],
                 single: [
                     multiPricingField,
                     priceField,
+                    trialField,
                 ],
                 recurring: [
                     multiPricingField,
                     priceField,
+                    trialField,
                     billingPeriodField,
                     billingPeriodUnitField,
                 ],
@@ -1278,7 +1277,7 @@ const dropdownFormField: DropdownFormField = {
                     billingPeriodUnitField,
                     licenseField,
                     multiCommissionField,
-                    commissionField
+                    commissionField,
                 ]
             },
         },
@@ -1291,4 +1290,42 @@ const mainForm: AppFormModel = {
 
 PricingForm.args = {
     formJsonData: mainForm,
+};
+
+export const PricingFormDFA = FormGroupComponent.bind({});
+
+const pricingFormDfaField = {
+    id: 'model',
+    type: 'dynamicFieldArray',
+    defaultValue: [
+        {
+            pricingForm: {
+                type: 'free',
+            },
+        },
+        {
+            pricingForm: {
+                type: 'single',
+                trial: 45,
+                price: 15,
+            },
+        },
+        {
+            pricingForm: {
+                type: 'recurring',
+                trial: 30,
+                price: 2.5,
+            },
+        },
+    ],
+    fields: [dropdownFormField],
+    attributes: {
+        ordering: 'append',
+    },
+};
+
+PricingFormDFA.args = {
+    formJsonData: {
+        fields: [pricingFormDfaField]
+    },
 };
