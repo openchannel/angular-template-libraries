@@ -7,10 +7,8 @@ import { TransformTextType } from '../model/text-transfrom-pipe.model';
 export class TransformTextPipe implements PipeTransform {
     transform(text: any, type: TransformTextType = null): string | any {
         if (typeof text === 'string') {
-            // tslint:disable-next-line:switch-default
-            switch (type) {
-                case 'titleCase':
-                    return this.toTitleCase(text);
+            if (type === 'titleCase') {
+                return this.toTitleCase(text);
             }
         }
         return text;

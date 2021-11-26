@@ -19,8 +19,6 @@ export class OcAdditionalSelectComponent implements OnInit, OnDestroy {
     otherFieldId: string;
     destroy$ = new Subject<void>();
 
-    constructor() {}
-
     ngOnInit(): void {
         this.initOtherFieldId();
         this.listenDropdownChanges();
@@ -45,7 +43,7 @@ export class OcAdditionalSelectComponent implements OnInit, OnDestroy {
 
     private updateValidatorsForOtherField(dropdownValue: string): void {
         const attributesByValue = this.dropdownField?.attributes?.subTypeSettings?.additionalFieldAttributesByDropdownValue[dropdownValue];
-        const otherField = cloneDeep(this.fields?.find(field => field.id === this.otherFieldId)) as AppFormField;
+        const otherField = cloneDeep(this.fields?.find(field => field.id === this.otherFieldId));
         if (attributesByValue && otherField && this.formGroup?.controls[this.otherFieldId]) {
             const control = this.formGroup.controls[this.otherFieldId];
             otherField.attributes = { ...(otherField?.attributes || {}), ...attributesByValue };

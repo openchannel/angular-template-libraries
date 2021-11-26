@@ -29,8 +29,6 @@ export class OcDropdownFormComponent implements OnInit, OnDestroy {
     private dropdownControlId: string;
     private dropdownControl: AbstractControl;
 
-    constructor() {}
-
     ngOnInit(): void {
         this.initDropdownControlId();
         this.initDropdownControl();

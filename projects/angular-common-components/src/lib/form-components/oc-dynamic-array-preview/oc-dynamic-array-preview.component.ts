@@ -6,7 +6,7 @@ import { map, takeUntil } from 'rxjs/operators';
 import { isArray } from 'rxjs/internal-compatibility';
 import { FileDetails, FileUploaderService } from '../model/file.model';
 import { AppTypeFieldModel, ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
-import { difference, isEqual } from 'lodash';
+import { isEqual } from 'lodash';
 import { VIDEO_URL_REGEX } from '../model/utils.model';
 import { AppFormField, DropdownFormField } from '../model/app-form-model';
 import { OcDropdownFormUtils } from '../oc-dropdown-form/oc-dropdown-form.service';
