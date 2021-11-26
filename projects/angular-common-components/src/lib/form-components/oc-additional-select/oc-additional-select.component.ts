@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AppFormField, DropdownAdditionalField } from '../model/app-form-model';
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
@@ -36,9 +36,11 @@ export class OcAdditionalSelectComponent implements OnInit, OnDestroy {
     }
 
     private listenDropdownChanges(): void {
-        this.formGroup.controls[this.dropdownField.id].valueChanges
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(dropdownValue => this.updateValidatorsForOtherField(dropdownValue));
+        if (this.formGroup && this.dropdownField) {
+            this.formGroup.controls[this.dropdownField.id].valueChanges
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(dropdownValue => this.updateValidatorsForOtherField(dropdownValue));
+        }
     }
 
     private updateValidatorsForOtherField(dropdownValue: string): void {

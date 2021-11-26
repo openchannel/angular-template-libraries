@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { OcAdditionalSelectComponent } from './oc-additional-select.component';
+import { MockSelectComponent } from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcAdditionalSelectComponent', () => {
     let component: OcAdditionalSelectComponent;
@@ -8,7 +8,7 @@ describe('OcAdditionalSelectComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [OcAdditionalSelectComponent],
+            declarations: [OcAdditionalSelectComponent, MockSelectComponent],
         }).compileComponents();
     });
 

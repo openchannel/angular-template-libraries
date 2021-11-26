@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OcRadioButtonComponent } from './oc-radio-button.component';
 import { By } from '@angular/platform-browser';
+import { TransformTextPipe } from '@openchannel/angular-common-components/src/lib/common-components';
 
 describe('OcRadioButtonComponent', () => {
     let component: OcRadioButtonComponent;
@@ -9,7 +10,7 @@ describe('OcRadioButtonComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [OcRadioButtonComponent],
+            declarations: [OcRadioButtonComponent, TransformTextPipe],
         }).compileComponents();
     });
 

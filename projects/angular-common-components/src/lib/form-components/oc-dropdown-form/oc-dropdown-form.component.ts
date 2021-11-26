@@ -54,7 +54,9 @@ export class OcDropdownFormComponent implements OnInit, OnDestroy {
     }
 
     initFieldsByDropdownControlValue(): void {
-        this.setFormFields(OcDropdownFormUtils.getFormFields(this.field, this.formGroup?.value));
+        if (this.field) {
+            this.setFormFields(OcDropdownFormUtils.getFormFields(this.field, this.formGroup?.value));
+        }
     }
 
     listenDropdownChanges(): void {
