@@ -1,4 +1,4 @@
-<div class="radio-button-list">
+<div class="radio-button-list" [ngClass]="radioButtonLayout || 'vertical'">
     <div *ngFor="let item of itemsArray" class="radio-button-list__item">
         <ng-container
             [ngTemplateOutlet]="customRadioItemRef ? customRadioItemRef : defaultRadioItemTemplate"
@@ -10,6 +10,7 @@
     <oc-radio-button
         [value]="item.value"
         [labelText]="item.label"
+        [transformText]="transformText"
         [ngModelOptions]="{ standalone: true }"
         [radioButtonGroupName]="radioButtonGroup"
         (ngModelChange)="onValueChanged($event)"

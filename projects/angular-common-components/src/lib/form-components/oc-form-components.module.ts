@@ -25,6 +25,8 @@ import { OcDropdownMultiAppComponent } from './oc-dropdown-multi-app/oc-dropdown
 import { OcMultiSelectCheckboxListComponent } from './oc-multi-select-checkbox-list/oc-multi-select-checkbox-list.component';
 import { OcRadioButtonListComponent } from './oc-radio-button-list/oc-radio-button-list.component';
 import { OcProgressBarComponent } from './oc-progress-bar/oc-progress-bar.component';
+import { OcDropdownFormComponent } from './oc-dropdown-form/oc-dropdown-form.component';
+import { OcAdditionalSelectComponent } from './oc-additional-select/oc-additional-select.component';
 
 @NgModule({
     declarations: [
@@ -47,6 +49,8 @@ import { OcProgressBarComponent } from './oc-progress-bar/oc-progress-bar.compon
         OcRadioButtonListComponent,
         OcDropdownMultiAppComponent,
         OcProgressBarComponent,
+        OcDropdownFormComponent,
+        OcAdditionalSelectComponent,
     ],
     imports: [
         CommonModule,
@@ -78,6 +82,7 @@ import { OcProgressBarComponent } from './oc-progress-bar/oc-progress-bar.compon
         OcMultiSelectCheckboxListComponent,
         OcRadioButtonListComponent,
         OcProgressBarComponent,
+        OcAdditionalSelectComponent,
     ],
 })
 export class OcFormComponentsModule {}

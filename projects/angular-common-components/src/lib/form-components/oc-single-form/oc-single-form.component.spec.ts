@@ -23,7 +23,10 @@ import {
     MockTextareaComponent,
     MockTooltipComponent,
     MockVideoUrlComponent,
+    MockDropdownFormComponent,
+    MockAdditionalSelectComponent,
 } from '@openchannel/angular-common-components/src/mock/mock';
+import { ArraySearchPipe } from '@openchannel/angular-common-components/src/public-api';
 
 describe('OcFormComponent', () => {
     let component: OcSingleFormComponent;
@@ -54,6 +57,9 @@ describe('OcFormComponent', () => {
                     MockRadioButtonListComponent,
                     MockMultiSelectCheckboxList,
                     MockDropdownMultiApp,
+                    MockDropdownFormComponent,
+                    MockAdditionalSelectComponent,
+                    ArraySearchPipe,
                 ],
                 imports: [FormsModule, ReactiveFormsModule],
             }).compileComponents();

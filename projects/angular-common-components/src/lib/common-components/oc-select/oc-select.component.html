@@ -10,11 +10,11 @@
     <div class="select-component__dropdown" ngbDropdownMenu aria-labelledby="dropdownManual">
         <button class="select-component__dropdown-item" ngbDropdownItem (click)="onSelectionChange(val)"
                 *ngFor="let val of selectValArr">
-            {{ labelField ? val[labelField] : val }}
+            {{ labelField ? val[labelField] : val | transformText: transformText}}
         </button>
     </div>
 </div>
 
 <ng-template #selectButton>
-    <div class="select-component__text">{{ inputLabel }}</div>
+    <div class="select-component__text">{{ inputLabel | transformText: transformText}}</div>
 </ng-template>
