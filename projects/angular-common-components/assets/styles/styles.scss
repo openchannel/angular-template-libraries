@@ -530,6 +530,7 @@ oc-select {
         .dropdown-item {
             padding: 16px;
             border-bottom: 1px;
+            white-space: normal;
 
             &:hover {
                 color: $dropdown-item-text-alternative;
