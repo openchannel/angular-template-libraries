@@ -31,7 +31,7 @@ export class CountryStateService {
      * ### Example
      * `getStates(country: CountryModel): Observable<StatesModel>;`
      */
-    getStates(country: CountryModel, headers: HttpHeaders): Observable<StatesModel> {
+    getStates(country: CountryModel, headers?: HttpHeaders): Observable<StatesModel> {
         return this.http.post<StatesModel>('https://countriesnow.space/api/v0.1/countries/states', country, { headers });
     }
 }
