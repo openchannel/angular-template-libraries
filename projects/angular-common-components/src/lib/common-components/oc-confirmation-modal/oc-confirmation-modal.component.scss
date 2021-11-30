@@ -7,6 +7,7 @@
     flex-direction: column;
 
     &__header {
+        height: 80px;
         align-items: flex-start;
         border-bottom: 1px solid $info;
         display: flex;
@@ -15,12 +16,15 @@
         padding: 3rem;
 
         &-heading {
-            margin-bottom: 0;
             text-align: center;
             width: 100%;
+            margin: auto;
         }
 
         &-close-icon {
+            position: absolute;
+            right: 24px;
+            top: 24px;
             cursor: pointer;
             fill: $black;
             height: 16px;
@@ -46,12 +50,40 @@
         flex-wrap: nowrap;
         justify-content: center;
         margin-top: 5rem;
-        padding: 0 3rem;
+        padding: 0 48px;
         width: 100%;
     }
 
     &__button {
         margin: 0 1rem;
         width: 100%;
+    }
+
+    @include media-breakpoint-sm() {
+        &__header-close-icon {
+            right: 16px;
+            top: 16px;
+        }
+        &__header {
+            height: 64px;
+            padding: 1rem;
+        }
+        &__modal-body {
+            padding: 3rem;
+        }
+        &__button {
+            margin: 0 0 16px 0;
+        }
+        &__button-container {
+            margin-top: 3rem;
+            padding: 0 24px;
+        }
+        &__button-container {
+            padding: 0;
+            flex-direction: column;
+            :nth-last-child(1) {
+                margin-bottom: 0;
+            }
+        }
     }
 }
