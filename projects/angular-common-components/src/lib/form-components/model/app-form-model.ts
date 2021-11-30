@@ -1,4 +1,8 @@
-import { ErrorMessage } from '@openchannel/angular-common-components/src/lib/common-components';
+import {
+    ErrorMessage,
+    RadioButtonLayout,
+    TransformTextType
+} from '@openchannel/angular-common-components/src/lib/common-components';
 
 export type OcTextFieldType = 'richText' | 'text' | 'longText' | 'password' | 'emailAddress' | string;
 
@@ -12,6 +16,8 @@ export type OcListFieldType = 'dropdownList' | 'multiselectList' | 'multiApp' | 
 
 export type OcUrlFieldType = 'websiteUrl' | 'videoUrl' | string;
 
+export type OcCustomFieldType = 'dropdownForm';
+
 export type OcFieldType =
     | 'checkbox'
     | 'number'
@@ -23,9 +29,10 @@ export type OcFieldType =
     | OcTagsFieldType
     | OcListFieldType
     | OcUrlFieldType
+    | OcCustomFieldType
     | string;
 
-export interface AppFormField {
+export type DefaultAppFormField = {
     id: string;
     label?: string;
     description?: string;
@@ -38,6 +45,8 @@ export interface AppFormField {
     placeholder?: string;
     category?: string;
 }
+
+export type AppFormField = DefaultAppFormField | DropdownFormField | DropdownAdditionalField;
 
 export interface AppFormModel {
     formId?: string;
@@ -62,12 +71,46 @@ export interface AppFormFieldAttributes {
     height?: number;
     hash?: string;
     accept?: any;
+    formHideRow?: boolean;
+    transformText?: TransformTextType;
+    componentLayout?: RadioButtonLayout;
+    onlyFirstDfaItem?: boolean;
     overrideErrorMessage?: ErrorMessage;
 }
 
 export interface FieldOptionValue {
     value: any;
 }
+
+export type DropdownField = Omit<DefaultAppFormField, 'type' | 'options'> & { type: 'dropdownList'; options: string[] };
+
+export type DropdownFormFieldSettings = {
+    dropdownField: DropdownField;
+    dropdownForms: { [dropdownValue: string]: AppFormField[] };
+};
+
+export type DropdownFormField = Omit<DefaultAppFormField, 'type'> & {
+    type: 'dropdownForm';
+    attributes: {
+        dropdownSettings: DropdownFormFieldSettings;
+    };
+};
+
+export type DropdownAdditionalField = Omit<DefaultAppFormField, 'type' | 'options'> & {
+    type: 'dropdownList';
+    options: string[];
+    attributes: {
+        subType: 'additionalField';
+        subTypeSettings: {
+            additionalFieldId: string;
+            additionalFieldAttributesByDropdownValue: {
+                [dropdownValue: string]: AppFormFieldAttributes;
+            };
+        };
+    };
+};
+
+export type FormLabelPosition = 'top' | 'left' | 'right';
 
 export type TrimFormFieldType = OcTextFieldType & OcUrlFieldType;
 

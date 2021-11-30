@@ -1,13 +1,14 @@
 import { AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AppTypeFieldModel } from '@openchannel/angular-common-components/src/lib/common-components';
 import { cloneDeep } from 'lodash';
-import { AppFormField, TrimFormFieldType } from '../model/app-form-model';
+import { AppFormField, DropdownFormField, TrimFormFieldType } from '../model/app-form-model';
 import { OcFormValidator } from './oc-form-validator';
+import { OcDropdownFormUtils } from '../oc-dropdown-form/oc-dropdown-form.service';
 
 export class OcFormGenerator {
     // tslint:disable-next-line:typedef
     static getFormByConfig(fieldsDefinitions: AppFormField[], trimTextFields?: TrimFormFieldType[]) {
-        const group = {};
+        let group = {};
         fieldsDefinitions.forEach(inputTemplate => {
             const isTrimText = trimTextFields?.includes(inputTemplate?.type);
 
@@ -102,6 +103,12 @@ export class OcFormGenerator {
                         });
                     }
                     this.setValidators(group[inputTemplate?.id], inputTemplate, { isList: true, isDFA: true });
+                    break;
+                case 'dropdownForm':
+                    const fields = OcDropdownFormUtils.getFormFields(inputTemplate as DropdownFormField, inputTemplate.defaultValue);
+                    const formConfig = OcFormGenerator.getFormByConfig(fields, trimTextFields);
+                    const formGroup = new FormGroup(formConfig);
+                    group = { ...group, ...formGroup.controls };
                     break;
                 default:
                     break;

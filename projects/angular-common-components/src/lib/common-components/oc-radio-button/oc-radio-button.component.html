@@ -10,7 +10,7 @@
            type="radio">
     <span class="form-radio-button__checkmark"></span>
     <span class="form-radio-button__label">
-        {{ labelText }}
+        {{ labelText | transformText: transformText}}
         <span *ngIf="requiredIndicator" class="form-radio-button__required-glyph">*</span>
     </span>
 </label>
