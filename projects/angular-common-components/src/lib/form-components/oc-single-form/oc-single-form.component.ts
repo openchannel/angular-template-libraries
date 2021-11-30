@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
 import { OcFormValidator } from '../oc-form/oc-form-validator';
-import { AppFormModel, defaultFieldsForTrim } from '../model/app-form-model';
+import { AppFormModel, defaultFieldsForTrim, FormLabelPosition } from '../model/app-form-model';
 import { ControlUtils, ErrorMessageFormId, OcErrorService } from '@openchannel/angular-common-components/src/lib/common-components';
 import { forIn, set, toPath } from 'lodash';
 import { map, takeUntil } from 'rxjs/operators';
@@ -102,7 +102,7 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
      * Set position of the field label. Can be: "top", "left", "right".
      * @default 'top'
      */
-    @Input() labelPosition: 'top' | 'left' | 'right' = 'top';
+    @Input() labelPosition: FormLabelPosition = 'top';
 
     /**
      * Set form "dirty" after form init

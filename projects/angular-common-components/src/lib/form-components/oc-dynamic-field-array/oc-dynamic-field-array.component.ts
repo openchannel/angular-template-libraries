@@ -100,7 +100,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy, OnChange
      */
     addNewArrayItem(): void {
         const newGroup = new FormGroup(OcFormGenerator.getFormByConfig(this.fieldDefinition.fields, defaultFieldsForTrim));
-        if (this.fieldDefinition.attributes.ordering === 'append') {
+        if (this.fieldDefinition?.attributes?.ordering === 'append') {
             this.formsArrayConfig.push({
                 new: true,
                 isEdit: true,
@@ -206,7 +206,7 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy, OnChange
      * Returns object with default value or custom label value and label definition.
      */
     private getPreviewLabel(control: AbstractControl, index: number): PreviewLabel {
-        if (!this.fieldDefinition.attributes.rowLabel) {
+        if (!this.fieldDefinition?.attributes?.rowLabel) {
             // DFA default title
             return {
                 defaultLabel: `Item ${index + 1}`,
