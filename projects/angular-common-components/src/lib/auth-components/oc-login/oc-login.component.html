@@ -13,11 +13,11 @@
                 [ngTemplateOutlet]="incorrectEmailErrorCodeTemplate || defaultIncorrectEmailErrorCodeRef"
                 [ngTemplateOutletContext]="{ $implicit: { parentForm: loginForm } }"></ng-container>
             <ng-container
-                *ngIf="errorService.hasServerError(email, incorrectEmailErrorCode)"
+                *ngIf="errorService.hasServerError(password, passwordResetRequiredErrorCode)"
                 [ngTemplateOutlet]="passwordResetRequiredErrorTemplate || defaultPasswordResetRequiredErrorCodeRef"
                 [ngTemplateOutletContext]="{ $implicit: { parentForm: loginForm } }"></ng-container>
             <ng-container
-                *ngIf="errorService.hasServerError(email, incorrectEmailErrorCode)"
+                *ngIf="errorService.hasServerError(email, notVerifiedEmailErrorCode)"
                 [ngTemplateOutlet]="notVerifiedEmailErrorTemplate || defaultNotVerifiedEmailErrorCodeRef"
                 [ngTemplateOutletContext]="{ $implicit: { parentForm: loginForm } }"></ng-container>
             <div class="login__email">
