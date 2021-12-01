@@ -9,6 +9,10 @@ import { ComponentsUser, ComponentsUserAccount } from '@openchannel/angular-comm
  *     review: 'Some review text',
  *     userId: '5565322ae4b0a70b13a4563b',
  *     reviewId: '88434hjd67487hjs3445h',
+ *     status: {
+ *         value: 'approved',
+ *         reason: ''
+ *     }
  * }
  */
 export class OCReviewDetails {
@@ -17,6 +21,7 @@ export class OCReviewDetails {
     review: string;
     userId?: string;
     reviewId?: string;
+    status?: ReviewStatus;
 }
 
 /**

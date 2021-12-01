@@ -1,3 +1,14 @@
+## Release notes - angular-template-libraries - Version 2.46.0 (12/1/2021)<br>
+### Task<br>
+AT-1607 - Ensure correct SSO behavior in all possible scenarios<br>
+### Story<br>
+AT-1565 - A user is able to set their billing address<br>
+AT-1559 - A user is able to view, add and remove credit card details<br>
+### Bug<br>
+AT-1546 - [Market][Review count] Review under Overall rating is getting increased even though Review is not yet approved.<br>
+AT-1528 - [UI] Various components fields are having wrong height<br>
+AT-1468 - [Reviews] Logged in user's review is not at the top of the Review list.<br>
+AT-1210 - [UI][Portal][Manage App / Edit App][Chart] UI issues on Chart component. Current Date is not showing and Count is cut off.<br>
 ## Release notes - angular-template-libraries - Version 2.45.1 (11/16/2021)<br>
 ### Bug<br>
 AT-1608 - [Market][Form submission - Buy Now] Image crop pop-up is not getting closed after clicking on Confirm button.<br>
