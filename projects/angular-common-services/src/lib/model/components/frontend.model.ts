@@ -8,6 +8,13 @@ export interface SiteConfig {
         href: string;
         type?: string;
     };
+    paymentsEnabled?: boolean;
+    paymentsGateway?: PaymentsGateways;
+}
+
+export enum PaymentsGateways {
+    STRIPE = 'STRIPE',
+    CUSTOM = 'CUSTOM',
 }
 
 export interface OCReviewDetailsResponse {
