@@ -13,11 +13,11 @@
                 [ngTemplateOutlet]="incorrectEmailErrorCodeTemplate || defaultIncorrectEmailErrorCodeRef"
                 [ngTemplateOutletContext]="{ $implicit: { parentForm: loginForm } }"></ng-container>
             <ng-container
-                *ngIf="errorService.hasServerError(password, passwordResetRequiredErrorCode)"
+                *ngIf="errorService.hasServerError(email, incorrectEmailErrorCode)"
                 [ngTemplateOutlet]="passwordResetRequiredErrorTemplate || defaultPasswordResetRequiredErrorCodeRef"
                 [ngTemplateOutletContext]="{ $implicit: { parentForm: loginForm } }"></ng-container>
             <ng-container
-                *ngIf="errorService.hasServerError(email, notVerifiedEmailErrorCode)"
+                *ngIf="errorService.hasServerError(email, incorrectEmailErrorCode)"
                 [ngTemplateOutlet]="notVerifiedEmailErrorTemplate || defaultNotVerifiedEmailErrorCodeRef"
                 [ngTemplateOutletContext]="{ $implicit: { parentForm: loginForm } }"></ng-container>
             <div class="login__email">
@@ -88,13 +88,7 @@
 </ng-template>
 
 <ng-template #defaultNotVerifiedEmailErrorCodeRef let-ctx>
-    <div class="login__error">
-        This account has not been activated yet.
-        <br >
-        Please check your inbox for an activation email or
-        <a (click)="onActivationLinkClick(ctx.parentForm.controls.email)" class="font-s font-med resend-link">
-            resend the activation email
-        </a>
-        .
+    <div class="login__error login__warn-block">
+        The email and password you have provided is incorrect.
     </div>
 </ng-template>
