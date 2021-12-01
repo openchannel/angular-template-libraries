@@ -1,37 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CountriesModel, CountryModel, StatesModel } from '../model/api/country-state.model';
 
 /**
- * Description: API service for getting countries list.<br>
+ * Description: API service for getting countries and states list.<br>
+ * Link - https://documenter.getpostman.com/view/1134062/T1LJjU52?version=latest <br>
+ * Version 0.1
  * Endpoints:<br>
- * GET 'https://restcountries.eu/rest/v2/all'<br>
+ * GET 'https://countriesnow.space/api/v0.1/countries/iso'<br>
+ * POST 'https://countriesnow.space/api/v0.1/countries/states'<br>
  */
 @Injectable({
     providedIn: 'root',
 })
 export class CountryStateService {
-    countries: any;
-    states: any;
-    
     constructor(private http: HttpClient) {}
     /**
      * Description: Get countries data.
-     * @returns {Observable<any>} `Observable<any>`
+     * @returns {Observable<CountriesModel>} `Observable<CountriesModel>`
      * ### Example
-     * `getCountries();`
+     * `getCountries(): Observable<CountriesModel>;`
      */
-    getCountries(): Observable<any> {
-        return this.http.get('https://countriesnow.space/api/v0.1/countries/iso').pipe(map(result => (this.countries = result)));
+    getCountries(): Observable<CountriesModel> {
+        return this.http.get<CountriesModel>('https://countriesnow.space/api/v0.1/countries/iso');
     }
     /**
      * Description: Get states data.
-     * @returns {Observable<any>} `Observable<any>`
+     * @returns {Observable<StatesModel>} `Observable<StatesModel>`
      * ### Example
-     * `getStates(country);`
+     * `getStates(country: CountryModel): Observable<StatesModel>;`
      */
-    getStates(country: any): Observable<any> {
-        return this.http.post('https://countriesnow.space/api/v0.1/countries/states', country).pipe(map(result => (this.states = result)));
+    getStates(country: CountryModel, headers?: HttpHeaders): Observable<StatesModel> {
+        return this.http.post<StatesModel>('https://countriesnow.space/api/v0.1/countries/states', country, { headers });
     }
 }
