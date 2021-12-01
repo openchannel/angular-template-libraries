@@ -16,6 +16,10 @@
         outline: none;
     }
 
+    &:focus.oc-button_warning {
+        border-color: $suspended;
+    }
+
     &:disabled {
         opacity: 0.35;
     }
@@ -95,6 +99,34 @@
 
         &-spinner {
             background-color: mix($black, $button-danger, 10%);
+        }
+
+        .oc-button__text {
+            color: $white;
+        }
+
+        .oc-button__spinner {
+            .la-ball-spin {
+                color: $white;
+            }
+        }
+    }
+
+    &_warning {
+        background-color: $suspended;
+        border: 2px solid $suspended;
+        color: $white;
+
+        &:hover {
+            box-shadow: 1px 5px 30px 0 rgba(mix($black, $suspended, 10%), 0.5);
+        }
+
+        &:not(:disabled):not(.disabled):active {
+            background-color: mix($black, $suspended, 10%);
+        }
+
+        &-spinner {
+            background-color: mix($black, $suspended, 10%);
         }
 
         .oc-button__text {
