@@ -1,0 +1,19 @@
+.consent {
+    &__checkbox {
+        align-items: flex-start;
+        display: flex;
+
+        &-input {
+            height: 16px;
+        }
+    }
+
+    &__label {
+        @include font-size-sm();
+    }
+
+    &__link {
+        @include font-size-sm();
+        @include font-medium();
+    }
+}
