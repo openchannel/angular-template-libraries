@@ -89,6 +89,12 @@
 
 <ng-template #defaultNotVerifiedEmailErrorCodeRef let-ctx>
     <div class="login__error login__warn-block">
-        The email or password you have provided is incorrect.
+        This account has not been activated yet.
+        <br>
+        Please check your inbox for an activation email or
+        <a (click)="onActivationLinkClick(ctx.parentForm.controls.email)" class="font-s font-med resend-link">
+            resend the activation email
+        </a>
+        .
     </div>
 </ng-template>
