@@ -85,6 +85,10 @@ export interface FieldOptionValue {
 export type DropdownField = Omit<DefaultAppFormField, 'type' | 'options'> & { type: 'dropdownList'; options: string[] };
 
 export type DropdownFormFieldSettings = {
+    /**
+     * A form will be created by currentDropdownValue only when the function returns true.
+     */
+    dropdownValueFilter?: (currentDropdownValue: string) => boolean;
     dropdownField: DropdownField;
     dropdownForms: { [dropdownValue: string]: AppFormField[] };
 };
