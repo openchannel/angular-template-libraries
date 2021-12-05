@@ -5,7 +5,7 @@ import {
     StripeAccountsResponse,
     GetMarketplaceStripeSettingsResponse,
     UserCreditCardsResponse,
-    ChangeableCreditCardFields,
+    ChangeableCreditCardFields, PaymentTaxesResponse,
 } from '../model/api/stripe.model';
 import { HttpRequestService } from './http-request-services';
 import { OcApiPaths } from '../oc-ng-common-service.module';
@@ -30,6 +30,8 @@ import { OcApiPaths } from '../oc-ng-common-service.module';
  * POST 'v2/stripe-gateway/developer/this/accounts'<br>
  *
  * DELETE 'v2/stripe-gateway/developer/this/accounts/{stripeId}'<br>
+ *
+ * GET 'v2/stripe-gateway/preview'<br>
  */
 @Injectable({
     providedIn: 'root',
@@ -164,5 +166,21 @@ export class StripeService {
      */
     disconnectAccount(stripeId: string): Observable<StripeAccountsResponse> {
         return this.httpRequest.delete(`${this.apiPaths.stripeGateway}/developer/this/accounts/${stripeId}`);
+    }
+    /**
+     *
+     * Description: the tax items calculated on the item (only possible after billing address is set).
+     * You can get the tax amounts, subtotal and total.
+     *
+     * @param {string} country - iso of the country from the billing data
+     * @returns {Observable<PaymentTaxesResponse>} `Observable<PaymentTaxesResponse>`
+     *
+     * ### Example
+     *
+     * `getTaxesAndPayment('CA', 'Ontario', '600eef7a7ec0f53371d1ca90', '60b0fa5240b4914e74c8d3fd);`
+     */
+    getTaxesAndPayment(country: string, state: string, appId: string, modelId: string): Observable<PaymentTaxesResponse> {
+        const query = `country=${country}&state=${state}&appId=${appId}&modelId=${modelId}`;
+        return this.httpRequest.get(`${this.apiPaths.stripeGateway}/preview?${query}`);
     }
 }

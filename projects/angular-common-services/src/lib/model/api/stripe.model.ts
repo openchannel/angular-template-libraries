@@ -50,3 +50,14 @@ export interface UserCreditCardsResponse {
     userId: string;
     cards: CreditCard[];
 }
+
+export interface Taxes {
+    displayName: string;
+    amount: number;
+}
+
+export interface PaymentTaxesResponse {
+    subtotal: number;
+    total: number;
+    taxes: Taxes[];
+}
