@@ -81,7 +81,9 @@ export class OcProgressBarComponent implements OnInit, AfterViewInit, OnChanges 
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        this.getCurrentOffsetValue(changes);
+        if (this.progressbarData.length > this.maxStepsToShow && this.maxStepsToShow > 0) {
+            this.getCurrentOffsetValue(changes);
+        }
     }
 
     ngAfterViewInit(): void {
@@ -104,13 +106,12 @@ export class OcProgressBarComponent implements OnInit, AfterViewInit, OnChanges 
         const currentStep = changes.currentStep.currentValue;
         if (currentStep <= Math.ceil(this.maxStepsToShow / 2)) {
             this.currentOffsetValue = 0;
-        } else if (currentStep > this.progressbarData.length - Math.floor(this.maxStepsToShow / 2)) {
-            this.currentOffsetValue = (this.staticOffsetValue * (this.progressbarData.length - this.maxStepsToShow - 1) + 80) * -1;
         } else {
-            if (currentStep - (this.progressbarData.length - Math.floor(this.maxStepsToShow / 2)) === 0) {
-                this.currentOffsetValue = (this.staticOffsetValue * (currentStep - Math.ceil(this.maxStepsToShow / 2) - 1) + 80) * -1;
-            } else {
+            if (currentStep <= this.progressbarData.length - Math.floor(this.maxStepsToShow / 2) - 1) {
                 this.currentOffsetValue = this.staticOffsetValue * (currentStep - Math.ceil(this.maxStepsToShow / 2)) * -1;
+            } else {
+                this.currentOffsetValue =
+                    (this.staticOffsetValue * (this.progressbarData.length - Math.floor(this.maxStepsToShow) - 1) + 80) * -1;
             }
         }
     }
