@@ -61,3 +61,13 @@ export interface PaymentTaxesResponse {
     total: number;
     taxes: Taxes[];
 }
+export interface PurchaseModel {
+    appId: string;
+    modelId: string;
+}
+
+export interface Purchase {
+    userId: string;
+    models: PurchaseModel [];
+}
+

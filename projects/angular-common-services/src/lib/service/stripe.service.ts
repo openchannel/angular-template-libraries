@@ -5,7 +5,7 @@ import {
     StripeAccountsResponse,
     GetMarketplaceStripeSettingsResponse,
     UserCreditCardsResponse,
-    ChangeableCreditCardFields, PaymentTaxesResponse,
+    ChangeableCreditCardFields, PaymentTaxesResponse, Purchase,
 } from '../model/api/stripe.model';
 import { HttpRequestService } from './http-request-services';
 import { OcApiPaths } from '../oc-ng-common-service.module';
@@ -173,6 +173,9 @@ export class StripeService {
      * You can get the tax amounts, subtotal and total.
      *
      * @param {string} country - iso of the country from the billing data
+     * @param {string} state - name of the state
+     * @param {string} appId - id of the chosen app
+     * @param {string} modelId - id of the price model
      * @returns {Observable<PaymentTaxesResponse>} `Observable<PaymentTaxesResponse>`
      *
      * ### Example
@@ -182,5 +185,19 @@ export class StripeService {
     getTaxesAndPayment(country: string, state: string, appId: string, modelId: string): Observable<PaymentTaxesResponse> {
         const query = `country=${country}&state=${state}&appId=${appId}&modelId=${modelId}`;
         return this.httpRequest.get(`${this.apiPaths.stripeGateway}/preview?${query}`);
+    }
+    /**
+     *
+     * Description: Returns a link to Stripe, where developer can connect Stripe account
+     *
+     * @param {Purchase} purchaseBody -
+     * @returns {Observable<ConnectStripeAccountResponse>} `Observable<ConnectStripeAccountResponse>`
+     *
+     * ### Example
+     *
+     * `connectAccount('https://my-market.com/land-here');`
+     */
+    makePurchase(purchaseBody: Purchase): Observable<any> {
+        return this.httpRequest.post(`${this.apiPaths.stripeGateway}/purchase`, purchaseBody);
     }
 }
