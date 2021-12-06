@@ -71,6 +71,11 @@ export interface AppFormFieldAttributes {
     height?: number;
     hash?: string;
     accept?: any;
+    /**
+     * Used for 'number' field type.
+     * Limit decimal number after dot.
+     */
+    decimalCount?: number;
     formHideRow?: boolean;
     transformText?: TransformTextType;
     componentLayout?: RadioButtonLayout;

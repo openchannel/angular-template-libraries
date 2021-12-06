@@ -47,7 +47,7 @@
 <ng-template #defaultFormRowRef let-formElement>
     <div
         *ngIf="!(formElement.type === 'fieldGroup' || formElement?.attributes?.formHideRow)"
-        class="form__field"
+        [class]="'form__field ' + 'field-id-' +  formElement?.id"
         [ngClass]="
                 labelPosition === 'right'
                     ? 'form__field_direction_row_reverse'
@@ -160,7 +160,8 @@
         <oc-number
             *ngSwitchCase="'number'"
             [formControl]="customForm.controls[formElement?.id]"
-            [placeholder]="formElement?.placeholder"></oc-number>
+            [placeholder]="formElement?.placeholder"
+            [decimalCount]="formElement?.attributes?.decimalCount"></oc-number>
         <oc-checkbox
             *ngSwitchCase="'checkbox'"
             [formControl]="customForm.controls[formElement?.id]"

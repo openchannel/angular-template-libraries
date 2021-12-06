@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { OcNumberComponent } from './oc-number.component';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { OnlyNumberDirective } from '@openchannel/angular-common-components/src/lib/common-components';
 
 describe('OcNumberComponent', () => {
     let component: OcNumberComponent;
@@ -11,7 +12,7 @@ describe('OcNumberComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcNumberComponent],
+                declarations: [OcNumberComponent, OnlyNumberDirective],
                 imports: [FormsModule],
             }).compileComponents();
         }),
