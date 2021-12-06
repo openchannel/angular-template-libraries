@@ -590,6 +590,7 @@ export class MockFileUploadComponent implements ControlValueAccessor {
 })
 export class MockNumberComponent implements ControlValueAccessor {
     @Input() placeholder: string = '';
+    @Input() decimalCount: number;
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}

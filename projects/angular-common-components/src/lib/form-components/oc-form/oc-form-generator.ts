@@ -141,7 +141,7 @@ export class OcFormGenerator {
         const isTrimText = additional?.isTrimText;
 
         Object.keys(attributes).forEach(key => {
-            if (!attributes[key]) {
+            if (!attributes.hasOwnProperty(key)) {
                 return;
             }
             switch (key) {
