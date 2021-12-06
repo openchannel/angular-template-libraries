@@ -160,7 +160,8 @@
         <oc-number
             *ngSwitchCase="'number'"
             [formControl]="customForm.controls[formElement?.id]"
-            [placeholder]="formElement?.placeholder"></oc-number>
+            [placeholder]="formElement?.placeholder"
+            [decimalCount]="formElement?.attributes?.decimalCount"></oc-number>
         <oc-checkbox
             *ngSwitchCase="'checkbox'"
             [formControl]="customForm.controls[formElement?.id]"
