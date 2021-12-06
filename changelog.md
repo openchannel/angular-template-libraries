@@ -1,3 +1,37 @@
+## Release notes - angular-template-libraries - Version 2.46.0 (12/1/2021)<br>
+### Task<br>
+AT-1607 - Ensure correct SSO behavior in all possible scenarios<br>
+### Story<br>
+AT-1565 - A user is able to set their billing address<br>
+AT-1559 - A user is able to view, add and remove credit card details<br>
+### Bug<br>
+AT-1546 - [Market][Review count] Review under Overall rating is getting increased even though Review is not yet approved.<br>
+AT-1528 - [UI] Various components fields are having wrong height<br>
+AT-1468 - [Reviews] Logged in user's review is not at the top of the Review list.<br>
+AT-1210 - [UI][Portal][Manage App / Edit App][Chart] UI issues on Chart component. Current Date is not showing and Count is cut off.<br>
+## Release notes - angular-template-libraries - Version 2.45.1 (11/16/2021)<br>
+### Bug<br>
+AT-1608 - [Market][Form submission - Buy Now] Image crop pop-up is not getting closed after clicking on Confirm button.<br>
+AT-1595 - [Hotfix] A developer is not able to edit an app if the app type is not found.<br>
+AT-1594 - [Hotfix][Edit App Type] When there are no App Type available then proper message is not showing.<br>
+## Release notes - angular-template-libraries - Version 2.45.0 (11/12/2021)<br>
+### Bug<br>
+AT-1590 - [Component][Custom Signup Form] Remove "Org" prefix from Custom Data<br>
+AT-1566 - [stage1][market] [Forms - contact us - Buy now] File / Image upload is not working. uploadtoken gets canceled.<br>
+AT-1557 - [logs-prod] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler 500 Server Error for HTTP OPTIONS "/auth/csrf"<br>
+AT-1532 - [Prod][client-api-proxy] 500 Server Error for HTTP POST "/auth/external/token"<br>
+AT-1294 - [Portal][Create / Edit App] [Multi Select Dropdown / Tag] Dropdown list is not opening when clicking on 'arrow' icon.<br>
+AT-1060 - [User management][Invite a member] Password field validation displayed twice.<br>
+## Release notes - angular-template-libraries - Version 2.44.0 (11/11/2021)<br>
+### Bug<br>
+AT-1582 - Cap should not be setting expires and pragma headers on cachable responses<br>
+AT-1578 - [Market] Video gets squeeze when the Summary is too long on the App details page.<br>
+AT-1490 - [Portal][Create Apps] Color field has no default value set, yet Portal user gets default value for Color.  <br>
+AT-1460 - UI [Market/Portal] On Invite Sign up screen, Font size of checkbox value should be same as we have for normal sign up.<br>
+AT-1425 - [UI] If Features Apps are only 2 or 3 then there should be decent view on dashboard.<br>
+AT-1298 - Rating with half star not rendering correctly<br>
+AT-1211 - [Market/Portal] Refresh token expired should not appear to the end User.<br>
+AT-1207 - [Market] "Search phrase does not found any results" message missing on the Search result page.<br>
 ## Release notes - angular-template-libraries - Version 2.43.0 (11/9/2021)<br>
 ### Bug<br>
 AT-1592 - Signup by invite doesn't work<br>

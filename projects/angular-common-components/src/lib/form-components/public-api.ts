@@ -37,3 +37,4 @@ export * from './oc-dropdown-form/oc-dropdown-form.service';
 
 /** Form Generator */
 export * from './oc-form/oc-form-generator';
+export * from './oc-form/oc-form-validator';

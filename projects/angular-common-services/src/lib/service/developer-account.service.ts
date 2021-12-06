@@ -73,7 +73,7 @@ export class DeveloperAccountService {
      * `updateAccountFieldsForAnotherUser('ga7s6dg7a6sgd876ags7d8', false, {name: 'Developer'});`
      */
     updateAccountFieldsForAnotherUser(developerAccountId: string, skipTypeValidation: boolean, body: Partial<DeveloperAccount>): Observable<DeveloperAccount> {
-        const mainUrl = `${this.apiPaths.developerAccounts}/${developerAccountId}`;
+        const mainUrl = `${this.apiPaths.developerAccounts}/${encodeURIComponent(developerAccountId)}`;
 
         const params = new OcHttpParams().append('skipTypeValidators', String(skipTypeValidation));
 
@@ -118,7 +118,7 @@ export class DeveloperAccountService {
      * `deleteDeveloperAccount('97agsd986ags9d86g');`
      */
     deleteDeveloperAccount(developerAccountId: string): Observable<any> {
-        return this.httpService.delete(`${this.apiPaths.developerAccounts}/${developerAccountId}`);
+        return this.httpService.delete(`${this.apiPaths.developerAccounts}/${encodeURIComponent(developerAccountId)}`);
     }
 
     /**

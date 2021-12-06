@@ -340,6 +340,7 @@ export class OcFormComponent implements OnInit, OnChanges {
      * If 'wizard', and if it has more than 1 step - creates a progressbar with steps.
      */
     private checkFormType(type: FormType): void {
+        this.resultData = null;
         if (!this.generatedForm) {
             if (type === 'wizard') {
                 this.createStepsFormArray(this.formJsonData);

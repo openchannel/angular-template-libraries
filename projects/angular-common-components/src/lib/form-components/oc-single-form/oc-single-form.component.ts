@@ -179,6 +179,7 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
      * Generating form by JSON data
      */
     generateForm(): void {
+        this.customForm = null;
         if (this.generatedForm) {
             this.customForm = this.generatedForm;
         } else if (this.formJsonData.fields) {
