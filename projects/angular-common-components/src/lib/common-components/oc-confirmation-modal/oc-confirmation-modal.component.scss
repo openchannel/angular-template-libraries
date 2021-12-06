@@ -50,7 +50,7 @@
         flex-wrap: nowrap;
         justify-content: center;
         margin-top: 5rem;
-        padding: 0 48px;
+        padding: 0 6rem;
         width: 100%;
     }
 
@@ -76,9 +76,6 @@
         }
         &__button-container {
             margin-top: 3rem;
-            padding: 0 24px;
-        }
-        &__button-container {
             padding: 0;
             flex-direction: column;
             :nth-last-child(1) {

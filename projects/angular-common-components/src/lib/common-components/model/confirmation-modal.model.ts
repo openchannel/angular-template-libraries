@@ -2,7 +2,7 @@ import { OcButtonType } from '../model/components-basic.model';
 
 export interface ConfirmationModalButton {
     /**
-     * Will return as modal result.
+     * When a user clicks on this button, the ID will return as the modal result.
      */
     id: string;
     /**
