@@ -44,16 +44,12 @@ export class TransactionsService {
      *
      * `getTransactionsList(1, 10, { date: 1 }, { type: 'payment' });`
      */
-    getTransactionsList(pageNumber: number = 1, limit: number = 100, sort: any = null, query: any = null): Observable<Page<Transaction>> {
-        let params = new OcHttpParams().append('pageNumber', String(pageNumber)).append('limit', String(limit));
-
-        if (sort) {
-            params = params.append('sort', JSON.stringify(sort));
-        }
-
-        if (query) {
-            params = params.append('query', JSON.stringify(query));
-        }
+    getTransactionsList(pageNumber: number = 1, limit: number = 100, sort: any = {}, query: any = {}): Observable<Page<Transaction>> {
+        const params = new OcHttpParams()
+            .append('pageNumber', String(pageNumber))
+            .append('limit', String(limit))
+            .append('sort', JSON.stringify(sort))
+            .append('query', JSON.stringify(query));
 
         return this.httpRequest.get(`${this.apiPaths.transactions}`, { params });
     }
