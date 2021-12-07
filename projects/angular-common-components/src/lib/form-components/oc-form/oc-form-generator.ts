@@ -1,6 +1,6 @@
 import { AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AppTypeFieldModel } from '@openchannel/angular-common-components/src/lib/common-components';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isNumber } from 'lodash';
 import { AppFormField, DropdownFormField, TrimFormFieldType } from '../model/app-form-model';
 import { OcFormValidator } from './oc-form-validator';
 import { OcDropdownFormUtils } from '../oc-dropdown-form/oc-dropdown-form.service';
@@ -141,46 +141,57 @@ export class OcFormGenerator {
         const isTrimText = additional?.isTrimText;
 
         Object.keys(attributes).forEach(key => {
-            if (!attributes.hasOwnProperty(key)) {
-                return;
-            }
             switch (key) {
                 case 'required':
-                    if (additional?.isCheckbox) {
-                        validators.push(Validators.requiredTrue);
-                    } else {
-                        validators.push(OcFormValidator.required(inputTemplate.type, isTrimText));
+                    if (attributes.required) {
+                        if (additional?.isCheckbox) {
+                            validators.push(Validators.requiredTrue);
+                        } else {
+                            validators.push(OcFormValidator.required(inputTemplate.type, isTrimText));
+                        }
                     }
                     break;
                 case 'maxChars':
-                    if (additional?.isRichText) {
-                        validators.push(OcFormValidator.richTextMaxCharactersValidator(attributes.maxChars, isTrimText));
-                    } else {
-                        validators.push(OcFormValidator.maxLength(attributes.maxChars, isTrimText));
+                    if (isNumber(attributes.maxChars)) {
+                        if (additional?.isRichText) {
+                            validators.push(OcFormValidator.richTextMaxCharactersValidator(attributes.maxChars, isTrimText));
+                        } else {
+                            validators.push(OcFormValidator.maxLength(attributes.maxChars, isTrimText));
+                        }
                     }
                     break;
                 case 'minChars':
-                    if (additional?.isRichText) {
-                        validators.push(OcFormValidator.richTextMinCharactersValidator(attributes.minChars, isTrimText));
-                    } else {
-                        validators.push(OcFormValidator.minLength(attributes.minChars, isTrimText));
+                    if (isNumber(attributes.minChars)) {
+                        if (additional?.isRichText) {
+                            validators.push(OcFormValidator.richTextMinCharactersValidator(attributes.minChars, isTrimText));
+                        } else {
+                            validators.push(OcFormValidator.minLength(attributes.minChars, isTrimText));
+                        }
                     }
                     break;
                 case 'minCount':
-                    validators.push(
-                        OcFormValidator.validatorMinLengthArray(attributes.minCount, inputTemplate.label, additional?.isList || false),
-                    );
+                    if (isNumber(attributes.minCount)) {
+                        validators.push(
+                            OcFormValidator.validatorMinLengthArray(attributes.minCount, inputTemplate.label, additional?.isList || false),
+                        );
+                    }
                     break;
                 case 'maxCount':
-                    validators.push(
-                        OcFormValidator.validatorMaxLengthArray(attributes.maxCount, inputTemplate.label, additional?.isList || false),
-                    );
+                    if (isNumber(attributes.maxCount)) {
+                        validators.push(
+                            OcFormValidator.validatorMaxLengthArray(attributes.maxCount, inputTemplate.label, additional?.isList || false),
+                        );
+                    }
                     break;
                 case 'min':
-                    validators.push(Validators.min(Number(attributes.min)));
+                    if (isNumber(Number(attributes.min))) {
+                        validators.push(Validators.min(Number(attributes.min)));
+                    }
                     break;
                 case 'max':
-                    validators.push(Validators.max(Number(attributes.max)));
+                    if (isNumber(Number(attributes.max))) {
+                        validators.push(Validators.max(Number(attributes.max)));
+                    }
                     break;
                 default:
                     break;
