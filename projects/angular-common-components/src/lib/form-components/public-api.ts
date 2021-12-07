@@ -35,3 +35,4 @@ export * from './service/trim-text-utils/trim-text.service';
 
 /** Form Generator */
 export * from './oc-form/oc-form-generator';
+export * from './oc-form/oc-form-validator';
