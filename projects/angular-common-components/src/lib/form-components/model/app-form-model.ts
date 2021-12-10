@@ -1,8 +1,5 @@
-import {
-    ErrorMessage,
-    RadioButtonLayout,
-    TransformTextType
-} from '@openchannel/angular-common-components/src/lib/common-components';
+import { ErrorMessage, RadioButtonLayout, TransformTextType } from '@openchannel/angular-common-components/src/lib/common-components';
+import { Subject } from 'rxjs';
 
 export type OcTextFieldType = 'richText' | 'text' | 'longText' | 'password' | 'emailAddress' | string;
 
@@ -44,6 +41,12 @@ export type DefaultAppFormField = {
     fields?: AppFormField[];
     placeholder?: string;
     category?: string;
+    controlUtils?: AppFormFieldControlUtils;
+};
+
+export interface AppFormFieldControlUtils {
+    setDFAItemsEditMode?: Subject<number[]>;
+    updateDFAItems?: Subject<number[]>;
 }
 
 export type AppFormField = DefaultAppFormField | DropdownFormField | DropdownAdditionalField;

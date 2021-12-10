@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
 import { AppTypeFieldModel, ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
@@ -39,6 +39,27 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy, OnChange
      */
     @Input() dfaFormArray: FormArray;
 
+    /**
+     * Subject that emits an array of indexes of DFA items that needed to be in edit mode.
+     * @type {Subject<number[]>}.
+     */
+    @Input() set setDFAItemsEditMode(setDFAItemsEditMode: Subject<number[]>) {
+        setDFAItemsEditMode?.pipe(takeUntil(this.destroy$)).subscribe(indexes => {
+            indexes.forEach(index => this.editDFAItemData(index));
+            this.cdRef.detectChanges();
+        });
+    }
+
+    /**
+     * Subject that emits an array of indexes of DFA items that needed to be updated.
+     * @type {Subject<number[]>}.
+     */
+    @Input() set updateDFAItems(updateDFAItems: Subject<number[]>) {
+        updateDFAItems?.pipe(takeUntil(this.destroy$)).subscribe(indexes => {
+            indexes.forEach(index => this.updateDFAItem(index));
+        });
+    }
+
     /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
     @Input() formId: ErrorMessageFormId = null;
 
@@ -50,6 +71,9 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy, OnChange
      * Initial array length for {@link dfaFormArray}. Used for compare with a new array length.
      */
     currentDFALength: number;
+
+    constructor(private cdRef: ChangeDetectorRef) {}
+
     /**
      * Generates config for created forms on component initializing.
      */
@@ -150,6 +174,16 @@ export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy, OnChange
         };
         this.dfaFormArray.controls[index].markAllAsTouched();
         this.subscribeToAllPreviewFieldChanges();
+    }
+
+    /**
+     * Updates DFA item by index in formsArrayConfig according to dfaFormArray.
+     */
+    private updateDFAItem(index: number): void {
+        this.formsArrayConfig[index] = {
+            ...this.formsArrayConfig[index],
+            formData: this.dfaFormArray.controls[index].value,
+        };
     }
 
     /**
