@@ -67,7 +67,5 @@ export interface PurchaseModel {
 }
 
 export interface Purchase {
-    userId: string;
-    models: PurchaseModel [];
+    models: PurchaseModel[];
 }
-
