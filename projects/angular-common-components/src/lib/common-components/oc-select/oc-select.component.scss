@@ -2,6 +2,18 @@
 @import '../../../../assets/styles/mixins';
 
 .select-component {
+    
+    &_disabled {
+        pointer-events: none;
+        
+        .select-component__action {
+            
+            &:after {
+                opacity: .5;
+            }
+        }
+    }
+    
     &__action {
         align-items: center;
         display: flex;

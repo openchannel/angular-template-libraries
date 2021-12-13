@@ -20,6 +20,7 @@ import {
     ChartStatisticParameterModel,
     ChartStatisticPeriodModel,
 } from '../models/oc-chart.model';
+import { ChartUtils } from '../utils/chart.utils';
 
 const chartPoint = new Image();
 chartPoint.src = 'assets/angular-common-components/chart_point.svg';
@@ -256,6 +257,10 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                         afterFit(axis: Scale): void {
                             const tickCount = axis.ticks.length;
 
+                            if (tickCount === 0) {
+                                return;
+                            }
+
                             const skipPadding = 20;
                             const width = axis.width;
                             const paddingLeft = axis.paddingLeft;
@@ -273,14 +278,20 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                             const maxPossibleWidth = (longestRotatedLabel + skipPadding) * tickCount;
                             const actualWidth = width - (paddingLeft + paddingRight);
 
-                            const skipRatio = Math.floor(maxPossibleWidth / actualWidth) + 1;
+                            let skipRatio = Math.floor(maxPossibleWidth / actualWidth) + 1;
+                            let visibleTicksIndexes = ChartUtils.calculateVisibleIndexes(tickCount, skipRatio);
+                            let increaseSkipRatio = ChartUtils.shouldIncreaseSkipRatio(skipRatio, visibleTicksIndexes);
 
-                            axis.ticks = axis.ticks.filter((_, i) => {
-                                const isLast = tickCount - 1 === i;
-                                const shouldSkipOneBeforeLast = i % skipRatio === 0 && i + skipRatio >= tickCount;
-                                const shouldSkip = (skipRatio > 1 && i % skipRatio > 0) || shouldSkipOneBeforeLast;
-                                return !(shouldSkip && !isLast);
-                            });
+                            // Increase skip ratio, so for odd ticks count we can render ticks
+                            // as evenly as possible. For example, all gaps between ticks have
+                            // skip ratio = 2 and last gap has skip ratio = 3 (the best solution for odd ticks count)
+                            while (increaseSkipRatio && skipRatio < tickCount - ChartUtils.PERSISTING_TICKS_NUMBER) {
+                                skipRatio++;
+                                visibleTicksIndexes = ChartUtils.calculateVisibleIndexes(tickCount, skipRatio);
+                                increaseSkipRatio = ChartUtils.shouldIncreaseSkipRatio(skipRatio, visibleTicksIndexes);
+                            }
+
+                            axis.ticks = axis.ticks.filter((_, i) => visibleTicksIndexes.includes(i));
                         },
                     },
                     y: {
