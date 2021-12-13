@@ -17,7 +17,7 @@ export type ModifyColumnId =
  * Used only for {@link ModifyColumnConfig.rowCellTemplate}.<br>
  */
 export interface ColumnTemplateContext {
-    app: FullAppData;
+    app: FullAppData | any;
     isChild: boolean;
     index: number;
 }
@@ -69,7 +69,7 @@ export interface AppListing {
     /** layout of the component. Default: 'table' */
     layout: 'table';
     /** data response with list of apps, pagination, etc. */
-    data: ComponentsPage<FullAppData>;
+    data: ComponentsPage<FullAppData | any>;
     /** array of options which will be applied in dropdown menu of the component */
     options: AppListingOptions[];
     /**
