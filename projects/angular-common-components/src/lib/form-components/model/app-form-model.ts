@@ -63,6 +63,7 @@ export interface AppFormFieldAttributes {
     hash?: string;
     accept?: any;
     overrideErrorMessage?: ErrorMessage;
+    disabled?: boolean;
 }
 
 export interface FieldOptionValue {

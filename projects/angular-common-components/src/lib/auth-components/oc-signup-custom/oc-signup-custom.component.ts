@@ -67,6 +67,12 @@ export class OcSignupCustomComponent {
     @Input() showSignupFeedbackPage: boolean = false;
 
     /**
+     * A variable which determines whether to show or hide login link.
+     * @type {boolean}.
+     */
+    @Input() showLoginLink: boolean = true;
+
+    /**
      * Flag that showing that form for sign up is loading.
      */
     @Input() formConfigsLoading: boolean = true;
@@ -93,6 +99,9 @@ export class OcSignupCustomComponent {
      * 'h2'.
      */
     @Input() headingTag: HeadingTag = 'h1';
+
+    /** Invitation text */
+    @Input() headingInvitationText: string = 'Enter your personal details below';
 
     /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
     @Input() formId: ErrorMessageFormId = 'signupCustom';

@@ -28,6 +28,7 @@
                     <oc-input
                         *ngSwitchCase="'text'"
                         formControlName="{{ formElement?.id }}"
+                        [disabled]="formElement?.attributes?.disabled"
                         [placeholder]="formElement?.placeholder"></oc-input>
                     <oc-textarea
                         *ngSwitchCase="'longText'"
@@ -97,11 +98,13 @@
                         *ngSwitchCase="'emailAddress'"
                         formControlName="{{ formElement?.id }}"
                         inputType="email"
+                        [disabled]="formElement?.attributes?.disabled"
                         [placeholder]="formElement?.placeholder ? formElement.placeholder : 'myemail@example.com'"></oc-input>
                     <oc-input
                         *ngSwitchCase="'websiteUrl'"
                         formControlName="{{ formElement?.id }}"
                         inputType="url"
+                        [disabled]="formElement?.attributes?.disabled"
                         [placeholder]="formElement?.placeholder ? formElement.placeholder : 'https://my.website.com'"></oc-input>
                     <oc-color
                         *ngSwitchCase="'color'"
