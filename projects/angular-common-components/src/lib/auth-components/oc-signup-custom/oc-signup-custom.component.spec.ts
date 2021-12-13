@@ -155,6 +155,15 @@ describe('OcSignupCustomComponent', () => {
         expect(signUpButton).toBeNull();
     });
 
+    it('should not show login link, when showLoginLink=false', () => {
+        component.showLoginLink = false;
+        fixture.detectChanges();
+
+        const loginLink = fixture.debugElement.query(By.css('.sign-up__login'));
+
+        expect(loginLink).toBeNull();
+    });
+
     it('should touch all form fields on submit', () => {
         component.formConfigsLoading = false;
         component.formGroup = new FormGroup({
