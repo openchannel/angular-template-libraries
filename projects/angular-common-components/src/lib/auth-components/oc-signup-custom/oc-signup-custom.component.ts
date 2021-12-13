@@ -106,6 +106,9 @@ export class OcSignupCustomComponent {
     /** Current form ID. Used for modifying error messages. Look:  {@link ErrorMessageFormId} */
     @Input() formId: ErrorMessageFormId = 'signupCustom';
 
+    /** Template to show instead of the default */
+    @Input() customFormTemplate: TemplateRef<any>;
+
     /**
      * showSignupFeedbackPage change emitter
      */
