@@ -4,7 +4,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
     selector: 'oc-consent',
     templateUrl: './oc-consent.component.html',
-    styleUrls: ['./oc-consent.component.scss'],
+    styleUrls: ['./oc-consent.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
