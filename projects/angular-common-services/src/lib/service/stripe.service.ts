@@ -13,6 +13,8 @@ import { OcApiPaths } from '../oc-ng-common-service.module';
 /**
  * Description: API service to work with Stripe.<br>
  *
+ * Documentation: <a href="https://support.openchannel.io/documentation/api/#502-gateways-card">Openchannel API</a><br>
+ *
  * Endpoints:<br>
  *
  * GET 'v2/stripe-gateway/settings'<br>
@@ -32,6 +34,7 @@ import { OcApiPaths } from '../oc-ng-common-service.module';
  * DELETE 'v2/stripe-gateway/developer/this/accounts/{stripeId}'<br>
  *
  * GET 'v2/stripe-gateway/preview'<br>
+ *
  */
 @Injectable({
     providedIn: 'root',
@@ -98,10 +101,7 @@ export class StripeService {
      *
      * ### Example
      *
-     * `updateUserCreditCard('card-id-123', {
-     *     address_city: 'New city',
-     *     address_country: 'New country',
-     * });`
+     * `updateUserCreditCard('card-id-123', { address_city: 'New city', address_country: 'New country' });`
      */
     updateUserCreditCard(cardId: string, body: Partial<ChangeableCreditCardFields>): Observable<UserCreditCardsResponse> {
         return this.httpRequest.post(`${this.apiPaths.stripeGateway}/user/this/cards/${cardId}`, body);
@@ -175,12 +175,12 @@ export class StripeService {
      * @param {string} country - iso of the country from the billing data
      * @param {string} state - name of the state
      * @param {string} appId - id of the chosen app
-     * @param {string} modelId - id of the price model
+     * @param {string} modelId - id of the price model of the chosen app
      * @returns {Observable<PaymentTaxesResponse>} `Observable<PaymentTaxesResponse>`
      *
      * ### Example
      *
-     * `getTaxesAndPayment('CA', 'Ontario', '600eef7a7ec0f53371d1ca90', '60b0fa5240b4914e74c8d3fd);`
+     * `getTaxesAndPayment('CA', 'Ontario', '600eef7a7ec0f53371d1ca90', '60b0fa5240b4914e74c8d3fd');`
      */
     getTaxesAndPayment(country: string, state: string, appId: string, modelId: string): Observable<PaymentTaxesResponse> {
         const query = `country=${country}&state=${state}&appId=${appId}&modelId=${modelId}`;
@@ -190,12 +190,13 @@ export class StripeService {
      *
      * Description: Returns a link to Stripe, where developer can connect Stripe account
      *
-     * @param {Purchase} purchaseBody -
+     * @param {Purchase} purchaseBody - object with an array of models that contains id of the chosen app and id of the chosen model.
+     * Details at {@link Purchase} model.
      * @returns {Observable<ConnectStripeAccountResponse>} `Observable<ConnectStripeAccountResponse>`
      *
      * ### Example
      *
-     * `connectAccount('https://my-market.com/land-here');`
+     * `makePurchase({ models: [{ appId: '5463cee5e4b042e3e26f1e41', modelId: '7349cew5e4b041e3c26y1e49' }]});`
      */
     makePurchase(purchaseBody: Purchase): Observable<any> {
         return this.httpRequest.post(`${this.apiPaths.stripeGateway}/purchase`, purchaseBody);
