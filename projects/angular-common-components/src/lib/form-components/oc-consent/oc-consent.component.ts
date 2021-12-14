@@ -1,6 +1,6 @@
 import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-//todo create a story for this component
+
 @Component({
     selector: 'oc-consent',
     templateUrl: './oc-consent.component.html',
