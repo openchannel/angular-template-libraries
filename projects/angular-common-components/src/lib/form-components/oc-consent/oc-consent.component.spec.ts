@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OcConsentComponent } from './oc-consent.component';
-import { MockCheckboxComponent } from 'projects/angular-common-components/src/mock/mock';
+import { MockCheckboxComponent } from '@openchannel/angular-common-components/src/mock/mock';
 import { FormsModule } from '@angular/forms';
 
 describe('OcConsentComponent', () => {
@@ -23,5 +23,10 @@ describe('OcConsentComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should set a value', () => {
+        component.value = true;
+        expect(component.checked).toEqual(true);
     });
 });
