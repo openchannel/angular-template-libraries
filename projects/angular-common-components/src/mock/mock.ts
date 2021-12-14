@@ -34,7 +34,7 @@ import {
     DropdownAdditionalField,
     AppFormField,
 } from '@openchannel/angular-common-components/src/lib/form-components';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
 
 @Component({
@@ -264,6 +264,8 @@ export class MockDynamicFieldArrayComponent {
     @Input() fieldDefinitionData: AppTypeFieldModel;
     @Input() previewMode: boolean;
     @Input() formId: ErrorMessageFormId;
+    @Input() setDFAItemsEditMode: Subject<number[]>;
+    @Input() updateDFAItems: Subject<number[]>;
 }
 
 @Component({

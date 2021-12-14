@@ -236,7 +236,9 @@
             *ngSwitchCase="'dynamicFieldArray'"
             [fieldDefinitionData]="formElement"
             [formId]="formId"
-            [dfaFormArray]="customForm.controls[formElement.id]"></oc-dynamic-field-array>
+            [dfaFormArray]="customForm.controls[formElement.id]"
+            [updateDFAItems]='formElement.controlUtils?.updateDFAItems'
+            [setDFAItemsEditMode]="formElement.controlUtils?.setDFAItemsEditMode"></oc-dynamic-field-array>
         <oc-password
             *ngSwitchCase="'password'"
             [formControl]="customForm.controls[formElement?.id]"
