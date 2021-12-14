@@ -1,8 +1,9 @@
 <div class="consent">
     <div class="consent__checkbox">
         <oc-checkbox
-            (change)="changeModelVal()"
+            (isCheckedChange)="changeModelVal()"
             class="consent__checkbox-input"
+            [disabled]="disabled"
             (focus)="onFocus()"
             [(ngModel)]="checked"></oc-checkbox>
         <div class="consent__label">
