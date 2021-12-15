@@ -327,7 +327,7 @@ export class OcFormComponent implements OnInit, OnChanges {
      * Maps form fields data, creates an object resultData.
      */
     private mapFormFieldsData(fields: any): void {
-        mergeWith(this.resultData, fields, (oldValue, srcValue) => {
+        this.resultData = mergeWith(this.resultData, fields, (objValue, srcValue) => {
             if (Array.isArray(srcValue)) {
                 return srcValue;
             }
