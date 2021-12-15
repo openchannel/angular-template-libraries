@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpRequestService } from './http-request-services';
-import { SiteContentResponse } from '../model/api/custom-content.model';
+import { SecuritySettingsResponse, SiteContentResponse } from '../model/api/custom-content.model';
 import { HttpHeaders } from '@angular/common/http';
 import { OcApiPaths } from '../oc-ng-common-service.module';
 import { OcHttpParams } from '../model/api/http-params-encoder-model';
@@ -30,5 +30,12 @@ export class SiteContentService {
                 .append('sort', sort)
                 .append('query', query),
         });
+    }
+
+    /**
+     * Return site security setting configured on the OpenChannel dashboard.
+     */
+    getSecuritySettings(): Observable<SecuritySettingsResponse> {
+        return this.httpService.get(`${this.apiPaths.sites}/security-settings`);
     }
 }
