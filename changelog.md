@@ -1,3 +1,6 @@
+## Release notes - angular-template-libraries - Version 2.46.1 (12/15/2021)<br>
+### Task<br>
+AT-1541 - Allow reviews without Ownership records<br>
 ## Release notes - angular-template-libraries - Version 2.46.0 (12/1/2021)<br>
 ### Task<br>
 AT-1607 - Ensure correct SSO behavior in all possible scenarios<br>
