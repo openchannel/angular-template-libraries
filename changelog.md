@@ -1,3 +1,7 @@
+## Release notes - angular-template-libraries - Version 2.47.0 (12/16/2021)<br>
+### Story<br>
+AT-1555 - A developer is able to connect their Stripe account to receive payments for apps<br>
+AT-1551 - A developer is able to set pricing information for their app in the partner portal<br>
 ## Release notes - angular-template-libraries - Version 2.46.1 (12/15/2021)<br>
 ### Task<br>
 AT-1541 - Allow reviews without Ownership records<br>
