@@ -826,3 +826,37 @@ oc-button.tags__button-add {
         min-height: auto;
     }
 }
+
+.form__field-input__dropdown-inline {
+    oc-additional-select {
+        margin-right: 16px;
+    }
+    oc-number {
+        width: 100%;
+        input {
+            height: 100%;
+        }
+    }
+}
+
+.radio-button-list {
+    &.vertical {
+        &__item {
+            &:first-child {
+                margin-top: 0;
+            }
+            margin-top: 1rem;
+        }
+    }
+    &.horizontal {
+        display: flex;
+        flex-direction: row;
+        .radio-button-list__item {
+            margin-right: 10rem;
+            .form-radio-button__label {
+                margin-left: 16px;
+                margin-top: 1px;
+            }
+        }
+    }
+}
