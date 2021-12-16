@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TransformTextType } from '../model/text-transfrom-pipe.model';
 
 @Component({
     selector: 'oc-select',
@@ -51,6 +52,8 @@ export class OcSelectComponent implements OnInit, ControlValueAccessor {
      * Default false.
      */
     @Input() disabled: boolean = false;
+
+    @Input() transformText: TransformTextType = null;
 
     selectedValue: any;
     inputLabel: string;

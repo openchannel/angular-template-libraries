@@ -143,7 +143,7 @@
 </ng-template>
 
 <ng-template #ngtDropdownList let-field>
-    <span class="array-preview__field-content__text">{{ field.fieldValue | replaceHtmlTags }}</span>
+    <span class="array-preview__field-content__text">{{ field.fieldValue | replaceHtmlTags | transformText: field?.attributes?.transformText}}</span>
 </ng-template>
 
 <ng-template #ngtDate let-field>
