@@ -63,10 +63,15 @@ export class AppFormService {
      * [OpenChannel docs]{@link https://support.openchannel.io/documentation/api/user-api/forms/create-form-submission/}
      * @param {string} formId - unique formId identifier.
      * @param {CreateFormSubmissionModel} createFormSubmissionModel - request body.
+     * @param {HttpHeaders} headers - headers (optional) (default: empty HttpHeaders object)
      * @returns {Observable<FormSubmissionModel>} Observable<FormSubmissionModel>
      */
-    createFormSubmission(formId: string, createFormSubmissionModel: CreateFormSubmissionModel): Observable<FormSubmissionModel> {
+    createFormSubmission(
+        formId: string,
+        createFormSubmissionModel: CreateFormSubmissionModel,
+        headers: HttpHeaders = new HttpHeaders(),
+    ): Observable<FormSubmissionModel> {
         const mainUrl = `${this.apiPaths.forms}/${formId}/submissions`;
-        return this.httpRequest.post(encodeURI(mainUrl), createFormSubmissionModel);
+        return this.httpRequest.post(encodeURI(mainUrl), createFormSubmissionModel, { headers });
     }
 }
