@@ -24,6 +24,7 @@
         </div>
     </div>
     <div class="info-card__dropdown info-card__dropdown_desktop">
-        <ng-container *ngTemplateOutlet="customDropdown"></ng-container>
+        <ng-container [ngTemplateOutlet]="customDropdown"
+                      [ngTemplateOutletContext]="customDropdownContext || null"></ng-container>
     </div>
 </div>

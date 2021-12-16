@@ -39,6 +39,8 @@ export class OcAppShortInfoComponent implements OnInit {
      *  Default: default app icon
      */
     @Input() defaultAppIcon: string = 'assets/angular-common-components/standard-app-icon.svg';
+
+    @Input() customDropdownContext: any;
     /**
      *  The emitter reports that current app card has been clicked. Return current app object data.
      */
