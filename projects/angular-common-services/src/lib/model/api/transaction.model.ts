@@ -2,7 +2,7 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 
 export type TransactionType = 'payment' | 'refund';
 
-export type TransactionOptions = 'Download receipt' | 'Download invoice';
+export type TransactionOptions = 'View receipt' | 'Download invoice';
 
 export type TransactionStatus = 'Successful' | 'Refunded';
 
@@ -19,7 +19,7 @@ export interface Transaction {
     feeAmount?: number;
     marketplaceAmount?: number;
     developerAmount?: number;
-    receiptUrl?: string;
+    recieptUrl?: string;
     invoiceUrl?: string;
 }
 
