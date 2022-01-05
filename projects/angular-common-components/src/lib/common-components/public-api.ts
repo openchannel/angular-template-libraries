@@ -33,6 +33,8 @@ export * from './pipe/price.pipe';
 export * from './pipe/html-tags-replacer.pipe';
 export * from './pipe/safe.pipe';
 export * from './pipe/get-text-by-path.pipe';
+export * from './pipe/array-search.pipe';
+export * from './pipe/text-transform.pipe';
 
 /** Directives */
 export * from './directive/ellipsis.directive';
@@ -54,6 +56,9 @@ export * from './model/social-link.model';
 export * from './model/heading-tag.interface';
 export * from './model/image-gallery.model';
 export * from './model/utils.model';
+export * from './model/text-transfrom-pipe.model';
+export * from './model/radio-button.model';
+export * from './model/confirmation-modal.model';
 
 /** Services */
 export * from './oc-error/oc-error-service';

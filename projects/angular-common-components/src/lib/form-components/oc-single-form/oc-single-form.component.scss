@@ -51,6 +51,11 @@
 
         &-input {
             width: 100%;
+            &__dropdown-inline {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+            }
         }
 
         &-custom-error {

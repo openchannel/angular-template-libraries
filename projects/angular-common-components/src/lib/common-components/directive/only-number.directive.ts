@@ -1,22 +1,24 @@
-import { Directive, HostListener } from '@angular/core';
+import { Directive, HostListener, Input, ElementRef } from '@angular/core';
 
 @Directive({
     selector: '[ocOnlyNumber]',
 })
 export class OnlyNumberDirective {
-    @HostListener('keydown', ['$event']) handleKeyboardEvent(event: KeyboardEvent): void {
-        const e: KeyboardEvent = event;
-        if (
-            // Allow: Ctrl(Meta)+A
-            (e.key === 'a' && (e.ctrlKey || e.metaKey)) ||
-            // Allow: Ctrl(Meta)+C
-            (e.key === 'c' && (e.ctrlKey || e.metaKey)) ||
-            // Allow: Ctrl(Meta)+V
-            (e.key === 'v' && (e.ctrlKey || e.metaKey)) ||
-            // Allow: Ctrl(Meta)+X
-            (e.key === 'x' && (e.ctrlKey || e.metaKey)) ||
-            // Allow: home, end, left, right
-            this.allowNavigationKeys(e)
+    @Input() decimalCount: number;
+
+    private readonly controlKeys: string[] = ['a', 'c', 'v', 'x'];
+    private readonly navigationKeys: string[] = ['Home', 'End', 'ArrowRight', 'ArrowLeft', 'Backspace', '-', '.'];
+
+    constructor(private el: ElementRef) {}
+
+    @HostListener('keydown', ['$event']) handleKeyboardEvent(e: KeyboardEvent): void {
+        if (e.key === '.' && this.decimalCount === 0) {
+            e.preventDefault();
+        } else if (
+            // Allow: Ctrl(Meta) + (A or C or V or X)
+            (this.controlKeys.includes(e.key) && (e.ctrlKey || e.metaKey)) ||
+            // Allow: home, end, left, right etc.
+            this.navigationKeys.includes(e.key)
         ) {
             // let it happen, don't do anything
             return;
@@ -25,18 +27,20 @@ export class OnlyNumberDirective {
         // Ensure that it is a number and stop the keypress
         if (e.key === ' ' || isNaN(Number(e.key))) {
             e.preventDefault();
+            return;
+        }
+        if (this.decimalCount > 0) {
+            this.processDecimalCount(e);
         }
     }
 
-    allowNavigationKeys(e: KeyboardEvent): boolean {
-        return (
-            e.key === 'Home' ||
-            e.key === 'End' ||
-            e.key === 'ArrowRight' ||
-            e.key === 'ArrowLeft' ||
-            e.key === 'Backspace' ||
-            e.key === '.' ||
-            e.key === '-'
-        );
+    processDecimalCount(event: KeyboardEvent): void {
+        const value = this.el.nativeElement.value;
+        if (value) {
+            const decimalPart = value.toString().split('.')[1];
+            if (decimalPart && decimalPart.length >= this.decimalCount) {
+                event.preventDefault();
+            }
+        }
     }
 }
