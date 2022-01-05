@@ -5,15 +5,18 @@ import {
     StripeAccountsResponse,
     GetMarketplaceStripeSettingsResponse,
     UserCreditCardsResponse,
-    ChangeableCreditCardFields, PaymentTaxesResponse, Purchase,
+    ChangeableCreditCardFields,
+    PaymentTaxesResponse,
+    Purchase,
 } from '../model/api/stripe.model';
 import { HttpRequestService } from './http-request-services';
 import { OcApiPaths } from '../oc-ng-common-service.module';
+import { HttpHeaders } from '@angular/common/http';
 
 /**
  * Description: API service to work with Stripe.<br>
  *
- * Documentation: <a href="https://support.openchannel.io/documentation/api/#502-gateways-card">Openchannel API</a><br>
+ * [OpenChannel Documentation]{@link https://support.openchannel.io/documentation/api/#800-stripe-gateway}
  *
  * Endpoints:<br>
  *
@@ -75,20 +78,26 @@ export class StripeService {
      * Description: Adds user credit card, which can be used later
      *
      * @param {string} token - The Stripe token returned by the Stripe.js Stripe.card.createToken call
-     * @param {string} isDefault - Set to true if this should be set to be the default credit card
+     * @param {string} isDefault - (optional) Set to true if this should be set to be the default credit card
+     * @param {HttpHeaders} headers - (optional) HTTP request headers
+     *
      * @returns {Observable<UserCreditCardsResponse>} `Observable<UserCreditCardsResponse>`
      *
      * ### Example
      *
      * `addUserCreditCard('some-token');`
      */
-    addUserCreditCard(token: string, isDefault: boolean = true): Observable<UserCreditCardsResponse> {
+    addUserCreditCard(
+        token: string,
+        isDefault: boolean = true,
+        headers: HttpHeaders = new HttpHeaders(),
+    ): Observable<UserCreditCardsResponse> {
         const body = {
             token,
             isDefault,
         };
 
-        return this.httpRequest.post(`${this.apiPaths.stripeGateway}/user/this/cards`, body);
+        return this.httpRequest.post(`${this.apiPaths.stripeGateway}/user/this/cards`, body, { headers });
     }
 
     /**
@@ -97,14 +106,20 @@ export class StripeService {
      *
      * @param {string} cardId - Id of the card to update
      * @param {Partial<ChangeableCreditCardFields>} body - Fields to update in credit card
+     * @param {HttpHeaders} headers - (optional) HTTP request headers
+     *
      * @returns {Observable<UserCreditCardsResponse>} `Observable<UserCreditCardsResponse>`
      *
      * ### Example
      *
      * `updateUserCreditCard('card-id-123', { address_city: 'New city', address_country: 'New country' });`
      */
-    updateUserCreditCard(cardId: string, body: Partial<ChangeableCreditCardFields>): Observable<UserCreditCardsResponse> {
-        return this.httpRequest.post(`${this.apiPaths.stripeGateway}/user/this/cards/${cardId}`, body);
+    updateUserCreditCard(
+        cardId: string,
+        body: Partial<ChangeableCreditCardFields>,
+        headers: HttpHeaders = new HttpHeaders(),
+    ): Observable<UserCreditCardsResponse> {
+        return this.httpRequest.post(`${this.apiPaths.stripeGateway}/user/this/cards/${cardId}`, body, { headers });
     }
 
     /**
@@ -112,14 +127,15 @@ export class StripeService {
      * Description: Deletes card from user account
      *
      * @param {string} cardId - Id of the card to delete
+     * @param {HttpHeaders} headers - (optional) HTTP request headers
      * @returns {Observable<UserCreditCardsResponse>} `Observable<UserCreditCardsResponse>`
      *
      * ### Example
      *
      * `deleteUserCreditCard('card-id-123');`
      */
-    deleteUserCreditCard(cardId: string): Observable<UserCreditCardsResponse> {
-        return this.httpRequest.delete(`${this.apiPaths.stripeGateway}/user/this/cards/${cardId}`);
+    deleteUserCreditCard(cardId: string, headers: HttpHeaders = new HttpHeaders()): Observable<UserCreditCardsResponse> {
+        return this.httpRequest.delete(`${this.apiPaths.stripeGateway}/user/this/cards/${cardId}`, { headers });
     }
 
     /**
@@ -141,16 +157,17 @@ export class StripeService {
      * Description: Returns a link to Stripe, where developer can connect Stripe account
      *
      * @param {string} redirectUrl - The URL to redirect this developer after they have connected their Stripe account
+     * @param {HttpHeaders} headers - (optional) HTTP request headers
      * @returns {Observable<ConnectStripeAccountResponse>} `Observable<ConnectStripeAccountResponse>`
      *
      * ### Example
      *
      * `connectAccount('https://my-market.com/land-here');`
      */
-    connectAccount(redirectUrl: string): Observable<ConnectStripeAccountResponse> {
+    connectAccount(redirectUrl: string, headers: HttpHeaders = new HttpHeaders()): Observable<ConnectStripeAccountResponse> {
         const body = { redirectUrl };
 
-        return this.httpRequest.post(`${this.apiPaths.stripeGateway}/developer/this/accounts`, body);
+        return this.httpRequest.post(`${this.apiPaths.stripeGateway}/developer/this/accounts`, body, { headers });
     }
 
     /**
@@ -158,14 +175,15 @@ export class StripeService {
      * Description: Disconnects developer from Stripe
      *
      * @param {string} stripeId - The id of the Stripe account to disconnect
+     * @param {HttpHeaders} headers - (optional) HTTP request headers
      * @returns {Observable<StripeAccountsResponse>} `Observable<StripeAccountsResponse>`
      *
      * ### Example
      *
      * `disconnectAccount('stripe-id');`
      */
-    disconnectAccount(stripeId: string): Observable<StripeAccountsResponse> {
-        return this.httpRequest.delete(`${this.apiPaths.stripeGateway}/developer/this/accounts/${stripeId}`);
+    disconnectAccount(stripeId: string, headers: HttpHeaders = new HttpHeaders()): Observable<StripeAccountsResponse> {
+        return this.httpRequest.delete(`${this.apiPaths.stripeGateway}/developer/this/accounts/${stripeId}`, { headers });
     }
     /**
      *

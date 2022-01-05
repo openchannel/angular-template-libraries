@@ -3,7 +3,7 @@ import { AbstractControl, AbstractControlDirective, FormArray, NgModel, Validati
 import { OcErrorService } from './oc-error-service';
 import { AbstractErrorMessageConfiguration } from '../model/oc-error.model';
 import { ControlUtils } from '../model/utils.model';
-import { toPath } from 'lodash';
+import { toPath, isEqual } from 'lodash';
 
 /**
  * An oc-error component. It is used to show error or errors list after validation.<br>
@@ -45,16 +45,18 @@ export class OcErrorComponent implements OnInit {
      * Path from control to parent form.
      */
     private fullControlPath: string;
-
+    private pathSegments: string[];
     constructor(public errorService: OcErrorService, private config: AbstractErrorMessageConfiguration) {}
 
     ngOnInit(): void {
         this.fullControlPath = ControlUtils.getFullControlPath(this.control);
+        this.pathSegments = toPath(this.fullControlPath);
         if (this.control && this.control instanceof AbstractControl) {
             const parent = ControlUtils.getParentControl(this.control);
             if (parent instanceof FormArray) {
                 // removing first part of the path, it is part of form array.
-                this.fullControlPath = toPath(this.fullControlPath).slice(1).join('.');
+                this.pathSegments = this.pathSegments.slice(1);
+                this.fullControlPath = this.pathSegments.join('.');
             }
         }
     }
@@ -76,7 +78,7 @@ export class OcErrorComponent implements OnInit {
             this.errorService.serverErrorList.length &&
             typeof this.errorService.serverErrorList === 'object'
         ) {
-            const error = this.errorService.serverErrorList.find(message => message.field === this.fullControlPath);
+            const error = this.errorService.serverErrorList.find(message => isEqual(toPath(message.field), this.pathSegments));
             if (error) {
                 setTimeout(() => {
                     // clear error from service as we have fetched it
