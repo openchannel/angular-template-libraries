@@ -58,6 +58,8 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
      */
     @Input() disabled: boolean = false;
 
+    @Input() decimalCount: number = null;
+
     /** Value in the input */
     inputNumber: number;
 

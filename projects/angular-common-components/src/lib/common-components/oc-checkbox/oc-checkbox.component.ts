@@ -19,7 +19,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class OcCheckboxComponent implements ControlValueAccessor {
     /** Set value from AbstractControl */
-    @Input() set value(val) {
+    @Input() set value(val: boolean) {
         this.checked = val;
         this.onChange(this.checked);
     }

@@ -1,3 +1,16 @@
 .rich-editor {
     width: 100%;
+    position: relative;
+    
+    &.resize-icon {
+    
+        .rich-editor__custom .tox-tinymce .tox-statusbar {
+            opacity: 1;
+            border-top: none;
+        
+            .tox-statusbar__text-container {
+                display: none;
+            }
+        }
+    }
 }
