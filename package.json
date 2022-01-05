@@ -1,6 +1,6 @@
 {
   "name": "oc-angular-template-libraries",
-  "version": "2.45.1",
+  "version": "2.47.0",
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
     "prebuild": "npm run clean-css && npm run generate-mock-css",
@@ -10,6 +10,7 @@
     "build": "./node_modules/.bin/ng build",
     "build-prod": "npm run build --prod",
     "build-components": "npm run build angular-common-components ",
+    "build-services-watch": "./node_modules/.bin/ng build angular-common-services --watch",
     "build-components-watch": "./scripts/build-components/build.sh --watch",
     "build-components-storybook-watch": "./scripts/build-components/build-storybook.sh --watch",
     "test": "npm run test:lib",

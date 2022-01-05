@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TransformTextType } from '../model/text-transfrom-pipe.model';
 
 /**
  * Represents the simple radio button component. It supports the `ngModel` and `formControl`.
@@ -35,6 +36,8 @@ export class OcRadioButtonComponent implements ControlValueAccessor {
     @Input() requiredIndicator: boolean = false;
     /** Set radio button group name property for the Radio Button, this is necessary for creation of a radio button group */
     @Input() radioButtonGroupName: string = '';
+
+    @Input() transformText: TransformTextType = null;
 
     radioButtonValue: any;
     isChecked: boolean = false;

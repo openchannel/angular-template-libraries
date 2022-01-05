@@ -21,7 +21,6 @@ describe('OcFormComponent', () => {
                     MockSingleFormComponent,
                     MockButtonComponent,
                     MockTooltipComponent,
-                    MockSingleFormComponent,
                     MockProgressbarComponent,
                 ],
                 imports: [FormsModule, ReactiveFormsModule],

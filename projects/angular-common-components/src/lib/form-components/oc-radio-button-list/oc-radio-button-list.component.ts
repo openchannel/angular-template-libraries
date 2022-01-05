@@ -1,5 +1,10 @@
 import { Component, forwardRef, Input, TemplateRef } from '@angular/core';
-import { DropdownModel, RadioItemValue } from '@openchannel/angular-common-components/src/lib/common-components';
+import {
+    DropdownModel,
+    RadioButtonLayout,
+    RadioItemValue,
+    TransformTextType,
+} from '@openchannel/angular-common-components/src/lib/common-components';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 /**
@@ -40,6 +45,10 @@ export class OcRadioButtonListComponent implements ControlValueAccessor {
     @Input() disabled: boolean = false;
     /** Name of the radio button group */
     @Input() radioButtonGroup: string = '';
+
+    @Input() radioButtonLayout: RadioButtonLayout = 'vertical';
+
+    @Input() transformText: TransformTextType = null;
 
     componentValue: RadioItemValue = null;
     itemsArray: DropdownModel<RadioItemValue>[] = [];

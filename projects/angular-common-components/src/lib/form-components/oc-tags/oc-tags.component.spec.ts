@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -13,6 +12,7 @@ import {
     OcSelectComponent,
     OcTagElementComponent,
     OcTitleComponent,
+    TransformTextPipe,
 } from '@openchannel/angular-common-components/src/lib/common-components';
 import { MockDropboxComponent } from '../../../mock/mock';
 
@@ -32,6 +32,7 @@ describe('OcTagsComponent', () => {
                     OcTagElementComponent,
                     OcErrorComponent,
                     MockDropboxComponent,
+                    TransformTextPipe,
                 ],
                 imports: [FormsModule, NgbModule, NgxSpinnerModule, AngularSvgIconModule.forRoot(), HttpClientTestingModule],
             }).compileComponents();

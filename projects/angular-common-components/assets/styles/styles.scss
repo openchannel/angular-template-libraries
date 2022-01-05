@@ -320,7 +320,7 @@ a.link {
 
     .dropdown-item {
         @include font-size-md();
-        padding: 14px 16px;
+        padding: 12px 16px;
         border-bottom: 1px solid $dropdown-border;
 
         &:last-child {
@@ -530,6 +530,7 @@ oc-select {
         .dropdown-item {
             padding: 16px;
             border-bottom: 1px;
+            white-space: normal;
 
             &:hover {
                 color: $dropdown-item-text-alternative;
@@ -728,7 +729,7 @@ oc-button.tags__button-add {
         justify-content: center;
     }
     &__type-section {
-        height: 56px;
+        height: 46px;
         width: 248px;
         min-width: 248px;
         .dropdown-button {
@@ -823,5 +824,39 @@ oc-button.tags__button-add {
         padding: 0 16px;
         min-width: auto;
         min-height: auto;
+    }
+}
+
+.form__field-input__dropdown-inline {
+    oc-additional-select {
+        margin-right: 16px;
+    }
+    oc-number {
+        width: 100%;
+        input {
+            height: 100%;
+        }
+    }
+}
+
+.radio-button-list {
+    &.vertical {
+        &__item {
+            &:first-child {
+                margin-top: 0;
+            }
+            margin-top: 1rem;
+        }
+    }
+    &.horizontal {
+        display: flex;
+        flex-direction: row;
+        .radio-button-list__item {
+            margin-right: 10rem;
+            .form-radio-button__label {
+                margin-left: 16px;
+                margin-top: 1px;
+            }
+        }
     }
 }

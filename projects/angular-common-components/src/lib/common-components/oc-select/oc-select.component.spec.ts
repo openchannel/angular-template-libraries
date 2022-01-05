@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { NgbDropdownItem, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MockButtonComponent } from '@openchannel/angular-common-components/src/mock/mock';
+import { TransformTextPipe } from '@openchannel/angular-common-components/src/lib/common-components';
 
 describe('OcSelectComponent', () => {
     let component: OcSelectComponent;
@@ -14,7 +15,7 @@ describe('OcSelectComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcSelectComponent, MockButtonComponent],
+                declarations: [OcSelectComponent, MockButtonComponent, TransformTextPipe],
                 providers: [NgModel],
                 imports: [NgbModule, CommonModule, BrowserModule],
             }).compileComponents();
