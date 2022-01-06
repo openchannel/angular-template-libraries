@@ -104,6 +104,7 @@ export interface AppResponse {
     statistics: StatisticsResponse;
     isLive: boolean;
     type?: string;
+    icon?: SafeResourceUrl | string;
 }
 
 export interface AppVersionResponse extends AppResponse {
