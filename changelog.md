@@ -1,3 +1,13 @@
+## Release notes - angular-template-libraries - Version 2.48.0 (1/6/2022)<br>
+### Bug<br>
+AT-1641 - [Stage1][Billing] Not able to add credit card information and billing address information for newly signed up user.<br>
+### Story<br>
+AT-1587 - Clicking on a tag should take to search results <br>
+AT-1564 - A user is able to view transactions and download invoices<br>
+### Bug<br>
+AT-1404 - [Logs-Prod] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler: [cdc297a5-389888]  500 Server Error for HTTP PATCH "/v2/developers/this"<br>
+AT-1362 - [Logs-Prod][CAP] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler: 500 Server Error for HTTP GET "/v2/apps/textSearch<br>
+AT-1301 - [Portal/Market][Invite] Sign Up- Success modal with 'Activate Account' button should be displayed for Invitee Sign up process.<br>
 ## Release notes - angular-template-libraries - Version 2.47.0 (12/16/2021)<br>
 ### Story<br>
 AT-1555 - A developer is able to connect their Stripe account to receive payments for apps<br>
