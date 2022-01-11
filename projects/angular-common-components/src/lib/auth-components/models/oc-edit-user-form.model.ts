@@ -58,7 +58,7 @@ export interface OcCheckboxData {
 export interface OcEditUserFormConfig {
     name: string;
     account: OcEditUserTypeConfig;
-    organization: OcEditUserTypeConfig;
+    organization?: OcEditUserTypeConfig;
     fieldsOrder?: string[];
 }
 

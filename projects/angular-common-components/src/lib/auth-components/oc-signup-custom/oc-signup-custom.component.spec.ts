@@ -17,6 +17,18 @@ import {
 } from '@openchannel/angular-common-components/src/mock/mock';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { cloneDeep } from 'lodash';
+
+const formConfigsMock = [
+    {
+        name: 'My custom 123321',
+        account: {
+            type: 'check-config-type',
+            typeData: null,
+            includeFields: ['name', 'username', 'email'],
+        },
+    },
+];
 
 describe('OcSignupCustomComponent', () => {
     let component: OcSignupCustomComponent;
@@ -60,6 +72,7 @@ describe('OcSignupCustomComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(OcSignupCustomComponent);
         component = fixture.componentInstance;
+        component.formConfigs = cloneDeep(formConfigsMock);
     });
 
     it('should create', () => {
@@ -131,6 +144,24 @@ describe('OcSignupCustomComponent', () => {
         signUpButton.click();
 
         expect(resultUserDataEmitFunction).toHaveBeenCalledWith(resultFormValue);
+    });
+
+    it('should not show sign up button, when no form configs available', () => {
+        component.formConfigs = [];
+        fixture.detectChanges();
+
+        const signUpButton = fixture.debugElement.query(By.css('.sign-up__button'));
+
+        expect(signUpButton).toBeNull();
+    });
+
+    it('should not show login link, when showLoginLink=false', () => {
+        component.showLoginLink = false;
+        fixture.detectChanges();
+
+        const loginLink = fixture.debugElement.query(By.css('.sign-up__login'));
+
+        expect(loginLink).toBeNull();
     });
 
     it('should touch all form fields on submit', () => {
