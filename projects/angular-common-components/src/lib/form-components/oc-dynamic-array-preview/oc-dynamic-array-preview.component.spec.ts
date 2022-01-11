@@ -2,7 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { OcDynamicArrayPreviewComponent } from './oc-dynamic-array-preview.component';
 import { FormGroup } from '@angular/forms';
-import { AppTypeFieldModel, HtmlTagsReplacerPipe, SafePipe } from '@openchannel/angular-common-components/src/lib/common-components';
+import {
+    AppTypeFieldModel,
+    HtmlTagsReplacerPipe,
+    SafePipe,
+    TransformTextPipe,
+} from '@openchannel/angular-common-components/src/lib/common-components';
 import { FieldValueModel } from '../model/dynamic-array.model';
 import {
     MockDynamicFieldArrayComponent,
@@ -157,6 +162,7 @@ describe('OcDynamicArrayPreviewComponent', () => {
                 MockDynamicFieldArrayComponent,
                 SafePipe,
                 HtmlTagsReplacerPipe,
+                TransformTextPipe,
             ],
             providers: [{ provide: FileUploaderService, useClass: FileService }],
         }).compileComponents();

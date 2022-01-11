@@ -1,4 +1,5 @@
-import { ErrorMessage } from '@openchannel/angular-common-components/src/lib/common-components';
+import { ErrorMessage, RadioButtonLayout, TransformTextType } from '@openchannel/angular-common-components/src/lib/common-components';
+import { Subject } from 'rxjs';
 
 export type OcTextFieldType = 'richText' | 'text' | 'longText' | 'password' | 'emailAddress' | string;
 
@@ -12,6 +13,8 @@ export type OcListFieldType = 'dropdownList' | 'multiselectList' | 'multiApp' | 
 
 export type OcUrlFieldType = 'websiteUrl' | 'videoUrl' | string;
 
+export type OcCustomFieldType = 'dropdownForm';
+
 export type OcFieldType =
     | 'checkbox'
     | 'number'
@@ -23,9 +26,10 @@ export type OcFieldType =
     | OcTagsFieldType
     | OcListFieldType
     | OcUrlFieldType
+    | OcCustomFieldType
     | string;
 
-export interface AppFormField {
+export type DefaultAppFormField = {
     id: string;
     label?: string;
     description?: string;
@@ -37,7 +41,15 @@ export interface AppFormField {
     fields?: AppFormField[];
     placeholder?: string;
     category?: string;
+    controlUtils?: AppFormFieldControlUtils;
+};
+
+export interface AppFormFieldControlUtils {
+    setDFAItemsEditMode?: Subject<number[]>;
+    updateDFAItems?: Subject<number[]>;
 }
+
+export type AppFormField = DefaultAppFormField | DropdownFormField | DropdownAdditionalField;
 
 export interface AppFormModel {
     formId?: string;
@@ -62,6 +74,15 @@ export interface AppFormFieldAttributes {
     height?: number;
     hash?: string;
     accept?: any;
+    /**
+     * Used for 'number' field type.
+     * Limit decimal number after dot.
+     */
+    decimalCount?: number;
+    formHideRow?: boolean;
+    transformText?: TransformTextType;
+    componentLayout?: RadioButtonLayout;
+    onlyFirstDfaItem?: boolean;
     overrideErrorMessage?: ErrorMessage;
     disabled?: boolean;
 }
@@ -69,6 +90,40 @@ export interface AppFormFieldAttributes {
 export interface FieldOptionValue {
     value: any;
 }
+
+export type DropdownField = Omit<DefaultAppFormField, 'type' | 'options'> & { type: 'dropdownList'; options: string[] };
+
+export type DropdownFormFieldSettings = {
+    /**
+     * A form will be created by currentDropdownValue only when the function returns true.
+     */
+    dropdownValueFilter?: (currentDropdownValue: string) => boolean;
+    dropdownField: DropdownField;
+    dropdownForms: { [dropdownValue: string]: AppFormField[] };
+};
+
+export type DropdownFormField = Omit<DefaultAppFormField, 'type'> & {
+    type: 'dropdownForm';
+    attributes: {
+        dropdownSettings: DropdownFormFieldSettings;
+    };
+};
+
+export type DropdownAdditionalField = Omit<DefaultAppFormField, 'type' | 'options'> & {
+    type: 'dropdownList';
+    options: string[];
+    attributes: {
+        subType: 'additionalField';
+        subTypeSettings: {
+            additionalFieldId: string;
+            additionalFieldAttributesByDropdownValue: {
+                [dropdownValue: string]: AppFormFieldAttributes;
+            };
+        };
+    };
+};
+
+export type FormLabelPosition = 'top' | 'left' | 'right';
 
 export type TrimFormFieldType = OcTextFieldType & OcUrlFieldType;
 

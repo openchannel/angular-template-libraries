@@ -18,7 +18,9 @@ import {
     ErrorMessageFormId,
     FullAppData,
     HeadingTag,
+    RadioButtonLayout,
     RadioItemValue,
+    TransformTextType,
 } from '@openchannel/angular-common-components/src/lib/common-components';
 import { OcCheckboxData, OcEditUserFormConfig, OCOrganization } from '@openchannel/angular-common-components/src/lib/auth-components';
 import {
@@ -27,8 +29,12 @@ import {
     FileDetails,
     FormType,
     FormProgressbarStep,
+    FormLabelPosition,
+    DropdownFormField,
+    DropdownAdditionalField,
+    AppFormField,
 } from '@openchannel/angular-common-components/src/lib/form-components';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpResponse, HttpUploadProgressEvent } from '@angular/common/http';
 
 @Component({
@@ -163,6 +169,7 @@ export class MockFormComponent {
     @Input() maxStepsToShow: number = 0;
     @Input() queryParams: string = '';
     @Input() enableTextTruncation: boolean = true;
+    @Input() labelPosition: 'top' | 'left' | 'right' = 'top';
     @Output() readonly formSubmitted = new EventEmitter<any>();
     @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -257,6 +264,8 @@ export class MockDynamicFieldArrayComponent {
     @Input() fieldDefinitionData: AppTypeFieldModel;
     @Input() previewMode: boolean;
     @Input() formId: ErrorMessageFormId;
+    @Input() setDFAItemsEditMode: Subject<number[]>;
+    @Input() updateDFAItems: Subject<number[]>;
 }
 
 @Component({
@@ -273,6 +282,8 @@ export class MockDynamicFieldArrayComponent {
 export class MockSelectComponent implements ControlValueAccessor {
     @Input() selectValArr: any | object[] = [];
     @Input() form: FormControl;
+    @Input() formControl: AbstractControl;
+    @Input() transformText: TransformTextType;
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
@@ -343,6 +354,8 @@ export class MockRadioButtonListComponent implements ControlValueAccessor {
     @Input() value: RadioItemValue;
     @Input() customRadioItemRef: TemplateRef<DropdownModel<RadioItemValue>> = null;
     @Input() disabled: boolean = false;
+    @Input() transformText: TransformTextType;
+    @Input() radioButtonLayout: RadioButtonLayout;
     @Input() itemsArray: DropdownModel<RadioItemValue>[] = [];
     @Input() radioButtonGroup: string = '';
     registerOnChange(fn: any): void {}
@@ -365,6 +378,7 @@ export class MockRadioButtonComponent implements ControlValueAccessor {
     @Input() value: any;
     @Input() disabled: boolean = false;
     @Input() labelText: string;
+    @Input() transformText: TransformTextType;
     @Input() requiredIndicator: boolean = false;
     @Input() radioButtonGroupName: string = '';
     registerOnChange(fn: any): void {}
@@ -578,6 +592,7 @@ export class MockFileUploadComponent implements ControlValueAccessor {
 })
 export class MockNumberComponent implements ControlValueAccessor {
     @Input() placeholder: string = '';
+    @Input() decimalCount: number;
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
@@ -718,6 +733,27 @@ export class ImageCropperComponentMock {
     @Input() resizeToWidth: any;
     @Input() resizeToHeight: any;
     @Input() transform: any;
+}
+
+@Component({
+    template: '',
+    selector: 'oc-dropdown-form',
+})
+export class MockDropdownFormComponent {
+    @Input() formId: string;
+    @Input() labelPosition: FormLabelPosition;
+    @Input() field: DropdownFormField;
+    @Input() formGroup: FormGroup;
+}
+
+@Component({
+    template: '',
+    selector: 'oc-additional-select',
+})
+export class MockAdditionalSelectComponent {
+    @Input() formGroup: FormGroup;
+    @Input() dropdownField: DropdownAdditionalField;
+    @Input() fields: AppFormField[];
 }
 
 @NgModule({
