@@ -194,14 +194,23 @@ export class StripeService {
      * @param {string} state - name of the state
      * @param {string} appId - id of the chosen app
      * @param {string} modelId - id of the price model of the chosen app
+     * @param {string} zipCode - postal code of the chosen Address
+     * @param {string} city - city of the user
      * @returns {Observable<PaymentTaxesResponse>} `Observable<PaymentTaxesResponse>`
      *
      * ### Example
      *
      * `getTaxesAndPayment('CA', 'Ontario', '600eef7a7ec0f53371d1ca90', '60b0fa5240b4914e74c8d3fd');`
      */
-    getTaxesAndPayment(country: string, state: string, appId: string, modelId: string): Observable<PaymentTaxesResponse> {
-        const query = `country=${country}&state=${state}&appId=${appId}&modelId=${modelId}`;
+    getTaxesAndPayment(
+        country: string,
+        state: string,
+        appId: string,
+        modelId: string,
+        zipCode: string,
+        city: string,
+    ): Observable<PaymentTaxesResponse> {
+        const query = `country=${country}&state=${state}&appId=${appId}&modelId=${modelId}&zipCode=${zipCode}&city=${city}`;
         return this.httpRequest.get(`${this.apiPaths.stripeGateway}/preview?${query}`);
     }
     /**
