@@ -190,12 +190,13 @@ export class StripeService {
      * Description: the tax items calculated on the item (only possible after billing address is set).
      * You can get the tax amounts, subtotal and total.
      *
-     * @param {string} country - iso of the country from the billing data
-     * @param {string} state - name of the state
-     * @param {string} appId - id of the chosen app
-     * @param {string} modelId - id of the price model of the chosen app
-     * @param {string} zipCode - postal code of the chosen Address
-     * @param {string} city - city of the user
+     * @param {string} country iso of the country from the billing data
+     * @param {string} state name of the state
+     * @param {string} appId id of the chosen app
+     * @param {string} modelId id of the price model of the chosen app
+     * @param {string} zipCode postal code of the chosen Address
+     * @param {string} city city of the user
+     * @param {HttpHeaders} headers (optional) additional http headers for this request
      * @returns {Observable<PaymentTaxesResponse>} `Observable<PaymentTaxesResponse>`
      *
      * ### Example
@@ -209,9 +210,10 @@ export class StripeService {
         modelId: string,
         zipCode: string,
         city: string,
+        headers?: HttpHeaders,
     ): Observable<PaymentTaxesResponse> {
         const query = `country=${country}&state=${state}&appId=${appId}&modelId=${modelId}&zipCode=${zipCode}&city=${city}`;
-        return this.httpRequest.get(`${this.apiPaths.stripeGateway}/preview?${query}`);
+        return this.httpRequest.get(`${this.apiPaths.stripeGateway}/preview?${query}`, { headers });
     }
     /**
      *
