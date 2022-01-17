@@ -1,4 +1,4 @@
-<div class="rich-editor">
+<div class="rich-editor" [class.resize-icon]="showResizeIcon">
   <editor [init]="tinyOptions"
           [(ngModel)]="editorContent"
           [class.rich-editor__custom_focus]="editorOnFocus"
