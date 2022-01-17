@@ -1,49 +1,42 @@
 import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-/**
- * Openchannel checkbox component. Represents abstract control.
- * Can be used with `ngModel` or `formControl`.
- */
 @Component({
-    selector: 'oc-checkbox',
-    templateUrl: './oc-checkbox.component.html',
-    styleUrls: ['./oc-checkbox.component.css'],
+    selector: 'oc-consent',
+    templateUrl: './oc-consent.component.html',
+    styleUrls: ['./oc-consent.component.css'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => OcCheckboxComponent),
+            useExisting: forwardRef(() => OcConsentComponent),
             multi: true,
         },
     ],
 })
-export class OcCheckboxComponent implements ControlValueAccessor {
+export class OcConsentComponent implements ControlValueAccessor {
     /** Set value from AbstractControl */
     @Input() set value(val: boolean) {
         this.checked = val;
         this.onChange(this.checked);
     }
-    /** Text of the checkbox. Will be placed near checkbox */
-    @Input() labelText: string;
-    /** Sets asterisk near the label text. Which means that this control is required */
-    @Input() requiredIndicator: boolean = false;
     /** Disable current checkbox. User can't interact with this component */
     @Input() disabled: boolean = false;
+    @Input() termsUrl: string;
+    @Input() policyUrl: string;
     /**
      * Output event with checkbox state.
-     * Use it when a checkbox isn't a part of the form or not used as `ngModel`.
+     * Use it when a consent isn't a part of the form or not used as `ngModel`.
      */
-    @Output() readonly isCheckedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() readonly checkedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     /** Checkbox state value. Can be true or false */
     checked: boolean = false;
-
     /**
      * Catching changes in the checkbox and updating control.
      */
     changeModelVal(): void {
         this.onTouched();
         this.onChange(this.checked);
-        this.isCheckedChange.emit(this.checked);
+        this.checkedChange.emit(this.checked);
     }
     /**
      * Register touch/focus action
@@ -81,7 +74,6 @@ export class OcCheckboxComponent implements ControlValueAccessor {
     writeValue(obj: any): void {
         this.checked = obj;
     }
-
     /**
      * @ignore
      */

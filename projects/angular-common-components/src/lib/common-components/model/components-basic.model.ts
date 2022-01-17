@@ -228,4 +228,4 @@ export type RadioItemValue = string | number | boolean;
  * - `danger` - applies danger style
  * - `none` - default button
  */
-export type OcButtonType = 'primary' | 'secondary' | 'link' | 'danger' | 'none';
+export type OcButtonType = 'primary' | 'secondary' | 'link' | 'danger' | 'warning' | 'none';

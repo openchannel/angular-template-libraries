@@ -26,12 +26,17 @@ export class CountryStateService {
         return this.http.get<CountriesModel>('https://countriesnow.space/api/v0.1/countries/iso');
     }
     /**
-     * Description: Get states data.
+     * Description: Get states of the chosen country.
+     * @param {string} countryName (required) full name of the country
+     * @param {HttpHeaders} headers (optional) additional headers for current request
      * @returns {Observable<StatesModel>} `Observable<StatesModel>`
      * ### Example
-     * `getStates(country: CountryModel): Observable<StatesModel>;`
+     * `getStates("United States"): Observable<StatesModel>;`
      */
-    getStates(country: CountryModel, headers?: HttpHeaders): Observable<StatesModel> {
-        return this.http.post<StatesModel>('https://countriesnow.space/api/v0.1/countries/states', country, { headers });
+    getStates(countryName: string, headers?: HttpHeaders): Observable<StatesModel> {
+        const countryBody = {
+            country: countryName,
+        };
+        return this.http.post<StatesModel>('https://countriesnow.space/api/v0.1/countries/states', countryBody, { headers });
     }
 }

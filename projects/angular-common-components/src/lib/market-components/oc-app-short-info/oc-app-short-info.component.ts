@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppModel, FullAppData } from '@openchannel/angular-common-components/src/lib/common-components';
 
 /**
@@ -26,12 +26,6 @@ export class OcAppShortInfoComponent implements OnInit {
      * The index of the price model in the array, default is 0
      */
     @Input() priceModelIndex: number = 0;
-    /**
-     * (Optional)
-     * Template for the dropdown menu. If not set - no dropdown menu will appear.
-     */
-    @Input() customDropdown: TemplateRef<any>;
-
     /**
      * (Optional)
      *  Path to the custom Default App Icon that will be shown when the app has no icon.
