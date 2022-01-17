@@ -1,3 +1,10 @@
+## Release notes - angular-template-libraries - Version 2.50.0 (1/17/2022)<br>
+### Bug<br>
+AT-1627 - [Angular Components][Portal] Wrong progressbar offset when steps length <= max steps to show<br>
+AT-1537 - Insufficient input validation may lead to DoS<br>
+AT-1515 - [UI] [Market/Portal] Alert Danger validation does not render correctly on the login page for not activate accounts.<br>
+AT-1389 - [Prod][client-api-proxy] o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler 500 Server Error for HTTP POST "/auth/external/token"<br>
+AT-1157 - Exposing properties endpoints is considered a security risk<br>
 ## Release notes - angular-template-libraries - Version 2.49.0 (1/17/2022)<br>
 ### Task<br>
 AT-1620 - Replace AppConfirmationModalComponent by OcConfirmationModalComponent<br>
