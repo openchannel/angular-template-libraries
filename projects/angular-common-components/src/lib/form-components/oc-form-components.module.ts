@@ -27,6 +27,7 @@ import { OcRadioButtonListComponent } from './oc-radio-button-list/oc-radio-butt
 import { OcProgressBarComponent } from './oc-progress-bar/oc-progress-bar.component';
 import { OcDropdownFormComponent } from './oc-dropdown-form/oc-dropdown-form.component';
 import { OcAdditionalSelectComponent } from './oc-additional-select/oc-additional-select.component';
+import { OcConsentComponent } from './oc-consent/oc-consent.component';
 
 @NgModule({
     declarations: [
@@ -51,6 +52,7 @@ import { OcAdditionalSelectComponent } from './oc-additional-select/oc-additiona
         OcProgressBarComponent,
         OcDropdownFormComponent,
         OcAdditionalSelectComponent,
+        OcConsentComponent,
     ],
     imports: [
         CommonModule,
@@ -83,6 +85,7 @@ import { OcAdditionalSelectComponent } from './oc-additional-select/oc-additiona
         OcRadioButtonListComponent,
         OcProgressBarComponent,
         OcAdditionalSelectComponent,
+        OcConsentComponent,
     ],
 })
 export class OcFormComponentsModule {}

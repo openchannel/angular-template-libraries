@@ -19,6 +19,7 @@ export * from './oc-dropdown-multi-app/oc-dropdown-multi-app.component';
 export * from './oc-radio-button-list/oc-radio-button-list.component';
 export * from './oc-progress-bar/oc-progress-bar.component';
 export * from './oc-additional-select/oc-additional-select.component';
+export * from './oc-consent/oc-consent.component';
 
 /** Models */
 export * from './model/app-form-model';

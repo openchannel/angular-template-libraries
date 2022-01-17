@@ -6,6 +6,8 @@ import {
     GetMarketplaceStripeSettingsResponse,
     UserCreditCardsResponse,
     ChangeableCreditCardFields,
+    PaymentTaxesResponse,
+    Purchase,
 } from '../model/api/stripe.model';
 import { HttpRequestService } from './http-request-services';
 import { OcApiPaths } from '../oc-ng-common-service.module';
@@ -33,6 +35,9 @@ import { HttpHeaders } from '@angular/common/http';
  * POST 'v2/stripe-gateway/developer/this/accounts'<br>
  *
  * DELETE 'v2/stripe-gateway/developer/this/accounts/{stripeId}'<br>
+ *
+ * GET 'v2/stripe-gateway/preview'<br>
+ *
  */
 @Injectable({
     providedIn: 'root',
@@ -107,10 +112,7 @@ export class StripeService {
      *
      * ### Example
      *
-     * `updateUserCreditCard('card-id-123', {
-     *     address_city: 'New city',
-     *     address_country: 'New country',
-     * });`
+     * `updateUserCreditCard('card-id-123', { address_city: 'New city', address_country: 'New country' });`
      */
     updateUserCreditCard(
         cardId: string,
@@ -182,5 +184,50 @@ export class StripeService {
      */
     disconnectAccount(stripeId: string, headers: HttpHeaders = new HttpHeaders()): Observable<StripeAccountsResponse> {
         return this.httpRequest.delete(`${this.apiPaths.stripeGateway}/developer/this/accounts/${stripeId}`, { headers });
+    }
+    /**
+     *
+     * Description: the tax items calculated on the item (only possible after billing address is set).
+     * You can get the tax amounts, subtotal and total.
+     *
+     * @param {string} country iso of the country from the billing data
+     * @param {string} state name of the state
+     * @param {string} appId id of the chosen app
+     * @param {string} modelId id of the price model of the chosen app
+     * @param {string} zipCode postal code of the chosen Address
+     * @param {string} city city of the user
+     * @param {HttpHeaders} headers (optional) additional http headers for this request
+     * @returns {Observable<PaymentTaxesResponse>} `Observable<PaymentTaxesResponse>`
+     *
+     * ### Example
+     *
+     * `getTaxesAndPayment('CA', 'Ontario', '600eef7a7ec0f53371d1ca90', '60b0fa5240b4914e74c8d3fd');`
+     */
+    getTaxesAndPayment(
+        country: string,
+        state: string,
+        appId: string,
+        modelId: string,
+        zipCode: string,
+        city: string,
+        headers?: HttpHeaders,
+    ): Observable<PaymentTaxesResponse> {
+        const query = `country=${country}&state=${state}&appId=${appId}&modelId=${modelId}&zipCode=${zipCode}&city=${city}`;
+        return this.httpRequest.get(`${this.apiPaths.stripeGateway}/preview?${query}`, { headers });
+    }
+    /**
+     *
+     * Description: Returns a link to Stripe, where developer can connect Stripe account
+     *
+     * @param {Purchase} purchaseBody - object with an array of models that contains id of the chosen app and id of the chosen model.
+     * Details at {@link Purchase} model.
+     * @returns {Observable<ConnectStripeAccountResponse>} `Observable<ConnectStripeAccountResponse>`
+     *
+     * ### Example
+     *
+     * `makePurchase({ models: [{ appId: '5463cee5e4b042e3e26f1e41', modelId: '7349cew5e4b041e3c26y1e49' }]});`
+     */
+    makePurchase(purchaseBody: Purchase): Observable<any> {
+        return this.httpRequest.post(`${this.apiPaths.stripeGateway}/purchase`, purchaseBody);
     }
 }
