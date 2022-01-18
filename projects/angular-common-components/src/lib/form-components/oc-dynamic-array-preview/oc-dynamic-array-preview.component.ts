@@ -6,8 +6,10 @@ import { map, takeUntil } from 'rxjs/operators';
 import { isArray } from 'rxjs/internal-compatibility';
 import { FileDetails, FileUploaderService } from '../model/file.model';
 import { AppTypeFieldModel, ErrorMessageFormId } from '@openchannel/angular-common-components/src/lib/common-components';
-import { difference } from 'lodash';
+import { isEqual } from 'lodash';
 import { VIDEO_URL_REGEX } from '../model/utils.model';
+import { AppFormField, DropdownFormField } from '../model/app-form-model';
+import { OcDropdownFormUtils } from '../oc-dropdown-form/oc-dropdown-form.service';
 /**
  * Dynamic array preview component.
  * A group of field previews, rendered depending in fields type.
@@ -76,9 +78,9 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
     ngOnChanges(changes: SimpleChanges): void {
         if (
             this.previewDFAMode &&
+            this.dfaForm &&
             changes.fieldValues &&
-            difference(changes.fieldValues.currentValue, changes.fieldValues.previousValue)?.length > 0 &&
-            this.dfaForm
+            !isEqual(changes.fieldValues.currentValue, changes.fieldValues.previousValue)
         ) {
             this.buildFieldsData();
         }
@@ -98,8 +100,18 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
      * Returns result object.
      */
     buildFieldsData(): void {
-        if (this.fieldDefinition?.fields) {
-            this.previewFields = this.fieldDefinition.fields.map(field => {
+        this.previewFields = this.createPreviewFieldsFromFieldDefinitions(this.fieldDefinition?.fields);
+    }
+
+    createPreviewFieldsFromFieldDefinitions(fields: AppFormField[]): PreviewFieldModel[] {
+        if (!fields) {
+            return [];
+        }
+        return fields
+            .map(field => {
+                if (field?.type === 'dropdownForm') {
+                    return this.createPreviewFieldsForDropdownForm(field as DropdownFormField);
+                }
                 const result: PreviewFieldModel = {
                     isValidField: false,
                     fieldValue: null,
@@ -122,11 +134,14 @@ export class OcDynamicArrayPreviewComponent implements OnInit, OnChanges, OnDest
                 } else {
                     result.fieldValue = tempFiledValue;
                 }
-                return result;
-            });
-        } else {
-            this.previewFields = [];
-        }
+                return [result];
+            })
+            .reduce((acc, newValues) => acc.concat(newValues), []);
+    }
+
+    private createPreviewFieldsForDropdownForm(field: DropdownFormField): PreviewFieldModel[] {
+        const dropdownFormFields = OcDropdownFormUtils.getFormFields(field, this.dfaForm.value);
+        return this.createPreviewFieldsFromFieldDefinitions(dropdownFormFields);
     }
 
     /**

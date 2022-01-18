@@ -1,3 +1,36 @@
+## Release notes - angular-template-libraries - Version 2.50.0 (1/17/2022)<br>
+### Bug<br>
+AT-1627 - [Angular Components][Portal] Wrong progressbar offset when steps length <= max steps to show<br>
+AT-1537 - Insufficient input validation may lead to DoS<br>
+AT-1515 - [UI] [Market/Portal] Alert Danger validation does not render correctly on the login page for not activate accounts.<br>
+AT-1389 - [Prod][client-api-proxy] o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler 500 Server Error for HTTP POST "/auth/external/token"<br>
+AT-1157 - Exposing properties endpoints is considered a security risk<br>
+## Release notes - angular-template-libraries - Version 2.49.0 (1/17/2022)<br>
+### Task<br>
+AT-1620 - Replace AppConfirmationModalComponent by OcConfirmationModalComponent<br>
+AT-1596 - Add expand icon on rich text component<br>
+### Story<br>
+AT-1563 - A user is able to go through a checkout flow when buying an app<br>
+### Bug<br>
+AT-1467 - [logs-prod] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler: 500 Server Error for HTTP POST "/auth/native/send-activate-code"<br>
+AT-1370 - [Multi File/Image/private file] Do not allow to upload images/files more than it's Max limit.<br>
+## Release notes - angular-template-libraries - Version 2.48.0 (1/6/2022)<br>
+### Bug<br>
+AT-1641 - [Stage1][Billing] Not able to add credit card information and billing address information for newly signed up user.<br>
+### Story<br>
+AT-1587 - Clicking on a tag should take to search results <br>
+AT-1564 - A user is able to view transactions and download invoices<br>
+### Bug<br>
+AT-1404 - [Logs-Prod] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler: [cdc297a5-389888]  500 Server Error for HTTP PATCH "/v2/developers/this"<br>
+AT-1362 - [Logs-Prod][CAP] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler: 500 Server Error for HTTP GET "/v2/apps/textSearch<br>
+AT-1301 - [Portal/Market][Invite] Sign Up- Success modal with 'Activate Account' button should be displayed for Invitee Sign up process.<br>
+## Release notes - angular-template-libraries - Version 2.47.0 (12/16/2021)<br>
+### Story<br>
+AT-1555 - A developer is able to connect their Stripe account to receive payments for apps<br>
+AT-1551 - A developer is able to set pricing information for their app in the partner portal<br>
+## Release notes - angular-template-libraries - Version 2.46.1 (12/15/2021)<br>
+### Task<br>
+AT-1541 - Allow reviews without Ownership records<br>
 ## Release notes - angular-template-libraries - Version 2.46.0 (12/1/2021)<br>
 ### Task<br>
 AT-1607 - Ensure correct SSO behavior in all possible scenarios<br>

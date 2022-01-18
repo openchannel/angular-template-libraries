@@ -2,7 +2,11 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { OcConfirmationModalComponent } from './oc-confirmation-modal.component';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { MockButtonComponent, MockSvgIconComponent } from '@openchannel/angular-common-components/src/mock/mock';
+import {
+    MockButtonComponent,
+    MockHeadingTagDirective,
+    MockSvgIconComponent
+} from '@openchannel/angular-common-components/src/mock/mock';
 
 
 describe('OcConfirmationModalComponent', () => {
@@ -12,7 +16,7 @@ describe('OcConfirmationModalComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcConfirmationModalComponent, MockButtonComponent, MockSvgIconComponent],
+                declarations: [OcConfirmationModalComponent, MockButtonComponent, MockSvgIconComponent, MockHeadingTagDirective],
                 providers: [NgbActiveModal],
             }).compileComponents();
         }),

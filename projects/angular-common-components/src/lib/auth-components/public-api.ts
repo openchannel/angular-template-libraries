@@ -12,3 +12,4 @@ export * from './oc-edit-user-form/oc-edit-user-form.component';
 export * from './models/auth-types.model';
 export * from './models/oc-edit-user-form.model';
 export * from './models/oc-type-definition.model';
+export * from './models/signup-router-state.model';
