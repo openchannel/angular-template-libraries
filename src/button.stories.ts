@@ -35,6 +35,13 @@ Secondary.args = {
     typeButton: 'secondary',
 };
 
+export const Warning = ButtonComponent.bind({});
+
+Warning.args = {
+    text: 'Warning',
+    typeButton: 'warning',
+};
+
 export const Link = ButtonComponent.bind({});
 
 Link.args = {
