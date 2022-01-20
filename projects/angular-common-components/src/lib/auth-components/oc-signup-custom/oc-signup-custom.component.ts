@@ -109,6 +109,9 @@ export class OcSignupCustomComponent {
     /** Template to show instead of the default */
     @Input() customFormTemplate: TemplateRef<any>;
 
+    /** Error message that will be shown when no formConfigs is provided or not provided correctly */
+    @Input() emptyConfigsErrorMessage: string = 'There are no signup forms configured';
+
     /**
      * showSignupFeedbackPage change emitter
      */
