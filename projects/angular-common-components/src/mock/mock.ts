@@ -303,6 +303,7 @@ export class MockEditUserFormComponent {
     @Input() defaultOrganizationData: OCOrganization;
     @Input() customTermsDescription: TemplateRef<any>;
     @Input() formId: ErrorMessageFormId;
+    @Input() defaultEmptyConfigsErrorMessage: string = 'There are no forms configured';
 }
 
 @Component({
