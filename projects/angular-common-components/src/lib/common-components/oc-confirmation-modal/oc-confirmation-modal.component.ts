@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationModalButton } from '../model/confirmation-modal.model';
+import { HeadingTag } from '../model/heading-tag.interface';
 
 /**
  * Confirmation modal window. It is used for the confirmation some action from the user.
@@ -41,6 +43,11 @@ export class OcConfirmationModalComponent {
      * Header text of the modal window.
      */
     @Input() modalTitle: string = '';
+
+    /**
+     * Replace the current h2 html tag on your new tag. Look: {@link HeadingTag}.
+     */
+    @Input() modalTitleHeadingTag: HeadingTag = 'h2';
     /**
      * Main text of the modal. It can be clarifying question or explanation text.
      */
@@ -79,6 +86,11 @@ export class OcConfirmationModalComponent {
      * Custom class for the confirmation button.
      */
     @Input() confirmButtonClass: string = '';
+
+    /**
+     * Disable current modal buttons 'reject' and 'confirm', then create buttons only by these buttons array.
+     */
+    @Input() customButtons: ConfirmationModalButton[];
     /**
      * Control of the current modal actions.
      * @private
@@ -92,7 +104,7 @@ export class OcConfirmationModalComponent {
      * Function for cancel. Triggers when user press cancel button or close the modal.
      * @param result optional parameter for result from cancel button
      */
-    dismiss(result?: boolean): void {
+    dismiss(result?: boolean | string): void {
         this.modal.dismiss(result);
     }
 
@@ -100,7 +112,7 @@ export class OcConfirmationModalComponent {
      * Function for confirmation. Triggers when user press confirm button.
      * @param result optional parameter for result from confirmation button
      */
-    confirm(result?: boolean): void {
+    confirm(result?: boolean | string): void {
         this.modal.close(result);
     }
 }

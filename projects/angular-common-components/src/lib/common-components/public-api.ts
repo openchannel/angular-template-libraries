@@ -58,6 +58,7 @@ export * from './model/image-gallery.model';
 export * from './model/utils.model';
 export * from './model/text-transfrom-pipe.model';
 export * from './model/radio-button.model';
+export * from './model/confirmation-modal.model';
 
 /** Services */
 export * from './oc-error/oc-error-service';
