@@ -37,11 +37,17 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
         this.editorContent = val;
         this.onChange(this.editorContent);
     }
+    
+    /**
+     * Boolean switcher of the resize icon display state.
+     */
+    @Input() showResizeIcon: boolean = true;
 
     placeholderText: string = '';
 
     // options for Tiny Editor
     tinyOptions = {
+        statusbar: true,
         base_url: '/tinymce',
         suffix: '.min',
         menubar: false,

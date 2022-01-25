@@ -1,0 +1,16 @@
+<div class="consent">
+    <div class="consent__checkbox">
+        <oc-checkbox
+            (isCheckedChange)="changeModelVal()"
+            class="consent__checkbox-input"
+            [disabled]="disabled"
+            (focus)="onFocus()"
+            [(ngModel)]="checked"></oc-checkbox>
+        <div class="consent__label">
+            I agree to
+            <a class="consent__link" [href]="termsUrl" target="_blank">Terms of service</a>
+            and
+            <a class="consent__link" [href]="policyUrl" target="_blank">Data processing policy</a>
+        </div>
+    </div>
+</div>
