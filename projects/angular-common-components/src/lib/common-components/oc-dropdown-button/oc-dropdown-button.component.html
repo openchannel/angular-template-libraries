@@ -1,4 +1,4 @@
-<div ngbDropdown placement="bottom" #myDrop="ngbDropdown" class="dropdown-button" [ngStyle]="minWidthModel">
+<div ngbDropdown [placement]="dropdownPlacement"  #myDrop="ngbDropdown" class="dropdown-button" [ngStyle]="minWidthModel" >
     <div class="dropdown-button__placeholder-container"
         (click)="$event.preventDefault(); myDrop.isOpen() ? myDrop.close() : myDrop.open()"
         ngbDropdownAnchor
@@ -10,7 +10,7 @@
     <div ngbDropdownMenu aria-labelledby="customDropdownManual" [ngStyle]="minWidthModel" class="dropdown-button__menu">
         <div ngbDropdownItem *ngFor="let option of this.options" (click)="onSelect(option)" class="dropdown-button__menu-item">
             <ng-container
-                [ngTemplateOutlet]="dropdownTitleTemplate || defaultItem"
+                [ngTemplateOutlet]="dropdownItemTemplate || defaultItem"
                 [ngTemplateOutletContext]="{ $implicit: option }"></ng-container>
         </div>
     </div>

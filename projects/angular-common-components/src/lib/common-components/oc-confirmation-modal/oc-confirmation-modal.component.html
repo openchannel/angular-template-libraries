@@ -1,6 +1,8 @@
 <div class="confirmation-modal">
     <div class="confirmation-modal__header">
-        <h2 class="confirmation-modal__header-heading">{{ modalTitle }}</h2>
+        <h2 class="confirmation-modal__header-heading"
+            [headingTag]="modalTitleHeadingTag"
+            [headingTagContent]="modalTitle"></h2>
         <svg-icon
             class="confirmation-modal__header-close-icon"
             src="assets/angular-common-components/close-icon.svg"
@@ -9,18 +11,31 @@
     <div class="confirmation-modal__modal-body">
         <span class="confirmation-modal__text">{{ modalText }}</span>
         <div class="confirmation-modal__button-container">
-            <oc-button
-                class="confirmation-modal__button"
-                *ngIf="!rejectButtonHide"
-                [type]="rejectButtonType"
-                [text]="rejectButtonText"
-                (click)="dismiss()"></oc-button>
-            <oc-button
-                class="confirmation-modal__button {{ confirmButtonClass }}"
-                *ngIf="!confirmButtonHide"
-                [type]="confirmButtonType"
-                [text]="confirmButtonText"
-                (click)="confirm(true)"></oc-button>
+            <ng-container [ngTemplateOutlet]="customButtons ? customButtonsRef : defaultButtonsRef"></ng-container>
         </div>
     </div>
 </div>
+
+<ng-template #defaultButtonsRef>
+    <oc-button
+        class="confirmation-modal__button"
+        *ngIf="!rejectButtonHide"
+        [type]="rejectButtonType"
+        [text]="rejectButtonText"
+        (click)="dismiss()"></oc-button>
+    <oc-button
+        class="confirmation-modal__button {{ confirmButtonClass }}"
+        *ngIf="!confirmButtonHide"
+        [type]="confirmButtonType"
+        [text]="confirmButtonText"
+        (click)="confirm(true)"></oc-button>
+</ng-template>
+
+<ng-template #customButtonsRef>
+    <oc-button
+        class="confirmation-modal__button"
+        *ngFor="let button of customButtons"
+        [type]="button.type"
+        [text]="button.text"
+        (click)="confirm(button.id)"></oc-button>
+</ng-template>

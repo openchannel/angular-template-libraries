@@ -14,3 +14,8 @@ export interface CountryModel {
     name: string;
     Iso2: string;
 }
+
+export interface State {
+    name: string;
+    code: string;
+}

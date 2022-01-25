@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { DropdownItemModel, DropdownModel, OcDropdownStatus } from '../model/components-basic.model';
+import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
 /**
  * Dropdown button component. Represents button and dropdown list that drops on click.
  *
@@ -50,6 +51,7 @@ export class OcDropdownButtonComponent {
     @Input() dropdownItemTemplate: TemplateRef<DropdownItemModel>;
     @Input() ascendingSvgIcon: string = null;
     @Input() descendingSvgIcon: string = null;
+    @Input() dropdownPlacement: PlacementArray = 'bottom';
 
     /**
      * Output event that emits when some item in the list was selected

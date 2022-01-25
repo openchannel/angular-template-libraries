@@ -1,3 +1,19 @@
+## Release notes - angular-template-libraries - Version 2.50.0 (1/17/2022)<br>
+### Bug<br>
+AT-1627 - [Angular Components][Portal] Wrong progressbar offset when steps length <= max steps to show<br>
+AT-1537 - Insufficient input validation may lead to DoS<br>
+AT-1515 - [UI] [Market/Portal] Alert Danger validation does not render correctly on the login page for not activate accounts.<br>
+AT-1389 - [Prod][client-api-proxy] o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler 500 Server Error for HTTP POST "/auth/external/token"<br>
+AT-1157 - Exposing properties endpoints is considered a security risk<br>
+## Release notes - angular-template-libraries - Version 2.49.0 (1/17/2022)<br>
+### Task<br>
+AT-1620 - Replace AppConfirmationModalComponent by OcConfirmationModalComponent<br>
+AT-1596 - Add expand icon on rich text component<br>
+### Story<br>
+AT-1563 - A user is able to go through a checkout flow when buying an app<br>
+### Bug<br>
+AT-1467 - [logs-prod] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler: 500 Server Error for HTTP POST "/auth/native/send-activate-code"<br>
+AT-1370 - [Multi File/Image/private file] Do not allow to upload images/files more than it's Max limit.<br>
 ## Release notes - angular-template-libraries - Version 2.48.0 (1/6/2022)<br>
 ### Bug<br>
 AT-1641 - [Stage1][Billing] Not able to add credit card information and billing address information for newly signed up user.<br>
