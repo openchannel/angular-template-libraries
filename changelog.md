@@ -1,3 +1,11 @@
+## Release notes - angular-template-libraries - Version 2.51.1 (1/25/2022)<br>
+### Bug<br>
+AT-1612 - [Market] My apps page loads with incorrect pageNumber when page loads already scrolled to the bottom<br>
+AT-1424 - [Market/Portal][My Profile][Console Error] custom-account-type  is not a valid developer account type<br>
+AT-1374 - [Market] When click on Download button Ownership record is not created.<br>
+### Story<br>
+AT-1291 - A developer is able to view the invite form according to the configured Developer Account Type<br>
+AT-1290 - A user is able to view the invite form according to the configured User Account Type<br>
 ## Release notes - angular-template-libraries - Version 2.50.0 (1/17/2022)<br>
 ### Bug<br>
 AT-1627 - [Angular Components][Portal] Wrong progressbar offset when steps length <= max steps to show<br>

@@ -84,6 +84,7 @@ export interface AppFormFieldAttributes {
     componentLayout?: RadioButtonLayout;
     onlyFirstDfaItem?: boolean;
     overrideErrorMessage?: ErrorMessage;
+    disabled?: boolean;
 }
 
 export interface FieldOptionValue {

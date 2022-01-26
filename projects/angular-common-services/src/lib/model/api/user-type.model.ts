@@ -9,6 +9,10 @@ export interface UserAccountTypeModel extends ProfileTypeModel {
     userAccountTypeId: string;
 }
 
+export interface DeveloperAccountTypeModel extends ProfileTypeModel {
+    developerAccountTypeId: string;
+}
+
 export interface UserTypeModel extends ProfileTypeModel {
     userTypeId: string;
 }
