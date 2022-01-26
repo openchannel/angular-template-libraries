@@ -18,6 +18,8 @@ export class OcEmbedVideoService extends EmbedVideoService {
             return this.prepareIframe(`//play.vidyard.com/${this.getVideoId(url)}`);
         } else if (this.defineProvider(url, 'brightcove')) {
             return this.prepareIframe(url);
+        } else if (this.defineProvider(url, 'youtube.com/embed/')) {
+            return this.prepareIframe(url);
         }
         return super.embed(url, options);
     }
