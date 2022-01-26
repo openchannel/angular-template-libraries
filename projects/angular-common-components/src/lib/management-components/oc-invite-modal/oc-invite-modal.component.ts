@@ -174,7 +174,6 @@ export class OcInviteModalComponent implements OnInit {
                 this.inProcess = true;
 
                 const roles = (isString(this.formData?.roles) ? [this.formData.roles] : this.formData?.roles).map(r => this.listRoles[r]);
-                this.formData = merge(this.formData, { customData: { roles } });
                 this.formData.roles = roles;
 
                 if (this.modalData instanceof ModalUpdateUserModel) {
