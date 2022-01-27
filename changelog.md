@@ -1,3 +1,9 @@
+## Release notes - angular-template-libraries - Version 2.53.0 (1/27/2022)<br>
+### Task<br>
+AT-1583 - For CAP, compress responses using gzip<br>
+### Bug<br>
+AT-1315 - [Market/Portal][Video] Video link should accept both URL formats 1) Embed and 2) Normal watch URLs 3) Copy Video URL.<br>
+AT-1159 - [User/Developer][Dashboard] If the Roles are set to empty from Native SSO and after sign up assigned one from Template3 then an extra (duplicate) field created in the Dashboard.<br>
 ## Release notes - angular-template-libraries - Version 2.52.0 (1/27/2022)<br>
 ### Bug<br>
 AT-1605 - [Components] Custom sign up form should support DFA fields<br>
