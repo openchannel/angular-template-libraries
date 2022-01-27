@@ -25,7 +25,7 @@ export class TypeMergeUtils {
         let result = {};
         if (formResult) {
             prefixes.forEach(prefix => {
-                result = { result, ...this.removeCustomPrefixFromFieldId(formResult, prefix) };
+                result = { ...result, ...this.removeCustomPrefixFromFieldId(formResult, prefix) };
             });
         }
         return TypeMapperUtils.buildDataForSaving(result);
@@ -66,10 +66,13 @@ export class TypeMergeUtils {
     private static removeCustomPrefixFromFieldId(formResult: any, prefix: string): any {
         const result = {};
         forIn(formResult, (value, key) => {
-            if (key.includes(prefix)) {
+            const isWithPrefix = key.includes(prefix);
+
+            if (isWithPrefix) {
                 result[key.replace(prefix, '')] = value;
             }
-            if (typeof value === 'object') {
+
+            if (key === 'customData') {
                 result[key] = this.removeCustomPrefixFromFieldId(value, prefix);
             }
         });
@@ -79,14 +82,13 @@ export class TypeMergeUtils {
     private static getFieldsWithoutPrefix(formResult: any, prefixes?: string[]): any {
         const result = {};
         forIn(formResult, (value, key) => {
-            let requireField = true;
-            prefixes.forEach(prefix => {
-                requireField = requireField && !key.includes(prefix);
-            });
-            if (requireField) {
+            const isWithoutPrefix = !prefixes.some(prefix => key.includes(prefix));
+
+            if (isWithoutPrefix) {
                 result[key] = value;
             }
-            if (typeof value === 'object') {
+
+            if (key === 'customData') {
                 result[key] = this.getFieldsWithoutPrefix(value, prefixes);
             }
         });
