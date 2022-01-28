@@ -1,6 +1,16 @@
 <div class="gallery">
     <div class="gallery__header">
-        <h2 [headingTag]="headingTag" class="gallery__header-top">{{ appGalleryTitle }}</h2>
+        <!--   Header with navigation   -->
+        <h2 *ngIf="headerRouterUrl?.length >= 0"
+            [headingTag]="headingTag"
+            [routerLink]="headerRouterUrl"
+            class="gallery__header-top">{{ appGalleryTitle }}</h2>
+
+        <!--   Header without navigation   -->
+        <h2 *ngIf="!headerRouterUrl"
+            [headingTag]="headingTag"
+            class="gallery__header-top">{{ appGalleryTitle }}</h2>
+
         <p class="gallery__header-description" id="description">{{ appGalleryDescription }}</p>
     </div>
     <div class="gallery__content" *ngIf="appsArr && appsArr.length > 0; else emptyData">
@@ -34,5 +44,5 @@
 
 <ng-template #seeAllLink>
     <span class="gallery__content-link-text">{{ moreAppsTitle }}</span>
-    <svg-icon svgClass="gallery__content-link-icon" [src]="routerIcon"></svg-icon>
+    <svg-icon *ngIf="routerIcon" svgClass="gallery__content-link-icon" [src]="routerIcon"></svg-icon>
 </ng-template>

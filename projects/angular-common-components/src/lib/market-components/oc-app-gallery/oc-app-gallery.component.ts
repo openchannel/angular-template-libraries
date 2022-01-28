@@ -51,6 +51,10 @@ export class OcAppGalleryComponent {
      */
     @Input() seeAllUrl: string | any[];
     /**
+     * Navigate to another page, when user the clicks by header text.
+     */
+    @Input() headerRouterUrl: string | any[];
+    /**
      * Router link which will be used for navigation by app card click.
      * Using for the default app card only.
      * @example
