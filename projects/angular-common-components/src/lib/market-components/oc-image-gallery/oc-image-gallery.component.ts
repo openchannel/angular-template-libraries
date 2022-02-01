@@ -165,10 +165,11 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
      */
     private changeMaxImagesView(): void {
         this.displayGallery = [...this.mainGallery];
+
         if (this.allowArrowControllers) {
-            this.displayGallery.splice(this.mainGallery.length - 1);
-        } else {
-            this.displayGallery.splice(this.maxItems);
+            return;
         }
+
+        this.displayGallery.splice(this.maxItems);
     }
 }
