@@ -61,6 +61,13 @@
         }
     }
 
+    &__counter {
+        display: flex;
+        justify-content: flex-end;
+        color: #cccccc;
+        user-select: none
+    }
+
     &__carousel {
         &-nav {
             cursor: pointer;
