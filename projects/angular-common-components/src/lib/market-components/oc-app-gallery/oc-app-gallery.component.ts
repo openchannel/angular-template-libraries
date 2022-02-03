@@ -51,10 +51,6 @@ export class OcAppGalleryComponent {
      */
     @Input() seeAllUrl: string | any[];
     /**
-     * Navigate to another page, when user the clicks by header text.
-     */
-    @Input() headerRouterUrl: string | any[];
-    /**
      * Router link which will be used for navigation by app card click.
      * Using for the default app card only.
      * @example
@@ -89,10 +85,19 @@ export class OcAppGalleryComponent {
      */
     @Output() readonly clickMoreApps: EventEmitter<void> = new EventEmitter<void>();
 
+    /**
+     * Emitter for click by title text.
+     */
+    @Output() readonly clickHeaderTitle: EventEmitter<void> = new EventEmitter<void>();
+
     getAppValueByParameter(app: FullAppData): string {
         if (this.appNavigationParam) {
             return get(app, this.appNavigationParam);
         }
         return '';
+    }
+
+    onClickByHeaderTitle(): void {
+        this.clickHeaderTitle.emit();
     }
 }

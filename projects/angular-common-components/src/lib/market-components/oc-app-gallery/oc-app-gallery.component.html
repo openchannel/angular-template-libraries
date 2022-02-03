@@ -1,16 +1,6 @@
 <div class="gallery">
     <div class="gallery__header">
-        <!--   Header with navigation   -->
-        <h2 *ngIf="headerRouterUrl?.length >= 0"
-            [headingTag]="headingTag"
-            [routerLink]="headerRouterUrl"
-            class="gallery__header-top">{{ appGalleryTitle }}</h2>
-
-        <!--   Header without navigation   -->
-        <h2 *ngIf="!headerRouterUrl"
-            [headingTag]="headingTag"
-            class="gallery__header-top">{{ appGalleryTitle }}</h2>
-
+        <h2 [headingTag]="headingTag" (click)="onClickByHeaderTitle()" class="gallery__header-top">{{ appGalleryTitle }}</h2>
         <p class="gallery__header-description" id="description">{{ appGalleryDescription }}</p>
     </div>
     <div class="gallery__content" *ngIf="appsArr && appsArr.length > 0; else emptyData">
