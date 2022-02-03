@@ -1,3 +1,34 @@
+## Release notes - angular-template-libraries - Version 2.54.0 (1/31/2022)<br>
+### Story<br>
+AT-1665 - A user is able to log in from SSO using SAML 2.0<br>
+### Bug<br>
+AT-1659 - [Market][Portal] Page is not loading correctly when URL is like `my-profile` (without `profile-details` end part)<br>
+AT-1657 - Long word is not truncated in oc-app-card on market<br>
+AT-1636 - [Sign Up] Sign up form does not load all the fields of the Dev/User Org type.<br>
+## Release notes - angular-template-libraries - Version 2.53.0 (1/27/2022)<br>
+### Task<br>
+AT-1583 - For CAP, compress responses using gzip<br>
+### Bug<br>
+AT-1315 - [Market/Portal][Video] Video link should accept both URL formats 1) Embed and 2) Normal watch URLs 3) Copy Video URL.<br>
+AT-1159 - [User/Developer][Dashboard] If the Roles are set to empty from Native SSO and after sign up assigned one from Template3 then an extra (duplicate) field created in the Dashboard.<br>
+## Release notes - angular-template-libraries - Version 2.52.0 (1/27/2022)<br>
+### Bug<br>
+AT-1605 - [Components] Custom sign up form should support DFA fields<br>
+### Task<br>
+AT-1581 - For CAP, Change cache control timing<br>
+AT-1579 - For CAP, make /content, /apps/textSearch and /apps/{appId} cachable<br>
+### Bug<br>
+AT-1510 - [AT-1446] Form Rate limit should show only 1 validation.<br>
+AT-1434 - CMS must be enabled for Portal and Market sites.<br>
+AT-1346 - [SSO] For External SSO Identity Configuration the Invite Request has the /auth/native/invite in URL.<br>
+## Release notes - angular-template-libraries - Version 2.51.1 (1/25/2022)<br>
+### Bug<br>
+AT-1612 - [Market] My apps page loads with incorrect pageNumber when page loads already scrolled to the bottom<br>
+AT-1424 - [Market/Portal][My Profile][Console Error] custom-account-type  is not a valid developer account type<br>
+AT-1374 - [Market] When click on Download button Ownership record is not created.<br>
+### Story<br>
+AT-1291 - A developer is able to view the invite form according to the configured Developer Account Type<br>
+AT-1290 - A user is able to view the invite form according to the configured User Account Type<br>
 ## Release notes - angular-template-libraries - Version 2.50.0 (1/17/2022)<br>
 ### Bug<br>
 AT-1627 - [Angular Components][Portal] Wrong progressbar offset when steps length <= max steps to show<br>
