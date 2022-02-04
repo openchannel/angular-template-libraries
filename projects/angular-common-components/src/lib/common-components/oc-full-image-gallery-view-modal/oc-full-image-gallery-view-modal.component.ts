@@ -25,6 +25,11 @@ export class OcFullImageGalleryViewModalComponent implements OnInit {
      */
     @Input() showDetails: boolean = true;
     /**
+     * Display the current item index and overall items count.
+     * @default false
+     */
+    @Input() isShowCounter: boolean = false;
+    /**
      * Config for paths of the icons used in this component.
      * You can change icons by setting a new path in this config or create an `angular-common-components`
      * folder in your `assets`, and then add your icon with the name from this config.
