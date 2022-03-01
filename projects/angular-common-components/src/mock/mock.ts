@@ -470,6 +470,13 @@ export class MockHeadingTagDirective {
     @Input() headingTagContent: string;
 }
 
+@Directive({
+    selector: '[ocAutofocus]',
+})
+export class MockAutofocusDirective {
+    @Input() ocAutofocus = false;
+}
+
 @Component({
     selector: 'oc-tooltip-label',
     template: '',
