@@ -40,6 +40,7 @@ export * from './pipe/text-transform.pipe';
 export * from './directive/ellipsis.directive';
 export * from './directive/heading-tag.directive';
 export * from './directive/only-number.directive';
+export * from './directive/autofocus.directive';
 export * from './validators/email-validator.directive';
 export * from './validators/drag-drop.directive';
 export * from './validators/checkbox-required.directive';
