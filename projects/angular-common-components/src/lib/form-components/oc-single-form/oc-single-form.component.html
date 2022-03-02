@@ -58,6 +58,7 @@
             [text]="formElement?.label"
             class="form__field-label"
             [required]="formElement?.attributes?.required"
+            [tooltipPlacement]="labelTooltipPlacement"
             [ngClass]="{
                     'form__field-label_position_left form__field-label_row': labelPosition === 'left',
                     'form__field-label_position_right form__field-label_row': labelPosition === 'right',

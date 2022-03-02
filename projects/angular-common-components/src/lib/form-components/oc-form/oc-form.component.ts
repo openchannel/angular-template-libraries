@@ -7,6 +7,7 @@ import { ErrorMessageFormId, OcErrorService } from '@openchannel/angular-common-
 import { forIn, set, mergeWith, toPath } from 'lodash';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
 
 export interface FieldStep {
     label?: AppFormField;
@@ -169,6 +170,13 @@ export class OcFormComponent implements OnInit, OnChanges {
      * @default false.
      */
     @Input() setFormErrors: boolean = false;
+
+    /**
+     * Label tooltip position.
+     * @type {PlacementArray}.
+     * @default 'right'
+     */
+    @Input() labelTooltipPlacement: PlacementArray = 'right';
 
     customForm: FormArray;
     progressBarSteps: FormProgressbarStep[] = [];

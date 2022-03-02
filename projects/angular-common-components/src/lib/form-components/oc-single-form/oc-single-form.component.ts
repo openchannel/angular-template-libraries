@@ -8,6 +8,7 @@ import { ControlUtils, ErrorMessageFormId, OcErrorService } from '@openchannel/a
 import { forIn, set, toPath } from 'lodash';
 import { map, takeUntil } from 'rxjs/operators';
 import { TrimTextUtils } from '../service/trim-text-utils/trim-text.service';
+import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
 
 /**
  * Form component. Represents form builder from given config with customization.
@@ -103,6 +104,13 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
      * @default 'top'
      */
     @Input() labelPosition: FormLabelPosition = 'top';
+
+    /**
+     * Label tooltip position.
+     * @type {PlacementArray}.
+     * @default 'right'
+     */
+    @Input() labelTooltipPlacement: PlacementArray = 'right';
 
     /**
      * Set form "dirty" after form init

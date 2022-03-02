@@ -170,6 +170,7 @@ export class MockFormComponent {
     @Input() queryParams: string = '';
     @Input() enableTextTruncation: boolean = true;
     @Input() labelPosition: 'top' | 'left' | 'right' = 'top';
+    @Input() labelTooltipPlacement: string = 'right';
     @Output() readonly formSubmitted = new EventEmitter<any>();
     @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -199,6 +200,7 @@ export class MockSingleFormComponent {
     @Input() showButton: boolean = true;
     @Input() showGroupHeading: boolean = true;
     @Input() formId: ErrorMessageFormId;
+    @Input() labelTooltipPlacement: string = 'right';
     @Output() readonly formSubmitted = new EventEmitter<any>();
     @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -486,6 +488,7 @@ export class MockTooltipComponent {
     @Input() required: boolean = false;
     @Input() description: string = '';
     @Input() labelClass: string = '';
+    @Input() tooltipPlacement: string = 'right';
 }
 
 @Component({
