@@ -57,6 +57,10 @@
         <oc-tooltip-label
             [text]="formElement?.label"
             class="form__field-label"
+            [class.form__field-label_invalid]="
+                (customForm.controls[formElement?.id].touched || customForm.controls[formElement?.id].dirty) &&
+                customForm.controls[formElement?.id].invalid
+            "
             [required]="formElement?.attributes?.required"
             [tooltipPlacement]="labelTooltipPlacement"
             [ngClass]="{
