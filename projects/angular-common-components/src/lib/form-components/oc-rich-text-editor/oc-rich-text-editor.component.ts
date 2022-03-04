@@ -37,7 +37,17 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
         this.editorContent = val;
         this.onChange(this.editorContent);
     }
-    
+
+    /**
+     * Text editor custom options.
+     * @type {string}.
+     */
+    @Input() set options(val: any) {
+        if (val) {
+            Object.assign(this.tinyOptions, val);
+        }
+    }
+
     /**
      * Boolean switcher of the resize icon display state.
      */
