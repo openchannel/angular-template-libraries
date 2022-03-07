@@ -179,7 +179,7 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * @ignore
      * @private
      */
-    private chart: any;
+    private chart: Chart;
     private chartWidth: number;
     private chartHeight: number;
     private gradient;
