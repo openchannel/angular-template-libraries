@@ -35,7 +35,7 @@ export interface ChartStatisticModel {
  */
 export interface ChartStatisticDataModel {
     /** data that will be shown on Y axis */
-    labelsY: string[];
+    labelsY: number[];
     /** data that will be shown on X axis */
     labelsX: string[];
     /**

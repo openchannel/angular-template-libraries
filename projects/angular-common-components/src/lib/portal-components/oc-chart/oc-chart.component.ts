@@ -12,7 +12,22 @@ import {
     ViewChild,
 } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
-import { CategoryScale, Chart, Legend, LinearScale, LineController, LineElement, PointElement, Scale, Tooltip } from 'chart.js';
+import {
+    CategoryScale,
+    Chart,
+    ChartConfiguration,
+    DefaultDataPoint,
+    Legend,
+    LinearScale,
+    LineController,
+    LineElement,
+    PointElement,
+    Scale,
+    Tooltip,
+    Filler,
+    ScriptableContext,
+    ChartArea,
+} from 'chart.js';
 import {
     ChartOptionsChange,
     ChartStatisticFiledModel,
@@ -21,6 +36,7 @@ import {
     ChartStatisticPeriodModel,
 } from '../models/oc-chart.model';
 import { ChartUtils } from '../utils/chart.utils';
+import _ from 'lodash';
 
 const chartPoint = new Image();
 chartPoint.src = 'assets/angular-common-components/chart_point.svg';
@@ -35,6 +51,12 @@ chartPoint.src = 'assets/angular-common-components/chart_point.svg';
 })
 export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
     @ViewChild('myCanvas') myCanvas: ElementRef<HTMLCanvasElement>;
+
+    /**
+     * Chart.js configuration. Will be merged with default config
+     * @default  null
+     */
+    @Input() config: ChartConfiguration;
 
     /**
      * Total sum of the data. It can be total reviews or total downloads.
@@ -158,12 +180,17 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * @private
      */
     private chart: any;
+    private chartWidth: number;
+    private chartHeight: number;
+    private gradient;
 
     /**
      * Angular lifecycle function. Init on component creation.
      * Setting the {@link tabularLabelsHeader}. Connecting chart lib, loading chart and dropdown menu items.
      */
     ngOnInit(): void {
+        Chart.register(CategoryScale, LineController, PointElement, LineElement, LinearScale, Tooltip, Legend, Filler);
+
         this.tabularLabelsHeader = this.chartData?.periods?.find(period => period.active)?.tabularLabel;
         this.updateDropdownValues();
     }
@@ -200,20 +227,25 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      * Creating main chart with configuration.
      */
     setChart(): void {
-        const gradientFill = this.getGradientFill();
-
-        Chart.register(CategoryScale, LineController, PointElement, LineElement, LinearScale, Tooltip, Legend);
-
-        this.chart = new Chart(this.context, {
+        const defaultConfig: ChartConfiguration<'line', DefaultDataPoint<'line'>, string> = {
             type: 'line',
             data: {
                 labels: this.chartData?.data?.labelsX || [],
                 datasets: [
                     {
-                        data: this.chartData?.data?.labelsY ? this.chartData.data.labelsY : [],
-                        backgroundColor: this.isBackgroundColor ? gradientFill : 'transparent',
+                        data: this.chartData?.data?.labelsY || [],
+                        fill: this.isBackgroundColor,
+                        backgroundColor: this.isBackgroundColor
+                            ? (context: ScriptableContext<'line'>) => {
+                                  const { ctx, chartArea } = context.chart;
+                                  if (!chartArea) {
+                                      // This case happens on initial chart load
+                                      return null;
+                                  }
+                                  return this.createGradientFill(ctx, chartArea);
+                              }
+                            : 'transparent',
                         borderColor: 'rgba(83, 124, 253, 1)',
-                        tension: 0,
                         borderWidth: 1.7,
                     },
                 ],
@@ -246,6 +278,7 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                             color: '#727272',
                             maxRotation: 0,
                             callback(rawValue: any): any {
+                                // tslint:disable-next-line:no-invalid-this
                                 const value = this.getLabelForValue(rawValue);
                                 if (value.length >= 8) {
                                     return value.substring(0, 3);
@@ -291,7 +324,7 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                                 increaseSkipRatio = ChartUtils.shouldIncreaseSkipRatio(skipRatio, visibleTicksIndexes);
                             }
 
-                            axis.ticks = axis.ticks.filter((_, i) => visibleTicksIndexes.includes(i));
+                            axis.ticks = axis.ticks.filter((tick, i) => visibleTicksIndexes.includes(i));
                         },
                     },
                     y: {
@@ -305,7 +338,7 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                         ticks: {
                             autoSkip: true,
                             color: '#727272',
-                            callback(value: any, index: number, values: any[]): any {
+                            callback(value: any): any {
                                 if (value > 999) {
                                     return value / 1000 + 'k';
                                 }
@@ -346,7 +379,8 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
                     },
                 },
             },
-        });
+        };
+        this.chart = new Chart(this.context, _.merge(defaultConfig, this.config));
     }
 
     /**
@@ -355,18 +389,6 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
      */
     getChart(): any {
         return this.chart;
-    }
-
-    /**
-     * Creates gradient for chart.
-     * @return {CanvasGradient}
-     */
-    getGradientFill(): CanvasGradient {
-        const gradientFill = this.context.createLinearGradient(0, 0, 0, 170);
-        gradientFill.addColorStop(0, '#e7eef7');
-        gradientFill.addColorStop(1, 'rgba(240, 247, 255, 0.25)');
-
-        return gradientFill;
     }
 
     /**
@@ -431,6 +453,24 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
             period: this.chartData?.periods?.find(item => item?.active),
             selectedApp: this.chartData?.apps?.activeItem,
         });
+    }
+
+    /**
+     * Creates gradient for chart.
+     * @return {CanvasGradient}
+     */
+    private createGradientFill(ctx: CanvasRenderingContext2D, chartArea: ChartArea): CanvasGradient {
+        if (this.gradient || this.chartWidth !== chartArea.width || this.chartHeight !== chartArea.height) {
+            // Create the gradient because this is either the first render
+            // or the size of the chart has changed
+            this.chartWidth = chartArea.width;
+            this.chartHeight = chartArea.height;
+            this.gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+            this.gradient.addColorStop(0, '#e7eef7');
+            this.gradient.addColorStop(1, 'rgba(240, 247, 255, 0.25)');
+        }
+
+        return this.gradient;
     }
 
     /**
