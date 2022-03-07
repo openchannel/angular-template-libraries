@@ -83,6 +83,15 @@ export class FormConfigService {
         richText: {
             options: {},
         },
+        emailAddress: {
+            defaultPlaceholder: 'myemail@example.com',
+        },
+        websiteUrl: {
+            defaultPlaceholder: 'https://my.website.com',
+        },
+        videoUrl: {
+            defaultPlaceholder: 'https://my.website.com',
+        },
     };
 
     config: FormConfig = {};

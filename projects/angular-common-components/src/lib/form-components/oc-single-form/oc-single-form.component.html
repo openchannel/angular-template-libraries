@@ -171,13 +171,13 @@
             [formControl]="customForm.controls[formElement?.id]"
             inputType="email"
                         [disabled]="formElement?.attributes?.disabled"
-            [placeholder]="formElement?.placeholder ? formElement.placeholder : 'myemail@example.com'"></oc-input>
+            [placeholder]="formElement?.placeholder ? formElement.placeholder : formConfig.emailAddress.defaultPlaceholder"></oc-input>
         <oc-input
             *ngSwitchCase="'websiteUrl'"
             [formControl]="customForm.controls[formElement?.id]"
             inputType="url"
                         [disabled]="formElement?.attributes?.disabled"
-            [placeholder]="formElement?.placeholder ? formElement.placeholder : 'https://my.website.com'"></oc-input>
+            [placeholder]="formElement?.placeholder ? formElement.placeholder : formConfig.websiteUrl.defaultPlaceholder"></oc-input>
         <oc-color
             *ngSwitchCase="'color'"
             [formControl]="customForm.controls[formElement?.id]"
@@ -202,7 +202,7 @@
         <oc-video-url
             *ngSwitchCase="'videoUrl'"
             [formControl]="customForm.controls[formElement?.id]"
-            [placeholder]="formElement?.placeholder ? formElement.placeholder : 'https://my.website.com'"></oc-video-url>
+            [placeholder]="formElement?.placeholder ? formElement.placeholder : formConfig.videoUrl.defaultPlaceholder"></oc-video-url>
         <oc-datetime-picker
             *ngSwitchCase="'date'"
             [formControl]="customForm.controls[formElement?.id]"
