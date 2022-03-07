@@ -29,7 +29,6 @@ import {
     FileDetails,
     FormType,
     FormProgressbarStep,
-    FormLabelPosition,
     DropdownFormField,
     DropdownAdditionalField,
     AppFormField,
@@ -169,7 +168,6 @@ export class MockFormComponent {
     @Input() maxStepsToShow: number = 0;
     @Input() queryParams: string = '';
     @Input() enableTextTruncation: boolean = true;
-    @Input() labelPosition: 'top' | 'left' | 'right' = 'top';
     @Output() readonly formSubmitted = new EventEmitter<any>();
     @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -192,7 +190,6 @@ export class MockFormComponent {
 export class MockSingleFormComponent {
     @Input() formJsonData: any;
     @Input() buttonPosition: string;
-    @Input() labelPosition: string;
     @Input() process: boolean;
     @Input() generatedForm: FormGroup;
     @Input() successButtonText: string = 'Submit';
@@ -749,7 +746,6 @@ export class ImageCropperComponentMock {
 })
 export class MockDropdownFormComponent {
     @Input() formId: string;
-    @Input() labelPosition: FormLabelPosition;
     @Input() field: DropdownFormField;
     @Input() formGroup: FormGroup;
 }

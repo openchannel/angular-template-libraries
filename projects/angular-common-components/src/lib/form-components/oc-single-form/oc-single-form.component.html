@@ -4,7 +4,6 @@
                      [ngIfElse]="singleDfaItemRowRef">
             <oc-single-form [formId]="formId"
                             [generatedForm]="customForm.controls[formElement.id]?.get('0')"
-                            [labelPosition]="labelPosition"
                             [formJsonData]="formElement"
                             [showButton]="false">
             </oc-single-form>
@@ -14,8 +13,7 @@
                 *ngIf="formElement.type === 'dropdownForm'"
                 [formId]="formId"
                 [formGroup]="customForm"
-                [field]="formElement"
-                [labelPosition]="labelPosition">
+                [field]="formElement">
             </oc-dropdown-form>
             <ng-container
                 *ngIf="!(formElement.type === 'dropdownForm')"
@@ -49,9 +47,9 @@
         *ngIf="!(formElement.type === 'fieldGroup' || formElement?.attributes?.formHideRow)"
         [class]="'form__field ' + 'field-id-' +  formElement?.id"
         [ngClass]="
-                labelPosition === 'right'
+                formConfig.label.position === 'right'
                     ? 'form__field_direction_row_reverse'
-                    : labelPosition === 'left'
+                    : formConfig.label.position === 'left'
                     ? 'form__field_direction_row_normal'
                     : ''">
         <oc-tooltip-label
@@ -59,8 +57,8 @@
             class="form__field-label"
             [required]="formElement?.attributes?.required"
             [ngClass]="{
-                    'form__field-label_position_left form__field-label_row': labelPosition === 'left',
-                    'form__field-label_position_right form__field-label_row': labelPosition === 'right',
+                    'form__field-label_position_left form__field-label_row': formConfig.label.position === 'left',
+                    'form__field-label_position_right form__field-label_row': formConfig.label.position === 'right',
                     'form__group-heading': formElement.type === 'fieldGroup'
                 }"
             [description]="formElement?.description || ''"></oc-tooltip-label>
