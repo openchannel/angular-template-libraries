@@ -3,10 +3,40 @@ import { merge } from 'lodash';
 import { FormLabelPosition } from '../model/app-form-model';
 import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
 
-export const OC_FORM_CONFIG = new InjectionToken<string>('Form config');
+/**
+ * Use this injection token to provide custom form config.
+ *
+ * Provider example to provide custom form config:
+ * @example
+ *         {
+ *           provide: OC_FORM_CONFIG,
+ *           useValue: {
+ *               createApp: {
+ *                   longText: {
+ *                       rows: 20,
+ *                   },
+ *                   label: {
+ *                       tooltipPosition: 'top',
+ *                   },
+ *               },
+ *               default: {
+ *                   label: {
+ *                       tooltipPosition: 'bottom',
+ *                   },
+ *               },
+ *           },
+ *       },
+ */
+export const OC_FORM_CONFIG = new InjectionToken<string>('Custom form config');
 
+/**
+ * Id of the form to which you want to apply form inputs config.
+ */
 export type FormId = 'default' | 'createApp' | string;
 
+/**
+ * Form input id with options that you can customize.
+ */
 export interface FormInputs {
     longText: {
         rows?: number;
@@ -14,7 +44,7 @@ export interface FormInputs {
     };
 
     richText: {
-        config?: any;
+        options?: any;
         [key: string]: any;
     };
 
@@ -24,13 +54,20 @@ export interface FormInputs {
         [key: string]: any;
     };
 
+    /** Your custom input */
     [key: string]: any;
 }
 
+/** Interface for the custom form config */
 export type FormConfig = {
     [formId in FormId]: Partial<FormInputs>;
 };
 
+/**
+ * Injects to the {@link OcSingleFormComponent} to to configure form rows (labels, inputs).
+ *
+ * Use {@link OC_FORM_CONFIG} injection token to set custom form config.
+ */
 @Injectable({
     providedIn: 'root',
 })
