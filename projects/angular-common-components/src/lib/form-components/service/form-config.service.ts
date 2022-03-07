@@ -80,6 +80,9 @@ export class FormConfigService {
             position: 'top',
             tooltipPosition: 'right',
         },
+        richText: {
+            options: {},
+        },
     };
 
     config: FormConfig = {};
