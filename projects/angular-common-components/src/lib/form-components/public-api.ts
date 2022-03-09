@@ -34,6 +34,7 @@ export * from './model/progress-bar-item.model';
 export * from './model/utils.model';
 export * from './service/rich-text-utils/rich-text.service';
 export * from './service/trim-text-utils/trim-text.service';
+export * from './service/form-config.service';
 export * from './oc-dropdown-form/oc-dropdown-form.service';
 
 /** Form Generator */
