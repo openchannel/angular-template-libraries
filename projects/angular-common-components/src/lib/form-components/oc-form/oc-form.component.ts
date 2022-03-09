@@ -7,7 +7,6 @@ import { ErrorMessageFormId, OcErrorService } from '@openchannel/angular-common-
 import { forIn, set, mergeWith, toPath } from 'lodash';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
 
 export interface FieldStep {
     label?: AppFormField;
