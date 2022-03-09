@@ -22,7 +22,6 @@
                     [generatedForm]="currentForm"
                     [showButton]="false"
                     [formId]="formId"
-                    [customRichTextEditorOptions]="singleFormRichTextOptions"
                     (formDataUpdated)="onFormDataUpdated($event)"></oc-single-form>
             </div>
         </div>
@@ -60,7 +59,6 @@
         [process]="process"
         [showButton]="false"
         [showGroupHeading]="showGroupHeading"
-        [customRichTextEditorOptions]="singleFormRichTextOptions"
         (isFormInvalid)="isFormInvalid.emit($event)"
         (formDataUpdated)="formDataUpdated.emit($event)"
         (createdForm)="createdForm.emit($event)"></oc-single-form>

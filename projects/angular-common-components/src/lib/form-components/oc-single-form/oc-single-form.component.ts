@@ -115,11 +115,6 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
     @Input() showGroupHeading: boolean = true;
 
     /**
-     * Custom richTextEditor options.
-     */
-    @Input() customRichTextEditorOptions: any;
-
-    /**
      * Already generated Form Group
      */
     @Input() generatedForm: FormGroup;

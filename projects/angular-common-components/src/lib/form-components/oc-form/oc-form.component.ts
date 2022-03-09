@@ -46,11 +46,6 @@ export class OcFormComponent implements OnInit, OnChanges {
     @Input() showButton: boolean = true;
 
     /**
-     * Custom richTextEditor options.
-     */
-    @Input() singleFormRichTextOptions: any;
-
-    /**
      * Set position of the buttons.
      * Can be: "center", "left", "right".
      * @default 'left'.
