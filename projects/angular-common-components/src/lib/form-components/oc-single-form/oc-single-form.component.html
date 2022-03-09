@@ -86,6 +86,7 @@
             [placeholder]="formElement?.placeholder"></oc-input>
         <oc-textarea
             *ngSwitchCase="'longText'"
+            [rows]="formConfig.longText.rows"
             [formControl]="customForm.controls[formElement?.id]"
             [placeholder]="formElement?.placeholder"></oc-textarea>
         <ng-container *ngSwitchCase="'dropdownList'">
