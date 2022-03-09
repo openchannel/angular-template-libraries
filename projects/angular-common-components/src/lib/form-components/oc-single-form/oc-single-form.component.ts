@@ -3,12 +3,12 @@ import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { OcFormGenerator } from '../oc-form/oc-form-generator';
 import { OcFormValidator } from '../oc-form/oc-form-validator';
-import { AppFormModel, defaultFieldsForTrim, FormLabelPosition } from '../model/app-form-model';
+import { AppFormModel, defaultFieldsForTrim } from '../model/app-form-model';
 import { ControlUtils, ErrorMessageFormId, OcErrorService } from '@openchannel/angular-common-components/src/lib/common-components';
 import { forIn, set, toPath } from 'lodash';
 import { map, takeUntil } from 'rxjs/operators';
 import { TrimTextUtils } from '../service/trim-text-utils/trim-text.service';
-import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
+import { FormConfigService, FormInputs } from '../service/form-config.service';
 
 /**
  * Form component. Represents form builder from given config with customization.
@@ -52,7 +52,6 @@ import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
  *                   [showButton]="true"
  *                   [buttonPosition]="'left'"
  *                   [successButtonText]="'Success'"
- *                   [labelPosition]="'right'"
  *                   [setFormDirty]="true"
  *                   [process]="true"
  *                   [generatedForm]="{FormGroup}"
@@ -100,19 +99,6 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
     @Input() successButtonText: string = 'Submit';
 
     /**
-     * Set position of the field label. Can be: "top", "left", "right".
-     * @default 'top'
-     */
-    @Input() labelPosition: FormLabelPosition = 'top';
-
-    /**
-     * Label tooltip position.
-     * @type {PlacementArray}.
-     * @default 'right'
-     */
-    @Input() labelTooltipPlacement: PlacementArray = 'right';
-
-    /**
      * Set form "dirty" after form init
      */
     @Input() setFormDirty: boolean = false;
@@ -156,6 +142,8 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
     /** Main form group */
     customForm: FormGroup;
 
+    formConfig: Partial<FormInputs> = {};
+
     private destroy$ = {
         updateFormEvent: new Subject<void>(),
         serverErrorEvent: new Subject<void>(),
@@ -163,9 +151,10 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
 
     private serverErrorIntoDFA: { [dfaControlName: string]: { controlPath: string[] } } = {};
 
-    constructor(private errorService: OcErrorService) {}
+    constructor(private errorService: OcErrorService, private formConfigService: FormConfigService) {}
 
     ngOnInit(): void {
+        this.setFormConfig();
         this.generateForm();
         this.listenServerErrors();
     }
@@ -259,6 +248,10 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
             control.markAsTouched();
             control.markAsDirty();
         });
+    }
+
+    private setFormConfig(): void {
+        this.formConfig = this.formConfigService.config[this.formId] || this.formConfigService.config.default;
     }
 
     private listenServerErrors(): void {
