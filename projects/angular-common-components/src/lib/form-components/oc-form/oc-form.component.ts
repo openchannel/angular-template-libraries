@@ -165,13 +165,6 @@ export class OcFormComponent implements OnInit, OnChanges {
      */
     @Input() setFormErrors: boolean = false;
 
-    /**
-     * Label tooltip position.
-     * @type {PlacementArray}.
-     * @default 'right'
-     */
-    @Input() labelTooltipPlacement: PlacementArray = 'right';
-
     customForm: FormArray;
     progressBarSteps: FormProgressbarStep[] = [];
     hasFieldGroups: boolean = false;

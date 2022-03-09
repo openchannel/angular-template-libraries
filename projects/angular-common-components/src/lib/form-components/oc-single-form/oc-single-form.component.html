@@ -60,7 +60,7 @@
                 customForm.controls[formElement?.id].invalid
             "
             [required]="formElement?.attributes?.required"
-            [tooltipPlacement]="labelTooltipPlacement"
+            [tooltipPlacement]="formConfig.label.tooltipPosition"
             [ngClass]="{
                     'form__field-label_position_left form__field-label_row': formConfig.label.position === 'left',
                     'form__field-label_position_right form__field-label_row': formConfig.label.position === 'right',

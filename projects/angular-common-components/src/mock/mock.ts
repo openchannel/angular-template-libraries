@@ -196,7 +196,6 @@ export class MockSingleFormComponent {
     @Input() showButton: boolean = true;
     @Input() showGroupHeading: boolean = true;
     @Input() formId: ErrorMessageFormId;
-    @Input() labelTooltipPlacement: string = 'right';
     @Output() readonly formSubmitted = new EventEmitter<any>();
     @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
