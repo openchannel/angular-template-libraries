@@ -1,6 +1,7 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { merge } from 'lodash';
 
 /**
  * Rich text editor component. It is used for the confirmation some action from the user.
@@ -44,7 +45,7 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
      */
     @Input() set options(val: any) {
         if (val) {
-            Object.assign(this.tinyOptions, val);
+            merge(this.tinyOptions, val);
         }
     }
 
