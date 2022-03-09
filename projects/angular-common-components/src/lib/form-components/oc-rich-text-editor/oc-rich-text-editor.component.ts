@@ -40,7 +40,7 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
 
     /**
      * Text editor custom options.
-     * @type {string}.
+     * @type {any}.
      */
     @Input() set options(val: any) {
         if (val) {
