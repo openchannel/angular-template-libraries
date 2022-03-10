@@ -90,13 +90,13 @@ describe('OcCheckboxComponent', () => {
         expect(onChangeFunc.mock.calls[0][0]).toBe(true);
     });
 
-    it('should call onTouch', async () => {
+    it('should call onTouch on blur event', async () => {
         const onTouchedFunc = jest.fn();
         component.registerOnTouched(onTouchedFunc);
 
         const checkbox = fixture.nativeElement.querySelector('input');
         checkbox.checked = true;
-        checkbox.dispatchEvent(new Event('focus'));
+        checkbox.dispatchEvent(new Event('blur'));
 
         expect(onTouchedFunc).toHaveBeenCalled();
     });
