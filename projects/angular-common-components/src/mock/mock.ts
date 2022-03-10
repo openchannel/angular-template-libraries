@@ -483,6 +483,7 @@ export class MockTooltipComponent {
     @Input() required: boolean = false;
     @Input() description: string = '';
     @Input() labelClass: string = '';
+    @Input() tooltipPlacement: string = 'right';
 }
 
 @Component({
@@ -516,6 +517,8 @@ export class MockRichEditorComponent implements ControlValueAccessor {
 })
 export class MockTextareaComponent implements ControlValueAccessor {
     placeholderValue: string = '';
+
+    @Input() rows: number = 5;
 
     @Input() set placeholder(placeholder: string) {
         if (placeholder) {
