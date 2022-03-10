@@ -83,6 +83,7 @@
         <oc-rich-text-editor
             *ngSwitchCase="'richText'"
             [formControl]="customForm.controls[formElement?.id]"
+            [options]="formConfig.richText.options"
             [placeholder]="formElement?.placeholder"></oc-rich-text-editor>
         <oc-input
             *ngSwitchCase="'text'"
