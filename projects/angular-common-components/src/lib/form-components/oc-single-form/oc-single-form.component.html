@@ -129,18 +129,27 @@
         <oc-file-upload
             *ngSwitchCase="'singleFile'"
             [formControl]="customForm.controls[formElement?.id]"
+            [fileUploadText]="formConfig.fileUpload.descriptionText"
+            [fileButtonText]="formConfig.fileUpload.fileButtonText"
+            [imageButtonText]="formConfig.fileUpload.imageButtonText"
             isMultiFile="true"
             acceptType="{{ formElement?.attributes?.accept }}"
             fileType="singleFile"></oc-file-upload>
         <oc-file-upload
             *ngSwitchCase="'multiFile'"
             [formControl]="customForm.controls[formElement?.id]"
+            [fileUploadText]="formConfig.fileUpload.descriptionText"
+            [fileButtonText]="formConfig.fileUpload.fileButtonText"
+            [imageButtonText]="formConfig.fileUpload.imageButtonText"
             isMultiFile="true"
             acceptType="{{ formElement?.attributes?.accept }}"
             fileType="multiFile"></oc-file-upload>
         <oc-file-upload
             *ngSwitchCase="'multiImage'"
             [formControl]="customForm.controls[formElement?.id]"
+            [fileUploadText]="formConfig.fileUpload.descriptionText"
+            [fileButtonText]="formConfig.fileUpload.fileButtonText"
+            [imageButtonText]="formConfig.fileUpload.imageButtonText"
             isMultiFile="true"
             fileType="multiImage"
             acceptType="{{ formElement?.attributes?.accept }}"
@@ -149,6 +158,9 @@
         <oc-file-upload
             *ngSwitchCase="'singleImage'"
             [formControl]="customForm.controls[formElement?.id]"
+            [fileUploadText]="formConfig.fileUpload.descriptionText"
+            [fileButtonText]="formConfig.fileUpload.fileButtonText"
+            [imageButtonText]="formConfig.fileUpload.imageButtonText"
             fileType="singleImage"
             acceptType="{{ formElement?.attributes?.accept }}"
             imageWidth="{{ formElement?.attributes?.width }}"
@@ -156,11 +168,17 @@
         <oc-file-upload
             *ngSwitchCase="'privateSingleFile'"
             [formControl]="customForm.controls[formElement?.id]"
+            [fileUploadText]="formConfig.fileUpload.descriptionText"
+            [fileButtonText]="formConfig.fileUpload.fileButtonText"
+            [imageButtonText]="formConfig.fileUpload.imageButtonText"
             acceptType="{{ formElement?.attributes?.accept }}"
             fileType="privateSingleFile"></oc-file-upload>
         <oc-file-upload
             *ngSwitchCase="'multiPrivateFile'"
             [formControl]="customForm.controls[formElement?.id]"
+            [fileUploadText]="formConfig.fileUpload.descriptionText"
+            [fileButtonText]="formConfig.fileUpload.fileButtonText"
+            [imageButtonText]="formConfig.fileUpload.imageButtonText"
             acceptType="{{ formElement?.attributes?.accept }}"
             fileType="multiPrivateFile"></oc-file-upload>
         <oc-number

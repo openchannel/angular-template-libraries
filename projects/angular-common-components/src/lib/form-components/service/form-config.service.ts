@@ -54,6 +54,13 @@ export interface FormInputs {
         [key: string]: any;
     };
 
+    fileUpload: {
+        fileButtonText: string;
+        imageButtonText: string;
+        descriptionText: string;
+        [key: string]: any;
+    };
+
     /** Your custom input */
     [key: string]: any;
 }
@@ -91,6 +98,11 @@ export class FormConfigService {
         },
         videoUrl: {
             defaultPlaceholder: 'https://my.website.com',
+        },
+        fileUpload: {
+            fileButtonText: 'Browse File',
+            imageButtonText: 'Browse File',
+            descriptionText: 'Drag & drop file here or',
         },
     };
 

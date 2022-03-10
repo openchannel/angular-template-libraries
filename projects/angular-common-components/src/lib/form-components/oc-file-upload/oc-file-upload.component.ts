@@ -14,6 +14,8 @@ import { FileDetails, FileType, FileUploaderService } from '../model/file.model'
  *                          [fileType]="'singleImage'"
  *                          [isMultiFile]="false"
  *                          [fileUploadText]="'Throw file here'"
+ *                          [fileButtonText]="'Browse file'"
+ *                          [imageButtonText]="'Browse file'"
  *                          [defaultFileIcon]="'/fIcon.png'"
  *                          [uploadIconUrl]="'/uIcon.png'"
  *                          [closeIconUrl]="'/close.png'"
@@ -54,7 +56,17 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * Text for file upload block
      */
-    @Input() fileUploadText: string = 'Drag & drop file here';
+    @Input() fileUploadText: string = 'Drag & drop file here or';
+
+    /**
+     * Text for file upload button
+     */
+    @Input() fileButtonText: string = 'Browse File';
+
+    /**
+     * Text for image upload button
+     */
+    @Input() imageButtonText: string = 'Browse File';
 
     /**
      * Flag for download multiple files allowed or not
@@ -216,6 +228,11 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     resizeToHeight = 0;
 
     /**
+     * Upload button text
+     */
+    uploadButtonText: string = 'Browse file';
+
+    /**
      * @private Subject to clear all subscriptions
      */
     private destroy$ = new Subject<void>();
@@ -223,6 +240,8 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     constructor(private modalService: NgbModal, private fileUploaderService: FileUploaderService) {}
 
     ngOnInit(): void {
+        this.setUploadButtonText();
+
         if (this.isFileTypeImage) {
             this.calculateAspectRatio();
         }
@@ -568,6 +587,13 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     }
 
     setDisabledState?(isDisabled: boolean): void {}
+
+    /**
+     * @private Sets the text for the upload button based on the file type
+     */
+    private setUploadButtonText(): void {
+        this.uploadButtonText = this.isFileTypeImage() ? this.imageButtonText : this.fileButtonText;
+    }
 
     /**
      * @private Initialization of value for component
