@@ -518,6 +518,8 @@ export class MockRichEditorComponent implements ControlValueAccessor {
 export class MockTextareaComponent implements ControlValueAccessor {
     placeholderValue: string = '';
 
+    @Input() rows: number = 5;
+
     @Input() set placeholder(placeholder: string) {
         if (placeholder) {
             this.placeholderValue = placeholder;
