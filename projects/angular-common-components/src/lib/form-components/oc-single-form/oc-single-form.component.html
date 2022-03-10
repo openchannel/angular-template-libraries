@@ -55,7 +55,12 @@
         <oc-tooltip-label
             [text]="formElement?.label"
             class="form__field-label"
+            [class.form__field-label_invalid]="
+                (customForm.controls[formElement?.id].touched || customForm.controls[formElement?.id].dirty) &&
+                customForm.controls[formElement?.id].invalid
+            "
             [required]="formElement?.attributes?.required"
+            [tooltipPlacement]="formConfig.label.tooltipPosition"
             [ngClass]="{
                     'form__field-label_position_left form__field-label_row': formConfig.label.position === 'left',
                     'form__field-label_position_right form__field-label_row': formConfig.label.position === 'right',
@@ -86,6 +91,7 @@
             [placeholder]="formElement?.placeholder"></oc-input>
         <oc-textarea
             *ngSwitchCase="'longText'"
+            [rows]="formConfig.longText.rows"
             [formControl]="customForm.controls[formElement?.id]"
             [placeholder]="formElement?.placeholder"></oc-textarea>
         <ng-container *ngSwitchCase="'dropdownList'">
