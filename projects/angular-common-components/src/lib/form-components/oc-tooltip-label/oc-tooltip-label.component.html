@@ -4,8 +4,8 @@
     </label>
     <div *ngIf="description"
          ngbTooltip="{{description}}"
+         [placement]="tooltipPlacement"
          tooltipClass="oc-tooltip"
-         placement="right"
          container="body" class="tooltip-label__description">
         <svg-icon [src]="infoTitleIconCsv" svgClass="tooltip-label__description-icon"></svg-icon>
     </div>

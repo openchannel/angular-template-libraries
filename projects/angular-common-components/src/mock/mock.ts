@@ -483,6 +483,7 @@ export class MockTooltipComponent {
     @Input() required: boolean = false;
     @Input() description: string = '';
     @Input() labelClass: string = '';
+    @Input() tooltipPlacement: string = 'right';
 }
 
 @Component({
