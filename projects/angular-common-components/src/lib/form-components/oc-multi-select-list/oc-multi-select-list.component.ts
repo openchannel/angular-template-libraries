@@ -39,6 +39,9 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
     /** Label of the Component */
     @Input() label: string = '';
 
+    /** Label text of the Oc-Tag-Component */
+    @Input() tagTooltipLabelText: string = '';
+
     /**
      * Description for all list items.
      */

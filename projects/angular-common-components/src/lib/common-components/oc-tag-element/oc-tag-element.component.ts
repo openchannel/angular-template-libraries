@@ -15,6 +15,13 @@ export class OcTagElementComponent {
 
     /**
      * (Optional)
+     * Text for ngbTooltip label.
+     * @type {string}.
+     */
+    @Input() labelText: string = 'Close';
+
+    /**
+     * (Optional)
      * Show the SVG icon on the right side of the title.
      * @type {boolean}.
      * @default false.

@@ -31,6 +31,8 @@ export class OcDropdownMultiAppComponent implements OnInit, OnDestroy, ControlVa
     @Input() itemPreviewId: string = 'Id :';
     @Input() itemPreviewVersion: string = 'Version :';
 
+    @Input() tagTooltipLabelText: string = '';
+
     @Input() set value(value: string[] | any) {
         this.loadAppsByIDsAndPutToResultArray(this.selectAppIDs(value)).subscribe(() => this.updateOutputData());
     }

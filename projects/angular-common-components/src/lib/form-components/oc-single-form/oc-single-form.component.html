@@ -192,6 +192,7 @@
         <oc-tags
             *ngSwitchCase="'tags'"
             [formControl]="customForm.controls[formElement?.id]"
+            [tagTooltipLabelText]="formConfig.tags.labelText"
             [placeholder]="formElement.placeholder"
             [availableTags]="formElement?.options || []"></oc-tags>
         <oc-tags
@@ -224,6 +225,7 @@
         <oc-dropdown-multi-app
             *ngSwitchCase="'multiApp'"
             [formControl]="customForm.controls[formElement?.id]"
+            [tagTooltipLabelText]="formConfig.tags.labelText"
             [defaultAppIDs]="formElement?.options"></oc-dropdown-multi-app>
         <ng-container *ngSwitchCase="'multiselectList'">
             <ng-container [ngSwitch]="formElement?.attributes?.subType">
@@ -236,6 +238,7 @@
                 <oc-multi-select-list
                     *ngSwitchDefault
                     [formControl]="customForm.controls[formElement?.id]"
+                    [tagTooltipLabelText]="formConfig.tags.labelText"
                     [availableItemsList]="formElement?.options || []"
                     [label]="formElement?.label"></oc-multi-select-list>
             </ng-container>

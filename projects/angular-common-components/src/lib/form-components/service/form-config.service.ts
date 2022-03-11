@@ -54,6 +54,10 @@ export interface FormInputs {
         [key: string]: any;
     };
 
+    tags: {
+        labelText: string;
+    };
+
     /** Your custom input */
     [key: string]: any;
 }
@@ -79,6 +83,9 @@ export class FormConfigService {
         label: {
             position: 'top',
             tooltipPosition: 'right',
+        },
+        tags: {
+            labelText: 'Close',
         },
         richText: {
             options: {},
