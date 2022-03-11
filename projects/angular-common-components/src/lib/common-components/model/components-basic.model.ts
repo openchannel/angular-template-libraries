@@ -42,6 +42,8 @@ export interface FilterValue extends SelectModel {
     sort: string;
     query: string;
     description: string;
+    /** items of the sidebar */
+    values: FilterValue[];
 }
 
 /**
@@ -203,8 +205,6 @@ export interface DropdownItemModel {
  * }
  */
 export interface SidebarValue extends FilterValue {
-    /** items of the sidebar */
-    values: SidebarValue[];
     /** shows that sidebar filter is expanded or collapsed */
     expanded?: boolean;
     /** path to the icon near an item of the sidebar */

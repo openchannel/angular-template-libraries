@@ -45,6 +45,7 @@ export interface FilterValueResponse {
     query: string;
     description: string;
     checked: boolean;
+    values: FilterValueResponse[];
 }
 
 export interface FilterResponse {
