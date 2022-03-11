@@ -1,3 +1,7 @@
+## Release notes - angular-template-libraries - Version 2.55.0 (3/11/2022)<br>
+### Bug<br>
+AT-1733 - [Search result page] When selecting the sub-category filter, it's NOT fetching the results. <br>
+AT-1732 - [Homepage] Sidebar does not show the subcategories on the homepage of marketsite.<br>
 ## Release notes - angular-template-libraries - Version 2.54.0 (1/31/2022)<br>
 ### Story<br>
 AT-1665 - A user is able to log in from SSO using SAML 2.0<br>
