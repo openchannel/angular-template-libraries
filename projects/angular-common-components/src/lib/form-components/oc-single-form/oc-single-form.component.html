@@ -1,24 +1,24 @@
-<form class="form" [formGroup]="customForm" *ngIf="customForm && showGroupHeading" >
+<form class="form" [formGroup]="customForm" *ngIf="customForm && showGroupHeading">
     <ng-container *ngFor="let formElement of formJsonData?.fields; trackBy: trackByFieldId">
-        <ng-template [ngIf]="formElement.type === 'dynamicFieldArray' && formElement?.attributes?.onlyFirstDfaItem"
-                     [ngIfElse]="singleDfaItemRowRef">
-            <oc-single-form [formId]="formId"
-                            [generatedForm]="customForm.controls[formElement.id]?.get('0')"
-                            [formJsonData]="formElement"
-                            [showButton]="false">
-            </oc-single-form>
+        <ng-template
+            [ngIf]="formElement.type === 'dynamicFieldArray' && formElement?.attributes?.onlyFirstDfaItem"
+            [ngIfElse]="singleDfaItemRowRef">
+            <oc-single-form
+                [formId]="formId"
+                [generatedForm]="customForm.controls[formElement.id]?.get('0')"
+                [formJsonData]="formElement"
+                [showButton]="false"></oc-single-form>
         </ng-template>
         <ng-template #singleDfaItemRowRef>
             <oc-dropdown-form
                 *ngIf="formElement.type === 'dropdownForm'"
                 [formId]="formId"
                 [formGroup]="customForm"
-                [field]="formElement">
-            </oc-dropdown-form>
+                [field]="formElement"></oc-dropdown-form>
             <ng-container
                 *ngIf="!(formElement.type === 'dropdownForm')"
                 [ngTemplateOutlet]="defaultFormRowRef"
-                [ngTemplateOutletContext]="{$implicit: formElement}"></ng-container>
+                [ngTemplateOutletContext]="{ $implicit: formElement }"></ng-container>
         </ng-template>
     </ng-container>
     <div
@@ -45,13 +45,14 @@
 <ng-template #defaultFormRowRef let-formElement>
     <div
         *ngIf="!(formElement.type === 'fieldGroup' || formElement?.attributes?.formHideRow)"
-        [class]="'form__field ' + 'field-id-' +  formElement?.id"
+        [class]="'form__field ' + 'field-id-' + formElement?.id"
         [ngClass]="
-                formConfig.label.position === 'right'
-                    ? 'form__field_direction_row_reverse'
-                    : formConfig.label.position === 'left'
-                    ? 'form__field_direction_row_normal'
-                    : ''">
+            formConfig.label.position === 'right'
+                ? 'form__field_direction_row_reverse'
+                : formConfig.label.position === 'left'
+                ? 'form__field_direction_row_normal'
+                : ''
+        ">
         <oc-tooltip-label
             [text]="formElement?.label"
             class="form__field-label"
@@ -62,18 +63,17 @@
             [required]="formElement?.attributes?.required"
             [tooltipPlacement]="formConfig.label.tooltipPosition"
             [ngClass]="{
-                    'form__field-label_position_left form__field-label_row': formConfig.label.position === 'left',
-                    'form__field-label_position_right form__field-label_row': formConfig.label.position === 'right',
-                    'form__group-heading': formElement.type === 'fieldGroup'
-                }"
+                'form__field-label_position_left form__field-label_row': formConfig.label.position === 'left',
+                'form__field-label_position_right form__field-label_row': formConfig.label.position === 'right',
+                'form__group-heading': formElement.type === 'fieldGroup'
+            }"
             [description]="formElement?.description || ''"></oc-tooltip-label>
         <div class="form__field-input">
-
             <!--   Field template   -->
-            <ng-container [ngTemplateOutlet]="inputFieldRef" [ngTemplateOutletContext]="{$implicit: formElement}"></ng-container>
+            <ng-container [ngTemplateOutlet]="inputFieldRef" [ngTemplateOutletContext]="{ $implicit: formElement }"></ng-container>
 
             <!--   Error template   -->
-            <ng-container [ngTemplateOutlet]="errorRef" [ngTemplateOutletContext]="{$implicit: formElement}"></ng-container>
+            <ng-container [ngTemplateOutlet]="errorRef" [ngTemplateOutletContext]="{ $implicit: formElement }"></ng-container>
         </div>
     </div>
 </ng-template>
@@ -103,19 +103,19 @@
                     [itemsArray]="formElement?.options"
                     [transformText]="formElement?.attributes?.transformText"
                     [radioButtonGroup]="formElement?.id"
-                    [radioButtonLayout]="formElement?.attributes?.componentLayout">
-                </oc-radio-button-list>
+                    [radioButtonLayout]="formElement?.attributes?.componentLayout"></oc-radio-button-list>
                 <ng-container *ngSwitchCase="'additionalField'">
                     <div class="form__field-input__dropdown-inline">
                         <oc-additional-select
                             [dropdownField]="formElement"
                             [formGroup]="customForm"
-                            [fields]="formJsonData?.fields">
-                        </oc-additional-select>
-                        <ng-container [ngTemplateOutlet]="inputFieldRef"
-                                      [ngTemplateOutletContext]="
-                                      {$implicit: formJsonData?.fields | arraySearch: 'id' : formElement?.attributes?.subTypeSettings?.additionalFieldId}">
-                        </ng-container>
+                            [fields]="formJsonData?.fields"></oc-additional-select>
+                        <ng-container
+                            [ngTemplateOutlet]="inputFieldRef"
+                            [ngTemplateOutletContext]="{
+                                $implicit:
+                                    formJsonData?.fields | arraySearch: 'id':formElement?.attributes?.subTypeSettings?.additionalFieldId
+                            }"></ng-container>
                     </div>
                 </ng-container>
                 <oc-select
@@ -177,13 +177,13 @@
             *ngSwitchCase="'emailAddress'"
             [formControl]="customForm.controls[formElement?.id]"
             inputType="email"
-                        [disabled]="formElement?.attributes?.disabled"
+            [disabled]="formElement?.attributes?.disabled"
             [placeholder]="formElement?.placeholder ? formElement.placeholder : formConfig.emailAddress.defaultPlaceholder"></oc-input>
         <oc-input
             *ngSwitchCase="'websiteUrl'"
             [formControl]="customForm.controls[formElement?.id]"
             inputType="url"
-                        [disabled]="formElement?.attributes?.disabled"
+            [disabled]="formElement?.attributes?.disabled"
             [placeholder]="formElement?.placeholder ? formElement.placeholder : formConfig.websiteUrl.defaultPlaceholder"></oc-input>
         <oc-color
             *ngSwitchCase="'color'"
@@ -239,6 +239,7 @@
                     *ngSwitchDefault
                     [formControl]="customForm.controls[formElement?.id]"
                     [tagTooltipLabelText]="formConfig.tags.labelText"
+                    [emptyPlaceholder]="formConfig.multiselect.emptyPlaceholder"
                     [availableItemsList]="formElement?.options || []"
                     [label]="formElement?.label"></oc-multi-select-list>
             </ng-container>
@@ -248,7 +249,7 @@
             [fieldDefinitionData]="formElement"
             [formId]="formId"
             [dfaFormArray]="customForm.controls[formElement.id]"
-            [updateDFAItems]='formElement.controlUtils?.updateDFAItems'
+            [updateDFAItems]="formElement.controlUtils?.updateDFAItems"
             [setDFAItemsEditMode]="formElement.controlUtils?.setDFAItemsEditMode"></oc-dynamic-field-array>
         <oc-password
             *ngSwitchCase="'password'"
@@ -259,6 +260,8 @@
 
 <ng-template #errorRef let-formElement>
     <oc-error [formId]="formId" [field]="formElement?.id" [control]="customForm.controls[formElement?.id]"></oc-error>
-    <oc-error *ngIf="formElement?.type === 'dropdownList' && formElement?.attributes?.subTypeSettings?.additionalFieldId"
-              [formId]="formId" [control]="customForm.controls[formElement?.attributes?.subTypeSettings?.additionalFieldId]"></oc-error>
+    <oc-error
+        *ngIf="formElement?.type === 'dropdownList' && formElement?.attributes?.subTypeSettings?.additionalFieldId"
+        [formId]="formId"
+        [control]="customForm.controls[formElement?.attributes?.subTypeSettings?.additionalFieldId]"></oc-error>
 </ng-template>
