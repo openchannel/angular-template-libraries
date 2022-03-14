@@ -87,7 +87,7 @@
 <ng-template #cropperModal let-c="close" let-d="dismiss">
     <div class="cropper">
         <div class="cropper__header">
-            <h4 class="cropper__header-text">Edit Image</h4>
+            <h4 class="cropper__header-text">{{ imageCropperOptions.headerText }}</h4>
             <img (click)="d('Cross click'); resetSelection()" class="cropper__header-close" [src]="closeIconUrl" alt="close-icon" />
         </div>
         <div class="cropper__body">
@@ -134,7 +134,7 @@
                     <oc-button
                         class="cropper__body-footer-button cropper__body-footer-button_cancel"
                         type="secondary"
-                        text="Cancel"
+                        [text]="imageCropperOptions.cancelText"
                         [disabled]="uploadImageInProcess"
                         (click)="d('Cross click'); resetSelection()"></oc-button>
                     <oc-button
@@ -144,7 +144,7 @@
                         [disabled]="hasImageLoadError || uploadImageInProcess"
                         (click)="uploadFile(croppedFileObj); c()"
                         [process]="uploadImageInProcess"
-                        text="Confirm"></oc-button>
+                        [text]="imageCropperOptions.confirmText"></oc-button>
                 </div>
             </div>
         </div>

@@ -7,6 +7,12 @@ import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FileDetails, FileType, FileUploaderService } from '../model/file.model';
 
+export interface ImageCropperOptions {
+    headerText: string;
+    cancelText: string;
+    confirmText: string;
+}
+
 /**
  * File upload component. Represents template and logic for upload and download files.
  *
@@ -67,6 +73,16 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * Text for image upload button
      */
     @Input() imageButtonText: string = 'Browse File';
+
+    /**
+     * Options for image cropper modal.
+     * You can change text of the buttons, for example.
+     */
+    @Input() imageCropperOptions: ImageCropperOptions = {
+        headerText: 'Edit Image',
+        cancelText: 'Cancel',
+        confirmText: 'Confirm',
+    };
 
     /**
      * Flag for download multiple files allowed or not
