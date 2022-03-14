@@ -45,7 +45,7 @@
 <ng-template #defaultFormRowRef let-formElement>
     <div
         *ngIf="!(formElement.type === 'fieldGroup' || formElement?.attributes?.formHideRow)"
-        [class]="'form__field ' + 'field-id-' +  formElement?.id"
+        class="form__field field-id-{{formElement?.id}} field-type-{{formElement?.type}}"
         [ngClass]="
                 formConfig.label.position === 'right'
                     ? 'form__field_direction_row_reverse'
