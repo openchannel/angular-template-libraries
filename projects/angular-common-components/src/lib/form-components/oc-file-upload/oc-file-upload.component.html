@@ -132,13 +132,13 @@
                 </div>
                 <div class="cropper__body-footer">
                     <oc-button
-                        class="cropper__body-footer-button"
+                        class="cropper__body-footer-button cropper__body-footer-button_cancel"
                         type="secondary"
                         text="Cancel"
                         [disabled]="uploadImageInProcess"
                         (click)="d('Cross click'); resetSelection()"></oc-button>
                     <oc-button
-                        class="cropper__body-footer-button"
+                        class="cropper__body-footer-button cropper__body-footer-button_confirm"
                         type="primary"
                         id="modalAgreeButton"
                         [disabled]="hasImageLoadError || uploadImageInProcess"
