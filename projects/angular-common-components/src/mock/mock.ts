@@ -499,6 +499,7 @@ export class MockTooltipComponent {
 })
 export class MockRichEditorComponent implements ControlValueAccessor {
     @Input() placeholder: string = '';
+    @Input() options: any = {};
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
@@ -582,6 +583,14 @@ export class MockFileUploadComponent implements ControlValueAccessor {
         hash?: string[],
     ) => Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent>;
     @Input() fileDetailsRequest: (fileId: string) => Observable<FileDetails>;
+    @Input() fileButtonText: string = 'Browse File';
+    @Input() fileUploadText: string = 'Drag & drop file here or';
+    @Input() imageButtonText: string = 'Browse File';
+    @Input() imageCropperOptions: any = {
+        headerText: 'Edit Image',
+        cancelText: 'Cancel',
+        confirmText: 'Confirm',
+    };
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
