@@ -260,6 +260,7 @@ export class MockDynamicFieldArrayComponent {
     @Input() dfaFormArray: FormArray;
     @Input() fieldDefinitionData: AppTypeFieldModel;
     @Input() previewMode: boolean;
+    @Input() isShowPreviewMode: boolean = true;
     @Input() formId: ErrorMessageFormId;
     @Input() setDFAItemsEditMode: Subject<number[]>;
     @Input() updateDFAItems: Subject<number[]>;
