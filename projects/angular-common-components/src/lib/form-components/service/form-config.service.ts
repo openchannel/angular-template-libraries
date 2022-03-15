@@ -2,6 +2,7 @@ import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { merge } from 'lodash';
 import { FormLabelPosition } from '../model/app-form-model';
 import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
+import { ImageCropperOptions } from '../oc-file-upload/oc-file-upload.component';
 
 /**
  * Use this injection token to provide custom form config.
@@ -62,6 +63,14 @@ export interface FormInputs {
         labelText: string;
     };
 
+    fileUpload: {
+        fileUploadButtonText: string;
+        imageUploadButtonText: string;
+        descriptionText: string;
+        imageCropperOptions: ImageCropperOptions;
+        [key: string]: any;
+    };
+
     /** Your custom input */
     [key: string]: any;
 }
@@ -105,6 +114,16 @@ export class FormConfigService {
         },
         videoUrl: {
             defaultPlaceholder: 'https://my.website.com',
+        },
+        fileUpload: {
+            fileUploadButtonText: 'Browse File',
+            imageUploadButtonText: 'Browse File',
+            descriptionText: 'Drag & drop file here or',
+            imageCropperOptions: {
+                headerText: 'Edit Image',
+                cancelText: 'Cancel',
+                confirmText: 'Confirm',
+            },
         },
     };
 

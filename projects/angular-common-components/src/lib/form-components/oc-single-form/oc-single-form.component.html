@@ -45,7 +45,7 @@
 <ng-template #defaultFormRowRef let-formElement>
     <div
         *ngIf="!(formElement.type === 'fieldGroup' || formElement?.attributes?.formHideRow)"
-        [class]="'form__field ' + 'field-id-' + formElement?.id"
+        class="form__field field-id-{{formElement?.id}} field-type-{{formElement?.type}}"
         [ngClass]="
             formConfig.label.position === 'right'
                 ? 'form__field_direction_row_reverse'
@@ -129,18 +129,30 @@
         <oc-file-upload
             *ngSwitchCase="'singleFile'"
             [formControl]="customForm.controls[formElement?.id]"
+            [fileUploadText]="formConfig.fileUpload.descriptionText"
+            [fileUploadButtonText]="formConfig.fileUpload.fileUploadButtonText"
+            [imageUploadButtonText]="formConfig.fileUpload.imageUploadButtonText"
+            [imageCropperOptions]="formConfig.fileUpload.imageCropperOptions"
             isMultiFile="true"
             acceptType="{{ formElement?.attributes?.accept }}"
             fileType="singleFile"></oc-file-upload>
         <oc-file-upload
             *ngSwitchCase="'multiFile'"
             [formControl]="customForm.controls[formElement?.id]"
+            [fileUploadText]="formConfig.fileUpload.descriptionText"
+            [fileUploadButtonText]="formConfig.fileUpload.fileUploadButtonText"
+            [imageUploadButtonText]="formConfig.fileUpload.imageUploadButtonText"
+            [imageCropperOptions]="formConfig.fileUpload.imageCropperOptions"
             isMultiFile="true"
             acceptType="{{ formElement?.attributes?.accept }}"
             fileType="multiFile"></oc-file-upload>
         <oc-file-upload
             *ngSwitchCase="'multiImage'"
             [formControl]="customForm.controls[formElement?.id]"
+            [fileUploadText]="formConfig.fileUpload.descriptionText"
+            [fileUploadButtonText]="formConfig.fileUpload.fileUploadButtonText"
+            [imageUploadButtonText]="formConfig.fileUpload.imageUploadButtonText"
+            [imageCropperOptions]="formConfig.fileUpload.imageCropperOptions"
             isMultiFile="true"
             fileType="multiImage"
             acceptType="{{ formElement?.attributes?.accept }}"
@@ -149,6 +161,10 @@
         <oc-file-upload
             *ngSwitchCase="'singleImage'"
             [formControl]="customForm.controls[formElement?.id]"
+            [fileUploadText]="formConfig.fileUpload.descriptionText"
+            [fileUploadButtonText]="formConfig.fileUpload.fileUploadButtonText"
+            [imageUploadButtonText]="formConfig.fileUpload.imageUploadButtonText"
+            [imageCropperOptions]="formConfig.fileUpload.imageCropperOptions"
             fileType="singleImage"
             acceptType="{{ formElement?.attributes?.accept }}"
             imageWidth="{{ formElement?.attributes?.width }}"
@@ -156,11 +172,19 @@
         <oc-file-upload
             *ngSwitchCase="'privateSingleFile'"
             [formControl]="customForm.controls[formElement?.id]"
+            [fileUploadText]="formConfig.fileUpload.descriptionText"
+            [fileUploadButtonText]="formConfig.fileUpload.fileUploadButtonText"
+            [imageUploadButtonText]="formConfig.fileUpload.imageUploadButtonText"
+            [imageCropperOptions]="formConfig.fileUpload.imageCropperOptions"
             acceptType="{{ formElement?.attributes?.accept }}"
             fileType="privateSingleFile"></oc-file-upload>
         <oc-file-upload
             *ngSwitchCase="'multiPrivateFile'"
             [formControl]="customForm.controls[formElement?.id]"
+            [fileUploadText]="formConfig.fileUpload.descriptionText"
+            [fileUploadButtonText]="formConfig.fileUpload.fileUploadButtonText"
+            [imageUploadButtonText]="formConfig.fileUpload.imageUploadButtonText"
+            [imageCropperOptions]="formConfig.fileUpload.imageCropperOptions"
             acceptType="{{ formElement?.attributes?.accept }}"
             fileType="multiPrivateFile"></oc-file-upload>
         <oc-number

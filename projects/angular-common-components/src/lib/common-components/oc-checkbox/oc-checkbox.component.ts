@@ -46,9 +46,9 @@ export class OcCheckboxComponent implements ControlValueAccessor {
         this.isCheckedChange.emit(this.checked);
     }
     /**
-     * Register touch/focus action
+     * Register touch action
      */
-    onFocus(): void {
+    onBlur(): void {
         this.onTouched();
     }
     /**
