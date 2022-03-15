@@ -20,8 +20,8 @@ export interface ImageCropperOptions {
  *                          [fileType]="'singleImage'"
  *                          [isMultiFile]="false"
  *                          [fileUploadText]="'Throw file here'"
- *                          [fileButtonText]="'Browse file'"
- *                          [imageButtonText]="'Browse file'"
+ *                          [fileUploadButtonText]="'Browse file'"
+ *                          [imageUploadButtonText]="'Browse file'"
  *                          [defaultFileIcon]="'/fIcon.png'"
  *                          [uploadIconUrl]="'/uIcon.png'"
  *                          [closeIconUrl]="'/close.png'"
@@ -67,12 +67,12 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * Text for file upload button
      */
-    @Input() fileButtonText: string = 'Browse File';
+    @Input() fileUploadButtonText: string = 'Browse File';
 
     /**
      * Text for image upload button
      */
-    @Input() imageButtonText: string = 'Browse File';
+    @Input() imageUploadButtonText: string = 'Browse File';
 
     /**
      * Options for image cropper modal.
@@ -608,7 +608,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * @private Sets the text for the upload button based on the file type
      */
     private setUploadButtonText(): void {
-        this.uploadButtonText = this.isFileTypeImage() ? this.imageButtonText : this.fileButtonText;
+        this.uploadButtonText = this.isFileTypeImage() ? this.imageUploadButtonText : this.fileUploadButtonText;
     }
 
     /**

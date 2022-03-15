@@ -56,8 +56,8 @@ export interface FormInputs {
     };
 
     fileUpload: {
-        fileButtonText: string;
-        imageButtonText: string;
+        fileUploadButtonText: string;
+        imageUploadButtonText: string;
         descriptionText: string;
         imageCropperOptions: ImageCropperOptions;
         [key: string]: any;
@@ -102,8 +102,8 @@ export class FormConfigService {
             defaultPlaceholder: 'https://my.website.com',
         },
         fileUpload: {
-            fileButtonText: 'Browse File',
-            imageButtonText: 'Browse File',
+            fileUploadButtonText: 'Browse File',
+            imageUploadButtonText: 'Browse File',
             descriptionText: 'Drag & drop file here or',
             imageCropperOptions: {
                 headerText: 'Edit Image',
