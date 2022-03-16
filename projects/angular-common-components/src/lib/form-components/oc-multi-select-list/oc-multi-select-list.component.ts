@@ -39,8 +39,8 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
     /** Label of the Component */
     @Input() label: string = '';
 
-    /** Enabling placeholder in oc-dropbox input */
-    @Input() emptyPlaceholder: boolean = true;
+    /** Placeholder in oc-dropbox input */
+    @Input() placeholder: string = '';
 
     /** Label text of the Oc-Tag-Component */
     @Input() tagTooltipLabelText: string = '';

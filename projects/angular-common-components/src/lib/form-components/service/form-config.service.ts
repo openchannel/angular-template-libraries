@@ -56,7 +56,7 @@ export interface FormInputs {
     };
 
     multiselect: {
-        emptyPlaceholder: boolean;
+        placeholder: string;
     };
 
     tags: {
@@ -98,7 +98,7 @@ export class FormConfigService {
             tooltipPosition: 'right',
         },
         multiselect: {
-            emptyPlaceholder: true,
+            placeholder: '',
         },
         tags: {
             labelText: 'Close',

@@ -4,7 +4,7 @@
         (focusout)="onTouched()"
         *ngIf="dropBoxItems?.length > 0"
         [items]="dropBoxItems"
-        [placeHolder]="emptyPlaceholder ? '' : 'Select ' + label"
+        [placeHolder]="placeholder ? placeholder : 'Select ' + label"
         clearFormAfterSelect="true"
         disableAddCustomItemsByEnter="true"
         [dropElementTemplate]="dropElementTemplate"
