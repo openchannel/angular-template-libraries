@@ -221,6 +221,19 @@ export class OcSingleFormComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     /**
+     * Check and get placeholder value
+     */
+    checkAndGetPlaceholderValue(placeholder: string, formElement: any): string {
+        if (placeholder || placeholder === '') {
+            return placeholder;
+        } else if (formElement.placeholder) {
+            return formElement.placeholder;
+        } else {
+            return `Select ${formElement?.label}`;
+        }
+    }
+
+    /**
      * Listening to value changes of the form if buttons not applied
      */
     subscribeToForm(): void {

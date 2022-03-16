@@ -263,7 +263,7 @@
                     *ngSwitchDefault
                     [formControl]="customForm.controls[formElement?.id]"
                     [tagTooltipLabelText]="formConfig.tags.labelText"
-                    [placeholder]="formConfig.multiselect.placeholder ? formConfig.multiselect.placeholder : formElement?.placeholder"
+                    [placeholder]="checkAndGetPlaceholderValue(this.formConfig.multiselect.placeholder, formElement)"
                     [availableItemsList]="formElement?.options || []"
                     [label]="formElement?.label"></oc-multi-select-list>
             </ng-container>
