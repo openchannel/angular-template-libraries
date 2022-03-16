@@ -55,6 +55,14 @@ export interface FormInputs {
         [key: string]: any;
     };
 
+    multiselect: {
+        placeholder: string;
+    };
+
+    tags: {
+        labelText: string;
+    };
+
     fileUpload: {
         fileUploadButtonText: string;
         imageUploadButtonText: string;
@@ -93,6 +101,12 @@ export class FormConfigService {
         label: {
             position: 'top',
             tooltipPosition: 'right',
+        },
+        multiselect: {
+            placeholder: '',
+        },
+        tags: {
+            labelText: 'Close',
         },
         richText: {
             options: {},
