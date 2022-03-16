@@ -270,6 +270,7 @@
             [formId]="formId"
             [dfaFormArray]="customForm.controls[formElement.id]"
             [updateDFAItems]='formElement.controlUtils?.updateDFAItems'
+            [isShowPreviewMode]="formConfig.dfa.isShowPreviewMode"
             [setDFAItemsEditMode]="formElement.controlUtils?.setDFAItemsEditMode"></oc-dynamic-field-array>
         <oc-password
             *ngSwitchCase="'password'"

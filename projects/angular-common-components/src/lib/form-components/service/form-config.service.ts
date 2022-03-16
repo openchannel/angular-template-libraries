@@ -63,6 +63,11 @@ export interface FormInputs {
         [key: string]: any;
     };
 
+    dfa: {
+        isShowPreviewMode: boolean;
+        [key: string]: any;
+    };
+
     /** Your custom input */
     [key: string]: any;
 }
@@ -110,6 +115,9 @@ export class FormConfigService {
                 cancelText: 'Cancel',
                 confirmText: 'Confirm',
             },
+        },
+        dfa: {
+            isShowPreviewMode: true,
         },
     };
 
