@@ -29,7 +29,6 @@ import {
     FileDetails,
     FormType,
     FormProgressbarStep,
-    FormLabelPosition,
     DropdownFormField,
     DropdownAdditionalField,
     AppFormField,
@@ -110,6 +109,7 @@ export class MockRoutingComponent {}
 export class MockSvgIconComponent {
     @Input() src: string;
     @Input() svgClass: string;
+    @Input() ngbTooltip: string;
 }
 
 @Component({
@@ -169,7 +169,6 @@ export class MockFormComponent {
     @Input() maxStepsToShow: number = 0;
     @Input() queryParams: string = '';
     @Input() enableTextTruncation: boolean = true;
-    @Input() labelPosition: 'top' | 'left' | 'right' = 'top';
     @Output() readonly formSubmitted = new EventEmitter<any>();
     @Output() readonly cancelSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -192,7 +191,6 @@ export class MockFormComponent {
 export class MockSingleFormComponent {
     @Input() formJsonData: any;
     @Input() buttonPosition: string;
-    @Input() labelPosition: string;
     @Input() process: boolean;
     @Input() generatedForm: FormGroup;
     @Input() successButtonText: string = 'Submit';
@@ -263,6 +261,7 @@ export class MockDynamicFieldArrayComponent {
     @Input() dfaFormArray: FormArray;
     @Input() fieldDefinitionData: AppTypeFieldModel;
     @Input() previewMode: boolean;
+    @Input() isShowPreviewMode: boolean = true;
     @Input() formId: ErrorMessageFormId;
     @Input() setDFAItemsEditMode: Subject<number[]>;
     @Input() updateDFAItems: Subject<number[]>;
@@ -313,6 +312,7 @@ export class MockEditUserFormComponent {
 export class MockTagComponent {
     @Input() title: string;
     @Input() closeMarker: boolean = false;
+    @Input() labelText: string = 'Close';
     @Input() deleteTagImgUrl: string = '~@openchannel/angular-common-components/assets/img/close-icon.svg';
     @Output() readonly clickEmitter = new EventEmitter<string>();
 }
@@ -394,7 +394,7 @@ export class MockRadioButtonComponent implements ControlValueAccessor {
 export class TagElementMockComponent {
     @Input() title: string;
     @Input() closeMarker: boolean = false;
-
+    @Input() labelText: string = 'Close';
     @Output() readonly clickEmitter = new EventEmitter<string>();
 }
 
@@ -455,6 +455,7 @@ export class MockDropdownMultiApp implements ControlValueAccessor {
     @Input() itemPreviewName: string = 'App Name :';
     @Input() itemPreviewId: string = 'Id :';
     @Input() itemPreviewVersion: string = 'Version :';
+    @Input() tagTooltipLabelText: string = '';
     @Input() value: string[] | any;
     @Output() readonly selectedAppsOutput: EventEmitter<FullAppData[]> = new EventEmitter<FullAppData[]>();
     registerOnChange(fn: any): void {}
@@ -486,6 +487,7 @@ export class MockTooltipComponent {
     @Input() required: boolean = false;
     @Input() description: string = '';
     @Input() labelClass: string = '';
+    @Input() tooltipPlacement: string = 'right';
 }
 
 @Component({
@@ -501,6 +503,7 @@ export class MockTooltipComponent {
 })
 export class MockRichEditorComponent implements ControlValueAccessor {
     @Input() placeholder: string = '';
+    @Input() options: any = {};
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
@@ -519,6 +522,8 @@ export class MockRichEditorComponent implements ControlValueAccessor {
 })
 export class MockTextareaComponent implements ControlValueAccessor {
     placeholderValue: string = '';
+
+    @Input() rows: number = 5;
 
     @Input() set placeholder(placeholder: string) {
         if (placeholder) {
@@ -550,6 +555,7 @@ export class MockTagsComponent implements ControlValueAccessor {
     @Input() maxTagLength: number = null;
     @Input() minTagsCount: number;
     @Input() maxTagsCount: number = null;
+    @Input() tagTooltipLabelText: string = '';
     @Input() tagsType: 'string' | 'boolean' | 'number' = 'string';
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
@@ -582,6 +588,14 @@ export class MockFileUploadComponent implements ControlValueAccessor {
         hash?: string[],
     ) => Observable<HttpResponse<FileDetails> | HttpUploadProgressEvent>;
     @Input() fileDetailsRequest: (fileId: string) => Observable<FileDetails>;
+    @Input() fileUploadButtonText: string = 'Browse File';
+    @Input() fileUploadText: string = 'Drag & drop file here or';
+    @Input() imageUploadButtonText: string = 'Browse File';
+    @Input() imageCropperOptions: any = {
+        headerText: 'Edit Image',
+        cancelText: 'Cancel',
+        confirmText: 'Confirm',
+    };
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
     writeValue(obj: any): void {}
@@ -695,6 +709,9 @@ export class MockDateTimeComponent implements ControlValueAccessor {
 })
 export class MockMultiSelectComponent implements ControlValueAccessor {
     @Input() label: string = '';
+    @Input() tagTooltipLabelText: string = '';
+    @Input() placeholder: string = '';
+    @Input() description: string = '';
     @Input() set availableItemsList(value: any[]) {
         if (value && value.length > 0) {
             this.availableItems = value;
@@ -749,7 +766,6 @@ export class ImageCropperComponentMock {
 })
 export class MockDropdownFormComponent {
     @Input() formId: string;
-    @Input() labelPosition: FormLabelPosition;
     @Input() field: DropdownFormField;
     @Input() formGroup: FormGroup;
 }

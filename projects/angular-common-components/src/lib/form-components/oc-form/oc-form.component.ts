@@ -59,12 +59,6 @@ export class OcFormComponent implements OnInit, OnChanges {
     @Input() successButtonText: string = 'Submit';
 
     /**
-     * Set position of the field label. Can be: "top", "left", "right".
-     * @default 'top'.
-     */
-    @Input() labelPosition: 'top' | 'left' | 'right' = 'top';
-
-    /**
      * Submitting process.
      * The `true` option will lock for click and start the spinner in the submit button.
      */

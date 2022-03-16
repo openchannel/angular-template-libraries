@@ -7,22 +7,30 @@ import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FileDetails, FileType, FileUploaderService } from '../model/file.model';
 
+export interface ImageCropperOptions {
+    headerText: string;
+    cancelText: string;
+    confirmText: string;
+}
+
 /**
  * File upload component. Represents template and logic for upload and download files.
  *
  * @example <oc-file-upload [(ngModel)]="fileModel"
- *                          [fileType]="'singleImage'"
+ *                          fileType="singleImage"
  *                          [isMultiFile]="false"
- *                          [fileUploadText]="'Throw file here'"
- *                          [defaultFileIcon]="'/fIcon.png'"
- *                          [uploadIconUrl]="'/uIcon.png'"
- *                          [closeIconUrl]="'/close.png'"
- *                          [zoomInIconUrl]="'/zoomIn.png'"
- *                          [zoomOutIconUrl]="'/zoomOut.png'"
- *                          [imageWidth]="1024"
- *                          [imageHeight]="768"
+ *                          fileUploadText="Throw file here"
+ *                          fileUploadButtonText="Browse file"
+ *                          imageUploadButtonText="Browse file"
+ *                          defaultFileIcon="/fIcon.png"
+ *                          uploadIconUrl="/uIcon.png"
+ *                          closeIconUrl="/close.png"
+ *                          zoomInIconUrl="/zoomIn.png"
+ *                          zoomOutIconUrl="/zoomOut.png"
+ *                          imageWidth="1024"
+ *                          imageHeight="768"
  *                          [hash]="['a87sh098a7shd098ahs0d97has09dha09sdh9a07shd09ahs90dhas09d7h9a0s7hd09ahsd097has9d7ha9sd7ha09s7dh']"
- *                          [acceptType]="'image/*'"
+ *                          acceptType="image/*"
  *                          (customMsgChange)="onMsgChange()"
  * >
  */
@@ -54,7 +62,27 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     /**
      * Text for file upload block
      */
-    @Input() fileUploadText: string = 'Drag & drop file here';
+    @Input() fileUploadText: string = 'Drag & drop file here or';
+
+    /**
+     * Text for file upload button
+     */
+    @Input() fileUploadButtonText: string = 'Browse File';
+
+    /**
+     * Text for image upload button
+     */
+    @Input() imageUploadButtonText: string = 'Browse File';
+
+    /**
+     * Options for image cropper modal.
+     * You can change text of the buttons, for example.
+     */
+    @Input() imageCropperOptions: ImageCropperOptions = {
+        headerText: 'Edit Image',
+        cancelText: 'Cancel',
+        confirmText: 'Confirm',
+    };
 
     /**
      * Flag for download multiple files allowed or not
@@ -216,6 +244,11 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     resizeToHeight = 0;
 
     /**
+     * Upload button text
+     */
+    uploadButtonText: string = 'Browse file';
+
+    /**
      * @private Subject to clear all subscriptions
      */
     private destroy$ = new Subject<void>();
@@ -223,6 +256,8 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     constructor(private modalService: NgbModal, private fileUploaderService: FileUploaderService) {}
 
     ngOnInit(): void {
+        this.setUploadButtonText();
+
         if (this.isFileTypeImage) {
             this.calculateAspectRatio();
         }
@@ -568,6 +603,13 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
     }
 
     setDisabledState?(isDisabled: boolean): void {}
+
+    /**
+     * @private Sets the text for the upload button based on the file type
+     */
+    private setUploadButtonText(): void {
+        this.uploadButtonText = this.isFileTypeImage() ? this.imageUploadButtonText : this.fileUploadButtonText;
+    }
 
     /**
      * @private Initialization of value for component
