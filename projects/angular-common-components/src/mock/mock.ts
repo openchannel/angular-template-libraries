@@ -109,6 +109,7 @@ export class MockRoutingComponent {}
 export class MockSvgIconComponent {
     @Input() src: string;
     @Input() svgClass: string;
+    @Input() ngbTooltip: string;
 }
 
 @Component({
@@ -311,6 +312,7 @@ export class MockEditUserFormComponent {
 export class MockTagComponent {
     @Input() title: string;
     @Input() closeMarker: boolean = false;
+    @Input() labelText: string = 'Close';
     @Input() deleteTagImgUrl: string = '~@openchannel/angular-common-components/assets/img/close-icon.svg';
     @Output() readonly clickEmitter = new EventEmitter<string>();
 }
@@ -392,7 +394,7 @@ export class MockRadioButtonComponent implements ControlValueAccessor {
 export class TagElementMockComponent {
     @Input() title: string;
     @Input() closeMarker: boolean = false;
-
+    @Input() labelText: string = 'Close';
     @Output() readonly clickEmitter = new EventEmitter<string>();
 }
 
@@ -453,6 +455,7 @@ export class MockDropdownMultiApp implements ControlValueAccessor {
     @Input() itemPreviewName: string = 'App Name :';
     @Input() itemPreviewId: string = 'Id :';
     @Input() itemPreviewVersion: string = 'Version :';
+    @Input() tagTooltipLabelText: string = '';
     @Input() value: string[] | any;
     @Output() readonly selectedAppsOutput: EventEmitter<FullAppData[]> = new EventEmitter<FullAppData[]>();
     registerOnChange(fn: any): void {}
@@ -552,6 +555,7 @@ export class MockTagsComponent implements ControlValueAccessor {
     @Input() maxTagLength: number = null;
     @Input() minTagsCount: number;
     @Input() maxTagsCount: number = null;
+    @Input() tagTooltipLabelText: string = '';
     @Input() tagsType: 'string' | 'boolean' | 'number' = 'string';
     registerOnChange(fn: any): void {}
     registerOnTouched(fn: any): void {}
@@ -705,6 +709,9 @@ export class MockDateTimeComponent implements ControlValueAccessor {
 })
 export class MockMultiSelectComponent implements ControlValueAccessor {
     @Input() label: string = '';
+    @Input() tagTooltipLabelText: string = '';
+    @Input() placeholder: string = '';
+    @Input() description: string = '';
     @Input() set availableItemsList(value: any[]) {
         if (value && value.length > 0) {
             this.availableItems = value;
