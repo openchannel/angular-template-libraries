@@ -7,8 +7,15 @@ definitions:
     docker:
       memory: 2048
   steps:
-    - step: &build-test-sonarcloud
-        name: Build, test and analyze on SonarCloud
+    - step: &build-test
+        name: Build and test
+        caches:
+          - sonar
+        script:
+          - npm install
+          - ./node_modules/.bin/ng build --configuration=dev1
+    - step: &analyze-sonarcloud
+        name: Analyze on SonarCloud
         max-time: 15
         caches:
           - sonar
@@ -134,13 +141,14 @@ definitions:
           # Generate new changelog file or skip
           - EMAIL=${JIRA_EMAIL} API_KEY=${JIRA_API_KEY} RELEASE_VERSION=${JIRA_RELEASE_VERSION} PROJECT_VERSION=$projectVerion node ./scripts/changelog-builder/script.js
           # Commit and push
-          - if [[ ! -z $(git status --porcelain) ]]; then git add . ; git commit -m "Created changelog.md for $JIRA_RELEASE_VERSION release." ; git push ; else echo 'Changelog not changed.'; fi
+          - if [[ ! -z $(git status --porcelain) ]]; then git add . ; git commit -m "Created changelog.md for $JIRA_RELEASE_VERSION release. [skip ci]" ; git push ; else echo 'Changelog not changed.'; fi
           # Create git tag and push
           - /bin/bash ./scripts/create-and-push-github-tag/script.sh "${PUSH_TAG_FORCE}"
 pipelines:
   pull-requests:
     '**':
-      - step: *build-test-sonarcloud
+      - step: *build-test
+      - step: *analyze-sonarcloud
   custom:
     publish-components:
       - step: *build-and-push-new-version-of-components
@@ -168,13 +176,13 @@ pipelines:
     Up version and publish:
       - variables:
           - name: PROJECT_VERSION
-      - step: *build-test-sonarcloud
+      - step: *build-test
       - step: *up-project-version
       - parallel:
           - step: *build-and-push-new-version-of-services
           - step: *build-and-push-new-version-of-components
     Publish services and components:
-      - step: *build-test-sonarcloud
+      - step: *build-test
       - parallel:
           - step: *build-and-push-new-version-of-services
           - step: *build-and-push-new-version-of-components
@@ -182,7 +190,7 @@ pipelines:
       - variables:
           - name: JIRA_RELEASE_VERSION
           - name: PUSH_TAG_FORCE
-      - step: *build-test-sonarcloud
+      - step: *build-test
       - step: *create-changelog-with-git-tag
     Dev1 compodoc (services):
       - step: *build_compodoc_documentation_for_services
@@ -202,11 +210,14 @@ pipelines:
 
   branches:
     develop:
-      - step: *build-test-sonarcloud
+      - step: *build-test
+      - step: *analyze-sonarcloud
     release/*:
-      - step: *build-test-sonarcloud
+      - step: *build-test
+      - step: *analyze-sonarcloud
     master:
-      - step: *build-test-sonarcloud
+      - step: *build-test
+      - step: *analyze-sonarcloud
       - step: *push-to-github
       - parallel:
           - step: *build-and-push-new-version-of-services
