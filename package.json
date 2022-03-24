@@ -90,12 +90,12 @@
     "@storybook/addon-actions": "6.3.7",
     "@storybook/addon-backgrounds": "6.3.7",
     "@storybook/addon-controls": "6.3.7",
-    "@storybook/addon-docs": "6.3.7",
+    "@storybook/addon-docs": "^6.4.19",
     "@storybook/addon-links": "6.3.7",
     "@storybook/addon-storysource": "6.3.7",
     "@storybook/addon-viewport": "6.3.7",
     "@storybook/addons": "6.3.7",
-    "@storybook/angular": "6.3.7",
+    "@storybook/angular": "^6.4.19",
     "@tinymce/tinymce-angular": "^4.2.1",
     "@types/chart.js": "^2.9.35",
     "@types/jasmine": "~3.6.0",
@@ -134,13 +134,11 @@
   "resolutions": {
     "glob-parent": "5.1.2",
     "trim": "0.0.3",
-    "browserslist": "4.16.5",
-    "merge": "2.1.1",
-    "set-value": "4.1.0",
     "immer": "^9.0.6",
     "prismjs": "^1.27.0",
     "node-forge": "^1.0.0",
     "ansi-regex": "^5.0.1",
-    "nth-check": "^2.0.1"
+    "nth-check": "^2.0.1",
+    "minimist": "^1.2.6"
   }
 }
