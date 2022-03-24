@@ -12,18 +12,16 @@ definitions:
         caches:
           - sonar
         script:
-          - npm install
-          - ./node_modules/.bin/ng build --configuration=dev1
+          - npm install --quiet
+          - npm run build-prod angular-common-services
+          - npm run build-prod angular-common-components
+          - npm run test
     - step: &analyze-sonarcloud
         name: Analyze on SonarCloud
         max-time: 15
         caches:
           - sonar
         script:
-          - npm install --quiet
-          - npm run build-prod angular-common-services
-          - npm run build-prod angular-common-components
-          - npm run test
           - pipe: sonarsource/sonarcloud-scan:1.2.1
             variables:
               SONAR_SCANNER_OPTS: -Xmx2048m
