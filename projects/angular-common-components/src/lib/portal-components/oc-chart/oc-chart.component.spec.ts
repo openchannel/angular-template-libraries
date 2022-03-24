@@ -305,14 +305,8 @@ describe('OcChartComponent', () => {
         expect(enabledDropdownType).toEqual(component.dropdownSelectedType);
     });
 
-    it('should fill tabular data in ngOnChanges hook', () => {
-        const changesObj: SimpleChanges = {
-            chartData: new SimpleChange(component.chartData, { ...component.chartData }, false),
-        };
-
-        // tslint:disable-next-line:no-lifecycle-call
-        component.ngOnChanges(changesObj);
-
+    it('should fill tabular data in fillTabularData method', () => {
+        (component as any).fillTabularData();
         expect(component.tabularData.length).not.toBe(0);
     });
 });
