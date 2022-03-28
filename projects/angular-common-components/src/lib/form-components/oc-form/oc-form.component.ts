@@ -181,6 +181,8 @@ export class OcFormComponent implements OnInit, OnChanges {
 
     ngOnInit(): void {
         this.checkFormType(this.displayType);
+        // Initialized all data of form, that came at the beginning
+        this.initResultDataWithFormJsonDataValue();
         if (this.setFormErrors && this.hasFieldGroups) {
             this.submitFromAppTable();
         }
@@ -351,6 +353,25 @@ export class OcFormComponent implements OnInit, OnChanges {
             } else {
                 this.hasFieldGroups = false;
             }
+        }
+    }
+
+    private initResultDataWithFormJsonDataValue(): void {
+        if (this.formJsonData !== null) {
+            const preResult: any = {
+                name: '',
+                customData: {},
+            };
+            this.formJsonData.fields.forEach((fieldsElement, index) => {
+                if (index === 0) {
+                    preResult.name = fieldsElement.defaultValue;
+                } else {
+                    if (fieldsElement.defaultValue !== null || fieldsElement.defaultValue !== undefined) {
+                        preResult.customData[fieldsElement.id.replace('customData.', '')] = fieldsElement.defaultValue;
+                    }
+                }
+            });
+            this.resultData = preResult;
         }
     }
 
