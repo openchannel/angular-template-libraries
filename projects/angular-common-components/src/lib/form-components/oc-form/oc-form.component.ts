@@ -357,22 +357,14 @@ export class OcFormComponent implements OnInit, OnChanges {
     }
 
     private initResultDataWithFormJsonDataValue(): void {
-        if (this.formJsonData !== null) {
-            const preResult: any = {
-                name: '',
-                customData: {},
-            };
-            this.formJsonData.fields.forEach((fieldsElement, index) => {
-                if (index === 0) {
-                    preResult.name = fieldsElement.defaultValue;
-                } else {
-                    if (fieldsElement.defaultValue !== null || fieldsElement.defaultValue !== undefined) {
-                        preResult.customData[fieldsElement.id.replace('customData.', '')] = fieldsElement.defaultValue;
-                    }
-                }
-            });
-            this.resultData = preResult;
+        if (this.formJsonData === null) {
+            return;
         }
+        const preResult: any = {};
+        this.formJsonData.fields.forEach(fieldElement => {
+            set(preResult, fieldElement.id, fieldElement.defaultValue);
+        });
+        this.resultData = preResult;
     }
 
     /**
