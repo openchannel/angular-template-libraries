@@ -1,6 +1,6 @@
 {
   "name": "@openchannel/angular-common-components",
-  "version": "2.55.0-6",
+  "version": "2.55.2",
   "description": "Includes components for portal and market (form builder, form components, file upload, app cards, login, signup, inputs, etc)",
   "homepage": "https://github.com/openchannel/angular-template-libraries",
   "repository": {
@@ -15,6 +15,7 @@
     "@ng-select/ng-select": "^6.1.0",
     "bootstrap": "^4.4.1",
     "lodash": "^4.17.21",
-    "@tinymce/tinymce-angular": "^4.2.2"
+    "@tinymce/tinymce-angular": "^4.2.2",
+    "tslib": "^2.0.0"
   }
 }
