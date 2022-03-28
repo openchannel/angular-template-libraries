@@ -182,7 +182,7 @@ export class OcFormComponent implements OnInit, OnChanges {
     ngOnInit(): void {
         this.checkFormType(this.displayType);
         // Initialized all data of form, that came at the beginning
-        this.initResultDataWithFormJsonDataValue();
+        this.addSavedFieldsToResult();
         if (this.setFormErrors && this.hasFieldGroups) {
             this.submitFromAppTable();
         }
@@ -356,7 +356,7 @@ export class OcFormComponent implements OnInit, OnChanges {
         }
     }
 
-    private initResultDataWithFormJsonDataValue(): void {
+    private addSavedFieldsToResult(): void {
         if (this.formJsonData === null) {
             return;
         }
