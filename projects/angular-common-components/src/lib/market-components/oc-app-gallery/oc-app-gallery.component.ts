@@ -85,10 +85,19 @@ export class OcAppGalleryComponent {
      */
     @Output() readonly clickMoreApps: EventEmitter<void> = new EventEmitter<void>();
 
+    /**
+     * Emitter for click by title text.
+     */
+    @Output() readonly clickHeaderTitle: EventEmitter<void> = new EventEmitter<void>();
+
     getAppValueByParameter(app: FullAppData): string {
         if (this.appNavigationParam) {
             return get(app, this.appNavigationParam);
         }
         return '';
+    }
+
+    onClickByHeaderTitle(): void {
+        this.clickHeaderTitle.emit();
     }
 }

@@ -21,7 +21,7 @@ window.ResizeObserver =
     }));
 
 const month = {
-    labelsY: ['3', '10', '30', '50', '25', '40', '100', '70', '150', '200', '50', '85', '50'],
+    labelsY: [3, 10, 30, 50, 25, 40, 100, 70, 150, 200, 50, 85, 50],
     labelsX: ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
     tabularLabels: [
         'March',
@@ -134,7 +134,6 @@ describe('OcChartComponent', () => {
             fields,
             apps,
         };
-        component.getGradientFill = jest.fn(() => null);
         fixture.detectChanges();
     });
 

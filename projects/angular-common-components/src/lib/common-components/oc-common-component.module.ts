@@ -48,6 +48,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { GetTextByPathPipe } from './pipe/get-text-by-path.pipe';
 import { ArraySearchPipe } from './pipe/array-search.pipe';
 import { TransformTextPipe } from './pipe/text-transform.pipe';
+import { AutofocusDirective } from './directive/autofocus.directive';
 
 @NgModule({
     declarations: [
@@ -90,6 +91,7 @@ import { TransformTextPipe } from './pipe/text-transform.pipe';
         OcFullImageGalleryViewModalComponent,
         ArraySearchPipe,
         TransformTextPipe,
+        AutofocusDirective,
     ],
     imports: [
         NgbModule,
@@ -144,6 +146,7 @@ import { TransformTextPipe } from './pipe/text-transform.pipe';
         OnlyNumberDirective,
         ArraySearchPipe,
         TransformTextPipe,
+        AutofocusDirective,
     ],
     providers: [NgbActiveModal],
 })

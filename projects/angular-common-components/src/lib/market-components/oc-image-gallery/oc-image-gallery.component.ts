@@ -127,6 +127,23 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
         arrowRight: 'assets/angular-common-components/arrow-right-analog.svg',
     };
 
+    /**
+     * Config for paths of the icons used in the fullscreen image modal viewer.
+     * You can change icons by setting a new path in this config or create an `angular-common-components`
+     * folder in your `assets`, and then add your icon with the name from this config.
+     */
+    @Input() imageModalIconsPath: GalleryIconsAssets = {
+        arrowLeft: 'assets/angular-common-components/arrow-left-analog.svg',
+        arrowRight: 'assets/angular-common-components/arrow-right-analog.svg',
+        closeIcon: 'assets/angular-common-components/close-icon.svg',
+    };
+
+    /**
+     * Display the current item index and overall items count in fullscreen image modal.
+     * @default false
+     */
+    @Input() isShowCounterInImageModal: boolean = false;
+
     /** Main input gallery array */
     mainGallery: GalleryItem[] = [];
 
@@ -153,10 +170,13 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
                 centered: true,
                 size: 'auto',
                 windowClass: 'media-modal',
+                backdropClass: 'oc-image-gallery__backdrop',
             });
             mediaModalRef.componentInstance.galleryItems = this.displayGallery;
             mediaModalRef.componentInstance.activeItemIdx = index;
             mediaModalRef.componentInstance.showDetails = this.displayDetails;
+            mediaModalRef.componentInstance.isShowCounter = this.isShowCounterInImageModal;
+            mediaModalRef.componentInstance.componentIconsPath = this.imageModalIconsPath;
         }
     }
 
@@ -165,10 +185,11 @@ export class OcImageGalleryComponent implements AfterContentInit, OnChanges {
      */
     private changeMaxImagesView(): void {
         this.displayGallery = [...this.mainGallery];
+
         if (this.allowArrowControllers) {
-            this.displayGallery.splice(this.mainGallery.length - 1);
-        } else {
-            this.displayGallery.splice(this.maxItems);
+            return;
         }
+
+        this.displayGallery.splice(this.maxItems);
     }
 }

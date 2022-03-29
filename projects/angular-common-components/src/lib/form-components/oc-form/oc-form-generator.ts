@@ -184,12 +184,12 @@ export class OcFormGenerator {
                     }
                     break;
                 case 'min':
-                    if (isNumber(Number(attributes.min))) {
+                    if (attributes.min !== '' && attributes.min !== null && isNumber(Number(attributes.min))) {
                         validators.push(Validators.min(Number(attributes.min)));
                     }
                     break;
                 case 'max':
-                    if (isNumber(Number(attributes.max))) {
+                    if (attributes.max !== '' && attributes.max !== null && isNumber(Number(attributes.max))) {
                         validators.push(Validators.max(Number(attributes.max)));
                     }
                     break;
