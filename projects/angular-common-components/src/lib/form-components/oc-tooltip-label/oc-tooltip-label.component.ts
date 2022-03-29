@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
 
 @Component({
     selector: 'oc-tooltip-label',
@@ -43,4 +44,12 @@ export class OcTooltipLabelComponent {
      * Default empty.
      */
     @Input() labelClass: string = '';
+
+    /**
+     * Tooltip position.
+     * Optional.
+     * @type {PlacementArray}.
+     * Default 'right'.
+     */
+    @Input() tooltipPlacement: PlacementArray = 'right';
 }

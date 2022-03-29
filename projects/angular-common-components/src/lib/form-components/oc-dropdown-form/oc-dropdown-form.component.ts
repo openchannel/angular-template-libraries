@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { AppFormField, AppFormModel, defaultFieldsForTrim, DropdownFormField, FormLabelPosition } from '../model/app-form-model';
+import { AppFormField, AppFormModel, defaultFieldsForTrim, DropdownFormField } from '../model/app-form-model';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { filter, takeUntil } from 'rxjs/operators';
 import { OcDropdownFormUtils } from '../oc-dropdown-form/oc-dropdown-form.service';
@@ -14,7 +14,6 @@ import { forIn } from 'lodash';
 })
 export class OcDropdownFormComponent implements OnInit, OnDestroy {
     @Input() formId: string;
-    @Input() labelPosition: FormLabelPosition;
     @Input() field: DropdownFormField;
     @Input() formGroup: FormGroup;
 
@@ -64,7 +63,7 @@ export class OcDropdownFormComponent implements OnInit, OnDestroy {
                 )
                 .subscribe(dropdownValue => this.updateFormByDropdownValue(dropdownValue));
         } else {
-            console.warn(`Can't find dropdown form control by id ${this.labelPosition}`);
+            console.warn(`Can't find dropdown form control by id ${this.formId}`);
         }
     }
 

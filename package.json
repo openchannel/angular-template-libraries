@@ -1,6 +1,6 @@
 {
   "name": "oc-angular-template-libraries",
-  "version": "2.55.2",
+  "version": "2.55.3",
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
     "prebuild": "npm run clean-css && npm run generate-mock-css",
@@ -105,6 +105,7 @@
     "babel-loader": "^8.2.3",
     "bootstrap": "^4.6.1",
     "browserslist": "4.16.5",
+    "jest-canvas-mock": "^2.3.1",
     "chart.js": "^3.7.1",
     "codelyzer": "^6.0.0",
     "glob-parent": "5.1.2",

@@ -19,6 +19,13 @@ import { defaultFieldsForTrim } from '../model/app-form-model';
     styleUrls: ['./oc-dynamic-field-array.component.css'],
 })
 export class OcDynamicFieldArrayComponent implements OnInit, OnDestroy, OnChanges {
+    /**
+     * Option to specify whether to show preview mode
+     * @type {boolean}
+     * @default true
+     */
+    @Input() isShowPreviewMode: boolean = true;
+
     @Input() previewMode: boolean = false;
     /**
      * Fields definition config necessary for the DFA generation.

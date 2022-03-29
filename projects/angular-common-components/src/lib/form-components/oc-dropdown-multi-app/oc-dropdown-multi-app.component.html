@@ -48,6 +48,7 @@
     <oc-tag-element
         class="dropdown-multi-app__tags-item"
         [closeMarker]="true"
+        [labelText]="tagTooltipLabelText"
         [title]="appData.name"
         (clickEmitter)="removeAppFromResultArray(appData)"></oc-tag-element>
 </ng-template>

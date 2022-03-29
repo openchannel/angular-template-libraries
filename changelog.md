@@ -1,3 +1,6 @@
+## Release notes - angular-template-libraries - Version 2.55.3 (3/29/2022)<br>
+### Bug<br>
+AT-1760 - [Hot-fix] [Prod] Number field does not accept the value grater than 0.<br>
 ## Release notes - angular-template-libraries - Version 2.55.2 (3/24/2022)<br>
 ### Task<br>
 AT-1698 - Fix angular-template-libraries security issues<br>

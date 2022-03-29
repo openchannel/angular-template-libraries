@@ -8,7 +8,6 @@ import { OcTagsComponent } from '@openchannel/angular-common-components/src/lib/
 import {
     OcButtonComponent,
     OcErrorComponent,
-    OcInputComponent,
     OcSelectComponent,
     OcTagElementComponent,
     OcTitleComponent,
@@ -26,7 +25,6 @@ describe('OcTagsComponent', () => {
                 declarations: [
                     OcTagsComponent,
                     OcTitleComponent,
-                    OcInputComponent,
                     OcSelectComponent,
                     OcButtonComponent,
                     OcTagElementComponent,
