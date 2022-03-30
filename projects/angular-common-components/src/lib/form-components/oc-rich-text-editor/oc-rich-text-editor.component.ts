@@ -37,7 +37,7 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
         this.editorContent = val;
         this.onChange(this.editorContent);
     }
-    
+
     /**
      * Boolean switcher of the resize icon display state.
      */
@@ -129,6 +129,10 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
         this.editorContent = obj;
     }
 
-    onTouched = () => {};
-    private onChange: (value: any) => void = () => {};
+    // tslint:disable-next-line:prettier
+    onTouched = () => { // NOSONAR
+    };
+    // tslint:disable-next-line:prettier
+    private onChange: (value: any) => void = () => { // NOSONAR
+    };
 }

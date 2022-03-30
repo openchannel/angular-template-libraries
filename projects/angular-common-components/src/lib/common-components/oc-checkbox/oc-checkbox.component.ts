@@ -85,9 +85,9 @@ export class OcCheckboxComponent implements ControlValueAccessor {
     /**
      * @ignore
      */
-    private onTouched = () => {};
+    private onTouched = () => {}; // NOSONAR
     /**
      * @ignore
      */
-    private onChange: (value: any) => void = () => {};
+    private onChange: (value: any) => void = () => {}; // NOSONAR
 }

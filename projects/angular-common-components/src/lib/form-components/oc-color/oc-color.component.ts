@@ -86,9 +86,11 @@ export class OcColorComponent implements ControlValueAccessor {
     /**
      * @ignore
      */
-    private onTouched = () => {};
+    // prettier-ignore
+    private onTouched = () => {}; // NOSONAR
     /**
      * @ignore
      */
-    private onChange: (value: any) => void = () => {};
+    // prettier-ignore
+    private onChange: (value: any) => void = () => {}; // NOSONAR
 }

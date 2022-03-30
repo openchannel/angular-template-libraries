@@ -114,7 +114,11 @@ export class OcRatingComponent implements ControlValueAccessor {
         }
     }
 
-    private onTouched = () => {};
+    // tslint:disable-next-line:prettier
+    private onTouched = () => { // NOSONAR
+    };
 
-    private onChange: (value: any) => void = () => {};
+    // tslint:disable-next-line:prettier
+    private onChange: (value: any) => void = () => { // NOSONAR
+    };
 }

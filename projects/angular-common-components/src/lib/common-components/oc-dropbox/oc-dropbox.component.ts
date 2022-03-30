@@ -242,7 +242,8 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
         }
     }
 
-    private onTouched = () => {};
-
-    private onChange: (value: any) => void = () => {};
+    // prettier-ignore
+    private onTouched = () => {}; // NOSONAR
+    // prettier-ignore
+    private onChange: (value: any) => void = () => {}; // NOSONAR
 }

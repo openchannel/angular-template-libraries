@@ -199,7 +199,9 @@ export class FullAppData {
      * @param appData app data or appversion data from api response
      * @param customDataConfig customDataConfig  config for customData fields name information
      */
-    constructor(appData: any, customDataConfig: CustomDataAppConfig) {
+
+    // prettier-ignore
+    constructor(appData: any, customDataConfig: CustomDataAppConfig) { // NOSONAR
         this.appId = appData.appId;
         this.type = appData.type;
         this.lastUpdated = new Date(appData.lastUpdated);

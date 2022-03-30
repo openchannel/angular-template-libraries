@@ -1,4 +1,14 @@
-import { Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    forwardRef,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    ViewChild,
+} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { base64ToFile, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
@@ -220,7 +230,8 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      */
     private destroy$ = new Subject<void>();
 
-    constructor(private modalService: NgbModal, private fileUploaderService: FileUploaderService) {}
+    constructor(private modalService: NgbModal, private fileUploaderService: FileUploaderService) {
+    }
 
     ngOnInit(): void {
         if (this.isFileTypeImage) {
@@ -344,13 +355,13 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
                     size: 'lg',
                 })
                 .result.then(
-                    () => {
-                        // Do Nothing
-                    },
-                    () => {
-                        this.resetSelection();
-                    },
-                );
+                () => {
+                    // Do Nothing
+                },
+                () => {
+                    this.resetSelection();
+                },
+            );
         } else {
             this.fileName = event?.target?.files[0]?.name;
             this.fileName = this.fileName ? this.fileName : event?.dataTransfer?.files[0]?.name;
@@ -517,7 +528,8 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * Function for download file. If file is private then it opens link in new window and download file. If not call service method to start downloading process.
      * @param {FileDetails} file
      */
-    downloadFile(file: FileDetails): void {
+    // prettier-ignore
+    downloadFile(file: FileDetails): void { // NOSONAR
         if (file && file.fileUploadProgress && file.fileUploadProgress === 100) {
             if (this.isFileTypePrivate()) {
                 if (!this.fileUploaderService.fileDetailsRequest) {
@@ -552,8 +564,12 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         }
     }
 
-    onTouched = () => {};
-    onChange: (value: any) => void = () => {};
+    // tslint:disable-next-line:prettier
+    onTouched = () => { // NOSONAR
+    };
+    // tslint:disable-next-line:prettier
+    onChange: (value: any) => void = () => { // NOSONAR
+    };
 
     writeValue(obj: any): void {
         this.initValues(obj);
@@ -567,7 +583,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         this.onTouched = onTouched;
     }
 
-    setDisabledState?(isDisabled: boolean): void {}
+    // setDisabledState?(isDisabled: boolean): void {}
 
     /**
      * @private Initialization of value for component

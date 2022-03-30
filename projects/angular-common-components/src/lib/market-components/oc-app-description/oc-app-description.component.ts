@@ -52,8 +52,8 @@ export class OcAppDescriptionComponent implements OnInit {
     currentShowDescriptionText: string;
     /** Current main text. Can contain HTML tags. */
     currentDescriptionText: string;
-
-    constructor() {}
+    // prettier-ignore
+    constructor() {} // NOSONAR
 
     ngOnInit(): void {
         this.initDescriptionWithShowOption(this.showFullDescription);

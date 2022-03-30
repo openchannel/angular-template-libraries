@@ -115,6 +115,10 @@ export class OcVideoUrlComponent implements ControlValueAccessor {
         this.verifyVideoUrl();
     }
 
-    private onTouched = () => {};
-    private onChange: (value: any) => void = () => {};
+    // tslint:disable-next-line:prettier
+    private onTouched = () => { // NOSONAR
+    };
+    // tslint:disable-next-line:prettier
+    private onChange: (value: any) => void = () => { // NOSONAR
+    };
 }

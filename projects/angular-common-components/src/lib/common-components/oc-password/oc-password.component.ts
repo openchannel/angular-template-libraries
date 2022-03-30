@@ -27,6 +27,7 @@ export class OcPasswordComponent implements ControlValueAccessor {
         this.inputValue = val;
         this.onChange(this.inputValue);
     }
+
     /**
      * Set `placeholder` for input field
      */
@@ -50,7 +51,9 @@ export class OcPasswordComponent implements ControlValueAccessor {
      */
     inputValue;
 
-    onTouched = () => {};
+    // tslint:disable-next-line:prettiera
+    onTouched = () => { // NOSONAR
+    };
 
     /**
      * Function that called after input model value was changed
@@ -66,6 +69,7 @@ export class OcPasswordComponent implements ControlValueAccessor {
     registerOnChange(onChange: (value: any) => void): void {
         this.onChange = onChange;
     }
+
     /**
      * Calls this function when user left chosen component.
      * It needs for validation
@@ -73,6 +77,7 @@ export class OcPasswordComponent implements ControlValueAccessor {
     registerOnTouched(onTouched: () => void): void {
         this.onTouched = onTouched;
     }
+
     /**
      * (Optional)
      * the method will be called by the control when the [disabled] state changes.
@@ -80,6 +85,7 @@ export class OcPasswordComponent implements ControlValueAccessor {
     setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
     }
+
     /**
      * this method will be called by the control to pass the value to our component.
      * It is used if the value is changed through the code outside
@@ -90,5 +96,7 @@ export class OcPasswordComponent implements ControlValueAccessor {
         this.inputValue = obj;
     }
 
-    private onChange: (value: any) => void = () => {};
+    // tslint:disable-next-line:prettier
+    private onChange: (value: any) => void = () => { // NOSONAR
+    };
 }

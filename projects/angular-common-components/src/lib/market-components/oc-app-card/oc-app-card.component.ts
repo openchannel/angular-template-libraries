@@ -35,8 +35,8 @@ export class OcAppCardComponent implements OnInit {
     appData: FullAppData;
 
     currentModel: AppModel;
-
-    constructor() {}
+    // prettier-ignore
+    constructor() {} // NOSONAR
 
     ngOnInit(): void {
         this.currentModel = this.appData.model[this.priceModelIndex] || this.appData.model[0];

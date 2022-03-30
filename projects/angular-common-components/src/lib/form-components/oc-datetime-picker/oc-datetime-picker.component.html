@@ -22,7 +22,7 @@
                     (click)="nextMonth($event)"></svg-icon>
             </div>
             <div class="date-picker__dropdown-content">
-                <table class="date-picker__calendar-header">
+                <!-- //NOSONAR --><table class="date-picker__calendar-header" >
                     <tr>
                         <td>M</td>
                         <td>T</td>
@@ -34,7 +34,7 @@
                     </tr>
                 </table>
 
-                <table class="date-picker__calendar-days" (click)="setDay($event)">
+                <!-- //NOSONAR --><table class="date-picker__calendar-days" (click)="setDay($event)">
                     <tr *ngFor="let week of monthDays">
                         <td
                             [ngClass]="{

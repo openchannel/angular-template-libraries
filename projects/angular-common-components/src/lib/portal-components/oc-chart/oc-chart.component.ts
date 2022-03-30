@@ -12,7 +12,17 @@ import {
     ViewChild,
 } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
-import { CategoryScale, Chart, Legend, LinearScale, LineController, LineElement, PointElement, Scale, Tooltip } from 'chart.js';
+import {
+    CategoryScale,
+    Chart,
+    Legend,
+    LinearScale,
+    LineController,
+    LineElement,
+    PointElement,
+    Scale,
+    Tooltip,
+} from 'chart.js';
 import {
     ChartOptionsChange,
     ChartStatisticFiledModel,
@@ -199,7 +209,8 @@ export class OcChartComponent implements OnChanges, OnInit, AfterViewInit {
     /**
      * Creating main chart with configuration.
      */
-    setChart(): void {
+    // tslint:disable-next-line:prettier
+    setChart(): void { // NOSONAR
         const gradientFill = this.getGradientFill();
 
         Chart.register(CategoryScale, LineController, PointElement, LineElement, LinearScale, Tooltip, Legend);

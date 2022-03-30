@@ -16,7 +16,8 @@ export class OcInitialsComponent implements OnInit {
 
     private letterRegex = /[a-zA-Z]/;
 
-    constructor() {}
+    // tslint:disable-next-line:prettier
+    constructor() {} // NOSONAR
 
     ngOnInit(): void {
         if (this.primaryInitialType === 'image') {

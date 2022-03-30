@@ -17,6 +17,7 @@ export class QueryUtil {
 
     static getSearchTextQuery(searchText: string, searchByFields: string[]): string {
         if (searchText && searchByFields && searchByFields.length > 0) {
+
             return `text=${searchText}&fields=[${searchByFields.map(field => `\'${field}\'`).join(',')}]`;
         }
         return null;

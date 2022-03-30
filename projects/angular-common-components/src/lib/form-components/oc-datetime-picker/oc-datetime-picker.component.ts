@@ -160,7 +160,9 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
      * Generating days for month.
      * @param date current date
      */
-    generateDays(date: Date): DayOfMonth[][] {
+
+    // tslint:disable-next-line:prettier
+    generateDays(date: Date): DayOfMonth[][] { // NOSONAR
         let month = date.getMonth();
         const year = date.getFullYear();
         const firstDay = new Date(year, month, 1);
@@ -451,6 +453,8 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.date = obj ? new Date(obj) : null;
     }
 
-    private onTouched = () => {};
-    private onChange: (value: any) => void = () => {};
+    // prettier-ignore
+    private onTouched = () => {}; // NOSONAR
+    // prettier-ignore
+    private onChange: (value: any) => void = () => {}; // NOSONAR
 }

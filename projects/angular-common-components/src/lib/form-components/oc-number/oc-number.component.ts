@@ -68,7 +68,8 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
      */
     private regex = new RegExp(/[^\d.]/g);
 
-    constructor(private el: ElementRef) {}
+    constructor(private el: ElementRef) {
+    }
 
     ngOnInit(): void {
         if (this.autocomplete) {
@@ -85,12 +86,14 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
     changeModelVal(): void {
         this.onChange(this.inputNumber);
     }
+
     /**
      * Register touch action
      */
     onFocus(): void {
         this.onTouched();
     }
+
     /**
      * Register paste action
      */
@@ -101,6 +104,7 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
             this.onChange(this.inputNumber);
         }, 0);
     }
+
     /**
      * Calls this function with new value. When user wrote something in the component
      * It needs to know that new data has been entered in the control.
@@ -108,6 +112,7 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
     registerOnChange(onChange: (value: any) => void): void {
         this.onChange = onChange;
     }
+
     /**
      * Calls this function when user left chosen component.
      * It needs for validation
@@ -115,6 +120,7 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
     registerOnTouched(onTouched: () => void): void {
         this.onTouched = onTouched;
     }
+
     /**
      * (Optional)
      * the method will be called by the control when the [disabled] state changes.
@@ -122,6 +128,7 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
     setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
     }
+
     /**
      * this method will be called by the control to pass the value to our component.
      * It is used if the value is changed through the code outside
@@ -143,6 +150,10 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
         }
     }
 
-    private onTouched = () => {};
-    private onChange: (value: any) => void = () => {};
+    // tslint:disable-next-line:prettier
+    private onTouched = () => { // NOSONAR
+    };
+    // tslint:disable-next-line:prettier
+    private onChange: (value: any) => void = () => { // NOSONAR
+    };
 }
