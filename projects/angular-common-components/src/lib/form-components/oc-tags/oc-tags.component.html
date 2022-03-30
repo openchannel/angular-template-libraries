@@ -18,6 +18,7 @@
             class="tags__list-item"
             *ngFor="let tag of resultTags; index as i"
             [closeMarker]="true"
+            [labelText]="tagTooltipLabelText"
             [title]="tag"
             (clickEmitter)="removeTag(i)"></oc-tag-element>
     </div>

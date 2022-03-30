@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { AbstractControl, NgModel } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { OnNewErrorsEvent, OnRemoveErrorEvent, ServerErrorModel } from '../model/oc-error.model';
 import { remove } from 'lodash';
@@ -30,7 +30,7 @@ export class OcErrorService {
         }
     }
 
-    hasServerError(control: NgModel, errorCode: string): boolean {
+    hasServerError(control: NgModel | AbstractControl, errorCode: string): boolean {
         return control?.errors?.serverErrorValidator?.code === errorCode;
     }
 }

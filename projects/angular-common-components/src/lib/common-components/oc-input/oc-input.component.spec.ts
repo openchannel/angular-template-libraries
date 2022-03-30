@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { OcInputComponent } from './oc-input.component';
 import { FormsModule } from '@angular/forms';
+import { MockAutofocusDirective } from '@openchannel/angular-common-components/src/mock/mock';
 
 describe('OcInputComponent', () => {
     let component: OcInputComponent;
@@ -10,7 +11,7 @@ describe('OcInputComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [OcInputComponent],
+                declarations: [OcInputComponent, MockAutofocusDirective],
                 imports: [FormsModule],
             }).compileComponents();
         }),

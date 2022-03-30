@@ -21,7 +21,7 @@ window.ResizeObserver =
     }));
 
 const month = {
-    labelsY: ['3', '10', '30', '50', '25', '40', '100', '70', '150', '200', '50', '85', '50'],
+    labelsY: [3, 10, 30, 50, 25, 40, 100, 70, 150, 200, 50, 85, 50],
     labelsX: ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
     tabularLabels: [
         'March',
@@ -134,7 +134,6 @@ describe('OcChartComponent', () => {
             fields,
             apps,
         };
-        component.getGradientFill = jest.fn(() => null);
         fixture.detectChanges();
     });
 
@@ -305,14 +304,8 @@ describe('OcChartComponent', () => {
         expect(enabledDropdownType).toEqual(component.dropdownSelectedType);
     });
 
-    it('should fill tabular data in ngOnChanges hook', () => {
-        const changesObj: SimpleChanges = {
-            chartData: new SimpleChange(component.chartData, { ...component.chartData }, false),
-        };
-
-        // tslint:disable-next-line:no-lifecycle-call
-        component.ngOnChanges(changesObj);
-
+    it('should fill tabular data in fillTabularData method', () => {
+        (component as any).fillTabularData();
         expect(component.tabularData.length).not.toBe(0);
     });
 });

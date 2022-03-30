@@ -38,6 +38,12 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
     @Input() placeholder: string;
 
     /**
+     * Label text of the Oc-Tag-Component
+     * @type {string}.
+     */
+    @Input() tagTooltipLabelText: string = '';
+
+    /**
      * Tags available for the dropbox. Users can chose tags from this list.
      * When this list is empty dropbox is hidden.
      * @type {string[]}

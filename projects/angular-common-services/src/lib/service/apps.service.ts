@@ -35,6 +35,8 @@ export class AppsService {
      * @param fields (required) Fields for searching.
      *  Default value = ['name'].
      *
+     *  @param pageNumber (optional) Current page index. Starts from >= 1.
+     *  @param pageLimit (optional) Count apps into response. Starts from >= 1.
      *  @return Observable<Page<AppResponse>>
      *
      * ### Example:
@@ -42,13 +44,21 @@ export class AppsService {
      * searchApp("My First App", "{"status.value": {"$in":["pending", "inDevelopment"]}}")
      *``
      */
-    searchApp(searchText: string, query: string, fields: string[] = ['name']): Observable<Page<AppResponse | any>> {
+    searchApp(
+        searchText: string,
+        query: string,
+        fields: string[] = ['name'],
+        pageNumber: number = 1,
+        pageLimit: number = 100,
+    ): Observable<Page<AppResponse | any>> {
         const mainUrl = `${this.apiPaths.apps}/textSearch`;
 
-        let params = new OcHttpParams().append('fields', JSON.stringify(fields)).appendRequiredParam('text', searchText, '');
-        if (query) {
-            params = params.append('query', query);
-        }
+        const params = new OcHttpParams()
+            .append('fields', JSON.stringify(fields))
+            .appendRequiredParam('text', searchText, '')
+            .append('pageNumber', String(pageNumber))
+            .append('limit', String(pageLimit))
+            .append('query', query);
 
         return this.httpRequest.get(mainUrl, { params });
     }

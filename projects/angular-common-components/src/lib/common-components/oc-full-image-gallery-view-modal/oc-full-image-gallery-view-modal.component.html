@@ -33,6 +33,7 @@
                 {{ galleryItems[activeItemIdx].description }}
             </p>
         </div>
+        <p class="full-image-gallery-modal__counter" *ngIf="isShowCounter">{{ activeItemIdx + 1 }} of {{ galleryItems.length }}</p>
     </div>
     <!-- Right arrow navigation --->
     <div class="full-image-gallery-modal__carousel-nav full-image-gallery-modal__carousel-nav-right" id="iconRight"

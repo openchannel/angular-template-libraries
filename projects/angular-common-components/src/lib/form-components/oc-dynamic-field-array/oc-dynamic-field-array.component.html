@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div
-                *ngIf="!formsArrayConfig[i].isEdit && !formsArrayConfig[i].previewCollapsedDFAFields"
+                *ngIf="!formsArrayConfig[i].isEdit && !formsArrayConfig[i].previewCollapsedDFAFields && isShowPreviewMode"
                 class="cards-interface__preview-content">
                 <oc-dynamic-array-preview
                     [fieldValues]="formsArrayConfig[i].previewFiledValues"

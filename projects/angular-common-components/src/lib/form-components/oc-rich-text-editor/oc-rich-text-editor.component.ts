@@ -1,6 +1,7 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { merge } from 'lodash';
 
 /**
  * Rich text editor component. It is used for the confirmation some action from the user.
@@ -36,6 +37,16 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
     @Input() set value(val: any) {
         this.editorContent = val;
         this.onChange(this.editorContent);
+    }
+
+    /**
+     * Text editor custom options.
+     * @type {any}.
+     */
+    @Input() set options(val: any) {
+        if (val) {
+            merge(this.tinyOptions, val);
+        }
     }
 
     /**
@@ -129,10 +140,6 @@ export class OcRichTextEditorComponent implements OnInit, ControlValueAccessor {
         this.editorContent = obj;
     }
 
-    // tslint:disable-next-line:prettier
-    onTouched = () => { // NOSONAR
-    };
-    // tslint:disable-next-line:prettier
-    private onChange: (value: any) => void = () => { // NOSONAR
-    };
+    onTouched = () => {};
+    private onChange: (value: any) => void = () => {};
 }
