@@ -6,7 +6,7 @@
         <div *ngIf="!showVideoLoader" class="oc-video__container">
             <div class="oc-video__preview" [innerHTML]="previewData"></div>
             <div class="oc-video__frame" *ngIf="!loadInIframe">
-                <!-- //NOSONAR --><video class="oc-video__frame-video" width="100%" height="100%" *ngIf="loadInVideo" [src]="url" controls></video>
+                <video class="oc-video__frame-video" width="100%" height="100%" *ngIf="loadInVideo" [src]="url" controls></video><!-- //NOSONAR -->
 
             </div>
         </div>

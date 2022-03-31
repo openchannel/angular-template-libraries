@@ -42,6 +42,10 @@ export class OcAppShortInfoComponent implements OnInit {
     cardApp: FullAppData;
     currentModel: AppModel;
 
+    constructor() {
+        // nothing to do
+    }
+
     ngOnInit(): void {
         this.currentModel = this.cardApp.model[this.priceModelIndex] || this.cardApp.model[0];
     }

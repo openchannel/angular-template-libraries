@@ -24,6 +24,7 @@ export class OcAppCardComponent implements OnInit {
             this.appIcon = this.appData?.icon;
         }
     }
+
     /**
      * Emitting click by App card. Works only when appRedirectLink does not applied.
      * Emmit Full App Data
@@ -35,6 +36,10 @@ export class OcAppCardComponent implements OnInit {
     appData: FullAppData;
 
     currentModel: AppModel;
+
+    constructor() {
+        // nothing to do
+    }
 
     ngOnInit(): void {
         this.currentModel = this.appData.model[this.priceModelIndex] || this.appData.model[0];

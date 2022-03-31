@@ -144,8 +144,8 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
      * (Optional)
      * the method will be called by the control when the [disabled] state changes.
      */
-
-    setDisabledState(isDisabled: boolean): void {
+    // prettier-ignore
+    setDisabledState(isDisabled: boolean): void { // NOSONAR
         // nothing to do
     }
 
