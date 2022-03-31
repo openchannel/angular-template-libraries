@@ -80,7 +80,8 @@ export class OcDropdownMultiAppComponent implements OnInit, OnDestroy, ControlVa
         this.onTouched = onTouched;
     }
 
-    setDisabledState(isDisabled: boolean): void {
+    // prettier-ignore
+    setDisabledState(isDisabled: boolean): void { // NOSONAR
         // nothing to do
     }
 

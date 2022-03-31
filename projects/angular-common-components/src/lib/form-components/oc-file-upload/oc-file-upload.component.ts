@@ -608,7 +608,8 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         this.onTouched = onTouched;
     }
 
-    setDisabledState?(isDisabled: boolean): void {
+    // prettier-ignore
+    setDisabledState?(isDisabled: boolean): void { // NOSONAR
         // nothing to do
     }
 
