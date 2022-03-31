@@ -69,11 +69,10 @@ export class OcInputComponent implements OnInit, ControlValueAccessor {
      */
     inputValue: string;
 
-    constructor(private el: ElementRef) {
-    }
+    constructor(private el: ElementRef) {}
 
-    // tslint:disable-next-line:prettier
-    onTouched = () => { // NOSONAR
+    onTouched = () => {
+        // nothing to do
     };
 
     ngOnInit(): void {
@@ -120,7 +119,7 @@ export class OcInputComponent implements OnInit, ControlValueAccessor {
         this.inputValue = obj;
     }
 
-    // tslint:disable-next-line:prettier
-    private onChange: (value: any) => void = () => { // NOSONAR
+    private onChange: (value: any) => void = () => {
+        // nothing to do
     };
 }

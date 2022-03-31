@@ -161,7 +161,7 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
      * @param date current date
      */
 
-    // tslint:disable-next-line:prettier
+    // prettier-ignore
     generateDays(date: Date): DayOfMonth[][] { // NOSONAR
         let month = date.getMonth();
         const year = date.getFullYear();
@@ -311,6 +311,7 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.hourStr = this.hourValue.toString();
         this.setTimeView();
     }
+
     /** Decrementation of the hour value. Updating time view */
     decHour(): void {
         if (this.hourValue > 1) {
@@ -343,6 +344,7 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.hourStr = this.hourValue.toString();
         this.setTimeView();
     }
+
     /** Incrementation of the minutes value. Updating time view */
     incMinutes(): void {
         if (this.minuteValue < 59) {
@@ -353,6 +355,7 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.minuteStr = this.minuteValue.toString();
         this.setTimeView();
     }
+
     /** Decrementation of the minutes value. Updating time view */
     decMinutes(): void {
         if (this.minuteValue > 0) {
@@ -363,6 +366,7 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.minuteStr = this.minuteValue.toString();
         this.setTimeView();
     }
+
     /**
      * Catching changes in input field of hours. Updating hours with new values.
      * @param event input event
@@ -422,6 +426,7 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
     onFocus(): void {
         this.onTouched();
     }
+
     /**
      * Calls this function with new value. When user wrote something in the component
      * It needs to know that new data has been entered in the control.
@@ -429,6 +434,7 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
     registerOnChange(onChange: (value: any) => void): void {
         this.onChange = onChange;
     }
+
     /**
      * Calls this function when user left chosen component.
      * It needs for validation
@@ -436,6 +442,7 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
     registerOnTouched(onTouched: () => void): void {
         this.onTouched = onTouched;
     }
+
     /**
      * (Optional)
      * the method will be called by the control when the [disabled] state changes.
@@ -443,6 +450,7 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
     setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
     }
+
     /**
      * this method will be called by the control to pass the value to our component.
      * It is used if the value is changed through the code outside
@@ -453,8 +461,11 @@ export class OcDatetimePickerComponent implements OnInit, ControlValueAccessor {
         this.date = obj ? new Date(obj) : null;
     }
 
-    // prettier-ignore
-    private onTouched = () => {}; // NOSONAR
-    // prettier-ignore
-    private onChange: (value: any) => void = () => {}; // NOSONAR
+    private onTouched = () => {
+        // nothing to do
+    };
+
+    private onChange: (value: any) => void = () => {
+        // nothing to do
+    };
 }

@@ -205,8 +205,9 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
      * (Optional)
      * The method will be called by the control when the [disabled] state changes.
      */
-    // tslint:disable-next-line:prettier
-    setDisabledState(isDisabled: boolean): void { // NOSONAR
+
+    setDisabledState(isDisabled: boolean): void {
+        // nothing to do
     }
 
     /**
@@ -229,10 +230,11 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         this.dropBoxTags = this.findAvailableDropBoxTags();
     }
 
-    // tslint:disable-next-line:prettier
-    private onTouched = () => { // NOSONAR
+    private onTouched = () => {
+        // nothing to do
     };
-    // tslint:disable-next-line:prettier
-    private onChange: (value: any) => void = () => { // NOSONAR
+
+    private onChange: (value: any) => void = () => {
+        // nothing to do
     };
 }

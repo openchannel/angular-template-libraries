@@ -1,14 +1,4 @@
-import {
-    Component,
-    ElementRef,
-    EventEmitter,
-    forwardRef,
-    Input,
-    OnDestroy,
-    OnInit,
-    Output,
-    ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { base64ToFile, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
@@ -263,8 +253,7 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      */
     private destroy$ = new Subject<void>();
 
-    constructor(private modalService: NgbModal, private fileUploaderService: FileUploaderService) {
-    }
+    constructor(private modalService: NgbModal, private fileUploaderService: FileUploaderService) {}
 
     ngOnInit(): void {
         this.setUploadButtonText();
@@ -390,13 +379,13 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
                     size: 'lg',
                 })
                 .result.then(
-                () => {
-                    // Do Nothing
-                },
-                () => {
-                    this.resetSelection();
-                },
-            );
+                    () => {
+                        // Do Nothing
+                    },
+                    () => {
+                        this.resetSelection();
+                    },
+                );
         } else {
             this.fileName = event?.target?.files[0]?.name;
             this.fileName = this.fileName ? this.fileName : event?.dataTransfer?.files[0]?.name;
@@ -599,11 +588,12 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         }
     }
 
-    // tslint:disable-next-line:prettier
-    onTouched = () => { // NOSONAR
+    onTouched = () => {
+        // nothing to do
     };
-    // tslint:disable-next-line:prettier
-    onChange: (value: any) => void = () => { // NOSONAR
+
+    onChange: (value: any) => void = () => {
+        // nothing to do
     };
 
     writeValue(obj: any): void {
@@ -618,7 +608,9 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         this.onTouched = onTouched;
     }
 
-    // setDisabledState?(isDisabled: boolean): void {}
+    setDisabledState?(isDisabled: boolean): void {
+        // nothing to do
+    }
 
     /**
      * @private Sets the text for the upload button based on the file type

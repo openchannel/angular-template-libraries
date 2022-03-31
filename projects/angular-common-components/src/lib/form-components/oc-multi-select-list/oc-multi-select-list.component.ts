@@ -144,8 +144,9 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
      * (Optional)
      * the method will be called by the control when the [disabled] state changes.
      */
-    // tslint:disable-next-line:prettier
-    setDisabledState(isDisabled: boolean): void { // NOSONAR
+
+    setDisabledState(isDisabled: boolean): void {
+        // nothing to do
     }
 
     /**
@@ -159,10 +160,11 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
         this.dropBoxItems = this.findAvailableDropBoxItems();
     }
 
-    // tslint:disable-next-line:prettier
-    onTouched = () => { // NOSONAR
+    onTouched = () => {
+        // nothing to do
     };
-    // tslint:disable-next-line:prettier
-    private onChange: (value: any) => void = () => { // NOSONAR
+
+    private onChange: (value: any) => void = () => {
+        // nothing to do
     };
 }

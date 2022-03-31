@@ -68,8 +68,7 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
      */
     private regex = new RegExp(/[^\d.]/g);
 
-    constructor(private el: ElementRef) {
-    }
+    constructor(private el: ElementRef) {}
 
     ngOnInit(): void {
         if (this.autocomplete) {
@@ -150,10 +149,11 @@ export class OcNumberComponent implements OnInit, ControlValueAccessor {
         }
     }
 
-    // tslint:disable-next-line:prettier
-    private onTouched = () => { // NOSONAR
+    private onTouched = () => {
+        // nothing to do
     };
-    // tslint:disable-next-line:prettier
-    private onChange: (value: any) => void = () => { // NOSONAR
+
+    private onChange: (value: any) => void = () => {
+        // nothing to do
     };
 }

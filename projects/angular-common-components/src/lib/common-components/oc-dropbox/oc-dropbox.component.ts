@@ -201,6 +201,7 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
     clearFocus(): void {
         this.dropBox.nativeElement.blur();
     }
+
     /**
      * Calls this function with new value. When user wrote something in the component.
      * It needs to know that new data has been entered in the control.
@@ -208,6 +209,7 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
     registerOnChange(onChange: (value: any) => void): void {
         this.onChange = onChange;
     }
+
     /**
      * Calls this function when user left chosen component.
      * It needs for validation of custom form controls.
@@ -215,6 +217,7 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
     registerOnTouched(onTouched: () => void): void {
         this.onTouched = onTouched;
     }
+
     /**
      * this method will be called by the control to pass the value to our component.
      * It is used if the value is changed through the code outside
@@ -224,6 +227,7 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
     writeValue(obj: any): void {
         this.outputSelectedItem = obj ? obj : '';
     }
+
     /**
      * (Optional)
      * the method will be called by the control when the [disabled] state changes.
@@ -242,8 +246,11 @@ export class OcDropboxComponent implements OnInit, ControlValueAccessor {
         }
     }
 
-    // prettier-ignore
-    private onTouched = () => {}; // NOSONAR
-    // prettier-ignore
-    private onChange: (value: any) => void = () => {}; // NOSONAR
+    private onTouched = () => {
+        // nothing to do
+    };
+
+    private onChange: (value: any) => void = () => {
+        // nothing to do
+    };
 }

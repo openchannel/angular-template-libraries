@@ -51,8 +51,8 @@ export class OcPasswordComponent implements ControlValueAccessor {
      */
     inputValue;
 
-    // tslint:disable-next-line:prettiera
-    onTouched = () => { // NOSONAR
+    onTouched = () => {
+        // nothing to do
     };
 
     /**
@@ -96,7 +96,7 @@ export class OcPasswordComponent implements ControlValueAccessor {
         this.inputValue = obj;
     }
 
-    // tslint:disable-next-line:prettier
-    private onChange: (value: any) => void = () => { // NOSONAR
+    private onChange: (value: any) => void = () => {
+        // nothing to do
     };
 }

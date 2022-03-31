@@ -122,7 +122,7 @@ export class OcFormGenerator {
      * Setting validators array to the chosen control
      */
     // prettier-ignore
-    static setValidators( // NOSONARA
+    static setValidators( // NOSONAR
         control: AbstractControl,
         inputTemplate: AppTypeFieldModel,
         additional?: {

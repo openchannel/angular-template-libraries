@@ -125,11 +125,11 @@ export class OcRadioButtonListComponent implements ControlValueAccessor {
         }
     }
 
-    // tslint:disable-next-line:prettier
-    private onTouched = () => { // NOSONAR
+    private onTouched = () => {
+        // nothing to do
     };
 
-    // tslint:disable-next-line:prettier
-    private onChange: (value: any) => void = () => { // NOSONAR
+    private onChange: (value: any) => void = () => {
+        // nothing to do
     };
 }
