@@ -82,7 +82,6 @@ export class OcDropdownMultiAppComponent implements OnInit, OnDestroy, ControlVa
 
     // prettier-ignore
     setDisabledState(isDisabled: boolean): void { // NOSONAR
-        // nothing to do
     }
 
     writeValue(value: any): void {

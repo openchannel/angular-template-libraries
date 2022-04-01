@@ -207,7 +207,6 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
      */
     // prettier-ignore
     setDisabledState(isDisabled: boolean): void { // NOSONAR
-        // nothing to do
     }
 
     /**

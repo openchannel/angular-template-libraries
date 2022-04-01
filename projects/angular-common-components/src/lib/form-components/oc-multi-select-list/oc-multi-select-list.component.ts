@@ -146,7 +146,6 @@ export class OcMultiSelectListComponent implements OnInit, ControlValueAccessor,
      */
     // prettier-ignore
     setDisabledState(isDisabled: boolean): void { // NOSONAR
-        // nothing to do
     }
 
     /**
