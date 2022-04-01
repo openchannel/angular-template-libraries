@@ -9,7 +9,7 @@ export class OcFormGenerator {
     // tslint:disable-next-line:typedef
     static getFormByConfig(fieldsDefinitions: AppFormField[], trimTextFields?: TrimFormFieldType[]) {
         let group = {};
-        // tslint:disable-next-line:prettier
+        // prettier-ignore
         fieldsDefinitions.forEach(inputTemplate => { // NOSONAR
             const isTrimText = trimTextFields?.includes(inputTemplate?.type);
 

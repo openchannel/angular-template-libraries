@@ -1,29 +1,29 @@
-<div ngbDropdown class='date-picker' placement='bottom-left top-left' #myDrop='ngbDropdown' autoClose='outside'
-     (openChange)='done($event)'>
+<div ngbDropdown class="date-picker" placement="bottom-left top-left" #myDrop="ngbDropdown" autoClose="outside" (openChange)="done($event)">
     <oc-button
-        class='date-picker__input'
-        id='datePickerDD'
+        class="date-picker__input"
+        id="datePickerDD"
         ngbDropdownToggle
-        type='secondary'
-        [customTemplate]='datePickerButton'
-        (click)='disabled ? myDrop.close() : myDrop.isOpen() ? initCal() : null'></oc-button>
-    <div class='date-picker__dropdown' ngbDropdownMenu aria-labelledby='datePickerDD'>
-        <div class='date-picker__dropdown-popover' [ngClass]="{ 'date-picker__dropdown-popover-date': !isDateTime }">
-            <div class='date-picker__dropdown-banner'>
+        type="secondary"
+        [customTemplate]="datePickerButton"
+        (click)="disabled ? myDrop.close() : myDrop.isOpen() ? initCal() : null"></oc-button>
+    <div class="date-picker__dropdown" ngbDropdownMenu aria-labelledby="datePickerDD">
+        <div class="date-picker__dropdown-popover" [ngClass]="{ 'date-picker__dropdown-popover-date': !isDateTime }">
+            <div class="date-picker__dropdown-banner">
                 <svg-icon
-                    class='date-picker__dropdown-icon calendar-icon-size'
-                    id='prevMonth'
-                    src='assets/angular-common-components/arrow-left-analog.svg'
-                    (click)='prevMonth($event)'></svg-icon>
-                <div class='date-picker__dropdown-detail'>{{ date | date: "MMMM" }}, {{ date | date: "yyyy" }}</div>
+                    class="date-picker__dropdown-icon calendar-icon-size"
+                    id="prevMonth"
+                    src="assets/angular-common-components/arrow-left-analog.svg"
+                    (click)="prevMonth($event)"></svg-icon>
+                <div class="date-picker__dropdown-detail">{{ date | date: 'MMMM' }}, {{ date | date: 'yyyy' }}</div>
                 <svg-icon
-                    id='nextMonth'
-                    src='assets/angular-common-components/arrow-right-analog.svg'
-                    class='date-picker__dropdown-icon calendar-icon-size'
-                    (click)='nextMonth($event)'></svg-icon>
+                    id="nextMonth"
+                    src="assets/angular-common-components/arrow-right-analog.svg"
+                    class="date-picker__dropdown-icon calendar-icon-size"
+                    (click)="nextMonth($event)"></svg-icon>
             </div>
-            <div class='date-picker__dropdown-content'>
-                <table class='date-picker__calendar-header'><!-- //NOSONAR -->
+            <div class="date-picker__dropdown-content">
+                <!-- prettier-ignore -->
+                <table class="date-picker__calendar-header"><!-- //NOSONAR -->
                     <tr>
                         <td>M</td>
                         <td>T</td>
@@ -34,9 +34,9 @@
                         <td>S</td>
                     </tr>
                 </table>
-
-                <table class='date-picker__calendar-days' (click)='setDay($event)'> <!-- //NOSONAR -->
-                    <tr *ngFor='let week of monthDays'>
+                <!-- prettier-ignore -->
+                <table class="date-picker__calendar-days" (click)="setDay($event)"><!-- //NOSONAR -->
+                    <tr *ngFor="let week of monthDays">
                         <td
                             [ngClass]="{
                                 'date-picker__calendar-day': day.day != null,
@@ -47,56 +47,56 @@
                                 'date-picker__selected-day': day.day === date?.getDate() && day.date?.getMonth() === date?.getMonth(),
                                 'date-picker__prev-month': day.date?.getMonth() !== date?.getMonth()
                             }"
-                            *ngFor='let day of week'>
-                            <span [attr.data-label]='composeDate(day.date)'>{{ day.day }}</span>
+                            *ngFor="let day of week">
+                            <span [attr.data-label]="composeDate(day.date)">{{ day.day }}</span>
                         </td>
                     </tr>
                 </table>
             </div>
-            <div class='date-picker__time-view' *ngIf="type === 'datetime'">
-                <div class='date-picker__time'>
-                    <div class='date-picker__time-hours'>
-                        <div class='date-picker__time-header'>Hours</div>
-                        <div class='date-picker__time-manipulators'>
+            <div class="date-picker__time-view" *ngIf="type === 'datetime'">
+                <div class="date-picker__time">
+                    <div class="date-picker__time-hours">
+                        <div class="date-picker__time-header">Hours</div>
+                        <div class="date-picker__time-manipulators">
                             <svg-icon
-                                src='assets/angular-common-components/arrow-left-analog.svg'
-                                class='date-picker__time-calendar-icon'
-                                (click)='decHour()'
-                                id='hourDec'></svg-icon>
+                                src="assets/angular-common-components/arrow-left-analog.svg"
+                                class="date-picker__time-calendar-icon"
+                                (click)="decHour()"
+                                id="hourDec"></svg-icon>
                             <input
                                 #hourInput
-                                type='text'
+                                type="text"
                                 [value]="hourValue < 10 ? '0' + hourStr : hourStr"
-                                (input)='onHourChange($event)'
+                                (input)="onHourChange($event)"
                                 ocOnlyNumber
-                                (click)='hourInput.select()'>
+                                (click)="hourInput.select()" />
                             <svg-icon
-                                src='assets/angular-common-components/arrow-right-analog.svg'
-                                class='date-picker__time-calendar-icon'
-                                id='hourInc'
-                                (click)='incHour()'></svg-icon>
+                                src="assets/angular-common-components/arrow-right-analog.svg"
+                                class="date-picker__time-calendar-icon"
+                                id="hourInc"
+                                (click)="incHour()"></svg-icon>
                         </div>
                     </div>
-                    <div class='date-picker__time-minutes'>
-                        <div class='date-picker__time-header'>Minutes</div>
-                        <div class='date-picker__time-manipulators'>
+                    <div class="date-picker__time-minutes">
+                        <div class="date-picker__time-header">Minutes</div>
+                        <div class="date-picker__time-manipulators">
                             <svg-icon
-                                src='assets/angular-common-components/arrow-left-analog.svg'
-                                class='date-picker__time-calendar-icon'
-                                id='minDec'
-                                (click)='decMinutes()'></svg-icon>
+                                src="assets/angular-common-components/arrow-left-analog.svg"
+                                class="date-picker__time-calendar-icon"
+                                id="minDec"
+                                (click)="decMinutes()"></svg-icon>
                             <input
                                 #minInput
-                                type='text'
+                                type="text"
                                 [value]="minuteValue < 10 ? '0' + minuteStr : minuteStr"
-                                (input)='onMinChange($event)'
+                                (input)="onMinChange($event)"
                                 ocOnlyNumber
-                                (click)='minInput.select()'>
+                                (click)="minInput.select()" />
                             <svg-icon
-                                src='assets/angular-common-components/arrow-right-analog.svg'
-                                class='date-picker__time-calendar-icon'
-                                id='minInc'
-                                (click)='incMinutes()'></svg-icon>
+                                src="assets/angular-common-components/arrow-right-analog.svg"
+                                class="date-picker__time-calendar-icon"
+                                id="minInc"
+                                (click)="incMinutes()"></svg-icon>
                         </div>
                     </div>
                 </div>
@@ -106,14 +106,14 @@
 </div>
 
 <ng-template #datePickerButton>
-    <div class='date-picker__input-content'>
-        <input type='hidden' value='{{ date }}'>
-        <div class='date-picker__format'>
-            <span class='date-picker__format-text' *ngIf='date'>{{ date | date: settings.format }}</span>
-            <span class='date-picker__format-text date-picker__format-text_placeholder' *ngIf='!date'>
+    <div class="date-picker__input-content">
+        <input type="hidden" value="{{ date }}" />
+        <div class="date-picker__format">
+            <span class="date-picker__format-text" *ngIf="date">{{ date | date: settings.format }}</span>
+            <span class="date-picker__format-text date-picker__format-text_placeholder" *ngIf="!date">
                 {{ placeholder || (settings.format | uppercase) }}
             </span>
         </div>
-        <svg-icon class='date-picker__icon' src='assets/angular-common-components/calendar-icon.svg'></svg-icon>
+        <svg-icon class="date-picker__icon" src="assets/angular-common-components/calendar-icon.svg"></svg-icon>
     </div>
 </ng-template>
