@@ -610,7 +610,6 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
 
     // prettier-ignore
     setDisabledState?(isDisabled: boolean): void { // NOSONAR
-        // nothing to do
     }
 
     /**
