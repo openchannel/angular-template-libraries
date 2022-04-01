@@ -16,6 +16,8 @@ definitions:
           - npm run build-prod angular-common-services
           - npm run build-prod angular-common-components
           - npm run test
+        artifacts:
+          - projects/angular-common-components/coverage/lcov.info
     - step: &analyze-sonarcloud
         name: Analyze on SonarCloud
         max-time: 15
@@ -29,6 +31,7 @@ definitions:
               EXTRA_ARGS: '-Dsonar.sources="projects/angular-common-components/src,projects/angular-common-services/src"
               -Dsonar.tests=projects/angular-common-components/src
               -Dsonar.test.inclusions="**/testing/**,**/*.spec.ts"
+              -Dsonar.test.coverage.exclusions=**/mock/**
               -Dsonar.typescript.lcov.reportPaths=projects/angular-common-components/coverage/lcov.info'
     - step: &build-and-push-new-version-of-services
         name: Push services to npm
