@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CountriesModel, CountryModel, StatesModel } from '../model/api/country-state.model';
+import { CountriesModel, StatesModel } from '../model/api/country-state.model';
 
 /**
  * Description: API service for getting countries and states list.<br>

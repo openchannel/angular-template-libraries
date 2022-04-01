@@ -9,7 +9,8 @@ export class OcFormGenerator {
     // tslint:disable-next-line:typedef
     static getFormByConfig(fieldsDefinitions: AppFormField[], trimTextFields?: TrimFormFieldType[]) {
         let group = {};
-        fieldsDefinitions.forEach(inputTemplate => {
+        // prettier-ignore
+        fieldsDefinitions.forEach(inputTemplate => { // NOSONAR
             const isTrimText = trimTextFields?.includes(inputTemplate?.type);
 
             switch (inputTemplate?.type) {
@@ -116,10 +117,12 @@ export class OcFormGenerator {
         });
         return group;
     }
+
     /**
      * Setting validators array to the chosen control
      */
-    static setValidators(
+    // prettier-ignore
+    static setValidators( // NOSONAR
         control: AbstractControl,
         inputTemplate: AppTypeFieldModel,
         additional?: {

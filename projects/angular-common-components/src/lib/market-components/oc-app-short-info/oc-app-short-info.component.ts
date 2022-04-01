@@ -22,6 +22,7 @@ export class OcAppShortInfoComponent implements OnInit {
             this.cardApp.icon = app.icon || '';
         }
     }
+
     /**
      * The index of the price model in the array, default is 0
      */
@@ -41,7 +42,9 @@ export class OcAppShortInfoComponent implements OnInit {
     cardApp: FullAppData;
     currentModel: AppModel;
 
-    constructor() {}
+    constructor() {
+        // nothing to do
+    }
 
     ngOnInit(): void {
         this.currentModel = this.cardApp.model[this.priceModelIndex] || this.cardApp.model[0];

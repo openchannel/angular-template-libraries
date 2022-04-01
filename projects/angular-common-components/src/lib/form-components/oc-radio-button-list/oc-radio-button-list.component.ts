@@ -31,10 +31,12 @@ export class OcRadioButtonListComponent implements ControlValueAccessor {
     @Input() set value(value: RadioItemValue) {
         this.componentValue = value;
     }
+
     /** Array which will be used for generating a group of the radio buttons */
     @Input('itemsArray') set listItemsArray(value: any[]) {
         this.itemsArray = value.map(item => this.mapToDropdownModel(item));
     }
+
     /**
      * (Optional)
      * Custom template for the radio list item. If not set, default radio list item will be shown.
@@ -63,12 +65,14 @@ export class OcRadioButtonListComponent implements ControlValueAccessor {
             this.onChange(this.componentValue);
         }
     }
+
     /**
      * Register touch action
      */
     onBlur(): void {
         this.onTouched();
     }
+
     /**
      * Calls this function with new value. When user wrote something in the component
      * It needs to know that new data has been entered in the control.
@@ -76,6 +80,7 @@ export class OcRadioButtonListComponent implements ControlValueAccessor {
     registerOnChange(onChange: (value: any) => void): void {
         this.onChange = onChange;
     }
+
     /**
      * Calls this function when user left chosen component.
      * It needs for validation
@@ -83,6 +88,7 @@ export class OcRadioButtonListComponent implements ControlValueAccessor {
     registerOnTouched(onTouched: () => void): void {
         this.onTouched = onTouched;
     }
+
     /**
      * (Optional)
      * the method will be called by the control when the [disabled] state changes.
@@ -90,6 +96,7 @@ export class OcRadioButtonListComponent implements ControlValueAccessor {
     setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
     }
+
     /**
      * this method will be called by the control to pass the value to our component.
      * It is used if the value is changed through the code outside
@@ -101,6 +108,7 @@ export class OcRadioButtonListComponent implements ControlValueAccessor {
             this.componentValue = obj;
         }
     }
+
     /**
      * Transform item of the values array to [Dropdown model]{@link DropdownModel}
      * @param item item of the options array
@@ -117,12 +125,11 @@ export class OcRadioButtonListComponent implements ControlValueAccessor {
         }
     }
 
-    /**
-     * @ignore
-     */
-    private onTouched = () => {};
-    /**
-     * @ignore
-     */
-    private onChange: (value: any) => void = () => {};
+    private onTouched = () => {
+        // nothing to do
+    };
+
+    private onChange: (value: any) => void = () => {
+        // nothing to do
+    };
 }

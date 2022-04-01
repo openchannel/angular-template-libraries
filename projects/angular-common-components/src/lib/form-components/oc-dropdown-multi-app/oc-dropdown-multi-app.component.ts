@@ -80,13 +80,17 @@ export class OcDropdownMultiAppComponent implements OnInit, OnDestroy, ControlVa
         this.onTouched = onTouched;
     }
 
-    setDisabledState(isDisabled: boolean): void {}
+    // prettier-ignore
+    setDisabledState(isDisabled: boolean): void { // NOSONAR
+    }
 
     writeValue(value: any): void {
         this.loadAppsByIDsAndPutToResultArray(this.selectAppIDs(value)).subscribe();
     }
 
-    onTouched = () => {};
+    onTouched = () => {
+        // nothing to do
+    };
 
     private loadAppsByIDsAndPutToResultArray(appIdArray: string[]): Observable<FullAppData[]> {
         if (appIdArray?.length > 0) {
@@ -108,5 +112,7 @@ export class OcDropdownMultiAppComponent implements OnInit, OnDestroy, ControlVa
         return Array.isArray(data) ? (data as []).filter(isString) : [];
     }
 
-    private onChange: (value: any) => void = () => {};
+    private onChange: (value: any) => void = () => {
+        // nothing to do
+    };
 }

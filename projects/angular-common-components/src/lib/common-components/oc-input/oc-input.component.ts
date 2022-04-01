@@ -71,7 +71,9 @@ export class OcInputComponent implements OnInit, ControlValueAccessor {
 
     constructor(private el: ElementRef) {}
 
-    onTouched = () => {};
+    onTouched = () => {
+        // nothing to do
+    };
 
     ngOnInit(): void {
         if (this.autocomplete) {
@@ -90,6 +92,7 @@ export class OcInputComponent implements OnInit, ControlValueAccessor {
     registerOnChange(onChange: (value: any) => void): void {
         this.onChange = onChange;
     }
+
     /**
      * Calls this function when user left chosen component.
      * It needs for validation
@@ -97,6 +100,7 @@ export class OcInputComponent implements OnInit, ControlValueAccessor {
     registerOnTouched(onTouched: () => void): void {
         this.onTouched = onTouched;
     }
+
     /**
      * (Optional)
      * the method will be called by the control when the [disabled] state changes.
@@ -104,6 +108,7 @@ export class OcInputComponent implements OnInit, ControlValueAccessor {
     setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
     }
+
     /**
      * this method will be called by the control to pass the value to our component.
      * It is used if the value is changed through the code outside
@@ -113,5 +118,8 @@ export class OcInputComponent implements OnInit, ControlValueAccessor {
     writeValue(obj: any): void {
         this.inputValue = obj;
     }
-    private onChange: (value: any) => void = () => {};
+
+    private onChange: (value: any) => void = () => {
+        // nothing to do
+    };
 }
