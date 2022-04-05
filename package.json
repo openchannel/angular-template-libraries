@@ -1,6 +1,6 @@
 {
   "name": "oc-angular-template-libraries",
-  "version": "2.55.3",
+  "version": "2.56.0",
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
     "prebuild": "npm run clean-css && npm run generate-mock-css",
@@ -90,12 +90,12 @@
     "@storybook/addon-actions": "6.3.7",
     "@storybook/addon-backgrounds": "6.3.7",
     "@storybook/addon-controls": "6.3.7",
-    "@storybook/addon-docs": "^6.4.19",
+    "@storybook/addon-docs": "6.3.7",
     "@storybook/addon-links": "6.3.7",
     "@storybook/addon-storysource": "6.3.7",
     "@storybook/addon-viewport": "6.3.7",
     "@storybook/addons": "6.3.7",
-    "@storybook/angular": "^6.4.19",
+    "@storybook/angular": "6.3.7",
     "@tinymce/tinymce-angular": "^4.2.1",
     "@types/chart.js": "^2.9.35",
     "@types/jasmine": "~3.6.0",
@@ -140,6 +140,7 @@
     "node-forge": "^1.0.0",
     "ansi-regex": "^5.0.1",
     "nth-check": "^2.0.1",
-    "minimist": "^1.2.6"
+    "minimist": "^1.2.6",
+    "browserslist": "^4.16.5"
   }
 }

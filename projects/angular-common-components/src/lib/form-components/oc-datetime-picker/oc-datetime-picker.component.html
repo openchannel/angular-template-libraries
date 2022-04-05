@@ -14,7 +14,7 @@
                     id="prevMonth"
                     src="assets/angular-common-components/arrow-left-analog.svg"
                     (click)="prevMonth($event)"></svg-icon>
-                <div class="date-picker__dropdown-detail">{{ date | date: "MMMM" }}, {{ date | date: "yyyy" }}</div>
+                <div class="date-picker__dropdown-detail">{{ date | date: 'MMMM' }}, {{ date | date: 'yyyy' }}</div>
                 <svg-icon
                     id="nextMonth"
                     src="assets/angular-common-components/arrow-right-analog.svg"
@@ -22,7 +22,8 @@
                     (click)="nextMonth($event)"></svg-icon>
             </div>
             <div class="date-picker__dropdown-content">
-                <table class="date-picker__calendar-header">
+                <!-- prettier-ignore -->
+                <table class="date-picker__calendar-header"><!-- //NOSONAR -->
                     <tr>
                         <td>M</td>
                         <td>T</td>
@@ -33,8 +34,8 @@
                         <td>S</td>
                     </tr>
                 </table>
-
-                <table class="date-picker__calendar-days" (click)="setDay($event)">
+                <!-- prettier-ignore -->
+                <table class="date-picker__calendar-days" (click)="setDay($event)"><!-- //NOSONAR -->
                     <tr *ngFor="let week of monthDays">
                         <td
                             [ngClass]="{
@@ -68,7 +69,7 @@
                                 [value]="hourValue < 10 ? '0' + hourStr : hourStr"
                                 (input)="onHourChange($event)"
                                 ocOnlyNumber
-                                (click)="hourInput.select()" >
+                                (click)="hourInput.select()" />
                             <svg-icon
                                 src="assets/angular-common-components/arrow-right-analog.svg"
                                 class="date-picker__time-calendar-icon"
@@ -90,7 +91,7 @@
                                 [value]="minuteValue < 10 ? '0' + minuteStr : minuteStr"
                                 (input)="onMinChange($event)"
                                 ocOnlyNumber
-                                (click)="minInput.select()" >
+                                (click)="minInput.select()" />
                             <svg-icon
                                 src="assets/angular-common-components/arrow-right-analog.svg"
                                 class="date-picker__time-calendar-icon"
@@ -106,7 +107,7 @@
 
 <ng-template #datePickerButton>
     <div class="date-picker__input-content">
-        <input type="hidden" value="{{ date }}" >
+        <input type="hidden" value="{{ date }}" />
         <div class="date-picker__format">
             <span class="date-picker__format-text" *ngIf="date">{{ date | date: settings.format }}</span>
             <span class="date-picker__format-text date-picker__format-text_placeholder" *ngIf="!date">

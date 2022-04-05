@@ -1,8 +1,8 @@
 import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { merge } from 'lodash';
 import { FormLabelPosition } from '../model/app-form-model';
-import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
 import { ImageCropperOptions } from '../oc-file-upload/oc-file-upload.component';
+import { TooltipPlacementArray } from '../oc-tooltip-label/oc-tooltip-label.component';
 
 /**
  * Use this injection token to provide custom form config.
@@ -51,7 +51,7 @@ export interface FormInputs {
 
     label: {
         position?: FormLabelPosition;
-        tooltipPosition?: PlacementArray;
+        tooltipPosition?: TooltipPlacementArray;
         [key: string]: any;
     };
 

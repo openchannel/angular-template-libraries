@@ -120,6 +120,11 @@ export class OcTextareaComponent implements ControlValueAccessor {
         this.textAreaValue = obj;
     }
 
-    private onTouched = () => {};
-    private onChange: (value: any) => void = () => {};
+    private onTouched = () => {
+        // nothing to do
+    };
+
+    private onChange: (value: any) => void = () => {
+        // nothing to do
+    };
 }

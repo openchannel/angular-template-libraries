@@ -23,6 +23,7 @@ export class OcCheckboxComponent implements ControlValueAccessor {
         this.checked = val;
         this.onChange(this.checked);
     }
+
     /** Text of the checkbox. Will be placed near checkbox */
     @Input() labelText: string;
     /** Sets asterisk near the label text. Which means that this control is required */
@@ -45,12 +46,14 @@ export class OcCheckboxComponent implements ControlValueAccessor {
         this.onChange(this.checked);
         this.isCheckedChange.emit(this.checked);
     }
+
     /**
      * Register touch action
      */
     onBlur(): void {
         this.onTouched();
     }
+
     /**
      * Calls this function with new value. When user wrote something in the component
      * It needs to know that new data has been entered in the control.
@@ -58,6 +61,7 @@ export class OcCheckboxComponent implements ControlValueAccessor {
     registerOnChange(onChange: (value: any) => void): void {
         this.onChange = onChange;
     }
+
     /**
      * Calls this function when user left chosen component.
      * It needs for validation
@@ -65,6 +69,7 @@ export class OcCheckboxComponent implements ControlValueAccessor {
     registerOnTouched(onTouched: () => void): void {
         this.onTouched = onTouched;
     }
+
     /**
      * (Optional)
      * the method will be called by the control when the [disabled] state changes.
@@ -72,6 +77,7 @@ export class OcCheckboxComponent implements ControlValueAccessor {
     setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
     }
+
     /**
      * this method will be called by the control to pass the value to our component.
      * It is used if the value is changed through the code outside
@@ -85,9 +91,13 @@ export class OcCheckboxComponent implements ControlValueAccessor {
     /**
      * @ignore
      */
-    private onTouched = () => {};
+    private onTouched = () => {
+        // nothing to do
+    };
     /**
      * @ignore
      */
-    private onChange: (value: any) => void = () => {};
+    private onChange: (value: any) => void = () => {
+        // nothing to do
+    };
 }

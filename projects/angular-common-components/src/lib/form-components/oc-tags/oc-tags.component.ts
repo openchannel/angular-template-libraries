@@ -205,7 +205,9 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
      * (Optional)
      * The method will be called by the control when the [disabled] state changes.
      */
-    setDisabledState(isDisabled: boolean): void {}
+    // prettier-ignore
+    setDisabledState(isDisabled: boolean): void { // NOSONAR
+    }
 
     /**
      * This method will be called by the control to pass the value to our component.
@@ -227,6 +229,11 @@ export class OcTagsComponent implements OnInit, ControlValueAccessor, OnChanges 
         this.dropBoxTags = this.findAvailableDropBoxTags();
     }
 
-    private onTouched = () => {};
-    private onChange: (value: any) => void = () => {};
+    private onTouched = () => {
+        // nothing to do
+    };
+
+    private onChange: (value: any) => void = () => {
+        // nothing to do
+    };
 }

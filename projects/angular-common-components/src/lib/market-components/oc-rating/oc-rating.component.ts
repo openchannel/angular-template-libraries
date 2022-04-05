@@ -114,7 +114,11 @@ export class OcRatingComponent implements ControlValueAccessor {
         }
     }
 
-    private onTouched = () => {};
+    private onTouched = () => {
+        // nothing to do
+    };
 
-    private onChange: (value: any) => void = () => {};
+    private onChange: (value: any) => void = () => {
+        // nothing to do
+    };
 }
