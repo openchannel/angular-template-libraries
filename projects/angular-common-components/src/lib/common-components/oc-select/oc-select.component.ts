@@ -128,6 +128,11 @@ export class OcSelectComponent implements OnInit, ControlValueAccessor {
         this.changeInputLabel();
     }
 
-    private onTouched = () => {};
-    private onChange: (value: any) => void = () => {};
+    private onTouched = () => {
+        // nothing to do
+    };
+
+    private onChange: (value: any) => void = () => {
+        // nothing to do
+    };
 }

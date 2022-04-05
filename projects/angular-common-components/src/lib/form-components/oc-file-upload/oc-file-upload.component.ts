@@ -552,7 +552,8 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * Function for download file. If file is private then it opens link in new window and download file. If not call service method to start downloading process.
      * @param {FileDetails} file
      */
-    downloadFile(file: FileDetails): void {
+    // prettier-ignore
+    downloadFile(file: FileDetails): void { // NOSONAR
         if (file && file.fileUploadProgress && file.fileUploadProgress === 100) {
             if (this.isFileTypePrivate()) {
                 if (!this.fileUploaderService.fileDetailsRequest) {
@@ -587,8 +588,13 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         }
     }
 
-    onTouched = () => {};
-    onChange: (value: any) => void = () => {};
+    onTouched = () => {
+        // nothing to do
+    };
+
+    onChange: (value: any) => void = () => {
+        // nothing to do
+    };
 
     writeValue(obj: any): void {
         this.initValues(obj);
@@ -602,7 +608,9 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
         this.onTouched = onTouched;
     }
 
-    setDisabledState?(isDisabled: boolean): void {}
+    // prettier-ignore
+    setDisabledState?(isDisabled: boolean): void { // NOSONAR
+    }
 
     /**
      * @private Sets the text for the upload button based on the file type

@@ -115,6 +115,11 @@ export class OcVideoUrlComponent implements ControlValueAccessor {
         this.verifyVideoUrl();
     }
 
-    private onTouched = () => {};
-    private onChange: (value: any) => void = () => {};
+    private onTouched = () => {
+        // nothing to do
+    };
+
+    private onChange: (value: any) => void = () => {
+        // nothing to do
+    };
 }

@@ -161,7 +161,11 @@ export class OcMultiSelectCheckboxListComponent implements OnInit, ControlValueA
         this.selectedItemsOutput.emit(selectedItems);
     }
 
-    private onTouched = () => {};
+    private onTouched = () => {
+        // nothing to do
+    };
 
-    private onChange: (value: any) => void = () => {};
+    private onChange: (value: any) => void = () => {
+        // nothing to do
+    };
 }

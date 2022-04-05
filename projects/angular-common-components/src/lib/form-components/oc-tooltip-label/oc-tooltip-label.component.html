@@ -1,6 +1,6 @@
 <div class="tooltip-label">
     <label class="tooltip-label__text" [ngClass]="labelClass">
-        <div [outerHTML]="text"></div>
+        <span [innerHTML]="text"></span>
         <span *ngIf="required" class="tooltip-label__required">*</span>
     </label>
     <div
