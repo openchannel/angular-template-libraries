@@ -1,3 +1,13 @@
+## Release notes - angular-template-libraries - Version 2.56.0 (4/5/2022)<br>
+### Bug<br>
+AT-1769 - [Libs] Fix storybook build<br>
+### Task<br>
+AT-1763 - Add .nvmrc file to market, portal and libraries repos with node version<br>
+AT-1755 - Fix template3-portal bugs, codesmells<br>
+AT-1754 - Fix template3-marketsite bugs, codesmells<br>
+AT-1753 - Fix angular-template-libraries bugs, codesmells<br>
+### Bug<br>
+AT-1712 - [Field Group] Portal is not retaining application data once saved as draft.<br>
 ## Release notes - angular-template-libraries - Version 2.55.3 (3/29/2022)<br>
 ### Bug<br>
 AT-1760 - [Hot-fix] [Prod] Number field does not accept the value grater than 0.<br>
