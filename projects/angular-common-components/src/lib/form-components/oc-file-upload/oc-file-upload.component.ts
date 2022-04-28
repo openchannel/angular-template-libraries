@@ -284,10 +284,25 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * On file drop handler
      */
     onFileDropped($event: any): void {
-        if (this.isMultiFileSupport() || this.fileDetailArr.length === 0) {
-            this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
-            this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
+        if (this.isFileTypeImage()) {
+            if ((this.isMultiFileSupport() || this.fileDetailArr.length === 0) && this.isValidImageType($event.dataTransfer.files[0])) {
+                this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
+                this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        } else {
+            if (this.isMultiFileSupport() || this.fileDetailArr.length === 0) {
+                this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
+                this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
+            }
         }
+    }
+
+    /**
+     * Function for check is valid imageType
+     * @param {File} file
+     */
+    isValidImageType(file: File): boolean {
+        return /image\/(png|jpg|jpeg|bmp|gif|tiff|webp|x-icon|vnd.microsoft.icon)/.test(file.type);
     }
 
     /**
@@ -295,9 +310,10 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * @param {File} file
      */
     uploadFile(file: File): void {
-        if (!this.fileUploaderService.fileUploadRequest) {
+        if (!this.fileUploaderService.fileUploadRequest || this.hasImageLoadError) {
             // tslint:disable-next-line:no-console
             console.error('Please, set the fileUploadRequest function');
+            this.resetSelection();
         } else {
             this.isUploadInProcess = true;
             let lastFileDetail = new FileDetails();
