@@ -284,25 +284,35 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * On file drop handler
      */
     onFileDropped($event: any): void {
-        if (this.isFileTypeImage()) {
-            if ((this.isMultiFileSupport() || this.fileDetailArr.length === 0) && this.isValidImageType($event.dataTransfer.files[0])) {
-                this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
-                this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
-            }
-        } else {
-            if (this.isMultiFileSupport() || this.fileDetailArr.length === 0) {
-                this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
-                this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
-            }
+        if (
+            this.ValidMIMETypeCheck(this.getAcceptedMIMEType(), $event.dataTransfer.files[0].type) &&
+            (this.isMultiFileSupport() || this.fileDetailArr.length === 0)
+        ) {
+            this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
+            this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
         }
     }
 
     /**
-     * Function for check is valid imageType
-     * @param {File} file
+     * @param acceptTypes 'image/*,image/png,text/txt,text/*'
+     * @param acceptTypesfileType 'image/jpg'
      */
-    isValidImageType(file: File): boolean {
-        return /image\/(png|jpg|jpeg|bmp|gif|tiff|webp|x-icon|vnd.microsoft.icon)/.test(file.type);
+
+    ValidMIMETypeCheck(acceptTypes: string, fileType: string): boolean {
+        const typeArr: string[] = acceptTypes.split(',');
+
+        for (const validType of typeArr) {
+            const typeSplitArr: string[] = validType.split('/');
+            const fileTypeSplitArr: string[] = fileType.split('/');
+            if ((typeSplitArr[1] === '*' && typeSplitArr[0] === fileTypeSplitArr[0]) || typeSplitArr[0] === '*') {
+                return true;
+            } else {
+                if (fileType === validType) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
