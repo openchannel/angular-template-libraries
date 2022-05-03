@@ -284,33 +284,26 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * On file drop handler
      */
     onFileDropped($event: any): void {
-        if (
-            this.ValidMIMETypeCheck(this.getAcceptedMIMEType(), $event.dataTransfer.files[0].type) &&
-            (this.isMultiFileSupport() || this.fileDetailArr.length === 0)
-        ) {
+        if (this.validMIMETypeCheck($event.dataTransfer.files[0].type) && (this.isMultiFileSupport() || this.fileDetailArr.length === 0)) {
             this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
             this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
         }
     }
 
     /**
-     * @param acceptTypes 'image/*,image/png,text/txt,text/*'
-     * @param acceptTypesfileType 'image/jpg'
+     * Check valid of file type compare with allowed type list
+     * Return true if file valid to acceptedType
+     * Take fileType as string parameter
+     * @param fileType 'image/jpg'
      */
 
-    ValidMIMETypeCheck(acceptTypes: string, fileType: string): boolean {
-        const typeArr: string[] = acceptTypes.split(',');
-
+    validMIMETypeCheck(fileType: string): boolean {
+        const typeArr: string[] = this.getAcceptedMIMEType().split(',');
         for (const validType of typeArr) {
-            const typeSplitArr: string[] = validType.split('/');
+            const validTypeArr: string[] = validType.split('/');
             const fileTypeSplitArr: string[] = fileType.split('/');
-            if ((typeSplitArr[1] === '*' && typeSplitArr[0] === fileTypeSplitArr[0]) || typeSplitArr[0] === '*') {
-                return true;
-            } else {
-                if (fileType === validType) {
-                    return true;
-                }
-            }
+            const acceptedWildCardType = validTypeArr[1] === '*' && validTypeArr[0] === fileTypeSplitArr[0];
+            return validTypeArr[0] === '*' || fileType === validType || acceptedWildCardType;
         }
         return false;
     }
