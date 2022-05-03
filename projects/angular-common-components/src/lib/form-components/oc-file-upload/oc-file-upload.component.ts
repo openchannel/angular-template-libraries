@@ -296,7 +296,6 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * Take fileType as string parameter
      * @param fileType 'image/jpg'
      */
-
     validMIMETypeCheck(fileType: string): boolean {
         const typeArr: string[] = this.getAcceptedMIMEType().split(',');
         for (const validType of typeArr) {
