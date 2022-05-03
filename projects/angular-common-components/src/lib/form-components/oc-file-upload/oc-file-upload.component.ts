@@ -284,19 +284,18 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * On file drop handler
      */
     onFileDropped($event: any): void {
-        if (this.validMIMETypeCheck($event.dataTransfer.files[0].type) && (this.isMultiFileSupport() || this.fileDetailArr.length === 0)) {
+        if (this.validMimeTypeCheck($event.dataTransfer.files[0].type) && (this.isMultiFileSupport() || this.fileDetailArr.length === 0)) {
             this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
             this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
         }
     }
 
     /**
-     * Check valid of file type compare with allowed type list
-     * Return true if file valid to acceptedType
-     * Take fileType as string parameter
-     * @param fileType 'image/jpg'
+     * Compare file type with allowed type list
+     * @param fileType - string MIME type ex.: 'image/jpg'
+     * @return boolean - result of validation
      */
-    validMIMETypeCheck(fileType: string): boolean {
+    validMimeTypeCheck(fileType: string): boolean {
         const typeArr: string[] = this.getAcceptedMIMEType().split(',');
         for (const validType of typeArr) {
             const validTypeArr: string[] = validType.split('/');
