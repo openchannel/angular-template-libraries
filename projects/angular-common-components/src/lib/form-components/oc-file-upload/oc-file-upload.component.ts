@@ -284,10 +284,26 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * On file drop handler
      */
     onFileDropped($event: any): void {
-        if (this.isMultiFileSupport() || this.fileDetailArr.length === 0) {
+        if (this.validMimeTypeCheck($event.dataTransfer.files[0].type) && (this.isMultiFileSupport() || this.fileDetailArr.length === 0)) {
             this.fileInputVar.nativeElement.files = $event.dataTransfer.files;
             this.fileInputVar.nativeElement.dispatchEvent(new Event('change', { bubbles: true }));
         }
+    }
+
+    /**
+     * Compare file type with allowed type list
+     * @param fileType - string MIME type ex.: 'image/jpg'
+     * @return boolean - result of validation
+     */
+    validMimeTypeCheck(fileType: string): boolean {
+        const typeArr: string[] = this.getAcceptedMIMEType().split(',');
+        for (const validType of typeArr) {
+            const validTypeArr: string[] = validType.split('/');
+            const fileTypeSplitArr: string[] = fileType.split('/');
+            const acceptedWildCardType = validTypeArr[1] === '*' && validTypeArr[0] === fileTypeSplitArr[0];
+            return validTypeArr[0] === '*' || fileType === validType || acceptedWildCardType;
+        }
+        return false;
     }
 
     /**
@@ -295,9 +311,10 @@ export class OcFileUploadComponent implements OnInit, OnDestroy, ControlValueAcc
      * @param {File} file
      */
     uploadFile(file: File): void {
-        if (!this.fileUploaderService.fileUploadRequest) {
+        if (!this.fileUploaderService.fileUploadRequest || this.hasImageLoadError) {
             // tslint:disable-next-line:no-console
             console.error('Please, set the fileUploadRequest function');
+            this.resetSelection();
         } else {
             this.isUploadInProcess = true;
             let lastFileDetail = new FileDetails();
