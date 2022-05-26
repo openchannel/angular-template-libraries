@@ -1,4 +1,5 @@
 @import '../../../../assets/styles/theme';
+@import '../../../../assets/styles/mixins';
 
 .cards-interface {
     width: 100%;
@@ -53,6 +54,16 @@
             display: flex;
             justify-content: space-between;
             padding: 0 2.5rem 2.5rem;
+            flex-wrap: wrap;
+
+            oc-button {
+
+                & + oc-button {
+                    @include media-breakpoint-sm {
+                        margin-top: 2rem;
+                    }
+                }
+            }
         }
     }
 }
