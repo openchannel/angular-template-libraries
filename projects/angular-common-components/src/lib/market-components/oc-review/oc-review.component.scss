@@ -1,4 +1,5 @@
 .review {
+
     &__heading {
         margin-bottom: 2rem;
     }
@@ -23,14 +24,31 @@
     }
 
     &__buttons-section {
+        @media (min-width: 400px) {
+
         display: flex;
         margin-top: 6rem;
         justify-content: flex-end;
+        }
+        @media (max-width: 400px) {
+            display: block;
+            margin-top: 6rem;
+            justify-content: flex-end;
+        }
     }
 
     &__button {
-        display: block;
-        width: 160px;
+
+        @media (min-width: 400px) {
+            display: block;
+            width: 160px;
+        }
+        @media (max-width: 400px) {
+            display: block;
+            align-items: center;
+            width: 160px;
+            margin-top:10px;
+        }
 
         &-cancel {
             margin-right: 6rem;
