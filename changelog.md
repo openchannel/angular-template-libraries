@@ -1,3 +1,6 @@
+## Release notes - angular-template-libraries - Version 2.59.0 (5/27/2022)<br>
+### Task<br>
+AT-1799 - Implement SP initiated flow for SAML<br>
 ## Release notes - angular-template-libraries - Version 2.58.0 (5/26/2022)<br>
 ### Bug<br>
 AT-1795 - [portal] DFA Save buttons in out of screen on mobile <br>

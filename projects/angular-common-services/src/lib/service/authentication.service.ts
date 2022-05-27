@@ -42,6 +42,15 @@ export class AuthenticationService {
         return this.httpService.post(`${this.apiPaths.authorization}/refresh`, request, { headers });
     }
 
+    /**
+     * Return link with SAML Auth request
+     * @param relayState redirect url
+     */
+    authRequest(relayState: string): Observable<string> {
+        const params = new OcHttpParams().append('RelayState', relayState);
+        return this.httpService.get(`${this.apiPaths.authorization}/external/request/saml`, { params, responseType: 'text' });
+    }
+
     logOut(): Observable<void> {
         const requestBody = {
             accessToken: this.authHolderService.accessToken,
